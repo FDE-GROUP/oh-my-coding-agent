@@ -21,6 +21,7 @@
 | `11-model-runtime.md` | provider 组合、auth.json、虚拟模型、模型解析 |
 | `12-tools.md` | read/write/edit/bash/grep/find/ls、路径、截断、输出累积 |
 | `13-modes.md` | print / RPC / interactive 如何消费事件流 |
+| `14-mcp-codemode.md` | 工具暴露、MCP 连接与 OAuth、QuickJS 沙箱、tool_search |
 
 ## 已覆盖的调用链
 
@@ -40,7 +41,7 @@ CLI → main() → runtime factory → services → createAgentSession
 | ~~`core/system-prompt.ts` + skills/prompts~~ | ~~228 行 + loaders~~ | 已读，见 `09-system-prompt.md` |
 | ~~`core/tools/` 实现~~ | ~~4,838 行~~ | 已读，见 `12-tools.md` |
 | ~~`modes/`~~ | ~~24,612 行~~ | 已读结构与事件面，见 `13-modes.md` |
-| `extensions/mcp` + `codemode` | 13,331 行 | 中：工具生态 |
+| ~~`extensions/mcp` + `codemode`~~ | ~~13,331 行~~ | 已读整合层，见 `14-mcp-codemode.md`；底层 `packages/mcp` 未读 |
 | `core/cache-warmer.ts` | 未统计 | 中：成本控制 |
 | `packages/ai/src/api/*` | 14,015 行 | 低：provider 实现细节 |
 | `packages/tui` | 45,305 行 | 低：终端渲染库 |
