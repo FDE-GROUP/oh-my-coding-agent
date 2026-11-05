@@ -18,6 +18,7 @@
 | `08-boot-and-session.md` | 从 CLI 到第一次请求的装配线与 Session 生命周期 |
 | `09-system-prompt.md` | 分节 prompt、AGENTS.md、skills、prompt templates |
 | `10-compaction.md` | 触发条件、切点、摘要、溢出恢复、分支摘要 |
+| `11-model-runtime.md` | provider 组合、auth.json、虚拟模型、模型解析 |
 
 ## 已覆盖的调用链
 
@@ -33,7 +34,7 @@ CLI → main() → runtime factory → services → createAgentSession
 | 子系统 | 规模 | 重要性 |
 |---|---|---|
 | ~~`core/compaction/`~~ | ~~1,104 行~~ | 已读，见 `10-compaction.md` |
-| `core/model-runtime.ts` + auth | ~1,100 行 + 认证 | 高：provider 选择与凭据 |
+| ~~`core/model-runtime.ts` + auth~~ | ~~~1,100 行 + 认证~~ | 已读，见 `11-model-runtime.md` |
 | ~~`core/system-prompt.ts` + skills/prompts~~ | ~~228 行 + loaders~~ | 已读，见 `09-system-prompt.md` |
 | `core/tools/` 实现 | 4,838 行 | 高：read/write/edit/bash/grep/find |
 | `modes/` | 24,612 行 | 中：TUI / RPC / print |
