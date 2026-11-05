@@ -9,7 +9,6 @@ export interface ShellConfig {
 	commandTransport?: "argv" | "stdin";
 }
 
-// Keep in sync with packages/durable/src/env/node.ts.
 function isLegacyWslBashPath(path: string): boolean {
 	const normalized = win32.normalize(path).toLowerCase();
 	const systemRoot = process.env.SystemRoot;
@@ -27,7 +26,6 @@ function getBashShellConfig(shell: string): ShellConfig {
 	return isLegacyWslBashPath(shell) ? { shell, args: ["-s"], commandTransport: "stdin" } : { shell, args: ["-c"] };
 }
 
-// Matches harness-v2's pathExists (packages/durable/src/env/node.ts).
 // On Unix this is identical to existsSync() (both are access(F_OK)), just
 // spelled with try/catch. On Windows we explicitly avoid existsSync(): its
 // extra stat check rejects runnable Store aliases (nodejs/node#36790).
