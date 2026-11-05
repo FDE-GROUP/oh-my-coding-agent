@@ -33,7 +33,7 @@ CLI → main() → runtime factory → services → createAgentSession
 |---|---|---|
 | `core/compaction/` | 1,104 行 | 高：长会话、converge |
 | `core/model-runtime.ts` + auth | ~1,100 行 + 认证 | 高：provider 选择与凭据 |
-| `core/system-prompt.ts` + skills/prompts | 228 行 + loaders | 高：模型实际看到什么 |
+| ~~`core/system-prompt.ts` + skills/prompts~~ | ~~228 行 + loaders~~ | 已读，见 `09-system-prompt.md` |
 | `core/tools/` 实现 | 4,838 行 | 高：read/write/edit/bash/grep/find |
 | `modes/` | 24,612 行 | 中：TUI / RPC / print |
 | `extensions/mcp` + `codemode` | 13,331 行 | 中：工具生态 |
