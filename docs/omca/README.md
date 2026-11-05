@@ -19,6 +19,7 @@
 | `09-system-prompt.md` | 分节 prompt、AGENTS.md、skills、prompt templates |
 | `10-compaction.md` | 触发条件、切点、摘要、溢出恢复、分支摘要 |
 | `11-model-runtime.md` | provider 组合、auth.json、虚拟模型、模型解析 |
+| `12-tools.md` | read/write/edit/bash/grep/find/ls、路径、截断、输出累积 |
 
 ## 已覆盖的调用链
 
@@ -36,7 +37,7 @@ CLI → main() → runtime factory → services → createAgentSession
 | ~~`core/compaction/`~~ | ~~1,104 行~~ | 已读，见 `10-compaction.md` |
 | ~~`core/model-runtime.ts` + auth~~ | ~~~1,100 行 + 认证~~ | 已读，见 `11-model-runtime.md` |
 | ~~`core/system-prompt.ts` + skills/prompts~~ | ~~228 行 + loaders~~ | 已读，见 `09-system-prompt.md` |
-| `core/tools/` 实现 | 4,838 行 | 高：read/write/edit/bash/grep/find |
+| ~~`core/tools/` 实现~~ | ~~4,838 行~~ | 已读，见 `12-tools.md` |
 | `modes/` | 24,612 行 | 中：TUI / RPC / print |
 | `extensions/mcp` + `codemode` | 13,331 行 | 中：工具生态 |
 | `core/cache-warmer.ts` | 未统计 | 中：成本控制 |
