@@ -16,6 +16,7 @@
 | `06-extension-loading.md` | 扩展发现、加载、Handler 顺序、API 能力面 |
 | `07-package-manager.md` | npm/git/本地来源、过滤语义、优先级、autoload |
 | `08-boot-and-session.md` | 从 CLI 到第一次请求的装配线与 Session 生命周期 |
+| `09-system-prompt.md` | 分节 prompt、AGENTS.md、skills、prompt templates |
 
 ## 已覆盖的调用链
 
