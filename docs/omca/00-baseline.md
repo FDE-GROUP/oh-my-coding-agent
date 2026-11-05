@@ -68,9 +68,20 @@ NODE_USE_ENV_PROXY=1 ./test.sh
 `./test.sh` 剩 44 个失败，全部是上表中的环境问题（`env` 的 7 个导入失败
 随包删除而消失，durable/chord 的 flaky 失败随包删除而消失）。
 
+安装 `ripgrep 15.2.0` 与 `fd 10.5.1` 到 `~/.local/bin` 后，27 个
+grep/find 失败消失，剩余 17 个：
+
+| 原因 | 数量 |
+|---|---:|
+| 剪贴板 / 无头环境 | 12 |
+| `codemode` Bun worker 生命周期 | 3 |
+| 模型目录网络请求 | 1 |
+| `auth-storage` 时序 flaky | 1 |
+
 ## 已知环境欠账
 
-1. 安装 `ripgrep` 与 `fd` 后可消除 27 个失败，并让 coding-agent 的
-   grep/find 工具真正可用。
+1. ~~安装 `ripgrep` 与 `fd`~~ 已完成（2026-11-06）。
 2. 剪贴板测试需要 `xclip`/`wl-copy` 等工具，或跳过。
 3. `codemode` 的 Bun worker 测试需要与上游一致的 Bun 版本才能验证。
+4. `model-catalog-protocol` 与 `auth-storage` 属于网络/时序问题，
+   用 `./test.sh` 的隔离环境无法稳定复现。
