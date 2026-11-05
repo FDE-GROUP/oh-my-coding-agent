@@ -4,7 +4,6 @@
 	"type": "module",
 	"workspaces": [
 		"packages/*",
-		"apps/*",
 		"packages/chord/test/examples/61-tutorial",
 		"packages/coding-agent/examples/extensions/with-deps",
 		"packages/coding-agent/examples/extensions/custom-provider-anthropic",
