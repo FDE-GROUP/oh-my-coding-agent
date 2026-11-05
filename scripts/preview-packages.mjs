@@ -19,8 +19,7 @@ const BASE_URL = "https://pkg.earendil.com";
 const FULL_SHA = /^[0-9a-f]{40}$/;
 // Release tags as CI builds them (v*.*.*); a suffix marks a pre-release (v1.2.3-rc.1).
 const RELEASE_TAG = /^v\d+\.\d+\.\d+(-[0-9A-Za-z.]+)?$/;
-// Its daemon binaries are cross-compiled only by the release workflow; previews would ship without them.
-const EXCLUDED = new Set(["@earendil-works/pi-env"]);
+
 
 class UsageError extends Error {}
 
@@ -37,7 +36,7 @@ async function pack(argv) {
 	});
 	assertSha(values.sha);
 	const sha = values.sha;
-	const packages = getPublicWorkspacePackages().filter((pkg) => !EXCLUDED.has(pkg.name));
+	const packages = getPublicWorkspacePackages();
 	const names = new Set(packages.map((pkg) => pkg.name));
 	const outDir = resolve(values.out);
 	await mkdir(outDir, { recursive: true });
