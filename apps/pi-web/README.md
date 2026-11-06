@@ -110,7 +110,7 @@ pnpm --filter @omfde/pi-web import-sessions -- --owner abel --dry-run
 
 - 元数据（会话归属、Issue 关联、分享、审计）在 SQLite：`~/.pi-web/pi-web.db`，可用 `PI_WEB_DB` 覆盖。
 - 配置仍是 `config.json`，保持人工编辑。
-- 启动时启用 WAL、`busy_timeout=5000`；数据库与 `-wal`/`-shm` 权限收紧到 0600。
+- 服务启动时打开数据库并执行迁移；启用 WAL、`busy_timeout=5000`，数据库与 `-wal`/`-shm` 权限收紧到 0600。
 - 首次启动把旧的 `sessions.json`、`links.json`、`shares.json`、`audit.jsonl` 一次性导入，成功后删除。是否已迁移记录在 `schema_migrations`。
 - 旧 JSON 解析失败会阻止启动并保留文件；修复后重启继续迁移。
 - 审计不再按 10MB 轮转；用 `retention.auditDays` 清理。
