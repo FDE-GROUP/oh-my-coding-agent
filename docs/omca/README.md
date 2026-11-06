@@ -22,6 +22,7 @@
 | `12-tools.md` | read/write/edit/bash/grep/find/ls、路径、截断、输出累积 |
 | `13-modes.md` | print / RPC / interactive 如何消费事件流 |
 | `14-mcp-codemode.md` | 工具暴露、MCP 连接与 OAuth、QuickJS 沙箱、tool_search |
+| `15-tui.md` | 组件模型、差分渲染、布局、overlay、终端抽象 |
 
 ## 已覆盖的调用链
 
@@ -44,7 +45,7 @@ CLI → main() → runtime factory → services → createAgentSession
 | ~~`extensions/mcp` + `codemode`~~ | ~~13,331 行~~ | 已读整合层，见 `14-mcp-codemode.md`；底层 `packages/mcp` 未读 |
 | `core/cache-warmer.ts` | 未统计 | 中：成本控制 |
 | `packages/ai/src/api/*` | 14,015 行 | 低：provider 实现细节 |
-| `packages/tui` | 45,305 行 | 低：终端渲染库 |
+| ~~`packages/tui`~~ | ~~源码约 20k 行~~ | 已读架构，见 `15-tui.md`；细节未读 |
 | `packages/schema` | 41,904 行 | 低：JSON Schema |
 
 ## 建议的继续阅读顺序
