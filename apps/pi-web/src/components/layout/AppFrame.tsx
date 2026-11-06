@@ -2,6 +2,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
 	createSession,
+	fetchAdminSessions,
 	fetchRuntimes,
 	fetchSessions,
 	fetchWorkspaces,
@@ -15,6 +16,7 @@ import type { SessionSummary } from "../../server/sessions.ts";
 import { Conversation } from "../conversation/Conversation.tsx";
 import { IconButton } from "../primitives/IconButton.tsx";
 import { PanelLeftIcon } from "../primitives/icons.tsx";
+import { AuditPanel } from "./AuditPanel.tsx";
 import { RightPanel } from "./RightPanel.tsx";
 import { Sidebar } from "./Sidebar.tsx";
 
@@ -28,28 +30,34 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 	const isDrawer = width < 768;
 	const [expanded, setExpanded] = useState(true);
 	const [error, setError] = useState<string | null>(null);
-	const [sessions, setSessions] = useState<SessionSummary[]>([]);
+	const [sessions, setSessions] = useState<Array<SessionSummary & { owner?: string }>>([]);
 	const [sessionsLoaded, setSessionsLoaded] = useState(false);
+	const [adminView, setAdminView] = useState(false);
+	const [auditOpen, setAuditOpen] = useState(false);
 	const [runtimeStatus, setRuntimeStatus] = useState<Record<string, { busy: boolean }>>({});
 	const [workspaces, setWorkspaces] = useState<WorkspaceInfo[]>([]);
-	const [user, setUser] = useState<{ id: string; name: string } | null>(null);
+	const [user, setUser] = useState<{ id: string; name: string; role: "admin" | "member" } | null>(null);
 	const [workspaceId, setWorkspaceId] = useState("");
 	const previousWide = useRef(width >= 1024);
 	const navigate = useNavigate();
 
 	const refreshSessions = useCallback(async () => {
 		try {
-			setSessions(await fetchSessions());
+			setSessions(adminView ? await fetchAdminSessions() : await fetchSessions());
 		} catch (caught) {
 			setError(caught instanceof Error ? caught.message : String(caught));
 		} finally {
 			setSessionsLoaded(true);
 		}
-	}, []);
+	}, [adminView]);
 
 	useEffect(() => {
 		void refreshSessions();
 	}, [refreshSessions]);
+
+	useEffect(() => {
+		if (window.localStorage.getItem("pi-web-admin-view") === "1") setAdminView(true);
+	}, []);
 
 	useEffect(() => {
 		let cancelled = false;
@@ -71,6 +79,11 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 	const handleWorkspaceChange = useCallback((id: string) => {
 		setWorkspaceId(id);
 		window.localStorage.setItem("pi-web-workspace", id);
+	}, []);
+
+	const handleAdminViewChange = useCallback((value: boolean) => {
+		setAdminView(value);
+		window.localStorage.setItem("pi-web-admin-view", value ? "1" : "0");
 	}, []);
 
 	const handleLogout = useCallback(async () => {
@@ -109,6 +122,10 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 	}, [width]);
 
 	const layoutLabel = isDrawer ? "抽屉" : expanded ? "280px" : "56px";
+	const activeSession = sessions.find((session) => session.id === sessionId);
+	const readOnly = Boolean(
+		sessionId && user?.role === "admin" && adminView && activeSession?.owner && activeSession.owner !== user.id,
+	);
 
 	const handleNew = useCallback(async () => {
 		setError(null);
@@ -158,6 +175,10 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 					onWorkspaceChange={handleWorkspaceChange}
 					user={user}
 					onLogout={handleLogout}
+					isAdmin={user?.role === "admin"}
+					adminView={adminView}
+					onAdminViewChange={handleAdminViewChange}
+					onShowAudit={() => setAuditOpen(true)}
 				/>
 			)}
 
@@ -177,6 +198,10 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 						onWorkspaceChange={handleWorkspaceChange}
 						user={user}
 						onLogout={handleLogout}
+						isAdmin={user?.role === "admin"}
+						adminView={adminView}
+						onAdminViewChange={handleAdminViewChange}
+						onShowAudit={() => setAuditOpen(true)}
 						onClose={() => setExpanded(false)}
 					/>
 					<button
@@ -214,10 +239,12 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 					sessionId={sessionId}
 					onSessionCreated={handleSessionCreated}
 					onSessionSwitch={handleSessionCreated}
+					readOnly={readOnly}
 				/>
 			</main>
 
 			<RightPanel />
+			{auditOpen && <AuditPanel onClose={() => setAuditOpen(false)} />}
 		</div>
 	);
 }

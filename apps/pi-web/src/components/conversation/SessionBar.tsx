@@ -1,4 +1,6 @@
+import { useState } from "react";
 import type { RpcSessionStats } from "../../server/runtime.ts";
+import { SharePanel } from "./SharePanel.tsx";
 
 export interface ModelSummary {
 	provider: string;
@@ -14,6 +16,8 @@ export interface SessionBarProps {
 	onSelectModel: (provider: string, id: string) => void;
 	onClone: () => void;
 	canClone: boolean;
+	sessionId?: string;
+	canWrite: boolean;
 }
 
 function compact(value: number | undefined | null): string {
@@ -29,7 +33,17 @@ function contextLabel(stats: RpcSessionStats | null): string {
 	return `ctx ${Math.round(usage.percent)}%`;
 }
 
-export function SessionBar({ models, model, stats, onSelectModel, onClone, canClone }: SessionBarProps) {
+export function SessionBar({
+	models,
+	model,
+	stats,
+	onSelectModel,
+	onClone,
+	canClone,
+	sessionId,
+	canWrite,
+}: SessionBarProps) {
+	const [shareOpen, setShareOpen] = useState(false);
 	const current = model ? `${model.provider}/${model.id}` : "";
 	const cost = stats?.cost ?? 0;
 	const tokens = stats?.tokens;
@@ -59,21 +73,46 @@ export function SessionBar({ models, model, stats, onSelectModel, onClone, canCl
 					</select>
 				</label>
 
-				<button
-					type="button"
-					onClick={onClone}
-					disabled={!canClone}
-					title={canClone ? "克隆当前分支" : "发送一条消息后才能克隆"}
-					className="ml-auto rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary disabled:opacity-40"
-				>
-					克隆
-				</button>
+				<div className="ml-auto flex items-center gap-1">
+					{canWrite && sessionId && (
+						<button
+							type="button"
+							onClick={() => setShareOpen(true)}
+							className="rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary"
+						>
+							分享
+						</button>
+					)}
+					{sessionId && (
+						<button
+							type="button"
+							onClick={() => {
+								window.location.href = `/api/sessions/${encodeURIComponent(sessionId)}/handoff`;
+							}}
+							className="rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary"
+						>
+							交接
+						</button>
+					)}
+					{canWrite && (
+						<button
+							type="button"
+							onClick={onClone}
+							disabled={!canClone}
+							title={canClone ? "克隆当前分支" : "发送一条消息后才能克隆"}
+							className="rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary disabled:opacity-40"
+						>
+							克隆
+						</button>
+					)}
+				</div>
 				<span className="font-mono">{contextLabel(stats)}</span>
 				<span className="font-mono">
 					↑{compact(tokens?.input)} ↓{compact(tokens?.output)}
 				</span>
 				<span className="font-mono">${cost.toFixed(4)}</span>
 			</div>
+			{shareOpen && sessionId && <SharePanel sessionId={sessionId} onClose={() => setShareOpen(false)} />}
 		</div>
 	);
 }

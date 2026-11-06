@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sessionAccess } from "../../server/access.ts";
+import { appendAudit } from "../../../audit.mjs";
+import { readSessionAccess } from "../../server/access.ts";
 import { recordSessionOwner } from "../../server/owners.ts";
 import { getRuntimeManager, RuntimeCapacityError } from "../../server/runtime-manager.ts";
 import { listSessions, resolveSession } from "../../server/sessions.ts";
@@ -35,19 +36,19 @@ export const Route = createFileRoute("/api/sessions")({
 				const manager = getRuntimeManager();
 				try {
 					if (body.resumeId) {
-						const access = await sessionAccess(body.resumeId, user);
+						const access = await readSessionAccess(body.resumeId, user);
 						if (!access) return Response.json({ error: "会话不存在" }, { status: 404 });
 						const existing = manager.get(body.resumeId);
 						if (existing) {
 							const state = await existing.command({ type: "get_state" });
 							return Response.json({ id: state.data.sessionId, state: state.data });
 						}
-						const resolved = await resolveSession(body.resumeId, user.id);
+						const resolved = await resolveSession(body.resumeId, access.entry.owner);
 						if (!resolved) return Response.json({ error: "会话不存在" }, { status: 404 });
 						const runtime = await manager.create({
 							sessionPath: resolved.summary.path,
 							cwd: resolved.workspace.path,
-							owner: user.id,
+							owner: access.entry.owner,
 						});
 						const state = runtime.state;
 						if (!state) return Response.json({ error: "会话初始化失败" }, { status: 500 });
@@ -60,6 +61,13 @@ export const Route = createFileRoute("/api/sessions")({
 					const state = runtime.state;
 					if (!state) return Response.json({ error: "会话初始化失败" }, { status: 500 });
 					recordSessionOwner(state.sessionId, user.id, workspace.id);
+					appendAudit({
+						user: user.id,
+						role: user.role,
+						action: "session.create",
+						target: state.sessionId,
+						result: "ok",
+					});
 					return Response.json({ id: state.sessionId, state });
 				} catch (error) {
 					if (error instanceof RuntimeCapacityError) {

@@ -1,6 +1,7 @@
 export interface UserConfig {
 	id: string;
 	name: string;
+	role: "admin" | "member";
 	tokenHash: string;
 }
 

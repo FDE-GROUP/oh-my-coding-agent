@@ -12,7 +12,7 @@ export interface SidebarProps {
 	collapsed: boolean;
 	drawer?: boolean;
 	loading?: boolean;
-	sessions: SessionSummary[];
+	sessions: Array<SessionSummary & { owner?: string }>;
 	activeId?: string;
 	onNew: () => void;
 	onRename: (id: string, name: string) => Promise<void>;
@@ -20,8 +20,12 @@ export interface SidebarProps {
 	workspaces: WorkspaceInfo[];
 	workspaceId: string;
 	onWorkspaceChange: (id: string) => void;
-	user: { id: string; name: string } | null;
+	user: { id: string; name: string; role: "admin" | "member" } | null;
 	onLogout: () => void;
+	isAdmin: boolean;
+	adminView: boolean;
+	onAdminViewChange: (value: boolean) => void;
+	onShowAudit: () => void;
 	onClose?: () => void;
 }
 
@@ -44,7 +48,7 @@ function SessionItem({
 	busy,
 	onRename,
 }: {
-	session: SessionSummary;
+	session: SessionSummary & { owner?: string };
 	active: boolean;
 	busy: boolean;
 	onRename: (id: string, name: string) => Promise<void>;
@@ -111,6 +115,7 @@ function SessionItem({
 					)}
 				</span>
 				<span className="truncate pl-3 font-mono text-[10px] text-dsw-label-tertiary">
+					{session.owner ? `${session.owner} · ` : ""}
 					{session.workspaceName} · {formatTime(session.modified)} · {session.messageCount} 条
 				</span>
 			</Link>
@@ -139,6 +144,10 @@ export function Sidebar({
 	onWorkspaceChange,
 	user,
 	onLogout,
+	isAdmin,
+	adminView,
+	onAdminViewChange,
+	onShowAudit,
 	onClose,
 }: SidebarProps) {
 	return (
@@ -216,6 +225,26 @@ export function Sidebar({
 							))
 						)}
 					</div>
+				</div>
+			)}
+
+			{!collapsed && isAdmin && (
+				<div className="flex flex-col gap-1 border-t border-hairline border-dsw-border-l1 p-2">
+					<label className="flex items-center gap-2 px-1 text-[11px] text-dsw-label-secondary">
+						<input
+							type="checkbox"
+							checked={adminView}
+							onChange={(event) => onAdminViewChange(event.target.checked)}
+						/>
+						全部会话
+					</label>
+					<button
+						type="button"
+						onClick={onShowAudit}
+						className="rounded-dsw-xs px-1 py-0.5 text-left text-[11px] text-dsw-label-tertiary hover:text-dsw-label-primary"
+					>
+						审计记录
+					</button>
 				</div>
 			)}
 

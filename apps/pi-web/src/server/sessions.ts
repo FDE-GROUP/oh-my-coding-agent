@@ -77,6 +77,17 @@ export async function listSessions(owner: string): Promise<SessionSummary[]> {
 }
 
 /**
+ * 列出所有工作区的会话，不按用户过滤。
+ *
+ * @returns 按最后修改时间倒序排列的会话。
+ * @internal
+ */
+export async function listAllSessions(): Promise<SessionSummary[]> {
+	const sessions = (await Promise.all(listWorkspaces().map(listWorkspaceSessions))).flat();
+	return sessions.sort((left, right) => right.modified.localeCompare(left.modified));
+}
+
+/**
  * 解析一个用户可访问的会话。
  *
  * @param id - Pi session id。

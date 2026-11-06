@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sessionAccess } from "../../server/access.ts";
+import { readSessionAccess } from "../../server/access.ts";
 import { getRuntimeManager } from "../../server/runtime-manager.ts";
 import { getCurrentUser } from "../../server/user.ts";
 
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/api/sessions/$sessionId/events")({
 		handlers: {
 			GET: async ({ params, request }) => {
 				const user = getCurrentUser();
-				const access = await sessionAccess(params.sessionId, user);
+				const access = await readSessionAccess(params.sessionId, user);
 				if (!access) return Response.json({ error: "会话不存在" }, { status: 404 });
 				const runtime = getRuntimeManager().get(params.sessionId);
 				if (!runtime) return Response.json({ error: "会话未加载" }, { status: 404 });

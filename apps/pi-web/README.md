@@ -13,6 +13,7 @@
 - 控制：模型切换、token、费用、上下文占用。
 - 并行：多个会话同时运行，侧栏显示状态。
 - 团队：访问令牌登录、用户归属、工作区白名单、每用户并发上限。
+- 协作：只读分享、交接文档导出、管理员只读视图、审计日志。
 - 移动端：抽屉布局、PWA manifest。
 
 不做：文件编辑器、命令参数补全、SSO/LDAP、RBAC、审计库、多租户、云部署、内置 HTTPS 证书管理。
@@ -63,7 +64,10 @@ pnpm --filter @omfde/pi-web start
   "publicOrigins": ["http://192.168.1.2:3210"],
   "auth": {
     "secret": "<自动生成>",
-    "users": [{ "id": "abel", "name": "Abel", "tokenHash": "<sha256>" }]
+    "users": [
+      { "id": "abel", "name": "Abel", "role": "admin", "tokenHash": "<sha256>" },
+      { "id": "bob", "name": "Bob", "role": "member", "tokenHash": "<sha256>" }
+    ]
   },
   "workspaces": [{ "id": "omfde", "name": "omfde", "path": "/home/abel/omfde" }],
   "limits": { "maxRuntimesPerUser": 2, "maxRuntimesTotal": 8 }
@@ -93,6 +97,19 @@ pnpm --filter @omfde/pi-web import-sessions -- --owner abel
 # 只演练不写入
 pnpm --filter @omfde/pi-web import-sessions -- --owner abel --dry-run
 ```
+
+## 分享与交接
+
+- 所有者可以在会话底栏创建只读分享链接，默认 7 天过期，可随时撤销。
+- 分享链接必须登录后才能打开；只读页面没有输入框和写操作。
+- 会话底栏的“交接”会下载 Markdown，包含目标、结论、工具摘要、改动文件、风险与下一步；导出前对密钥模式脱敏。
+
+## 管理员与审计
+
+- 用户配置 `role: "admin"` 即管理员，默认 `member`。
+- 管理员侧栏可开启“全部会话”，打开他人会话时进入只读视图。
+- 管理员可查看最近审计记录；普通成员访问管理员接口返回 403。
+- 审计文件 `~/.pi-web/audit.jsonl`，权限 0600，超过 10MB 轮转为 `.1`。
 
 ## 工作区
 
@@ -134,6 +151,14 @@ pnpm --filter @omfde/pi-web import-sessions -- --owner abel --dry-run
 | GET | `/api/runtimes` | 当前用户活跃运行时 |
 | GET | `/api/files/search?sessionId=&q=` | 工作区文件搜索 |
 | POST | `/api/files/expand` | `{sessionId, paths}` 展开 `@file` |
+| POST | `/api/sessions/:id/shares` | 创建只读分享 |
+| GET | `/api/sessions/:id/shares` | 列出分享 |
+| GET | `/api/shares/:token` | 只读快照 |
+| GET | `/api/shares/:token/events` | 只读 SSE |
+| DELETE | `/api/shares/:token` | 撤销分享 |
+| GET | `/api/sessions/:id/handoff` | 下载交接 Markdown |
+| GET | `/api/admin/sessions` | 管理员会话列表 |
+| GET | `/api/admin/audit?limit=` | 管理员审计查询 |
 
 ## 架构
 
@@ -183,7 +208,7 @@ location / {
 
 - 把代理后的地址加入 `publicOrigins`，例如 `https://pi.example.com`。
 - SSE 依赖关闭代理缓冲；服务端已发送 `X-Accel-Buffering: no`。
-- 备份 `~/.pi-web/config.json`、`~/.pi-web/sessions.json` 和 `~/.pi/agent/sessions/`。
+- 备份 `~/.pi-web/config.json`、`~/.pi-web/sessions.json`、`~/.pi-web/shares.json`、`~/.pi-web/audit.jsonl` 和 `~/.pi/agent/sessions/`。
 
 ## 测试
 

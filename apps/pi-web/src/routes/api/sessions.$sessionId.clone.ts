@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { appendAudit } from "../../../audit.mjs";
 import { sessionAccess } from "../../server/access.ts";
 import { recordSessionOwner } from "../../server/owners.ts";
 import { getRuntimeManager } from "../../server/runtime-manager.ts";
@@ -26,6 +27,13 @@ export const Route = createFileRoute("/api/sessions/$sessionId/clone")({
 					const state = await runtime.command({ type: "get_state" });
 					manager.rekey(params.sessionId, state.data.sessionId);
 					recordSessionOwner(state.data.sessionId, access.owner, access.workspaceId);
+					appendAudit({
+						user: user.id,
+						role: user.role,
+						action: "session.clone",
+						target: state.data.sessionId,
+						result: "ok",
+					});
 					return Response.json({ id: state.data.sessionId, state: state.data });
 				} catch (error) {
 					const message = error instanceof Error ? error.message : String(error);

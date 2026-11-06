@@ -41,6 +41,7 @@ function normalize(config) {
 						.map((user) => ({
 							id: user.id,
 							name: typeof user.name === "string" ? user.name : user.id,
+							role: user.role === "admin" ? "admin" : "member",
 							tokenHash: user.tokenHash,
 						}))
 				: [],

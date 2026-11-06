@@ -107,6 +107,16 @@ export function listSessionOwners(owner: string): SessionOwner[] {
 }
 
 /**
+ * 列出全部归属记录。
+ *
+ * @returns 所有归属记录。
+ * @internal
+ */
+export function allSessionOwners(): SessionOwner[] {
+	return [...load().values()];
+}
+
+/**
  * 清空内存缓存，仅供测试使用。
  *
  * @internal

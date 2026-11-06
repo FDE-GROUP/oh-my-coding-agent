@@ -5,6 +5,7 @@ import { networkInterfaces } from "node:os";
 import { extname, join, resolve, sep } from "node:path";
 import { Readable } from "node:stream";
 import { fileURLToPath } from "node:url";
+import { appendAudit } from "./audit.mjs";
 import { hashToken, loadConfig } from "./config.mjs";
 import serverEntry from "./dist/server/server.js";
 
@@ -150,7 +151,7 @@ button{margin-top:12px;width:100%;height:40px;border:0;border-radius:8px;backgro
 <div class="error" id="error">${message}</div></main>
 <script>document.getElementById("form").addEventListener("submit",async(e)=>{e.preventDefault();const error=document.getElementById("error");error.textContent="";
 try{const response=await fetch("/api/auth/login",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({token:document.getElementById("token").value})});
-const body=await response.json().catch(()=>({}));if(!response.ok){error.textContent=body.error||"登录失败";return}location.href="/"}catch{error.textContent="无法连接服务"}})</script>
+const body=await response.json().catch(()=>({}));if(!response.ok){error.textContent=body.error||"登录失败";return}const next=new URLSearchParams(location.search).get("next");location.href=next&&next.startsWith("/")&&!next.startsWith("//")?next:"/"}catch{error.textContent="无法连接服务"}})</script>
 </body></html>`;
 }
 
@@ -259,10 +260,18 @@ const server = createServer(async (request, response) => {
 		loginAttempts.set(ip, current);
 
 		if (!user) {
+			appendAudit({
+				user: "anonymous",
+				role: "member",
+				action: "auth.login_failed",
+				target: "/login",
+				result: "failed",
+			});
 			respondJson(response, 401, { error: "令牌无效" });
 			return;
 		}
 		loginAttempts.delete(ip);
+		appendAudit({ user: user.id, role: user.role, action: "auth.login", target: "/login", result: "ok" });
 		response.writeHead(200, {
 			...securityHeaders,
 			"content-type": "application/json; charset=utf-8",
@@ -285,7 +294,8 @@ const server = createServer(async (request, response) => {
 			respondJson(response, 401, { error: "未登录" });
 			return;
 		}
-		response.writeHead(302, { location: "/login" }).end();
+		const next = `${pathname}${url.search}`;
+		response.writeHead(302, { location: `/login?next=${encodeURIComponent(next)}` }).end();
 		return;
 	}
 
@@ -306,12 +316,13 @@ const server = createServer(async (request, response) => {
 
 	const headers = new Headers();
 	for (const [key, value] of Object.entries(request.headers)) {
-		if (key === "x-piweb-user" || key === "x-piweb-user-name") continue;
+		if (key === "x-piweb-user" || key === "x-piweb-user-name" || key === "x-piweb-user-role") continue;
 		if (Array.isArray(value)) headers.set(key, value.join(", "));
 		else if (value !== undefined) headers.set(key, value);
 	}
 	headers.set("x-piweb-user", user.id);
 	headers.set("x-piweb-user-name", user.name);
+	headers.set("x-piweb-user-role", user.role ?? "member");
 
 	const chunks = [];
 	for await (const chunk of request) chunks.push(chunk);

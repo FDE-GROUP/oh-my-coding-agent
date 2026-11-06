@@ -27,9 +27,16 @@ export interface ConversationProps {
 	sessionId?: string;
 	onSessionCreated: (id: string) => void;
 	onSessionSwitch: (id: string) => void;
+	readOnly?: boolean;
 }
 
-export function Conversation({ health, sessionId, onSessionCreated, onSessionSwitch }: ConversationProps) {
+export function Conversation({
+	health,
+	sessionId,
+	onSessionCreated,
+	onSessionSwitch,
+	readOnly = false,
+}: ConversationProps) {
 	const [conversation, dispatch] = useReducer(conversationReducer, initialConversationState);
 	const [activeId, setActiveId] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
@@ -334,37 +341,47 @@ export function Conversation({ health, sessionId, onSessionCreated, onSessionSwi
 					messages={conversation.messages}
 					streaming={conversation.streaming}
 					tools={conversation.tools}
-					forkMessages={forkMessages}
-					onFork={(entryId) => void handleFork(entryId)}
+					forkMessages={readOnly ? [] : forkMessages}
+					onFork={readOnly ? undefined : (entryId) => void handleFork(entryId)}
 				/>
 			)}
 
-			<Composer
-				disabled={creating}
-				streaming={streaming}
-				queued={conversation.queue.steering.length + conversation.queue.followUp.length}
-				supportsImages={model?.input?.includes("image") ?? false}
-				commands={commands}
-				attachments={attachments}
-				onAttachmentsChange={setAttachments}
-				onSearchFiles={(query) => (activeId ? searchProjectFiles(activeId, query) : Promise.resolve([]))}
-				onExpandFiles={(paths) =>
-					activeId
-						? expandProjectFiles(activeId, paths)
-						: Promise.resolve({ text: "", images: [], notes: ["先发送一条消息创建会话，再引用文件"] })
-				}
-				onNotes={addNotes}
-				onSend={send}
-				onAbort={abort}
-			/>
-			<SessionBar
-				models={models}
-				model={model}
-				stats={stats}
-				onSelectModel={selectModel}
-				onClone={() => void handleClone()}
-				canClone={conversation.messages.length > 0}
-			/>
+			{readOnly ? (
+				<div className="border-t border-hairline border-dsw-border-l1 px-4 py-2 text-center text-[11px] text-dsw-label-tertiary">
+					管理员只读视图，不能发送或修改会话
+				</div>
+			) : (
+				<>
+					<Composer
+						disabled={creating}
+						streaming={streaming}
+						queued={conversation.queue.steering.length + conversation.queue.followUp.length}
+						supportsImages={model?.input?.includes("image") ?? false}
+						commands={commands}
+						attachments={attachments}
+						onAttachmentsChange={setAttachments}
+						onSearchFiles={(query) => (activeId ? searchProjectFiles(activeId, query) : Promise.resolve([]))}
+						onExpandFiles={(paths) =>
+							activeId
+								? expandProjectFiles(activeId, paths)
+								: Promise.resolve({ text: "", images: [], notes: ["先发送一条消息创建会话，再引用文件"] })
+						}
+						onNotes={addNotes}
+						onSend={send}
+						onAbort={abort}
+					/>
+					<SessionBar
+						models={models}
+						model={model}
+						stats={stats}
+						onSelectModel={selectModel}
+						onClone={() => void handleClone()}
+						canClone={conversation.messages.length > 0}
+						sessionId={activeId ?? undefined}
+						canWrite
+					/>
+				</>
+			)}
 
 			{notices.length > 0 && (
 				<div className="pointer-events-none fixed right-4 top-14 z-50 flex w-80 flex-col gap-2">

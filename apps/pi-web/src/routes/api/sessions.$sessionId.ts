@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sessionAccess } from "../../server/access.ts";
+import { appendAudit } from "../../../audit.mjs";
+import { readSessionAccess, sessionAccess } from "../../server/access.ts";
 import { getRuntimeManager } from "../../server/runtime-manager.ts";
 import { getCurrentUser } from "../../server/user.ts";
 
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/api/sessions/$sessionId")({
 		handlers: {
 			GET: async ({ params }) => {
 				const user = getCurrentUser();
-				const access = await sessionAccess(params.sessionId, user);
+				const access = await readSessionAccess(params.sessionId, user);
 				if (!access) return Response.json({ error: "会话不存在" }, { status: 404 });
 				const runtime = getRuntimeManager().get(params.sessionId);
 				if (!runtime) return Response.json({ error: "会话未加载" }, { status: 404 });
@@ -30,6 +31,13 @@ export const Route = createFileRoute("/api/sessions/$sessionId")({
 				if (!access) return Response.json({ error: "会话不存在" }, { status: 404 });
 				const closed = await getRuntimeManager().close(params.sessionId);
 				if (!closed) return Response.json({ error: "会话未加载" }, { status: 404 });
+				appendAudit({
+					user: user.id,
+					role: user.role,
+					action: "session.delete",
+					target: params.sessionId,
+					result: "ok",
+				});
 				return Response.json({ ok: true });
 			},
 			PATCH: async ({ params, request }) => {

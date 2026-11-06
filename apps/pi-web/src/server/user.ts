@@ -17,6 +17,7 @@ import { getRequestHeader } from "@tanstack/react-start/server";
 export interface RequestUser {
 	id: string;
 	name: string;
+	role: "admin" | "member";
 }
 
 /**
@@ -28,5 +29,6 @@ export interface RequestUser {
 export function getCurrentUser(): RequestUser {
 	const id = getRequestHeader("x-piweb-user") ?? "local";
 	const name = getRequestHeader("x-piweb-user-name") ?? (id === "local" ? "Local" : id);
-	return { id, name };
+	const role = id === "local" || getRequestHeader("x-piweb-user-role") === "admin" ? "admin" : "member";
+	return { id, name, role };
 }

@@ -296,12 +296,64 @@ export interface WorkspaceInfo {
  * @internal
  */
 export async function fetchWorkspaces(): Promise<{
-	user: { id: string; name: string };
+	user: { id: string; name: string; role: "admin" | "member" };
 	workspaces: WorkspaceInfo[];
 }> {
 	const response = await fetch("/api/workspaces");
 	if (!response.ok) throw new Error(await readError(response));
-	return (await response.json()) as { user: { id: string; name: string }; workspaces: WorkspaceInfo[] };
+	return (await response.json()) as {
+		user: { id: string; name: string; role: "admin" | "member" };
+		workspaces: WorkspaceInfo[];
+	};
+}
+
+/**
+ * 管理员会话列表项。
+ *
+ * @internal
+ */
+export type AdminSessionSummary = SessionSummary & { owner: string };
+
+/**
+ * 管理员读取全部会话。
+ *
+ * @returns 全部会话与 owner。
+ * @internal
+ */
+export async function fetchAdminSessions(): Promise<AdminSessionSummary[]> {
+	const response = await fetch("/api/admin/sessions");
+	if (!response.ok) throw new Error(await readError(response));
+	const body = (await response.json()) as { sessions: AdminSessionSummary[] };
+	return body.sessions;
+}
+
+/**
+ * 审计记录。
+ *
+ * @internal
+ */
+export interface AuditEntry {
+	ts: number;
+	user: string;
+	role: "admin" | "member";
+	action: string;
+	target: string;
+	result: "ok" | "failed";
+	detail?: string;
+}
+
+/**
+ * 管理员读取审计记录。
+ *
+ * @param limit - 最多返回数量。
+ * @returns 最近的审计记录。
+ * @internal
+ */
+export async function fetchAudit(limit = 100): Promise<AuditEntry[]> {
+	const response = await fetch(`/api/admin/audit?limit=${limit}`);
+	if (!response.ok) throw new Error(await readError(response));
+	const body = (await response.json()) as { entries: AuditEntry[] };
+	return body.entries;
 }
 
 /**
@@ -312,4 +364,108 @@ export async function fetchWorkspaces(): Promise<{
  */
 export async function logout(): Promise<void> {
 	await fetch("/api/auth/logout", { method: "POST" });
+}
+
+/**
+ * 分享信息。
+ *
+ * @internal
+ */
+export interface ShareInfo {
+	id: string;
+	createdAt: number;
+	expiresAt: number;
+	revokedAt?: number;
+}
+
+/**
+ * 新建分享。
+ *
+ * @param sessionId - 会话 id。
+ * @param expiresInDays - 有效天数，默认 7。
+ * @returns token、过期时间与完整链接。
+ * @internal
+ */
+export async function createShare(
+	sessionId: string,
+	expiresInDays = 7,
+): Promise<{ token: string; expiresAt: number; url: string }> {
+	const response = await fetch(`/api/sessions/${encodeURIComponent(sessionId)}/shares`, {
+		method: "POST",
+		headers: { "content-type": "application/json" },
+		body: JSON.stringify({ expiresInDays }),
+	});
+	if (!response.ok) throw new Error(await readError(response));
+	return (await response.json()) as { token: string; expiresAt: number; url: string };
+}
+
+/**
+ * 列出会话分享。
+ *
+ * @param sessionId - 会话 id。
+ * @returns 分享记录。
+ * @internal
+ */
+export async function listShares(sessionId: string): Promise<ShareInfo[]> {
+	const response = await fetch(`/api/sessions/${encodeURIComponent(sessionId)}/shares`);
+	if (!response.ok) throw new Error(await readError(response));
+	const body = (await response.json()) as { shares: ShareInfo[] };
+	return body.shares;
+}
+
+/**
+ * 撤销分享。
+ *
+ * @param token - 分享 token。
+ * @returns 请求完成后 resolve。
+ * @internal
+ */
+export async function revokeShare(token: string): Promise<void> {
+	const response = await fetch(`/api/shares/${encodeURIComponent(token)}`, { method: "DELETE" });
+	if (!response.ok) throw new Error(await readError(response));
+}
+
+/**
+ * 只读分享数据。
+ *
+ * @internal
+ */
+export interface SharedSession {
+	snapshot: SessionSnapshot;
+	session: { id: string; name?: string; workspace: string };
+}
+
+/**
+ * 读取只读分享。
+ *
+ * @param token - 分享 token。
+ * @returns 快照与会话信息。
+ * @internal
+ */
+export async function fetchSharedSession(token: string): Promise<SharedSession> {
+	const response = await fetch(`/api/shares/${encodeURIComponent(token)}`);
+	if (!response.ok) throw new Error(await readError(response));
+	return (await response.json()) as SharedSession;
+}
+
+/**
+ * 打开只读分享事件流。
+ *
+ * @param token - 分享 token。
+ * @param handlers - 快照与事件回调。
+ * @returns 关闭事件流的函数。
+ * @internal
+ */
+export function openSharedEventStream(token: string, handlers: EventStreamHandlers): () => void {
+	const source = new EventSource(`/api/shares/${encodeURIComponent(token)}/events`);
+	source.addEventListener("snapshot", (event) => {
+		const envelope = JSON.parse((event as MessageEvent).data) as EventEnvelope;
+		handlers.onSnapshot(envelope.payload as SessionSnapshot);
+	});
+	source.addEventListener("event", (event) => {
+		const envelope = JSON.parse((event as MessageEvent).data) as EventEnvelope;
+		handlers.onEvent(envelope.payload as RuntimeEvent);
+	});
+	source.addEventListener("error", () => handlers.onConnectionError?.());
+	return () => source.close();
 }
