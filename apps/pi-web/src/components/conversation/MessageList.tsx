@@ -111,11 +111,15 @@ function MessageRow({
 	tools,
 	results,
 	renderedCallIds,
+	forkEntryId,
+	onFork,
 }: {
 	message: ConversationMessage;
 	tools: Record<string, ToolExecution>;
 	results: Map<string, ToolResultView>;
 	renderedCallIds: Set<string>;
+	forkEntryId?: string;
+	onFork?: (entryId: string) => void;
 }) {
 	if (message.role !== "user" && message.role !== "assistant" && message.role !== "toolResult") return null;
 
@@ -134,7 +138,16 @@ function MessageRow({
 	}
 
 	return (
-		<article className="flex flex-col gap-2">
+		<article className="group relative flex flex-col gap-2">
+			{message.role === "user" && forkEntryId && onFork && (
+				<button
+					type="button"
+					onClick={() => onFork(forkEntryId)}
+					className="absolute right-2 top-2 rounded-dsw-xs border border-dsw-border-l1 bg-dsw-bg-base px-1.5 py-0.5 text-[10px] text-dsw-label-secondary opacity-0 shadow-dsw-soft group-hover:opacity-100"
+				>
+					从这里分叉
+				</button>
+			)}
 			<RoleLabel author={message.role} />
 			<div
 				className={
@@ -167,12 +180,19 @@ export interface MessageListProps {
 	messages: ConversationMessage[];
 	streaming: StreamingMessage | null;
 	tools: Record<string, ToolExecution>;
+	forkMessages?: Array<{ entryId: string; text: string }>;
+	onFork?: (entryId: string) => void;
 }
 
-export function MessageList({ messages, streaming, tools }: MessageListProps) {
+export function MessageList({ messages, streaming, tools, forkMessages = [], onFork }: MessageListProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [nearBottom, setNearBottom] = useState(true);
 	const results = collectToolResults(messages);
+	const forkIds: Array<string | undefined> = [];
+	let userIndex = 0;
+	for (const message of messages) {
+		forkIds.push(message.role === "user" ? forkMessages[userIndex++]?.entryId : undefined);
+	}
 	const renderedCallIds = new Set<string>();
 	for (const message of messages) {
 		if (message.role !== "assistant" || typeof message.content === "string") continue;
@@ -206,6 +226,8 @@ export function MessageList({ messages, streaming, tools }: MessageListProps) {
 							tools={tools}
 							results={results}
 							renderedCallIds={renderedCallIds}
+							forkEntryId={forkIds[index]}
+							onFork={onFork}
 						/>
 					))}
 					{streaming && <StreamingRow streaming={streaming} />}

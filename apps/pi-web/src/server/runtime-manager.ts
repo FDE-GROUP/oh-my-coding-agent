@@ -9,7 +9,7 @@
  */
 
 import { resolveProjectCwd } from "./project.ts";
-import { SessionRuntime, type SessionRuntimeOptions } from "./runtime.ts";
+import { type RuntimeStatus, SessionRuntime, type SessionRuntimeOptions } from "./runtime.ts";
 
 /**
  * 运行时报错：已达到并发上限且没有可回收的运行时。
@@ -102,6 +102,35 @@ export class RuntimeManager {
 			await runtime.dispose();
 			throw error;
 		}
+	}
+
+	/**
+	 * 把运行时重新绑定到新的 session id。
+	 *
+	 * @param oldId - 原 session id。
+	 * @param newId - 新 session id。
+	 * @internal
+	 */
+	rekey(oldId: string, newId: string): void {
+		const runtime = this.#runtimes.get(oldId);
+		if (!runtime) return;
+		this.#runtimes.delete(oldId);
+		this.#runtimes.set(newId, runtime);
+	}
+
+	/**
+	 * 列出活跃运行时。
+	 *
+	 * @returns 运行时 id、忙碌状态与最后活动时间。
+	 * @internal
+	 */
+	list(): Array<{ id: string; busy: boolean; lastActivityAt: number; status: RuntimeStatus }> {
+		return [...this.#runtimes.entries()].map(([id, runtime]) => ({
+			id,
+			busy: runtime.busy,
+			lastActivityAt: runtime.lastActivityAt,
+			status: runtime.status,
+		}));
 	}
 
 	/**

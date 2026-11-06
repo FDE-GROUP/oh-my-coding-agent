@@ -99,3 +99,13 @@ export function PencilIcon(props: IconProps) {
 		</svg>
 	);
 }
+
+export function ImageIcon(props: IconProps) {
+	return (
+		<svg {...base} {...props}>
+			<rect x="2" y="3" width="12" height="10" rx="2" />
+			<circle cx="5.75" cy="6.5" r="1" />
+			<path d="m3.5 11.5 3-3 2.5 2.5 1.75-1.75 1.75 2.25" />
+		</svg>
+	);
+}

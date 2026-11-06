@@ -32,6 +32,8 @@ export interface SessionSummary {
 	messageCount: number;
 	/** 第一条用户消息，用于无标题会话。 */
 	firstMessage: string;
+	/** 父会话文件路径，分叉会话才有。 */
+	parentSessionPath?: string;
 }
 
 /**
@@ -52,6 +54,7 @@ export async function listSessions(): Promise<SessionSummary[]> {
 			created: session.created.toISOString(),
 			messageCount: session.messageCount,
 			firstMessage: session.firstMessage,
+			parentSessionPath: session.parentSessionPath,
 		}))
 		.sort((left, right) => right.modified.localeCompare(left.modified));
 }

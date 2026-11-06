@@ -4,6 +4,7 @@ export interface ModelSummary {
 	provider: string;
 	id: string;
 	name: string;
+	input?: string[];
 }
 
 export interface SessionBarProps {
@@ -11,6 +12,7 @@ export interface SessionBarProps {
 	model: ModelSummary | null;
 	stats: RpcSessionStats | null;
 	onSelectModel: (provider: string, id: string) => void;
+	onClone: () => void;
 }
 
 function compact(value: number | undefined | null): string {
@@ -26,7 +28,7 @@ function contextLabel(stats: RpcSessionStats | null): string {
 	return `ctx ${Math.round(usage.percent)}%`;
 }
 
-export function SessionBar({ models, model, stats, onSelectModel }: SessionBarProps) {
+export function SessionBar({ models, model, stats, onSelectModel, onClone }: SessionBarProps) {
 	const current = model ? `${model.provider}/${model.id}` : "";
 	const cost = stats?.cost ?? 0;
 	const tokens = stats?.tokens;
@@ -56,7 +58,14 @@ export function SessionBar({ models, model, stats, onSelectModel }: SessionBarPr
 					</select>
 				</label>
 
-				<span className="ml-auto font-mono">{contextLabel(stats)}</span>
+				<button
+					type="button"
+					onClick={onClone}
+					className="ml-auto rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary"
+				>
+					克隆
+				</button>
+				<span className="font-mono">{contextLabel(stats)}</span>
 				<span className="font-mono">
 					↑{compact(tokens?.input)} ↓{compact(tokens?.output)}
 				</span>

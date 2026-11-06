@@ -157,3 +157,114 @@ export async function renameSession(sessionId: string, name: string): Promise<vo
 	});
 	if (!response.ok) throw new Error(await readError(response));
 }
+
+/**
+ * 文件候选。
+ *
+ * @internal
+ */
+export interface FileCandidate {
+	path: string;
+}
+
+/**
+ * 展开后的文件内容。
+ *
+ * @internal
+ */
+export interface ExpandedFilesResponse {
+	text: string;
+	images: Array<{ type: "image"; mimeType: string; data: string }>;
+	notes: string[];
+}
+
+/**
+ * 搜索项目文件。
+ *
+ * @param query - 文件名片段。
+ * @returns 匹配的相对路径。
+ * @internal
+ */
+export async function searchProjectFiles(query: string): Promise<FileCandidate[]> {
+	const response = await fetch(`/api/files/search?q=${encodeURIComponent(query)}`);
+	if (!response.ok) throw new Error(await readError(response));
+	const body = (await response.json()) as { files: FileCandidate[] };
+	return body.files;
+}
+
+/**
+ * 展开 `@file` 引用。
+ *
+ * @param paths - 相对项目目录的路径。
+ * @returns 文本、图片与提示。
+ * @internal
+ */
+export async function expandProjectFiles(paths: string[]): Promise<ExpandedFilesResponse> {
+	const response = await fetch("/api/files/expand", {
+		method: "POST",
+		headers: { "content-type": "application/json" },
+		body: JSON.stringify({ paths }),
+	});
+	if (!response.ok) throw new Error(await readError(response));
+	return (await response.json()) as ExpandedFilesResponse;
+}
+
+/**
+ * 从指定消息分叉会话。
+ *
+ * @param sessionId - 当前 session id。
+ * @param entryId - 分叉点的 user 消息 entry id。
+ * @returns 新会话 id 与状态。
+ * @internal
+ */
+export async function forkSession(sessionId: string, entryId: string): Promise<CreatedSession> {
+	const response = await fetch(`/api/sessions/${encodeURIComponent(sessionId)}/fork`, {
+		method: "POST",
+		headers: { "content-type": "application/json" },
+		body: JSON.stringify({ entryId }),
+	});
+	if (!response.ok) throw new Error(await readError(response));
+	return (await response.json()) as CreatedSession;
+}
+
+/**
+ * 克隆当前会话分支。
+ *
+ * @param sessionId - 当前 session id。
+ * @returns 新会话 id 与状态。
+ * @internal
+ */
+export async function cloneSession(sessionId: string): Promise<CreatedSession> {
+	const response = await fetch(`/api/sessions/${encodeURIComponent(sessionId)}/clone`, { method: "POST" });
+	if (!response.ok) throw new Error(await readError(response));
+	return (await response.json()) as CreatedSession;
+}
+
+/**
+ * 活跃运行时信息。
+ *
+ * @internal
+ */
+export interface RuntimeInfo {
+	/** Session id。 */
+	id: string;
+	/** 是否正在运行。 */
+	busy: boolean;
+	/** 最后活动时间戳。 */
+	lastActivityAt: number;
+	/** 运行时状态。 */
+	status: "starting" | "ready" | "exited";
+}
+
+/**
+ * 读取活跃运行时列表。
+ *
+ * @returns 运行时信息。
+ * @internal
+ */
+export async function fetchRuntimes(): Promise<RuntimeInfo[]> {
+	const response = await fetch("/api/runtimes");
+	if (!response.ok) throw new Error(await readError(response));
+	const body = (await response.json()) as { runtimes: RuntimeInfo[] };
+	return body.runtimes;
+}

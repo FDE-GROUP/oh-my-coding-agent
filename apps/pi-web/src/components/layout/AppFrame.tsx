@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { createSession, fetchSessions, renameSession } from "../../lib/api.ts";
+import { createSession, fetchRuntimes, fetchSessions, renameSession } from "../../lib/api.ts";
 import { useViewport } from "../../lib/viewport.ts";
 import type { Health } from "../../server/health.ts";
 import type { SessionSummary } from "../../server/sessions.ts";
@@ -22,6 +22,7 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 	const [error, setError] = useState<string | null>(null);
 	const [sessions, setSessions] = useState<SessionSummary[]>([]);
 	const [sessionsLoaded, setSessionsLoaded] = useState(false);
+	const [runtimeStatus, setRuntimeStatus] = useState<Record<string, { busy: boolean }>>({});
 	const previousWide = useRef(width >= 1024);
 	const navigate = useNavigate();
 
@@ -38,6 +39,25 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 	useEffect(() => {
 		void refreshSessions();
 	}, [refreshSessions]);
+
+	useEffect(() => {
+		let cancelled = false;
+		const load = async () => {
+			try {
+				const runtimes = await fetchRuntimes();
+				if (cancelled) return;
+				setRuntimeStatus(Object.fromEntries(runtimes.map((runtime) => [runtime.id, { busy: runtime.busy }])));
+			} catch {
+				// Status polling is best-effort.
+			}
+		};
+		void load();
+		const timer = setInterval(() => void load(), 2000);
+		return () => {
+			cancelled = true;
+			clearInterval(timer);
+		};
+	}, []);
 
 	useEffect(() => {
 		if (!sessionsLoaded || sessionId || sessions.length === 0) return;
@@ -94,6 +114,7 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 					activeId={sessionId}
 					onNew={handleNew}
 					onRename={handleRename}
+					runtimeStatus={runtimeStatus}
 				/>
 			)}
 
@@ -107,6 +128,7 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 						activeId={sessionId}
 						onNew={handleNew}
 						onRename={handleRename}
+						runtimeStatus={runtimeStatus}
 						onClose={() => setExpanded(false)}
 					/>
 					<button
@@ -139,7 +161,12 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 					</div>
 				)}
 
-				<Conversation health={health} sessionId={sessionId} onSessionCreated={handleSessionCreated} />
+				<Conversation
+					health={health}
+					sessionId={sessionId}
+					onSessionCreated={handleSessionCreated}
+					onSessionSwitch={handleSessionCreated}
+				/>
 			</main>
 
 			<RightPanel />

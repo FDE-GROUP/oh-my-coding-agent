@@ -1,9 +1,19 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
-import { createSession, openEventStream, resumeSession, sendCommand } from "../../lib/api.ts";
+import {
+	cloneSession,
+	createSession,
+	expandProjectFiles,
+	forkSession,
+	openEventStream,
+	resumeSession,
+	searchProjectFiles,
+	sendCommand,
+} from "../../lib/api.ts";
 import { type ConversationMessage, conversationReducer, initialConversationState } from "../../lib/conversation.ts";
+import type { ImageAttachment } from "../../lib/images.ts";
 import type { Health } from "../../server/health.ts";
 import type { RpcSessionStats } from "../../server/runtime.ts";
-import { Composer, type QueueMode } from "./Composer.tsx";
+import { type CommandSummary, Composer, type QueueMode } from "./Composer.tsx";
 import { ConversationPlaceholder } from "./ConversationPlaceholder.tsx";
 import { MessageList } from "./MessageList.tsx";
 import { type ModelSummary, SessionBar } from "./SessionBar.tsx";
@@ -16,9 +26,10 @@ export interface ConversationProps {
 	health: Health;
 	sessionId?: string;
 	onSessionCreated: (id: string) => void;
+	onSessionSwitch: (id: string) => void;
 }
 
-export function Conversation({ health, sessionId, onSessionCreated }: ConversationProps) {
+export function Conversation({ health, sessionId, onSessionCreated, onSessionSwitch }: ConversationProps) {
 	const [conversation, dispatch] = useReducer(conversationReducer, initialConversationState);
 	const [activeId, setActiveId] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
@@ -29,6 +40,9 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 	const [notices, setNotices] = useState<Array<{ id: number; message: string; type: string }>>([]);
 	const [crashed, setCrashed] = useState(false);
 	const [connectionNonce, setConnectionNonce] = useState(0);
+	const [attachments, setAttachments] = useState<ImageAttachment[]>([]);
+	const [commands, setCommands] = useState<CommandSummary[]>([]);
+	const [forkMessages, setForkMessages] = useState<Array<{ entryId: string; text: string }>>([]);
 	const noticeId = useRef(0);
 	const activeIdRef = useRef<string | null>(null);
 
@@ -51,6 +65,9 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 		let cancelled = false;
 		setError(null);
 		dispatch({ type: "reset" });
+		setAttachments([]);
+		setCommands([]);
+		setForkMessages([]);
 		resumeSession(sessionId)
 			.then((created) => {
 				if (!cancelled) setActiveId(created.id);
@@ -77,6 +94,28 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 						name: item.name,
 					})),
 				);
+			})
+			.catch(() => undefined);
+		return () => {
+			cancelled = true;
+		};
+	}, [activeId]);
+
+	useEffect(() => {
+		if (!activeId) return;
+		let cancelled = false;
+		sendCommand(activeId, { type: "get_commands" })
+			.then((response) => {
+				if (cancelled) return;
+				const list = (response as { commands: CommandSummary[] }).commands ?? [];
+				setCommands(list);
+			})
+			.catch(() => undefined);
+		sendCommand(activeId, { type: "get_fork_messages" })
+			.then((response) => {
+				if (cancelled) return;
+				const list = (response as { messages: Array<{ entryId: string; text: string }> }).messages ?? [];
+				setForkMessages(list);
 			})
 			.catch(() => undefined);
 		return () => {
@@ -125,6 +164,13 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 						sendCommand(activeId, { type: "get_session_stats" })
 							.then((response) => setStats(response as RpcSessionStats))
 							.catch(() => undefined);
+						sendCommand(activeId, { type: "get_fork_messages" })
+							.then((response) => {
+								const list =
+									(response as { messages: Array<{ entryId: string; text: string }> }).messages ?? [];
+								setForkMessages(list);
+							})
+							.catch(() => undefined);
 					}
 				}
 				if (event.kind === "exit") {
@@ -151,25 +197,33 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 	}, [onSessionCreated]);
 
 	const send = useCallback(
-		async (text: string, mode: QueueMode) => {
+		async (text: string, mode: QueueMode, images: ImageAttachment[]): Promise<boolean> => {
 			setError(null);
 			try {
 				const id = await ensureSession();
+				const payload = images.map((image) => ({
+					type: "image" as const,
+					mimeType: image.mimeType,
+					data: image.data,
+				}));
 				if (conversation.status === "streaming") {
 					await sendCommand(
 						id,
-						mode === "followUp" ? { type: "follow_up", message: text } : { type: "steer", message: text },
+						mode === "followUp"
+							? { type: "follow_up", message: text, images: payload }
+							: { type: "steer", message: text, images: payload },
 					);
 				} else {
-					await sendCommand(id, { type: "prompt", message: text });
+					await sendCommand(id, { type: "prompt", message: text, images: payload });
 				}
+				return true;
 			} catch (caught) {
 				setError(errorText(caught));
+				return false;
 			}
 		},
 		[conversation.status, ensureSession],
 	);
-
 	const abort = useCallback(async () => {
 		const id = activeIdRef.current;
 		if (!id) return;
@@ -202,11 +256,52 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 				provider: string;
 				id: string;
 				name: string;
+				input: string[];
 			};
-			setModel({ provider: selected.provider, id: selected.id, name: selected.name });
+			setModel({
+				provider: selected.provider,
+				id: selected.id,
+				name: selected.name,
+				input: selected.input,
+			});
 		} catch (caught) {
 			setError(errorText(caught));
 		}
+	}, []);
+
+	const handleFork = useCallback(
+		async (entryId: string) => {
+			const id = activeIdRef.current;
+			if (!id) return;
+			setError(null);
+			try {
+				const created = await forkSession(id, entryId);
+				onSessionSwitch(created.id);
+			} catch (caught) {
+				setError(errorText(caught));
+			}
+		},
+		[onSessionSwitch],
+	);
+
+	const handleClone = useCallback(async () => {
+		const id = activeIdRef.current;
+		if (!id) return;
+		setError(null);
+		try {
+			const created = await cloneSession(id);
+			onSessionSwitch(created.id);
+		} catch (caught) {
+			setError(errorText(caught));
+		}
+	}, [onSessionSwitch]);
+
+	const addNotes = useCallback((notes: string[]) => {
+		if (notes.length === 0) return;
+		setNotices((current) => [
+			...current.slice(-3),
+			...notes.map((note) => ({ id: ++noticeId.current, message: note, type: "warning" })),
+		]);
 	}, []);
 
 	const streaming = conversation.status === "streaming";
@@ -238,6 +333,8 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 					messages={conversation.messages}
 					streaming={conversation.streaming}
 					tools={conversation.tools}
+					forkMessages={forkMessages}
+					onFork={(entryId) => void handleFork(entryId)}
 				/>
 			)}
 
@@ -245,10 +342,23 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 				disabled={creating}
 				streaming={streaming}
 				queued={conversation.queue.steering.length + conversation.queue.followUp.length}
+				supportsImages={model?.input?.includes("image") ?? false}
+				commands={commands}
+				attachments={attachments}
+				onAttachmentsChange={setAttachments}
+				onSearchFiles={searchProjectFiles}
+				onExpandFiles={expandProjectFiles}
+				onNotes={addNotes}
 				onSend={send}
 				onAbort={abort}
 			/>
-			<SessionBar models={models} model={model} stats={stats} onSelectModel={selectModel} />
+			<SessionBar
+				models={models}
+				model={model}
+				stats={stats}
+				onSelectModel={selectModel}
+				onClone={() => void handleClone()}
+			/>
 
 			{notices.length > 0 && (
 				<div className="pointer-events-none fixed right-4 top-14 z-50 flex w-80 flex-col gap-2">

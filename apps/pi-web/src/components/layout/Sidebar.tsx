@@ -15,6 +15,7 @@ export interface SidebarProps {
 	activeId?: string;
 	onNew: () => void;
 	onRename: (id: string, name: string) => Promise<void>;
+	runtimeStatus?: Record<string, { busy: boolean }>;
 	onClose?: () => void;
 }
 
@@ -34,10 +35,12 @@ function formatTime(iso: string): string {
 function SessionItem({
 	session,
 	active,
+	busy,
 	onRename,
 }: {
 	session: SessionSummary;
 	active: boolean;
+	busy: boolean;
 	onRename: (id: string, name: string) => Promise<void>;
 }) {
 	const [renaming, setRenaming] = useState(false);
@@ -86,8 +89,22 @@ function SessionItem({
 					active ? "bg-dsw-bg-layer-2 text-dsw-label-primary" : "text-dsw-label-secondary hover:bg-dsw-bg-layer-2",
 				)}
 			>
-				<span className="truncate text-xs leading-5">{sessionTitle(session)}</span>
-				<span className="truncate font-mono text-[10px] text-dsw-label-tertiary">
+				<span className="flex items-center gap-1.5">
+					<span
+						className={
+							busy
+								? "size-1.5 shrink-0 animate-pulse rounded-full bg-dsw-state-business"
+								: "size-1.5 shrink-0 rounded-full bg-dsw-border-l3"
+						}
+					/>
+					<span className="truncate text-xs leading-5">{sessionTitle(session)}</span>
+					{session.parentSessionPath && (
+						<span className="shrink-0 rounded-dsw-xs bg-dsw-bg-layer-2 px-1 text-[9px] text-dsw-label-tertiary">
+							分叉
+						</span>
+					)}
+				</span>
+				<span className="truncate pl-3 font-mono text-[10px] text-dsw-label-tertiary">
 					{formatTime(session.modified)} · {session.messageCount} 条
 				</span>
 			</Link>
@@ -110,6 +127,7 @@ export function Sidebar({
 	activeId,
 	onNew,
 	onRename,
+	runtimeStatus = {},
 	onClose,
 }: SidebarProps) {
 	return (
@@ -161,6 +179,7 @@ export function Sidebar({
 									key={session.id}
 									session={session}
 									active={session.id === activeId}
+									busy={runtimeStatus[session.id]?.busy ?? false}
 									onRename={onRename}
 								/>
 							))
