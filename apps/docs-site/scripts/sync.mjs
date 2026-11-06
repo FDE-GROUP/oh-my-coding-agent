@@ -114,6 +114,55 @@ function transformFrontmatter(text) {
 	return `${head}\n${meta.join("\n")}\n\n${body}`;
 }
 
+// MDX 把 `<` 当 JSX 标签、`{`/`}` 当表达式；repowiki 是机器生成的，正文里散布字面占位符（<cwd>）、
+// 泛型（Promise<void>）、模板（{VAR}）与对象形状（{ a, b }）——这些在 .md 里是纯文本，在 .mdx 里会编译
+// 失败。这些页面不使用任何真实内联 HTML 或 MDX 表达式，故把代码栅栏、行内代码与裸链接（自动成链，其
+// 中的 `{}` 由 GFM 链接消化，无需转义）之外的 `<`/`{`/`}` 转义，使 .mdx 把它们渲染回字面文本。转义是通用
+// 规则而非黑名单，对 repowiki 重新生成同样稳健。
+function sanitizeMdxProse(text) {
+	const lines = text.split("\n");
+	const out = [];
+	let inFence = false;
+	let fenceMarker = "";
+	let inFrontmatter = false;
+	for (let i = 0; i < lines.length; i++) {
+		const line = lines[i];
+		if (i === 0 && line.trim() === "---") {
+			inFrontmatter = true;
+			out.push(line);
+			continue;
+		}
+		if (inFrontmatter) {
+			out.push(line);
+			if (line.trim() === "---") {
+				inFrontmatter = false;
+			}
+			continue;
+		}
+		const fence = line.match(/^\s*(```|~~~)/);
+		if (fence) {
+			if (!inFence) {
+				inFence = true;
+				fenceMarker = fence[1];
+			} else if (line.includes(fenceMarker)) {
+				inFence = false;
+			}
+			out.push(line);
+			continue;
+		}
+		if (inFence) {
+			out.push(line);
+			continue;
+		}
+		out.push(
+			line.replace(/(`[^`]*`)|(https?:\/\/[^\s<>]+)|([<{}])/g, (match, code, url, special) =>
+				code || url ? match : `\\${special}`,
+			),
+		);
+	}
+	return out.join("\n");
+}
+
 // 幂等：清空本包 content/ 产物目录（路径由 packageRoot 派生，恒指向包内，不误删他处）。
 rmSync(contentRoot, { recursive: true, force: true });
 mkdirSync(contentRoot, { recursive: true });
@@ -131,7 +180,15 @@ for (const { src, dest } of partitions) {
 		const target = join(contentRoot, dest, segments.join("/"));
 		mkdirSync(dirname(target), { recursive: true });
 		const raw = readFileSync(join(srcDir, rel), "utf8");
-		writeFileSync(target, cleanMarkdown(transformFrontmatter(raw)), "utf8");
+		const cleaned = cleanMarkdown(transformFrontmatter(raw));
+		// mermaid 是 Blume 的 MDX-only 特性：含 mermaid fence 的页面输出为 .mdx 才能渲染成图，并转义正文中
+		// 会被 MDX 误读为 JSX/表达式的字面 `<`/`{`/`}`（详见 sanitizeMdxProse）。
+		const asMdx = /^```mermaid/m.test(cleaned);
+		writeFileSync(
+			asMdx ? target.replace(/\.md$/, ".mdx") : target,
+			asMdx ? sanitizeMdxProse(cleaned) : cleaned,
+			"utf8",
+		);
 		mirrored += 1;
 	}
 	console.log(`[sync] ${src} → content/${dest}`);
