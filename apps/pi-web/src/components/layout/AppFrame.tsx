@@ -89,6 +89,7 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 			{!isDrawer && (
 				<Sidebar
 					collapsed={!expanded}
+					loading={!sessionsLoaded}
 					sessions={sessions}
 					activeId={sessionId}
 					onNew={handleNew}
@@ -101,6 +102,7 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 					<Sidebar
 						collapsed={false}
 						drawer
+						loading={!sessionsLoaded}
 						sessions={sessions}
 						activeId={sessionId}
 						onNew={handleNew}

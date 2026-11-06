@@ -2,15 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import { IconButton } from "../primitives/IconButton.tsx";
 import { SendIcon, StopIcon } from "../primitives/icons.tsx";
 
+export type QueueMode = "steer" | "followUp";
+
 export interface ComposerProps {
 	disabled: boolean;
 	streaming: boolean;
-	onSend: (text: string) => void;
+	queued: number;
+	onSend: (text: string, mode: QueueMode) => void;
 	onAbort: () => void;
 }
 
-export function Composer({ disabled, streaming, onSend, onAbort }: ComposerProps) {
+export function Composer({ disabled, streaming, queued, onSend, onAbort }: ComposerProps) {
 	const [value, setValue] = useState("");
+	const [mode, setMode] = useState<QueueMode>("steer");
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: 输入变化后需要重新计算 textarea 高度。
@@ -24,7 +28,7 @@ export function Composer({ disabled, streaming, onSend, onAbort }: ComposerProps
 	function submit() {
 		const text = value.trim();
 		if (text.length === 0 || disabled) return;
-		onSend(text);
+		onSend(text, mode);
 		setValue("");
 	}
 
@@ -56,7 +60,30 @@ export function Composer({ disabled, streaming, onSend, onAbort }: ComposerProps
 						</IconButton>
 					)}
 				</div>
-				<p className="px-1 text-[11px] text-dsw-label-tertiary">Enter 发送 · Shift+Enter 换行</p>
+
+				<div className="flex items-center gap-2 px-1 text-[11px] text-dsw-label-tertiary">
+					<span>Enter 发送 · Shift+Enter 换行</span>
+					{queued > 0 && <span>· 队列 {queued}</span>}
+					{streaming && (
+						<div className="ml-auto flex rounded-dsw-xs bg-dsw-bg-layer-2 p-0.5">
+							{(["steer", "followUp"] as const).map((item) => (
+								<button
+									key={item}
+									type="button"
+									aria-pressed={mode === item}
+									onClick={() => setMode(item)}
+									className={
+										mode === item
+											? "rounded-dsw-xs bg-dsw-bg-layer-1 px-1.5 py-0.5 text-dsw-label-primary"
+											: "rounded-dsw-xs px-1.5 py-0.5"
+									}
+								>
+									{item === "steer" ? "插话" : "追加"}
+								</button>
+							))}
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);

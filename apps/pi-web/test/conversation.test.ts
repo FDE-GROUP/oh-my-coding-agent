@@ -148,4 +148,12 @@ describe("conversationReducer", () => {
 		});
 		expect(state.tools["call-2"]?.status).toBe("error");
 	});
+
+	it("tracks the pending queue", () => {
+		const state = conversationReducer(initialConversationState, {
+			type: "event",
+			event: { type: "queue_update", steering: ["change direction"], followUp: ["then summarize"] },
+		});
+		expect(state.queue).toEqual({ steering: ["change direction"], followUp: ["then summarize"] });
+	});
 });

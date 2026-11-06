@@ -42,6 +42,16 @@ export interface ToolExecution {
 }
 
 /**
+ * 待发送队列。
+ *
+ * @internal
+ */
+export interface QueueState {
+	steering: string[];
+	followUp: string[];
+}
+
+/**
  * 对话状态。
  *
  * @internal
@@ -50,6 +60,7 @@ export interface ConversationState {
 	messages: ConversationMessage[];
 	streaming: StreamingMessage | null;
 	tools: Record<string, ToolExecution>;
+	queue: QueueState;
 	status: "idle" | "streaming";
 }
 
@@ -72,6 +83,7 @@ export const initialConversationState: ConversationState = {
 	messages: [],
 	streaming: null,
 	tools: {},
+	queue: { steering: [], followUp: [] },
 	status: "idle",
 };
 
@@ -137,6 +149,7 @@ export function conversationReducer(state: ConversationState, action: Conversati
 			messages: action.messages,
 			streaming: null,
 			tools: {},
+			queue: { steering: [], followUp: [] },
 			status: action.isStreaming ? "streaming" : "idle",
 		};
 	}
@@ -167,6 +180,16 @@ export function conversationReducer(state: ConversationState, action: Conversati
 
 	if (type === "session_info_changed" && typeof record.name === "string") {
 		return state;
+	}
+
+	if (type === "queue_update") {
+		const steering = Array.isArray(record.steering)
+			? record.steering.filter((item): item is string => typeof item === "string")
+			: [];
+		const followUp = Array.isArray(record.followUp)
+			? record.followUp.filter((item): item is string => typeof item === "string")
+			: [];
+		return { ...state, queue: { steering, followUp } };
 	}
 
 	if (type === "tool_execution_start" && typeof record.toolCallId === "string") {

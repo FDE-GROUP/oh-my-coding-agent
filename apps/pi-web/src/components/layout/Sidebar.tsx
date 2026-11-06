@@ -10,6 +10,7 @@ import { ThemeControl } from "./ThemeControl.tsx";
 export interface SidebarProps {
 	collapsed: boolean;
 	drawer?: boolean;
+	loading?: boolean;
 	sessions: SessionSummary[];
 	activeId?: string;
 	onNew: () => void;
@@ -101,7 +102,16 @@ function SessionItem({
 	);
 }
 
-export function Sidebar({ collapsed, drawer = false, sessions, activeId, onNew, onRename, onClose }: SidebarProps) {
+export function Sidebar({
+	collapsed,
+	drawer = false,
+	loading = false,
+	sessions,
+	activeId,
+	onNew,
+	onRename,
+	onClose,
+}: SidebarProps) {
 	return (
 		<aside
 			className={clsx(
@@ -143,7 +153,7 @@ export function Sidebar({ collapsed, drawer = false, sessions, activeId, onNew, 
 					<div className="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto pb-2">
 						{sessions.length === 0 ? (
 							<div className="rounded-dsw-md border border-hairline border-dsw-border-l1 bg-dsw-bg-layer-2 px-3 py-6 text-center text-xs leading-5 text-dsw-label-secondary">
-								还没有会话
+								{loading ? "正在加载会话…" : "还没有会话"}
 							</div>
 						) : (
 							sessions.map((session) => (

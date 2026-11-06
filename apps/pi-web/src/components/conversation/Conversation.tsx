@@ -3,7 +3,7 @@ import { createSession, openEventStream, resumeSession, sendCommand } from "../.
 import { type ConversationMessage, conversationReducer, initialConversationState } from "../../lib/conversation.ts";
 import type { Health } from "../../server/health.ts";
 import type { RpcSessionStats } from "../../server/runtime.ts";
-import { Composer } from "./Composer.tsx";
+import { Composer, type QueueMode } from "./Composer.tsx";
 import { ConversationPlaceholder } from "./ConversationPlaceholder.tsx";
 import { MessageList } from "./MessageList.tsx";
 import { type ModelSummary, SessionBar } from "./SessionBar.tsx";
@@ -26,7 +26,17 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 	const [models, setModels] = useState<ModelSummary[]>([]);
 	const [model, setModel] = useState<ModelSummary | null>(null);
 	const [stats, setStats] = useState<RpcSessionStats | null>(null);
+	const [notices, setNotices] = useState<Array<{ id: number; message: string; type: string }>>([]);
+	const [crashed, setCrashed] = useState(false);
+	const [connectionNonce, setConnectionNonce] = useState(0);
+	const noticeId = useRef(0);
 	const activeIdRef = useRef<string | null>(null);
+
+	useEffect(() => {
+		if (notices.length === 0) return;
+		const timer = setTimeout(() => setNotices((current) => current.slice(1)), 5000);
+		return () => clearTimeout(timer);
+	}, [notices]);
 
 	useEffect(() => {
 		activeIdRef.current = activeId;
@@ -74,11 +84,13 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 		};
 	}, [activeId]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: connectionNonce 用于崩溃后强制重建事件流。
 	useEffect(() => {
 		if (!activeId) return;
 		return openEventStream(activeId, {
 			onSnapshot: (snapshot) => {
 				setError(null);
+				setCrashed(false);
 				setStats(snapshot.stats);
 				setModel(
 					snapshot.state.model
@@ -98,6 +110,17 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 			onEvent: (event) => {
 				if (event.kind === "record") {
 					dispatch({ type: "event", event: event.record });
+					if (
+						event.record.type === "extension_ui_request" &&
+						event.record.method === "notify" &&
+						typeof event.record.message === "string"
+					) {
+						const type = typeof event.record.notifyType === "string" ? event.record.notifyType : "info";
+						setNotices((current) => [
+							...current.slice(-3),
+							{ id: ++noticeId.current, message: String(event.record.message), type },
+						]);
+					}
 					if (event.record.type === "agent_settled") {
 						sendCommand(activeId, { type: "get_session_stats" })
 							.then((response) => setStats(response as RpcSessionStats))
@@ -105,12 +128,13 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 					}
 				}
 				if (event.kind === "exit") {
+					setCrashed(true);
 					setError(event.error ? `Pi 已退出：${event.error}` : "Pi 已退出");
 				}
 			},
 			onConnectionError: () => setError("事件流连接中断，正在重试…"),
 		});
-	}, [activeId]);
+	}, [activeId, connectionNonce]);
 
 	const ensureSession = useCallback(async (): Promise<string> => {
 		if (activeIdRef.current) return activeIdRef.current;
@@ -127,16 +151,23 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 	}, [onSessionCreated]);
 
 	const send = useCallback(
-		async (text: string) => {
+		async (text: string, mode: QueueMode) => {
 			setError(null);
 			try {
 				const id = await ensureSession();
-				await sendCommand(id, { type: "prompt", message: text });
+				if (conversation.status === "streaming") {
+					await sendCommand(
+						id,
+						mode === "followUp" ? { type: "follow_up", message: text } : { type: "steer", message: text },
+					);
+				} else {
+					await sendCommand(id, { type: "prompt", message: text });
+				}
 			} catch (caught) {
 				setError(errorText(caught));
 			}
 		},
-		[ensureSession],
+		[conversation.status, ensureSession],
 	);
 
 	const abort = useCallback(async () => {
@@ -145,6 +176,20 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 		try {
 			await sendCommand(id, { type: "abort" });
 		} catch (caught) {
+			setError(errorText(caught));
+		}
+	}, []);
+
+	const restart = useCallback(async () => {
+		const id = activeIdRef.current;
+		if (!id) return;
+		setError(null);
+		try {
+			await resumeSession(id);
+			setCrashed(false);
+			setConnectionNonce((current) => current + 1);
+		} catch (caught) {
+			setCrashed(true);
 			setError(errorText(caught));
 		}
 	}, []);
@@ -170,8 +215,17 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 	return (
 		<div className="flex min-h-0 flex-1 flex-col">
 			{error && (
-				<div className="border-b border-hairline border-dsw-border-l1 bg-dsw-bg-layer-1 px-4 py-2 text-xs text-dsw-state-error">
-					{error}
+				<div className="flex items-center gap-3 border-b border-hairline border-dsw-border-l1 bg-dsw-bg-layer-1 px-4 py-2 text-xs text-dsw-state-error">
+					<span className="min-w-0 flex-1">{error}</span>
+					{crashed && (
+						<button
+							type="button"
+							className="shrink-0 rounded-dsw-xs border border-dsw-border-l2 px-2 py-0.5 text-dsw-label-primary"
+							onClick={() => void restart()}
+						>
+							重新启动
+						</button>
+					)}
 				</div>
 			)}
 
@@ -187,8 +241,33 @@ export function Conversation({ health, sessionId, onSessionCreated }: Conversati
 				/>
 			)}
 
-			<Composer disabled={creating} streaming={streaming} onSend={send} onAbort={abort} />
+			<Composer
+				disabled={creating}
+				streaming={streaming}
+				queued={conversation.queue.steering.length + conversation.queue.followUp.length}
+				onSend={send}
+				onAbort={abort}
+			/>
 			<SessionBar models={models} model={model} stats={stats} onSelectModel={selectModel} />
+
+			{notices.length > 0 && (
+				<div className="pointer-events-none fixed right-4 top-14 z-50 flex w-80 flex-col gap-2">
+					{notices.map((notice) => (
+						<div
+							key={notice.id}
+							className={
+								notice.type === "error"
+									? "rounded-dsw-card border border-dsw-state-error bg-dsw-bg-base px-3 py-2 text-xs text-dsw-state-error shadow-dsw-panel"
+									: notice.type === "warning"
+										? "rounded-dsw-card border border-dsw-state-warn bg-dsw-bg-base px-3 py-2 text-xs text-dsw-state-warn shadow-dsw-panel"
+										: "rounded-dsw-card border border-dsw-border-l1 bg-dsw-bg-base px-3 py-2 text-xs text-dsw-label-secondary shadow-dsw-panel"
+							}
+						>
+							{notice.message}
+						</div>
+					))}
+				</div>
+			)}
 		</div>
 	);
 }

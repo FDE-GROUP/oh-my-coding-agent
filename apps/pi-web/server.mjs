@@ -8,6 +8,14 @@ import serverEntry from "./dist/server/server.js";
 const clientRoot = resolve(fileURLToPath(new URL("./dist/client/", import.meta.url)));
 const port = Number(process.env.PI_WEB_PORT ?? process.env.PORT ?? 3210);
 
+const securityHeaders = {
+	"x-content-type-options": "nosniff",
+	"x-frame-options": "DENY",
+	"referrer-policy": "no-referrer",
+	"content-security-policy":
+		"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'",
+};
+
 const contentTypes = {
 	".css": "text/css; charset=utf-8",
 	".html": "text/html; charset=utf-8",
@@ -39,6 +47,25 @@ function staticFile(pathname) {
 
 const server = createServer(async (request, response) => {
 	const host = request.headers.host ?? `127.0.0.1:${port}`;
+	const allowedHosts = new Set([`127.0.0.1:${port}`, `localhost:${port}`]);
+	if (!allowedHosts.has(host)) {
+		response.writeHead(403, securityHeaders).end("forbidden host");
+		return;
+	}
+
+	const origin = request.headers.origin;
+	if (origin) {
+		const allowedOrigins = new Set([`http://127.0.0.1:${port}`, `http://localhost:${port}`]);
+		if (!allowedOrigins.has(origin)) {
+			response.writeHead(403, securityHeaders).end("forbidden origin");
+			return;
+		}
+	}
+	if (request.headers["sec-fetch-site"] === "cross-site") {
+		response.writeHead(403, securityHeaders).end("forbidden site");
+		return;
+	}
+
 	let url;
 	try {
 		url = new URL(request.url ?? "/", `http://${host}`);
@@ -60,6 +87,7 @@ const server = createServer(async (request, response) => {
 		if (file) {
 			const cache = pathname.startsWith("/assets/") ? "public, max-age=31536000, immutable" : "no-cache";
 			response.writeHead(200, {
+				...securityHeaders,
 				"content-type": contentTypes[extname(file.path)] ?? "application/octet-stream",
 				"content-length": file.size,
 				"cache-control": cache,
@@ -91,7 +119,7 @@ const server = createServer(async (request, response) => {
 
 	const headers = Object.fromEntries(fetchResponse.headers);
 	if (!headers["cache-control"]) headers["cache-control"] = "no-cache";
-	response.writeHead(fetchResponse.status, headers);
+	response.writeHead(fetchResponse.status, { ...securityHeaders, ...headers });
 	if (!fetchResponse.body || request.method === "HEAD") {
 		response.end();
 		return;
