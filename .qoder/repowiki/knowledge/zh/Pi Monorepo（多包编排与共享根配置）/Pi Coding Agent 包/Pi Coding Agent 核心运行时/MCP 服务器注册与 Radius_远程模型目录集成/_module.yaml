@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: coding_agent/core_agent_runtime/mcp_radius_integration
+title: MCP 服务器注册与 Radius/远程模型目录集成
+scope:
+    - packages/coding-agent/src/core/mcp-servers.ts
+    - packages/coding-agent/src/core/radius-mcp.ts
+    - packages/coding-agent/src/core/radius.ts
+    - packages/coding-agent/src/core/remote-catalog-provider.ts
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/builtin_extensions

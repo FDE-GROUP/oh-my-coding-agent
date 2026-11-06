@@ -1,0 +1,19 @@
+schema_version: 1
+module_path: coding_agent/core_agent_runtime/ui_shell_features
+title: UI Shell 功能与运行时配置
+scope:
+    - packages/coding-agent/src/core/slash-commands.ts
+    - packages/coding-agent/src/core/keybindings.ts
+    - packages/coding-agent/src/core/keybindings-schema.ts
+    - packages/coding-agent/src/core/footer-data-provider.ts
+    - packages/coding-agent/src/core/system-prompt.ts
+    - packages/coding-agent/src/core/prompt-templates.ts
+    - packages/coding-agent/src/core/messages.ts
+    - packages/coding-agent/src/core/skills.ts
+    - packages/coding-agent/src/core/bug-report.ts
+    - packages/coding-agent/src/core/bug-report-upload.ts
+    - packages/coding-agent/src/core/crash-log.ts
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_agent_runtime/settings_config

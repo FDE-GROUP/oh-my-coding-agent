@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: ai_sdk/model_catalog_generation
+title: AI 模型目录生成与注册中心
+scope:
+    - packages/ai/catalog/
+    - packages/ai/scripts/
+source_files: []
+depends_on: []
+related_to: []

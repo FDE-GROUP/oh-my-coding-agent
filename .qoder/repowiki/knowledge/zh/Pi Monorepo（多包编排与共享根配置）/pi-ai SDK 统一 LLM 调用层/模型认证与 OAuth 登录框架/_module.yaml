@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: ai_sdk/auth_oauth
+title: 模型认证与 OAuth 登录框架
+scope:
+    - packages/ai/src/auth/
+source_files: []
+depends_on: []
+related_to: []

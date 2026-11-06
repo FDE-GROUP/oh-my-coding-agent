@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: coding_agent/core_agent_runtime/tools_and_renderers/filesystem_tools
+title: 文件系统读写与编辑工具集
+scope:
+    - packages/coding-agent/src/core/tools/read.ts
+    - packages/coding-agent/src/core/tools/write.ts
+    - packages/coding-agent/src/core/tools/edit.ts
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_agent_runtime/tools_and_renderers/renderers
+    - path: coding_agent/core_agent_runtime/tools_and_renderers/tool_infrastructure

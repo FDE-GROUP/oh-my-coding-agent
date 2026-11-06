@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: coding_agent/core_agent_runtime/sdk_and_api
+title: Agent SDK 与 PI 配置 Schema
+scope:
+    - packages/coding-agent/src/core/sdk.ts
+    - packages/coding-agent/src/core/pi-manifest.ts
+    - packages/coding-agent/src/core/pi-ai-schemas.ts
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_agent_runtime/agent_session_lifecycle

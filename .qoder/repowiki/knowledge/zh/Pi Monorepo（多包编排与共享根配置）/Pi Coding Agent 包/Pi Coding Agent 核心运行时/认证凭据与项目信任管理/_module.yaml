@@ -1,0 +1,15 @@
+schema_version: 1
+module_path: coding_agent/core_agent_runtime/auth_trust_credentials
+title: 认证凭据与项目信任管理
+scope:
+    - packages/coding-agent/src/core/auth-guidance.ts
+    - packages/coding-agent/src/core/auth-storage.ts
+    - packages/coding-agent/src/core/runtime-credentials.ts
+    - packages/coding-agent/src/core/project-trust.ts
+    - packages/coding-agent/src/core/trust-manager.ts
+    - packages/coding-agent/src/core/client-identity.ts
+    - packages/coding-agent/src/core/key-id-schema.ts
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_agent_runtime/model_provider_registry

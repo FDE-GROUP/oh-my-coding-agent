@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: ai_sdk
+title: pi-ai SDK 统一 LLM 调用层
+scope:
+    - packages/ai/
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent

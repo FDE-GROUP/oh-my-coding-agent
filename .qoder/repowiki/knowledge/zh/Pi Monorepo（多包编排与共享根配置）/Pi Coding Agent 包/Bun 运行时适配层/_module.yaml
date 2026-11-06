@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: coding_agent/bun_runtime
+title: Bun 运行时适配层
+scope:
+    - packages/coding-agent/src/bun/
+source_files: []
+depends_on: []
+related_to: []

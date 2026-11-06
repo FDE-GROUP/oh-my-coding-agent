@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: coding_agent/core_agent_runtime/session_manager_and_runtime
+title: 会话持久化与运行时管理
+scope:
+    - packages/coding-agent/src/core/session-manager.ts
+    - packages/coding-agent/src/core/session-cwd.ts
+    - packages/coding-agent/src/core/session-export.ts
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_agent_runtime/agent_session_lifecycle
+    - path: coding_agent/core_agent_runtime/compaction
+    - path: coding_agent/core_agent_runtime/export_html

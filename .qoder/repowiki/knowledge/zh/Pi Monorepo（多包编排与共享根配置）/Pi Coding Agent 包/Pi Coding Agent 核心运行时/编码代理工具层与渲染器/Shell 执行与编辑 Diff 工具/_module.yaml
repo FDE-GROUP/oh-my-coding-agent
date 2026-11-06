@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: coding_agent/core_agent_runtime/tools_and_renderers/shell_execution_tools
+title: Shell 执行与编辑 Diff 工具
+scope:
+    - packages/coding-agent/src/core/tools/bash.ts
+    - packages/coding-agent/src/core/tools/powershell.ts
+    - packages/coding-agent/src/core/tools/edit-diff.ts
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_agent_runtime/tools_and_renderers/renderers
+    - path: coding_agent/core_agent_runtime/tools_and_renderers/tool_infrastructure
