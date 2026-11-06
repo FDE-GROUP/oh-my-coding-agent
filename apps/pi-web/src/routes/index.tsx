@@ -1,0 +1,13 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { AppFrame } from "../components/layout/AppFrame.tsx";
+import { getHealth } from "../server/health.ts";
+
+export const Route = createFileRoute("/")({
+	loader: () => getHealth(),
+	component: Home,
+});
+
+function Home() {
+	const health = Route.useLoaderData();
+	return <AppFrame health={health} />;
+}
