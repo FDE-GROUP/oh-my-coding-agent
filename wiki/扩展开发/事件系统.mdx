@@ -143,7 +143,7 @@ EventBusController <.. ExampleExtension : "pi.events"
 ### 项目信任事件（project_trust）
 - 触发时机：在决定是否信任当前工作目录的动态配置与资源之前执行；当会话替换进入新的 cwd 时可能再次触发。
 - 参与者：仅用户/全局扩展与 CLI -e 扩展参与；项目本地扩展在信任决议之后才加载。
-- 返回值：{ trusted: "yes" | "no" | "undecided" }，可选 remember: true 持久化决策；首个返回 yes/no 的处理器拥有决定权。
+- 返回值：\{ trusted: "yes" | "no" | "undecided" \}，可选 remember: true 持久化决策；首个返回 yes/no 的处理器拥有决定权。
 - 默认流程：若无处理器返回 yes/no，则回退到 trustStore 与 defaultProjectTrust 策略，必要时弹出内置交互。
 
 ```mermaid
@@ -289,7 +289,7 @@ Bus["core/event-bus.ts"] --> Extensions["扩展(示例)"]
 ## 故障排查指南
 - 项目信任未生效：
   - 确认扩展为用户/全局扩展或通过 -e 传入；项目本地扩展在信任决议后才加载。
-  - 检查处理器是否正确返回 { trusted: "yes"|"no"|"undecided" }，且首个 yes/no 决定会被采纳。
+  - 检查处理器是否正确返回 \{ trusted: "yes"|"no"|"undecided" \}，且首个 yes/no 决定会被采纳。
 - 资源未被发现：
   - 确认扩展在 session_start 之后订阅 resources_discover，并返回正确的路径数组。
   - 检查 Runner 是否检测到 handlers，从而触发事件。

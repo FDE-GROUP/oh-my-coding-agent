@@ -209,7 +209,7 @@ prepareCodemodeLoadout 根据 mode 决定：
 - MCP 工具默认 exposure 为 codemode，保持模型工具声明精简。
 - codemode 默认 defaultActive=false，MCP 在需要时通过 setActiveTools 激活。
 - reachesTools 帮助 MCP 判断脚本可能触及哪些服务器，从而等待连接。
-- 工具命名 mcp__<server>__<tool>，冲突时加哈希后缀。
+- 工具命名 mcp__\<server>__\<tool>，冲突时加哈希后缀。
 
 ```mermaid
 sequenceDiagram
@@ -277,7 +277,7 @@ BUILD["build-coding-agent-bundle.mjs"] --> CM
 
 ## 性能与预算控制
 - 沙箱限制：QuickJS WASM，默认最多 2 个 worker，堆上限 256MB，worker 等待上限 60 秒。
-- 脚本超时：通过 // @options: { timeout_ms } 控制。
+- 脚本超时：通过 // @options: \{ timeout_ms \} 控制。
 - 输出预算：默认 10,000 token，超限时保留头尾并写临时文件。
 - 内联预算：inlineBudget 控制描述中工具声明的 token 预算，避免上下文膨胀。
 

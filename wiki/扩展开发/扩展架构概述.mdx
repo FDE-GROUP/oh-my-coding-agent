@@ -134,7 +134,7 @@ Runner-->>Host : 可触发 session_start / tool_call 等事件
 ### 扩展加载与发现
 - 发现规则
   - 扫描一层目录：直接 .ts/.js 文件、子目录 index.ts/index.js、或 package.json 声明 pi.extensions。
-  - 标准位置顺序：项目级 <cwd>/.pi/extensions/、全局 ~/.pi/agent/extensions/、settings 显式 configuredPaths。
+  - 标准位置顺序：项目级 \<cwd>/.pi/extensions/、全局 ~/.pi/agent/extensions/、settings 显式 configuredPaths。
   - 去重基于解析后的绝对路径，保留首次出现顺序。
 - 加载机制
   - 使用 jiti 直接执行 TypeScript，moduleCache: false，每次 reload 都是新模块实例。
@@ -413,10 +413,10 @@ OMFDE 扩展系统以 loader.ts 与 runner.ts 为核心，通过 types.ts 定义
   - 入口文件默认导出工厂函数，接收 ExtensionAPI。
   - 示例路径：extensions/omfde-core/src/index.ts 注册了一个 /omfde 命令，用于探针式加载验证。
 - 扩展类型与注册方式
-  - 工具：pi.registerTool({ name, label, description, parameters, execute })
-  - 命令：pi.registerCommand("name", { description, handler })
-  - 快捷键：pi.registerShortcut("key", { description, handler })
-  - 标志位：pi.registerFlag("name", { type, default })
+  - 工具：pi.registerTool(\{ name, label, description, parameters, execute \})
+  - 命令：pi.registerCommand("name", \{ description, handler \})
+  - 快捷键：pi.registerShortcut("key", \{ description, handler \})
+  - 标志位：pi.registerFlag("name", \{ type, default \})
   - 渲染器：pi.registerMessageRenderer、pi.registerEntryRenderer、pi.registerMarkdownTransformer、pi.registerToolRenderer
   - 提供者与虚拟模型：pi.registerProvider、pi.registerVirtualModel
   - MCP 服务器：pi.registerMcpServer、pi.unregisterMcpServer、pi.getMcpServers

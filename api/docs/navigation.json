@@ -194,6 +194,12 @@
               "label": "TUI 使用记录",
               "pageId": "filesystem:docs/explains/27-tui-usage.md",
               "route": "/docs/explains/tui-usage"
+            },
+            {
+              "kind": "page",
+              "label": "统一文档站：apps/docs-site 构建与发布机制",
+              "pageId": "filesystem:docs/explains/28-docs-site.md",
+              "route": "/docs/explains/docs-site"
             }
           ],
           "display": "flat",
@@ -393,7 +399,7 @@
             {
               "kind": "page",
               "label": "Pi Monorepo 构建与发布体系（pnpm + Bun + GitHub Actions）",
-              "pageId": "filesystem:knowledge/Pi Monorepo 构建与发布体系（pnpm + Bun + GitHub Actions）/Pi Monorepo 构建与发布体系（pnpm + Bun + GitHub Actions）.md",
+              "pageId": "filesystem:knowledge/Pi Monorepo 构建与发布体系（pnpm + Bun + GitHub Actions）/Pi Monorepo 构建与发布体系（pnpm + Bun + GitHub Actions）.mdx",
               "route": "/knowledge/Pi Monorepo 构建与发布体系（pnpm + Bun + GitHub Actions）/Pi Monorepo 构建与发布体系（pnpm + Bun + GitHub Actions）"
             }
           ],
@@ -2522,13 +2528,13 @@
         {
           "kind": "page",
           "label": "故障排除",
-          "pageId": "filesystem:wiki/故障排除.md",
+          "pageId": "filesystem:wiki/故障排除.mdx",
           "route": "/wiki/故障排除"
         },
         {
           "kind": "page",
           "label": "配置管理",
-          "pageId": "filesystem:wiki/配置管理.md",
+          "pageId": "filesystem:wiki/配置管理.mdx",
           "route": "/wiki/配置管理"
         },
         {
@@ -2536,37 +2542,37 @@
             {
               "kind": "page",
               "label": "AI 集成",
-              "pageId": "filesystem:wiki/AI 集成/AI 集成.md",
+              "pageId": "filesystem:wiki/AI 集成/AI 集成.mdx",
               "route": "/wiki/AI 集成/AI 集成"
             },
             {
               "kind": "page",
               "label": "支持的 LLM 提供商",
-              "pageId": "filesystem:wiki/AI 集成/支持的 LLM 提供商.md",
+              "pageId": "filesystem:wiki/AI 集成/支持的 LLM 提供商.mdx",
               "route": "/wiki/AI 集成/支持的 LLM 提供商"
             },
             {
               "kind": "page",
               "label": "模型选择策略",
-              "pageId": "filesystem:wiki/AI 集成/模型选择策略.md",
+              "pageId": "filesystem:wiki/AI 集成/模型选择策略.mdx",
               "route": "/wiki/AI 集成/模型选择策略"
             },
             {
               "kind": "page",
               "label": "统一 API 抽象层",
-              "pageId": "filesystem:wiki/AI 集成/统一 API 抽象层.md",
+              "pageId": "filesystem:wiki/AI 集成/统一 API 抽象层.mdx",
               "route": "/wiki/AI 集成/统一 API 抽象层"
             },
             {
               "kind": "page",
               "label": "认证管理",
-              "pageId": "filesystem:wiki/AI 集成/认证管理.md",
+              "pageId": "filesystem:wiki/AI 集成/认证管理.mdx",
               "route": "/wiki/AI 集成/认证管理"
             },
             {
               "kind": "page",
               "label": "请求响应处理",
-              "pageId": "filesystem:wiki/AI 集成/请求响应处理.md",
+              "pageId": "filesystem:wiki/AI 集成/请求响应处理.mdx",
               "route": "/wiki/AI 集成/请求响应处理"
             }
           ],
@@ -2580,49 +2586,49 @@
             {
               "kind": "page",
               "label": "CLI 工具参考",
-              "pageId": "filesystem:wiki/CLI 工具参考/CLI 工具参考.md",
+              "pageId": "filesystem:wiki/CLI 工具参考/CLI 工具参考.mdx",
               "route": "/wiki/CLI 工具参考/CLI 工具参考"
             },
             {
               "kind": "page",
               "label": "RPC 模式",
-              "pageId": "filesystem:wiki/CLI 工具参考/RPC 模式.md",
+              "pageId": "filesystem:wiki/CLI 工具参考/RPC 模式.mdx",
               "route": "/wiki/CLI 工具参考/RPC 模式"
             },
             {
               "kind": "page",
               "label": "交互式模式（TUI）",
-              "pageId": "filesystem:wiki/CLI 工具参考/交互式模式 (TUI).md",
+              "pageId": "filesystem:wiki/CLI 工具参考/交互式模式 (TUI).mdx",
               "route": "/wiki/CLI 工具参考/交互式模式 (TUI)"
             },
             {
               "kind": "page",
               "label": "会话管理",
-              "pageId": "filesystem:wiki/CLI 工具参考/会话管理.md",
+              "pageId": "filesystem:wiki/CLI 工具参考/会话管理.mdx",
               "route": "/wiki/CLI 工具参考/会话管理"
             },
             {
               "kind": "page",
               "label": "包管理命令",
-              "pageId": "filesystem:wiki/CLI 工具参考/包管理命令.md",
+              "pageId": "filesystem:wiki/CLI 工具参考/包管理命令.mdx",
               "route": "/wiki/CLI 工具参考/包管理命令"
             },
             {
               "kind": "page",
               "label": "基础用法和参数",
-              "pageId": "filesystem:wiki/CLI 工具参考/基础用法和参数.md",
+              "pageId": "filesystem:wiki/CLI 工具参考/基础用法和参数.mdx",
               "route": "/wiki/CLI 工具参考/基础用法和参数"
             },
             {
               "kind": "page",
               "label": "打印模式",
-              "pageId": "filesystem:wiki/CLI 工具参考/打印模式.md",
+              "pageId": "filesystem:wiki/CLI 工具参考/打印模式.mdx",
               "route": "/wiki/CLI 工具参考/打印模式"
             },
             {
               "kind": "page",
               "label": "认证命令",
-              "pageId": "filesystem:wiki/CLI 工具参考/认证命令.md",
+              "pageId": "filesystem:wiki/CLI 工具参考/认证命令.mdx",
               "route": "/wiki/CLI 工具参考/认证命令"
             }
           ],
@@ -2636,43 +2642,43 @@
             {
               "kind": "page",
               "label": "RPC 接口规范",
-              "pageId": "filesystem:wiki/SDK API 参考/RPC 接口规范.md",
+              "pageId": "filesystem:wiki/SDK API 参考/RPC 接口规范.mdx",
               "route": "/wiki/SDK API 参考/RPC 接口规范"
             },
             {
               "kind": "page",
               "label": "SDK API 参考",
-              "pageId": "filesystem:wiki/SDK API 参考/SDK API 参考.md",
+              "pageId": "filesystem:wiki/SDK API 参考/SDK API 参考.mdx",
               "route": "/wiki/SDK API 参考/SDK API 参考"
             },
             {
               "kind": "page",
               "label": "事件系统 API",
-              "pageId": "filesystem:wiki/SDK API 参考/事件系统 API.md",
+              "pageId": "filesystem:wiki/SDK API 参考/事件系统 API.mdx",
               "route": "/wiki/SDK API 参考/事件系统 API"
             },
             {
               "kind": "page",
               "label": "会话管理 API",
-              "pageId": "filesystem:wiki/SDK API 参考/会话管理 API.md",
+              "pageId": "filesystem:wiki/SDK API 参考/会话管理 API.mdx",
               "route": "/wiki/SDK API 参考/会话管理 API"
             },
             {
               "kind": "page",
               "label": "工具调用 API",
-              "pageId": "filesystem:wiki/SDK API 参考/工具调用 API.md",
+              "pageId": "filesystem:wiki/SDK API 参考/工具调用 API.mdx",
               "route": "/wiki/SDK API 参考/工具调用 API"
             },
             {
               "kind": "page",
               "label": "扩展开发 API",
-              "pageId": "filesystem:wiki/SDK API 参考/扩展开发 API.md",
+              "pageId": "filesystem:wiki/SDK API 参考/扩展开发 API.mdx",
               "route": "/wiki/SDK API 参考/扩展开发 API"
             },
             {
               "kind": "page",
               "label": "模型运行时 API",
-              "pageId": "filesystem:wiki/SDK API 参考/模型运行时 API.md",
+              "pageId": "filesystem:wiki/SDK API 参考/模型运行时 API.mdx",
               "route": "/wiki/SDK API 参考/模型运行时 API"
             }
           ],
@@ -2686,19 +2692,19 @@
             {
               "kind": "page",
               "label": "内置工具",
-              "pageId": "filesystem:wiki/工具系统/内置工具.md",
+              "pageId": "filesystem:wiki/工具系统/内置工具.mdx",
               "route": "/wiki/工具系统/内置工具"
             },
             {
               "kind": "page",
               "label": "工具生命周期",
-              "pageId": "filesystem:wiki/工具系统/工具生命周期.md",
+              "pageId": "filesystem:wiki/工具系统/工具生命周期.mdx",
               "route": "/wiki/工具系统/工具生命周期"
             },
             {
               "kind": "page",
               "label": "工具系统",
-              "pageId": "filesystem:wiki/工具系统/工具系统.md",
+              "pageId": "filesystem:wiki/工具系统/工具系统.mdx",
               "route": "/wiki/工具系统/工具系统"
             },
             {
@@ -2706,25 +2712,25 @@
                 {
                   "kind": "page",
                   "label": "信任管理机制",
-                  "pageId": "filesystem:wiki/工具系统/安全沙箱机制/信任管理机制.md",
+                  "pageId": "filesystem:wiki/工具系统/安全沙箱机制/信任管理机制.mdx",
                   "route": "/wiki/工具系统/安全沙箱机制/信任管理机制"
                 },
                 {
                   "kind": "page",
                   "label": "安全沙箱机制",
-                  "pageId": "filesystem:wiki/工具系统/安全沙箱机制/安全沙箱机制.md",
+                  "pageId": "filesystem:wiki/工具系统/安全沙箱机制/安全沙箱机制.mdx",
                   "route": "/wiki/工具系统/安全沙箱机制/安全沙箱机制"
                 },
                 {
                   "kind": "page",
                   "label": "权限控制系统",
-                  "pageId": "filesystem:wiki/工具系统/安全沙箱机制/权限控制系统.md",
+                  "pageId": "filesystem:wiki/工具系统/安全沙箱机制/权限控制系统.mdx",
                   "route": "/wiki/工具系统/安全沙箱机制/权限控制系统"
                 },
                 {
                   "kind": "page",
                   "label": "输出安全防护",
-                  "pageId": "filesystem:wiki/工具系统/安全沙箱机制/输出安全防护.md",
+                  "pageId": "filesystem:wiki/工具系统/安全沙箱机制/输出安全防护.mdx",
                   "route": "/wiki/工具系统/安全沙箱机制/输出安全防护"
                 }
               ],
@@ -2738,31 +2744,31 @@
                 {
                   "kind": "page",
                   "label": "工具开发指南",
-                  "pageId": "filesystem:wiki/工具系统/工具开发指南/工具开发指南.md",
+                  "pageId": "filesystem:wiki/工具系统/工具开发指南/工具开发指南.mdx",
                   "route": "/wiki/工具系统/工具开发指南/工具开发指南"
                 },
                 {
                   "kind": "page",
                   "label": "工具接口设计",
-                  "pageId": "filesystem:wiki/工具系统/工具开发指南/工具接口设计.md",
+                  "pageId": "filesystem:wiki/工具系统/工具开发指南/工具接口设计.mdx",
                   "route": "/wiki/工具系统/工具开发指南/工具接口设计"
                 },
                 {
                   "kind": "page",
                   "label": "工具注册与生命周期",
-                  "pageId": "filesystem:wiki/工具系统/工具开发指南/工具注册与生命周期.md",
+                  "pageId": "filesystem:wiki/工具系统/工具开发指南/工具注册与生命周期.mdx",
                   "route": "/wiki/工具系统/工具开发指南/工具注册与生命周期"
                 },
                 {
                   "kind": "page",
                   "label": "工具测试与调试",
-                  "pageId": "filesystem:wiki/工具系统/工具开发指南/工具测试与调试.md",
+                  "pageId": "filesystem:wiki/工具系统/工具开发指南/工具测试与调试.mdx",
                   "route": "/wiki/工具系统/工具开发指南/工具测试与调试"
                 },
                 {
                   "kind": "page",
                   "label": "工具渲染定制",
-                  "pageId": "filesystem:wiki/工具系统/工具开发指南/工具渲染定制.md",
+                  "pageId": "filesystem:wiki/工具系统/工具开发指南/工具渲染定制.mdx",
                   "route": "/wiki/工具系统/工具开发指南/工具渲染定制"
                 },
                 {
@@ -2770,31 +2776,31 @@
                     {
                       "kind": "page",
                       "label": "Shell命令执行模式",
-                      "pageId": "filesystem:wiki/工具系统/工具开发指南/工具实现模式/Shell命令执行模式.md",
+                      "pageId": "filesystem:wiki/工具系统/工具开发指南/工具实现模式/Shell命令执行模式.mdx",
                       "route": "/wiki/工具系统/工具开发指南/工具实现模式/Shell命令执行模式"
                     },
                     {
                       "kind": "page",
                       "label": "基础工具实现模式",
-                      "pageId": "filesystem:wiki/工具系统/工具开发指南/工具实现模式/基础工具实现模式.md",
+                      "pageId": "filesystem:wiki/工具系统/工具开发指南/工具实现模式/基础工具实现模式.mdx",
                       "route": "/wiki/工具系统/工具开发指南/工具实现模式/基础工具实现模式"
                     },
                     {
                       "kind": "page",
                       "label": "工具实现模式",
-                      "pageId": "filesystem:wiki/工具系统/工具开发指南/工具实现模式/工具实现模式.md",
+                      "pageId": "filesystem:wiki/工具系统/工具开发指南/工具实现模式/工具实现模式.mdx",
                       "route": "/wiki/工具系统/工具开发指南/工具实现模式/工具实现模式"
                     },
                     {
                       "kind": "page",
                       "label": "工具生命周期管理",
-                      "pageId": "filesystem:wiki/工具系统/工具开发指南/工具实现模式/工具生命周期管理.md",
+                      "pageId": "filesystem:wiki/工具系统/工具开发指南/工具实现模式/工具生命周期管理.mdx",
                       "route": "/wiki/工具系统/工具开发指南/工具实现模式/工具生命周期管理"
                     },
                     {
                       "kind": "page",
                       "label": "流式输出处理模式",
-                      "pageId": "filesystem:wiki/工具系统/工具开发指南/工具实现模式/流式输出处理模式.md",
+                      "pageId": "filesystem:wiki/工具系统/工具开发指南/工具实现模式/流式输出处理模式.mdx",
                       "route": "/wiki/工具系统/工具开发指南/工具实现模式/流式输出处理模式"
                     }
                   ],
@@ -2820,43 +2826,43 @@
             {
               "kind": "page",
               "label": "代码规范",
-              "pageId": "filesystem:wiki/开发者指南/代码规范.md",
+              "pageId": "filesystem:wiki/开发者指南/代码规范.mdx",
               "route": "/wiki/开发者指南/代码规范"
             },
             {
               "kind": "page",
               "label": "开发环境搭建",
-              "pageId": "filesystem:wiki/开发者指南/开发环境搭建.md",
+              "pageId": "filesystem:wiki/开发者指南/开发环境搭建.mdx",
               "route": "/wiki/开发者指南/开发环境搭建"
             },
             {
               "kind": "page",
               "label": "开发者指南",
-              "pageId": "filesystem:wiki/开发者指南/开发者指南.md",
+              "pageId": "filesystem:wiki/开发者指南/开发者指南.mdx",
               "route": "/wiki/开发者指南/开发者指南"
             },
             {
               "kind": "page",
               "label": "构建与发布",
-              "pageId": "filesystem:wiki/开发者指南/构建与发布.md",
+              "pageId": "filesystem:wiki/开发者指南/构建与发布.mdx",
               "route": "/wiki/开发者指南/构建与发布"
             },
             {
               "kind": "page",
               "label": "测试指南",
-              "pageId": "filesystem:wiki/开发者指南/测试指南.md",
+              "pageId": "filesystem:wiki/开发者指南/测试指南.mdx",
               "route": "/wiki/开发者指南/测试指南"
             },
             {
               "kind": "page",
               "label": "调试与性能分析",
-              "pageId": "filesystem:wiki/开发者指南/调试与性能分析.md",
+              "pageId": "filesystem:wiki/开发者指南/调试与性能分析.mdx",
               "route": "/wiki/开发者指南/调试与性能分析"
             },
             {
               "kind": "page",
               "label": "贡献流程",
-              "pageId": "filesystem:wiki/开发者指南/贡献流程.md",
+              "pageId": "filesystem:wiki/开发者指南/贡献流程.mdx",
               "route": "/wiki/开发者指南/贡献流程"
             }
           ],
@@ -2870,7 +2876,7 @@
             {
               "kind": "page",
               "label": "快速开始",
-              "pageId": "filesystem:wiki/快速开始/快速开始.md",
+              "pageId": "filesystem:wiki/快速开始/快速开始.mdx",
               "route": "/wiki/快速开始/快速开始"
             },
             {
@@ -2878,25 +2884,25 @@
                 {
                   "kind": "page",
                   "label": "GitHub集成",
-                  "pageId": "filesystem:wiki/快速开始/Pi Web UI 前端界面/GitHub集成.md",
+                  "pageId": "filesystem:wiki/快速开始/Pi Web UI 前端界面/GitHub集成.mdx",
                   "route": "/wiki/快速开始/Pi Web UI 前端界面/GitHub集成"
                 },
                 {
                   "kind": "page",
                   "label": "Pi Web UI 前端界面",
-                  "pageId": "filesystem:wiki/快速开始/Pi Web UI 前端界面/Pi Web UI 前端界面.md",
+                  "pageId": "filesystem:wiki/快速开始/Pi Web UI 前端界面/Pi Web UI 前端界面.mdx",
                   "route": "/wiki/快速开始/Pi Web UI 前端界面/Pi Web UI 前端界面"
                 },
                 {
                   "kind": "page",
                   "label": "会话保留管理",
-                  "pageId": "filesystem:wiki/快速开始/Pi Web UI 前端界面/会话保留管理.md",
+                  "pageId": "filesystem:wiki/快速开始/Pi Web UI 前端界面/会话保留管理.mdx",
                   "route": "/wiki/快速开始/Pi Web UI 前端界面/会话保留管理"
                 },
                 {
                   "kind": "page",
                   "label": "通知系统",
-                  "pageId": "filesystem:wiki/快速开始/Pi Web UI 前端界面/通知系统.md",
+                  "pageId": "filesystem:wiki/快速开始/Pi Web UI 前端界面/通知系统.mdx",
                   "route": "/wiki/快速开始/Pi Web UI 前端界面/通知系统"
                 }
               ],
@@ -2916,55 +2922,55 @@
             {
               "kind": "page",
               "label": "UI 扩展",
-              "pageId": "filesystem:wiki/扩展开发/UI 扩展.md",
+              "pageId": "filesystem:wiki/扩展开发/UI 扩展.mdx",
               "route": "/wiki/扩展开发/UI 扩展"
             },
             {
               "kind": "page",
               "label": "主题开发",
-              "pageId": "filesystem:wiki/扩展开发/主题开发.md",
+              "pageId": "filesystem:wiki/扩展开发/主题开发.mdx",
               "route": "/wiki/扩展开发/主题开发"
             },
             {
               "kind": "page",
               "label": "事件系统",
-              "pageId": "filesystem:wiki/扩展开发/事件系统.md",
+              "pageId": "filesystem:wiki/扩展开发/事件系统.mdx",
               "route": "/wiki/扩展开发/事件系统"
             },
             {
               "kind": "page",
               "label": "工具开发",
-              "pageId": "filesystem:wiki/扩展开发/工具开发.md",
+              "pageId": "filesystem:wiki/扩展开发/工具开发.mdx",
               "route": "/wiki/扩展开发/工具开发"
             },
             {
               "kind": "page",
               "label": "扩展开发",
-              "pageId": "filesystem:wiki/扩展开发/扩展开发.md",
+              "pageId": "filesystem:wiki/扩展开发/扩展开发.mdx",
               "route": "/wiki/扩展开发/扩展开发"
             },
             {
               "kind": "page",
               "label": "扩展打包与发布",
-              "pageId": "filesystem:wiki/扩展开发/扩展打包与发布.md",
+              "pageId": "filesystem:wiki/扩展开发/扩展打包与发布.mdx",
               "route": "/wiki/扩展开发/扩展打包与发布"
             },
             {
               "kind": "page",
               "label": "扩展架构概述",
-              "pageId": "filesystem:wiki/扩展开发/扩展架构概述.md",
+              "pageId": "filesystem:wiki/扩展开发/扩展架构概述.mdx",
               "route": "/wiki/扩展开发/扩展架构概述"
             },
             {
               "kind": "page",
               "label": "技能开发",
-              "pageId": "filesystem:wiki/扩展开发/技能开发.md",
+              "pageId": "filesystem:wiki/扩展开发/技能开发.mdx",
               "route": "/wiki/扩展开发/技能开发"
             },
             {
               "kind": "page",
               "label": "提示模板开发",
-              "pageId": "filesystem:wiki/扩展开发/提示模板开发.md",
+              "pageId": "filesystem:wiki/扩展开发/提示模板开发.mdx",
               "route": "/wiki/扩展开发/提示模板开发"
             }
           ],
@@ -2978,31 +2984,31 @@
             {
               "kind": "page",
               "label": "事件系统",
-              "pageId": "filesystem:wiki/核心架构/事件系统.md",
+              "pageId": "filesystem:wiki/核心架构/事件系统.mdx",
               "route": "/wiki/核心架构/事件系统"
             },
             {
               "kind": "page",
               "label": "代理会话运行时",
-              "pageId": "filesystem:wiki/核心架构/代理会话运行时.md",
+              "pageId": "filesystem:wiki/核心架构/代理会话运行时.mdx",
               "route": "/wiki/核心架构/代理会话运行时"
             },
             {
               "kind": "page",
               "label": "会话管理器",
-              "pageId": "filesystem:wiki/核心架构/会话管理器.md",
+              "pageId": "filesystem:wiki/核心架构/会话管理器.mdx",
               "route": "/wiki/核心架构/会话管理器"
             },
             {
               "kind": "page",
               "label": "核心架构",
-              "pageId": "filesystem:wiki/核心架构/核心架构.md",
+              "pageId": "filesystem:wiki/核心架构/核心架构.mdx",
               "route": "/wiki/核心架构/核心架构"
             },
             {
               "kind": "page",
               "label": "配置管理",
-              "pageId": "filesystem:wiki/核心架构/配置管理.md",
+              "pageId": "filesystem:wiki/核心架构/配置管理.mdx",
               "route": "/wiki/核心架构/配置管理"
             },
             {
@@ -3010,37 +3016,37 @@
                 {
                   "kind": "page",
                   "label": "Shell 命令工具",
-                  "pageId": "filesystem:wiki/核心架构/工具系统/Shell 命令工具.md",
+                  "pageId": "filesystem:wiki/核心架构/工具系统/Shell 命令工具.mdx",
                   "route": "/wiki/核心架构/工具系统/Shell 命令工具"
                 },
                 {
                   "kind": "page",
                   "label": "工具架构设计",
-                  "pageId": "filesystem:wiki/核心架构/工具系统/工具架构设计.md",
+                  "pageId": "filesystem:wiki/核心架构/工具系统/工具架构设计.mdx",
                   "route": "/wiki/核心架构/工具系统/工具架构设计"
                 },
                 {
                   "kind": "page",
                   "label": "工具系统",
-                  "pageId": "filesystem:wiki/核心架构/工具系统/工具系统.md",
+                  "pageId": "filesystem:wiki/核心架构/工具系统/工具系统.mdx",
                   "route": "/wiki/核心架构/工具系统/工具系统"
                 },
                 {
                   "kind": "page",
                   "label": "文件操作工具",
-                  "pageId": "filesystem:wiki/核心架构/工具系统/文件操作工具.md",
+                  "pageId": "filesystem:wiki/核心架构/工具系统/文件操作工具.mdx",
                   "route": "/wiki/核心架构/工具系统/文件操作工具"
                 },
                 {
                   "kind": "page",
                   "label": "渲染系统",
-                  "pageId": "filesystem:wiki/核心架构/工具系统/渲染系统.md",
+                  "pageId": "filesystem:wiki/核心架构/工具系统/渲染系统.mdx",
                   "route": "/wiki/核心架构/工具系统/渲染系统"
                 },
                 {
                   "kind": "page",
                   "label": "自定义工具开发",
-                  "pageId": "filesystem:wiki/核心架构/工具系统/自定义工具开发.md",
+                  "pageId": "filesystem:wiki/核心架构/工具系统/自定义工具开发.mdx",
                   "route": "/wiki/核心架构/工具系统/自定义工具开发"
                 }
               ],
@@ -3054,19 +3060,19 @@
                 {
                   "kind": "page",
                   "label": "扩展加载器",
-                  "pageId": "filesystem:wiki/核心架构/扩展系统/扩展加载器.md",
+                  "pageId": "filesystem:wiki/核心架构/扩展系统/扩展加载器.mdx",
                   "route": "/wiki/核心架构/扩展系统/扩展加载器"
                 },
                 {
                   "kind": "page",
                   "label": "扩展类型定义",
-                  "pageId": "filesystem:wiki/核心架构/扩展系统/扩展类型定义.md",
+                  "pageId": "filesystem:wiki/核心架构/扩展系统/扩展类型定义.mdx",
                   "route": "/wiki/核心架构/扩展系统/扩展类型定义"
                 },
                 {
                   "kind": "page",
                   "label": "扩展系统",
-                  "pageId": "filesystem:wiki/核心架构/扩展系统/扩展系统.md",
+                  "pageId": "filesystem:wiki/核心架构/扩展系统/扩展系统.mdx",
                   "route": "/wiki/核心架构/扩展系统/扩展系统"
                 },
                 {
@@ -3074,31 +3080,31 @@
                     {
                       "kind": "page",
                       "label": "Codemode 扩展",
-                      "pageId": "filesystem:wiki/核心架构/扩展系统/内置扩展/Codemode 扩展.md",
+                      "pageId": "filesystem:wiki/核心架构/扩展系统/内置扩展/Codemode 扩展.mdx",
                       "route": "/wiki/核心架构/扩展系统/内置扩展/Codemode 扩展"
                     },
                     {
                       "kind": "page",
                       "label": "Llama.cpp 扩展",
-                      "pageId": "filesystem:wiki/核心架构/扩展系统/内置扩展/Llama.cpp 扩展.md",
+                      "pageId": "filesystem:wiki/核心架构/扩展系统/内置扩展/Llama.cpp 扩展.mdx",
                       "route": "/wiki/核心架构/扩展系统/内置扩展/Llama.cpp 扩展"
                     },
                     {
                       "kind": "page",
                       "label": "MCP 扩展",
-                      "pageId": "filesystem:wiki/核心架构/扩展系统/内置扩展/MCP 扩展.md",
+                      "pageId": "filesystem:wiki/核心架构/扩展系统/内置扩展/MCP 扩展.mdx",
                       "route": "/wiki/核心架构/扩展系统/内置扩展/MCP 扩展"
                     },
                     {
                       "kind": "page",
                       "label": "内置扩展",
-                      "pageId": "filesystem:wiki/核心架构/扩展系统/内置扩展/内置扩展.md",
+                      "pageId": "filesystem:wiki/核心架构/扩展系统/内置扩展/内置扩展.mdx",
                       "route": "/wiki/核心架构/扩展系统/内置扩展/内置扩展"
                     },
                     {
                       "kind": "page",
                       "label": "工具搜索扩展",
-                      "pageId": "filesystem:wiki/核心架构/扩展系统/内置扩展/工具搜索扩展.md",
+                      "pageId": "filesystem:wiki/核心架构/扩展系统/内置扩展/工具搜索扩展.mdx",
                       "route": "/wiki/核心架构/扩展系统/内置扩展/工具搜索扩展"
                     }
                   ],
@@ -3112,31 +3118,31 @@
                     {
                       "kind": "page",
                       "label": "UI 上下文 API",
-                      "pageId": "filesystem:wiki/核心架构/扩展系统/扩展 API/UI 上下文 API.md",
+                      "pageId": "filesystem:wiki/核心架构/扩展系统/扩展 API/UI 上下文 API.mdx",
                       "route": "/wiki/核心架构/扩展系统/扩展 API/UI 上下文 API"
                     },
                     {
                       "kind": "page",
                       "label": "事件系统 API",
-                      "pageId": "filesystem:wiki/核心架构/扩展系统/扩展 API/事件系统 API.md",
+                      "pageId": "filesystem:wiki/核心架构/扩展系统/扩展 API/事件系统 API.mdx",
                       "route": "/wiki/核心架构/扩展系统/扩展 API/事件系统 API"
                     },
                     {
                       "kind": "page",
                       "label": "工具定义 API",
-                      "pageId": "filesystem:wiki/核心架构/扩展系统/扩展 API/工具定义 API.md",
+                      "pageId": "filesystem:wiki/核心架构/扩展系统/扩展 API/工具定义 API.mdx",
                       "route": "/wiki/核心架构/扩展系统/扩展 API/工具定义 API"
                     },
                     {
                       "kind": "page",
                       "label": "扩展 API",
-                      "pageId": "filesystem:wiki/核心架构/扩展系统/扩展 API/扩展 API.md",
+                      "pageId": "filesystem:wiki/核心架构/扩展系统/扩展 API/扩展 API.mdx",
                       "route": "/wiki/核心架构/扩展系统/扩展 API/扩展 API"
                     },
                     {
                       "kind": "page",
                       "label": "扩展上下文 API",
-                      "pageId": "filesystem:wiki/核心架构/扩展系统/扩展 API/扩展上下文 API.md",
+                      "pageId": "filesystem:wiki/核心架构/扩展系统/扩展 API/扩展上下文 API.mdx",
                       "route": "/wiki/核心架构/扩展系统/扩展 API/扩展上下文 API"
                     }
                   ],
@@ -3156,31 +3162,31 @@
                 {
                   "kind": "page",
                   "label": "提供商抽象层",
-                  "pageId": "filesystem:wiki/核心架构/模型运行时/提供商抽象层.md",
+                  "pageId": "filesystem:wiki/核心架构/模型运行时/提供商抽象层.mdx",
                   "route": "/wiki/核心架构/模型运行时/提供商抽象层"
                 },
                 {
                   "kind": "page",
                   "label": "模型路由系统",
-                  "pageId": "filesystem:wiki/核心架构/模型运行时/模型路由系统.md",
+                  "pageId": "filesystem:wiki/核心架构/模型运行时/模型路由系统.mdx",
                   "route": "/wiki/核心架构/模型运行时/模型路由系统"
                 },
                 {
                   "kind": "page",
                   "label": "模型运行时",
-                  "pageId": "filesystem:wiki/核心架构/模型运行时/模型运行时.md",
+                  "pageId": "filesystem:wiki/核心架构/模型运行时/模型运行时.mdx",
                   "route": "/wiki/核心架构/模型运行时/模型运行时"
                 },
                 {
                   "kind": "page",
                   "label": "认证管理系统",
-                  "pageId": "filesystem:wiki/核心架构/模型运行时/认证管理系统.md",
+                  "pageId": "filesystem:wiki/核心架构/模型运行时/认证管理系统.mdx",
                   "route": "/wiki/核心架构/模型运行时/认证管理系统"
                 },
                 {
                   "kind": "page",
                   "label": "请求处理管道",
-                  "pageId": "filesystem:wiki/核心架构/模型运行时/请求处理管道.md",
+                  "pageId": "filesystem:wiki/核心架构/模型运行时/请求处理管道.mdx",
                   "route": "/wiki/核心架构/模型运行时/请求处理管道"
                 }
               ],
@@ -3200,43 +3206,43 @@
             {
               "kind": "page",
               "label": "备份与恢复",
-              "pageId": "filesystem:wiki/部署与运维/备份与恢复.md",
+              "pageId": "filesystem:wiki/部署与运维/备份与恢复.mdx",
               "route": "/wiki/部署与运维/备份与恢复"
             },
             {
               "kind": "page",
               "label": "安全加固",
-              "pageId": "filesystem:wiki/部署与运维/安全加固.md",
+              "pageId": "filesystem:wiki/部署与运维/安全加固.mdx",
               "route": "/wiki/部署与运维/安全加固"
             },
             {
               "kind": "page",
               "label": "容器化部署",
-              "pageId": "filesystem:wiki/部署与运维/容器化部署.md",
+              "pageId": "filesystem:wiki/部署与运维/容器化部署.mdx",
               "route": "/wiki/部署与运维/容器化部署"
             },
             {
               "kind": "page",
               "label": "生产环境配置",
-              "pageId": "filesystem:wiki/部署与运维/生产环境配置.md",
+              "pageId": "filesystem:wiki/部署与运维/生产环境配置.mdx",
               "route": "/wiki/部署与运维/生产环境配置"
             },
             {
               "kind": "page",
               "label": "监控与日志",
-              "pageId": "filesystem:wiki/部署与运维/监控与日志.md",
+              "pageId": "filesystem:wiki/部署与运维/监控与日志.mdx",
               "route": "/wiki/部署与运维/监控与日志"
             },
             {
               "kind": "page",
               "label": "自更新与版本管理",
-              "pageId": "filesystem:wiki/部署与运维/自更新与版本管理.md",
+              "pageId": "filesystem:wiki/部署与运维/自更新与版本管理.mdx",
               "route": "/wiki/部署与运维/自更新与版本管理"
             },
             {
               "kind": "page",
               "label": "部署与运维",
-              "pageId": "filesystem:wiki/部署与运维/部署与运维.md",
+              "pageId": "filesystem:wiki/部署与运维/部署与运维.mdx",
               "route": "/wiki/部署与运维/部署与运维"
             }
           ],
@@ -3250,49 +3256,49 @@
             {
               "kind": "page",
               "label": "Pi Web UI M5 实现计划",
-              "pageId": "filesystem:wiki/项目概述/Pi Web UI M5 实现计划.md",
+              "pageId": "filesystem:wiki/项目概述/Pi Web UI M5 实现计划.mdx",
               "route": "/wiki/项目概述/Pi Web UI M5 实现计划"
             },
             {
               "kind": "page",
               "label": "Pi Web UI M5 技术验证",
-              "pageId": "filesystem:wiki/项目概述/Pi Web UI M5 技术验证.md",
+              "pageId": "filesystem:wiki/项目概述/Pi Web UI M5 技术验证.mdx",
               "route": "/wiki/项目概述/Pi Web UI M5 技术验证"
             },
             {
               "kind": "page",
               "label": "Pi Web UI M5 需求文档",
-              "pageId": "filesystem:wiki/项目概述/Pi Web UI M5 需求文档.md",
+              "pageId": "filesystem:wiki/项目概述/Pi Web UI M5 需求文档.mdx",
               "route": "/wiki/项目概述/Pi Web UI M5 需求文档"
             },
             {
               "kind": "page",
               "label": "快速开始",
-              "pageId": "filesystem:wiki/项目概述/快速开始.md",
+              "pageId": "filesystem:wiki/项目概述/快速开始.mdx",
               "route": "/wiki/项目概述/快速开始"
             },
             {
               "kind": "page",
               "label": "技术栈",
-              "pageId": "filesystem:wiki/项目概述/技术栈.md",
+              "pageId": "filesystem:wiki/项目概述/技术栈.mdx",
               "route": "/wiki/项目概述/技术栈"
             },
             {
               "kind": "page",
               "label": "架构概览",
-              "pageId": "filesystem:wiki/项目概述/架构概览.md",
+              "pageId": "filesystem:wiki/项目概述/架构概览.mdx",
               "route": "/wiki/项目概述/架构概览"
             },
             {
               "kind": "page",
               "label": "项目介绍",
-              "pageId": "filesystem:wiki/项目概述/项目介绍.md",
+              "pageId": "filesystem:wiki/项目概述/项目介绍.mdx",
               "route": "/wiki/项目概述/项目介绍"
             },
             {
               "kind": "page",
               "label": "项目概述",
-              "pageId": "filesystem:wiki/项目概述/项目概述.md",
+              "pageId": "filesystem:wiki/项目概述/项目概述.mdx",
               "route": "/wiki/项目概述/项目概述"
             }
           ],

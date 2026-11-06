@@ -41,6 +41,7 @@
 - [验证记录](https://fde-group.github.io/oh-my-fde/docs/explains/validation)
 - [Fork 与裁剪说明](https://fde-group.github.io/oh-my-fde/docs/explains/fork-and-prune)
 - [TUI 使用记录](https://fde-group.github.io/oh-my-fde/docs/explains/tui-usage)
+- [统一文档站：apps/docs-site 构建与发布机制](https://fde-group.github.io/oh-my-fde/docs/explains/docs-site)
 
 ### Plans
 

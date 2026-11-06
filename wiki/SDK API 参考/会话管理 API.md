@@ -676,7 +676,7 @@ AgentSession 提供了完整的会话生命周期管理能力，涵盖消息发�
   - 路径：[utilities.ts:278-298](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/test/utilities.ts#L278-L298)
 - 发送用户消息
   - 同步发送：sendUserMessage
-  - 流式排队：prompt(..., { streamingBehavior })
+  - 流式排队：prompt(..., \{ streamingBehavior \})
   - 路径：[agent-session.ts:2507-2537](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/agent-session.ts#L2507-L2537)、[agent-session.ts:2137-2171](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/agent-session.ts#L2137-L2171)
 - 处理工具调用结果
   - 通过扩展事件 tool_execution_start/update/end 与 afterToolCall 钩子

@@ -91,6 +91,7 @@ Source: https://fde-group.github.io/oh-my-fde/docs/explains
 | `25-validation.md` | **用 faux provider 实跑：事件流、持久化、投影、压缩** |
 | `26-fork-and-prune.md` | **fork 与裁剪的准确说明：删了什么、没改什么、如何恢复** |
 | `27-tui-usage.md` | **实际跑通 TUI：DeepSeek 配置、工具调用、斜杠命令、会话恢复** |
+| `28-docs-site.md` | **统一文档站：sync → blume build → publish worktree，路由 / base / .nojekyll / agent 表面** |
 
 ## 已覆盖的调用链
 
@@ -1162,6 +1163,135 @@ cd /etc && echo x > passwd
 - `resource-loader.ts` 的扩展发现顺序，决定多个 gate 的优先级。
 - `ExtensionRunner` 的 `emitToolCall` 没有 try/catch，依赖调用方捕获；
   如果要做审计日志，必须保证日志失败不阻断工具执行。
+
+---
+
+# 统一文档站：apps/docs-site 构建与发布机制
+Source: https://fde-group.github.io/oh-my-fde/docs/explains/docs-site
+
+这篇记录 `apps/docs-site` 怎么把仓库文档变成一个静态站，以及怎么维护它。
+它是机制说明，不是设计提案；设计决策记在 `docs/specs/vision.md` 的
+「2026-11-06：新增 `apps/docs-site` 统一文档站」条目。
+
+站点用 [Blume](https://useblume.dev)（Astro + Vite，纯静态，MIT）构建，同时面向
+人和 coding agent。发布到 `pages` 分支，线上地址
+`https://fde-group.github.io/oh-my-fde/`（base path `/oh-my-fde`）。
+
+## 包结构
+
+```
+apps/docs-site/
+  blume.config.ts        # 站点配置（strict schema 校验）
+  package.json           # @omfde/docs-site，private，blume 精确 pin 2.2.6
+  scripts/sync.mjs       # 镜像 + 清洗内容到包内 content/
+  scripts/publish.mjs    # 发布 dist/ 到 pages 分支
+  seed/                  # 手写的 4 篇 landing（首页 + 三区首页）
+  content/  .blume/  dist/  node_modules/   # 全部 gitignore，构建产物
+```
+
+`content/` 是 `sync.mjs` 生成的镜像，不进 git；改内容要改源头（`docs/`、
+`.qoder/repowiki/`）或 `seed/`，再重新 `sync`。
+
+## 内容来源与分区
+
+`sync.mjs` 从三处只读收集 Markdown，映射到站的三个区：
+
+| 源 | 站分区 | 路由前缀 |
+|---|---|---|
+| `docs/**` | 项目文档 | `/docs` |
+| `.qoder/repowiki/zh/content/**` | 仓库 Wiki | `/wiki` |
+| `.qoder/repowiki/knowledge/zh/**` | 架构知识卡 | `/knowledge` |
+
+明确排除 `packages/coding-agent/docs`（那是 Pi 产品用户文档，受众不同，且是
+Mintlify 格式）。三个分区在 `blume.config.ts` 里用 `navigation.tabs` 拆成三个
+header tab，每个 tab 把侧栏限定到本区——400+ 页跨三源，tab 比单一侧栏清晰。
+
+## 构建流程
+
+`pnpm --filter @omfde/docs-site build` = `node scripts/sync.mjs && blume build`。
+
+`sync.mjs` 每次先 `rmSync(content/)` 再重建（幂等），对每个源文件：
+
+1. **清洗链接**：把 repowiki 里的 `https://github.com/FDE-GROUP/oh-my-fde/blob/main/` 绝对路径改写成 GitHub blob 外链
+   （base `https://github.com/FDE-GROUP/oh-my-fde/blob/main`），并剥掉 `` 块。
+   `blume.config.ts` 开 `markdown.externalLinks: true`，外链在新标签打开。
+2. **改首页名**：Blume 只认 `index.md` 作文件夹首页，不认 `README.md`，故
+   `README.md` → `index.md`。
+3. **转换 frontmatter**：6 个 knowledge 总览页带非标准 frontmatter
+   （`kind`/`name`/`category`/`scope`/`source_files`），Blume 的 strict schema 不认。
+   sync 把它们转成 Blume 原生 `title` + 一个可见的「知识卡元数据」引用块，避免
+   为此引入 schema 依赖。
+4. **合并 seed**：最后 `cpSync(seed/, content/, { recursive: true })`，把 4 篇手写
+   landing 并进镜像（seed 覆盖同名生成页）。
+
+`blume build` 产出 `dist/`，约 426 页，纯静态、零 server、零 AI 成本。
+
+## 路由与 base path（易踩坑）
+
+- **数字前缀剥离并排序**：`00-baseline.md` → `/docs/explains/baseline`；`docs/explains`
+  的 00–27 顺序自动解析，无需在 config 声明。
+- **中文文件名** → percent-encoded URL，可用。
+- **文件夹同名 .md** → 双段路由（`/knowledge/X/X`）；`概述.md` → `/knowledge/X/概述`。
+- **内部链接写 root-relative 且不带 base**：markdown 里写 `/docs`，Blume 构建时自动
+  补 base → `/oh-my-fde/docs`；已带 base 的原样保留。所以 seed/源文档里不要手写
+  `/oh-my-fde` 前缀。
+- **链接目标含空格要用 `<...>` 角括号**，否则 markdown 解析断裂。带空格的中文模块
+  路由因此在 landing 里用散文 + 侧栏导航，而不是硬写链接，避免死链。
+
+## 发布流程
+
+`pnpm --filter @omfde/docs-site deploy` 跑 `scripts/publish.mjs`，**默认 dry-run**：
+只构建、在 `/tmp` 模拟拷贝、打印将执行的 git 动作，不碰 `pages`、不 push。加
+`--publish`（即 `deploy:publish`）才真正发布。
+
+真发布时脚本：
+
+1. `git worktree add /tmp/omfde-pages pages`——在**共享 worktree 之外**建专用
+   worktree，不动当前工作区（AGENTS 硬规则：`pages` publish-only，共享 worktree
+   不切分支）。
+2. 清空 worktree（保留 `.git`），整站替换。
+3. `assemble`：`cpSync(dist/, worktree)` + **补写 `.nojekyll`**。Blume 不产出
+   `.nojekyll`，但 `dist/` 含 `_astro/`、`_headers`、`.well-known/`；GitHub Pages 的
+   Jekyll 默认忽略 `_`/`.` 开头路径，缺这个文件这些资源会 404。
+4. `git add -A`（仅此专用 worktree 的例外；共享 worktree 仍禁 `-A`）→ 普通 commit
+   （`docs(pages): publish unified docs site (blume)`，**不 force push**）→
+   `git push origin pages` → `git worktree remove`。
+
+发布到 `pages` 是不可逆的共享远端动作，须决策者逐项授权后才跑 `--publish`。
+
+## 面向 agent 的表面
+
+Blume 静态生成，无需 server：`llms.txt` / `llms-full.txt`、每页 `.md` + `.mdx` 镜像、
+JSON docs API、`/blume-search.json`、`agent-readability.json`、`skill.md`、
+`.well-known/{api-catalog,ai-catalog.json,ard.json,agent-skills/index.json}`、`_headers`、
+`404.{html,json,md}`。`agents.mcp.enabled` 关（MCP server 需 server output，纯静态形态
+不开），保留日后经 deployment adapter 升级的路径。
+
+## 配置要点
+
+- `seo.og.enabled: false`——OG 图会给每页产一张 PNG，把 `dist` 从 ~76M 撑到 ~100M；
+  文档站社交分享价值低，关掉保持产物精简、构建更快。
+- `seo.robots: true`（默认，`Content-Signal: ai-train=yes`），与「文档内容全部公开」
+  的既定口径一致；Blume 只有 robots 开/关，无细粒度 ai-train 旋钮。
+- `deployment.{site,base}` 才是 base path 的正确配置键（不是顶层 Astro base）。
+- `github.{owner,repo,branch}` 驱动页脚 repo 链接与 agent manifest；内容页是 gitignore
+  产物，故不产生 Edit on GitHub 链接（Blume 自动跳过被 git 忽略的文件）。
+
+## 维护注意
+
+- `blume` 精确 pin `2.2.6`（AGENTS：直接依赖固定精确版本）。升级前先读 changelog。
+- Blume 会在包内生成 `.blume/package.json`（含通配依赖）。`scripts/check-pinned-deps.mjs`
+  的 `ignoredDirectories` 已加入 `.blume`，否则 pinned-deps 门禁会误报。
+- 改内容后重跑 `sync`；`content/` 是产物，不要手改、不要提交。
+- 需要 Node ≥ 22.19（Blume 要求）。
+- 同一 cwd 可能有多会话并发；发布用专用 worktree，提交只 stage 自己的显式路径。
+
+## 验证
+
+- `pnpm --filter @omfde/docs-site check`（`blume doctor && blume validate`）：无问题、零死链。
+- 根 `pnpm run check` 全绿（`apps/docs-site/scripts/*.mjs` 受 biome 管；无 `src/`，
+  不进 tsc/tsdoc 作用域）。
+- 发布后线上抽查：首页、`/docs` landing、`/llms.txt` 均正确，内部链接带 `/oh-my-fde` base。
 
 ---
 
@@ -15570,23 +15700,23 @@ P-->>U : 输出结果/退出码
 ### 会话管理命令与选项
 - 继续最近会话：--continue/-c
 - 选择会话恢复：--resume/-r
-- 按路径或 ID 打开会话：--session <path|id>
-- 使用当前目录已有会话 ID（不存在则创建）：--session-id <id>
-- 分叉会话：--fork <path|id>
-- 指定会话存储目录：--session-dir <dir>
+- 按路径或 ID 打开会话：--session \<path|id>
+- 使用当前目录已有会话 ID（不存在则创建）：--session-id \<id>
+- 分叉会话：--fork \<path|id>
+- 指定会话存储目录：--session-dir \<dir>
 - 不保存会话（临时）：--no-session
-- 设置会话显示名：--name/-n <name>
+- 设置会话显示名：--name/-n \<name>
 
 章节来源
 - [packages/coding-agent/src/cli/args.ts:111-141](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/cli/args.ts#L111-L141)
 
 ### 认证命令（auth）
 支持的子命令：
-- login <provider> [--api-key] [--no-browser]
-- logout <provider>
-- print-api-key [--provider <provider>] [--model <model>]
-- print-bearer-token [--provider <provider>] [--model <model>] [--min-expiry <duration>]
-- check [--provider <provider>] [--model <model>] [--json] [--credentials] [--no-refresh]
+- login \<provider> [--api-key] [--no-browser]
+- logout \<provider>
+- print-api-key [--provider \<provider>] [--model \<model>]
+- print-bearer-token [--provider \<provider>] [--model \<model>] [--min-expiry \<duration>]
+- check [--provider \<provider>] [--model \<model>] [--json] [--credentials] [--no-refresh]
 
 行为要点：
 - login：支持 OAuth、API Key、设备码等多种登录方式；可选择是否自动打开浏览器；登录后刷新模型目录；对特定 provider（如 Radius）可自动配置 MCP 服务器。
@@ -15704,10 +15834,10 @@ omfde 通过简洁的包装器与强大的 coding-agent CLI，提供了完整的
 - 会话管理
   - omfde --continue "继续讨论"
   - omfde --resume
-  - omfde --session <path|id>
-  - omfde --session-id <id>
-  - omfde --fork <path|id>
-  - omfde --session-dir <dir>
+  - omfde --session \<path|id>
+  - omfde --session-id \<id>
+  - omfde --fork \<path|id>
+  - omfde --session-dir \<dir>
   - omfde --no-session
   - omfde --name "会话名"
 - 模型与工具
@@ -15738,11 +15868,11 @@ omfde 通过简洁的包装器与强大的 coding-agent CLI，提供了完整的
   - omfde --help
   - omfde --version
 - 认证命令
-  - omfde auth login <provider> [--api-key] [--no-browser]
-  - omfde auth logout <provider>
-  - omfde auth print-api-key [--provider <provider>] [--model <model>]
-  - omfde auth print-bearer-token [--provider <provider>] [--model <model>] [--min-expiry <duration>]
-  - omfde auth check [--provider <provider>] [--model <model>] [--json] [--credentials] [--no-refresh]
+  - omfde auth login \<provider> [--api-key] [--no-browser]
+  - omfde auth logout \<provider>
+  - omfde auth print-api-key [--provider \<provider>] [--model \<model>]
+  - omfde auth print-bearer-token [--provider \<provider>] [--model \<model>] [--min-expiry \<duration>]
+  - omfde auth check [--provider \<provider>] [--model \<model>] [--json] [--credentials] [--no-refresh]
 
 章节来源
 - [packages/coding-agent/src/cli/args.ts:273-481](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/cli/args.ts#L273-L481)
@@ -17958,7 +18088,7 @@ CLI --> SETUP["setup.ts"]
 - 继续或恢复会话
   - 命令：pi --continue
   - 命令：pi --resume
-  - 命令：pi --session <path|id>
+  - 命令：pi --session \<path|id>
   - 说明：--continue 继续最近会话；--resume 打开会话选择器；--session 按路径或 ID 打开
 
 - 工具选择
@@ -17998,46 +18128,46 @@ CLI --> SETUP["setup.ts"]
 以下为常用参数的分类参考，便于快速查找。
 
 - 模型与提供商
-  - --provider <name>：限制 --model 查找范围，需配合 --model
-  - --model <pattern>：按精确 ID 或模糊匹配选择模型，支持 provider/id 与 :thinking 后缀
-  - --api-key <key>：非持久化 API Key 覆盖，需配合 --model 或 --models
-  - --thinking <level>：设置 off/minimal/low/medium/high/xhigh/max，覆盖 --model 后缀并受模型能力限制
-  - --models <patterns>：设置启动与切换的模型范围，支持通配与 :thinking
+  - --provider \<name>：限制 --model 查找范围，需配合 --model
+  - --model \<pattern>：按精确 ID 或模糊匹配选择模型，支持 provider/id 与 :thinking 后缀
+  - --api-key \<key>：非持久化 API Key 覆盖，需配合 --model 或 --models
+  - --thinking \<level>：设置 off/minimal/low/medium/high/xhigh/max，覆盖 --model 后缀并受模型能力限制
+  - --models \<patterns>：设置启动与切换的模型范围，支持通配与 :thinking
   - --list-models [search]：列出可用模型并退出
 
 - 会话与会话控制
   - -c/--continue：继续最近会话
   - -r/--resume：打开会话选择器并恢复
-  - --session <path|id>：按路径或 ID 打开并恢复
-  - --session-id <id>：打开或创建当前目录的会话 ID
-  - --fork <path|id>：分叉会话到新会话
-  - --session-dir <dir>：覆盖会话存储与查找
+  - --session \<path|id>：按路径或 ID 打开并恢复
+  - --session-id \<id>：打开或创建当前目录的会话 ID
+  - --fork \<path|id>：分叉会话到新会话
+  - --session-dir \<dir>：覆盖会话存储与查找
   - --no-session：使用内存会话且不持久化
-  - -n/--name <name>：设置会话显示名称
+  - -n/--name \<name>：设置会话显示名称
 
 - 工具与 MCP
-  - -t/--tools <list>：替换默认工具选择，支持白名单与 +name/-name
-  - -xt/--exclude-tools <list>：排除工具，支持模式
+  - -t/--tools \<list>：替换默认工具选择，支持白名单与 +name/-name
+  - -xt/--exclude-tools \<list>：排除工具，支持模式
   - -nbt/--no-builtin-tools：禁用内置工具
   - -nt/--no-tools：禁用全部工具
   - --no-mcp：禁用内置 MCP 支持
 
 - 资源与扩展
-  - -e/--extension <path>：加载扩展文件或目录，可重复
+  - -e/--extension \<path>：加载扩展文件或目录，可重复
   - -ne/--no-extensions：禁用扩展发现
-  - --skill <path>：加载技能文件/目录，可重复
+  - --skill \<path>：加载技能文件/目录，可重复
   - -ns/--no-skills：禁用技能发现
-  - --prompt-template <path>：加载提示模板文件/目录，可重复
+  - --prompt-template \<path>：加载提示模板文件/目录，可重复
   - -np/--no-prompt-templates：禁用模板发现
-  - --theme <path>：加载主题文件/目录，可重复
-  - --use-theme <name[/name]>：选择初始主题
+  - --theme \<path>：加载主题文件/目录，可重复
+  - --use-theme \<name[/name]>：选择初始主题
   - --no-themes：禁用主题发现
   - -nc/--no-context-files：禁用 AGENTS.md 与 CLAUDE.md 发现
 
 - 提示与进程
-  - --system-prompt <text|path>：替换默认系统提示
-  - --append-system-prompt <text|path>：追加系统提示，可重复
-  - --tui-mode <mode>：fullscreen 或 regular
+  - --system-prompt \<text|path>：替换默认系统提示
+  - --append-system-prompt \<text|path>：追加系统提示，可重复
+  - --tui-mode \<mode>：fullscreen 或 regular
   - --verbose：显示详细启动信息
   - -a/--approve：信任本地配置与资源
   - -na/--no-approve：忽略信任门控的本地配置与资源
@@ -18061,18 +18191,18 @@ CLI --> SETUP["setup.ts"]
   - --json：结构化输出
   - --credentials：输出已解析凭据
   - --no-refresh：不刷新过期 OAuth 凭据
-  - --min-expiry <duration>：要求最小剩余有效期
+  - --min-expiry \<duration>：要求最小剩余有效期
 
 - MCP 命令
   - pi mcp add/remove/list/login/logout
   - --env KEY=VALUE：设置环境变量
-  - --cwd <dir>：设置工作目录
-  - --url <url>：添加 HTTP 服务器
+  - --cwd \<dir>：设置工作目录
+  - --url \<url>：添加 HTTP 服务器
   - --header KEY=VALUE：设置请求头
-  - --bearer-token-env-var <NAME>：发送 Authorization Bearer
+  - --bearer-token-env-var \<NAME>：发送 Authorization Bearer
   - --oauth-client-id/secret/callback-port/client-name/registration：OAuth 配置
-  - --exposure <mode>：控制工具暴露
-  - --description <text>：设置描述
+  - --exposure \<mode>：控制工具暴露
+  - --description \<text>：设置描述
 
 **章节来源**
 - [packages/coding-agent/docs/cli.md:55-77](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/docs/cli.md#L55-L77)
@@ -18635,8 +18765,8 @@ L-->>T : 成功消息与后续提示
   - 写入权限 0o600，目录 0o700。
   - 支持只读视图与内存后端（测试用）。
 - 数据结构：
-  - api_key：{ type:"api_key", key?: string, env?: Record<string,string> }
-  - oauth：{ type:"oauth", access:string, refresh:string, expires:number }
+  - api_key：\{ type:"api_key", key?: string, env?: Record\<string,string> \}
+  - oauth：\{ type:"oauth", access:string, refresh:string, expires:number \}
 
 章节来源
 - [packages/coding-agent/src/core/auth-storage.ts:329-491](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/auth-storage.ts#L329-L491)
@@ -18728,15 +18858,15 @@ OP --> CS["Client Settings"]
 
 ### 常用命令速查
 - 登录
-  - pi auth login <provider> [--api-key] [--no-browser]
+  - pi auth login \<provider> [--api-key] [--no-browser]
 - 登出
-  - pi auth logout <provider>
+  - pi auth logout \<provider>
 - 打印 API Key
-  - pi auth print-api-key [--provider <provider>] [--model <model>]
+  - pi auth print-api-key [--provider \<provider>] [--model \<model>]
 - 打印 Bearer Token
-  - pi auth print-bearer-token [--provider <provider>] [--model <model>] [--min-expiry <duration>]
+  - pi auth print-bearer-token [--provider \<provider>] [--model \<model>] [--min-expiry \<duration>]
 - 检查认证状态
-  - pi auth check [--provider <provider>] [--model <model>] [--json] [--credentials] [--no-refresh]
+  - pi auth check [--provider \<provider>] [--model \<model>] [--json] [--credentials] [--no-refresh]
 
 章节来源
 - [packages/coding-agent/src/cli/auth-command.ts:39-70](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/cli/auth-command.ts#L39-L70)
@@ -19398,7 +19528,7 @@ Sess-->>App : 事件(message_update/agent_settled/...)
   - 从已有会话恢复模型与思考级别；若无则按设置与 provider 默认值选择初始模型。
   - 计算初始工具集（allowlist/denylist、MCP 工具保留策略）。
   - 包装 convertToLlm 以支持"屏蔽图片"等安全策略。
-  - 组装 Agent、ExtensionRunner、CacheWarmer，并返回 { session, extensionsResult, modelFallbackMessage }。
+  - 组装 Agent、ExtensionRunner、CacheWarmer，并返回 \{ session, extensionsResult, modelFallbackMessage \}。
 
 - 关键参数（CreateAgentSessionOptions）
   - cwd：工作目录，影响资源发现、工具路径、会话分组。
@@ -20822,7 +20952,7 @@ AgentSession 提供了完整的会话生命周期管理能力，涵盖消息发�
   - 路径：[utilities.ts:278-298](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/test/utilities.ts#L278-L298)
 - 发送用户消息
   - 同步发送：sendUserMessage
-  - 流式排队：prompt(..., { streamingBehavior })
+  - 流式排队：prompt(..., \{ streamingBehavior \})
   - 路径：[agent-session.ts:2507-2537](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/agent-session.ts#L2507-L2537)、[agent-session.ts:2137-2171](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/agent-session.ts#L2137-L2171)
 - 处理工具调用结果
   - 通过扩展事件 tool_execution_start/update/end 与 afterToolCall 钩子
@@ -21271,7 +21401,7 @@ Pi 的工具调用 API 以 ToolDefinition 为核心抽象，通过统一的包�
   - 参考：[powershell.ts:29-37](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/tools/powershell.ts#L29-L37), [powershell.ts:49-67](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/tools/powershell.ts#L49-L67)
 
 - 扩展注册与事件
-  - 注册：pi.registerTool({ ... })
+  - 注册：pi.registerTool(\{ ... \})
   - 事件：tool_execution_start/update/end、tool_call、tool_result
   - 参考：[extensions.md:1-120](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/docs/extensions.md#L1-L120), [extensions.md:311-371](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/docs/extensions.md#L311-L371), [extensions.md:788-800](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/docs/extensions.md#L788-L800)
 
@@ -22222,7 +22352,7 @@ ToolDefinition <|-- LsTool
   - limit：最大读取行数。
 - 输出格式
   - 文本：字符串。
-  - 图片：对象 { type:"image", data, mimeType, note }。
+  - 图片：对象 \{ type:"image", data, mimeType, note \}。
 - 关键行为
   - 若单行超过字节上限，会提示使用 bash 命令截取该行。
   - 若发生截断，会在输出末尾提示继续使用 offset 继续读取。
@@ -22303,7 +22433,7 @@ WT-->>Caller : 返回成功消息
   - 基于精确文本替换的原子编辑，支持一次调用中对同一文件的多处不重叠替换。
 - 输入参数
   - path：目标文件路径。
-  - edits：[{ oldText, newText }] 数组，oldText 必须唯一且不重叠。
+  - edits：[\{ oldText, newText \}] 数组，oldText 必须唯一且不重叠。
 - 输出格式
   - 成功返回文本消息与 details.diff/details.patch 等变更信息。
 - 关键行为
@@ -22346,7 +22476,7 @@ Diff --> Done["返回结果与变更信息"]
   - timeout：超时秒数（可选）。
 - 输出格式
   - 面向模型：文本输出，可能附带截断提示。
-  - 结构化输出：{ output, truncated, full_output_path?, exit_code, wall_time_seconds }。
+  - 结构化输出：\{ output, truncated, full_output_path?, exit_code, wall_time_seconds \}。
 - 关键行为
   - 默认启用会话环境变量 PI_*（可通过 exposeSessionEnvironment 控制）。
   - 支持 commandPrefix 在每个命令前注入前置命令。
@@ -22978,7 +23108,7 @@ EX["examples/extensions/project-trust.ts"] --> PT
 ### 示例扩展：监听 project_trust 事件
 - 安装：将示例扩展复制到 ~/.pi/agent/extensions 或通过 -e 参数加载。
 - 行为：在 TUI 模式下弹出选择框，支持“记住决策”“仅本次会话”等。
-- 返回值：{ trusted: "yes"|"no"|"undecided", remember?: boolean }。
+- 返回值：\{ trusted: "yes"|"no"|"undecided", remember?: boolean \}。
 
 **章节来源**
 - [project-trust.ts（示例扩展）:1-65](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/examples/extensions/project-trust.ts#L1-L65)
@@ -26654,7 +26784,7 @@ class ToolDefinition {
 
 ### 参数验证机制与 TypeBox schema
 - parameters 字段采用 TypeBox schema，既用于运行期校验，也用于推导 TypeScript 类型。
-- Static<TParams> 通过 builders.ts 与 typebox-static.ts 将 TypeBox 的 "~kind"/"~unsafe" 标记映射为 TS 类型，保证 execute(params) 的参数类型安全。
+- Static\<TParams> 通过 builders.ts 与 typebox-static.ts 将 TypeBox 的 "~kind"/"~unsafe" 标记映射为 TS 类型，保证 execute(params) 的参数类型安全。
 - 对于非 TypeBox 的普通 JSON Schema，Static 会退化为 unknown，因此推荐统一使用 TypeBox 构建参数 schema。
 
 ```mermaid
@@ -28679,7 +28809,7 @@ Bash-->>Client : {content, details, structuredContent}
 ### 精确编辑工具 edit
 - 输入参数
   - path：目标文件路径
-  - edits[]：{ oldText, newText } 数组
+  - edits[]：\{ oldText, newText \} 数组
 - 行为要点
   - 参数兼容：支持 JSON 字符串 edits、单条 edit、顶层 oldText/newText。
   - 匹配规则：先精确匹配，失败后模糊匹配（NFKC、去尾空白、智能引号转 ASCII、Unicode 破折号标准化、特殊空格标准化）。
@@ -29833,7 +29963,7 @@ CI --> Artifacts["上传预览包工件"]
 
 ### 协作规范
 - 问题与讨论：优先在 Issue 中记录需求、缺陷与任务；非平凡工作需 RAD 与计划；Bug 需提供复现步骤、期望与实际行为、环境信息。
-- 分支与提交：仅在 main 上工作；提交信息遵循 {feat,fix,docs}[(repo|ai|tui|agent|coding-agent)]: <summary>；禁止 git add -A，明确路径提交；不提交 .env 与凭据。
+- 分支与提交：仅在 main 上工作；提交信息遵循 \{feat,fix,docs\}[(repo|ai|tui|agent|coding-agent)]: \<summary>；禁止 git add -A，明确路径提交；不提交 .env 与凭据。
 - PR 与合并：内部默认不开 PR；外部贡献需先开 Issue 并获得批准；合并采用 squash，保持 main 线性；禁止 force push。
 - 质量门禁：本地运行 pnpm run check 与相关测试；平台入口变更需运行 omfde 冒烟；记录命令、输出与环境。
 
@@ -30315,10 +30445,10 @@ CI[".github/workflows/build-binaries.yml"] --> BinSh
   - npm run version:patch|minor|majorset
   - node scripts/sync-versions.js
 - 发布
-  - node scripts/release.mjs <major|minor|patch|x.y.z>
+  - node scripts/release.mjs \<major|minor|patch|x.y.z>
   - node scripts/publish.mjs [--dry-run]
 - 二进制
-  - ./scripts/build-binaries.sh [--skip-install] [--skip-build] [--offline-model-data] [--platform <name>] [--out <dir>]
+  - ./scripts/build-binaries.sh [--skip-install] [--skip-build] [--offline-model-data] [--platform \<name>] [--out \<dir>]
 
 章节来源
 - [package.json:6-51](https://github.com/FDE-GROUP/oh-my-fde/blob/main/package.json#L6-L51)
@@ -32185,9 +32315,9 @@ Router-->>Browser : 预览结果
   - 自动检测Web UI构建状态，未构建时提供清晰的错误提示
 - 命令行参数解析
   - --tui：切换到TUI模式
-  - --port <n>：设置Web UI端口
-  - --host <h>：设置Web UI主机地址
-  - --config <path>：指定配置文件路径
+  - --port \<n>：设置Web UI端口
+  - --host \<h>：设置Web UI主机地址
+  - --config \<path>：指定配置文件路径
   - --no-open/--open：控制是否自动打开浏览器
   - -h/--help：显示帮助信息
 - 配置优先级系统
@@ -35182,7 +35312,7 @@ EventBusController <.. ExampleExtension : "pi.events"
 ### 项目信任事件（project_trust）
 - 触发时机：在决定是否信任当前工作目录的动态配置与资源之前执行；当会话替换进入新的 cwd 时可能再次触发。
 - 参与者：仅用户/全局扩展与 CLI -e 扩展参与；项目本地扩展在信任决议之后才加载。
-- 返回值：{ trusted: "yes" | "no" | "undecided" }，可选 remember: true 持久化决策；首个返回 yes/no 的处理器拥有决定权。
+- 返回值：\{ trusted: "yes" | "no" | "undecided" \}，可选 remember: true 持久化决策；首个返回 yes/no 的处理器拥有决定权。
 - 默认流程：若无处理器返回 yes/no，则回退到 trustStore 与 defaultProjectTrust 策略，必要时弹出内置交互。
 
 ```mermaid
@@ -35328,7 +35458,7 @@ Bus["core/event-bus.ts"] --> Extensions["扩展(示例)"]
 ## 故障排查指南
 - 项目信任未生效：
   - 确认扩展为用户/全局扩展或通过 -e 传入；项目本地扩展在信任决议后才加载。
-  - 检查处理器是否正确返回 { trusted: "yes"|"no"|"undecided" }，且首个 yes/no 决定会被采纳。
+  - 检查处理器是否正确返回 \{ trusted: "yes"|"no"|"undecided" \}，且首个 yes/no 决定会被采纳。
 - 资源未被发现：
   - 确认扩展在 session_start 之后订阅 resources_discover，并返回正确的路径数组。
   - 检查 Runner 是否检测到 handlers，从而触发事件。
@@ -35776,7 +35906,7 @@ Types --> Agent["agent/types.ts"]
 ## 类型系统与 Schema 设计
 - Schema 构建器
   - 使用 TypeBox 构建 JSON Schema，同时推导 TypeScript 类型。
-  - compile(schema, { coerce: true }) 支持宽松输入转换（coerce/parse）。
+  - compile(schema, \{ coerce: true \}) 支持宽松输入转换（coerce/parse）。
 - 支持的 Draft
   - 2020-12（默认）、7（可选），引用机制完善（$id/$anchor/$dynamicRef/$defs）。
 - 编译器优化
@@ -35784,7 +35914,7 @@ Types --> Agent["agent/types.ts"]
 - 强制转换（coerce）
   - 三遍：可选 null、TypeBox Value.Convert、Ajv 风格基础类型转换；copy-on-write，不修改输入。
 - 错误解释
-  - errors() 懒构建，遍历 schema 产生 {path, keyword, message}。
+  - errors() 懒构建，遍历 schema 产生 \{path, keyword, message\}。
 
 ```mermaid
 flowchart TD
@@ -35878,7 +36008,7 @@ stateDiagram-v2
 - 编辑冲突
   - edit 要求 edits[].oldText 唯一且不重叠；合并邻近变更，避免重叠。
 - 类型错误
-  - 使用 compile(schema, { coerce: true }) 处理松散输入；errors() 获取详细错误路径。
+  - 使用 compile(schema, \{ coerce: true \}) 处理松散输入；errors() 获取详细错误路径。
 
 **章节来源**
 - [docs/explains/12-tools.md:34-44](https://github.com/FDE-GROUP/oh-my-fde/blob/main/docs/explains/12-tools.md#L34-L44)
@@ -36138,7 +36268,7 @@ R --> |否| Idle["保持轻量"]
 - 用途
   - 将 Markdown 转为可复用的 / 命令，适合纯文本模板场景。
 - 语法
-  - 支持 $1/$@/${1:-default} 等 shell 风格占位符。
+  - 支持 $1/$@/$\{1:-default\} 等 shell 风格占位符。
 - 发现与使用
   - 放置在 ~/.pi/agent/prompts 或 .pi/prompts，文件名即命令名。
   - 支持 argument-hint 与 description，便于补全与展示。
@@ -36966,7 +37096,7 @@ Runner-->>Host : 可触发 session_start / tool_call 等事件
 ### 扩展加载与发现
 - 发现规则
   - 扫描一层目录：直接 .ts/.js 文件、子目录 index.ts/index.js、或 package.json 声明 pi.extensions。
-  - 标准位置顺序：项目级 <cwd>/.pi/extensions/、全局 ~/.pi/agent/extensions/、settings 显式 configuredPaths。
+  - 标准位置顺序：项目级 \<cwd>/.pi/extensions/、全局 ~/.pi/agent/extensions/、settings 显式 configuredPaths。
   - 去重基于解析后的绝对路径，保留首次出现顺序。
 - 加载机制
   - 使用 jiti 直接执行 TypeScript，moduleCache: false，每次 reload 都是新模块实例。
@@ -37245,10 +37375,10 @@ OMFDE 扩展系统以 loader.ts 与 runner.ts 为核心，通过 types.ts 定义
   - 入口文件默认导出工厂函数，接收 ExtensionAPI。
   - 示例路径：extensions/omfde-core/src/index.ts 注册了一个 /omfde 命令，用于探针式加载验证。
 - 扩展类型与注册方式
-  - 工具：pi.registerTool({ name, label, description, parameters, execute })
-  - 命令：pi.registerCommand("name", { description, handler })
-  - 快捷键：pi.registerShortcut("key", { description, handler })
-  - 标志位：pi.registerFlag("name", { type, default })
+  - 工具：pi.registerTool(\{ name, label, description, parameters, execute \})
+  - 命令：pi.registerCommand("name", \{ description, handler \})
+  - 快捷键：pi.registerShortcut("key", \{ description, handler \})
+  - 标志位：pi.registerFlag("name", \{ type, default \})
   - 渲染器：pi.registerMessageRenderer、pi.registerEntryRenderer、pi.registerMarkdownTransformer、pi.registerToolRenderer
   - 提供者与虚拟模型：pi.registerProvider、pi.registerVirtualModel
   - MCP 服务器：pi.registerMcpServer、pi.unregisterMcpServer、pi.getMcpServers
@@ -39589,8 +39719,8 @@ SessionManager 通过追加日志、树形结构与上下文投影，提供了�
 ### 会话文件结构与命名
 - 文件扩展名：.jsonl，每行一个 JSON 对象。
 - 首行必须为 session 头，包含 version、id、timestamp、cwd、parentSession。
-- 文件名格式：YYYY-MM-DDTHH-mm-ss-SSSZ_<sessionId>.jsonl。
-- 示例路径：~/.pi/agent/sessions/<encoded-cwd>/<filename>.jsonl。
+- 文件名格式：YYYY-MM-DDTHH-mm-ss-SSSZ_\<sessionId>.jsonl。
+- 示例路径：~/.pi/agent/sessions/\<encoded-cwd>/\<filename>.jsonl。
 
 **章节来源**
 - [session-manager.ts:1058-1084](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/session-manager.ts#L1058-L1084)
@@ -40712,7 +40842,7 @@ Read-->>Client : content + structuredContent
 - [12-tools.md:107-114](https://github.com/FDE-GROUP/oh-my-fde/blob/main/docs/explains/12-tools.md#L107-L114)
 
 #### edit：精确文本替换
-- 参数：path、edits[]（{oldText, newText}）。
+- 参数：path、edits[]（\{oldText, newText\}）。
 - 参数兼容：支持 edits 为 JSON 字符串、单个对象、顶层 oldText/newText。
 - 匹配规则：全部基于原始内容匹配，非增量；先精确匹配，再模糊匹配（NFKC、去尾空白、智能引号转 ASCII、Unicode 破折号归一、特殊空格归一）；重复匹配报错；多条按位置排序并检测重叠；从后往前应用以保持偏移稳定。
 - 保留原始字节：模糊匹配发生在规范化内容上，但写回时只重写变更行，其余行原样复制。
@@ -40745,7 +40875,7 @@ I --> J["返回 diff/patch/firstChangedLine"]
 - 执行：shell 配置来自 settings；Unix detached=true，Windows 不 detached；waitForChildProcess 避免被继承 stdio 卡住；信号杀死时 exitCode=128+signal。
 - 环境：默认暴露 PI_SESSION_ID、PI_SESSION_FILE、PI_PROVIDER、PI_MODEL、PI_REASONING_LEVEL；可通过 exposeSessionEnvironment=false 关闭；spawnHook 可改写 command/cwd/env。
 - 输出：OutputAccumulator 边流式接收边维护滚动窗口；超过限制打开临时文件保存完整输出；节流推送 onUpdate；超时区分 shell 本身超时与后台进程仍在写输出；非零退出码 isError=true。
-- 结构化输出：{output, truncated, full_output_path?, exit_code, wall_time_seconds}。
+- 结构化输出：\{output, truncated, full_output_path?, exit_code, wall_time_seconds\}。
 
 ```mermaid
 sequenceDiagram
@@ -42279,7 +42409,7 @@ Exec["tool-execution.ts"] --> Types["extensions/types.ts"]
    - name/label/description
    - parameters：TypeBox Schema
    - outputSchema：结构化输出
-   - execute：读取数据并返回 {content, details, structuredContent}
+   - execute：读取数据并返回 \{content, details, structuredContent\}
 2. 注册工具：
    - 使用 wrapToolDefinition 包装
    - 设置 constrainedSampling 与 promptSnippet/promptGuidelines
@@ -42293,7 +42423,7 @@ Exec["tool-execution.ts"] --> Types["extensions/types.ts"]
 ### 示例二：带参数预处理与校验的工具
 目标：兼容模型常见畸形输入，再做严格校验。
 步骤：
-1. 实现 prepareArguments(args) 将非标准输入转换为 Static<TParams>。
+1. 实现 prepareArguments(args) 将非标准输入转换为 Static\<TParams>。
 2. 在 execute 中使用 ctx.signal 检查中止。
 3. 返回结构化 content 与 details，供上层分析与 UI 展示。
 
@@ -42585,7 +42715,7 @@ prepareCodemodeLoadout 根据 mode 决定：
 - MCP 工具默认 exposure 为 codemode，保持模型工具声明精简。
 - codemode 默认 defaultActive=false，MCP 在需要时通过 setActiveTools 激活。
 - reachesTools 帮助 MCP 判断脚本可能触及哪些服务器，从而等待连接。
-- 工具命名 mcp__<server>__<tool>，冲突时加哈希后缀。
+- 工具命名 mcp__\<server>__\<tool>，冲突时加哈希后缀。
 
 ```mermaid
 sequenceDiagram
@@ -42653,7 +42783,7 @@ BUILD["build-coding-agent-bundle.mjs"] --> CM
 
 ## 性能与预算控制
 - 沙箱限制：QuickJS WASM，默认最多 2 个 worker，堆上限 256MB，worker 等待上限 60 秒。
-- 脚本超时：通过 // @options: { timeout_ms } 控制。
+- 脚本超时：通过 // @options: \{ timeout_ms \} 控制。
 - 输出预算：默认 10,000 token，超限时保留头尾并写临时文件。
 - 内联预算：inlineBudget 控制描述中工具声明的 token 预算，避免上下文膨胀。
 
@@ -44093,14 +44223,14 @@ Priority --> Output["返回结果"]
 - [tool-search/tool.ts:131-146](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/extensions/tool-search/tool.ts#L131-L146)
 
 ### 脚本级搜索 API
-- searchTools(query, {limit?, namespace?})：
+- searchTools(query, \{limit?, namespace?\})：
   - 校验参数类型与取值范围。
   - 按命名空间过滤后构建文档并排名。
-  - 返回 {name, description}[]。
+  - 返回 \{name, description\}[]。
 - describeTool(name)：
   - 按工具名或脚本标识符查找，返回样本声明或 undefined。
 - describeNamespace(name)：
-  - 按命名空间名或别名查找，返回 {name, description?, instructions?, tools[]}。
+  - 按命名空间名或别名查找，返回 \{name, description?, instructions?, tools[]\}。
 
 ```mermaid
 sequenceDiagram
@@ -44128,7 +44258,7 @@ API-->>Script : [{name, description}]
   - 将匹配到的工具加入 active set，使下一次模型调用可见。
   - 记录到会话转录，分支恢复与 fork 后仍保持已加载状态。
 - 输入输出：
-  - 输入：{query, limit?}，默认 limit 为 DEFAULT_TOOL_SEARCH_LIMIT。
+  - 输入：\{query, limit?\}，默认 limit 为 DEFAULT_TOOL_SEARCH_LIMIT。
   - 输出：文本提示已加载工具及其描述，details.loaded 包含工具名列表。
 
 ```mermaid
@@ -45653,7 +45783,7 @@ OM["omfde-core/index.ts"] --> Types
   - cwd: string
   - sessionManager: ReadonlySessionManager
   - modelRegistry: ModelRegistry
-  - model: Model<any> | undefined
+  - model: Model\<any> | undefined
   - scopedModels: readonly ScopedModel[]
   - thinkingLevel?: ThinkingLevel
   - isIdle(): boolean
@@ -45672,20 +45802,20 @@ OM["omfde-core/index.ts"] --> Types
 ### ExtensionCommandContext（命令上下文）
 - 新增能力：
   - getSystemPromptOptions(): BuildSystemPromptOptions
-  - waitForIdle(): Promise<void>
-  - newSession(options?): Promise<{cancelled: boolean}>
-  - fork(entryId, options?): Promise<{cancelled: boolean}>
-  - navigateTree(targetId, options?): Promise<{cancelled: boolean}>
-  - switchSession(sessionPath, options?): Promise<{cancelled: boolean}>
-  - reload(): Promise<void>
+  - waitForIdle(): Promise\<void>
+  - newSession(options?): Promise\<\{cancelled: boolean\}>
+  - fork(entryId, options?): Promise\<\{cancelled: boolean\}>
+  - navigateTree(targetId, options?): Promise\<\{cancelled: boolean\}>
+  - switchSession(sessionPath, options?): Promise\<\{cancelled: boolean\}>
+  - reload(): Promise\<void>
 
 **章节来源**
 - [packages/coding-agent/src/core/extensions/types.ts:417-455](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/extensions/types.ts#L417-L455)
 
 ### ReplacedSessionContext（替换会话上下文）
 - 新增能力：
-  - sendMessage(message, options?): Promise<void>
-  - sendUserMessage(content, options?): Promise<void>
+  - sendMessage(message, options?): Promise\<void>
+  - sendUserMessage(content, options?): Promise\<void>
 
 **章节来源**
 - [packages/coding-agent/src/core/extensions/types.ts:457-472](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/extensions/types.ts#L457-L472)
@@ -45693,7 +45823,7 @@ OM["omfde-core/index.ts"] --> Types
 ### ExtensionToolContext（工具上下文）
 - 新增能力：
   - tools: readonly AgentTool[]
-  - executeTool(name, args, options?): Promise<AgentToolCallOutcome>
+  - executeTool(name, args, options?): Promise\<AgentToolCallOutcome>
 
 **章节来源**
 - [packages/coding-agent/src/core/extensions/types.ts:387-415](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/extensions/types.ts#L387-L415)
@@ -48316,7 +48446,7 @@ BP --> GGL["googleProvider"]
 ## 扩展最佳实践
 - 尽量复用 base provider 的 stream/streamSimple，除非有特定优化
 - 使用 extension.streamSimple 仅针对匹配的 model.api，避免误用
-- 谨慎使用 authHeader：仅在确实需要 Authorization: Bearer <key> 的场景启用
+- 谨慎使用 authHeader：仅在确实需要 Authorization: Bearer \<key> 的场景启用
 - 模型级 headers 通过 rawModelHeaders 与 resolveConfiguredModelHeaders 合并，注意大小写去重
 - 使用 refreshModels 动态更新模型列表时，先 applyExtension+applyModelsJson 再 publish，保证一致性
 - 对图像/分类能力，extension 优先于 base，未实现时返回标准错误结果
@@ -48690,7 +48820,7 @@ Provider-->>Session : 成功
   - 通过 runtime.registerVirtualModel 或 registry.registerVirtualModel 注册，指定 provider、id、name、thinkingLevels、input、contextWindow、maxTokens 与 route 函数。
   - 注意 id 不能与同一 provider 下的物理模型冲突。
 - 路由函数签名
-  - route(request): ModelRoute | Promise<ModelRoute>
+  - route(request): ModelRoute | Promise\<ModelRoute>
   - request.model：选中的虚拟模型
   - request.thinkingLevel：用户或上层期望的思维级别
   - request.reason：user/continuation/retry/direct
@@ -49189,7 +49319,7 @@ ModelRuntime 支持多种 Provider 来源与配置方式：
 - 注册原生 Provider：传入 Provider 实例，保留其原生 auth/login/stream 行为。
 - 注册虚拟模型：传入 VirtualModelDefinition，实现 route 函数，返回物理模型与 thinkingLevel。
 - 设置运行时 API Key：setRuntimeApiKey 仅影响当前进程，适合临时切换或测试。
-- 刷新模型目录：refresh({ allowNetwork: true/false, providers: [...] })。
+- 刷新模型目录：refresh(\{ allowNetwork: true/false, providers: [...] \})。
 
 **章节来源**
 - [model-runtime.ts:218-269](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/model-runtime.ts#L218-L269)
@@ -49436,7 +49566,7 @@ class RuntimeCredentials {
 ### 环境变量注入与配置值解析
 - 支持两种形式：
   - 命令引用：以 “!” 开头，执行 shell 命令并取 stdout 作为值（带进程级缓存）。
-  - 模板插值：支持 $ENV_VAR 与 ${ENV_VAR}，缺失变量会返回 undefined。
+  - 模板插值：支持 $ENV_VAR 与 $\{ENV_VAR\}，缺失变量会返回 undefined。
 - 在只读存储与持久化存储中，读取 API Key 时会调用 resolveConfigValue 进行解析。
 - 提供辅助函数用于诊断缺失的环境变量名、强制抛错等。
 
@@ -49667,7 +49797,7 @@ SI --> OA
 
 ### 配置示例
 - 环境变量注入 API Key：
-  - 在 auth.json 中配置 provider 的 key 为 "$MY_API_KEY" 或 "${MY_API_KEY}"。
+  - 在 auth.json 中配置 provider 的 key 为 "$MY_API_KEY" 或 "$\{MY_API_KEY\}"。
   - 确保环境变量 MY_API_KEY 已设置。
 - 命令注入 API Key：
   - 在 auth.json 中配置 provider 的 key 为 "!echo $MY_API_KEY"。
@@ -53348,7 +53478,7 @@ B --> G["项目目录<br/>.pi/settings.json"]
 ## 架构总览
 配置系统采用“分层 + 合并”的架构：
 - 全局配置：位于 ~/.pi/agent/settings.json（可通过环境变量覆盖目录）
-- 项目配置：位于 <cwd>/.pi/settings.json（受项目信任控制）
+- 项目配置：位于 \<cwd>/.pi/settings.json（受项目信任控制）
 - 环境变量：用于覆盖安装目录、会话目录、代理、终端行为等
 - 认证配置：独立于 settings.json，位于 ~/.pi/agent/auth.json
 
@@ -53379,7 +53509,7 @@ SM-->>CLI : getSettings()
 
 ### 配置层次与优先级
 - 全局配置：~/.pi/agent/settings.json，影响所有项目
-- 项目配置：<cwd>/.pi/settings.json，仅对当前项目生效
+- 项目配置：\<cwd>/.pi/settings.json，仅对当前项目生效
 - 合并规则：
   - 对象字段递归合并
   - defaultTools 特殊合并：纯名称列表替换继承；+name/-name 追加到继承列表

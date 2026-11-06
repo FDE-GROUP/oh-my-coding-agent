@@ -55,6 +55,7 @@ This skill points you at the oh-my-fde 文档 docs, at https://fde-group.github.
 - [验证记录](https://fde-group.github.io/oh-my-fde/docs/explains/validation.md)
 - [Fork 与裁剪说明](https://fde-group.github.io/oh-my-fde/docs/explains/fork-and-prune.md)
 - [TUI 使用记录](https://fde-group.github.io/oh-my-fde/docs/explains/tui-usage.md)
+- [统一文档站：apps/docs-site 构建与发布机制](https://fde-group.github.io/oh-my-fde/docs/explains/docs-site.md)
 
 #### Plans
 
@@ -343,6 +344,5 @@ This skill points you at the oh-my-fde 文档 docs, at https://fde-group.github.
 - [技术栈](https://fde-group.github.io/oh-my-fde/knowledge/Pi%20%E8%BF%90%E8%A1%8C%E6%97%B6%20Monorepo%20%E6%A0%B9%E7%BC%96%E6%8E%92/Pi%20Coding%20Agent%20%E4%B8%BB%E5%8C%85%20%28pi-coding-agent%29/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E8%81%9A%E5%90%88%E5%B1%82/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B1%82/%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE%E3%80%81%E6%B3%A8%E5%86%8C%E4%B8%8E%E8%A7%A3%E6%9E%90%E5%B1%82/%E6%8A%80%E6%9C%AF%E6%A0%88.md)
 - [架构设计](https://fde-group.github.io/oh-my-fde/knowledge/Pi%20%E8%BF%90%E8%A1%8C%E6%97%B6%20Monorepo%20%E6%A0%B9%E7%BC%96%E6%8E%92/Pi%20Coding%20Agent%20%E4%B8%BB%E5%8C%85%20%28pi-coding-agent%29/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E8%81%9A%E5%90%88%E5%B1%82/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B1%82/%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE%E3%80%81%E6%B3%A8%E5%86%8C%E4%B8%8E%E8%A7%A3%E6%9E%90%E5%B1%82/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.md)
 - [概述](https://fde-group.github.io/oh-my-fde/knowledge/Pi%20%E8%BF%90%E8%A1%8C%E6%97%B6%20Monorepo%20%E6%A0%B9%E7%BC%96%E6%8E%92/Pi%20Coding%20Agent%20%E4%B8%BB%E5%8C%85%20%28pi-coding-agent%29/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E8%81%9A%E5%90%88%E5%B1%82/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B1%82/%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE%E3%80%81%E6%B3%A8%E5%86%8C%E4%B8%8E%E8%A7%A3%E6%9E%90%E5%B1%82/%E6%A6%82%E8%BF%B0.md)
-- [编码规范](https://fde-group.github.io/oh-my-fde/knowledge/Pi%20%E8%BF%90%E8%A1%8C%E6%97%B6%20Monorepo%20%E6%A0%B9%E7%BC%96%E6%8E%92/Pi%20Coding%20Agent%20%E4%B8%BB%E5%8C%85%20%28pi-coding-agent%29/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E8%81%9A%E5%90%88%E5%B1%82/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B1%82/%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE%E3%80%81%E6%B3%A8%E5%86%8C%E4%B8%8E%E8%A7%A3%E6%9E%90%E5%B1%82/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83.md)
 
-…and 227 more. [llms.txt](https://fde-group.github.io/oh-my-fde/llms.txt) lists every page.
+…and 228 more. [llms.txt](https://fde-group.github.io/oh-my-fde/llms.txt) lists every page.

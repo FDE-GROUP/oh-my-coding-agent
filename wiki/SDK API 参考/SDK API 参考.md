@@ -136,7 +136,7 @@ Sess-->>App : 事件(message_update/agent_settled/...)
   - 从已有会话恢复模型与思考级别；若无则按设置与 provider 默认值选择初始模型。
   - 计算初始工具集（allowlist/denylist、MCP 工具保留策略）。
   - 包装 convertToLlm 以支持"屏蔽图片"等安全策略。
-  - 组装 Agent、ExtensionRunner、CacheWarmer，并返回 { session, extensionsResult, modelFallbackMessage }。
+  - 组装 Agent、ExtensionRunner、CacheWarmer，并返回 \{ session, extensionsResult, modelFallbackMessage \}。
 
 - 关键参数（CreateAgentSessionOptions）
   - cwd：工作目录，影响资源发现、工具路径、会话分组。

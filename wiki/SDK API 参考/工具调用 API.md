@@ -388,6 +388,6 @@ Pi 的工具调用 API 以 ToolDefinition 为核心抽象，通过统一的包�
   - 参考：[powershell.ts:29-37](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/tools/powershell.ts#L29-L37), [powershell.ts:49-67](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/tools/powershell.ts#L49-L67)
 
 - 扩展注册与事件
-  - 注册：pi.registerTool({ ... })
+  - 注册：pi.registerTool(\{ ... \})
   - 事件：tool_execution_start/update/end、tool_call、tool_result
   - 参考：[extensions.md:1-120](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/docs/extensions.md#L1-L120), [extensions.md:311-371](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/docs/extensions.md#L311-L371), [extensions.md:788-800](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/docs/extensions.md#L788-L800)

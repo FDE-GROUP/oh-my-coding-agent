@@ -37,6 +37,7 @@
 | `25-validation.md` | **用 faux provider 实跑：事件流、持久化、投影、压缩** |
 | `26-fork-and-prune.md` | **fork 与裁剪的准确说明：删了什么、没改什么、如何恢复** |
 | `27-tui-usage.md` | **实际跑通 TUI：DeepSeek 配置、工具调用、斜杠命令、会话恢复** |
+| `28-docs-site.md` | **统一文档站：sync → blume build → publish worktree，路由 / base / .nojekyll / agent 表面** |
 
 ## 已覆盖的调用链
 

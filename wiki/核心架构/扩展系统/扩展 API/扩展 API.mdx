@@ -325,7 +325,7 @@ OM["omfde-core/index.ts"] --> Types
   - cwd: string
   - sessionManager: ReadonlySessionManager
   - modelRegistry: ModelRegistry
-  - model: Model<any> | undefined
+  - model: Model\<any> | undefined
   - scopedModels: readonly ScopedModel[]
   - thinkingLevel?: ThinkingLevel
   - isIdle(): boolean
@@ -344,20 +344,20 @@ OM["omfde-core/index.ts"] --> Types
 ### ExtensionCommandContext（命令上下文）
 - 新增能力：
   - getSystemPromptOptions(): BuildSystemPromptOptions
-  - waitForIdle(): Promise<void>
-  - newSession(options?): Promise<{cancelled: boolean}>
-  - fork(entryId, options?): Promise<{cancelled: boolean}>
-  - navigateTree(targetId, options?): Promise<{cancelled: boolean}>
-  - switchSession(sessionPath, options?): Promise<{cancelled: boolean}>
-  - reload(): Promise<void>
+  - waitForIdle(): Promise\<void>
+  - newSession(options?): Promise\<\{cancelled: boolean\}>
+  - fork(entryId, options?): Promise\<\{cancelled: boolean\}>
+  - navigateTree(targetId, options?): Promise\<\{cancelled: boolean\}>
+  - switchSession(sessionPath, options?): Promise\<\{cancelled: boolean\}>
+  - reload(): Promise\<void>
 
 **章节来源**
 - [packages/coding-agent/src/core/extensions/types.ts:417-455](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/extensions/types.ts#L417-L455)
 
 ### ReplacedSessionContext（替换会话上下文）
 - 新增能力：
-  - sendMessage(message, options?): Promise<void>
-  - sendUserMessage(content, options?): Promise<void>
+  - sendMessage(message, options?): Promise\<void>
+  - sendUserMessage(content, options?): Promise\<void>
 
 **章节来源**
 - [packages/coding-agent/src/core/extensions/types.ts:457-472](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/extensions/types.ts#L457-L472)
@@ -365,7 +365,7 @@ OM["omfde-core/index.ts"] --> Types
 ### ExtensionToolContext（工具上下文）
 - 新增能力：
   - tools: readonly AgentTool[]
-  - executeTool(name, args, options?): Promise<AgentToolCallOutcome>
+  - executeTool(name, args, options?): Promise\<AgentToolCallOutcome>
 
 **章节来源**
 - [packages/coding-agent/src/core/extensions/types.ts:387-415](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/core/extensions/types.ts#L387-L415)

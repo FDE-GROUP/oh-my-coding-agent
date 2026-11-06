@@ -406,7 +406,7 @@ Exec["tool-execution.ts"] --> Types["extensions/types.ts"]
    - name/label/description
    - parameters：TypeBox Schema
    - outputSchema：结构化输出
-   - execute：读取数据并返回 {content, details, structuredContent}
+   - execute：读取数据并返回 \{content, details, structuredContent\}
 2. 注册工具：
    - 使用 wrapToolDefinition 包装
    - 设置 constrainedSampling 与 promptSnippet/promptGuidelines
@@ -420,7 +420,7 @@ Exec["tool-execution.ts"] --> Types["extensions/types.ts"]
 ### 示例二：带参数预处理与校验的工具
 目标：兼容模型常见畸形输入，再做严格校验。
 步骤：
-1. 实现 prepareArguments(args) 将非标准输入转换为 Static<TParams>。
+1. 实现 prepareArguments(args) 将非标准输入转换为 Static\<TParams>。
 2. 在 execute 中使用 ctx.signal 检查中止。
 3. 返回结构化 content 与 details，供上层分析与 UI 展示。
 

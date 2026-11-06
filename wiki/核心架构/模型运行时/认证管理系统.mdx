@@ -173,7 +173,7 @@ class RuntimeCredentials {
 ### 环境变量注入与配置值解析
 - 支持两种形式：
   - 命令引用：以 “!” 开头，执行 shell 命令并取 stdout 作为值（带进程级缓存）。
-  - 模板插值：支持 $ENV_VAR 与 ${ENV_VAR}，缺失变量会返回 undefined。
+  - 模板插值：支持 $ENV_VAR 与 $\{ENV_VAR\}，缺失变量会返回 undefined。
 - 在只读存储与持久化存储中，读取 API Key 时会调用 resolveConfigValue 进行解析。
 - 提供辅助函数用于诊断缺失的环境变量名、强制抛错等。
 
@@ -404,7 +404,7 @@ SI --> OA
 
 ### 配置示例
 - 环境变量注入 API Key：
-  - 在 auth.json 中配置 provider 的 key 为 "$MY_API_KEY" 或 "${MY_API_KEY}"。
+  - 在 auth.json 中配置 provider 的 key 为 "$MY_API_KEY" 或 "$\{MY_API_KEY\}"。
   - 确保环境变量 MY_API_KEY 已设置。
 - 命令注入 API Key：
   - 在 auth.json 中配置 provider 的 key 为 "!echo $MY_API_KEY"。

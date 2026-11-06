@@ -3,7 +3,7 @@
   "skills": [
     {
       "description": "Read the oh-my-fde 文档 docs instead of answering from memory. omfde（Pi 的企业内部 FDE 平台）项目文档、仓库 Wiki 与架构知识卡，供人与 coding agent 双读。 Use when a task involves oh-my-fde 文档: how it works, how to set it up or configure it, or its API.",
-      "digest": "sha256:3a90ee41e92d0dfab45e623bacbbf0af83e35cffc73caba8e914365217a1c0cc",
+      "digest": "sha256:caf0afb5532d44358cff7eb63851a1f1480311f556107c49bfc6a7410222f320",
       "name": "oh-my-fde",
       "type": "skill-md",
       "url": "/oh-my-fde/.well-known/agent-skills/oh-my-fde/SKILL.md"

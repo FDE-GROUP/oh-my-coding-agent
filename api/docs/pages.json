@@ -1,5 +1,5 @@
 {
-  "count": 427,
+  "count": 428,
   "generator": "blume@2.2.6",
   "pages": [
     {
@@ -81,6 +81,16 @@
       "route": "/docs/explains/critical-path",
       "title": "关键路径与接缝",
       "url": "https://fde-group.github.io/oh-my-fde/docs/explains/critical-path"
+    },
+    {
+      "contentType": "doc",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/explains/docs-site.json",
+      "lastModified": null,
+      "locale": "zh-CN",
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/explains/docs-site.md",
+      "route": "/docs/explains/docs-site",
+      "title": "统一文档站：apps/docs-site 构建与发布机制",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/explains/docs-site"
     },
     {
       "contentType": "doc",

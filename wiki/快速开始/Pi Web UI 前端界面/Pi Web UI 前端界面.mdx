@@ -476,9 +476,9 @@ Router-->>Browser : 预览结果
   - 自动检测Web UI构建状态，未构建时提供清晰的错误提示
 - 命令行参数解析
   - --tui：切换到TUI模式
-  - --port <n>：设置Web UI端口
-  - --host <h>：设置Web UI主机地址
-  - --config <path>：指定配置文件路径
+  - --port \<n>：设置Web UI端口
+  - --host \<h>：设置Web UI主机地址
+  - --config \<path>：指定配置文件路径
   - --no-open/--open：控制是否自动打开浏览器
   - -h/--help：显示帮助信息
 - 配置优先级系统

@@ -196,23 +196,23 @@ P-->>U : 输出结果/退出码
 ### 会话管理命令与选项
 - 继续最近会话：--continue/-c
 - 选择会话恢复：--resume/-r
-- 按路径或 ID 打开会话：--session <path|id>
-- 使用当前目录已有会话 ID（不存在则创建）：--session-id <id>
-- 分叉会话：--fork <path|id>
-- 指定会话存储目录：--session-dir <dir>
+- 按路径或 ID 打开会话：--session \<path|id>
+- 使用当前目录已有会话 ID（不存在则创建）：--session-id \<id>
+- 分叉会话：--fork \<path|id>
+- 指定会话存储目录：--session-dir \<dir>
 - 不保存会话（临时）：--no-session
-- 设置会话显示名：--name/-n <name>
+- 设置会话显示名：--name/-n \<name>
 
 章节来源
 - [packages/coding-agent/src/cli/args.ts:111-141](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/cli/args.ts#L111-L141)
 
 ### 认证命令（auth）
 支持的子命令：
-- login <provider> [--api-key] [--no-browser]
-- logout <provider>
-- print-api-key [--provider <provider>] [--model <model>]
-- print-bearer-token [--provider <provider>] [--model <model>] [--min-expiry <duration>]
-- check [--provider <provider>] [--model <model>] [--json] [--credentials] [--no-refresh]
+- login \<provider> [--api-key] [--no-browser]
+- logout \<provider>
+- print-api-key [--provider \<provider>] [--model \<model>]
+- print-bearer-token [--provider \<provider>] [--model \<model>] [--min-expiry \<duration>]
+- check [--provider \<provider>] [--model \<model>] [--json] [--credentials] [--no-refresh]
 
 行为要点：
 - login：支持 OAuth、API Key、设备码等多种登录方式；可选择是否自动打开浏览器；登录后刷新模型目录；对特定 provider（如 Radius）可自动配置 MCP 服务器。
@@ -330,10 +330,10 @@ omfde 通过简洁的包装器与强大的 coding-agent CLI，提供了完整的
 - 会话管理
   - omfde --continue "继续讨论"
   - omfde --resume
-  - omfde --session <path|id>
-  - omfde --session-id <id>
-  - omfde --fork <path|id>
-  - omfde --session-dir <dir>
+  - omfde --session \<path|id>
+  - omfde --session-id \<id>
+  - omfde --fork \<path|id>
+  - omfde --session-dir \<dir>
   - omfde --no-session
   - omfde --name "会话名"
 - 模型与工具
@@ -364,11 +364,11 @@ omfde 通过简洁的包装器与强大的 coding-agent CLI，提供了完整的
   - omfde --help
   - omfde --version
 - 认证命令
-  - omfde auth login <provider> [--api-key] [--no-browser]
-  - omfde auth logout <provider>
-  - omfde auth print-api-key [--provider <provider>] [--model <model>]
-  - omfde auth print-bearer-token [--provider <provider>] [--model <model>] [--min-expiry <duration>]
-  - omfde auth check [--provider <provider>] [--model <model>] [--json] [--credentials] [--no-refresh]
+  - omfde auth login \<provider> [--api-key] [--no-browser]
+  - omfde auth logout \<provider>
+  - omfde auth print-api-key [--provider \<provider>] [--model \<model>]
+  - omfde auth print-bearer-token [--provider \<provider>] [--model \<model>] [--min-expiry \<duration>]
+  - omfde auth check [--provider \<provider>] [--model \<model>] [--json] [--credentials] [--no-refresh]
 
 章节来源
 - [packages/coding-agent/src/cli/args.ts:273-481](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/cli/args.ts#L273-L481)
