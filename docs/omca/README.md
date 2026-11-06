@@ -31,6 +31,7 @@
 | `19-schema.md` | JSON Schema 编译、校验、coercion、类型推导 |
 | `20-tui-editor-markdown.md` | 编辑器状态机、粘贴标记、撤销/kill ring、Markdown 流式渲染 |
 | `21-cache-warmer-evals.md` | 缓存预热经济学、评测 harness、配对报告 |
+| `22-openai-responses.md` | item 模型、工具变化、流处理、与 Anthropic 的对比 |
 
 ## 已覆盖的调用链
 
@@ -53,14 +54,14 @@ CLI → main() → runtime factory → services → createAgentSession
 | ~~`extensions/mcp` + `codemode`~~ | ~~13,331 行~~ | 已读整合层，见 `14-mcp-codemode.md` |
 | ~~`packages/mcp`~~ | ~~4,742 行~~ | 已读核心，见 `18-mcp-package.md`；OAuth 细节未读 |
 | ~~`core/cache-warmer.ts`~~ | ~~455 行~~ | 已读，见 `21-cache-warmer-evals.md` |
-| ~~`packages/ai/src/api/*`~~ | ~~14,015 行~~ | 已读契约与 Anthropic 示例，见 `16-provider-adapters.md`；其余 provider 未读 |
+| ~~`packages/ai/src/api/*`~~ | ~~14,015 行~~ | 已读契约、Anthropic、OpenAI Responses，见 `16`、`22`；其余 provider 未读 |
 | ~~`packages/tui`~~ | ~~源码约 20k 行~~ | 已读架构与 editor/markdown，见 `15-tui.md`、`20-tui-editor-markdown.md`；latex/autocomplete 细节未读 |
 | ~~`packages/schema`~~ | ~~源码约 4,850 行~~ | 已读核心，见 `19-schema.md`；formats/annotations 细节未读 |
 | ~~`packages/evals`~~ | ~~3,732 行~~ | 已读核心，见 `21-cache-warmer-evals.md`；docker/cli 未读 |
 
 ## 建议的继续阅读顺序
 
-1. 其余 provider：OpenAI Responses、Google、Bedrock 的差异。
+1. 其余 provider：OpenAI Completions/Codex、Google、Bedrock 的差异。
 2. `latex.ts` 与 `autocomplete.ts` 的实现细节。
 3. `packages/evals` 的 docker / cli / 其余 eval 用例。
 
