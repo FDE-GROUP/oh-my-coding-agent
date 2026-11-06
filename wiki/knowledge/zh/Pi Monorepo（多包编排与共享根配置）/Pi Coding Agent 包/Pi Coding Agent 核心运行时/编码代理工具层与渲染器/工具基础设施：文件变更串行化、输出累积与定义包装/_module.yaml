@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: coding_agent/core_agent_runtime/tools_and_renderers/tool_infrastructure
+title: 工具基础设施：文件变更串行化、输出累积与定义包装
+scope:
+    - packages/coding-agent/src/core/tools/file-mutation-queue.ts
+    - packages/coding-agent/src/core/tools/output-accumulator.ts
+    - packages/coding-agent/src/core/tools/tool-definition-wrapper.ts
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_agent_runtime/tools_and_renderers/filesystem_tools
+    - path: coding_agent/core_agent_runtime/tools_and_renderers/search_and_listing_tools
+    - path: coding_agent/core_agent_runtime/tools_and_renderers/shell_execution_tools

@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: codemode_runtime
+title: Codemode 沙箱运行时（QuickJS WASM 隔离执行）
+scope:
+    - packages/codemode/
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent

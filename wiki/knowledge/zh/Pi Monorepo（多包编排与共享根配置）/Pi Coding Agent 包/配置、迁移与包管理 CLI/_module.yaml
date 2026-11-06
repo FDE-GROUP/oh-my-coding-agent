@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: coding_agent/config_and_migrations
+title: 配置、迁移与包管理 CLI
+scope:
+    - packages/coding-agent/src/config.ts
+    - packages/coding-agent/src/migrations.ts
+    - packages/coding-agent/src/package-manager-cli.ts
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/app_bootstrap

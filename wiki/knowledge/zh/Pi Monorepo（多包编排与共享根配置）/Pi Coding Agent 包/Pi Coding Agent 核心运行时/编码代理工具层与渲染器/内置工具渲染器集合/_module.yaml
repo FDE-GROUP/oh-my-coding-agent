@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: coding_agent/core_agent_runtime/tools_and_renderers/renderers
+title: 内置工具渲染器集合
+scope:
+    - packages/coding-agent/src/core/tools/renderers/
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_agent_runtime/tools_and_renderers/filesystem_tools
+    - path: coding_agent/core_agent_runtime/tools_and_renderers/search_and_listing_tools
+    - path: coding_agent/core_agent_runtime/tools_and_renderers/shell_execution_tools

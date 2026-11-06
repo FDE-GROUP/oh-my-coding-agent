@@ -1,0 +1,29 @@
+schema_version: 1
+module_path: ""
+title: Pi Monorepo（多包编排与共享根配置）
+scope:
+    - README.md
+    - CONTRIBUTING.md
+    - SECURITY.md
+    - AGENTS.md
+    - .gitignore
+    - .npmrc
+    - package.json
+    - package-lock.json
+    - tsconfig.json
+    - tsconfig.base.json
+    - vitest.base.ts
+    - biome.json
+    - flake.nix
+    - flake.lock
+    - .github/
+    - .pi/
+    - .gitattributes
+    - LICENSE
+    - pi-test.bat
+    - pi-test.ps1
+    - pi-test.sh
+    - test.sh
+source_files: []
+depends_on: []
+related_to: []

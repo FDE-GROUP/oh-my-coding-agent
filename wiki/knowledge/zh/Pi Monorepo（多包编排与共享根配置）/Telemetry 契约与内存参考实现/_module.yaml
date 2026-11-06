@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: telemetry_lib
+title: Telemetry 契约与内存参考实现
+scope:
+    - packages/telemetry/
+source_files: []
+depends_on: []
+related_to: []

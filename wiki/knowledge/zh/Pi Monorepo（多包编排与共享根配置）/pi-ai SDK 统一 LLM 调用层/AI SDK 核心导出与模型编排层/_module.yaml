@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: ai_sdk/sdk_surface
+title: AI SDK 核心导出与模型编排层
+scope:
+    - packages/ai/src/index.ts
+    - packages/ai/src/models.ts
+    - packages/ai/src/oauth.ts
+source_files: []
+depends_on: []
+related_to: []

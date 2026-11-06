@@ -1,0 +1,15 @@
+schema_version: 1
+module_path: coding_agent
+title: Pi Coding Agent 包
+scope:
+    - packages/coding-agent/
+source_files: []
+depends_on: []
+related_to:
+    - path: agent_package
+    - path: ai_sdk
+    - path: codemode_runtime
+    - path: evals_harness
+    - path: mcp_client
+    - path: schema_lib
+    - path: tui_runtime

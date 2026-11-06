@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: ai_sdk/api_adapters
+title: AI Provider API 适配器层
+scope:
+    - packages/ai/src/api/
+source_files: []
+depends_on: []
+related_to: []

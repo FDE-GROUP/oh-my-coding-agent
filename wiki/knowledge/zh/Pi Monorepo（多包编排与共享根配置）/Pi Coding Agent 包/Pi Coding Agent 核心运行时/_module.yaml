@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: coding_agent/core_agent_runtime
+title: Pi Coding Agent 核心运行时
+scope:
+    - packages/coding-agent/src/core/
+source_files: []
+depends_on: []
+related_to: []

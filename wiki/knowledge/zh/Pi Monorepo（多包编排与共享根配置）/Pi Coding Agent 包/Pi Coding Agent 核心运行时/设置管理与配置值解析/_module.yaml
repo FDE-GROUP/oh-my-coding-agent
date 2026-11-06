@@ -1,0 +1,15 @@
+schema_version: 1
+module_path: coding_agent/core_agent_runtime/settings_config
+title: 设置管理与配置值解析
+scope:
+    - packages/coding-agent/src/core/settings-manager.ts
+    - packages/coding-agent/src/core/settings-schema.ts
+    - packages/coding-agent/src/core/settings-defaults.ts
+    - packages/coding-agent/src/core/settings-diagnostics.ts
+    - packages/coding-agent/src/core/defaults.ts
+    - packages/coding-agent/src/core/resolve-config-value.ts
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_agent_runtime/runtime_infrastructure
+    - path: coding_agent/core_agent_runtime/ui_shell_features
