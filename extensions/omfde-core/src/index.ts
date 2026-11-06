@@ -3,6 +3,9 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 /**
  * 注册 omfde 平台的基础扩展。
  *
+ * @remarks
+ * 当前只注册 `/omfde` 命令作为加载探针。平台能力后续通过扩展接入，不修改 Pi 内核。
+ *
  * @param pi - Pi 扩展 API。
  * @public
  */
