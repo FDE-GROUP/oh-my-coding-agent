@@ -221,7 +221,9 @@ SSE 信封：
 - HTTP 路由：health、snapshot、SSE、commands。
 - `test/faux-extension.ts` 与 `runtime.test.ts`。
 
-完成判据：假 Pi 下命令/响应关联正确；SSE 能收到快照和事件；子进程退出有 `runtime_exit`。
+完成判据：真实 Pi + faux provider 下命令/响应关联正确；SSE 能收到快照和事件；子进程退出有 exit 事件。
+
+状态：已完成（2026-11-06）。验证：`pnpm --filter @omfde/pi-web test` 5 项通过；dev 实测创建会话、快照、命令、SSE、关闭均正常；`pnpm run check` 通过。
 
 ### S3 对话
 
