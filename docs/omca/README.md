@@ -28,6 +28,7 @@
 | `16-provider-adapters.md` | Provider 契约、消息可移植层、Anthropic 适配器 |
 | `17-system-overview.md` | **总览：不变量、完整路径、状态地图、设计张力** |
 | `18-mcp-package.md` | JSON-RPC、stdio/HTTP 传输、客户端会话、OAuth |
+| `19-schema.md` | JSON Schema 编译、校验、coercion、类型推导 |
 
 ## 已覆盖的调用链
 
@@ -52,7 +53,7 @@ CLI → main() → runtime factory → services → createAgentSession
 | `core/cache-warmer.ts` | 未统计 | 中：成本控制 |
 | ~~`packages/ai/src/api/*`~~ | ~~14,015 行~~ | 已读契约与 Anthropic 示例，见 `16-provider-adapters.md`；其余 provider 未读 |
 | ~~`packages/tui`~~ | ~~源码约 20k 行~~ | 已读架构，见 `15-tui.md`；editor/markdown 等细节未读 |
-| `packages/schema` | 41,904 行 | 低：JSON Schema |
+| ~~`packages/schema`~~ | ~~源码约 4,850 行~~ | 已读核心，见 `19-schema.md`；formats/annotations 细节未读 |
 | `packages/evals` | 3,732 行 | 低：评测夹具 |
 
 ## 建议的继续阅读顺序
