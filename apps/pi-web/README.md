@@ -81,7 +81,18 @@ pnpm --filter @omfde/pi-web token -- my-access-token
 - 配置了用户但没有 `auth.secret` 时，首次启动会生成并写回。
 - 工作区路径启动时校验；不存在或不是目录会拒绝启动。
 - `publicOrigins` 用于反向代理或跨主机访问时的 Origin 校验。
-- 旧会话没有归属记录：启用认证后默认不可见；需要时可手工补 `~/.pi-web/sessions.json`。
+- 旧会话没有归属记录：启用认证后默认不可见，可用下面的命令回填。
+
+```bash
+# 查看未归属会话
+pnpm --filter @omfde/pi-web import-sessions -- --list
+
+# 回填到指定用户（可加 --workspace 限定工作区）
+pnpm --filter @omfde/pi-web import-sessions -- --owner abel
+
+# 只演练不写入
+pnpm --filter @omfde/pi-web import-sessions -- --owner abel --dry-run
+```
 
 ## 工作区
 
@@ -145,6 +156,34 @@ pnpm --filter @omfde/pi-web token -- my-access-token
 - 生产响应带 CSP、`nosniff`、`frame-ancestors 'none'`。
 - 浏览器不接触文件系统、API key 或子进程。
 - 默认假定 HTTPS 由反向代理终止；内置证书管理不在当前范围。
+
+## 部署
+
+构建后用 systemd 或任意进程管理器运行 `server.mjs`：
+
+```bash
+pnpm --filter @omfde/pi-web build
+sudo cp apps/pi-web/deploy/pi-web.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now pi-web
+```
+
+反向代理（TLS 由代理终止）示例：
+
+```nginx
+location / {
+    proxy_pass http://127.0.0.1:3210;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_buffering off;
+    proxy_read_timeout 1h;
+}
+```
+
+- 把代理后的地址加入 `publicOrigins`，例如 `https://pi.example.com`。
+- SSE 依赖关闭代理缓冲；服务端已发送 `X-Accel-Buffering: no`。
+- 备份 `~/.pi-web/config.json`、`~/.pi-web/sessions.json` 和 `~/.pi/agent/sessions/`。
 
 ## 测试
 
