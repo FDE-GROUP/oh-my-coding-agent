@@ -81,6 +81,7 @@ CLI → main() → runtime factory → services → createAgentSession
 
 ## 验证
 
-`docs/omca/validation/` 下有两个可运行脚本，用仓库自带的 faux provider
+`docs/omca/validation/` 下有三个可运行脚本，用仓库自带的 faux provider
 确定性驱动 `AgentSession`，验证事件流、JSONL 持久化、session projection、
-context_edit 和 compaction。结果见 `25-validation.md`。
+context_edit、compaction，以及 `tool_call` 拦截与嵌套调用。结果见
+`25-validation.md`。

@@ -16,6 +16,7 @@
 ```bash
 node --experimental-strip-types --no-warnings docs/omca/validation/validate-events.ts
 node --experimental-strip-types --no-warnings docs/omca/validation/validate-projection.ts
+node --experimental-strip-types --no-warnings docs/omca/validation/validate-tool-call.ts
 ```
 
 ## 验证 1：事件流、持久化、投影
@@ -147,6 +148,59 @@ projection entries: compaction, message
 这正是 `10-compaction.md` 里描述的机制：**prompt 和工具状态随 compaction 一起
 快照，压缩后不会丢**。
 
+## 验证 4：tool_call / tool_result / 嵌套调用
+
+`validate-tool-call.ts`：
+
+1. 注册一个最小扩展：
+   - `tool_call` 记录所有调用；
+   - 阻断写入 `blocked.txt`；
+   - `tool_result` 改写写入 `allowed.txt` 的结果；
+2. 注册一个 `run_tools` 工具，内部调用 `ctx.executeTool("echo")`；
+3. 脚本化四次响应：
+   - 写 `blocked.txt`
+   - 写 `allowed.txt`
+   - 调用 `run_tools`
+   - 最终回答。
+
+实际输出：
+
+```
+=== tool_call HANDLER ===
+write parent=top
+write parent=top
+run_tools parent=top
+echo parent=tool:...
+
+=== tool_result HANDLER ===
+write parent=top isError=false
+echo parent=tool:... isError=false
+run_tools parent=top isError=false
+
+=== FILES ===
+blocked.txt exists: false
+allowed.txt exists: true
+
+=== TRANSCRIPT TOOL RESULTS ===
+write isError=true text="blocked by validation extension"
+write isError=false text="rewritten by tool_result hook"
+run_tools isError=false text="run_tools -> echo: nested"
+
+=== FINAL ASSISTANT ===
+done
+```
+
+确认：
+
+- `tool_call` 对顶层 `write` 和 `run_tools` 都触发；
+- 返回 `{ block: true }` 后工具不执行，文件没有创建，模型收到错误结果；
+- `tool_result` 可以改写结果内容；
+- **嵌套 `echo` 调用也经过 `tool_call` / `tool_result`**，并且带 `parentToolCallId`；
+- 嵌套调用不产生独立的 transcript tool result，只出现在父工具结果里。
+
+这直接验证了最初的核心假设：**`tool_call` 是所有工具调用的统一接缝，
+包括 codemode / MCP 这类嵌套调用。**
+
 ## 对心智模型的确认
 
 以下理解被实际运行确认：
@@ -156,7 +210,10 @@ projection entries: compaction, message
 3. 请求上下文由 projection 重建；
 4. `context_edit` 不修改历史；
 5. compaction 是检查点，不是删除；
-6. `systemMessage` 快照保证压缩后 prompt 不丢。
+6. `systemMessage` 快照保证压缩后 prompt 不丢；
+7. `tool_call` 拦截对顶层和嵌套调用都生效；
+8. `tool_result` 可以改写结果；
+9. 嵌套调用不会产生独立的 transcript 结果。
 
 ## 一个无关紧要的观察
 
@@ -167,8 +224,7 @@ projection entries: compaction, message
 ## 尚未验证
 
 - 真实 provider 的流式细节、缓存、错误重试；
-- MCP 工具连接与嵌套调用；
-- `tool_call` 钩子的实际拦截；
+- MCP 工具的实际连接与 OAuth；
 - 缓存预热的真实成本决策；
 - 多分支 `/tree` 导航。
 
