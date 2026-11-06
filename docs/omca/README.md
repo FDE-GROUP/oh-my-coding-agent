@@ -29,6 +29,7 @@
 | `17-system-overview.md` | **总览：不变量、完整路径、状态地图、设计张力** |
 | `18-mcp-package.md` | JSON-RPC、stdio/HTTP 传输、客户端会话、OAuth |
 | `19-schema.md` | JSON Schema 编译、校验、coercion、类型推导 |
+| `20-tui-editor-markdown.md` | 编辑器状态机、粘贴标记、撤销/kill ring、Markdown 流式渲染 |
 
 ## 已覆盖的调用链
 
@@ -52,17 +53,16 @@ CLI → main() → runtime factory → services → createAgentSession
 | ~~`packages/mcp`~~ | ~~4,742 行~~ | 已读核心，见 `18-mcp-package.md`；OAuth 细节未读 |
 | `core/cache-warmer.ts` | 未统计 | 中：成本控制 |
 | ~~`packages/ai/src/api/*`~~ | ~~14,015 行~~ | 已读契约与 Anthropic 示例，见 `16-provider-adapters.md`；其余 provider 未读 |
-| ~~`packages/tui`~~ | ~~源码约 20k 行~~ | 已读架构，见 `15-tui.md`；editor/markdown 等细节未读 |
+| ~~`packages/tui`~~ | ~~源码约 20k 行~~ | 已读架构与 editor/markdown，见 `15-tui.md`、`20-tui-editor-markdown.md`；latex/autocomplete 细节未读 |
 | ~~`packages/schema`~~ | ~~源码约 4,850 行~~ | 已读核心，见 `19-schema.md`；formats/annotations 细节未读 |
 | `packages/evals` | 3,732 行 | 低：评测夹具 |
 
 ## 建议的继续阅读顺序
 
-1. `packages/schema`：TypeBox 替代品的类型与校验。
-2. TUI 的 `editor` / `markdown` / `latex`：交互与渲染细节。
-3. 其余 provider：OpenAI Responses、Google、Bedrock 的差异。
-4. `core/cache-warmer.ts`：缓存预热策略。
-5. `packages/evals`：评测夹具如何组织。
+1. 其余 provider：OpenAI Responses、Google、Bedrock 的差异。
+2. `core/cache-warmer.ts`：缓存预热策略。
+3. `packages/evals`：评测夹具如何组织。
+4. `latex.ts` 与 `autocomplete.ts` 的实现细节。
 
 ## 阅读方法
 
