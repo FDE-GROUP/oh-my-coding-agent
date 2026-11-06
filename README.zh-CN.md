@@ -29,13 +29,16 @@ Pi 自带强大的默认配置，但刻意跳过了 sub-agents 和 plan mode 这
 | 目录 | 内容 |
 |---|---|
 | `packages/` | Pi 和共享库 |
-| `apps/` | 平台应用，当前为 `apps/omfde` |
+| `apps/` | 平台应用，当前为 `apps/omfde` 和独立的 `apps/pi-web` |
 | `extensions/` | 平台扩展，当前为 `extensions/omfde-core` |
 
-启动平台入口：
+启动平台入口（默认启动 Pi Web UI）：
 
 ```bash
-pnpm run omfde
+pnpm --filter @omfde/pi-web build   # 首次使用前构建
+pnpm run omfde                      # 启动 Web UI
+pnpm run omfde -- --tui             # 回退到 Pi TUI
+pnpm run omfde -- --no-open --port 3210
 ```
 
 ## 快速开始

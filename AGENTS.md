@@ -10,7 +10,7 @@ This repository is an independently maintained fork of `earendil-works/pi`, not 
 - Pruned upstream subsystems: `apps/p2`, `packages/env`, `packages/durable`, `packages/chord`, and `scripts/durable-browser-smoke-entry.ts`.
 - Kept packages: `agent`, `ai`, `coding-agent`, `codemode`, `evals`, `mcp`, `schema`, `telemetry`, `tui`.
 - Platform layout: `apps/` holds runnable apps, `extensions/` holds platform extensions, and `packages/` holds the Pi fork and shared libraries.
-- `apps/omfde` is the first platform entrypoint. It launches Pi with `OMFDE_PLATFORM=1`; `extensions/omfde-core` is the first extension skeleton.
+- `apps/omfde` is the first platform entrypoint. It starts the built Pi Web UI by default with `OMFDE_PLATFORM=1`; `--tui` launches Pi directly. `extensions/omfde-core` is the first extension skeleton.
 - Pi core is now maintained by this project. Core changes are allowed, but they still require an explicit decision and plan.
 - Goals run as three parallel lines: the tutorial line (理解 → 会用 → 用好), the platform line (骨架 → 核心能力 → 协作 → 企业集成 → 治理), and the Web UI line (可用 → 对齐 DSH → 会话完整 → 团队可用). The project is in 会用. Prefer extensions and configuration; change core only for a demonstrated gap.
 - The vision and its decision log live in `docs/specs/vision.md`. Reading notes, validation scripts, and fork details live in `docs/explains/`.
@@ -76,7 +76,7 @@ These override convenience and local preference.
 - After code changes (not docs): `pnpm run check` (read-only, full output, no tail). Fix all errors, warnings, and infos before committing. Does not run tests.
 - Use `pnpm run check:fix` only when formatting or safe lint fixes are needed; it writes files, so inspect the diff and keep it inside your write scope. `pnpm run check:secrets` is included in `check` and can also run alone.
 - Pre-commit runs staged-only checks; pre-push runs the full `pnpm run check`. Both are local-only gates.
-- `pnpm run omfde` launches the platform entrypoint. `pnpm run tui` still launches Pi directly from source.
+- `pnpm run omfde` launches the platform entrypoint: Web UI by default, `--tui` for the Pi TUI. `pnpm run tui` still launches Pi directly from source.
 - Run `pnpm run build` only when something needs built output (`dist/`), for example tests that import built packages. Never use it to type check or lint: that is `pnpm run check`.
 - Never run `pnpm test` unless requested by the user.
 - Never run the full vitest suite directly: it includes e2e tests that activate when endpoint/auth env vars are present. For all non-e2e tests, run `./test.sh` from the repo root. It runs `packages/*` only. Otherwise run specific tests from the package root:
