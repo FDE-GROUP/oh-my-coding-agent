@@ -28,6 +28,7 @@
 			"scripts/model-catalog-protocol.ts",
 			"scripts/model-catalog-protocol.test.ts",
 			"scripts/check-secrets.mjs",
+			"scripts/check-tsdoc.mjs",
 			"apps/*/src/**/*.ts",
 			"apps/*/bin/**/*.mjs",
 			"extensions/*/src/**/*.ts",

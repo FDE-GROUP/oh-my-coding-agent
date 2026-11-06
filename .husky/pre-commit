@@ -6,5 +6,6 @@ node scripts/check-lockfile-commit.mjs
 git diff --cached --check
 node scripts/biome-check.mjs --staged
 node scripts/check-secrets.mjs --staged
+node scripts/check-tsdoc.mjs --staged
 
 echo "Pre-commit checks passed."

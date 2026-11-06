@@ -71,6 +71,7 @@
 - 不要硬编码按键检查（例如 `matchesKey(keyData, "ctrl+x")`）。把默认值加到 `DEFAULT_EDITOR_KEYBINDINGS` 或 `DEFAULT_APP_KEYBINDINGS`，让它们保持可配置。
 - 永远不要直接修改 `packages/ai/src/models.generated.ts`；应该修改 `packages/ai/catalog/` 里的目录定义（见该目录的 README），然后重新生成。把生成后的 `models.generated.ts` diff 一起提交总是可以的，即使重新生成时带上了不相关的上游模型元数据变更。`packages/ai/src/providers/data/` 中生成的模型数据已被 gitignore：永远不要 stage 它，也不要在 git 历史里找它。
 - 在 `docs/specs/vision.md` 中记录决定之前，不要新增 workspace 包或改变包依赖图。
+- `apps/*/src` 和 `extensions/*/src` 中的平台导出必须按 `docs/specs/tsdoc-comment-standards.md` 写 TSDoc。`npm run check:tsdoc` 会检查基础规则。
 
 ## 命令
 
@@ -150,6 +151,7 @@
 
 - `docs/specs/vision.md` 是已跟踪的项目宪法和决策记录。目标、边界或阶段变化时，更新并提交它；不要留下未提交的 vision 变更。
 - `docs/specs/workflow.md` 是开发工作流。RAD、spike、plan、验证和收尾都遵循它。
+- `docs/specs/tsdoc-comment-standards.md` 是平台 TypeScript 注释规范。`apps/*/src` 和 `extensions/*/src` 必须遵守。
 - `docs/explains/` 保存架构笔记、验证脚本和 fork 记录。理解变化时更新它，优先使用可执行验证，而不是只有文字结论。
 - 保持中文译本与英文源文件同步：`README.zh-CN.md`、`AGENTS.zh-CN.md`、`CONTRIBUTING.zh-CN.md`。
 - 不要提交 `.env`、`~/.pi/agent/auth.json` 或任何 API key。

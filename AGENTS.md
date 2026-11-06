@@ -69,6 +69,7 @@ These override convenience and local preference.
 - Never hardcode key checks (e.g. `matchesKey(keyData, "ctrl+x")`). Add defaults to `DEFAULT_EDITOR_KEYBINDINGS` or `DEFAULT_APP_KEYBINDINGS` so they stay configurable.
 - Never modify `packages/ai/src/models.generated.ts` directly; update the catalog definitions in `packages/ai/catalog/` instead (see its README), then regenerate. Including the resulting `models.generated.ts` diff is always OK, even if regeneration includes unrelated upstream model metadata changes. The generated model data in `packages/ai/src/providers/data/` is gitignored: never stage it, and don't look for it in git history.
 - Do not add new workspace packages, or change the package graph, without recording the decision in `docs/specs/vision.md`.
+- Platform exports under `apps/*/src` and `extensions/*/src` require TSDoc per `docs/specs/tsdoc-comment-standards.md`. `npm run check:tsdoc` enforces the basics.
 
 ## Commands
 
@@ -148,6 +149,7 @@ This fork does not use the upstream issue/PR gate. GitHub Issues are the interna
 
 - `docs/specs/vision.md` is the tracked project constitution and decision log. Update and commit it with any change to goals, boundaries, or phase; do not leave vision changes uncommitted.
 - `docs/specs/workflow.md` is the development workflow. Follow it for RAD, spike, plan, validation, and closing work.
+- `docs/specs/tsdoc-comment-standards.md` is the platform TypeScript comment standard. Apply it to `apps/*/src` and `extensions/*/src`.
 - `docs/explains/` holds architecture notes, validation scripts, and the fork record. Update it when understanding changes, and prefer executable validation over prose-only claims.
 - Keep the Chinese translations in sync with their English sources: `README.zh-CN.md`, `AGENTS.zh-CN.md`, `CONTRIBUTING.zh-CN.md`.
 - Do not commit `.env`, `~/.pi/agent/auth.json`, or any API key.

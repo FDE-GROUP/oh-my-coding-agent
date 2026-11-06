@@ -172,6 +172,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 | `extensions/omfde-core` | 平台扩展骨架 |
 | `docs/rads/TEMPLATE.md` | 需求描述模板 |
 | `docs/specs/workflow.md` | 开发工作流：RAD、Spike、Plan 与验证闭环 |
+| `docs/specs/tsdoc-comment-standards.md` | 平台 TypeScript 注释规范与检查门禁 |
 | `docs/specs/vision.md` | 本文档 |
 
 ## 决策记录

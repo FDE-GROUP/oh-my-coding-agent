@@ -1,6 +1,6 @@
 # 开发工作流
 
-> 版本：0.2.4 | 日期：2026-11-06 | 状态：现行
+> 版本：0.2.5 | 日期：2026-11-06 | 状态：现行
 
 本文件把 vision、RAD、AGENTS 的规则串成可重复执行的闭环。它不新设产品边界；边界以 `docs/specs/vision.md` 为准。贡献者的操作细节和代码门禁见 `CONTRIBUTING.md`。
 
@@ -130,6 +130,7 @@ GitHub Issues 是团队记录任务、bug 和阶段目标的统一视图，不�
 
 - 只改 plan 范围内的内容。涉及 Pi 核心的改动必须先在 plan 中说明；当前阶段默认不改核心。
 - 代码改动后运行 `npm run check`（只读）；需要自动修复时再运行 `npm run check:fix`，并确认改动在 write scope 内。涉及测试时运行对应测试；需要时运行 `./test.sh`。
+- 平台导出必须按 `docs/specs/tsdoc-comment-standards.md` 写 TSDoc；`npm run check:tsdoc` 已包含在 `check` 中。
 - pre-commit 只检查 staged 文件；pre-push 运行完整 `npm run check`。
 - 平台入口改动至少运行：
   - `npm run omfde -- --version`
@@ -246,3 +247,4 @@ GitHub Issues 是团队记录任务、bug 和阶段目标的统一视图，不�
 | 2026-11-06 | 0.2.2 | 新需求改为决策者先发起讨论、再同步补 issue；是否建立 RAD 由决策者决定 |
 | 2026-11-06 | 0.2.3 | 质量门禁改为只在本地执行，不依赖远程 CI |
 | 2026-11-06 | 0.2.4 | check 改为只读，新增 check:fix 和 secret scan；pre-commit 只检查 staged 文件，pre-push 跑完整 check |
+| 2026-11-06 | 0.2.5 | 增加平台 TSDoc 规范和 check:tsdoc 本地门禁 |
