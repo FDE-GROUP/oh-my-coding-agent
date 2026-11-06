@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: ai_providers/provider_implementations/openai_family
+title: OpenAI 系列 Provider 实现
+scope:
+    - packages/ai/src/providers/openai.ts
+    - packages/ai/src/providers/openai.models.ts
+    - packages/ai/src/providers/openai-codex.ts
+source_files: []
+depends_on: []
+related_to: []

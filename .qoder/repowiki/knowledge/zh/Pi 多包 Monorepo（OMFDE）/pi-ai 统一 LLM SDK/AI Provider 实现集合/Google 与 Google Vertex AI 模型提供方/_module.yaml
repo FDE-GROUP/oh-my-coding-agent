@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: ai_providers/provider_implementations/google_family
+title: Google 与 Google Vertex AI 模型提供方
+scope:
+    - packages/ai/src/providers/google.ts
+    - packages/ai/src/providers/google.models.ts
+    - packages/ai/src/providers/google-vertex.ts
+source_files: []
+depends_on: []
+related_to: []

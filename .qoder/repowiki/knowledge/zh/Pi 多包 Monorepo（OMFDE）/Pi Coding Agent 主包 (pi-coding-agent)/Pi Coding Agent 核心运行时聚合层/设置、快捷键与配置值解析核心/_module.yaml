@@ -1,0 +1,15 @@
+schema_version: 1
+module_path: coding_agent/core_runtime/settings_config
+title: 设置、快捷键与配置值解析核心
+scope:
+    - packages/coding-agent/src/core/settings-manager.ts
+    - packages/coding-agent/src/core/settings-defaults.ts
+    - packages/coding-agent/src/core/settings-schema.ts
+    - packages/coding-agent/src/core/settings-diagnostics.ts
+    - packages/coding-agent/src/core/keybindings.ts
+    - packages/coding-agent/src/core/keybindings-schema.ts
+    - packages/coding-agent/src/core/pi-manifest.ts
+    - packages/coding-agent/src/core/resolve-config-value.ts
+source_files: []
+depends_on: []
+related_to: []

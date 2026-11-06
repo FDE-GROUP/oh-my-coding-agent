@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: coding_agent/core_runtime/core_runtime_services/tool_execution
+title: 内置工具执行与渲染层
+scope:
+    - packages/coding-agent/src/core/tools/
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_runtime/agent_session_lifecycle
+    - path: coding_agent/core_runtime/core_runtime_services/settings_manager

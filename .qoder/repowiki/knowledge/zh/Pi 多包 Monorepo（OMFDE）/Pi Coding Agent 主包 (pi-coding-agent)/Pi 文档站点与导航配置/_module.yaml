@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: coding_agent/documentation
+title: Pi 文档站点与导航配置
+scope:
+    - packages/coding-agent/docs/
+source_files: []
+depends_on: []
+related_to: []

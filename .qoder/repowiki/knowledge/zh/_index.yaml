@@ -1,128 +1,188 @@
 # 知识卡导出索引文件
 schema_version: 1
 locale: zh-CN
-branch: omca
+branch: main
 nodes_managed: true
-exported_at: "2026-11-06T03:35:35Z"
+exported_at: "2026-11-06T07:14:37Z"
 modules:
     "":
-        dir_name: Pi Monorepo 编排层
-        title: Pi Monorepo 编排层
+        dir_name: Pi 多包 Monorepo（OMFDE）
+        title: Pi 多包 Monorepo（OMFDE）
         scope:
             - README.md
-            - CONTRIBUTING.md
-            - SECURITY.md
+            - README.zh-CN.md
             - AGENTS.md
+            - AGENTS.zh-CN.md
+            - CONTRIBUTING.md
+            - CONTRIBUTING.zh-CN.md
+            - SECURITY.md
             - .gitignore
-            - .npmrc
-            - package.json
-            - package-lock.json
-            - tsconfig.json
-            - tsconfig.base.json
-            - vitest.base.ts
-            - biome.json
-            - flake.nix
-            - flake.lock
-            - .github/
-            - .pi/
             - .gitattributes
-            - LICENSE
+            - .npmrc
+            - biome.json
+            - tsconfig.base.json
+            - tsconfig.json
+            - vitest.base.ts
+            - pnpm-workspace.yaml
+            - pnpm-lock.yaml
+            - package.json
+            - pi-test.sh
             - pi-test.bat
             - pi-test.ps1
-            - pi-test.sh
             - test.sh
+            - .env.example
+            - LICENSE
         source_files: []
         children:
-            - agent_package
-            - ai_sdk
+            - agent_core
+            - ai_providers
             - build_scripts
-            - codemode_runtime
+            - codemode
             - coding_agent
-            - docs_omca
-            - evals_harness
-            - mcp_client
-            - schema_lib
-            - telemetry_lib
-            - tui_runtime
+            - docs
+            - evals
+            - extensions
+            - mcp
+            - omfde_cli
+            - schema
+            - telemetry
+            - tui
         depends_on: []
         related_to: []
-    agent_package:
-        dir_name: Pi Agent Core（通用 AI Agent 运行时）
-        title: Pi Agent Core（通用 AI Agent 运行时）
+    agent_core:
+        dir_name: 通用 AI Agent 运行时核心
+        title: 通用 AI Agent 运行时核心
         scope:
             - packages/agent/
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent
-    ai_sdk:
-        dir_name: pi-ai SDK 统一 LLM 调用层
-        title: pi-ai SDK 统一 LLM 调用层
+        related_to: []
+    ai_providers:
+        dir_name: pi-ai 统一 LLM SDK
+        title: pi-ai 统一 LLM SDK
         scope:
             - packages/ai/
         source_files: []
         children:
-            - ai_sdk/api_adapters
-            - ai_sdk/auth_oauth
-            - ai_sdk/model_catalog_generation
-            - ai_sdk/providers
-            - ai_sdk/sdk_surface
-            - ai_sdk/shared_utils
+            - ai_providers/api_adapters
+            - ai_providers/auth_system
+            - ai_providers/catalog_metadata
+            - ai_providers/provider_implementations
+            - ai_providers/shared_utils
         depends_on: []
-        related_to:
-            - path: coding_agent
-    ai_sdk/api_adapters:
-        dir_name: AI Provider API 适配器层
-        title: AI Provider API 适配器层
+        related_to: []
+    ai_providers/api_adapters:
+        dir_name: AI 提供商 API 适配器层
+        title: AI 提供商 API 适配器层
         scope:
             - packages/ai/src/api/
         source_files: []
         children: []
         depends_on: []
         related_to: []
-    ai_sdk/auth_oauth:
-        dir_name: 模型认证与 OAuth 登录框架
-        title: 模型认证与 OAuth 登录框架
+    ai_providers/auth_system:
+        dir_name: AI Provider 认证与凭据系统
+        title: AI Provider 认证与凭据系统
         scope:
             - packages/ai/src/auth/
         source_files: []
         children: []
         depends_on: []
         related_to: []
-    ai_sdk/model_catalog_generation:
-        dir_name: AI 模型目录生成与注册中心
-        title: AI 模型目录生成与注册中心
+    ai_providers/catalog_metadata:
+        dir_name: AI 模型目录构建与生成
+        title: AI 模型目录构建与生成
         scope:
             - packages/ai/catalog/
-            - packages/ai/scripts/
         source_files: []
         children: []
         depends_on: []
         related_to: []
-    ai_sdk/providers:
-        dir_name: 内置 AI 模型提供商目录
-        title: 内置 AI 模型提供商目录
+    ai_providers/provider_implementations:
+        dir_name: AI Provider 实现集合
+        title: AI Provider 实现集合
         scope:
             - packages/ai/src/providers/
         source_files: []
-        children: []
+        children:
+            - ai_providers/provider_implementations/cloudflare
+            - ai_providers/provider_implementations/google_family
+            - ai_providers/provider_implementations/openai_family
+            - ai_providers/provider_implementations/opencode_openrouter
+            - ai_providers/provider_implementations/qwen_token_plan
+            - ai_providers/provider_implementations/xiaomi_token_plan
         depends_on: []
         related_to: []
-    ai_sdk/sdk_surface:
-        dir_name: AI SDK 核心导出与模型编排层
-        title: AI SDK 核心导出与模型编排层
+    ai_providers/provider_implementations/cloudflare:
+        dir_name: Cloudflare Workers AI 提供者实现
+        title: Cloudflare Workers AI 提供者实现
         scope:
-            - packages/ai/src/index.ts
-            - packages/ai/src/models.ts
-            - packages/ai/src/oauth.ts
+            - packages/ai/src/providers/cloudflare-auth.ts
+            - packages/ai/src/providers/cloudflare-stream.ts
+            - packages/ai/src/providers/cloudflare-workers-ai.ts
         source_files: []
         children: []
         depends_on: []
         related_to: []
-    ai_sdk/shared_utils:
-        dir_name: AI SDK 共享工具库
-        title: AI SDK 共享工具库
+    ai_providers/provider_implementations/google_family:
+        dir_name: Google 与 Google Vertex AI 模型提供方
+        title: Google 与 Google Vertex AI 模型提供方
+        scope:
+            - packages/ai/src/providers/google.ts
+            - packages/ai/src/providers/google.models.ts
+            - packages/ai/src/providers/google-vertex.ts
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    ai_providers/provider_implementations/openai_family:
+        dir_name: OpenAI 系列 Provider 实现
+        title: OpenAI 系列 Provider 实现
+        scope:
+            - packages/ai/src/providers/openai.ts
+            - packages/ai/src/providers/openai.models.ts
+            - packages/ai/src/providers/openai-codex.ts
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    ai_providers/provider_implementations/opencode_openrouter:
+        dir_name: OpenCode 与 OpenRouter 第三方 AI 提供商适配
+        title: OpenCode 与 OpenRouter 第三方 AI 提供商适配
+        scope:
+            - packages/ai/src/providers/opencode.ts
+            - packages/ai/src/providers/openrouter.ts
+            - packages/ai/src/providers/openrouter-api.ts
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    ai_providers/provider_implementations/qwen_token_plan:
+        dir_name: Qwen Token Plan 多区域 Provider 适配
+        title: Qwen Token Plan 多区域 Provider 适配
+        scope:
+            - packages/ai/src/providers/qwen-token-plan.ts
+            - packages/ai/src/providers/qwen-token-plan-cn.ts
+            - packages/ai/src/providers/qwen-token-plan-individual.ts
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    ai_providers/provider_implementations/xiaomi_token_plan:
+        dir_name: 小米（Xiaomi）AI 模型提供商适配
+        title: 小米（Xiaomi）AI 模型提供商适配
+        scope:
+            - packages/ai/src/providers/xiaomi.ts
+            - packages/ai/src/providers/xiaomi-token-plan-cn.ts
+            - packages/ai/src/providers/xiaomi-token-plan-ams.ts
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    ai_providers/shared_utils:
+        dir_name: AI SDK 共享工具集
+        title: AI SDK 共享工具集
         scope:
             - packages/ai/src/utils/
         source_files: []
@@ -130,127 +190,96 @@ modules:
         depends_on: []
         related_to: []
     build_scripts:
-        dir_name: 构建、发布与模型目录工具脚本集
-        title: 构建、发布与模型目录工具脚本集
+        dir_name: 发布、打包与质量门禁脚本集
+        title: 发布、打包与质量门禁脚本集
         scope:
             - scripts/
         source_files: []
         children: []
         depends_on: []
         related_to: []
-    codemode_runtime:
-        dir_name: Codemode 沙箱运行时（QuickJS WASM 隔离执行）
-        title: Codemode 沙箱运行时（QuickJS WASM 隔离执行）
+    codemode:
+        dir_name: 模型代码沙箱执行引擎 (@earendil-works_pi-codemode)
+        title: 模型代码沙箱执行引擎 (@earendil-works/pi-codemode)
         scope:
             - packages/codemode/
         source_files: []
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent
+            - path: coding_agent/built_in_extensions
     coding_agent:
-        dir_name: Pi Coding Agent 包
-        title: Pi Coding Agent 包
+        dir_name: Pi Coding Agent 主包 (pi-coding-agent)
+        title: Pi Coding Agent 主包 (pi-coding-agent)
         scope:
             - packages/coding-agent/
         source_files: []
         children:
-            - coding_agent/app_bootstrap
-            - coding_agent/builtin_extensions
-            - coding_agent/bun_runtime
-            - coding_agent/cli_commands
-            - coding_agent/config_and_migrations
-            - coding_agent/core_agent_runtime
-            - coding_agent/execution_modes
-            - coding_agent/shared_utils
+            - coding_agent/built_in_extensions
+            - coding_agent/bun_sandbox
+            - coding_agent/cli_layer
+            - coding_agent/core_runtime
+            - coding_agent/documentation
+            - coding_agent/examples
+            - coding_agent/modes
+            - coding_agent/tests
+            - coding_agent/utils
         depends_on: []
         related_to:
-            - path: agent_package
-            - path: ai_sdk
-            - path: codemode_runtime
-            - path: evals_harness
-            - path: mcp_client
-            - path: schema_lib
-            - path: tui_runtime
-    coding_agent/app_bootstrap:
-        dir_name: Coding Agent 应用启动与入口
-        title: Coding Agent 应用启动与入口
-        scope:
-            - packages/coding-agent/src/cli.ts
-            - packages/coding-agent/src/main.ts
-            - packages/coding-agent/src/rpc-entry.ts
-        source_files: []
-        children: []
-        depends_on: []
-        related_to:
-            - path: coding_agent/cli_commands
-            - path: coding_agent/config_and_migrations
-            - path: coding_agent/execution_modes
-    coding_agent/builtin_extensions:
-        dir_name: 内置扩展集合（codemode _ llama.cpp _ MCP _ tool_search）
-        title: 内置扩展集合（codemode / llama.cpp / MCP / tool_search）
+            - path: evals
+            - path: extensions
+            - path: omfde_cli
+    coding_agent/built_in_extensions:
+        dir_name: 内置扩展集合 (Built-in Extensions)
+        title: 内置扩展集合 (Built-in Extensions)
         scope:
             - packages/coding-agent/src/extensions/
         source_files: []
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent/core_agent_runtime/extensions_system
-            - path: coding_agent/core_agent_runtime/mcp_radius_integration
-    coding_agent/bun_runtime:
-        dir_name: Bun 运行时适配层
-        title: Bun 运行时适配层
+            - path: codemode
+            - path: coding_agent/core_runtime/core_runtime_services/mcp_servers
+            - path: mcp
+    coding_agent/bun_sandbox:
+        dir_name: Bun 沙箱运行时入口
+        title: Bun 沙箱运行时入口
         scope:
             - packages/coding-agent/src/bun/
         source_files: []
         children: []
         depends_on: []
         related_to: []
-    coding_agent/cli_commands:
-        dir_name: CLI 入口与命令层
-        title: CLI 入口与命令层
+    coding_agent/cli_layer:
+        dir_name: CLI 入口与交互层
+        title: CLI 入口与交互层
         scope:
             - packages/coding-agent/src/cli/
         source_files: []
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent/app_bootstrap
-    coding_agent/config_and_migrations:
-        dir_name: 配置、迁移与包管理 CLI
-        title: 配置、迁移与包管理 CLI
-        scope:
-            - packages/coding-agent/src/config.ts
-            - packages/coding-agent/src/migrations.ts
-            - packages/coding-agent/src/package-manager-cli.ts
-        source_files: []
-        children: []
-        depends_on: []
-        related_to:
-            - path: coding_agent/app_bootstrap
-    coding_agent/core_agent_runtime:
-        dir_name: Pi Coding Agent 核心运行时
-        title: Pi Coding Agent 核心运行时
+            - path: tui
+    coding_agent/core_runtime:
+        dir_name: Pi Coding Agent 核心运行时聚合层
+        title: Pi Coding Agent 核心运行时聚合层
         scope:
             - packages/coding-agent/src/core/
+            - packages/coding-agent/schemas/
         source_files: []
         children:
-            - coding_agent/core_agent_runtime/agent_session_lifecycle
-            - coding_agent/core_agent_runtime/auth_trust_credentials
-            - coding_agent/core_agent_runtime/compaction
-            - coding_agent/core_agent_runtime/export_html
-            - coding_agent/core_agent_runtime/extensions_system
-            - coding_agent/core_agent_runtime/mcp_radius_integration
-            - coding_agent/core_agent_runtime/model_provider_registry
-            - coding_agent/core_agent_runtime/runtime_infrastructure
-            - coding_agent/core_agent_runtime/sdk_and_api
-            - coding_agent/core_agent_runtime/session_manager_and_runtime
-            - coding_agent/core_agent_runtime/settings_config
-            - coding_agent/core_agent_runtime/tools_and_renderers
-            - coding_agent/core_agent_runtime/ui_shell_features
+            - coding_agent/core_runtime/agent_session_lifecycle
+            - coding_agent/core_runtime/compaction
+            - coding_agent/core_runtime/core_runtime_services
+            - coding_agent/core_runtime/extensions_system
+            - coding_agent/core_runtime/html_export
+            - coding_agent/core_runtime/model_provider_registry
+            - coding_agent/core_runtime/schemas
+            - coding_agent/core_runtime/settings_config
+            - coding_agent/core_runtime/tools_and_renderers
         depends_on: []
         related_to: []
-    coding_agent/core_agent_runtime/agent_session_lifecycle:
+    coding_agent/core_runtime/agent_session_lifecycle:
         dir_name: Agent 会话生命周期与运行时编排
         title: Agent 会话生命周期与运行时编排
         scope:
@@ -261,27 +290,55 @@ modules:
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent/core_agent_runtime/model_provider_registry
-            - path: coding_agent/core_agent_runtime/sdk_and_api
-            - path: coding_agent/core_agent_runtime/session_manager_and_runtime
-            - path: coding_agent/core_agent_runtime/tools_and_renderers
-    coding_agent/core_agent_runtime/auth_trust_credentials:
-        dir_name: 认证凭据与项目信任管理
-        title: 认证凭据与项目信任管理
+            - path: coding_agent/core_runtime/core_runtime_services/extension_loader
+            - path: coding_agent/core_runtime/core_runtime_services/model_config_registry
+            - path: coding_agent/core_runtime/core_runtime_services/runtime_support
+            - path: coding_agent/core_runtime/core_runtime_services/settings_manager
+            - path: coding_agent/core_runtime/core_runtime_services/tool_execution
+    coding_agent/core_runtime/compaction:
+        dir_name: 会话压缩与分支摘要
+        title: 会话压缩与分支摘要
+        scope:
+            - packages/coding-agent/src/core/compaction/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    coding_agent/core_runtime/core_runtime_services:
+        dir_name: Pi Coding Agent 核心运行时层
+        title: Pi Coding Agent 核心运行时层
+        scope:
+            - packages/coding-agent/src/core/
+        source_files: []
+        children:
+            - coding_agent/core_runtime/core_runtime_services/auth_trust
+            - coding_agent/core_runtime/core_runtime_services/compaction
+            - coding_agent/core_runtime/core_runtime_services/extension_loader
+            - coding_agent/core_runtime/core_runtime_services/html_export
+            - coding_agent/core_runtime/core_runtime_services/mcp_servers
+            - coding_agent/core_runtime/core_runtime_services/model_config_registry
+            - coding_agent/core_runtime/core_runtime_services/runtime_support
+            - coding_agent/core_runtime/core_runtime_services/sdk_bootstrap
+            - coding_agent/core_runtime/core_runtime_services/session_lifecycle
+            - coding_agent/core_runtime/core_runtime_services/settings_manager
+            - coding_agent/core_runtime/core_runtime_services/telemetry_diagnostics
+            - coding_agent/core_runtime/core_runtime_services/tool_execution
+        depends_on: []
+        related_to: []
+    coding_agent/core_runtime/core_runtime_services/auth_trust:
+        dir_name: 认证凭据存储与项目信任决策
+        title: 认证凭据存储与项目信任决策
         scope:
             - packages/coding-agent/src/core/auth-guidance.ts
             - packages/coding-agent/src/core/auth-storage.ts
-            - packages/coding-agent/src/core/runtime-credentials.ts
             - packages/coding-agent/src/core/project-trust.ts
-            - packages/coding-agent/src/core/trust-manager.ts
-            - packages/coding-agent/src/core/client-identity.ts
-            - packages/coding-agent/src/core/key-id-schema.ts
         source_files: []
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent/core_agent_runtime/model_provider_registry
-    coding_agent/core_agent_runtime/compaction:
+            - path: coding_agent/core_runtime/core_runtime_services/model_config_registry
+            - path: coding_agent/core_runtime/model_provider_registry
+    coding_agent/core_runtime/core_runtime_services/compaction:
         dir_name: 会话压缩与分支摘要
         title: 会话压缩与分支摘要
         scope:
@@ -290,32 +347,157 @@ modules:
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent/core_agent_runtime/session_manager_and_runtime
-    coding_agent/core_agent_runtime/export_html:
-        dir_name: 会话 HTML 导出与 ANSI 渲染
-        title: 会话 HTML 导出与 ANSI 渲染
-        scope:
-            - packages/coding-agent/src/core/export-html/
-        source_files: []
-        children: []
-        depends_on: []
-        related_to:
-            - path: coding_agent/core_agent_runtime/session_manager_and_runtime
-    coding_agent/core_agent_runtime/extensions_system:
-        dir_name: 扩展系统运行时与加载器
-        title: 扩展系统运行时与加载器
+            - path: coding_agent/core_runtime/core_runtime_services/html_export
+    coding_agent/core_runtime/core_runtime_services/extension_loader:
+        dir_name: 扩展加载与生命周期运行时
+        title: 扩展加载与生命周期运行时
         scope:
             - packages/coding-agent/src/core/extensions/
         source_files: []
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent/builtin_extensions
-    coding_agent/core_agent_runtime/mcp_radius_integration:
-        dir_name: MCP 服务器注册与 Radius_远程模型目录集成
-        title: MCP 服务器注册与 Radius/远程模型目录集成
+            - path: coding_agent/core_runtime/agent_session_lifecycle
+            - path: coding_agent/core_runtime/core_runtime_services/mcp_servers
+    coding_agent/core_runtime/core_runtime_services/html_export:
+        dir_name: 会话 HTML 导出与渲染
+        title: 会话 HTML 导出与渲染
+        scope:
+            - packages/coding-agent/src/core/export-html/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: coding_agent/core_runtime/core_runtime_services/compaction
+    coding_agent/core_runtime/core_runtime_services/mcp_servers:
+        dir_name: MCP 服务器配置与 Radius 集成
+        title: MCP 服务器配置与 Radius 集成
         scope:
             - packages/coding-agent/src/core/mcp-servers.ts
+            - packages/coding-agent/src/core/radius-mcp.ts
+            - packages/coding-agent/src/core/radius.ts
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: coding_agent/built_in_extensions
+            - path: coding_agent/core_runtime/core_runtime_services/extension_loader
+    coding_agent/core_runtime/core_runtime_services/model_config_registry:
+        dir_name: 模型配置、注册与解析层
+        title: 模型配置、注册与解析层
+        scope:
+            - packages/coding-agent/src/core/model-config.ts
+            - packages/coding-agent/src/core/model-registry.ts
+            - packages/coding-agent/src/core/model-resolver.ts
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: coding_agent/core_runtime/agent_session_lifecycle
+            - path: coding_agent/core_runtime/core_runtime_services/auth_trust
+    coding_agent/core_runtime/core_runtime_services/runtime_support:
+        dir_name: 运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）
+        title: 运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）
+        scope:
+            - packages/coding-agent/src/core/event-bus.ts
+            - packages/coding-agent/src/core/http-dispatcher.ts
+            - packages/coding-agent/src/core/output-guard.ts
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: coding_agent/core_runtime/agent_session_lifecycle
+            - path: coding_agent/core_runtime/core_runtime_services/session_lifecycle
+    coding_agent/core_runtime/core_runtime_services/sdk_bootstrap:
+        dir_name: SDK 启动与运行时引导
+        title: SDK 启动与运行时引导
+        scope:
+            - packages/coding-agent/src/core/sdk.ts
+            - packages/coding-agent/src/core/client-identity.ts
+            - packages/coding-agent/src/core/session-cwd.ts
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    coding_agent/core_runtime/core_runtime_services/session_lifecycle:
+        dir_name: Agent Session 生命周期与运行时编排
+        title: Agent Session 生命周期与运行时编排
+        scope:
+            - packages/coding-agent/src/core/agent-session.ts
+            - packages/coding-agent/src/core/agent-session-runtime.ts
+            - packages/coding-agent/src/core/agent-session-services.ts
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: coding_agent/core_runtime/core_runtime_services/runtime_support
+            - path: coding_agent/core_runtime/core_runtime_services/settings_manager
+    coding_agent/core_runtime/core_runtime_services/settings_manager:
+        dir_name: 设置管理与持久化
+        title: 设置管理与持久化
+        scope:
+            - packages/coding-agent/src/core/settings-manager.ts
+            - packages/coding-agent/src/core/settings-defaults.ts
+            - packages/coding-agent/src/core/settings-schema.ts
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: coding_agent/core_runtime/agent_session_lifecycle
+            - path: coding_agent/core_runtime/core_runtime_services/session_lifecycle
+            - path: coding_agent/core_runtime/core_runtime_services/tool_execution
+    coding_agent/core_runtime/core_runtime_services/telemetry_diagnostics:
+        dir_name: 遥测、诊断与启动时序工具
+        title: 遥测、诊断与启动时序工具
+        scope:
+            - packages/coding-agent/src/core/telemetry.ts
+            - packages/coding-agent/src/core/diagnostics.ts
+            - packages/coding-agent/src/core/timings.ts
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: telemetry
+    coding_agent/core_runtime/core_runtime_services/tool_execution:
+        dir_name: 内置工具执行与渲染层
+        title: 内置工具执行与渲染层
+        scope:
+            - packages/coding-agent/src/core/tools/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: coding_agent/core_runtime/agent_session_lifecycle
+            - path: coding_agent/core_runtime/core_runtime_services/settings_manager
+    coding_agent/core_runtime/extensions_system:
+        dir_name: 扩展系统 (Extension System)
+        title: 扩展系统 (Extension System)
+        scope:
+            - packages/coding-agent/src/core/extensions/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    coding_agent/core_runtime/html_export:
+        dir_name: 会话 HTML 导出模块
+        title: 会话 HTML 导出模块
+        scope:
+            - packages/coding-agent/src/core/export-html/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    coding_agent/core_runtime/model_provider_registry:
+        dir_name: 模型注册与运行时编排
+        title: 模型注册与运行时编排
+        scope:
+            - packages/coding-agent/src/core/model-registry.ts
+            - packages/coding-agent/src/core/model-resolver.ts
+            - packages/coding-agent/src/core/model-runtime.ts
+            - packages/coding-agent/src/core/models-store.ts
+            - packages/coding-agent/src/core/virtual-models.ts
+            - packages/coding-agent/src/core/provider-composer.ts
+            - packages/coding-agent/src/core/provider-matching.ts
             - packages/coding-agent/src/core/radius-mcp.ts
             - packages/coding-agent/src/core/radius.ts
             - packages/coding-agent/src/core/remote-catalog-provider.ts
@@ -323,223 +505,100 @@ modules:
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent/builtin_extensions
-    coding_agent/core_agent_runtime/model_provider_registry:
-        dir_name: 模型配置、注册与运行时编排
-        title: 模型配置、注册与运行时编排
+            - path: coding_agent/core_runtime/core_runtime_services/auth_trust
+    coding_agent/core_runtime/schemas:
+        dir_name: Pi Coding Agent JSON Schema 定义集
+        title: Pi Coding Agent JSON Schema 定义集
         scope:
-            - packages/coding-agent/src/core/model-config.ts
-            - packages/coding-agent/src/core/model-registry.ts
-            - packages/coding-agent/src/core/model-resolver.ts
-            - packages/coding-agent/src/core/model-runtime.ts
-            - packages/coding-agent/src/core/models-store.ts
-            - packages/coding-agent/src/core/provider-composer.ts
-            - packages/coding-agent/src/core/provider-matching.ts
-            - packages/coding-agent/src/core/virtual-models.ts
+            - packages/coding-agent/schemas/
         source_files: []
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent/core_agent_runtime/agent_session_lifecycle
-            - path: coding_agent/core_agent_runtime/auth_trust_credentials
-    coding_agent/core_agent_runtime/runtime_infrastructure:
-        dir_name: 运行时基础设施与资源编排
-        title: 运行时基础设施与资源编排
-        scope:
-            - packages/coding-agent/src/core/event-bus.ts
-            - packages/coding-agent/src/core/exec.ts
-            - packages/coding-agent/src/core/bash-executor.ts
-            - packages/coding-agent/src/core/http-dispatcher.ts
-            - packages/coding-agent/src/core/resource-loader.ts
-            - packages/coding-agent/src/core/package-manager.ts
-            - packages/coding-agent/src/core/nested-tool-calls.ts
-            - packages/coding-agent/src/core/output-guard.ts
-            - packages/coding-agent/src/core/source-info.ts
-            - packages/coding-agent/src/core/timings.ts
-            - packages/coding-agent/src/core/cache-stats.ts
-            - packages/coding-agent/src/core/cache-warmer.ts
-            - packages/coding-agent/src/core/usage-totals.ts
-            - packages/coding-agent/src/core/diagnostics.ts
-            - packages/coding-agent/src/core/telemetry.ts
-            - packages/coding-agent/src/core/experimental.ts
-        source_files: []
-        children: []
-        depends_on: []
-        related_to:
-            - path: coding_agent/core_agent_runtime/settings_config
-    coding_agent/core_agent_runtime/sdk_and_api:
-        dir_name: Agent SDK 与 PI 配置 Schema
-        title: Agent SDK 与 PI 配置 Schema
-        scope:
-            - packages/coding-agent/src/core/sdk.ts
-            - packages/coding-agent/src/core/pi-manifest.ts
-            - packages/coding-agent/src/core/pi-ai-schemas.ts
-        source_files: []
-        children: []
-        depends_on: []
-        related_to:
-            - path: coding_agent/core_agent_runtime/agent_session_lifecycle
-    coding_agent/core_agent_runtime/session_manager_and_runtime:
-        dir_name: 会话持久化与运行时管理
-        title: 会话持久化与运行时管理
-        scope:
-            - packages/coding-agent/src/core/session-manager.ts
-            - packages/coding-agent/src/core/session-cwd.ts
-            - packages/coding-agent/src/core/session-export.ts
-        source_files: []
-        children: []
-        depends_on: []
-        related_to:
-            - path: coding_agent/core_agent_runtime/agent_session_lifecycle
-            - path: coding_agent/core_agent_runtime/compaction
-            - path: coding_agent/core_agent_runtime/export_html
-    coding_agent/core_agent_runtime/settings_config:
-        dir_name: 设置管理与配置值解析
-        title: 设置管理与配置值解析
+            - path: schema
+    coding_agent/core_runtime/settings_config:
+        dir_name: 设置、快捷键与配置值解析核心
+        title: 设置、快捷键与配置值解析核心
         scope:
             - packages/coding-agent/src/core/settings-manager.ts
-            - packages/coding-agent/src/core/settings-schema.ts
             - packages/coding-agent/src/core/settings-defaults.ts
+            - packages/coding-agent/src/core/settings-schema.ts
             - packages/coding-agent/src/core/settings-diagnostics.ts
-            - packages/coding-agent/src/core/defaults.ts
+            - packages/coding-agent/src/core/keybindings.ts
+            - packages/coding-agent/src/core/keybindings-schema.ts
+            - packages/coding-agent/src/core/pi-manifest.ts
             - packages/coding-agent/src/core/resolve-config-value.ts
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_agent_runtime/runtime_infrastructure
-            - path: coding_agent/core_agent_runtime/ui_shell_features
-    coding_agent/core_agent_runtime/tools_and_renderers:
-        dir_name: 编码代理工具层与渲染器
-        title: 编码代理工具层与渲染器
+        related_to: []
+    coding_agent/core_runtime/tools_and_renderers:
+        dir_name: 内置工具与渲染器集合
+        title: 内置工具与渲染器集合
         scope:
             - packages/coding-agent/src/core/tools/
         source_files: []
-        children:
-            - coding_agent/core_agent_runtime/tools_and_renderers/filesystem_tools
-            - coding_agent/core_agent_runtime/tools_and_renderers/renderers
-            - coding_agent/core_agent_runtime/tools_and_renderers/search_and_listing_tools
-            - coding_agent/core_agent_runtime/tools_and_renderers/shell_execution_tools
-            - coding_agent/core_agent_runtime/tools_and_renderers/tool_infrastructure
+        children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_agent_runtime/agent_session_lifecycle
-    coding_agent/core_agent_runtime/tools_and_renderers/filesystem_tools:
-        dir_name: 文件系统读写与编辑工具集
-        title: 文件系统读写与编辑工具集
+        related_to: []
+    coding_agent/documentation:
+        dir_name: Pi 文档站点与导航配置
+        title: Pi 文档站点与导航配置
         scope:
-            - packages/coding-agent/src/core/tools/read.ts
-            - packages/coding-agent/src/core/tools/write.ts
-            - packages/coding-agent/src/core/tools/edit.ts
+            - packages/coding-agent/docs/
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_agent_runtime/tools_and_renderers/renderers
-            - path: coding_agent/core_agent_runtime/tools_and_renderers/tool_infrastructure
-    coding_agent/core_agent_runtime/tools_and_renderers/renderers:
-        dir_name: 内置工具渲染器集合
-        title: 内置工具渲染器集合
+        related_to: []
+    coding_agent/examples:
+        dir_name: Pi Coding Agent 示例与 SDK 演示
+        title: Pi Coding Agent 示例与 SDK 演示
         scope:
-            - packages/coding-agent/src/core/tools/renderers/
+            - packages/coding-agent/examples/
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_agent_runtime/tools_and_renderers/filesystem_tools
-            - path: coding_agent/core_agent_runtime/tools_and_renderers/search_and_listing_tools
-            - path: coding_agent/core_agent_runtime/tools_and_renderers/shell_execution_tools
-    coding_agent/core_agent_runtime/tools_and_renderers/search_and_listing_tools:
-        dir_name: 文件搜索与目录列举工具集
-        title: 文件搜索与目录列举工具集
-        scope:
-            - packages/coding-agent/src/core/tools/find.ts
-            - packages/coding-agent/src/core/tools/grep.ts
-            - packages/coding-agent/src/core/tools/ls.ts
-        source_files: []
-        children: []
-        depends_on: []
-        related_to:
-            - path: coding_agent/core_agent_runtime/tools_and_renderers/renderers
-            - path: coding_agent/core_agent_runtime/tools_and_renderers/tool_infrastructure
-    coding_agent/core_agent_runtime/tools_and_renderers/shell_execution_tools:
-        dir_name: Shell 执行与编辑 Diff 工具
-        title: Shell 执行与编辑 Diff 工具
-        scope:
-            - packages/coding-agent/src/core/tools/bash.ts
-            - packages/coding-agent/src/core/tools/powershell.ts
-            - packages/coding-agent/src/core/tools/edit-diff.ts
-        source_files: []
-        children: []
-        depends_on: []
-        related_to:
-            - path: coding_agent/core_agent_runtime/tools_and_renderers/renderers
-            - path: coding_agent/core_agent_runtime/tools_and_renderers/tool_infrastructure
-    coding_agent/core_agent_runtime/tools_and_renderers/tool_infrastructure:
-        dir_name: 工具基础设施：文件变更串行化、输出累积与定义包装
-        title: 工具基础设施：文件变更串行化、输出累积与定义包装
-        scope:
-            - packages/coding-agent/src/core/tools/file-mutation-queue.ts
-            - packages/coding-agent/src/core/tools/output-accumulator.ts
-            - packages/coding-agent/src/core/tools/tool-definition-wrapper.ts
-        source_files: []
-        children: []
-        depends_on: []
-        related_to:
-            - path: coding_agent/core_agent_runtime/tools_and_renderers/filesystem_tools
-            - path: coding_agent/core_agent_runtime/tools_and_renderers/search_and_listing_tools
-            - path: coding_agent/core_agent_runtime/tools_and_renderers/shell_execution_tools
-    coding_agent/core_agent_runtime/ui_shell_features:
-        dir_name: UI Shell 功能与运行时配置
-        title: UI Shell 功能与运行时配置
-        scope:
-            - packages/coding-agent/src/core/slash-commands.ts
-            - packages/coding-agent/src/core/keybindings.ts
-            - packages/coding-agent/src/core/keybindings-schema.ts
-            - packages/coding-agent/src/core/footer-data-provider.ts
-            - packages/coding-agent/src/core/system-prompt.ts
-            - packages/coding-agent/src/core/prompt-templates.ts
-            - packages/coding-agent/src/core/messages.ts
-            - packages/coding-agent/src/core/skills.ts
-            - packages/coding-agent/src/core/bug-report.ts
-            - packages/coding-agent/src/core/bug-report-upload.ts
-            - packages/coding-agent/src/core/crash-log.ts
-        source_files: []
-        children: []
-        depends_on: []
-        related_to:
-            - path: coding_agent/core_agent_runtime/settings_config
-    coding_agent/execution_modes:
-        dir_name: 编码代理运行模式（交互式 _ RPC _ Print）
-        title: 编码代理运行模式（交互式 / RPC / Print）
+        related_to: []
+    coding_agent/modes:
+        dir_name: 编码代理运行模式层
+        title: 编码代理运行模式层
         scope:
             - packages/coding-agent/src/modes/
         source_files: []
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent/app_bootstrap
-    coding_agent/shared_utils:
-        dir_name: Coding Agent 共享工具库
-        title: Coding Agent 共享工具库
+            - path: tui
+    coding_agent/tests:
+        dir_name: Coding Agent 测试套件
+        title: Coding Agent 测试套件
+        scope:
+            - packages/coding-agent/test/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    coding_agent/utils:
+        dir_name: 编码代理通用工具库
+        title: 编码代理通用工具库
         scope:
             - packages/coding-agent/src/utils/
         source_files: []
         children: []
         depends_on: []
         related_to: []
-    docs_omca:
-        dir_name: earendil-works_pi 代码阅读与验证笔记（OMCA）
-        title: earendil-works/pi 代码阅读与验证笔记（OMCA）
+    docs:
+        dir_name: 项目文档与规范（Explains _ RADS _ Specs）
+        title: 项目文档与规范（Explains / RADS / Specs）
         scope:
-            - docs/omca/
+            - docs/
         source_files: []
         children: []
         depends_on: []
         related_to: []
-    evals_harness:
-        dir_name: Pi 文档与宿主评估框架
-        title: Pi 文档与宿主评估框架
+    evals:
+        dir_name: Pi 模型评估与文档变体运行器
+        title: Pi 模型评估与文档变体运行器
         scope:
             - packages/evals/
         source_files: []
@@ -547,27 +606,47 @@ modules:
         depends_on: []
         related_to:
             - path: coding_agent
-    mcp_client:
-        dir_name: MCP 客户端 SDK
-        title: MCP 客户端 SDK
+    extensions:
+        dir_name: OMFDE 平台扩展集合
+        title: OMFDE 平台扩展集合
+        scope:
+            - extensions/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: coding_agent
+    mcp:
+        dir_name: Model Context Protocol (MCP) 客户端库
+        title: Model Context Protocol (MCP) 客户端库
         scope:
             - packages/mcp/
         source_files: []
         children: []
         depends_on: []
         related_to:
+            - path: coding_agent/built_in_extensions
+    omfde_cli:
+        dir_name: omfde 平台启动器
+        title: omfde 平台启动器
+        scope:
+            - apps/omfde/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
             - path: coding_agent
-    schema_lib:
-        dir_name: pi-schema JSON Schema 验证库
-        title: pi-schema JSON Schema 验证库
+    schema:
+        dir_name: pi-schema JSON Schema 验证器与构建器
+        title: pi-schema JSON Schema 验证器与构建器
         scope:
             - packages/schema/
         source_files: []
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent
-    telemetry_lib:
+            - path: coding_agent/core_runtime/schemas
+    telemetry:
         dir_name: Telemetry 契约与内存参考实现
         title: Telemetry 契约与内存参考实现
         scope:
@@ -575,8 +654,9 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to: []
-    tui_runtime:
+        related_to:
+            - path: coding_agent/core_runtime/core_runtime_services/telemetry_diagnostics
+    tui:
         dir_name: pi-tui 终端 UI 框架
         title: pi-tui 终端 UI 框架
         scope:
@@ -585,4 +665,5 @@ modules:
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent
+            - path: coding_agent/cli_layer
+            - path: coding_agent/modes

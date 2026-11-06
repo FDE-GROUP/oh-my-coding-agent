@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: ai_providers/shared_utils
+title: AI SDK 共享工具集
+scope:
+    - packages/ai/src/utils/
+source_files: []
+depends_on: []
+related_to: []

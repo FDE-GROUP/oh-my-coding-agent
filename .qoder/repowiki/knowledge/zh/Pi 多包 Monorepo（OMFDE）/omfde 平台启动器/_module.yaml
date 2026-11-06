@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: omfde_cli
+title: omfde 平台启动器
+scope:
+    - apps/omfde/
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent

@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: evals_harness
-title: Pi 文档与宿主评估框架
-scope:
-    - packages/evals/
-source_files: []
-depends_on: []
-related_to:
-    - path: coding_agent

@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: coding_agent/built_in_extensions
+title: 内置扩展集合 (Built-in Extensions)
+scope:
+    - packages/coding-agent/src/extensions/
+source_files: []
+depends_on: []
+related_to:
+    - path: codemode
+    - path: coding_agent/core_runtime/core_runtime_services/mcp_servers
+    - path: mcp

@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: schema
+title: pi-schema JSON Schema 验证器与构建器
+scope:
+    - packages/schema/
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_runtime/schemas

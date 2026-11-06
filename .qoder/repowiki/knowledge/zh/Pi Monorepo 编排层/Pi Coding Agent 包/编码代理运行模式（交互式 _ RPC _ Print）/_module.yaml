@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: coding_agent/execution_modes
-title: 编码代理运行模式（交互式 / RPC / Print）
-scope:
-    - packages/coding-agent/src/modes/
-source_files: []
-depends_on: []
-related_to:
-    - path: coding_agent/app_bootstrap

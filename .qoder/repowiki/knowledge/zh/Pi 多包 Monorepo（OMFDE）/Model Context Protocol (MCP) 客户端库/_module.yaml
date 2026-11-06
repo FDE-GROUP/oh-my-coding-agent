@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: mcp
+title: Model Context Protocol (MCP) 客户端库
+scope:
+    - packages/mcp/
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/built_in_extensions

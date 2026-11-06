@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: ai_providers
+title: pi-ai 统一 LLM SDK
+scope:
+    - packages/ai/
+source_files: []
+depends_on: []
+related_to: []

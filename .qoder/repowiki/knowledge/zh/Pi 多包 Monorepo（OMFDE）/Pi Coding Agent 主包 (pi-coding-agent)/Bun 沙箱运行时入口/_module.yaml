@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: coding_agent/bun_sandbox
+title: Bun 沙箱运行时入口
+scope:
+    - packages/coding-agent/src/bun/
+source_files: []
+depends_on: []
+related_to: []

@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: coding_agent/examples
+title: Pi Coding Agent 示例与 SDK 演示
+scope:
+    - packages/coding-agent/examples/
+source_files: []
+depends_on: []
+related_to: []
