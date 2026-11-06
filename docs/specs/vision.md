@@ -228,6 +228,8 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 | `docs/rads/pi-web-m2.md` | Pi Web UI M2 需求草案 |
 | `docs/rads/pi-web-m3.md` | Pi Web UI M3 团队可用需求 |
 | `docs/rads/pi-web-m4.md` | Pi Web UI M4 协作与交接需求 |
+| `docs/rads/pi-web-m5.md` | Pi Web UI M5 企业集成需求 |
+| `docs/spikes/pi-web-m5.md` | Pi Web UI M5 spike 结果 |
 | `docs/spikes/pi-web-m4.md` | Pi Web UI M4 spike 结果 |
 | `docs/spikes/pi-web-m3.md` | Pi Web UI M3 spike 结果 |
 | `docs/plans/pi-web-m2.md` | Pi Web UI M2 实现计划（待批准） |
