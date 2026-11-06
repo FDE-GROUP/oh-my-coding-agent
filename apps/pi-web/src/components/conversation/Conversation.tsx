@@ -137,6 +137,7 @@ export function Conversation({ health, sessionId, onSessionCreated, onSessionSwi
 								provider: snapshot.state.model.provider,
 								id: snapshot.state.model.id,
 								name: snapshot.state.model.name,
+								input: snapshot.state.model.input,
 							}
 						: null,
 				);
@@ -358,6 +359,7 @@ export function Conversation({ health, sessionId, onSessionCreated, onSessionSwi
 				stats={stats}
 				onSelectModel={selectModel}
 				onClone={() => void handleClone()}
+				canClone={conversation.messages.length > 0}
 			/>
 
 			{notices.length > 0 && (

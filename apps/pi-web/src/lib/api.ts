@@ -84,9 +84,13 @@ export async function sendCommand(sessionId: string, command: RpcCommand): Promi
 		body: JSON.stringify(command),
 	});
 	if (!response.ok) throw new Error(await readError(response));
-	const body = (await response.json()) as { ok: boolean; response?: unknown; error?: string };
+	const body = (await response.json()) as {
+		ok: boolean;
+		response?: { data?: unknown };
+		error?: string;
+	};
 	if (!body.ok) throw new Error(body.error ?? "命令失败");
-	return body.response;
+	return body.response?.data;
 }
 
 /**

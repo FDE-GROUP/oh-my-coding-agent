@@ -212,7 +212,10 @@ export function Composer({
 		<div className="border-t border-hairline border-dsw-border-l1 px-4 py-3">
 			<div className="relative mx-auto flex w-full max-w-3xl flex-col gap-1">
 				{suggestion && suggestion.items.length > 0 && (
-					<div className="absolute bottom-full left-0 z-20 mb-1 max-h-64 w-full overflow-y-auto rounded-dsw-card border border-hairline border-dsw-border-l1 bg-dsw-bg-base py-1 shadow-dsw-panel">
+					<div
+						data-testid="composer-suggestions"
+						className="absolute bottom-full left-0 z-20 mb-1 max-h-64 w-full overflow-y-auto rounded-dsw-card border border-hairline border-dsw-border-l1 bg-dsw-bg-base py-1 shadow-dsw-panel"
+					>
 						{suggestion.items.map((item, index) => (
 							<button
 								key={item.key}

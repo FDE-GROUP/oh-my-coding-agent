@@ -21,7 +21,9 @@ export const Route = createFileRoute("/api/sessions/$sessionId/clone")({
 					manager.rekey(params.sessionId, state.data.sessionId);
 					return Response.json({ id: state.data.sessionId, state: state.data });
 				} catch (error) {
-					return Response.json({ error: error instanceof Error ? error.message : String(error) }, { status: 500 });
+					const message = error instanceof Error ? error.message : String(error);
+					const status = message.includes("not been saved") ? 409 : 500;
+					return Response.json({ error: message }, { status });
 				}
 			},
 		},

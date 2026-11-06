@@ -13,6 +13,7 @@ export interface SessionBarProps {
 	stats: RpcSessionStats | null;
 	onSelectModel: (provider: string, id: string) => void;
 	onClone: () => void;
+	canClone: boolean;
 }
 
 function compact(value: number | undefined | null): string {
@@ -28,7 +29,7 @@ function contextLabel(stats: RpcSessionStats | null): string {
 	return `ctx ${Math.round(usage.percent)}%`;
 }
 
-export function SessionBar({ models, model, stats, onSelectModel, onClone }: SessionBarProps) {
+export function SessionBar({ models, model, stats, onSelectModel, onClone, canClone }: SessionBarProps) {
 	const current = model ? `${model.provider}/${model.id}` : "";
 	const cost = stats?.cost ?? 0;
 	const tokens = stats?.tokens;
@@ -61,7 +62,9 @@ export function SessionBar({ models, model, stats, onSelectModel, onClone }: Ses
 				<button
 					type="button"
 					onClick={onClone}
-					className="ml-auto rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary"
+					disabled={!canClone}
+					title={canClone ? "克隆当前分支" : "发送一条消息后才能克隆"}
+					className="ml-auto rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary disabled:opacity-40"
 				>
 					克隆
 				</button>
