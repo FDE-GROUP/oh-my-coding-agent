@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: coding_agent/core_runtime/core_runtime_services/telemetry_diagnostics
+title: 遥测、诊断与启动时序工具
+scope:
+    - packages/coding-agent/src/core/telemetry.ts
+    - packages/coding-agent/src/core/diagnostics.ts
+    - packages/coding-agent/src/core/timings.ts
+source_files: []
+depends_on: []
+related_to: []

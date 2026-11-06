@@ -2,15 +2,18 @@
 
 <cite>
 **本文引用的文件**
-- [packages/ai/src/providers/model-schema.ts](file://packages/ai/src/providers/model-schema.ts)
-- [packages/ai/catalog/sources/openrouter.ts](file://packages/ai/catalog/sources/openrouter.ts)
-- [packages/ai/catalog/providers/cloudflare-ai-gateway.ts](file://packages/ai/catalog/providers/cloudflare-ai-gateway.ts)
-- [packages/ai/catalog/providers/cloudflare-workers-ai.ts](file://packages/ai/catalog/providers/cloudflare-workers-ai.ts)
-- [packages/ai/src/api/cloudflare.ts](file://packages/ai/src/api/cloudflare.ts)
+- [packages/ai/catalog/providers/amazon-bedrock.ts](file://packages/ai/catalog/providers/amazon-bedrock.ts)
+- [packages/ai/catalog/providers/openai.ts](file://packages/ai/catalog/providers/openai.ts)
+- [packages/ai/catalog/providers/index.ts](file://packages/ai/catalog/providers/index.ts)
+- [packages/coding-agent/docs/providers.md](file://packages/coding-agent/docs/providers.md)
 - [packages/coding-agent/test/model-runtime-auth-options.test.ts](file://packages/coding-agent/test/model-runtime-auth-options.test.ts)
-- [packages/coding-agent/test/model-registry.test.ts](file://packages/coding-agent/test/model-registry.test.ts)
-- [packages/coding-agent/test/model-resolver.test.ts](file://packages/coding-agent/test/model-resolver.test.ts)
 </cite>
+
+## 更新摘要
+**变更内容**
+- 移除了独立的 Bedrock 提供商文档和 OpenAI 提供商文档
+- 统一通过综合提供商文档覆盖所有支持的提供商，包括 OpenAI 和 Bedrock
+- 保持统一的抽象层架构，继续支持所有提供商功能
 
 ## 目录
 1. [简介](#简介)
@@ -28,8 +31,8 @@
 本文件系统性梳理本项目所支持的 LLM 提供商，重点覆盖 OpenAI、Anthropic、Google Vertex AI、Amazon Bedrock、Cloudflare AI Gateway、OpenRouter。内容包含各提供商的 API 类型、基础 URL、模型能力（推理、多模态）、成本信息、环境变量与 API Key 配置方式，以及连接参数与最佳实践。文档同时给出架构图、数据流图与流程图，帮助读者快速理解系统如何加载、路由与调用不同提供商的模型。
 
 ## 项目结构
-围绕“提供商”与“模型目录”的关键代码主要位于 packages/ai 与 packages/coding-agent 中：
-- 提供商定义与模型目录构建：packages/ai/catalog/providers/*、packages/ai/catalog/sources/*
+围绕"提供商"与"模型目录"的关键代码主要位于 packages/ai 与 packages/coding-agent 中：
+- 提供商定义与模型目录构建：packages/ai/catalog/providers/*
 - 通用模型能力与成本模式：packages/ai/src/providers/model-schema.ts
 - Cloudflare 相关基础 URL：packages/ai/src/api/cloudflare.ts
 - 认证选项与运行时行为验证：packages/coding-agent/test/model-runtime-auth-options.test.ts
@@ -101,7 +104,7 @@ G --> B
 - [packages/coding-agent/test/model-registry.test.ts:77-120](file://packages/coding-agent/test/model-registry.test.ts#L77-L120)
 
 ## 架构总览
-下图展示从“提供商定义”到“模型目录构建”，再到“运行时认证与请求路由”的整体流程。
+下图展示从"提供商定义"到"模型目录构建"，再到"运行时认证与请求路由"的整体流程。
 
 ```mermaid
 sequenceDiagram
@@ -143,10 +146,13 @@ Runtime-->>Catalog : 返回可用模型与能力
   - baseUrl 覆盖：可通过模型注册表将 OpenAI 的 baseUrl 替换为代理地址，不影响内置模型集合。
   - 连接参数：遵循 OpenAI 兼容协议；如需严格模式，可在 openai-responses 上启用。
 
+**更新** 移除了独立的 OpenAI 提供商文档，相关内容已整合到综合提供商文档中。
+
 章节来源
 - [packages/coding-agent/test/model-registry.test.ts:77-120](file://packages/coding-agent/test/model-registry.test.ts#L77-L120)
 - [packages/coding-agent/test/model-resolver.test.ts:25-79](file://packages/coding-agent/test/model-resolver.test.ts#L25-L79)
 - [packages/ai/catalog/providers/cloudflare-ai-gateway.ts:47-85](file://packages/ai/catalog/providers/cloudflare-ai-gateway.ts#L47-L85)
+- [packages/ai/catalog/providers/openai.ts:1-142](file://packages/ai/catalog/providers/openai.ts#L1-L142)
 
 ### Anthropic
 - API 类型
@@ -205,8 +211,11 @@ Runtime-->>Catalog : 返回可用模型与能力
   - 环境变量：配置 AWS 凭据（AWS_ACCESS_KEY_ID、AWS_SECRET_ACCESS_KEY 等）或使用 IAM 角色。
   - 连接参数：遵循 Bedrock 的鉴权与区域配置。
 
+**更新** 移除了独立的 Bedrock 提供商文档，相关内容已整合到综合提供商文档中。
+
 章节来源
 - [packages/coding-agent/test/model-runtime-auth-options.test.ts:77-106](file://packages/coding-agent/test/model-runtime-auth-options.test.ts#L77-L106)
+- [packages/ai/catalog/providers/amazon-bedrock.ts:1-33](file://packages/ai/catalog/providers/amazon-bedrock.ts#L1-L33)
 
 ### Cloudflare AI Gateway
 - API 类型
@@ -367,6 +376,8 @@ RegTests["model-registry.test.ts"] --> Providers
 ## 结论
 本项目通过统一的模型能力模式与提供商定义，实现了对 OpenAI、Anthropic、Google Vertex AI、Amazon Bedrock、Cloudflare AI Gateway、OpenRouter 等多提供商的抽象与扩展。模型目录构建与运行时认证解耦，便于在不同环境中灵活配置与切换。Cloudflare 生态提供了统一的网关与 Workers AI 能力，OpenRouter 则聚合了多家上游模型并标准化其能力与成本。建议在生产环境中结合成本结构与缓存策略进行性能优化，并通过 baseUrl 覆盖与认证配置实现安全可控的接入。
 
+**更新** 移除了独立的 Bedrock 和 OpenAI 提供商文档，采用统一的综合提供商文档结构，简化了文档维护并保持了完整的提供商覆盖。
+
 ## 附录：配置与最佳实践
 
 ### 环境变量与 API Key
@@ -402,3 +413,4 @@ RegTests["model-registry.test.ts"] --> Providers
 - [packages/coding-agent/test/model-registry.test.ts:233-276](file://packages/coding-agent/test/model-registry.test.ts#L233-L276)
 - [packages/ai/catalog/providers/cloudflare-ai-gateway.ts:47-85](file://packages/ai/catalog/providers/cloudflare-ai-gateway.ts#L47-L85)
 - [packages/ai/catalog/sources/openrouter.ts:70-87](file://packages/ai/catalog/sources/openrouter.ts#L70-L87)
+- [packages/coding-agent/docs/providers.md:176-198](file://packages/coding-agent/docs/providers.md#L176-L198)

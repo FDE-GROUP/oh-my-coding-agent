@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: coding_agent/core_runtime/schemas
-title: Pi Coding Agent JSON Schema 定义集
-scope:
-    - packages/coding-agent/schemas/
-source_files: []
-depends_on: []
-related_to:
-    - path: schema

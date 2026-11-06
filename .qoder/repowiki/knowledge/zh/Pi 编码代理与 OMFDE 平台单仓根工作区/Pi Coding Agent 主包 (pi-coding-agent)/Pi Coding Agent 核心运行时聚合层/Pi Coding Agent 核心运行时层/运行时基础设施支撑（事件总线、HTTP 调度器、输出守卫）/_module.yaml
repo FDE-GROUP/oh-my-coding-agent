@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: coding_agent/core_runtime/core_runtime_services/runtime_support
+title: 运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）
+scope:
+    - packages/coding-agent/src/core/event-bus.ts
+    - packages/coding-agent/src/core/http-dispatcher.ts
+    - packages/coding-agent/src/core/output-guard.ts
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_runtime/core_runtime_services/session_lifecycle

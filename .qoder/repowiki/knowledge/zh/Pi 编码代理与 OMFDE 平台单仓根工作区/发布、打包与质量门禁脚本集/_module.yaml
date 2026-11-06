@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: build_scripts
+title: 发布、打包与质量门禁脚本集
+scope:
+    - scripts/
+source_files: []
+depends_on: []
+related_to:
+    - path: ai_providers/catalog_metadata
+    - path: coding_agent

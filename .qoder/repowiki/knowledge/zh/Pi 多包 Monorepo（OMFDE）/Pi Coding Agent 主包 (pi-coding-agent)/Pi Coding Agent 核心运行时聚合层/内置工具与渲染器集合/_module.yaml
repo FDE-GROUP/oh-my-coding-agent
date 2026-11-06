@@ -1,8 +1,0 @@
-schema_version: 1
-module_path: coding_agent/core_runtime/tools_and_renderers
-title: 内置工具与渲染器集合
-scope:
-    - packages/coding-agent/src/core/tools/
-source_files: []
-depends_on: []
-related_to: []

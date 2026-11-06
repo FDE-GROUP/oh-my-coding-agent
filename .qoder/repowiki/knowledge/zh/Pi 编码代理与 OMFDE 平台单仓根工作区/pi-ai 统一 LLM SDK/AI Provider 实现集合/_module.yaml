@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: ai_providers/provider_implementations
+title: AI Provider 实现集合
+scope:
+    - packages/ai/src/providers/
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_runtime/model_provider_registry

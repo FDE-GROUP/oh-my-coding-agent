@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: coding_agent/core_runtime/agent_session_lifecycle
+title: Agent 会话生命周期与运行时编排
+scope:
+    - packages/coding-agent/src/core/agent-session.ts
+    - packages/coding-agent/src/core/agent-session-runtime.ts
+    - packages/coding-agent/src/core/agent-session-services.ts
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_runtime/core_runtime_services/session_lifecycle

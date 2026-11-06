@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: coding_agent/core_runtime/core_runtime_services/mcp_servers
+title: MCP 服务器配置与 Radius 集成
+scope:
+    - packages/coding-agent/src/core/mcp-servers.ts
+    - packages/coding-agent/src/core/radius-mcp.ts
+    - packages/coding-agent/src/core/radius.ts
+source_files: []
+depends_on: []
+related_to: []
