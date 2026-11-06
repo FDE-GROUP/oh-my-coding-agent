@@ -4,13 +4,14 @@
 
 This repository is a local fork of `earendil-works/pi`, not a GitHub fork.
 
-- `upstream` is the Pi remote. `main` mirrors upstream and receives no commits. All work happens on `omca`.
+- `upstream` is the Pi remote. `main` is the product branch; `upstream/main` is the read-only Pi mirror. `pages` publishes the docs site.
+- All work happens on `main`; do not commit to `upstream/main`.
 - Pruned upstream subsystems: `apps/p2`, `packages/env`, `packages/durable`, `packages/chord`, and `scripts/durable-browser-smoke-entry.ts`.
 - Kept packages: `agent`, `ai`, `coding-agent`, `codemode`, `evals`, `mcp`, `schema`, `telemetry`, `tui`.
 - Platform layout: `apps/` holds runnable apps, `extensions/` holds platform extensions, and `packages/` holds Pi and shared libraries. Pi packages stay in `packages/` so upstream rebases keep applying.
 - `apps/omfde` is the first platform entrypoint. It launches Pi with `OMFDE_PLATFORM=1`; `extensions/omfde-core` is the first extension skeleton.
 - Pi core code is unmodified except for two removed comment lines in `packages/coding-agent/src/utils/shell.ts`.
-- Current goal order: 理解 → 会用 → 用好 → 增强. The project is in 会用. Do not modify Pi core behavior until a real gap justifies the 增强 phase.
+- Goals run as two parallel lines: the tutorial line (理解 → 会用 → 用好) and the platform line (骨架 → 核心能力 → 协作 → 企业集成 → 治理). The project is in 会用. Do not modify Pi core behavior until a real gap justifies the platform phase.
 - The vision and its decision log live in `docs/specs/vision.md`. Reading notes, validation scripts, and fork details live in `docs/explains/`.
 - Prune scope and recovery instructions: `docs/explains/26-fork-and-prune.md`.
 
@@ -82,7 +83,8 @@ Known environmental failures are tracked in `docs/explains/00-baseline.md`. Do n
 
 Multiple pi sessions may run in this cwd at the same time, each modifying different files. Git operations that touch unstaged, staged, or untracked files outside your own changes will stomp on other sessions' work.
 
-- Work only on `omca`. Never commit to `main`; it mirrors upstream.
+- Work only on `main`. Never commit to `upstream/main`; it is the read-only Pi mirror.
+- Keep `pages` as a standalone docs branch; do not merge it into `main`.
 - Only commit files YOU changed in THIS session.
 - Stage explicit paths (`git add <path1> <path2>`); never `git add -A` / `git add .`.
 - Before committing, run `git status` and verify you are only staging your files.
@@ -97,7 +99,7 @@ Never run (destroys other agents' work or bypasses checks):
 Syncing upstream:
 
 - `upstream/main` moves independently. Do not compare your work with `git diff upstream/main`; use the fork base recorded in `docs/explains/26-fork-and-prune.md`, or `git log --oneline HEAD..upstream/main` to see upstream-only commits.
-- Sync with `git fetch upstream && git rebase upstream/main`. Do not merge upstream into `omca`; a merge hides our changes in history.
+- Sync with `git fetch upstream && git rebase upstream/main`. Do not merge upstream into `main`; a merge hides our changes in history.
 - If rebase conflicts occur, resolve conflicts only in files you modified. If a conflict is in a file you did not modify, abort and ask the user.
 - Never force push.
 

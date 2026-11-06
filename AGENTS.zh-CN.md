@@ -6,13 +6,14 @@
 
 本仓库是 `earendil-works/pi` 的本地 fork，不是 GitHub 意义上的 fork。
 
-- `upstream` 是 Pi 远端。`main` 镜像上游，不接收提交。所有工作都在 `omca` 分支上进行。
+- `upstream` 是 Pi 远端。`main` 是产品主分支；`upstream/main` 是只读的 Pi 镜像；`pages` 发布文档站。
+- 所有工作都在 `main` 上进行；不要向 `upstream/main` 提交。
 - 已裁剪的上游子系统：`apps/p2`、`packages/env`、`packages/durable`、`packages/chord` 和 `scripts/durable-browser-smoke-entry.ts`。
 - 保留的包：`agent`、`ai`、`coding-agent`、`codemode`、`evals`、`mcp`、`schema`、`telemetry`、`tui`。
 - 平台布局：`apps/` 放可运行应用，`extensions/` 放平台扩展，`packages/` 放 Pi 和共享库。Pi 包保留在 `packages/`，这样上游 rebase 仍然适用。
 - `apps/omfde` 是第一个平台入口，启动 Pi 时设置 `OMFDE_PLATFORM=1`；`extensions/omfde-core` 是第一个扩展骨架。
 - 除删除 `packages/coding-agent/src/utils/shell.ts` 中两行注释外，Pi 核心代码未修改。
-- 当前目标顺序：理解 → 会用 → 用好 → 增强。项目处于“会用”阶段。在真实缺口证明需要进入“增强”之前，不要修改 Pi 核心行为。
+- 目标分为两条并行线：教程线（理解 → 会用 → 用好）和平台化线（骨架 → 核心能力 → 协作 → 企业集成 → 治理）。项目处于“会用”阶段。在真实缺口证明需要进入平台化阶段之前，不要修改 Pi 核心行为。
 - 愿景和决策记录在 `docs/specs/vision.md`。阅读笔记、验证脚本和 fork 说明在 `docs/explains/`。
 - 裁剪范围和恢复方法：`docs/explains/26-fork-and-prune.md`。
 
@@ -84,7 +85,8 @@
 
 同一个 cwd 中可能同时运行多个 pi 会话，每个会话修改不同的文件。触碰你改动之外的未暂存、已暂存或未跟踪文件的 Git 操作，会破坏其他会话的工作。
 
-- 只在 `omca` 上工作。永远不要向 `main` 提交；它镜像上游。
+- 只在 `main` 上工作。永远不要向 `upstream/main` 提交；它是只读的 Pi 镜像。
+- 把 `pages` 保留为独立的文档分支；不要把它合并进 `main`。
 - 只提交你在本次会话中修改的文件。
 - 显式 stage 路径（`git add <path1> <path2>`）；绝不要用 `git add -A` / `git add .`。
 - 提交前运行 `git status`，确认你只 stage 了自己的文件。
@@ -99,7 +101,7 @@
 同步上游：
 
 - `upstream/main` 会独立前进。不要用 `git diff upstream/main` 比较自己的工作；应该使用 `docs/explains/26-fork-and-prune.md` 中记录的 fork 基点，或用 `git log --oneline HEAD..upstream/main` 查看仅属于上游的提交。
-- 用 `git fetch upstream && git rebase upstream/main` 同步。不要把上游 merge 进 `omca`；merge 会让历史里的自有改动变得难以辨认。
+- 用 `git fetch upstream && git rebase upstream/main` 同步。不要把上游 merge 进 `main`；merge 会让历史里的自有改动变得难以辨认。
 - 如果发生 rebase 冲突，只在你修改过的文件中解决冲突。如果冲突出现在你没有修改过的文件中，中止并询问用户。
 - 永远不要 force push。
 

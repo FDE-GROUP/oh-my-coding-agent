@@ -16,14 +16,16 @@ git init
 git remote add upstream https://github.com/earendil-works/pi.git
 git fetch upstream
 git checkout -B main upstream/main
-git checkout -B omca
 ```
 
 | 引用 | 作用 |
 |---|---|
 | `upstream` | Pi 官方仓库，只读同步源 |
-| `main` | 上游镜像，没有自己的提交 |
-| `omca` | 所有实际工作所在的分支 |
+| `upstream/main` | Pi 的只读镜像，不提交 |
+| `main` | 产品主分支，承载 Pi 包、平台应用和扩展 |
+| `pages` | 文档站分支，独立发布 GitHub Pages |
+
+2026-11-06 前工作分支是 `omca`；分支整理后统一到 `main`，`omca` 已删除。
 
 所以“fork”= 本地 Git 分支 + 上游 remote，而不是平台意义上的 fork。
 

@@ -137,7 +137,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 
 ## 仓库现状
 
-- 本地 fork，`upstream` 指向 Pi 官方仓库，工作分支 `omca`。
+- 本地 fork，`upstream` 指向 Pi 官方仓库；`main` 是产品主分支，`pages` 是文档站分支。
 - 已裁剪与当前核心能力无关的四个子系统，仓库体积约减少一半。
 - 保留 9 个包：`agent`、`ai`、`coding-agent`、`codemode`、`evals`、`mcp`、`schema`、`telemetry`、`tui`。
 - 平台骨架：`apps/omfde` 提供 `npm run omfde` 入口，`extensions/omfde-core` 提供第一个扩展骨架。
@@ -194,6 +194,12 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 原因：平台化线需要一个可持续的代码落点，避免平台代码散落在 `.pi`、脚本或 Pi 核心里。
 
 影响：根 workspace 新增 `apps/*` 和 `extensions/*`；`apps/omfde` 作为第一个平台入口，负责启动 Pi 并设置平台环境；`extensions/omfde-core` 作为第一个扩展骨架。Pi 包继续留在 `packages/`，不移动，以保持上游 rebase 能力。根脚本新增 `npm run omfde`。
+
+### 2026-11-06：分支整理
+
+原因：`main` 原本只是上游镜像，GitHub 默认分支看不到产品代码；`omca` 是临时工作分支，名称也不再代表项目。
+
+影响：`main` 成为产品主分支，承载 Pi 包、平台应用和扩展；`pages` 保留为独立文档分支；删除 `omca`。上游同步改为在 `main` 上 rebase `upstream/main`。
 
 ## 未决问题
 

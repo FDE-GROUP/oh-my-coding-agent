@@ -3,7 +3,7 @@
 日期：2026-11-06
 上游：`https://github.com/earendil-works/pi.git`
 上游提交：`20d86c365` (2026-11-05) `feat(p2): Chord v2 cleanup pass`
-工作分支：`omca`（`main` 与 `upstream/main` 保持同步，不提交）
+工作分支：`main`（`upstream/main` 为只读镜像；2026-11-06 前使用 `omca`）
 
 ## 环境
 
@@ -26,7 +26,6 @@ git init
 git remote add upstream https://github.com/earendil-works/pi.git
 git fetch --no-tags upstream '+refs/heads/main:refs/remotes/upstream/main'
 git checkout -B main upstream/main
-git checkout -B omca
 
 npm install --ignore-scripts
 NODE_USE_ENV_PROXY=1 npm run build
