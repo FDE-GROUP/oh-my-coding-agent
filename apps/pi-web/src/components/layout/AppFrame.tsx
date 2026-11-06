@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useViewport } from "../../lib/viewport.ts";
 import type { Health } from "../../server/health.ts";
-import { ConversationPlaceholder } from "../conversation/ConversationPlaceholder.tsx";
+import { Conversation } from "../conversation/Conversation.tsx";
 import { IconButton } from "../primitives/IconButton.tsx";
 import { PanelLeftIcon } from "../primitives/icons.tsx";
 import { RightPanel } from "./RightPanel.tsx";
@@ -52,7 +52,7 @@ export function AppFrame({ health }: { health: Health }) {
 					</span>
 				</header>
 
-				<ConversationPlaceholder health={health} />
+				<Conversation health={health} />
 			</main>
 
 			<RightPanel />

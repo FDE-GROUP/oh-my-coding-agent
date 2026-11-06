@@ -234,6 +234,8 @@ SSE 信封：
 
 完成判据：真实 Pi + faux provider 的固定脚本下，文本增量正确，`message_end` 校正无重复。
 
+状态：已完成（2026-11-06）。验证：reducer 单测 5 项通过；HTTP + SSE 实测 `text_delta` 与最终快照一致；`pnpm run check` 通过。
+
 ### S4 工具卡片
 
 - `tool_execution_start/update/end` 配对。

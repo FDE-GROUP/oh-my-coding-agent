@@ -67,3 +67,27 @@ export function ChevronLeftIcon(props: IconProps) {
 		</svg>
 	);
 }
+
+export function SendIcon(props: IconProps) {
+	return (
+		<svg {...base} {...props}>
+			<path d="M13.5 2.5 7.25 8.75M13.5 2.5 9.5 13.5l-2.25-4.75L2.5 6.5l11-4Z" />
+		</svg>
+	);
+}
+
+export function StopIcon(props: IconProps) {
+	return (
+		<svg {...base} {...props}>
+			<rect x="4" y="4" width="8" height="8" rx="1.5" />
+		</svg>
+	);
+}
+
+export function ArrowDownIcon(props: IconProps) {
+	return (
+		<svg {...base} {...props}>
+			<path d="M8 3v9.5M3.75 8.5 8 12.75l4.25-4.25" />
+		</svg>
+	);
+}
