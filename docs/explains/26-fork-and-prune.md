@@ -98,7 +98,7 @@ git diff --shortstat 20d86c365
 | 部分 | 变化 |
 |---|---|
 | 核心代码（agent/ai/coding-agent/tui/schema/mcp/codemode/telemetry） | 只有 `shell.ts` 删了 2 行注释 |
-| 文档与验证脚本（`docs/omca`） | 30 文件，+5,710 行 |
+| 文档与验证脚本（`docs/explains`） | 30 文件，+5,710 行 |
 | 删除的四个子系统 + 脚本 | 约 1,996 文件，约 43 万行 |
 | 构建与脚本同步修改 | 少量增删 |
 

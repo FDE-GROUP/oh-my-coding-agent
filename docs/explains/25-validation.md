@@ -11,12 +11,12 @@
 所以使用仓库自带的 **faux provider**：它返回脚本化的 assistant 消息，能确定性
 地驱动完整的 `AgentSession`、工具执行、持久化和投影，且不产生费用。
 
-脚本在 `docs/omca/validation/`，从仓库根目录运行：
+脚本在 `docs/explains/validation/`，从仓库根目录运行：
 
 ```bash
-node --experimental-strip-types --no-warnings docs/omca/validation/validate-events.ts
-node --experimental-strip-types --no-warnings docs/omca/validation/validate-projection.ts
-node --experimental-strip-types --no-warnings docs/omca/validation/validate-tool-call.ts
+node --experimental-strip-types --no-warnings docs/explains/validation/validate-events.ts
+node --experimental-strip-types --no-warnings docs/explains/validation/validate-projection.ts
+node --experimental-strip-types --no-warnings docs/explains/validation/validate-tool-call.ts
 ```
 
 ## 验证 1：事件流、持久化、投影

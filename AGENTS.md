@@ -1,5 +1,19 @@
 # Development Rules
 
+## Current State
+
+This repository is a local fork of `earendil-works/pi`, not a GitHub fork.
+
+- `upstream` is the Pi remote. `main` mirrors upstream and receives no commits. All work happens on `omca`.
+- Pruned subsystems: `apps/p2`, `packages/env`, `packages/durable`, `packages/chord`, and `scripts/durable-browser-smoke-entry.ts`.
+- Kept packages: `agent`, `ai`, `coding-agent`, `codemode`, `evals`, `mcp`, `schema`, `telemetry`, `tui`.
+- Pi core code is unmodified except for two removed comment lines in `packages/coding-agent/src/utils/shell.ts`.
+- Current goal order: 理解 → 会用 → 用好 → 增强. The project is in 会用. Do not modify Pi core behavior until a real gap justifies the 增强 phase.
+- The vision and its decision log live in `docs/specs/vision.md`. Reading notes, validation scripts, and fork details live in `docs/explains/`.
+- Prune scope and recovery instructions: `docs/explains/26-fork-and-prune.md`.
+
+In the current phase, prefer configuration and extensions over core changes. A core change needs an explicit decision recorded in `docs/specs/vision.md` first.
+
 ## Conversational Style
 
 - Keep answers short and concise
@@ -27,35 +41,30 @@
 - Do not preserve backward compatibility unless the user asks for it.
 - Never hardcode key checks (e.g. `matchesKey(keyData, "ctrl+x")`). Add defaults to `DEFAULT_EDITOR_KEYBINDINGS` or `DEFAULT_APP_KEYBINDINGS` so they stay configurable.
 - Never modify `packages/ai/src/models.generated.ts` directly; update the catalog definitions in `packages/ai/catalog/` instead (see its README), then regenerate. Including the resulting `models.generated.ts` diff is always OK, even if regeneration includes unrelated upstream model metadata changes. The generated model data in `packages/ai/src/providers/data/` is gitignored: never stage it, and don't look for it in git history.
-
-## Chord v2 Code Style
-
-Binding for Chord v2 (`packages/chord/src/`) and its tests, when writing and when reviewing. The model is pi-durable's source.
-
-- Files: one concept per file, named after it; no one-helper files, no grab-bag files. First line: a comment saying what the file is for. Order: imports, exported types, then the public entry point first and its helpers below it in the order they are used; constants right above their first user. A blank line between top-level declarations. Split files by concept, never by size: one concept may take a long file (up to about 1,000 lines is fine); a second concept in a file is the reason to split.
-- Functions: every export has a one-line doc comment saying what it does or guarantees. Inline comments explain a non-obvious why (cost, race, decided rule), never what the next line does. Short functions with one job (about 40 lines needs a reason; one `switch` over a tagged union is fine). No boolean flag parameters that switch behaviour: two functions or a tagged value. Never write the same lines twice. Context last: required args, then `context`/`ctx` (always required, as in Durable; optional only on error-reporting paths), then optional args.
-- Types and checks: tagged unions for every state and result. Casts only where TypeScript cannot express a decided invariant, each with a short why. Every remaining runtime check names the trust boundary it serves (wire input, schema-checked params and arguments, declaration policy the types cannot express). Same-host values are plain data, immutable by convention: never copied, frozen or walked to enforce it; freeze only Chord-owned metadata when a decision says so. No defensive code against broken adapters, callers or our own modules.
-- Cost and memory: no hot-path work a decision did not ask for (walks, copies, compilations, per-call allocations). The function doing counted work counts it through its context; call sites never count for others. Caches are `WeakMap`s keyed by their owner, each with a GC test; no module-level strong caches.
-- Names and API: the design's vocabulary (`params`, `binding`, `principal key`), no invented synonyms; decided `ChordError` codes and reasons. Export only what a later layer or app needs. No dev or test modes, no unrequested options.
-- Tests: one test file per source file, one `describe` per mechanism, the layer spec's test list case by case; cost guards through the in-memory telemetry adapter; GC tests for every cache and binding. Every slice also adds one or more runnable examples in `packages/chord/test/examples/NN-topic.ts`, one topic each, numbered across slices, written as references for Chord's users (Durable's `test/examples/` format: header with what it shows and how to run it, commented steps, printed results).
-- Slices: Chord v2 is built in vertical slices (`packages/chord/docs/slices.md`). Implementers and reviewers read the slice spec, the feature map in `slices.md` and the whole of `packages/chord/docs/design.md` in full, and check the work against all three; slice specs cite design sections for orientation, not as a reading limit.
-- Deferred work: anything left to a later slice goes into the section "Carry-over" of `packages/chord/docs/slices.md` under that slice, in the same change; a slice's spec and build include every entry of its section.
-- Before reporting: re-read every changed file top to bottom as a stranger would; each file must be understandable without jumping around. Then `npm run check` and the layer's tests.
+- Do not add new workspace packages, or change the package graph, without recording the decision in `docs/specs/vision.md`.
 
 ## Commands
 
 - After code changes (not docs): `npm run check` (full output, no tail). Fix all errors, warnings, and infos before committing. Does not run tests.
-- `apps/p2` is outside the root check and the root tests. After p2 changes also run `cd apps/p2 && npm run check`; p2's suite is `cd apps/p2 && npm test` (TUI tests need Node 26, browser tests need `CHROMIUM_BIN`).
-- Run `npm run build` whenever something needs built output (`dist/`): tests or benchmarks that import built packages, Durable's workerd suite. The full suites of Chord and Durable need it: Chord's tests that start Node processes or bundle with esbuild load workspace packages from `dist/` (the rest run from source by its vitest config), and Durable imports pi-ai's `utils/*`, which have no source export. Never use it to type check or lint: that is `npm run check`, the preferred check.
+- Run `npm run build` only when something needs built output (`dist/`), for example tests that import built packages. Never use it to type check or lint: that is `npm run check`.
 - Never run `npm test` unless requested by the user.
 - Never run the full vitest suite directly: it includes e2e tests that activate when endpoint/auth env vars are present. For all non-e2e tests, run `./test.sh` from the repo root. It runs `packages/*` only. Otherwise run specific tests from the package root:
   - Vitest: `node "$(git rev-parse --show-toplevel)/node_modules/vitest/dist/cli.js" --run test/specific.test.ts`
   - `packages/tui` (`node:test`): `node --test test/specific.test.ts`
 - If you create or modify a test file, run it and iterate on test or implementation until it passes.
 - For `packages/coding-agent/test/suite/`, use `test/suite/harness.ts` + the faux provider. No real provider APIs, keys, or paid tokens.
-- When regressions tests for fixing a github issue, add a comment with the github issue number next to the test.
+- When adding regression tests for a fixed issue, add a comment with the issue number next to the test.
 - For ad-hoc scripts, `write` them to a temp file (e.g. `/tmp`), run, edit if needed, remove when done. Don't embed multi-line scripts in `bash` commands.
 - Never commit unless the user asks.
+
+Known environmental failures are tracked in `docs/explains/00-baseline.md`. Do not mask a failure with skips or relaxed assertions; record it instead.
+
+## Environment and Test Model
+
+- DeepSeek is the test LLM. Credentials live in `~/.pi/agent/auth.json`; the default model is set in `~/.pi/agent/settings.json`. Never commit either file or paste keys into source.
+- `.env.example` is a template, not a runtime config file. Pi does not load `.env`. `ODOOTHINK_PROVIDER` and `ODOOTHINK_MODEL` are not recognized by Pi; map them to `--provider` / `--model` or to `defaultProvider` / `defaultModel` in settings.
+- Tests must not use real provider APIs, keys, or paid tokens. Use the faux provider.
+- TUI smoke checks may use DeepSeek with small prompts. Keep them cheap and deterministic where possible.
 
 ## Dependency and Install Security
 
@@ -66,76 +75,53 @@ Binding for Chord v2 (`packages/chord/src/`) and its tests, when writing and whe
 - If `packages/coding-agent/install-lock/` needs regen, run `node scripts/generate-coding-agent-install-lock.mjs` (verify with `--check` or `npm run check`). New deps with lifecycle scripts require review and an explicit allowlist entry in that script; never add one silently.
 - Pre-commit blocks lockfile commits unless `PI_ALLOW_LOCKFILE_CHANGE=1`. Don't bypass unless the user wants the lockfile change committed.
 
-## Git
+## Branch, Git, and Upstream
 
-Multiple pi sessions may be running in this cwd at the same time, each modifying different files. Git operations that touch unstaged, staged, or untracked files outside your own changes will stomp on other sessions' work. Follow these rules:
+Multiple pi sessions may run in this cwd at the same time, each modifying different files. Git operations that touch unstaged, staged, or untracked files outside your own changes will stomp on other sessions' work.
 
-Committing:
-
+- Work only on `omca`. Never commit to `main`; it mirrors upstream.
 - Only commit files YOU changed in THIS session.
 - Stage explicit paths (`git add <path1> <path2>`); never `git add -A` / `git add .`.
 - Before committing, run `git status` and verify you are only staging your files.
 - `packages/ai/src/models.generated.ts` may always be included alongside your files.
-- Message format: `{feat,fix,docs}[(ai,tui,agent,coding-agent)]: <commit message> (optionally multiple lines)`. Message is informative and concise.
+- Message format: `{feat,fix,docs}[(ai,tui,agent,coding-agent)]: <commit message>` (optionally multiple lines). Message is informative and concise.
+- Never push to `upstream`, and never open upstream PRs, unless the user explicitly asks.
 
 Never run (destroys other agents' work or bypasses checks):
 
 - `git reset --hard`, `git checkout .`, `git clean -fd`, `git stash`, `git add -A`, `git add .`, `git commit --no-verify`.
 
-If rebase conflicts occur:
+Syncing upstream:
 
-- Resolve conflicts only in files you modified.
-- If a conflict is in a file you did not modify, abort and ask the user.
+- `upstream/main` moves independently. Do not compare your work with `git diff upstream/main`; use the fork base recorded in `docs/explains/26-fork-and-prune.md`, or `git log --oneline HEAD..upstream/main` to see upstream-only commits.
+- Sync with `git fetch upstream && git rebase upstream/main`. Do not merge upstream into `omca`; a merge hides our changes in history.
+- If rebase conflicts occur, resolve conflicts only in files you modified. If a conflict is in a file you did not modify, abort and ask the user.
 - Never force push.
 
 ## Issues and PRs
 
-See `CONTRIBUTING.md` for the contributor gate (auto-close workflows, `lgtm`/`lgtmi`, quality bar).
+This fork does not use the upstream issue/PR gate. Internal work is tracked in `docs/specs/vision.md` and `docs/explains/`.
 
-When reviewing PRs:
+- When contributing upstream, follow upstream `CONTRIBUTING.md` and its `lgtm`/`lgtmi` gate.
+- When reviewing an upstream PR, do not run `gh pr checkout`, `git switch`, or otherwise move the worktree to the PR branch unless the user explicitly asks. Use `gh pr view`, `gh pr diff`, `gh api`, and local `git show`/`git diff` against fetched refs.
+- When posting issue/PR comments, write the comment to a temp file and post with `gh issue/pr comment --body-file`. Keep comments concise, technical, and end every AI-posted comment with the AI-generated disclaimer line specified by the originating prompt.
+- When closing issues via commit, include `fixes #<number>` or `closes #<number>`; repeat the keyword per issue.
 
-- Do not run `gh pr checkout`, `git switch`, or otherwise move the worktree to the PR branch unless the user explicitly asks.
-- Use `gh pr view`, `gh pr diff`, `gh api`, and local `git show`/`git diff` against fetched refs to inspect PR metadata, commits, and patches without changing branches.
-- If you need PR file contents, fetch/read them into temporary files or use `git show <ref>:<path>` without switching branches.
+## Documentation
 
-When creating issues:
-
-- Add `pkg:*` labels for affected packages (`pkg:agent`, `pkg:ai`, `pkg:coding-agent`, `pkg:tui`); use all that apply.
-
-When posting issue/PR comments:
-
-- Write the comment to a temp file and post with `gh issue/pr comment --body-file` (never multi-line markdown via `--body`).
-- Keep comments concise, technical, in the user's tone.
-- End every AI-posted comment with the AI-generated disclaimer line specified by the originating prompt (e.g. `This comment is AI-generated by `/wr``).
-
-When closing issues via commit:
-
-- Include `fixes #<number>` or `closes #<number>` in the message so merging auto-closes the issue. For multiple issues, repeat the keyword per issue (`closes #1, closes #2`); a shared keyword (`closes #1, #2`) only closes the first.
+- `docs/specs/vision.md` is the dynamic vision and decision log. Update it when goals, boundaries, or phase change. It is the user's working document; do not stage or commit it unless the user asks.
+- `docs/explains/` holds architecture notes, validation scripts, and the fork record. Update it when understanding changes, and prefer executable validation over prose-only claims.
+- Keep the Chinese translations in sync with their English sources: `README.zh-CN.md`, `AGENTS.zh-CN.md`, `CONTRIBUTING.zh-CN.md`.
+- Do not commit `.env`, `~/.pi/agent/auth.json`, or any API key.
 
 ## Testing pi Interactive Mode with tmux
 
 For testing pi's interactive mode, load and follow [.pi/skills/interactive-testing.md](.pi/skills/interactive-testing.md).
 
-## Changelog
+## Changelog and Releases
 
-Location: `packages/*/CHANGELOG.md` (one per package).
-
-Sections under `## [Unreleased]`: `### Breaking Changes` (API changes requiring migration), `### Added`, `### Changed`, `### Fixed`, `### Removed`.
-
-Rules:
-
-- All new entries go under `## [Unreleased]`. Read the full section first and append to existing subsections; never duplicate them.
-- Released version sections (e.g. `## [0.12.2]`) are immutable; never modify them.
-- Do not create changelog entries when the work targets a branch other than `main`
-
-Attribution:
-
-- Internal (from issues): `Fixed foo bar ([#123](https://github.com/earendil-works/pi/issues/123))`
-- External contributions: `Added feature X ([#456](https://github.com/earendil-works/pi/pull/456) by [@username](https://github.com/username))`
-
-## Releasing
-
-For release preparation, publishing, verification, or recovery, load and follow [.pi/skills/release.md](.pi/skills/release.md).
+- This fork does not publish releases and does not maintain per-package changelogs. Do not edit `packages/*/CHANGELOG.md` for internal work; record internal changes in `docs/explains/`.
+- If preparing an upstream contribution, follow upstream changelog and release rules at that point.
 
 ## User Override
 

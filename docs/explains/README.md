@@ -36,6 +36,7 @@
 | `24-latex-autocomplete-docker.md` | LaTeX 布局、补全逻辑、评测容器沙箱 |
 | `25-validation.md` | **用 faux provider 实跑：事件流、持久化、投影、压缩** |
 | `26-fork-and-prune.md` | **fork 与裁剪的准确说明：删了什么、没改什么、如何恢复** |
+| `27-tui-usage.md` | **实际跑通 TUI：DeepSeek 配置、工具调用、斜杠命令、会话恢复** |
 
 ## 已覆盖的调用链
 
@@ -82,7 +83,7 @@ CLI → main() → runtime factory → services → createAgentSession
 
 ## 验证
 
-`docs/omca/validation/` 下有三个可运行脚本，用仓库自带的 faux provider
+`docs/explains/validation/` 下有三个可运行脚本，用仓库自带的 faux provider
 确定性驱动 `AgentSession`，验证事件流、JSONL 持久化、session projection、
 context_edit、compaction，以及 `tool_call` 拦截与嵌套调用。结果见
 `25-validation.md`。
