@@ -1,7 +1,7 @@
 // Runs `biome check --error-on-warnings` for the biome.json in the current directory.
 // Native Biome has no Android (Termux) binary. There, fall back to Biome's
 // Node WASM bindings, which check one file at a time.
-// Usage: node scripts/biome-check.mjs [--write]
+// Usage: node scripts/biome-check.mjs [--write] [--staged]
 import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
@@ -9,13 +9,20 @@ import { matchesGlob, posix } from "node:path";
 import { MemoryFileSystem, main, Workspace } from "@biomejs/wasm-nodejs";
 
 const write = process.argv.includes("--write");
+const staged = process.argv.includes("--staged");
 
 // Same platform table as @biomejs/biome/bin/biome.
 const hasNativeBinary = ["win32", "darwin", "linux"].includes(process.platform) && ["x64", "arm64"].includes(process.arch);
 
 if (hasNativeBinary) {
 	const biomeBin = createRequire(import.meta.url).resolve("@biomejs/biome/bin/biome");
-	const args = ["check", "--error-on-warnings", ...(write ? ["--write"] : []), "."];
+	const args = [
+		"check",
+		"--error-on-warnings",
+		...(staged ? ["--staged", "--no-errors-on-unmatched"] : []),
+		...(write ? ["--write"] : []),
+		".",
+	];
 	const result = spawnSync(process.execPath, [biomeBin, ...args], { stdio: "inherit" });
 	if (result.error) throw result.error;
 	process.exit(result.status ?? 1);
@@ -26,11 +33,21 @@ if (hasNativeBinary) {
 // A negated pattern also excludes everything below a matching directory.
 const configuration = JSON.parse(readFileSync("biome.json", "utf8"));
 const patterns = configuration.files?.includes ?? ["**"];
+const stagedFiles = staged
+	? new Set(
+			execFileSync("git", ["diff", "--cached", "--name-only", "--diff-filter=ACMR", "-z"], {
+				encoding: "utf8",
+			})
+				.split("\0")
+				.filter(Boolean),
+		)
+	: undefined;
 const files = execFileSync("git", ["ls-files", "--cached", "--others", "--exclude-standard", "-z"], {
 	encoding: "utf8",
 })
 	.split("\0")
 	.filter(Boolean)
+	.filter((path) => !stagedFiles || stagedFiles.has(path))
 	.filter((path) => {
 		let included = false;
 		for (const pattern of patterns) {

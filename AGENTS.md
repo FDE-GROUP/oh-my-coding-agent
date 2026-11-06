@@ -72,7 +72,9 @@ These override convenience and local preference.
 
 ## Commands
 
-- After code changes (not docs): `npm run check` (full output, no tail). Fix all errors, warnings, and infos before committing. Does not run tests.
+- After code changes (not docs): `npm run check` (read-only, full output, no tail). Fix all errors, warnings, and infos before committing. Does not run tests.
+- Use `npm run check:fix` only when formatting or safe lint fixes are needed; it writes files, so inspect the diff and keep it inside your write scope. `npm run check:secrets` is included in `check` and can also run alone.
+- Pre-commit runs staged-only checks; pre-push runs the full `npm run check`. Both are local-only gates.
 - `npm run omfde` launches the platform entrypoint. `npm run tui` still launches Pi directly from source.
 - Run `npm run build` only when something needs built output (`dist/`), for example tests that import built packages. Never use it to type check or lint: that is `npm run check`.
 - Never run `npm test` unless requested by the user.

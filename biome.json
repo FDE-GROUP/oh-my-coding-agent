@@ -27,6 +27,11 @@
 		"includes": [
 			"scripts/model-catalog-protocol.ts",
 			"scripts/model-catalog-protocol.test.ts",
+			"scripts/check-secrets.mjs",
+			"apps/*/src/**/*.ts",
+			"apps/*/bin/**/*.mjs",
+			"extensions/*/src/**/*.ts",
+			"extensions/*/test/**/*.ts",
 			"packages/*/src/**/*.ts",
 			"packages/*/test/**/*.ts",
 			"packages/ai/catalog/**/*.ts",
@@ -37,8 +42,7 @@
 			"!**/models.generated.ts",
 			"!**/*.models.ts",
 			"!packages/mom/data/**/*",
-			"!!**/node_modules",
-			"!!apps"
+			"!!**/node_modules"
 		]
 	},
 	"plugins": ["./scripts/biome/model-type-comparison.grit"]

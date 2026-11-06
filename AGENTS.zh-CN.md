@@ -74,7 +74,9 @@
 
 ## 命令
 
-- 代码改动（不是文档）之后：运行 `npm run check`（完整输出，不要只看尾部）。提交前修复所有 error、warning 和 info。它不运行测试。
+- 代码改动（不是文档）之后：运行 `npm run check`（只读，完整输出，不要只看尾部）。提交前修复所有 error、warning 和 info。它不运行测试。
+- 只有需要格式化或安全的 lint 自动修复时才运行 `npm run check:fix`；它会写文件，必须检查 diff 并保持在 write scope 内。`npm run check:secrets` 已包含在 `check` 中，也可以单独运行。
+- pre-commit 只对 staged 文件做快速检查；pre-push 运行完整 `npm run check`。两者都只在本地执行。
 - `npm run omfde` 启动平台入口。`npm run tui` 仍然直接从源码启动 Pi。
 - 只在某些东西需要构建产物（`dist/`）时运行 `npm run build`，例如导入已构建包的测试。永远不要用它做类型检查或 lint：那应该用 `npm run check`。
 - 除非用户要求，否则永远不要运行 `npm test`。
