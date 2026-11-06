@@ -2,18 +2,17 @@
 
 ## Current State
 
-This repository is a local fork of `earendil-works/pi`, not a GitHub fork.
+This repository is an independently maintained fork of `earendil-works/pi`, not a GitHub fork.
 
-- `upstream` is the Pi remote. `main` is the product branch; `upstream/main` is the read-only Pi mirror used only for sync. `pages` publishes the docs site. Do not contribute upstream.
+- There is no `upstream` remote. `main` is the product branch; `pages` publishes the docs site. History is anchored by the `pi-fork-base-20d86c365` and `omfde-cutover` tags.
 - Package manager: pnpm 11.15.1, pinned by `packageManager`. `pnpm-lock.yaml` and `pnpm-workspace.yaml` are the dependency and workspace sources of truth.
 - All work happens on `main`. Do not create feature branches or worktrees on other branches.
-- Do not commit to `upstream/main`.
 - Pruned upstream subsystems: `apps/p2`, `packages/env`, `packages/durable`, `packages/chord`, and `scripts/durable-browser-smoke-entry.ts`.
 - Kept packages: `agent`, `ai`, `coding-agent`, `codemode`, `evals`, `mcp`, `schema`, `telemetry`, `tui`.
-- Platform layout: `apps/` holds runnable apps, `extensions/` holds platform extensions, and `packages/` holds Pi and shared libraries. Pi packages stay in `packages/` so upstream rebases keep applying.
+- Platform layout: `apps/` holds runnable apps, `extensions/` holds platform extensions, and `packages/` holds the Pi fork and shared libraries.
 - `apps/omfde` is the first platform entrypoint. It launches Pi with `OMFDE_PLATFORM=1`; `extensions/omfde-core` is the first extension skeleton.
-- Pi core code is unmodified except for two removed comment lines in `packages/coding-agent/src/utils/shell.ts`.
-- Goals run as two parallel lines: the tutorial line (理解 → 会用 → 用好) and the platform line (骨架 → 核心能力 → 协作 → 企业集成 → 治理). The project is in 会用. Do not modify Pi core behavior until a real gap justifies the platform phase.
+- Pi core is now maintained by this project. Core changes are allowed, but they still require an explicit decision and plan.
+- Goals run as two parallel lines: the tutorial line (理解 → 会用 → 用好) and the platform line (骨架 → 核心能力 → 协作 → 企业集成 → 治理). The project is in 会用. Prefer extensions and configuration; change core only for a demonstrated gap.
 - The vision and its decision log live in `docs/specs/vision.md`. Reading notes, validation scripts, and fork details live in `docs/explains/`.
 - Prune scope and recovery instructions: `docs/explains/26-fork-and-prune.md`.
 
@@ -107,12 +106,11 @@ Known environmental failures are tracked in `docs/explains/00-baseline.md`. Do n
 - The npm-era `install-lock` and release scripts are legacy. This fork does not publish releases; do not run them unless reviving the release path.
 - Pre-commit blocks `pnpm-lock.yaml` commits unless `PI_ALLOW_LOCKFILE_CHANGE=1`. Don't bypass unless the user wants the lockfile change committed.
 
-## Branch, Git, and Upstream
+## Branch and Git
 
 Multiple pi sessions may run in this cwd at the same time, each modifying different files. Git operations that touch unstaged, staged, or untracked files outside your own changes will stomp on other sessions' work.
 
 - Work only on `main`. Do not create feature branches or worktrees on other branches. If a task seems to require one, stop and ask the decision-maker.
-- Never commit to `upstream/main`; it is the read-only Pi mirror.
 - Keep `pages` as a standalone docs branch; do not merge it into `main`.
 - Do not switch the shared worktree to `pages` or run branch-changing Git operations there without decision-maker coordination. Authorized publishing uses a separate clone or worktree.
 - Respect the write scope assigned in the issue. Do not edit outside it without explicit approval. Treat package manifests, lockfiles, `tsconfig.json`, `AGENTS.md`, `docs/specs/`, the root README, and generated files as shared single-writer files.
@@ -121,28 +119,26 @@ Multiple pi sessions may run in this cwd at the same time, each modifying differ
 - Before committing, run `git status` and `git diff --cached --name-only`; verify every staged path is yours and inside your write scope. Out-of-scope commits require explicit decision-maker approval.
 - `packages/ai/src/models.generated.ts` is generated and shared. Include it only when your change regenerates it; otherwise leave it unstaged. It is still subject to the write-scope rule.
 - Message format: `{feat,fix,docs}[(repo|ai|tui|agent|coding-agent)]: <commit message>` (optionally multiple lines). Message is informative and concise.
-- Never push to `upstream` and never open upstream PRs. Upstream is read-only.
 
 Never run (destroys other agents' work or bypasses checks):
 
 - `git reset --hard`, `git checkout .`, `git clean -fd`, `git stash`, `git add -A`, `git add .`, `git commit --no-verify`.
 
-Syncing upstream:
+Upstream history:
 
-- `upstream/main` moves independently. Do not compare your work with `git diff upstream/main`; use the fork base recorded in `docs/explains/26-fork-and-prune.md`, or `git log --oneline HEAD..upstream/main` to see upstream-only commits.
-- Sync with `git fetch upstream && git rebase upstream/main`. Do not merge upstream into `main`; a merge hides our changes in history.
-- If rebase conflicts occur, resolve conflicts only in files you modified. If a conflict is in a file you did not modify, abort and ask the user.
+- The upstream remote has been removed. Use the `pi-fork-base-20d86c365` tag for the original fork point and `omfde-cutover` for the cutover point.
+- Do not add an upstream remote or restore automatic upstream rebases unless the decision-maker explicitly reopens that decision.
+- If upstream code must be consulted, fetch it into a temporary clone or a named archive ref with explicit approval; do not make it a normal workflow dependency.
 - Never force push.
 
 ## Issues and PRs
 
-This fork does not use the upstream issue/PR gate. GitHub Issues are the internal record and task board for requirements, bugs, and stage goals; the durable product record stays in `docs/specs/vision.md`, `docs/rads/`, `docs/plans/`, and `docs/explains/`.
+GitHub Issues are the internal record and task board for requirements, bugs, and stage goals; the durable product record stays in `docs/specs/vision.md`, `docs/rads/`, `docs/plans/`, and `docs/explains/`.
 
 - New requirements start with a decision-maker-led discussion. After the decision, create or link the issue and, if needed, the RAD. Bugs can start as issues. Link requirement issues to `docs/rads/<slug>.md`; link implementation issues to `docs/plans/<slug>.md`; track stage goals with milestones or tracking issues.
 - Team-visible development tasks are tracked by issue. A-class mechanical fixes may skip an issue unless they touch shared docs, behavior, or parallel work.
 - Internal work does not open PRs by default. PRs are only for external contributors or a decision-maker-approved internal exception. Internal exception PRs use a separate fork or clone, not a branch in this repository.
 - Only the decision-maker or an explicitly authorized agent may merge. Use squash merge, delete the source branch, and update the issue with the result.
-- This repository does not contribute to upstream Pi. Do not open PRs or push branches to `upstream`.
 - When posting issue/PR comments, write the comment to a temp file and post with `gh issue/pr comment --body-file`. Keep comments concise, technical, and end every AI-posted comment with the AI-generated disclaimer line specified by the originating prompt.
 - When closing issues via commit, include `fixes #<number>` or `closes #<number>`; repeat the keyword per issue.
 
@@ -162,7 +158,6 @@ For testing pi's interactive mode, load and follow [.pi/skills/interactive-testi
 ## Changelog and Releases
 
 - This fork does not publish releases and does not maintain per-package changelogs. Do not edit `packages/*/CHANGELOG.md` for internal work; record internal changes in `docs/explains/`.
-- This repository does not contribute to upstream Pi, so upstream changelog and release rules do not apply.
 
 ## User Override
 

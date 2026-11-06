@@ -4,18 +4,17 @@
 
 ## 当前状态
 
-本仓库是 `earendil-works/pi` 的本地 fork，不是 GitHub 意义上的 fork。
+本仓库是独立维护的 `earendil-works/pi` fork，不是 GitHub 意义上的 fork。
 
-- `upstream` 是 Pi 远端。`main` 是产品主分支；`upstream/main` 是只读的 Pi 镜像，只用于同步；`pages` 发布文档站。不要向上游贡献。
+- 没有 `upstream` remote。`main` 是产品主分支；`pages` 发布文档站。历史由 `pi-fork-base-20d86c365` 和 `omfde-cutover` 标签锚定。
 - 包管理器：pnpm 11.15.1，由 `packageManager` 固定。`pnpm-lock.yaml` 和 `pnpm-workspace.yaml` 是依赖与 workspace 的事实来源。
 - 所有工作都在 `main` 上进行。不要创建功能分支，也不要在其他分支的 worktree 中工作。
-- 不要向 `upstream/main` 提交。
 - 已裁剪的上游子系统：`apps/p2`、`packages/env`、`packages/durable`、`packages/chord` 和 `scripts/durable-browser-smoke-entry.ts`。
 - 保留的包：`agent`、`ai`、`coding-agent`、`codemode`、`evals`、`mcp`、`schema`、`telemetry`、`tui`。
-- 平台布局：`apps/` 放可运行应用，`extensions/` 放平台扩展，`packages/` 放 Pi 和共享库。Pi 包保留在 `packages/`，这样上游 rebase 仍然适用。
+- 平台布局：`apps/` 放可运行应用，`extensions/` 放平台扩展，`packages/` 放 Pi fork 和共享库。
 - `apps/omfde` 是第一个平台入口，启动 Pi 时设置 `OMFDE_PLATFORM=1`；`extensions/omfde-core` 是第一个扩展骨架。
-- 除删除 `packages/coding-agent/src/utils/shell.ts` 中两行注释外，Pi 核心代码未修改。
-- 目标分为两条并行线：教程线（理解 → 会用 → 用好）和平台化线（骨架 → 核心能力 → 协作 → 企业集成 → 治理）。项目处于“会用”阶段。在真实缺口证明需要进入平台化阶段之前，不要修改 Pi 核心行为。
+- Pi 核心现在由本项目维护。核心改动是允许的，但仍需要明确决定和 plan。
+- 目标分为两条并行线：教程线（理解 → 会用 → 用好）和平台化线（骨架 → 核心能力 → 协作 → 企业集成 → 治理）。项目处于“会用”阶段。优先使用扩展和配置；只有出现真实缺口时才改核心。
 - 愿景和决策记录在 `docs/specs/vision.md`。阅读笔记、验证脚本和 fork 说明在 `docs/explains/`。
 - 裁剪范围和恢复方法：`docs/explains/26-fork-and-prune.md`。
 
@@ -109,12 +108,11 @@
 - npm 时代的 `install-lock` 和发布脚本是遗留路径。本 fork 不发布版本；除非恢复发布路径，否则不要运行它们。
 - 除非设置 `PI_ALLOW_LOCKFILE_CHANGE=1`，否则 pre-commit 会阻止 `pnpm-lock.yaml` 提交。除非用户希望提交这个 lockfile 变更，否则不要绕过。
 
-## 分支、Git 与上游
+## 分支与 Git
 
 同一个 cwd 中可能同时运行多个 pi 会话，每个会话修改不同的文件。触碰你改动之外的未暂存、已暂存或未跟踪文件的 Git 操作，会破坏其他会话的工作。
 
 - 只在 `main` 上工作。不要创建功能分支，也不要在其他分支的 worktree 中工作。如果任务看起来需要分支，先停下来询问决策者。
-- 永远不要向 `upstream/main` 提交；它是只读的 Pi 镜像。
 - 把 `pages` 保留为独立的文档分支；不要把它合并进 `main`。
 - 未经决策者协调，不要把共享 worktree 切到 `pages`，也不要在那里运行切换分支的 Git 操作。获授权的发布使用独立的 clone 或 worktree。
 - 遵守 issue 中分配的 write scope。未经明确批准，不要编辑范围外的文件。把 package manifest、lockfile、`tsconfig.json`、`AGENTS.md`、`docs/specs/`、根 README 和生成文件当作单写者共享文件。
@@ -123,28 +121,26 @@
 - 提交前运行 `git status` 和 `git diff --cached --name-only`，确认每个 staged 路径都是你的、且在 write scope 内。超范围提交必须经决策者明确同意。
 - `packages/ai/src/models.generated.ts` 是生成文件、共享文件。只有在你的改动重新生成它时才包含；否则保持未暂存。它仍然受 write scope 约束。
 - 消息格式：`{feat,fix,docs}[(repo|ai|tui|agent|coding-agent)]: <commit message>`（可选多行）。消息要有信息量且精炼。
-- 永远不要 push 到 `upstream`，也不要向上游开 PR。上游是只读的。
 
 永远不要运行（会破坏其他 agent 的工作或绕过检查）：
 
 - `git reset --hard`、`git checkout .`、`git clean -fd`、`git stash`、`git add -A`、`git add .`、`git commit --no-verify`。
 
-同步上游：
+上游历史：
 
-- `upstream/main` 会独立前进。不要用 `git diff upstream/main` 比较自己的工作；应该使用 `docs/explains/26-fork-and-prune.md` 中记录的 fork 基点，或用 `git log --oneline HEAD..upstream/main` 查看仅属于上游的提交。
-- 用 `git fetch upstream && git rebase upstream/main` 同步。不要把上游 merge 进 `main`；merge 会让历史里的自有改动变得难以辨认。
-- 如果发生 rebase 冲突，只在你修改过的文件中解决冲突。如果冲突出现在你没有修改过的文件中，中止并询问用户。
+- 已删除 upstream remote。用 `pi-fork-base-20d86c365` 标签定位原始 fork 点，用 `omfde-cutover` 定位切断点。
+- 除非决策者明确重新开启该决定，否则不要重新添加 upstream remote，也不要恢复自动 upstream rebase。
+- 如果必须查阅上游代码，使用临时 clone 或经明确批准的命名归档 ref；不要把它变成日常工作流依赖。
 - 永远不要 force push。
 
 ## Issue 与 PR
 
-本 fork 不使用上游的 issue/PR 门槛。GitHub Issues 是团队记录需求、bug 和阶段目标的统一视图和任务板；耐久的产品记录仍在 `docs/specs/vision.md`、`docs/rads/`、`docs/plans/` 和 `docs/explains/`。
+GitHub Issues 是团队记录需求、bug 和阶段目标的统一视图和任务板；耐久的产品记录仍在 `docs/specs/vision.md`、`docs/rads/`、`docs/plans/` 和 `docs/explains/`。
 
 - 新需求先由决策者发起讨论。决定后，再创建或关联 issue；需要 RAD 时一并关联。bug 可以直接开 issue。需求类 issue 关联 `docs/rads/<slug>.md`；实现类 issue 关联 `docs/plans/<slug>.md`；阶段目标用 milestone 或 tracking issue 跟踪。
 - 团队可见的开发任务以 issue 为准。A 类机械修复可以例外不建 issue；如果涉及共享文档、行为变化或多人并行，仍然建 issue。
 - 内部工作默认不开 PR。PR 只用于外部贡献者，或决策者批准的内部例外。内部例外 PR 使用独立的 fork 或 clone，不在本仓库创建源分支。
 - 只有决策者，或获得明确授权的 Agent 可以合并。使用 squash merge，删除源分支，并在 issue 中附结果。
-- 本仓库不向上游 Pi 贡献。不要向上游开 PR，也不要 push 分支到 `upstream`。
 - 发布 issue/PR 评论时，把评论写入临时文件，用 `gh issue/pr comment --body-file` 发布。评论要简洁、技术性，并在每条 AI 发布的评论末尾加上发起 prompt 指定的 AI 生成免责声明行。
 - 通过 commit 关闭 issue 时，包含 `fixes #<number>` 或 `closes #<number>`；多个 issue 时每个 issue 重复一次关键字。
 
@@ -164,7 +160,6 @@
 ## Changelog 与发布
 
 - 本 fork 不发布版本，也不维护每个包的 changelog。内部工作不要编辑 `packages/*/CHANGELOG.md`；把内部变更记录在 `docs/explains/`。
-- 本仓库不向上游 Pi 贡献，因此上游的 changelog 和发布规则不适用。
 
 ## 用户覆盖
 

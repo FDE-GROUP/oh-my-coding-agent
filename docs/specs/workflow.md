@@ -1,6 +1,6 @@
 # 开发工作流
 
-> 版本：0.2.6 | 日期：2026-11-06 | 状态：现行
+> 版本：0.3.0 | 日期：2026-11-06 | 状态：现行
 
 本文件把 vision、RAD、AGENTS 的规则串成可重复执行的闭环。它不新设产品边界；边界以 `docs/specs/vision.md` 为准。贡献者的操作细节和代码门禁见 `CONTRIBUTING.md`。
 
@@ -148,12 +148,11 @@ GitHub Issues 是团队记录任务、bug 和阶段目标的统一视图，不�
 - 提交前运行 `git status` 和 `git diff --cached --name-only`，确认每个 staged 路径都是自己的且在 scope 内；显式 `git add <paths>`。
 - 提交消息：`{feat,fix,docs}[(repo|ai|tui|agent|coding-agent)]: <summary>`，正文引用 issue：`refs #N`，完成时用 `fixes #N` 或 `closes #N`。
 - `git commit` 和 `git push` 是共享状态的短临界区：一次只允许一个 Agent 执行；执行前确认没有其他 Agent 正在提交，执行后报告 commit hash。
-- 不 push 到 `upstream`；同步上游用 `git fetch upstream && git rebase upstream/main`，且必须先取得决策者协调。
+- 已删除 `upstream` remote；不要重新添加或恢复自动 upstream rebase，除非决策者明确重新开启该决定。需要查阅上游时使用临时 clone 或经批准的归档 ref。
 
 ### 10.2 开 PR
 
 - 内部默认不开 PR。`main` 是唯一开发分支，canonical repo 中没有功能分支。
-- 本仓库不向上游 Pi 贡献，也不向上游开 PR。
 - PR 只用于两种情况：
   - 外部贡献者从自己的 fork 提交；
   - 决策者特批的内部例外（高风险、大改动、需要多人评审）。
@@ -249,3 +248,4 @@ GitHub Issues 是团队记录任务、bug 和阶段目标的统一视图，不�
 | 2026-11-06 | 0.2.4 | check 改为只读，新增 check:fix 和 secret scan；pre-commit 只检查 staged 文件，pre-push 跑完整 check |
 | 2026-11-06 | 0.2.5 | 增加平台 TSDoc 规范和 check:tsdoc 本地门禁 |
 | 2026-11-06 | 0.2.6 | 包管理器从 npm 迁移到 pnpm；本地命令、锁文件和 workspace 配置同步更新 |
+| 2026-11-06 | 0.3.0 | 切断上游，转为独立维护；删除 upstream remote 和自动 rebase 约定 |

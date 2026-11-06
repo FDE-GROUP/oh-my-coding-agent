@@ -2,9 +2,11 @@
 
 这份文档解释“把 Pi fork 下来并裁剪了约一半代码”具体指什么，以及哪些事情没有发生。
 
+> 2026-11-06 注：本文记录 fork 和裁剪的初始过程。之后已删除 `upstream` remote，转为独立维护；下文中关于 upstream 的命令是历史记录，不再作为当前工作流。
+
 ## 1. 一句话
 
-在本地复制 Pi 的仓库，保留上游引用，建立自己的工作分支；然后按依赖关系删除
+当时在本地复制 Pi 的仓库，保留上游引用，建立自己的工作分支；然后按依赖关系删除
 四个与 coding-agent 无关的子系统。**coding-agent 的核心代码没有改。**
 
 ## 2. “Fork”在这里的含义
@@ -18,16 +20,18 @@ git fetch upstream
 git checkout -B main upstream/main
 ```
 
+当前引用：
+
 | 引用 | 作用 |
 |---|---|
-| `upstream` | Pi 官方仓库，只读同步源 |
-| `upstream/main` | Pi 的只读镜像，不提交 |
-| `main` | 产品主分支，承载 Pi 包、平台应用和扩展 |
+| `main` | 产品主分支，承载 Pi fork、平台应用和扩展 |
 | `pages` | 文档站分支，独立发布 GitHub Pages |
+| `pi-fork-base-20d86c365` | 原始 fork 基点标签 |
+| `omfde-cutover` | 切断上游、转为独立维护的标签 |
 
-2026-11-06 前工作分支是 `omca`；分支整理后统一到 `main`，`omca` 已删除。
+2026-11-06 前工作分支是 `omca`；分支整理后统一到 `main`，`omca` 已删除。之后 `upstream` remote 也已删除。
 
-所以“fork”= 本地 Git 分支 + 上游 remote，而不是平台意义上的 fork。
+所以当时的“fork”= 本地 Git 分支 + 上游 remote，而不是平台意义上的 fork。当前已删除 `upstream` remote，转为独立维护。
 
 ## 3. 裁剪了什么
 
@@ -125,16 +129,15 @@ fork 时：3,995
 
 ## 8. 删掉的代码还能找回来吗
 
-能。两处都有：
+能。本地历史仍然保留：
 
 ```bash
 # 本地 fork 基点
 git show 20d86c365:packages/chord/README.md
-
-# 或从上游
-git fetch upstream
-git show upstream/main:packages/durable/README.md
+git show pi-fork-base-20d86c365:packages/durable/README.md
 ```
+
+如果要查看原上游仓库，使用临时 clone 或经批准的归档 ref，不要重新把 `upstream` 作为日常工作流依赖。
 
 删除本身也是三个独立提交，可以单独 revert：
 
@@ -144,7 +147,7 @@ git show upstream/main:packages/durable/README.md
 5b6dc4f6c  remove chord and durable
 ```
 
-## 9. 上游漂移
+## 9. 上游漂移（历史）
 
 fork 基点是：
 
@@ -152,47 +155,30 @@ fork 基点是：
 20d86c365  2026-11-05 18:07  feat(p2): Chord v2 cleanup pass
 ```
 
-但 `upstream/main` 后来被某个后台 fetch 更新到了：
+在切断上游之前，`upstream/main` 曾漂移到 `2a32a605a`，比基点新 11 个提交。
+当时用 `git diff upstream/main` 会误把上游提交当成我们的改动。
 
-```
-2a32a605a  2026-11-05 23:35  feat(p2): Gondolin sandbox environments
-```
-
-比基点新 11 个提交。这解释了一个容易误判的现象：用
-`git diff upstream/main` 看核心代码，会看到 128 行改动，但那**不是我们的改动**，
-而是上游新增的 11 个提交。
-
-正确的比较方式：
+2026-11-06 后已删除 `upstream` remote，不再做上游同步。历史比较使用本地标签：
 
 ```bash
-git diff 20d86c365          # 我们自己的改动
-git log --oneline HEAD..upstream/main   # 上游新增的提交
+git diff pi-fork-base-20d86c365   # 相对 fork 基点的改动
+git diff omfde-cutover           # 相对切断点的改动
 ```
-
-同步上游时建议：
-
-```bash
-git fetch upstream
-git rebase upstream/main
-```
-
-不要直接 `merge`，否则历史里会混入上游的合并提交，之后很难看清自己的改动。
 
 ## 10. 这不是什么
 
-- **不是 GitHub fork**：没有账号关系，没有 push。
-- **不是重写 Pi**：核心代码只删了 2 行注释。
+- **不是 GitHub fork**：没有账号关系，也没有 push 到上游。
+- **不是重写 Pi**：当前核心改动仍然很少；后续修改按 vision → RAD → plan 控制。
 - **不是删功能**：删的是 coding-agent 从不加载的包。
-- **不是永久删除**：git 历史和上游都保留着。
+- **不是永久删除**：git 历史保留着，`pi-fork-base-20d86c365` 标签可定位原始基点。
 
 ## 11. 当前验证状态
 
-- `npm run check`：通过；
+- `pnpm run check`：通过；
 - `./test.sh`：最后一次运行剩余 17 个失败，均为环境相关（剪贴板、Bun worker、
   模型目录网络、时序），详见 `00-baseline.md`；
 - 四项基于 faux provider 的运行验证通过，见 `25-validation.md`。
 
-## 12. 一个未跟踪目录
+## 12. docs/specs 已跟踪
 
-工作树里有一个未跟踪的 `docs/specs/`，不是本项目创建的，也没有被提交。
-如果它是另一个会话或工具写的，注意避免与本仓库的改动互相覆盖。
+`docs/specs/` 已纳入版本控制；其中 `vision.md` 是项目宪法，修改时需要决策者确认并随相关变更提交。

@@ -42,7 +42,7 @@ The full process is in [`docs/specs/workflow.md`](docs/specs/workflow.md).
 - `docs/specs/vision.md` is the project constitution. Do not exceed its goals, boundaries, or phase. If a change conflicts, stop and discuss amending the vision first.
 - Pi core stays minimal. Prefer apps, extensions, and configuration over core changes.
 - Do not modify Pi core unless the vision decision and the approved plan say so.
-- Keep Pi packages in `packages/` so upstream rebases keep applying.
+- Pi packages are now maintained here; keep them in `packages/` and modify them under the same workflow.
 - Platform code belongs in `apps/`, `packages/`, or `extensions/` according to its role.
 
 ## Branches and commits
@@ -61,7 +61,6 @@ The full process is in [`docs/specs/workflow.md`](docs/specs/workflow.md).
 ## Pull requests and merges
 
 - Internal work does not open PRs by default. `main` is the only development branch.
-- This repository does not contribute to upstream Pi and does not open upstream PRs.
 - PRs are only for external contributors (from their fork) or a decision-maker-approved internal exception.
 - An internal exception PR must use a separate fork or clone; do not create its source branch in the canonical repository.
 - A PR must link its issue and RAD/plan if present, state its write scope, list validation commands and output, and contain only scoped changes.
@@ -88,12 +87,14 @@ The full process is in [`docs/specs/workflow.md`](docs/specs/workflow.md).
 - Record commands, output, and environment. Do not mask failures with skips or relaxed assertions.
 - If you create or modify a test, run it and iterate until it passes.
 
-## Upstream sync
+## Independent maintenance
 
-This repository tracks `earendil-works/pi` as a read-only source. Internal work follows this guide and `docs/specs/workflow.md`.
+This repository is maintained independently from `earendil-works/pi`. The `upstream` remote has been removed; the `pi-fork-base-20d86c365` and `omfde-cutover` tags anchor the history.
 
-- Do not open PRs against upstream Pi or push branches to `upstream`.
-- Use upstream only to fetch and rebase; upstream's issue and PR gates do not apply to our internal work.
+- Do not add an upstream remote or restore automatic upstream rebases without an explicit decision from the decision-maker.
+- Dependency updates, security review, model catalog updates, tests, and compatibility are now this project's responsibility.
+- Keep the MIT license and upstream copyright notices.
+- If upstream code must be consulted, use a temporary clone or an approved archive ref; do not make it a normal workflow dependency.
 
 ## External contributions
 

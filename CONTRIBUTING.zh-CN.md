@@ -44,7 +44,7 @@ GitHub Issues 是团队记录需求、bug 和任务的统一视图和任务板�
 - `docs/specs/vision.md` 是项目宪法。不要超出它的目标、边界和阶段。如果改动与它冲突，先停下来商议是否修改 vision。
 - Pi 核心保持精简。优先用应用、扩展和配置，而不是改核心。
 - 除非 vision 决策和已批准的 plan 都明确说明，否则不要修改 Pi 核心。
-- Pi 包保留在 `packages/`，这样上游 rebase 仍然适用。
+- Pi 包现在由本项目维护；继续放在 `packages/`，并按同一套工作流修改。
 - 平台代码按职责放在 `apps/`、`packages/` 或 `extensions/`。
 
 ## 分支与提交
@@ -63,7 +63,6 @@ GitHub Issues 是团队记录需求、bug 和任务的统一视图和任务板�
 ## PR 与合并
 
 - 内部工作默认不开 PR。`main` 是唯一开发分支。
-- 本仓库不向上游 Pi 贡献，也不向上游开 PR。
 - PR 只用于：外部贡献者从自己的 fork 提交，或决策者批准的内部例外。
 - 内部例外 PR 必须使用独立的 fork 或 clone；不要在 canonical 仓库中创建它的源分支。
 - PR 必须关联 issue 和 RAD / plan（如有），写清 write scope，列出验证命令和输出，并且只包含 scope 内的改动。
@@ -90,12 +89,14 @@ GitHub Issues 是团队记录需求、bug 和任务的统一视图和任务板�
 - 记录命令、输出和环境。不要用 skip 或放宽断言掩盖失败。
 - 如果你创建或修改了测试，运行它并迭代到通过。
 
-## 上游同步
+## 独立维护
 
-本仓库把 `earendil-works/pi` 作为只读来源。内部工作遵循本指南和 `docs/specs/workflow.md`。
+本仓库已经从 `earendil-works/pi` 独立出来。`upstream` remote 已删除；`pi-fork-base-20d86c365` 和 `omfde-cutover` 标签锚定历史。
 
-- 不要向上游 Pi 开 PR，也不要 push 分支到 `upstream`。
-- 上游只用于 fetch 和 rebase；上游的 issue/PR 门槛不适用于我们的内部工作。
+- 未经决策者明确决定，不要重新添加 upstream remote，也不要恢复自动 upstream rebase。
+- 依赖更新、安全审查、模型目录更新、测试和兼容性现在由本项目负责。
+- 保留 MIT 许可证和上游版权声明。
+- 如果必须查阅上游代码，使用临时 clone 或经批准的归档 ref；不要把它变成日常工作流依赖。
 
 ## 外部贡献
 

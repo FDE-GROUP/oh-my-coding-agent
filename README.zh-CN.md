@@ -22,7 +22,7 @@ Pi 自带强大的默认配置，但刻意跳过了 sub-agents 和 plan mode 这
 
 你可以[以交互方式](packages/coding-agent/docs/usage.md)使用 Pi，在 [print 或 JSON 模式](packages/coding-agent/docs/cli.md)下自动化，通过 [RPC](packages/coding-agent/docs/rpc.md) 控制它，或者用 [Pi TypeScript SDK](packages/coding-agent/docs/sdk.md) 构建应用。真实集成案例见 [OpenClaw](https://github.com/OpenClaw/OpenClaw)。
 
-> **译注**：本文件根据仓库根目录的 `README.md` 翻译。本仓库是 Pi 的裁剪版，上游 README 中的 `packages/chord`、`packages/durable` 和 `apps/p2` 已被移除。下文的包列表按当前仓库实际内容调整，其余章节保持原意。裁剪范围见 [`docs/explains/26-fork-and-prune.md`](docs/explains/26-fork-and-prune.md)。
+> **译注**：本文件根据仓库根目录的 `README.md` 翻译。本仓库是独立维护的 Pi fork，已删除 `upstream` remote；上游 README 中的 `packages/chord`、`packages/durable` 和 `apps/p2` 已被移除。下文的包列表按当前仓库实际内容调整，其余章节保持原意。fork 与切断记录见 [`docs/explains/26-fork-and-prune.md`](docs/explains/26-fork-and-prune.md)。
 
 ## 本仓库结构
 
