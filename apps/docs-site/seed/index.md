@@ -1,0 +1,22 @@
+# oh-my-fde 文档
+
+omfde 是 Pi（`earendil-works/pi`）的独立维护 fork，定位为企业内部 FDE（Forward Deployed Engineer）平台。本站把仓库内分散的文档汇聚为一处，供人与 coding agent 双读，内容全部公开。
+
+## 三个分区
+
+- [项目文档](/docs)：愿景与决策记录、开发工作流、架构解读、RAD、计划与 spike。人工维护，是项目的权威记录。
+- [仓库 Wiki](/wiki)：按主题组织的仓库说明（快速开始、核心架构、配置管理、故障排除等）。由 Repo Wiki 工具生成，可能过时。
+- [架构知识卡](/knowledge)：按模块拆分的架构知识卡（概述、技术栈、架构设计、编码规范等）。由 Repo Wiki 工具生成，可能过时。
+
+## 面向 coding agent
+
+本站随静态构建生成 agent 表面，不依赖服务端：
+
+- `llms.txt` 与 `llms-full.txt`：站点索引与全文汇编。
+- 每页的 `.md` / `.mdx` 镜像：在任意页面 URL 后加 `.md` 即得该页纯 Markdown 原文。
+- JSON docs API 与 `.well-known/*` 清单：页面索引、导航、agent 技能发现。
+
+## 阅读约定
+
+- Wiki 与知识卡为自动生成，可能与当前代码不完全一致；如有冲突，以 [项目文档](/docs) 与源码为准。
+- 正文中指向源码的链接跳转到 GitHub 仓库（`FDE-GROUP/oh-my-fde`，`main` 分支）。
