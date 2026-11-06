@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: pi_web
-title: Pi Web 全栈应用（TanStack Start + Pi RPC）
+title: Pi Web 单仓应用（TanStack Start + Pi RPC）
 scope:
     - apps/pi-web/
 source_files: []

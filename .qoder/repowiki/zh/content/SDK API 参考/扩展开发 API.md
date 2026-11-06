@@ -1,7 +1,7 @@
 # 扩展开发 API
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [extensions/README.md](file://extensions/README.md)
 - [extensions/omfde-core/src/index.ts](file://extensions/omfde-core/src/index.ts)
 - [extensions/omfde-core/package.json](file://extensions/omfde-core/package.json)

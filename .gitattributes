@@ -12,6 +12,9 @@
 # Archived patch artifacts preserve whitespace exactly
 packages/agent/docs/**/*.diff -whitespace
 
+# Generated Repo Wiki Markdown uses trailing-space hard line breaks
+.qoder/repowiki/** -whitespace
+
 # Common binary assets
 *.png binary
 *.jpg binary

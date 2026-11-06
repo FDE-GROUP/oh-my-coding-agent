@@ -1,7 +1,7 @@
 # 交互式模式（TUI）
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [15-tui.md](file://docs/explains/15-tui.md)
 - [27-tui-usage.md](file://docs/explains/27-tui-usage.md)
 - [cli.md](file://packages/coding-agent/docs/cli.md)

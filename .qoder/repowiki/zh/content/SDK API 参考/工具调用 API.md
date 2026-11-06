@@ -1,7 +1,7 @@
 # 工具调用 API
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [extensions.md](file://packages/coding-agent/docs/extensions.md)
 - [read.ts](file://packages/coding-agent/src/core/tools/read.ts)
 - [write.ts](file://packages/coding-agent/src/core/tools/write.ts)

@@ -1,7 +1,7 @@
 # 支持的 LLM 提供商
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [packages/ai/catalog/providers/amazon-bedrock.ts](file://packages/ai/catalog/providers/amazon-bedrock.ts)
 - [packages/ai/catalog/providers/openai.ts](file://packages/ai/catalog/providers/openai.ts)
 - [packages/ai/catalog/providers/index.ts](file://packages/ai/catalog/providers/index.ts)
@@ -10,7 +10,7 @@
 </cite>
 
 ## 更新摘要
-**变更内容**
+**变更内容**   
 - 移除了独立的 Bedrock 提供商文档和 OpenAI 提供商文档
 - 统一通过综合提供商文档覆盖所有支持的提供商，包括 OpenAI 和 Bedrock
 - 保持统一的抽象层架构，继续支持所有提供商功能

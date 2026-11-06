@@ -59,7 +59,7 @@ source_files:
 
 ### 3.2 版本策略
 - 所有公开 workspace 包 **lockstep 同版本发布**：`scripts/publish.mjs` 在发布前断言 `versions.length === 1`。
-- 版本变更统一走 `pnpm run version:patch|minor:major` 或 `node scripts/release.mjs <major|minor|patch|x.y.z>`，后者会调用 `sync-versions.js` 同步 inter-package ranges。
+- 版本变更统一走 `npm run version:patch|minor:major` 或 `node scripts/release.mjs <major|minor|patch|x.y.z>`，后者会调用 `sync-versions.js` 同步 inter-package ranges。
 - `scripts/release.mjs` 要求工作区干净（`git status --porcelain` 为空），并先通过 `npm view <pkg>` 校验每个 public package 已在 npm 注册。
 
 ### 3.3 构建产物
@@ -91,7 +91,7 @@ graph LR
 - `build`：checkout → setup Bun 1.4.4 + Node 22 → hydrate model data → create source archive → 解压到临时目录 → 执行 `scripts/build-binaries.sh --offline-model-data`。
 - `smoke-test-binaries`：在 ubuntu/macos/windows 三套 runner 上下载对应平台二进制，跑 `--help`、`--version`、`smoke-test-codemode-binary.mjs`。
 - `stage-github-release`：生成 `RELEASE_NOTES.md` + `SHA256SUMS`，创建 **draft** GitHub Release，拒绝覆盖已发布的 release。
-- `publish-npm`：下载 `pi-env-*` 预编译 daemon，`npm ci` → `pnpm run build` → `pnpm run check` → `npm test` → `check:package-install` → `publish.mjs --dry-run` → `publish.mjs`（trusted publishing via OIDC）。
+- `publish-npm`：下载 `pi-env-*` 预编译 daemon，`npm ci` → `npm run build` → `npm run check` → `npm test` → `check:package-install` → `publish.mjs --dry-run` → `publish.mjs`（trusted publishing via OIDC）。
 - `announce-pi-dev-release`：通过 AWS CLI 向 Cloudflare R2 上传发布公告。
 - `publish-github-release`：将 draft release 改为 published。
 - `cleanup-draft-github-release`：任一上游失败时删除 draft release。
@@ -113,6 +113,6 @@ graph LR
 - **Source archive 可复现**：CI 不直接在 checkout 目录构建，而是解压 `pi-${VERSION}-source.tar.gz` 到临时目录后执行 `scripts/build-binaries.sh`。
 - **Draft Release 保护**：`stage-github-release` 拒绝修改已发布的 release；`publish-github-release` 仅在 draft 存在且未发布时操作；`cleanup-draft-github-release` 在所有下游失败时清理 draft。
 - **Provenance 发布**：`scripts/publish.mjs` 使用 `npm publish --provenance --ignore-scripts`，CI 提前升级到 `npm@11.16.0` 以支持 trusted publishing。
-- **模型数据**：发布前需 `pnpm run generate:models` + `pnpm run check:model-data`，CI 额外执行 `hydrate:model-data`。
-- **MCP Conformance**：`ci.yml` 单独 job 运行 `pnpm run test:mcp-conformance`，对比 `packages/coding-agent/test/mcp-conformance/baseline.json`。
+- **模型数据**：发布前需 `npm run generate:models` + `npm run check:model-data`，CI 额外执行 `hydrate:model-data`。
+- **MCP Conformance**：`ci.yml` 单独 job 运行 `npm run test:mcp-conformance`，对比 `packages/coding-agent/test/mcp-conformance/baseline.json`。
 - **Preview Packages**：PR 与 main push 上通过 `scripts/preview-packages.mjs` 打包并以 SHA 命名的 tarball 上传为 CI artifact，保留 3 天。

@@ -1,7 +1,7 @@
 # Codemode 扩展
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [packages/coding-agent/src/extensions/codemode/index.ts](file://packages/coding-agent/src/extensions/codemode/index.ts)
 - [packages/coding-agent/src/extensions/codemode/tool.ts](file://packages/coding-agent/src/extensions/codemode/tool.ts)
 - [packages/coding-agent/src/core/settings-defaults.ts](file://packages/coding-agent/src/core/settings-defaults.ts)

@@ -1,7 +1,7 @@
 # SDK API 参考
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [packages/coding-agent/src/index.ts](file://packages/coding-agent/src/index.ts)
 - [packages/coding-agent/docs/sdk.md](file://packages/coding-agent/docs/sdk.md)
 - [packages/coding-agent/docs/rpc.md](file://packages/coding-agent/docs/rpc.md)

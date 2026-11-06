@@ -1,7 +1,7 @@
 # 事件系统 API
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [event-bus.ts](file://packages/coding-agent/src/core/event-bus.ts)
 - [types.ts](file://packages/coding-agent/src/core/extensions/types.ts)
 - [extensions-runner.test.ts](file://packages/coding-agent/test/extensions-runner.test.ts)

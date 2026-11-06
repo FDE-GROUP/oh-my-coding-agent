@@ -1,7 +1,7 @@
 # 扩展上下文 API
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [types.ts](file://packages/coding-agent/src/core/extensions/types.ts)
 - [runner.ts](file://packages/coding-agent/src/core/extensions/runner.ts)
 - [extensions-runner.test.ts](file://packages/coding-agent/test/extensions-runner.test.ts)

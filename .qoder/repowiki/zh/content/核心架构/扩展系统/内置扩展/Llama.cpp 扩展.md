@@ -1,7 +1,7 @@
 # Llama.cpp 扩展
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [llama-cpp.md](file://packages/coding-agent/docs/llama-cpp.md)
 - [index.ts](file://packages/coding-agent/src/extensions/llama/index.ts)
 - [client.ts](file://packages/coding-agent/src/extensions/llama/client.ts)

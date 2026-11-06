@@ -1,7 +1,7 @@
-# Pi Web UI 前端界面
+基于我对代码的分析，我现在可以更新文档以反映Pi Web UI M2的重大功能扩展。让我创建更新后的文档：
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [apps/pi-web/package.json](file://apps/pi-web/package.json)
 - [apps/pi-web/server.mjs](file://apps/pi-web/server.mjs)
 - [apps/pi-web/src/router.tsx](file://apps/pi-web/src/router.tsx)
@@ -15,29 +15,37 @@
 - [apps/pi-web/src/components/conversation/Conversation.tsx](file://apps/pi-web/src/components/conversation/Conversation.tsx)
 - [apps/pi-web/src/components/conversation/MessageList.tsx](file://apps/pi-web/src/components/conversation/MessageList.tsx)
 - [apps/pi-web/src/components/conversation/SessionBar.tsx](file://apps/pi-web/src/components/conversation/SessionBar.tsx)
+- [apps/pi-web/src/components/conversation/Composer.tsx](file://apps/pi-web/src/components/conversation/Composer.tsx)
 - [apps/pi-web/src/components/tools/ToolCard.tsx](file://apps/pi-web/src/components/tools/ToolCard.tsx)
 - [apps/pi-web/src/lib/api.ts](file://apps/pi-web/src/lib/api.ts)
+- [apps/pi-web/src/lib/conversation.ts](file://apps/pi-web/src/lib/conversation.ts)
+- [apps/pi-web/src/lib/images.ts](file://apps/pi-web/src/lib/images.ts)
 - [apps/pi-web/src/lib/theme.ts](file://apps/pi-web/src/lib/theme.ts)
 - [apps/pi-web/src/lib/viewport.ts](file://apps/pi-web/src/lib/viewport.ts)
 - [apps/pi-web/src/styles/app.css](file://apps/pi-web/src/styles/app.css)
 - [apps/pi-web/src/server/health.ts](file://apps/pi-web/src/server/health.ts)
 - [apps/pi-web/src/server/sessions.ts](file://apps/pi-web/src/server/sessions.ts)
+- [apps/pi-web/src/server/files.ts](file://apps/pi-web/src/server/files.ts)
 - [apps/pi-web/src/routes/api/sessions.ts](file://apps/pi-web/src/routes/api/sessions.ts)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.ts](file://apps/pi-web/src/routes/api/sessions.$sessionId.ts)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.commands.ts](file://apps/pi-web/src/routes/api/sessions.$sessionId.commands.ts)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.events.ts](file://apps/pi-web/src/routes/api/sessions.$sessionId.events.ts)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts](file://apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts)
+- [apps/pi-web/src/routes/api/files.expand.ts](file://apps/pi-web/src/routes/api/files.expand.ts)
+- [apps/pi-web/src/routes/api/files.search.ts](file://apps/pi-web/src/routes/api/files.search.ts)
 - [apps/pi-web/src/server/runtime-manager.ts](file://apps/pi-web/src/server/runtime-manager.ts)
 - [apps/pi-web/src/server/runtime.ts](file://apps/pi-web/src/server/runtime.ts)
 </cite>
 
 ## 更新摘要
-**变更内容**
-- 新增完整的服务器实现 server.mjs，包含安全头部和主机验证
-- 增强会话管理功能，支持会话列表、恢复和重命名
-- 添加完整的对话组件系统，包括消息列表、工具卡片和会话栏
-- 实现REST API路由和SSE事件流用于实时通信
-- 完善主题控制组件和UI交互
-- 增加安全加固措施，包括CSP、X-Frame-Options等
+**变更内容**   
+- 新增完整的图像附件系统，支持图片上传、压缩和预览
+- 实现文件引用系统(@file)，支持项目文件搜索和内容展开
+- 添加斜杠命令界面(/command)，提供可扩展的命令系统
+- 增强会话管理功能，支持分叉(fork)和克隆(clone)操作
+- 实现并行会话支持，提升多任务处理能力
+- 完善Composer组件，集成所有新功能的统一输入界面
 
 ## 目录
 1. [简介](#简介)
@@ -56,6 +64,11 @@ Pi Web 是 Pi 的完整Web前端界面，基于 React、TanStack Router 与 Vite
 - 会话管理与REST API接口
 - 实时事件流通信（SSE）
 - 完整的对话界面与工具调用展示
+- **新增图像附件系统**，支持图片上传、压缩和预览
+- **新增文件引用系统(@file)**，支持项目文件搜索和内容展开
+- **新增斜杠命令界面(/command)**，提供可扩展的命令系统
+- **增强会话管理**，支持分叉(fork)和克隆(clone)操作
+- **并行会话支持**，提升多任务处理能力
 - 主题系统与响应式布局
 - 健康检查与服务端函数
 
@@ -65,8 +78,8 @@ Pi Web 是 Pi 的完整Web前端界面，基于 React、TanStack Router 与 Vite
 Pi Web 采用按功能域组织的目录结构：
 - routes：页面路由与接口路由
 - components：UI组件（布局、对话、原语、工具）
-- lib：通用逻辑（API客户端、对话状态、主题、视口）
-- server：服务端能力（健康检查、JSONL分帧、运行时与运行时管理器、会话管理）
+- lib：通用逻辑（API客户端、对话状态、图像附件、主题、视口）
+- server：服务端能力（健康检查、JSONL分帧、运行时与运行时管理器、会话管理、文件处理）
 - styles：样式入口与Token映射
 
 ```mermaid
@@ -84,6 +97,10 @@ ApiSessions["routes/api/sessions.ts"]
 ApiSessionId["routes/api/sessions.$sessionId.ts"]
 ApiCommands["routes/api/sessions.$sessionId.commands.ts"]
 ApiEvents["routes/api/sessions.$sessionId.events.ts"]
+ApiFork["routes/api/sessions.$sessionId.fork.ts"]
+ApiClone["routes/api/sessions.$sessionId.clone.ts"]
+ApiFilesExpand["routes/api/files.expand.ts"]
+ApiFilesSearch["routes/api/files.search.ts"]
 end
 subgraph "UI 组件"
 AppFrame["components/layout/AppFrame.tsx"]
@@ -93,11 +110,13 @@ ThemeControl["components/layout/ThemeControl.tsx"]
 Conversation["components/conversation/Conversation.tsx"]
 MessageList["components/conversation/MessageList.tsx"]
 SessionBar["components/conversation/SessionBar.tsx"]
+Composer["components/conversation/Composer.tsx"]
 ToolCard["components/tools/ToolCard.tsx"]
 end
 subgraph "服务层"
 Health["server/health.ts"]
 Sessions["server/sessions.ts"]
+Files["server/files.ts"]
 RuntimeMgr["server/runtime-manager.ts"]
 Runtime["server/runtime.ts"]
 end
@@ -105,6 +124,8 @@ subgraph "样式与工具"
 Theme["lib/theme.ts"]
 Viewport["lib/viewport.ts"]
 Api["lib/api.ts"]
+Images["lib/images.ts"]
+ConversationState["lib/conversation.ts"]
 Styles["styles/app.css"]
 end
 Pkg --> Server
@@ -119,12 +140,17 @@ AppFrame --> ThemeControl
 AppFrame --> Conversation
 Conversation --> MessageList
 Conversation --> SessionBar
+Conversation --> Composer
 MessageList --> ToolCard
 Index --> Health
 ApiSessions --> RuntimeMgr
 ApiSessionId --> RuntimeMgr
 ApiCommands --> RuntimeMgr
 ApiEvents --> RuntimeMgr
+ApiFork --> RuntimeMgr
+ApiClone --> RuntimeMgr
+ApiFilesExpand --> Files
+ApiFilesSearch --> Files
 RuntimeMgr --> Runtime
 AppFrame --> Viewport
 Root --> Theme
@@ -142,21 +168,29 @@ Root --> Styles
 - [apps/pi-web/src/components/layout/Sidebar.tsx:1-77](file://apps/pi-web/src/components/layout/Sidebar.tsx#L1-L77)
 - [apps/pi-web/src/components/layout/RightPanel.tsx:1-10](file://apps/pi-web/src/components/layout/RightPanel.tsx#L1-L10)
 - [apps/pi-web/src/components/layout/ThemeControl.tsx:1-71](file://apps/pi-web/src/components/layout/ThemeControl.tsx#L1-L71)
-- [apps/pi-web/src/components/conversation/Conversation.tsx:1-274](file://apps/pi-web/src/components/conversation/Conversation.tsx#L1-L274)
+- [apps/pi-web/src/components/conversation/Conversation.tsx:1-386](file://apps/pi-web/src/components/conversation/Conversation.tsx#L1-L386)
 - [apps/pi-web/src/components/conversation/MessageList.tsx:1-232](file://apps/pi-web/src/components/conversation/MessageList.tsx#L1-L232)
 - [apps/pi-web/src/components/conversation/SessionBar.tsx:1-68](file://apps/pi-web/src/components/conversation/SessionBar.tsx#L1-L68)
+- [apps/pi-web/src/components/conversation/Composer.tsx:1-386](file://apps/pi-web/src/components/conversation/Composer.tsx#L1-L386)
 - [apps/pi-web/src/components/tools/ToolCard.tsx:1-124](file://apps/pi-web/src/components/tools/ToolCard.tsx#L1-L124)
 - [apps/pi-web/src/server/health.ts:1-46](file://apps/pi-web/src/server/health.ts#L1-L46)
 - [apps/pi-web/src/server/sessions.ts:1-70](file://apps/pi-web/src/server/sessions.ts#L1-L70)
+- [apps/pi-web/src/server/files.ts:1-187](file://apps/pi-web/src/server/files.ts#L1-L187)
 - [apps/pi-web/src/routes/api/sessions.ts:1-59](file://apps/pi-web/src/routes/api/sessions.ts#L1-L59)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.ts:1-48](file://apps/pi-web/src/routes/api/sessions.$sessionId.ts#L1-L48)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.commands.ts:1-40](file://apps/pi-web/src/routes/api/sessions.$sessionId.commands.ts#L1-L40)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.events.ts:1-92](file://apps/pi-web/src/routes/api/sessions.$sessionId.events.ts#L1-L92)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts:1-38](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts#L1-L38)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts:1-32](file://apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts#L1-L32)
+- [apps/pi-web/src/routes/api/files.expand.ts:1-31](file://apps/pi-web/src/routes/api/files.expand.ts#L1-L31)
+- [apps/pi-web/src/routes/api/files.search.ts:1-23](file://apps/pi-web/src/routes/api/files.search.ts#L1-L23)
 - [apps/pi-web/src/server/runtime-manager.ts:1-194](file://apps/pi-web/src/server/runtime-manager.ts#L1-L194)
 - [apps/pi-web/src/server/runtime.ts:1-337](file://apps/pi-web/src/server/runtime.ts#L1-L337)
 - [apps/pi-web/src/lib/theme.ts:1-123](file://apps/pi-web/src/lib/theme.ts#L1-L123)
 - [apps/pi-web/src/lib/viewport.ts:1-41](file://apps/pi-web/src/lib/viewport.ts#L1-L41)
-- [apps/pi-web/src/lib/api.ts:1-160](file://apps/pi-web/src/lib/api.ts#L1-L160)
+- [apps/pi-web/src/lib/api.ts:1-275](file://apps/pi-web/src/lib/api.ts#L1-L275)
+- [apps/pi-web/src/lib/images.ts:1-109](file://apps/pi-web/src/lib/images.ts#L1-L109)
+- [apps/pi-web/src/lib/conversation.ts:1-226](file://apps/pi-web/src/lib/conversation.ts#L1-L226)
 - [apps/pi-web/src/styles/app.css:1-95](file://apps/pi-web/src/styles/app.css#L1-L95)
 
 **章节来源**
@@ -175,11 +209,28 @@ Root --> Styles
   - 通过 TanStack Router 创建路由器并挂载全局路由树，启用滚动恢复与意图预加载。
   - 根路由注入 HTML 元信息、样式与主题初始化脚本，确保首屏无闪烁。
   - 新增会话页面路由 `/session/$sessionId`。
+- **新增图像附件系统**
+  - images.ts 实现图片预处理、压缩和base64编码。
+  - 支持拖拽、粘贴和文件选择三种输入方式。
+  - 自动压缩图片到2048px边长，最大5MB大小限制。
+- **新增文件引用系统(@file)**
+  - files.ts 实现项目文件搜索和安全的内容展开。
+  - 支持文本文件和图片文件的智能识别。
+  - 内置敏感文件过滤和路径安全检查。
+- **新增斜杠命令界面(/command)**
+  - Composer.tsx 实现命令自动补全和执行。
+  - 支持扩展命令、提示词和技能三类命令源。
+  - 提供流畅的用户交互体验。
+- **增强会话管理**
+  - 支持分叉(fork)操作，从指定消息点创建新会话分支。
+  - 支持克隆(clone)操作，复制当前会话状态。
+  - 并行会话支持，提升多任务处理能力。
 - 对话组件系统
   - Conversation 组件管理会话状态、模型选择和消息流。
   - MessageList 组件渲染消息历史、工具调用和流式输出。
   - SessionBar 组件显示模型选择、使用统计和成本信息。
   - ToolCard 组件展示工具调用的参数、执行状态和结果。
+  - **新增 Composer 组件**，集成所有输入功能的统一界面。
 - 侧边栏与右侧面板
   - Sidebar 提供品牌标识、新建会话按钮、会话列表与主题切换控件。
   - RightPanel 为预留插槽，默认隐藏，后续可扩展停靠面板。
@@ -193,7 +244,7 @@ Root --> Styles
 - 会话运行时与 API
   - runtime-manager.ts 管理多个 Pi 子进程运行时，具备并发上限、空闲回收与清理定时器。
   - runtime.ts 封装单个 Pi RPC 子进程的生命周期、命令收发、事件分发与快照获取。
-  - REST API路由：创建会话、获取快照、关闭会话、发送命令、事件流。
+  - REST API路由：创建会话、获取快照、关闭会话、发送命令、事件流、分叉、克隆、文件操作。
 
 **章节来源**
 - [apps/pi-web/server.mjs:1-139](file://apps/pi-web/server.mjs#L1-L139)
@@ -205,20 +256,27 @@ Root --> Styles
 - [apps/pi-web/src/components/layout/Sidebar.tsx:1-77](file://apps/pi-web/src/components/layout/Sidebar.tsx#L1-L77)
 - [apps/pi-web/src/components/layout/RightPanel.tsx:1-10](file://apps/pi-web/src/components/layout/RightPanel.tsx#L1-L10)
 - [apps/pi-web/src/components/layout/ThemeControl.tsx:1-71](file://apps/pi-web/src/components/layout/ThemeControl.tsx#L1-L71)
-- [apps/pi-web/src/components/conversation/Conversation.tsx:1-274](file://apps/pi-web/src/components/conversation/Conversation.tsx#L1-L274)
+- [apps/pi-web/src/components/conversation/Conversation.tsx:1-386](file://apps/pi-web/src/components/conversation/Conversation.tsx#L1-L386)
 - [apps/pi-web/src/components/conversation/MessageList.tsx:1-232](file://apps/pi-web/src/components/conversation/MessageList.tsx#L1-L232)
 - [apps/pi-web/src/components/conversation/SessionBar.tsx:1-68](file://apps/pi-web/src/components/conversation/SessionBar.tsx#L1-L68)
+- [apps/pi-web/src/components/conversation/Composer.tsx:1-386](file://apps/pi-web/src/components/conversation/Composer.tsx#L1-L386)
 - [apps/pi-web/src/components/tools/ToolCard.tsx:1-124](file://apps/pi-web/src/components/tools/ToolCard.tsx#L1-L124)
 - [apps/pi-web/src/lib/theme.ts:1-123](file://apps/pi-web/src/lib/theme.ts#L1-L123)
 - [apps/pi-web/src/lib/viewport.ts:1-41](file://apps/pi-web/src/lib/viewport.ts#L1-L41)
+- [apps/pi-web/src/lib/images.ts:1-109](file://apps/pi-web/src/lib/images.ts#L1-L109)
 - [apps/pi-web/src/server/health.ts:1-46](file://apps/pi-web/src/server/health.ts#L1-L46)
 - [apps/pi-web/src/server/sessions.ts:1-70](file://apps/pi-web/src/server/sessions.ts#L1-L70)
+- [apps/pi-web/src/server/files.ts:1-187](file://apps/pi-web/src/server/files.ts#L1-L187)
 - [apps/pi-web/src/server/runtime-manager.ts:1-194](file://apps/pi-web/src/server/runtime-manager.ts#L1-L194)
 - [apps/pi-web/src/server/runtime.ts:1-337](file://apps/pi-web/src/server/runtime.ts#L1-L337)
 - [apps/pi-web/src/routes/api/sessions.ts:1-59](file://apps/pi-web/src/routes/api/sessions.ts#L1-L59)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.ts:1-48](file://apps/pi-web/src/routes/api/sessions.$sessionId.ts#L1-L48)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.commands.ts:1-40](file://apps/pi-web/src/routes/api/sessions.$sessionId.commands.ts#L1-L40)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.events.ts:1-92](file://apps/pi-web/src/routes/api/sessions.$sessionId.events.ts#L1-L92)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts:1-38](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts#L1-L38)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts:1-32](file://apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts#L1-L32)
+- [apps/pi-web/src/routes/api/files.expand.ts:1-31](file://apps/pi-web/src/routes/api/files.expand.ts#L1-L31)
+- [apps/pi-web/src/routes/api/files.search.ts:1-23](file://apps/pi-web/src/routes/api/files.search.ts#L1-L23)
 
 ## 架构总览
 Pi Web 在前端使用 React + TanStack Router 组织页面与路由；在服务端通过 TanStack Start 的服务端函数与文件系统路由暴露 API。会话由 Node 子进程承载，Web 层通过 JSONL 协议与其进行 RPC 通信。新增的server.mjs作为独立HTTP服务器，提供安全头部、静态文件服务和请求转发。
@@ -234,6 +292,7 @@ participant Frame as "AppFrame.tsx"
 participant ApiSessions as "routes/api/sessions.ts"
 participant Manager as "server/runtime-manager.ts"
 participant Runtime as "server/runtime.ts"
+participant Files as "server/files.ts"
 Browser->>Server : 访问 "/"
 Server->>Router : 转发到TanStack Start
 Router->>RouteIndex : 匹配根路由
@@ -249,6 +308,11 @@ Runtime->>Runtime : initialize()
 Runtime-->>Manager : RpcSessionState
 Manager-->>ApiSessions : 运行时实例
 ApiSessions-->>Browser : {id, state}
+Browser->>Server : POST /api/files/expand
+Server->>Router : 转发到文件API
+Router->>Files : expandFiles(paths)
+Files-->>Router : {text, images, notes}
+Router-->>Browser : 文件展开结果
 ```
 
 **图示来源**
@@ -259,6 +323,7 @@ ApiSessions-->>Browser : {id, state}
 - [apps/pi-web/src/routes/api/sessions.ts:1-59](file://apps/pi-web/src/routes/api/sessions.ts#L1-L59)
 - [apps/pi-web/src/server/runtime-manager.ts:1-194](file://apps/pi-web/src/server/runtime-manager.ts#L1-L194)
 - [apps/pi-web/src/server/runtime.ts:1-337](file://apps/pi-web/src/server/runtime.ts#L1-L337)
+- [apps/pi-web/src/server/files.ts:1-187](file://apps/pi-web/src/server/files.ts#L1-L187)
 
 ## 详细组件分析
 
@@ -321,12 +386,178 @@ E --> F["会话页面路由"]
 - [apps/pi-web/src/routes/__root.tsx:1-32](file://apps/pi-web/src/routes/__root.tsx#L1-L32)
 - [apps/pi-web/src/routes/session.$sessionId.tsx:1-20](file://apps/pi-web/src/routes/session.$sessionId.tsx#L1-L20)
 
+### 图像附件系统
+**新增** Pi Web M2引入了完整的图像附件系统，支持多种图片输入方式和智能处理。
+
+- 图像处理流程
+  - 支持拖拽、粘贴和文件选择三种输入方式。
+  - 自动检测图片格式并进行预处理。
+  - 智能压缩：长边限制2048px，质量自适应调整。
+  - 大小限制：单张图片不超过5MB。
+  - Base64编码传输，支持JPEG格式。
+- 用户界面
+  - 图片预览缩略图展示。
+  - 支持移除已添加的图片。
+  - 进度反馈和错误提示。
+- 技术实现
+  - Canvas API进行图片缩放和压缩。
+  - File API处理文件读取。
+  - URL.createObjectURL生成预览链接。
+
+```mermaid
+flowchart TD
+A["用户输入图片"] --> B{"输入方式"}
+B --> |拖拽| C["File API读取"]
+B --> |粘贴| D["Clipboard API读取"]
+B --> |选择| E["File Input读取"]
+C --> F["ImageBitmap处理"]
+D --> F
+E --> F
+F --> G["Canvas缩放压缩"]
+G --> H["Base64编码"]
+H --> I["预览生成"]
+I --> J["添加到附件列表"]
+```
+
+**图示来源**
+- [apps/pi-web/src/lib/images.ts:1-109](file://apps/pi-web/src/lib/images.ts#L1-L109)
+- [apps/pi-web/src/components/conversation/Composer.tsx:168-186](file://apps/pi-web/src/components/conversation/Composer.tsx#L168-L186)
+
+**章节来源**
+- [apps/pi-web/src/lib/images.ts:1-109](file://apps/pi-web/src/lib/images.ts#L1-L109)
+- [apps/pi-web/src/components/conversation/Composer.tsx:168-186](file://apps/pi-web/src/components/conversation/Composer.tsx#L168-L186)
+
+### 文件引用系统(@file)
+**新增** 实现了强大的文件引用系统，支持项目文件的安全访问和内容展开。
+
+- 文件搜索功能
+  - 支持文件名和路径片段搜索。
+  - 排除敏感目录(.git, node_modules等)。
+  - 限制搜索结果数量(默认100条)。
+  - 异步搜索，带防抖处理。
+- 文件展开机制
+  - 智能识别文本文件和图片文件。
+  - 文本文件：最大256KB，UTF-8编码。
+  - 图片文件：最大10MB，支持多种格式。
+  - 安全验证：路径遍历防护、敏感文件过滤。
+- 用户体验
+  - @符号触发文件自动补全。
+  - 实时搜索建议。
+  - 展开后自动插入内容。
+  - 错误提示和跳过说明。
+
+```mermaid
+flowchart TD
+A["@file 引用"] --> B["文件搜索"]
+B --> C["路径验证"]
+C --> D{"文件类型"}
+D --> |文本| E["读取内容"]
+D --> |图片| F["Base64编码"]
+E --> G["格式化输出"]
+F --> H["添加到附件"]
+G --> I["插入编辑器"]
+H --> I
+```
+
+**图示来源**
+- [apps/pi-web/src/server/files.ts:128-186](file://apps/pi-web/src/server/files.ts#L128-L186)
+- [apps/pi-web/src/routes/api/files.expand.ts:1-31](file://apps/pi-web/src/routes/api/files.expand.ts#L1-L31)
+- [apps/pi-web/src/routes/api/files.search.ts:1-23](file://apps/pi-web/src/routes/api/files.search.ts#L1-L23)
+
+**章节来源**
+- [apps/pi-web/src/server/files.ts:1-187](file://apps/pi-web/src/server/files.ts#L1-L187)
+- [apps/pi-web/src/routes/api/files.expand.ts:1-31](file://apps/pi-web/src/routes/api/files.expand.ts#L1-L31)
+- [apps/pi-web/src/routes/api/files.search.ts:1-23](file://apps/pi-web/src/routes/api/files.search.ts#L1-L23)
+
+### 斜杠命令界面(/command)
+**新增** 提供了可扩展的命令系统，支持多种命令源和智能补全。
+
+- 命令系统架构
+  - 支持三类命令源：extension(扩展)、prompt(提示词)、skill(技能)。
+  - 命令自动补全，支持模糊匹配。
+  - 命令描述和来源信息显示。
+- 用户交互
+  - /符号触发命令补全。
+  - 键盘导航支持(上下箭头、回车、Tab)。
+  - ESC键取消补全。
+  - 命令执行后自动插入空格。
+- 集成特性
+  - 与Composer组件深度集成。
+  - 支持命令执行状态反馈。
+  - 错误处理和用户提示。
+
+```mermaid
+flowchart TD
+A["输入 /"] --> B["命令补全"]
+B --> C["用户选择"]
+C --> D["命令执行"]
+D --> E["结果反馈"]
+B --> F["键盘导航"]
+F --> C
+```
+
+**图示来源**
+- [apps/pi-web/src/components/conversation/Composer.tsx:48-61](file://apps/pi-web/src/components/conversation/Composer.tsx#L48-L61)
+- [apps/pi-web/src/components/conversation/Composer.tsx:114-132](file://apps/pi-web/src/components/conversation/Composer.tsx#L114-L132)
+
+**章节来源**
+- [apps/pi-web/src/components/conversation/Composer.tsx:48-61](file://apps/pi-web/src/components/conversation/Composer.tsx#L48-L61)
+- [apps/pi-web/src/components/conversation/Composer.tsx:114-132](file://apps/pi-web/src/components/conversation/Composer.tsx#L114-L132)
+
+### 增强的会话管理
+**新增** 会话管理功能得到显著增强，支持更灵活的会话操作。
+
+- 分叉(Fork)功能
+  - 从指定user消息点创建新会话分支。
+  - 保留原始会话的上下文和历史。
+  - 支持并行开发不同思路。
+  - 自动更新会话ID映射。
+- 克隆(Clone)功能
+  - 复制当前会话的完整状态。
+  - 包括消息历史、工具状态和配置。
+  - 用于实验和对比测试。
+  - 错误处理：未保存会话的处理。
+- 并行会话支持
+  - 同时运行多个会话。
+  - 资源管理和内存控制。
+  - 会话间隔离和状态同步。
+
+```mermaid
+sequenceDiagram
+participant User as "用户"
+participant UI as "界面"
+participant API as "API层"
+participant Manager as "运行时管理器"
+participant Runtime as "运行时"
+User->>UI : 点击分叉/克隆
+UI->>API : fork/clone请求
+API->>Manager : 获取运行时
+Manager->>Runtime : 执行fork/clone命令
+Runtime->>Runtime : 创建新会话
+Runtime-->>Manager : 新会话状态
+Manager-->>API : 会话信息
+API-->>UI : 返回新会话ID
+UI->>UI : 切换到新会话
+```
+
+**图示来源**
+- [apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts:1-38](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts#L1-L38)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts:1-32](file://apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts#L1-L32)
+- [apps/pi-web/src/components/conversation/Conversation.tsx:273-298](file://apps/pi-web/src/components/conversation/Conversation.tsx#L273-L298)
+
+**章节来源**
+- [apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts:1-38](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts#L1-L38)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts:1-32](file://apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts#L1-L32)
+- [apps/pi-web/src/components/conversation/Conversation.tsx:273-298](file://apps/pi-web/src/components/conversation/Conversation.tsx#L273-L298)
+
 ### 对话组件系统
 - Conversation 组件
   - 管理会话生命周期：创建、恢复、崩溃重启。
   - 处理模型选择、消息发送和流式响应。
   - 集成事件流连接，实时更新会话状态。
   - 错误处理和用户通知。
+  - **新增** 支持图像附件和文件引用。
+  - **新增** 支持分叉和克隆操作。
 - MessageList 组件
   - 渲染用户消息、助手回复和工具调用。
   - 支持流式文本输出和思维过程展示。
@@ -336,11 +567,19 @@ E --> F["会话页面路由"]
   - 模型选择下拉框，显示可用模型列表。
   - 上下文使用百分比、token计数和成本显示。
   - 实时统计信息更新。
+  - **新增** 克隆按钮和权限控制。
 - ToolCard 组件
   - 工具调用状态指示器（运行中、完成、失败）。
   - 参数展示和执行结果输出。
   - diff格式检测和语法高亮。
   - 长输出折叠展开功能。
+- **新增 Composer 组件**
+  - 统一的输入界面，集成所有新功能。
+  - 支持文本输入、图像附件、文件引用和命令。
+  - 智能补全和自动完成。
+  - 队列模式：插话(followUp)和引导(steer)。
+  - 图片预览和管理。
+  - 键盘快捷键支持。
 
 ```mermaid
 classDiagram
@@ -349,7 +588,15 @@ class Conversation {
 +state conversation, activeId, error
 +effect 事件流连接
 +method send(), abort(), restart()
++method handleFork(), handleClone()
 +render 消息列表/输入框/会话栏
+}
+class Composer {
++props disabled, streaming, queued, supportsImages
++state value, suggestion, attachments
++method detectSuggestion(), selectSuggestion()
++method addFiles(), removeAttachment()
++render 输入框/附件预览/命令补全
 }
 class MessageList {
 +props messages, streaming, tools
@@ -358,7 +605,7 @@ class MessageList {
 }
 class SessionBar {
 +props models, model, stats, onSelectModel
-+render 模型选择/统计信息
++render 模型选择/统计信息/克隆按钮
 }
 class ToolCard {
 +props callId, name, args, execution, result
@@ -366,17 +613,20 @@ class ToolCard {
 }
 Conversation --> MessageList : "渲染"
 Conversation --> SessionBar : "渲染"
+Conversation --> Composer : "渲染"
 MessageList --> ToolCard : "渲染"
 ```
 
 **图示来源**
-- [apps/pi-web/src/components/conversation/Conversation.tsx:1-274](file://apps/pi-web/src/components/conversation/Conversation.tsx#L1-L274)
+- [apps/pi-web/src/components/conversation/Conversation.tsx:1-386](file://apps/pi-web/src/components/conversation/Conversation.tsx#L1-L386)
+- [apps/pi-web/src/components/conversation/Composer.tsx:1-386](file://apps/pi-web/src/components/conversation/Composer.tsx#L1-L386)
 - [apps/pi-web/src/components/conversation/MessageList.tsx:1-232](file://apps/pi-web/src/components/conversation/MessageList.tsx#L1-L232)
 - [apps/pi-web/src/components/conversation/SessionBar.tsx:1-68](file://apps/pi-web/src/components/conversation/SessionBar.tsx#L1-L68)
 - [apps/pi-web/src/components/tools/ToolCard.tsx:1-124](file://apps/pi-web/src/components/tools/ToolCard.tsx#L1-L124)
 
 **章节来源**
-- [apps/pi-web/src/components/conversation/Conversation.tsx:1-274](file://apps/pi-web/src/components/conversation/Conversation.tsx#L1-L274)
+- [apps/pi-web/src/components/conversation/Conversation.tsx:1-386](file://apps/pi-web/src/components/conversation/Conversation.tsx#L1-L386)
+- [apps/pi-web/src/components/conversation/Composer.tsx:1-386](file://apps/pi-web/src/components/conversation/Composer.tsx#L1-L386)
 - [apps/pi-web/src/components/conversation/MessageList.tsx:1-232](file://apps/pi-web/src/components/conversation/MessageList.tsx#L1-L232)
 - [apps/pi-web/src/components/conversation/SessionBar.tsx:1-68](file://apps/pi-web/src/components/conversation/SessionBar.tsx#L1-L68)
 - [apps/pi-web/src/components/tools/ToolCard.tsx:1-124](file://apps/pi-web/src/components/tools/ToolCard.tsx#L1-L124)
@@ -460,6 +710,10 @@ Loader-->>Client : 渲染页面
   - PATCH /api/sessions/$sessionId：重命名会话。
   - POST /api/sessions/$sessionId/commands：发送RPC命令。
   - GET /api/sessions/$sessionId/events：SSE事件流。
+  - **新增** POST /api/sessions/$sessionId/fork：从指定消息分叉会话。
+  - **新增** POST /api/sessions/$sessionId/clone：克隆当前会话。
+  - **新增** POST /api/files/expand：展开文件引用。
+  - **新增** GET /api/files/search：搜索项目文件。
 
 ```mermaid
 classDiagram
@@ -469,6 +723,7 @@ class RuntimeManager {
 +close(id) Promise~boolean~
 +sweep() Promise~number~
 +closeAll() Promise~void~
++rekey(oldId, newId) void
 -makeRoom() Promise~void~
 }
 class SessionRuntime {
@@ -495,6 +750,7 @@ participant Client as "客户端"
 participant SessionsAPI as "sessions.ts"
 participant Manager as "runtime-manager.ts"
 participant Runtime as "runtime.ts"
+participant FilesAPI as "files.ts"
 Client->>SessionsAPI : POST /api/sessions
 SessionsAPI->>Manager : create({sessionPath})
 Manager->>Runtime : new SessionRuntime(...)
@@ -502,16 +758,13 @@ Runtime->>Runtime : initialize()
 Runtime-->>Manager : RpcSessionState
 Manager-->>SessionsAPI : 运行时实例
 SessionsAPI-->>Client : {id, state}
-Client->>SessionsAPI : GET /api/sessions/ : id
-SessionsAPI->>Manager : get(id)
-Manager-->>SessionsAPI : SessionRuntime
-SessionsAPI->>Runtime : snapshot()
-Runtime-->>SessionsAPI : {state, messages, stats}
-SessionsAPI-->>Client : 快照数据
-Client->>SessionsAPI : DELETE /api/sessions/ : id
-SessionsAPI->>Manager : close(id)
-Manager-->>SessionsAPI : true/false
-SessionsAPI-->>Client : {ok}
+Client->>FilesAPI : POST /api/files/expand
+FilesAPI->>FilesAPI : expandFiles(paths)
+FilesAPI-->>Client : {text, images, notes}
+Client->>SessionsAPI : POST /api/sessions/ : id/fork
+SessionsAPI->>Runtime : command({type : "fork"})
+Runtime-->>SessionsAPI : 新会话状态
+SessionsAPI-->>Client : {id, state}
 ```
 
 **图示来源**
@@ -519,6 +772,10 @@ SessionsAPI-->>Client : {ok}
 - [apps/pi-web/src/routes/api/sessions.$sessionId.ts:1-48](file://apps/pi-web/src/routes/api/sessions.$sessionId.ts#L1-L48)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.commands.ts:1-40](file://apps/pi-web/src/routes/api/sessions.$sessionId.commands.ts#L1-L40)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.events.ts:1-92](file://apps/pi-web/src/routes/api/sessions.$sessionId.events.ts#L1-L92)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts:1-38](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts#L1-L38)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts:1-32](file://apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts#L1-L32)
+- [apps/pi-web/src/routes/api/files.expand.ts:1-31](file://apps/pi-web/src/routes/api/files.expand.ts#L1-L31)
+- [apps/pi-web/src/routes/api/files.search.ts:1-23](file://apps/pi-web/src/routes/api/files.search.ts#L1-L23)
 - [apps/pi-web/src/server/runtime-manager.ts:1-194](file://apps/pi-web/src/server/runtime-manager.ts#L1-L194)
 - [apps/pi-web/src/server/runtime.ts:1-337](file://apps/pi-web/src/server/runtime.ts#L1-L337)
 
@@ -527,6 +784,10 @@ SessionsAPI-->>Client : {ok}
 - [apps/pi-web/src/routes/api/sessions.$sessionId.ts:1-48](file://apps/pi-web/src/routes/api/sessions.$sessionId.ts#L1-L48)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.commands.ts:1-40](file://apps/pi-web/src/routes/api/sessions.$sessionId.commands.ts#L1-L40)
 - [apps/pi-web/src/routes/api/sessions.$sessionId.events.ts:1-92](file://apps/pi-web/src/routes/api/sessions.$sessionId.events.ts#L1-L92)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts:1-38](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts#L1-L38)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts:1-32](file://apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts#L1-L32)
+- [apps/pi-web/src/routes/api/files.expand.ts:1-31](file://apps/pi-web/src/routes/api/files.expand.ts#L1-L31)
+- [apps/pi-web/src/routes/api/files.search.ts:1-23](file://apps/pi-web/src/routes/api/files.search.ts#L1-L23)
 - [apps/pi-web/src/server/runtime-manager.ts:1-194](file://apps/pi-web/src/server/runtime-manager.ts#L1-L194)
 - [apps/pi-web/src/server/runtime.ts:1-337](file://apps/pi-web/src/server/runtime.ts#L1-L337)
 
@@ -579,14 +840,20 @@ Server --> Start["TanStack Start"]
   - 运行时管理器限制最大活跃会话数，防止内存与进程膨胀。
   - 空闲回收与定时清理降低长期驻留成本。
   - SSE事件流心跳机制保持连接活跃。
+  - **新增** 图像附件的懒加载和内存管理。
+  - **新增** 文件搜索的异步处理和结果限制。
 - 可观测性与健壮性
   - 子进程 stderr 保留最近日志，便于诊断。
   - 命令超时与退出事件统一处理，避免悬挂请求。
   - 错误处理和用户友好的错误提示。
+  - **新增** 文件操作的安全验证和错误处理。
+  - **新增** 图像处理的异常捕获和资源清理。
 - 安全性
   - 全面的安全头部配置，防止常见Web攻击。
   - 主机白名单和跨站请求防护。
   - 静态文件路径验证，防止路径遍历攻击。
+  - **新增** 文件访问的安全检查和敏感文件过滤。
+  - **新增** 图像上传的大小和格式验证。
 - 样式与设计系统
   - 通过 CSS 变量与 Tailwind 映射设计令牌，主题切换无需组件分支。
   - 发丝线宽度随设备像素比自适应，保证精细边框一致性。
@@ -617,6 +884,21 @@ Server --> Start["TanStack Start"]
   - 检查Host头是否在白名单中，确认访问地址。
   - 查看CSP策略是否阻止了必要的资源加载。
   - 参考安全配置：[apps/pi-web/server.mjs:11-17](file://apps/pi-web/server.mjs#L11-L17)。
+- **新增** 图像附件问题
+  - 检查浏览器是否支持Canvas API和File API。
+  - 确认图片格式和大小是否符合要求。
+  - 查看控制台中的图片处理错误信息。
+  - 参考图像处理实现：[apps/pi-web/src/lib/images.ts:65-98](file://apps/pi-web/src/lib/images.ts#L65-L98)。
+- **新增** 文件引用问题
+  - 检查文件路径是否正确，确认文件在项目目录内。
+  - 查看敏感文件过滤规则，确认文件未被拦截。
+  - 检查文件大小限制，文本文件不超过256KB，图片不超过10MB。
+  - 参考文件处理实现：[apps/pi-web/src/server/files.ts:128-186](file://apps/pi-web/src/server/files.ts#L128-L186)。
+- **新增** 命令补全问题
+  - 检查命令源是否正确加载，确认扩展和提示词可用。
+  - 查看命令补全的触发条件，确认@和/符号正确输入。
+  - 检查键盘事件处理，确认导航键正常工作。
+  - 参考命令处理实现：[apps/pi-web/src/components/conversation/Composer.tsx:48-61](file://apps/pi-web/src/components/conversation/Composer.tsx#L48-L61)。
 
 **章节来源**
 - [apps/pi-web/server.mjs:11-17](file://apps/pi-web/server.mjs#L11-L17)
@@ -627,8 +909,9 @@ Server --> Start["TanStack Start"]
 - [apps/pi-web/src/server/runtime.ts:1-337](file://apps/pi-web/src/server/runtime.ts#L1-L337)
 - [apps/pi-web/src/lib/theme.ts:1-123](file://apps/pi-web/src/lib/theme.ts#L1-L123)
 - [apps/pi-web/src/styles/app.css:1-95](file://apps/pi-web/src/styles/app.css#L1-L95)
+- [apps/pi-web/src/lib/images.ts:65-98](file://apps/pi-web/src/lib/images.ts#L65-L98)
+- [apps/pi-web/src/server/files.ts:128-186](file://apps/pi-web/src/server/files.ts#L128-L186)
+- [apps/pi-web/src/components/conversation/Composer.tsx:48-61](file://apps/pi-web/src/components/conversation/Composer.tsx#L48-L61)
 
 ## 结论
-Pi Web 在当前阶段提供了完整的Web前端界面与安全的服务器实现。通过独立的server.mjs服务器、TanStack Router与文件系统路由，前后端职责清晰；运行时管理器与子进程 RPC 机制为后续对话与工具调用打下基础。新增的对话组件系统、REST API和SSE事件流提供了现代化的用户交互体验。下一步可在 S2 接入新建会话、S5 接入会话列表，并逐步完善右侧停靠面板与更丰富的交互流程。
-
-[本节为总结性内容，不直接分析具体文件]
+Pi Web 在当前阶段提供了完整的Web前端界面与安全的服务器实现。通过独立的server.mjs服务器、TanStack Router与文件系统路由，前后端职责清晰；运行时管理器与子进程 RPC 机制为后续对话与工具调用打下基础。**Pi Web UI M2的重大更新显著增强了界面功能**，新增了图像附件系统、文件引用系统(@file)、斜杠命令界面(/command)、增强的会话管理(分叉/克隆)和并行会话支持。这些新功能为用户提供了更加丰富和高效的交互体验。下一步可在 S2 接入新建会话、S5 接入会话列表，并逐步完善右侧停靠面板与更丰富的交互流程。

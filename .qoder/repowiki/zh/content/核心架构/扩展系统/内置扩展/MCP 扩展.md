@@ -1,7 +1,7 @@
 # MCP 扩展
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [14-mcp-codemode.md](file://docs/explains/14-mcp-codemode.md)
 - [18-mcp-package.md](file://docs/explains/18-mcp-package.md)
 - [client.ts](file://packages/mcp/src/client.ts)

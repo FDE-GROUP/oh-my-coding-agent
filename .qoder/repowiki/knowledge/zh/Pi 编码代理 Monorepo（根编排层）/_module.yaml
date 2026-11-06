@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: ""
-title: Pi 编码代理与 OMFDE 平台单仓根工作区
+title: Pi 编码代理 Monorepo（根编排层）
 scope:
     - README.md
     - README.zh-CN.md

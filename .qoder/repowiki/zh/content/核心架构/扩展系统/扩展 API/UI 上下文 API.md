@@ -1,7 +1,7 @@
 # UI 上下文 API
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [types.ts](file://packages/coding-agent/src/core/extensions/types.ts)
 - [interactive-mode.ts](file://packages/coding-agent/src/modes/interactive/interactive-mode.ts)
 - [rpc-mode.ts](file://packages/coding-agent/src/modes/rpc/rpc-mode.ts)

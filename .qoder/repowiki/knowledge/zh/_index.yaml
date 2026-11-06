@@ -3,11 +3,11 @@ schema_version: 1
 locale: zh-CN
 branch: main
 nodes_managed: true
-exported_at: "2026-11-06T08:05:32Z"
+exported_at: "2026-11-06T08:36:33Z"
 modules:
     "":
-        dir_name: Pi 编码代理与 OMFDE 平台单仓根工作区
-        title: Pi 编码代理与 OMFDE 平台单仓根工作区
+        dir_name: Pi 编码代理 Monorepo（根编排层）
+        title: Pi 编码代理 Monorepo（根编排层）
         scope:
             - README.md
             - README.zh-CN.md
@@ -591,8 +591,8 @@ modules:
         depends_on: []
         related_to: []
     docs:
-        dir_name: 项目文档与规范（Explains _ RADS _ Specs）
-        title: 项目文档与规范（Explains / RADS / Specs）
+        dir_name: OMFDE 项目文档与规格（Explains_RADS_Specs）
+        title: OMFDE 项目文档与规格（Explains/RADS/Specs）
         scope:
             - docs/
         source_files: []
@@ -640,8 +640,8 @@ modules:
         related_to:
             - path: coding_agent
     pi_web:
-        dir_name: Pi Web 全栈应用（TanStack Start + Pi RPC）
-        title: Pi Web 全栈应用（TanStack Start + Pi RPC）
+        dir_name: Pi Web 单仓应用（TanStack Start + Pi RPC）
+        title: Pi Web 单仓应用（TanStack Start + Pi RPC）
         scope:
             - apps/pi-web/
         source_files: []

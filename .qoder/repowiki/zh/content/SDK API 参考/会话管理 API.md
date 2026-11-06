@@ -1,12 +1,25 @@
 # 会话管理 API
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [agent-session.ts](file://packages/coding-agent/src/core/agent-session.ts)
 - [agent-session-runtime.ts](file://packages/coding-agent/src/core/agent-session-runtime.ts)
 - [rpc-client.ts](file://packages/coding-agent/src/modes/rpc/rpc-client.ts)
 - [utilities.ts](file://packages/coding-agent/test/utilities.ts)
+- [sessions.$sessionId.fork.ts](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts)
+- [sessions.$sessionId.clone.ts](file://apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts)
+- [runtimes.ts](file://apps/pi-web/src/routes/api/runtimes.ts)
+- [runtime-manager.ts](file://apps/pi-web/src/server/runtime-manager.ts)
+- [runtime.ts](file://apps/pi-web/src/server/runtime.ts)
+- [api.ts](file://apps/pi-web/src/lib/api.ts)
 </cite>
+
+## 更新摘要
+**变更内容**   
+- 新增分叉与克隆会话端点文档：`/api/sessions/$sessionId/fork` 和 `/api/sessions/$sessionId/clone`
+- 新增运行时监控能力文档：`/api/runtimes` 活跃运行时列表
+- 补充运行时管理器与会话运行时的架构说明
+- 更新前端 API 调用示例，包含新的 fork、clone 和 runtimes 接口
 
 ## 目录
 1. [简介](#简介)
@@ -23,11 +36,22 @@
 ## 简介
 本文件面向使用 AgentSession 的开发者，系统化说明会话创建、消息发送、工具调用、会话状态管理与生命周期控制等能力。文档基于仓库中的核心实现进行梳理，提供接口语义、参数与返回值类型、事件模型、错误处理机制以及常见使用场景的代码路径指引。
 
+**更新** 新增了 Web 层的会话分叉、克隆操作和运行时监控能力，支持并行会话管理和高级会话操作。
+
 ## 项目结构
 AgentSession 是会话与代理生命周期的核心抽象，跨多种运行模式（交互、打印、RPC）共享；AgentSessionRuntime 负责运行时切换、会话导入/新建/分叉等宿主级流程；RPC 客户端暴露一组对会话树和消息的只读查询方法；测试辅助函数展示了如何构造 AgentSession 并启用持久化。
 
 ```mermaid
 graph TB
+subgraph "Web API 层"
+Fork["分叉端点<br/>/api/sessions/$sessionId/fork"]
+Clone["克隆端点<br/>/api/sessions/$sessionId/clone"]
+Runtimes["运行时监控<br/>/api/runtimes"]
+end
+subgraph "运行时管理层"
+RuntimeManager["RuntimeManager<br/>并发控制/空闲回收"]
+SessionRuntime["SessionRuntime<br/>子进程管理"]
+end
 subgraph "运行时层"
 Runtime["AgentSessionRuntime<br/>会话切换/导入/分叉"]
 end
@@ -37,11 +61,20 @@ end
 subgraph "外部访问"
 RPC["RPC 客户端<br/>getEntries/getTree/getMessages..."]
 end
+Fork --> RuntimeManager
+Clone --> RuntimeManager
+Runtimes --> RuntimeManager
+RuntimeManager --> SessionRuntime
 Runtime --> Session
 RPC --> Session
 ```
 
 图表来源
+- [sessions.$sessionId.fork.ts:9-37](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts#L9-L37)
+- [sessions.$sessionId.clone.ts:9-31](file://apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts#L9-L31)
+- [runtimes.ts:9-15](file://apps/pi-web/src/routes/api/runtimes.ts#L9-L15)
+- [runtime-manager.ts:51-206](file://apps/pi-web/src/server/runtime-manager.ts#L51-L206)
+- [runtime.ts:95-339](file://apps/pi-web/src/server/runtime.ts#L95-L339)
 - [agent-session-runtime.ts:74-418](file://packages/coding-agent/src/core/agent-session-runtime.ts#L74-L418)
 - [agent-session.ts:409-4541](file://packages/coding-agent/src/core/agent-session.ts#L409-L4541)
 - [rpc-client.ts:416-453](file://packages/coding-agent/src/modes/rpc/rpc-client.ts#L416-L453)
@@ -54,43 +87,50 @@ RPC --> Session
 - AgentSession：封装代理状态、事件订阅、模型与思考级别、压缩（手动/自动）、Bash 执行、会话分支与导航、工具注册与调用、扩展系统绑定等。
 - AgentSessionRuntime：封装当前 AgentSession 与其 cwd 绑定的服务，提供 newSession、switchSession、fork、importFromJsonl、dispose 等生命周期操作。
 - RPC 客户端：提供 getEntries、getTree、getLastAssistantText、setSessionName、getMessages 等远程访问接口。
+- RuntimeManager：管理多个 Pi RPC 子进程的并发、空闲回收和资源清理。
+- SessionRuntime：封装单个 Pi 子进程的生命周期、命令关联与事件分发。
 - 测试辅助 utilities：展示如何构造 AgentSession、启用持久化、清理资源。
+
+**更新** 新增了 RuntimeManager 和 SessionRuntime 作为 Web 层的核心组件，提供会话的并行管理和监控能力。
 
 章节来源
 - [agent-session.ts:409-559](file://packages/coding-agent/src/core/agent-session.ts#L409-L559)
 - [agent-session-runtime.ts:74-118](file://packages/coding-agent/src/core/agent-session-runtime.ts#L74-L118)
 - [rpc-client.ts:416-453](file://packages/coding-agent/src/modes/rpc/rpc-client.ts#L416-L453)
+- [runtime-manager.ts:51-206](file://apps/pi-web/src/server/runtime-manager.ts#L51-L206)
+- [runtime.ts:95-339](file://apps/pi-web/src/server/runtime.ts#L95-L339)
 - [utilities.ts:278-298](file://packages/coding-agent/test/utilities.ts#L278-L298)
 
 ## 架构总览
-AgentSession 通过内部钩子将 Agent 事件桥接到扩展系统与持久化层，并在请求前/后注入上下文投影、工具声明、压缩与重试逻辑。AgentSessionRuntime 在宿主侧管理会话替换、关闭与诊断信息。RPC 客户端以 JSON-RPC 风格访问会话数据。
+AgentSession 通过内部钩子将 Agent 事件桥接到扩展系统与持久化层，并在请求前/后注入上下文投影、工具声明、压缩与重试逻辑。AgentSessionRuntime 在宿主侧管理会话替换、关闭与诊断信息。RPC 客户端以 JSON-RPC 风格访问会话数据。Web 层通过 RuntimeManager 和 SessionRuntime 提供并发会话管理和实时监控能力。
 
 ```mermaid
 sequenceDiagram
-participant Host as "宿主/上层应用"
-participant Runtime as "AgentSessionRuntime"
+participant Client as "客户端"
+participant API as "Web API 层"
+participant Manager as "RuntimeManager"
+participant Runtime as "SessionRuntime"
+participant Process as "Pi 子进程"
 participant Session as "AgentSession"
-participant Agent as "Agent(核心)"
-participant Ext as "ExtensionRunner"
-participant SM as "SessionManager"
-Host->>Runtime : newSession()/switchSession()/fork()
-Runtime->>Session : 创建/替换会话
-Runtime-->>Host : {session, services, diagnostics}
-Host->>Session : prompt()/sendUserMessage()
-Session->>Ext : before_agent_start / input hooks
-Session->>SM : buildSessionProjection()
-Session->>Agent : prompt(messages)
-Agent-->>Session : agent_start/message/tool_execution/agent_end
-Session->>Ext : 转发扩展事件
-Session->>SM : appendMessage/appendCompaction(...)
-Session-->>Host : 事件流(agent_settled/compaction_end/...)
+Client->>API : POST /api/sessions/$sessionId/fork
+API->>Manager : get(sessionId)
+Manager->>Runtime : command({type : "fork", entryId})
+Runtime->>Process : 转发命令
+Process-->>Runtime : 返回结果
+Runtime-->>API : {cancelled, sessionId}
+API->>Manager : rekey(oldId, newId)
+API-->>Client : {id, state}
+Client->>API : GET /api/runtimes
+API->>Manager : list()
+Manager-->>API : [{id, busy, lastActivityAt, status}]
+API-->>Client : {runtimes : [...]}
 ```
 
 图表来源
-- [agent-session-runtime.ts:196-259](file://packages/coding-agent/src/core/agent-session-runtime.ts#L196-L259)
-- [agent-session.ts:1918-1963](file://packages/coding-agent/src/core/agent-session.ts#L1918-L1963)
-- [agent-session.ts:1138-1238](file://packages/coding-agent/src/core/agent-session.ts#L1138-L1238)
-- [agent-session.ts:1342-1421](file://packages/coding-agent/src/core/agent-session.ts#L1342-L1421)
+- [sessions.$sessionId.fork.ts:12-33](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts#L12-L33)
+- [runtimes.ts:11-13](file://apps/pi-web/src/routes/api/runtimes.ts#L11-L13)
+- [runtime-manager.ts:114-134](file://apps/pi-web/src/server/runtime-manager.ts#L114-L134)
+- [runtime.ts:220-241](file://apps/pi-web/src/server/runtime.ts#L220-L241)
 
 ## 详细组件分析
 
@@ -237,6 +277,90 @@ Runtime-->>Host : {cancelled : false, selectedText?}
 - [agent-session-runtime.ts:196-259](file://packages/coding-agent/src/core/agent-session-runtime.ts#L196-L259)
 - [agent-session-runtime.ts:262-350](file://packages/coding-agent/src/core/agent-session-runtime.ts#L262-L350)
 - [agent-session-runtime.ts:409-418](file://packages/coding-agent/src/core/agent-session-runtime.ts#L409-L418)
+
+### Web API 层新特性
+
+#### 会话分叉端点
+- 路由：`POST /api/sessions/$sessionId/fork`
+- 功能：从指定 user 消息分叉会话
+- 请求体：`{ entryId?: string }`
+- 响应：`{ id: string, state: RpcSessionState }` 或错误信息
+- 错误处理：404（会话未加载）、400（缺少 entryId）、409（分叉被取消）、500（服务器错误）
+
+**新增** 支持基于用户消息的分叉操作，允许用户在对话历史中的任意位置创建新的会话分支。
+
+章节来源
+- [sessions.$sessionId.fork.ts:9-37](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts#L9-L37)
+
+#### 会话克隆端点
+- 路由：`POST /api/sessions/$sessionId/clone`
+- 功能：克隆当前会话分支
+- 请求体：无
+- 响应：`{ id: string, state: RpcSessionState }` 或错误信息
+- 错误处理：404（会话未加载）、409（克隆被取消或未保存）、500（服务器错误）
+
+**新增** 提供简单的会话克隆功能，复制当前会话状态创建新会话。
+
+章节来源
+- [sessions.$sessionId.clone.ts:9-31](file://apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts#L9-L31)
+
+#### 运行时监控端点
+- 路由：`GET /api/runtimes`
+- 功能：获取活跃运行时列表
+- 响应：`{ runtimes: Array<{ id: string; busy: boolean; lastActivityAt: number; status: RuntimeStatus }> }`
+- 用途：监控并行会话的状态和活跃度
+
+**新增** 提供运行时监控能力，支持查看和管理多个并行会话的运行状态。
+
+章节来源
+- [runtimes.ts:9-15](file://apps/pi-web/src/routes/api/runtimes.ts#L9-L15)
+
+### 运行时管理器与会话运行时
+
+#### RuntimeManager 类概览
+- 职责
+  - 管理多个 Pi RPC 子进程的并发和生命周期
+  - 实现并发上限控制和空闲回收机制
+  - 提供运行时注册表、查找、关闭和状态查询功能
+- 关键配置
+  - maxRuntimes：最大活跃运行时数量（默认 4）
+  - idleMs：空闲回收阈值（默认 30 分钟）
+  - sweepMs：清理间隔（默认 60 秒）
+- 关键方法
+  - create(options)：启动新运行时
+  - get(id)：按 session id 查找运行时
+  - list()：列出所有活跃运行时
+  - close(id)：关闭指定运行时
+  - sweep()：回收空闲运行时
+  - closeAll()：关闭所有运行时
+
+**新增** RuntimeManager 提供了完整的并行会话管理能力，包括并发控制、资源回收和状态监控。
+
+章节来源
+- [runtime-manager.ts:51-206](file://apps/pi-web/src/server/runtime-manager.ts#L51-L206)
+
+#### SessionRuntime 类概览
+- 职责
+  - 管理单个 Pi RPC 子进程的生命周期
+  - 处理命令请求和响应
+  - 分发运行时事件
+  - 管理子进程的标准输出和错误输出
+- 关键属性
+  - status：运行时状态（starting/ready/exited）
+  - busy：是否有正在进行的 agent 运行
+  - lastActivityAt：最近活动时间戳
+  - sessionId：已初始化的 Pi session id
+- 关键方法
+  - initialize()：启动并读取初始状态
+  - snapshot()：读取完整快照
+  - command(type)：发送命令并等待响应
+  - subscribe(listener)：订阅运行时事件
+  - dispose()：关闭子进程
+
+**新增** SessionRuntime 封装了单个 Pi 子进程的完整生命周期管理，提供稳定的 RPC 通信接口。
+
+章节来源
+- [runtime.ts:95-339](file://apps/pi-web/src/server/runtime.ts#L95-L339)
 
 ### 消息发送与会话队列
 - prompt(text, options?)
@@ -414,6 +538,12 @@ H --> |否| Z
   - 其他：compaction、tools、system-prompt、virtual-models、usage-totals 等
 - AgentSessionRuntime 依赖
   - AgentSession、SessionManager、extensions runner、文件系统与路径工具
+- Web 层依赖
+  - RuntimeManager：管理多个 SessionRuntime 实例
+  - SessionRuntime：封装单个 Pi 子进程通信
+  - 各 API 路由：提供 HTTP 接口
+
+**更新** 新增了 Web 层的依赖关系，包括 RuntimeManager 和 SessionRuntime 的管理关系。
 
 ```mermaid
 graph LR
@@ -428,11 +558,16 @@ AS --> VM["Virtual Models"]
 AS --> UT["Usage Totals"]
 R["AgentSessionRuntime"] --> AS
 R --> SM
+WM["Web API 层"] --> RM["RuntimeManager"]
+RM --> SR["SessionRuntime"]
+SR --> PI["Pi 子进程"]
 ```
 
 图表来源
 - [agent-session.ts:18-161](file://packages/coding-agent/src/core/agent-session.ts#L18-L161)
 - [agent-session-runtime.ts:1-15](file://packages/coding-agent/src/core/agent-session-runtime.ts#L1-L15)
+- [runtime-manager.ts:51-206](file://apps/pi-web/src/server/runtime-manager.ts#L51-L206)
+- [runtime.ts:95-339](file://apps/pi-web/src/server/runtime.ts#L95-L339)
 
 章节来源
 - [agent-session.ts:18-161](file://packages/coding-agent/src/core/agent-session.ts#L18-L161)
@@ -449,12 +584,19 @@ R --> SM
 - Bash 与图片
   - Bash 输出可排除上下文以减少请求体积
   - 图片自动缩放与归一化，依据模型输入限制调整
+- 并发会话管理
+  - RuntimeManager 支持最多 4 个活跃会话（可配置）
+  - 空闲会话自动回收（默认 30 分钟）
+  - 智能资源调度，优先回收最久未活动且不忙的运行时
+
+**更新** 新增了并行会话管理的性能优化，包括并发上限控制、空闲回收和资源调度策略。
 
 章节来源
 - [agent-session.ts:3081-3215](file://packages/coding-agent/src/core/agent-session.ts#L3081-L3215)
 - [agent-session.ts:3846-3963](file://packages/coding-agent/src/core/agent-session.ts#L3846-L3963)
 - [agent-session.ts:499-502](file://packages/coding-agent/src/core/agent-session.ts#L499-L502)
 - [agent-session.ts:4016-4070](file://packages/coding-agent/src/core/agent-session.ts#L4016-L4070)
+- [runtime-manager.ts:196-206](file://apps/pi-web/src/server/runtime-manager.ts#L196-L206)
 
 ## 故障排查指南
 - 无法提交 prompt
@@ -473,6 +615,12 @@ R --> SM
 - 会话切换/导入
   - 被扩展取消：检查 session_before_switch/session_before_fork 返回 cancel
   - 文件不存在：importFromJsonl 会抛出特定错误
+- Web API 相关
+  - 分叉/克隆失败：检查 entryId 是否存在，会话是否已保存
+  - 运行时容量不足：检查并发会话数量是否超过上限
+  - 子进程退出：查看 stderr 输出和退出码
+
+**更新** 新增了 Web API 相关的故障排查指南，涵盖分叉、克隆和运行时管理的问题诊断。
 
 章节来源
 - [agent-session.ts:2155-2159](file://packages/coding-agent/src/core/agent-session.ts#L2155-L2159)
@@ -481,9 +629,13 @@ R --> SM
 - [agent-session.ts:2898-3043](file://packages/coding-agent/src/core/agent-session.ts#L2898-L3043)
 - [agent-session.ts:3227-3374](file://packages/coding-agent/src/core/agent-session.ts#L3227-L3374)
 - [agent-session-runtime.ts:359-402](file://packages/coding-agent/src/core/agent-session-runtime.ts#L359-L402)
+- [sessions.$sessionId.fork.ts:25-33](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts#L25-L33)
+- [sessions.$sessionId.clone.ts:17-27](file://apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts#L17-L27)
 
 ## 结论
 AgentSession 提供了完整的会话生命周期管理能力，涵盖消息发送、工具调用、模型与思考级别管理、压缩与重试、Bash 执行、扩展集成与导出统计等。AgentSessionRuntime 在宿主侧提供会话切换、导入与分叉的统一入口。结合事件模型与扩展钩子，可在不侵入核心逻辑的前提下实现丰富的业务定制。
+
+**更新** Web 层通过 RuntimeManager 和 SessionRuntime 提供了强大的并行会话管理能力，支持会话分叉、克隆和实时监控，为复杂的多会话应用场景提供了坚实的基础设施。
 
 ## 附录：API 参考与示例
 
@@ -500,11 +652,23 @@ AgentSession 提供了完整的会话生命周期管理能力，涵盖消息发�
   - model、thinkingLevel、isScoped
 - SessionStats
   - sessionFile、sessionId、userMessages、assistantMessages、toolCalls、toolResults、totalMessages、tokens、cost、contextUsage
+- CreatedSession
+  - id：会话标识符
+  - state：会话状态对象
+- RuntimeInfo
+  - id：运行时标识符
+  - busy：是否忙碌
+  - lastActivityAt：最后活动时间戳
+  - status：运行时状态
+
+**更新** 新增了 CreatedSession 和 RuntimeInfo 接口定义，用于支持新的 Web API 功能。
 
 章节来源
 - [agent-session.ts:266-314](file://packages/coding-agent/src/core/agent-session.ts#L266-L314)
 - [agent-session.ts:328-354](file://packages/coding-agent/src/core/agent-session.ts#L328-L354)
 - [agent-session.ts:356-374](file://packages/coding-agent/src/core/agent-session.ts#L356-L374)
+- [api.ts:18-21](file://apps/pi-web/src/lib/api.ts#L18-L21)
+- [api.ts:252-261](file://apps/pi-web/src/lib/api.ts#L252-L261)
 
 ### 常见使用场景与代码路径
 - 创建会话并启用持久化
@@ -526,3 +690,45 @@ AgentSession 提供了完整的会话生命周期管理能力，涵盖消息发�
 - 会话导出与统计
   - exportToHtml/exportToJsonl/getSessionStats/getContextUsage
   - 路径：[agent-session.ts:4325-4458](file://packages/coding-agent/src/core/agent-session.ts#L4325-L4458)
+- **新增** 会话分叉操作
+  - 使用 forkSession 函数从指定用户消息分叉会话
+  - 路径：[api.ts:224-232](file://apps/pi-web/src/lib/api.ts#L224-L232)
+- **新增** 会话克隆操作
+  - 使用 cloneSession 函数克隆当前会话
+  - 路径：[api.ts:241-245](file://apps/pi-web/src/lib/api.ts#L241-L245)
+- **新增** 运行时监控
+  - 使用 fetchRuntimes 函数获取活跃运行时列表
+  - 路径：[api.ts:269-274](file://apps/pi-web/src/lib/api.ts#L269-L274)
+
+### Web API 端点参考
+
+#### 会话管理端点
+- `POST /api/sessions`：创建新会话或恢复现有会话
+- `GET /api/sessions`：获取会话列表
+- `GET /api/sessions/$sessionId`：获取会话快照
+- `DELETE /api/sessions/$sessionId`：关闭会话
+- `PATCH /api/sessions/$sessionId`：重命名会话
+- `POST /api/sessions/$sessionId/commands`：发送 RPC 命令
+- `GET /api/sessions/$sessionId/events`：订阅会话事件流
+
+#### 新增的高级会话操作端点
+- `POST /api/sessions/$sessionId/fork`：从指定用户消息分叉会话
+  - 请求体：`{ entryId: string }`
+  - 响应：`{ id: string, state: RpcSessionState }`
+- `POST /api/sessions/$sessionId/clone`：克隆当前会话
+  - 响应：`{ id: string, state: RpcSessionState }`
+
+#### 运行时监控端点
+- `GET /api/runtimes`：获取活跃运行时列表
+  - 响应：`{ runtimes: Array<RuntimeInfo> }`
+
+**新增** 这些端点提供了完整的会话生命周期管理和并行会话监控能力。
+
+章节来源
+- [sessions.ts:10-58](file://apps/pi-web/src/routes/api/sessions.ts#L10-L58)
+- [sessions.$sessionId.ts:9-47](file://apps/pi-web/src/routes/api/sessions.$sessionId.ts#L9-L47)
+- [sessions.$sessionId.commands.ts:10-39](file://apps/pi-web/src/routes/api/sessions.$sessionId.commands.ts#L10-L39)
+- [sessions.$sessionId.events.ts:10-91](file://apps/pi-web/src/routes/api/sessions.$sessionId.events.ts#L10-L91)
+- [sessions.$sessionId.fork.ts:9-37](file://apps/pi-web/src/routes/api/sessions.$sessionId.fork.ts#L9-L37)
+- [sessions.$sessionId.clone.ts:9-31](file://apps/pi-web/src/routes/api/sessions.$sessionId.clone.ts#L9-L31)
+- [runtimes.ts:9-15](file://apps/pi-web/src/routes/api/runtimes.ts#L9-L15)

@@ -1,7 +1,7 @@
 # RPC 接口规范
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [rpc.md](file://packages/coding-agent/docs/rpc.md)
 - [rpc-commands.md](file://packages/coding-agent/docs/rpc-commands.md)
 - [json.md](file://packages/coding-agent/docs/json.md)

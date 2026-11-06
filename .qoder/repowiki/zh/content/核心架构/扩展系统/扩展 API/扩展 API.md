@@ -1,7 +1,7 @@
 # 扩展 API
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [extensions/omfde-core/src/index.ts](file://extensions/omfde-core/src/index.ts)
 - [packages/coding-agent/src/core/extensions/types.ts](file://packages/coding-agent/src/core/extensions/types.ts)
 - [packages/coding-agent/src/modes/interactive/interactive-mode.ts](file://packages/coding-agent/src/modes/interactive/interactive-mode.ts)

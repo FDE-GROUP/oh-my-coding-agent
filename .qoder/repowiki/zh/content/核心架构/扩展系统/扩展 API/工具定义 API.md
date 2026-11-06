@@ -1,7 +1,7 @@
 # 工具定义 API
 
 <cite>
-**本文引用的文件**
+**本文引用的文件**   
 - [packages/coding-agent/src/core/extensions/types.ts](file://packages/coding-agent/src/core/extensions/types.ts)
 - [packages/coding-agent/src/core/tools/index.ts](file://packages/coding-agent/src/core/tools/index.ts)
 - [packages/coding-agent/src/core/tools/bash.ts](file://packages/coding-agent/src/core/tools/bash.ts)
