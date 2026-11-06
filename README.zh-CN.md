@@ -29,7 +29,7 @@ Pi 自带强大的默认配置，但刻意跳过了 sub-agents 和 plan mode 这
 | 目录 | 内容 |
 |---|---|
 | `packages/` | Pi 和共享库 |
-| `apps/` | 平台应用，当前为 `apps/omfde` 和独立的 `apps/pi-web` |
+| `apps/` | 平台应用，当前为 `apps/omfde`、独立的 `apps/pi-web` 和文档站 `apps/docs-site` |
 | `extensions/` | 平台扩展，当前为 `extensions/omfde-core` |
 
 启动平台入口（默认启动 Pi Web UI）：
@@ -101,6 +101,19 @@ Pi 不包含用于限制文件系统、进程、网络或凭据访问的内置�
 - **Gondolin 扩展**：`pi` 和 provider 认证留在宿主机，内置工具和 `!` 命令被路由到本地 Linux micro-VM。
 - **普通 Docker**：把整个 `pi` 进程放进本地容器，获得简单隔离。
 - **OpenShell**：把整个 `pi` 进程放进受策略控制的沙箱。
+
+## 文档站
+
+`apps/docs-site` 用 [Blume](https://useblume.dev)（Astro + Vite，纯静态）把 `docs/` 和 `.qoder/repowiki/` 汇聚成一个统一的中文文档站，同时服务人和 coding agent：除 HTML 外，构建还产出 `llms.txt`、每页 `.md` 镜像和 JSON docs API。
+
+它发布到 `pages` 分支，地址是 <https://fde-group.github.io/oh-my-fde/>。
+
+```bash
+pnpm --filter @omfde/docs-site build   # 同步内容 + 构建 dist/
+pnpm --filter @omfde/docs-site deploy  # 演练发布到 pages（deploy:publish 才真正 push）
+```
+
+构建与发布机制见 [`docs/explains/28-docs-site.md`](docs/explains/28-docs-site.md)。
 
 ## 贡献
 

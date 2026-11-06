@@ -79,6 +79,19 @@ If you need stronger boundaries, containerize or sandbox Pi. See [packages/codin
 - **Plain Docker**: run the whole `pi` process in a local container for simple isolation.
 - **OpenShell**: run the whole `pi` process in a policy-controlled sandbox.
 
+## Documentation site
+
+`apps/docs-site` builds a unified Chinese documentation site from `docs/` and `.qoder/repowiki/` with [Blume](https://useblume.dev) (Astro + Vite, static). It serves both humans and coding agents: alongside HTML, the build emits `llms.txt`, a per-page `.md` mirror, and a JSON docs API.
+
+It publishes to the `pages` branch at <https://fde-group.github.io/oh-my-fde/>.
+
+```bash
+pnpm --filter @omfde/docs-site build   # sync content + build dist/
+pnpm --filter @omfde/docs-site deploy  # dry-run the pages publish (deploy:publish to push)
+```
+
+Build and publish mechanism: [`docs/explains/28-docs-site.md`](docs/explains/28-docs-site.md).
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines and [AGENTS.md](AGENTS.md) for project-specific rules (for both humans and agents).  Longer term plans for Pi can also be found in [RFCs](https://rfc.earendil.com/keyword/pi/).

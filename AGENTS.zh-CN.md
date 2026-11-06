@@ -13,6 +13,7 @@
 - 保留的包：`agent`、`ai`、`coding-agent`、`codemode`、`evals`、`mcp`、`schema`、`telemetry`、`tui`。
 - 平台布局：`apps/` 放可运行应用，`extensions/` 放平台扩展，`packages/` 放 Pi fork 和共享库。
 - `apps/omfde` 是第一个平台入口。默认启动已构建的 Pi Web UI，并设置 `OMFDE_PLATFORM=1`；`--tui` 直接启动 Pi。`extensions/omfde-core` 是第一个扩展骨架。
+- `apps/docs-site` 用 Blume/Astro 把 `docs/` 和 `.qoder/repowiki/` 构建成统一文档站（纯静态），发布到 `pages` 分支。机制见 `docs/explains/28-docs-site.md`。
 - Pi 核心现在由本项目维护。核心改动是允许的，但仍需要明确决定和 plan。
 - 目标分为三条并行线：教程线（理解 → 会用 → 用好）、平台化线（骨架 → 核心能力 → 协作 → 企业集成 → 治理）和 Web UI 线（可用 → 对齐 DSH → 会话完整 → 团队可用）。项目处于“会用”阶段。优先使用扩展和配置；只有出现真实缺口时才改核心。
 - 愿景和决策记录在 `docs/specs/vision.md`。阅读笔记、验证脚本和 fork 说明在 `docs/explains/`。
@@ -79,6 +80,7 @@
 - 只有需要格式化或安全的 lint 自动修复时才运行 `pnpm run check:fix`；它会写文件，必须检查 diff 并保持在 write scope 内。`pnpm run check:secrets` 已包含在 `check` 中，也可以单独运行。
 - pre-commit 只对 staged 文件做快速检查；pre-push 运行完整 `pnpm run check`。两者都只在本地执行。
 - `pnpm run omfde` 启动平台入口：默认 Web UI，`--tui` 回退 Pi TUI。`pnpm run tui` 仍然直接从源码启动 Pi。
+- `pnpm --filter @omfde/docs-site deploy` 演练文档站发布到 `pages`；`deploy:publish` 才真正 push。发布到 `pages` 需要决策者授权。
 - 只在某些东西需要构建产物（`dist/`）时运行 `pnpm run build`，例如导入已构建包的测试。永远不要用它做类型检查或 lint：那应该用 `pnpm run check`。
 - 除非用户要求，否则永远不要运行 `pnpm test`。
 - 永远不要直接运行完整的 vitest 套件：它包含 e2e 测试，当存在 endpoint/auth 环境变量时这些测试会激活。要运行所有非 e2e 测试，在仓库根目录运行 `./test.sh`。它只运行 `packages/*`。否则从包根目录运行特定测试：
