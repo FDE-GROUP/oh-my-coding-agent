@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: evals
+title: Pi 模型评估与文档变体运行器
+scope:
+    - packages/evals/
+source_files: []
+depends_on: []
+related_to:
+    - path: ai_providers
+    - path: coding_agent/core_runtime

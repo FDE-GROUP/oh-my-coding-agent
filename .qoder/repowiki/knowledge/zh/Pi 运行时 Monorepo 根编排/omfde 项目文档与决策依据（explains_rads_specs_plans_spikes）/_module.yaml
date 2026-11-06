@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: docs
+title: omfde 项目文档与决策依据（explains/rads/specs/plans/spikes）
+scope:
+    - docs/
+source_files: []
+depends_on: []
+related_to: []

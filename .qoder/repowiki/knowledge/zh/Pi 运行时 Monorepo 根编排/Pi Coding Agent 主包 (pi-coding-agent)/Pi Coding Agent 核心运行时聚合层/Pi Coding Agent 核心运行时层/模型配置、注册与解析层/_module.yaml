@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: coding_agent/core_runtime/core_runtime_services/model_config_registry
+title: 模型配置、注册与解析层
+scope:
+    - packages/coding-agent/src/core/model-config.ts
+    - packages/coding-agent/src/core/model-registry.ts
+    - packages/coding-agent/src/core/model-resolver.ts
+source_files: []
+depends_on: []
+related_to: []

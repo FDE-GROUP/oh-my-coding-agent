@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: coding_agent/core_runtime/core_runtime_services/html_export
+title: 会话 HTML 导出与渲染
+scope:
+    - packages/coding-agent/src/core/export-html/
+source_files: []
+depends_on: []
+related_to: []

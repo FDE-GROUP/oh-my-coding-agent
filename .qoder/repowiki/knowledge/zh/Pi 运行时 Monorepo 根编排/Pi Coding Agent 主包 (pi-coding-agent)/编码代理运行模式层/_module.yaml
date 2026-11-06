@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: coding_agent/modes
+title: 编码代理运行模式层
+scope:
+    - packages/coding-agent/src/modes/
+source_files: []
+depends_on: []
+related_to:
+    - path: pi_web/server_runtime

@@ -9,7 +9,23 @@
 - [packages/coding-agent/src/core/agent-session.ts](file://packages/coding-agent/src/core/agent-session.ts)
 - [packages/coding-agent/src/core/session-manager.ts](file://packages/coding-agent/src/core/session-manager.ts)
 - [packages/coding-agent/src/modes/index.ts](file://packages/coding-agent/src/modes/index.ts)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.shares.ts](file://apps/pi-web/src/routes/api/sessions.$sessionId.shares.ts)
+- [apps/pi-web/src/routes/api/sessions.$sessionId.handoff.ts](file://apps/pi-web/src/routes/api/sessions.$sessionId.handoff.ts)
+- [apps/pi-web/src/routes/api/admin.audit.ts](file://apps/pi-web/src/routes/api/admin.audit.ts)
+- [apps/pi-web/src/routes/api/admin.sessions.ts](file://apps/pi-web/src/routes/api/admin.sessions.ts)
+- [apps/pi-web/src/routes/api/shares.$token.ts](file://apps/pi-web/src/routes/api/shares.$token.ts)
+- [apps/pi-web/src/server/shares.ts](file://apps/pi-web/src/server/shares.ts)
+- [apps/pi-web/src/server/handoff.ts](file://apps/pi-web/src/server/handoff.ts)
+- [apps/pi-web/src/lib/api.ts](file://apps/pi-web/src/lib/api.ts)
 </cite>
+
+## 更新摘要
+**变更内容**   
+- 新增会话分享 REST API 端点文档
+- 新增交接文档生成 API 端点文档  
+- 新增管理员会话管理 API 端点文档
+- 新增审计日志检索 API 端点文档
+- 扩展协作功能的客户端集成指南
 
 ## 目录
 1. [简介](#简介)
@@ -17,35 +33,40 @@
 3. [核心组件](#核心组件)
 4. [架构总览](#架构总览)
 5. [详细组件分析](#详细组件分析)
-6. [依赖关系分析](#依赖关系分析)
-7. [性能与可靠性](#性能与可靠性)
-8. [故障排查指南](#故障排查指南)
-9. [结论](#结论)
-10. [附录：RPC 协议与客户端实现指南](#附录rpc-协议与客户端实现指南)
+6. [协作功能 API](#协作功能-api)
+7. [依赖关系分析](#依赖关系分析)
+8. [性能与可靠性](#性能与可靠性)
+9. [故障排查指南](#故障排查指南)
+10. [结论](#结论)
+11. [附录：RPC 协议与客户端实现指南](#附录rpc-协议与客户端实现指南)
 
 ## 简介
-本文件为 Pi TypeScript SDK 的完整 API 参考，面向希望在 Node.js 或 Bun 进程中集成 Pi 的开发者。文档覆盖会话管理、消息处理、工具调用、扩展加载、模型与设置边界、以及 RPC 子进程模式等核心能力，并提供代码级图示、错误处理建议与最佳实践。
+本文件为 Pi TypeScript SDK 的完整 API 参考，面向希望在 Node.js 或 Bun 进程中集成 Pi 的开发者。文档覆盖会话管理、消息处理、工具调用、扩展加载、模型与设置边界、RPC 子进程模式等核心能力，并提供代码级图示、错误处理建议与最佳实践。
 
 SDK 提供两类集成方式：
 - 进程内 TypeScript SDK：直接调用 AgentSession、工具工厂、扩展系统等类型化 API。
 - RPC 子进程模式：通过 JSONL 协议控制 Pi CLI，适合跨语言、隔离进程或 IDE 集成。
+- REST API 协作功能：会话分享、交接文档生成、管理员会话管理和审计日志检索。
 
 ## 项目结构
-Pi 的 SDK 入口位于 `@earendil-works/pi-coding-agent` 包中，对外暴露会话创建、工具工厂、扩展系统、会话持久化、模型运行时、设置管理器、RPC 客户端等能力。
+Pi 的 SDK 入口位于 `@earendil-works/pi-coding-agent` 包中，对外暴露会话创建、工具工厂、扩展系统、会话持久化、模型运行时、设置管理器、RPC 客户端等能力。同时，pi-web 应用提供了完整的 REST API 用于协作功能。
 
 ```mermaid
 graph TB
 A["应用代码"] --> B["SDK 入口<br/>packages/coding-agent/src/index.ts"]
-B --> C["会话创建<br/>createAgentSession()"]
-B --> D["运行模式导出<br/>modes/index.ts"]
-C --> E["AgentSession<br/>core/agent-session.ts"]
-C --> F["ModelRuntime / SettingsManager<br/>core/sdk.ts"]
-E --> G["SessionManager<br/>core/session-manager.ts"]
-D --> H["RpcClient / runRpcMode<br/>modes/index.ts"]
+A --> C["REST API 客户端<br/>apps/pi-web/src/lib/api.ts"]
+B --> D["会话创建<br/>createAgentSession()"]
+B --> E["运行模式导出<br/>modes/index.ts"]
+C --> F["协作功能 API<br/>shares/handoff/admin/audit"]
+D --> G["AgentSession<br/>core/agent-session.ts"]
+D --> H["ModelRuntime / SettingsManager<br/>core/sdk.ts"]
+G --> I["SessionManager<br/>core/session-manager.ts"]
+E --> J["RpcClient / runRpcMode<br/>modes/index.ts"]
 ```
 
 图表来源
 - [packages/coding-agent/src/index.ts:1-503](file://packages/coding-agent/src/index.ts#L1-L503)
+- [apps/pi-web/src/lib/api.ts:290-472](file://apps/pi-web/src/lib/api.ts#L290-L472)
 - [packages/coding-agent/src/core/sdk.ts:180-482](file://packages/coding-agent/src/core/sdk.ts#L180-L482)
 - [packages/coding-agent/src/core/agent-session.ts:409-559](file://packages/coding-agent/src/core/agent-session.ts#L409-L559)
 - [packages/coding-agent/src/core/session-manager.ts:43-227](file://packages/coding-agent/src/core/session-manager.ts#L43-L227)
@@ -114,7 +135,7 @@ Sess-->>App : 事件(message_update/agent_settled/...)
   - 根据选项解析工作目录、Agent 目录、ModelRuntime、SettingsManager、SessionManager、ResourceLoader。
   - 从已有会话恢复模型与思考级别；若无则按设置与 provider 默认值选择初始模型。
   - 计算初始工具集（allowlist/denylist、MCP 工具保留策略）。
-  - 包装 convertToLlm 以支持“屏蔽图片”等安全策略。
+  - 包装 convertToLlm 以支持"屏蔽图片"等安全策略。
   - 组装 Agent、ExtensionRunner、CacheWarmer，并返回 { session, extensionsResult, modelFallbackMessage }。
 
 - 关键参数（CreateAgentSessionOptions）
@@ -308,6 +329,170 @@ Process->>Mode : 优雅关闭
 - [packages/coding-agent/docs/rpc.md:1-196](file://packages/coding-agent/docs/rpc.md#L1-L196)
 - [packages/coding-agent/src/modes/index.ts:1-17](file://packages/coding-agent/src/modes/index.ts#L1-L17)
 
+## 协作功能 API
+
+### 会话分享 API
+
+#### 创建会话分享
+- **端点**: `POST /api/sessions/{sessionId}/shares`
+- **权限**: 需要会话访问权限
+- **请求体**: `{ expiresInDays?: number }` (默认 7 天，最大 30 天)
+- **响应**: 
+  ```json
+  {
+    "token": "分享令牌",
+    "expiresAt": 过期时间戳,
+    "url": "完整分享链接"
+  }
+  ```
+
+#### 列出会话分享
+- **端点**: `GET /api/sessions/{sessionId}/shares`
+- **权限**: 需要会话访问权限
+- **响应**: 
+  ```json
+  {
+    "shares": [
+      {
+        "id": "分享ID",
+        "createdAt": 创建时间,
+        "expiresAt": 过期时间,
+        "revokedAt": 撤销时间(可选)
+      }
+    ]
+  }
+  ```
+
+#### 获取分享快照
+- **端点**: `GET /api/shares/{token}`
+- **权限**: 公开访问（无需登录）
+- **响应**: 
+  ```json
+  {
+    "snapshot": 会话快照数据,
+    "session": {
+      "id": "会话ID",
+      "name": "会话名称",
+      "workspace": "工作区名称"
+    }
+  }
+  ```
+
+#### 撤销分享
+- **端点**: `DELETE /api/shares/{token}`
+- **权限**: 需要分享所有者身份
+- **响应**: `{ ok: true }`
+
+**章节来源**
+- [apps/pi-web/src/routes/api/sessions.$sessionId.shares.ts:12-58](file://apps/pi-web/src/routes/api/sessions.$sessionId.shares.ts#L12-L58)
+- [apps/pi-web/src/routes/api/shares.$token.ts:13-54](file://apps/pi-web/src/routes/api/shares.$token.ts#L13-L54)
+- [apps/pi-web/src/server/shares.ts:76-138](file://apps/pi-web/src/server/shares.ts#L76-L138)
+
+### 交接文档生成 API
+
+#### 生成交接文档
+- **端点**: `GET /api/sessions/{sessionId}/handoff`
+- **权限**: 需要会话读取权限
+- **响应**: Markdown 格式的交接文档下载
+- **内容结构**:
+  - 会话基本信息（ID、工作区、所有者、模型）
+  - 目标与结论
+  - 工具调用摘要
+  - 改动文件列表
+  - 风险与下一步事项
+  - 敏感信息自动脱敏
+
+**章节来源**
+- [apps/pi-web/src/routes/api/sessions.$sessionId.handoff.ts:12-43](file://apps/pi-web/src/routes/api/sessions.$sessionId.handoff.ts#L12-L43)
+- [apps/pi-web/src/server/handoff.ts:92-152](file://apps/pi-web/src/server/handoff.ts#L92-L152)
+
+### 管理员会话管理 API
+
+#### 获取所有会话
+- **端点**: `GET /api/admin/sessions`
+- **权限**: 仅管理员角色
+- **响应**: 
+  ```json
+  {
+    "sessions": [
+      {
+        "id": "会话ID",
+        "name": "会话名称",
+        "owner": "所有者ID",
+        ...其他会话信息
+      }
+    ]
+  }
+  ```
+
+**章节来源**
+- [apps/pi-web/src/routes/api/admin.sessions.ts:11-27](file://apps/pi-web/src/routes/api/admin.sessions.ts#L11-L27)
+
+### 审计日志检索 API
+
+#### 查询审计日志
+- **端点**: `GET /api/admin/audit?limit={数量}`
+- **权限**: 仅管理员角色
+- **参数**: 
+  - `limit`: 最多返回的记录数（默认 100）
+- **响应**: 
+  ```json
+  {
+    "entries": [
+      {
+        "ts": 时间戳,
+        "user": "用户ID",
+        "role": "admin|member",
+        "action": "操作类型",
+        "target": "目标资源",
+        "result": "ok|failed",
+        "detail": "详细信息(可选)"
+      }
+    ]
+  }
+  ```
+
+**章节来源**
+- [apps/pi-web/src/routes/api/admin.audit.ts:10-21](file://apps/pi-web/src/routes/api/admin.audit.ts#L10-L21)
+
+### 客户端集成示例
+
+```typescript
+import { 
+  createShare, 
+  listShares, 
+  revokeShare, 
+  fetchSharedSession,
+  openSharedEventStream,
+  fetchAdminSessions,
+  fetchAudit
+} from './lib/api';
+
+// 创建会话分享
+const share = await createShare('session-id', 7);
+console.log('分享链接:', share.url);
+
+// 列出会话的所有分享
+const shares = await listShares('session-id');
+
+// 获取分享数据
+const sharedData = await fetchSharedSession('share-token');
+
+// 打开分享事件流
+const closeStream = openSharedEventStream('share-token', {
+  onSnapshot: (snapshot) => console.log('快照更新'),
+  onEvent: (event) => console.log('事件更新'),
+  onConnectionError: () => console.log('连接错误')
+});
+
+// 管理员功能
+const sessions = await fetchAdminSessions();
+const auditLogs = await fetchAudit(50);
+```
+
+**章节来源**
+- [apps/pi-web/src/lib/api.ts:389-471](file://apps/pi-web/src/lib/api.ts#L389-L471)
+
 ## 依赖关系分析
 SDK 对外导出大量类型与工厂，内部由 core 模块组织。以下图展示主要导出与依赖关系。
 
@@ -320,6 +505,9 @@ SDK --> SM["core/session-manager.ts"]
 AS --> EXT["extensions/*"]
 AS --> TOOLS["tools/*"]
 AS --> SM
+WEB["pi-web API"] --> SHARES["server/shares.ts"]
+WEB --> HANDOFF["server/handoff.ts"]
+WEB --> ROUTES["routes/api/*"]
 ```
 
 图表来源
@@ -327,6 +515,8 @@ AS --> SM
 - [packages/coding-agent/src/core/sdk.ts:1-482](file://packages/coding-agent/src/core/sdk.ts#L1-L482)
 - [packages/coding-agent/src/core/agent-session.ts:1-800](file://packages/coding-agent/src/core/agent-session.ts#L1-L800)
 - [packages/coding-agent/src/core/session-manager.ts:1-800](file://packages/coding-agent/src/core/session-manager.ts#L1-L800)
+- [apps/pi-web/src/server/shares.ts:1-149](file://apps/pi-web/src/server/shares.ts#L1-L149)
+- [apps/pi-web/src/server/handoff.ts:1-153](file://apps/pi-web/src/server/handoff.ts#L1-L153)
 
 ## 性能与可靠性
 - 模型与网络
@@ -340,6 +530,11 @@ AS --> SM
 - 工具与 I/O
   - withFileMutationQueue 串行化文件写操作，避免并发冲突。
   - 图片内容可按设置自动调整尺寸或被屏蔽，降低传输与成本。
+
+- 协作功能优化
+  - 分享 token 使用 SHA-256 哈希存储，提高安全性。
+  - 分享索引文件采用原子写入和权限保护（0600）。
+  - 交接文档自动生成时进行敏感信息脱敏。
 
 [本节为通用指导，无需特定文件引用]
 
@@ -357,6 +552,11 @@ AS --> SM
   - 区分 command response 与 session event；stderr 不是协议数据。
   - 优雅关闭流程：先 EOF 或 SIGTERM，必要时再发第二次信号强制退出。
 
+- 协作功能问题
+  - 分享链接失效：检查分享是否已过期或被撤销。
+  - 交接文档生成失败：确认会话运行时状态正常。
+  - 管理员权限错误：验证用户角色是否为 admin。
+
 章节来源
 - [packages/coding-agent/src/core/agent-session.ts:565-603](file://packages/coding-agent/src/core/agent-session.ts#L565-L603)
 - [packages/coding-agent/src/core/session-manager.ts:610-738](file://packages/coding-agent/src/core/session-manager.ts#L610-L738)
@@ -364,6 +564,8 @@ AS --> SM
 
 ## 结论
 Pi TypeScript SDK 提供了完整的会话、工具、扩展与模型运行时抽象，既适合在 Node.js/Bun 中直接集成，也支持通过 RPC 子进程模式进行跨语言控制。通过 SessionManager 的追加式条目树与投影机制，SDK 在保证可扩展性的同时，兼顾了上下文压缩、分支管理与持久化。结合扩展系统与工具工厂，开发者可以灵活定制工具、UI 与工作流。
+
+新增的协作功能 API 进一步增强了系统的实用性，提供了会话分享、交接文档生成、管理员会话管理和审计日志检索等企业级特性。这些功能通过 REST API 暴露，便于与其他系统集成，同时保证了安全性和性能。
 
 [本节为总结性内容，无需特定文件引用]
 

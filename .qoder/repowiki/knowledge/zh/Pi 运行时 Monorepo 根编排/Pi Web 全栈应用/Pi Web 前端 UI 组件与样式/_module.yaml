@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: pi_web/frontend_ui
+title: Pi Web 前端 UI 组件与样式
+scope:
+    - apps/pi-web/src/components/
+    - apps/pi-web/src/styles/
+source_files: []
+depends_on: []
+related_to: []

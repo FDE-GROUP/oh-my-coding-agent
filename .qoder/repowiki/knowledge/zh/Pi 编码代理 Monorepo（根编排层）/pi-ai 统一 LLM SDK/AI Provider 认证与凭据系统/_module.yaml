@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: ai_providers/auth_system
-title: AI Provider 认证与凭据系统
-scope:
-    - packages/ai/src/auth/
-source_files: []
-depends_on: []
-related_to:
-    - path: coding_agent/cli_layer

@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: ai_providers/catalog_metadata
-title: AI 模型目录构建与生成
-scope:
-    - packages/ai/catalog/
-source_files: []
-depends_on: []
-related_to:
-    - path: build_scripts

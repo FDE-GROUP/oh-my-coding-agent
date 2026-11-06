@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: coding_agent/core_runtime/core_runtime_services/compaction
+title: 会话压缩与分支摘要
+scope:
+    - packages/coding-agent/src/core/compaction/
+source_files: []
+depends_on: []
+related_to: []

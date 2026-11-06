@@ -3,11 +3,11 @@ schema_version: 1
 locale: zh-CN
 branch: main
 nodes_managed: true
-exported_at: "2026-11-06T08:36:33Z"
+exported_at: "2026-11-06T13:12:20Z"
 modules:
     "":
-        dir_name: Pi 编码代理 Monorepo（根编排层）
-        title: Pi 编码代理 Monorepo（根编排层）
+        dir_name: Pi 运行时 Monorepo 根编排
+        title: Pi 运行时 Monorepo 根编排
         scope:
             - README.md
             - README.zh-CN.md
@@ -72,7 +72,9 @@ modules:
             - ai_providers/provider_implementations
             - ai_providers/shared_utils
         depends_on: []
-        related_to: []
+        related_to:
+            - path: coding_agent/core_runtime
+            - path: evals
     ai_providers/api_adapters:
         dir_name: AI 提供商 API 适配器层
         title: AI 提供商 API 适配器层
@@ -90,8 +92,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/cli_layer
+        related_to: []
     ai_providers/catalog_metadata:
         dir_name: AI 模型目录构建与生成
         title: AI 模型目录构建与生成
@@ -100,8 +101,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: build_scripts
+        related_to: []
     ai_providers/provider_implementations:
         dir_name: AI Provider 实现集合
         title: AI Provider 实现集合
@@ -116,8 +116,7 @@ modules:
             - ai_providers/provider_implementations/qwen_token_plan
             - ai_providers/provider_implementations/xiaomi_token_plan
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/model_provider_registry
+        related_to: []
     ai_providers/provider_implementations/cloudflare:
         dir_name: Cloudflare Workers AI 提供者实现
         title: Cloudflare Workers AI 提供者实现
@@ -201,9 +200,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: ai_providers/catalog_metadata
-            - path: coding_agent
+        related_to: []
     codemode:
         dir_name: 模型代码沙箱执行引擎 (@earendil-works_pi-codemode)
         title: 模型代码沙箱执行引擎 (@earendil-works/pi-codemode)
@@ -232,14 +229,7 @@ modules:
             - coding_agent/utils
         depends_on: []
         related_to:
-            - path: build_scripts
-            - path: evals
-            - path: extensions
             - path: omfde_cli
-            - path: pi_web/server_runtime
-            - path: schema
-            - path: telemetry
-            - path: tui
     coding_agent/built_in_extensions:
         dir_name: 内置扩展集合 (Built-in Extensions)
         title: 内置扩展集合 (Built-in Extensions)
@@ -250,8 +240,6 @@ modules:
         depends_on: []
         related_to:
             - path: codemode
-            - path: coding_agent/core_runtime/extensions_system
-            - path: mcp
     coding_agent/bun_sandbox:
         dir_name: Bun 沙箱运行时入口
         title: Bun 沙箱运行时入口
@@ -269,8 +257,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: ai_providers/auth_system
+        related_to: []
     coding_agent/core_runtime:
         dir_name: Pi Coding Agent 核心运行时聚合层
         title: Pi Coding Agent 核心运行时聚合层
@@ -289,7 +276,14 @@ modules:
             - coding_agent/core_runtime/settings_config
             - coding_agent/core_runtime/tools_and_renderers
         depends_on: []
-        related_to: []
+        related_to:
+            - path: ai_providers
+            - path: evals
+            - path: extensions
+            - path: mcp
+            - path: pi_web/server_runtime
+            - path: telemetry
+            - path: tui
     coding_agent/core_runtime/agent_session_lifecycle:
         dir_name: Agent 会话生命周期与运行时编排
         title: Agent 会话生命周期与运行时编排
@@ -300,8 +294,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/core_runtime_services/session_lifecycle
+        related_to: []
     coding_agent/core_runtime/compaction:
         dir_name: 会话压缩与分支摘要
         title: 会话压缩与分支摘要
@@ -310,8 +303,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/core_runtime_services/compaction
+        related_to: []
     coding_agent/core_runtime/core_runtime_services:
         dir_name: Pi Coding Agent 核心运行时层
         title: Pi Coding Agent 核心运行时层
@@ -352,8 +344,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/compaction
+        related_to: []
     coding_agent/core_runtime/core_runtime_services/extension_loader:
         dir_name: 扩展加载与生命周期运行时
         title: 扩展加载与生命周期运行时
@@ -362,8 +353,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/extensions_system
+        related_to: []
     coding_agent/core_runtime/core_runtime_services/html_export:
         dir_name: 会话 HTML 导出与渲染
         title: 会话 HTML 导出与渲染
@@ -372,8 +362,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/html_export
+        related_to: []
     coding_agent/core_runtime/core_runtime_services/mcp_servers:
         dir_name: MCP 服务器配置与 Radius 集成
         title: MCP 服务器配置与 Radius 集成
@@ -395,8 +384,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/model_provider_registry
+        related_to: []
     coding_agent/core_runtime/core_runtime_services/runtime_support:
         dir_name: 运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）
         title: 运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）
@@ -407,8 +395,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/core_runtime_services/session_lifecycle
+        related_to: []
     coding_agent/core_runtime/core_runtime_services/sdk_bootstrap:
         dir_name: SDK 启动与运行时引导
         title: SDK 启动与运行时引导
@@ -430,9 +417,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/agent_session_lifecycle
-            - path: coding_agent/core_runtime/core_runtime_services/runtime_support
+        related_to: []
     coding_agent/core_runtime/core_runtime_services/settings_manager:
         dir_name: 设置管理与持久化
         title: 设置管理与持久化
@@ -443,8 +428,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/settings_config
+        related_to: []
     coding_agent/core_runtime/core_runtime_services/telemetry_diagnostics:
         dir_name: 遥测、诊断与启动时序工具
         title: 遥测、诊断与启动时序工具
@@ -464,8 +448,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/tools_and_renderers
+        related_to: []
     coding_agent/core_runtime/extensions_system:
         dir_name: 扩展系统 (Extension System)
         title: 扩展系统 (Extension System)
@@ -474,9 +457,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/built_in_extensions
-            - path: coding_agent/core_runtime/core_runtime_services/extension_loader
+        related_to: []
     coding_agent/core_runtime/html_export:
         dir_name: 会话 HTML 导出模块
         title: 会话 HTML 导出模块
@@ -485,8 +466,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/core_runtime_services/html_export
+        related_to: []
     coding_agent/core_runtime/model_provider_registry:
         dir_name: 模型注册与运行时编排
         title: 模型注册与运行时编排
@@ -504,9 +484,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: ai_providers/provider_implementations
-            - path: coding_agent/core_runtime/core_runtime_services/model_config_registry
+        related_to: []
     coding_agent/core_runtime/schemas:
         dir_name: Pi Coding Agent JSON Schema 定义集
         title: Pi Coding Agent JSON Schema 定义集
@@ -531,9 +509,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/core_runtime_services/settings_manager
-            - path: schema
+        related_to: []
     coding_agent/core_runtime/tools_and_renderers:
         dir_name: 内置工具与渲染器集合
         title: 内置工具与渲染器集合
@@ -542,8 +518,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent/core_runtime/core_runtime_services/tool_execution
+        related_to: []
     coding_agent/documentation:
         dir_name: Pi 文档站点与导航配置
         title: Pi 文档站点与导航配置
@@ -571,7 +546,7 @@ modules:
         children: []
         depends_on: []
         related_to:
-            - path: tui
+            - path: pi_web/server_runtime
     coding_agent/tests:
         dir_name: Coding Agent 测试套件
         title: Coding Agent 测试套件
@@ -591,8 +566,8 @@ modules:
         depends_on: []
         related_to: []
     docs:
-        dir_name: OMFDE 项目文档与规格（Explains_RADS_Specs）
-        title: OMFDE 项目文档与规格（Explains/RADS/Specs）
+        dir_name: omfde 项目文档与决策依据（explains_rads_specs_plans_spikes）
+        title: omfde 项目文档与决策依据（explains/rads/specs/plans/spikes）
         scope:
             - docs/
         source_files: []
@@ -608,7 +583,8 @@ modules:
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent
+            - path: ai_providers
+            - path: coding_agent/core_runtime
     extensions:
         dir_name: OMFDE 平台扩展集合
         title: OMFDE 平台扩展集合
@@ -618,7 +594,7 @@ modules:
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent
+            - path: coding_agent/core_runtime
     mcp:
         dir_name: Model Context Protocol (MCP) 客户端库
         title: Model Context Protocol (MCP) 客户端库
@@ -628,10 +604,10 @@ modules:
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent/built_in_extensions
+            - path: coding_agent/core_runtime
     omfde_cli:
-        dir_name: omfde 平台启动器
-        title: omfde 平台启动器
+        dir_name: OMFDE 平台 CLI 启动器
+        title: OMFDE 平台 CLI 启动器
         scope:
             - apps/omfde/
         source_files: []
@@ -640,59 +616,45 @@ modules:
         related_to:
             - path: coding_agent
     pi_web:
-        dir_name: Pi Web 单仓应用（TanStack Start + Pi RPC）
-        title: Pi Web 单仓应用（TanStack Start + Pi RPC）
+        dir_name: Pi Web 全栈应用
+        title: Pi Web 全栈应用
         scope:
             - apps/pi-web/
         source_files: []
         children:
-            - pi_web/frontend_routes_and_components
+            - pi_web/frontend_ui
             - pi_web/server_runtime
-            - pi_web/styles_and_theming
-            - pi_web/tests
+            - pi_web/shared_libs
         depends_on: []
         related_to: []
-    pi_web/frontend_routes_and_components:
-        dir_name: Pi Web 前端路由与页面组件
-        title: Pi Web 前端路由与页面组件
+    pi_web/frontend_ui:
+        dir_name: Pi Web 前端 UI 组件与样式
+        title: Pi Web 前端 UI 组件与样式
         scope:
-            - apps/pi-web/src/routes/
             - apps/pi-web/src/components/
-            - apps/pi-web/src/router.tsx
-        source_files: []
-        children: []
-        depends_on: []
-        related_to:
-            - path: pi_web/server_runtime
-            - path: pi_web/styles_and_theming
-    pi_web/server_runtime:
-        dir_name: Pi RPC 子进程运行时与前端主题_视口工具
-        title: Pi RPC 子进程运行时与前端主题/视口工具
-        scope:
-            - apps/pi-web/src/server/
-            - apps/pi-web/src/lib/
-        source_files: []
-        children: []
-        depends_on: []
-        related_to:
-            - path: coding_agent
-            - path: pi_web/frontend_routes_and_components
-            - path: pi_web/tests
-    pi_web/styles_and_theming:
-        dir_name: Pi Web 样式与主题 Token 层
-        title: Pi Web 样式与主题 Token 层
-        scope:
             - apps/pi-web/src/styles/
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: pi_web/frontend_routes_and_components
-    pi_web/tests:
-        dir_name: pi-web 服务端测试套件
-        title: pi-web 服务端测试套件
+        related_to: []
+    pi_web/server_runtime:
+        dir_name: Pi Web 服务端运行时与会话管理
+        title: Pi Web 服务端运行时与会话管理
         scope:
-            - apps/pi-web/test/
+            - apps/pi-web/src/server/
+            - apps/pi-web/src/routes/api/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: coding_agent/core_runtime
+            - path: coding_agent/modes
+            - path: pi_web/shared_libs
+    pi_web/shared_libs:
+        dir_name: Pi Web 浏览器端共享工具库
+        title: Pi Web 浏览器端共享工具库
+        scope:
+            - apps/pi-web/src/lib/
         source_files: []
         children: []
         depends_on: []
@@ -706,9 +668,7 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: coding_agent
-            - path: coding_agent/core_runtime/settings_config
+        related_to: []
     telemetry:
         dir_name: Telemetry 契约与内存参考实现
         title: Telemetry 契约与内存参考实现
@@ -718,7 +678,7 @@ modules:
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent
+            - path: coding_agent/core_runtime
     tui:
         dir_name: pi-tui 终端 UI 框架
         title: pi-tui 终端 UI 框架
@@ -728,5 +688,4 @@ modules:
         children: []
         depends_on: []
         related_to:
-            - path: coding_agent
-            - path: coding_agent/modes
+            - path: coding_agent/core_runtime

@@ -1,0 +1,16 @@
+schema_version: 1
+module_path: coding_agent/core_runtime
+title: Pi Coding Agent 核心运行时聚合层
+scope:
+    - packages/coding-agent/src/core/
+    - packages/coding-agent/schemas/
+source_files: []
+depends_on: []
+related_to:
+    - path: ai_providers
+    - path: evals
+    - path: extensions
+    - path: mcp
+    - path: pi_web/server_runtime
+    - path: telemetry
+    - path: tui

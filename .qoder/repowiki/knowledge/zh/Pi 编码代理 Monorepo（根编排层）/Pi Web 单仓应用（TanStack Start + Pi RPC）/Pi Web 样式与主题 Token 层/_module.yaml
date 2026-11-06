@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: pi_web/styles_and_theming
-title: Pi Web 样式与主题 Token 层
-scope:
-    - apps/pi-web/src/styles/
-source_files: []
-depends_on: []
-related_to:
-    - path: pi_web/frontend_routes_and_components

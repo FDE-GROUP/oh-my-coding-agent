@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: pi_web/server_runtime
+title: Pi Web 服务端运行时与会话管理
+scope:
+    - apps/pi-web/src/server/
+    - apps/pi-web/src/routes/api/
+source_files: []
+depends_on: []
+related_to:
+    - path: coding_agent/core_runtime
+    - path: coding_agent/modes
+    - path: pi_web/shared_libs

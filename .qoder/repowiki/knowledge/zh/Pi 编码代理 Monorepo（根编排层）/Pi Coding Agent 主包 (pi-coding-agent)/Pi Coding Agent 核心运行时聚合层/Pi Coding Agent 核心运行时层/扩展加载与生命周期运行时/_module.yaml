@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: coding_agent/core_runtime/core_runtime_services/extension_loader
-title: 扩展加载与生命周期运行时
-scope:
-    - packages/coding-agent/src/core/extensions/
-source_files: []
-depends_on: []
-related_to:
-    - path: coding_agent/core_runtime/extensions_system
