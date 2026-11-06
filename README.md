@@ -184,7 +184,9 @@ I regularly publish my own `pi-mono` work sessions here:
 MIT
 
 <p align="center">
-  <a href="https://pi.dev">pi.dev</a> domain graciously donated by
-  <br /><br />
-  <a href="https://exe.dev"><img src="packages/coding-agent/docs/images/exy.png" alt="Exy mascot" width="48" /><br />exe.dev</a>
+  <strong>omfde</strong> — an enterprise-internal FDE platform.
+</p>
+
+<p align="center">
+  <img alt="omfde" src="omfde.jpg" width="160">&nbsp;&nbsp;<img alt="Abel" src="abel.jpg" width="160">
 </p>

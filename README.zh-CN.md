@@ -205,7 +205,9 @@ cd "pi-${VERSION}"
 MIT
 
 <p align="center">
-  <a href="https://pi.dev">pi.dev</a> 域名由
-  <br /><br />
-  <a href="https://exe.dev"><img src="packages/coding-agent/docs/images/exy.png" alt="Exy mascot" width="48" /><br />exe.dev</a> 慷慨捐赠
+  <strong>omfde</strong> —— 企业内部 FDE 平台。
+</p>
+
+<p align="center">
+  <img alt="omfde" src="omfde.jpg" width="160">&nbsp;&nbsp;<img alt="Abel" src="abel.jpg" width="160">
 </p>
