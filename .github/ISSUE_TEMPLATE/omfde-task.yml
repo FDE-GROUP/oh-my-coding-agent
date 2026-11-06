@@ -56,7 +56,7 @@ body:
       description: 需要单写者协调的共享文件。
       placeholder: |
         package.json
-        package-lock.json
+        pnpm-lock.yaml
         tsconfig.json
         AGENTS.md
         docs/specs/**

@@ -14,6 +14,11 @@ for arg in "$@"; do
   fi
 done
 
+# pnpm may pass its argument separator through to the script.
+if [[ ${#ARGS[@]} -gt 0 && "${ARGS[0]}" == "--" ]]; then
+  ARGS=("${ARGS[@]:1}")
+fi
+
 if [[ "$NO_ENV" == "true" ]]; then
   # Unset API keys (see packages/ai/src/env-api-keys.ts)
   unset ANTHROPIC_API_KEY

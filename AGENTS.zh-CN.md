@@ -7,6 +7,7 @@
 本仓库是 `earendil-works/pi` 的本地 fork，不是 GitHub 意义上的 fork。
 
 - `upstream` 是 Pi 远端。`main` 是产品主分支；`upstream/main` 是只读的 Pi 镜像，只用于同步；`pages` 发布文档站。不要向上游贡献。
+- 包管理器：pnpm 11.15.1，由 `packageManager` 固定。`pnpm-lock.yaml` 和 `pnpm-workspace.yaml` 是依赖与 workspace 的事实来源。
 - 所有工作都在 `main` 上进行。不要创建功能分支，也不要在其他分支的 worktree 中工作。
 - 不要向 `upstream/main` 提交。
 - 已裁剪的上游子系统：`apps/p2`、`packages/env`、`packages/durable`、`packages/chord` 和 `scripts/durable-browser-smoke-entry.ts`。
@@ -71,16 +72,16 @@
 - 不要硬编码按键检查（例如 `matchesKey(keyData, "ctrl+x")`）。把默认值加到 `DEFAULT_EDITOR_KEYBINDINGS` 或 `DEFAULT_APP_KEYBINDINGS`，让它们保持可配置。
 - 永远不要直接修改 `packages/ai/src/models.generated.ts`；应该修改 `packages/ai/catalog/` 里的目录定义（见该目录的 README），然后重新生成。把生成后的 `models.generated.ts` diff 一起提交总是可以的，即使重新生成时带上了不相关的上游模型元数据变更。`packages/ai/src/providers/data/` 中生成的模型数据已被 gitignore：永远不要 stage 它，也不要在 git 历史里找它。
 - 在 `docs/specs/vision.md` 中记录决定之前，不要新增 workspace 包或改变包依赖图。
-- `apps/*/src` 和 `extensions/*/src` 中的平台导出必须按 `docs/specs/tsdoc-comment-standards.md` 写 TSDoc。`npm run check:tsdoc` 会检查基础规则。
+- `apps/*/src` 和 `extensions/*/src` 中的平台导出必须按 `docs/specs/tsdoc-comment-standards.md` 写 TSDoc。`pnpm run check:tsdoc` 会检查基础规则。
 
 ## 命令
 
-- 代码改动（不是文档）之后：运行 `npm run check`（只读，完整输出，不要只看尾部）。提交前修复所有 error、warning 和 info。它不运行测试。
-- 只有需要格式化或安全的 lint 自动修复时才运行 `npm run check:fix`；它会写文件，必须检查 diff 并保持在 write scope 内。`npm run check:secrets` 已包含在 `check` 中，也可以单独运行。
-- pre-commit 只对 staged 文件做快速检查；pre-push 运行完整 `npm run check`。两者都只在本地执行。
-- `npm run omfde` 启动平台入口。`npm run tui` 仍然直接从源码启动 Pi。
-- 只在某些东西需要构建产物（`dist/`）时运行 `npm run build`，例如导入已构建包的测试。永远不要用它做类型检查或 lint：那应该用 `npm run check`。
-- 除非用户要求，否则永远不要运行 `npm test`。
+- 代码改动（不是文档）之后：运行 `pnpm run check`（只读，完整输出，不要只看尾部）。提交前修复所有 error、warning 和 info。它不运行测试。
+- 只有需要格式化或安全的 lint 自动修复时才运行 `pnpm run check:fix`；它会写文件，必须检查 diff 并保持在 write scope 内。`pnpm run check:secrets` 已包含在 `check` 中，也可以单独运行。
+- pre-commit 只对 staged 文件做快速检查；pre-push 运行完整 `pnpm run check`。两者都只在本地执行。
+- `pnpm run omfde` 启动平台入口。`pnpm run tui` 仍然直接从源码启动 Pi。
+- 只在某些东西需要构建产物（`dist/`）时运行 `pnpm run build`，例如导入已构建包的测试。永远不要用它做类型检查或 lint：那应该用 `pnpm run check`。
+- 除非用户要求，否则永远不要运行 `pnpm test`。
 - 永远不要直接运行完整的 vitest 套件：它包含 e2e 测试，当存在 endpoint/auth 环境变量时这些测试会激活。要运行所有非 e2e 测试，在仓库根目录运行 `./test.sh`。它只运行 `packages/*`。否则从包根目录运行特定测试：
   - Vitest：`node "$(git rev-parse --show-toplevel)/node_modules/vitest/dist/cli.js" --run test/specific.test.ts`
   - `packages/tui`（`node:test`）：`node --test test/specific.test.ts`
@@ -101,12 +102,12 @@
 
 ## 依赖与安装安全
 
-- 把 npm 依赖和 lockfile 变更当作需要审查的代码。直接 registry 依赖，包括内部 workspace 依赖，都固定为精确版本。
+- 把 pnpm 依赖和 lockfile 变更当作需要审查的代码。直接 registry 依赖，包括内部 workspace 依赖，都固定为精确版本。
 - 更新 `undici` 时，必须先阅读目标版本的 changelog/发布说明，评估是否有任何变更可能影响功能，然后再应用更新。
-- 本地 hydrate/更新用 `npm install --ignore-scripts`；干净/CI 风格用 `npm ci --ignore-scripts`。除非用户要求，否则不要运行生命周期脚本。
-- 如果依赖元数据变化，用 `npm install --package-lock-only --ignore-scripts` 刷新 `package-lock.json`。
-- 如果 `packages/coding-agent/install-lock/` 需要重新生成，运行 `node scripts/generate-coding-agent-install-lock.mjs`（用 `--check` 或 `npm run check` 验证）。带生命周期脚本的新依赖需要审查，并在该脚本里显式加入 allowlist；永远不要悄悄添加。
-- 除非设置 `PI_ALLOW_LOCKFILE_CHANGE=1`，否则 pre-commit 会阻止 lockfile 提交。除非用户希望提交这个 lockfile 变更，否则不要绕过。
+- 本地 hydrate/更新用 `pnpm install --ignore-scripts`；干净安装用 `pnpm install --frozen-lockfile --ignore-scripts`。除非用户要求，否则不要运行生命周期脚本。
+- 如果依赖元数据变化，用 `pnpm install --lockfile-only --ignore-scripts` 刷新 `pnpm-lock.yaml`。
+- npm 时代的 `install-lock` 和发布脚本是遗留路径。本 fork 不发布版本；除非恢复发布路径，否则不要运行它们。
+- 除非设置 `PI_ALLOW_LOCKFILE_CHANGE=1`，否则 pre-commit 会阻止 `pnpm-lock.yaml` 提交。除非用户希望提交这个 lockfile 变更，否则不要绕过。
 
 ## 分支、Git 与上游
 

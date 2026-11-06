@@ -80,11 +80,11 @@ The full process is in [`docs/specs/workflow.md`](docs/specs/workflow.md).
 ## Quality gates
 
 - All quality gates run locally. Remote CI is not a gate; do not push expecting GitHub Actions to catch failures.
-- Code changes: run `npm run check` (read-only). Use `npm run check:fix` only for explicit formatting/safe-lint fixes, and keep the resulting diff inside your write scope.
-- New platform exports under `apps/*/src` and `extensions/*/src` require TSDoc: `npm run check:tsdoc` is included in `check`.
-- Pre-commit checks staged files only; pre-push runs the full `npm run check`.
+- Code changes: run `pnpm run check` (read-only). Use `pnpm run check:fix` only for explicit formatting/safe-lint fixes, and keep the resulting diff inside your write scope.
+- New platform exports under `apps/*/src` and `extensions/*/src` require TSDoc: `pnpm run check:tsdoc` is included in `check`.
+- Pre-commit checks staged files only; pre-push runs the full `pnpm run check`.
 - Run the relevant tests; use `./test.sh` for non-e2e tests.
-- Platform entry changes: run `npm run omfde -- --version` and one `npm run omfde -- -p "..."` smoke.
+- Platform entry changes: run `pnpm run omfde -- --version` and one `pnpm run omfde -- -p "..."` smoke.
 - Record commands, output, and environment. Do not mask failures with skips or relaxed assertions.
 - If you create or modify a test, run it and iterate until it passes.
 

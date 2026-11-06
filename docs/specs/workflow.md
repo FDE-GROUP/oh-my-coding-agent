@@ -1,6 +1,6 @@
 # 开发工作流
 
-> 版本：0.2.5 | 日期：2026-11-06 | 状态：现行
+> 版本：0.2.6 | 日期：2026-11-06 | 状态：现行
 
 本文件把 vision、RAD、AGENTS 的规则串成可重复执行的闭环。它不新设产品边界；边界以 `docs/specs/vision.md` 为准。贡献者的操作细节和代码门禁见 `CONTRIBUTING.md`。
 
@@ -55,7 +55,7 @@ GitHub Issues 是团队记录任务、bug 和阶段目标的统一视图，不�
 - 每个 issue 或任务在开始前，由决策者指定 **write scope**：允许写入的文件或目录。没有 scope 的任务视为未就绪，不得开始。A 类机械修复可以跳过 issue，但仍必须在会话任务中声明 scope。
 - 同时指定 **read-only scope** 和 **shared files**。共享文件默认单写者、串行修改。
 - Agent 只能写 write scope 内的文件。需要扩大范围时，停下来申请，不得自行越界。
-- 共享文件的例子：`package.json`、`package-lock.json`、`tsconfig.json`、`AGENTS.md`、`docs/specs/`、根 README、生成文件。
+- 共享文件的例子：`package.json`、`pnpm-lock.yaml`、`tsconfig.json`、`AGENTS.md`、`docs/specs/`、根 README、生成文件。
 - 提交前用 `git status` 和 `git diff --name-only` 检查改动只落在 write scope 内；越界就停下。
 - 提交时只 stage 自己修改且在 scope 内的文件；其他 Agent 的改动保持未暂存。超范围提交必须经决策者明确同意。
 - 这是硬规则：所有工作只在 `main` 上。不切功能分支，也不在其他分支的 worktree 中工作。范围重叠时串行处理或重新划分 scope，不靠分支解决。
@@ -129,12 +129,12 @@ GitHub Issues 是团队记录任务、bug 和阶段目标的统一视图，不�
 ## 9. 实现与验证
 
 - 只改 plan 范围内的内容。涉及 Pi 核心的改动必须先在 plan 中说明；当前阶段默认不改核心。
-- 代码改动后运行 `npm run check`（只读）；需要自动修复时再运行 `npm run check:fix`，并确认改动在 write scope 内。涉及测试时运行对应测试；需要时运行 `./test.sh`。
-- 平台导出必须按 `docs/specs/tsdoc-comment-standards.md` 写 TSDoc；`npm run check:tsdoc` 已包含在 `check` 中。
-- pre-commit 只检查 staged 文件；pre-push 运行完整 `npm run check`。
+- 代码改动后运行 `pnpm run check`（只读）；需要自动修复时再运行 `pnpm run check:fix`，并确认改动在 write scope 内。涉及测试时运行对应测试；需要时运行 `./test.sh`。
+- 平台导出必须按 `docs/specs/tsdoc-comment-standards.md` 写 TSDoc；`pnpm run check:tsdoc` 已包含在 `check` 中。
+- pre-commit 只检查 staged 文件；pre-push 运行完整 `pnpm run check`。
 - 平台入口改动至少运行：
-  - `npm run omfde -- --version`
-  - 一条 `npm run omfde -- -p "..."`
+  - `pnpm run omfde -- --version`
+  - 一条 `pnpm run omfde -- -p "..."`
 - 所有检查都在本地执行；不依赖远程 CI，也不等待 GitHub Actions 结果。推送前本地必须通过。
 - 记录命令、输出和环境；不能只说“通过”。
 - 失败必须如实记录，不能用 skip、放宽断言或删除测试来掩盖。
@@ -248,3 +248,4 @@ GitHub Issues 是团队记录任务、bug 和阶段目标的统一视图，不�
 | 2026-11-06 | 0.2.3 | 质量门禁改为只在本地执行，不依赖远程 CI |
 | 2026-11-06 | 0.2.4 | check 改为只读，新增 check:fix 和 secret scan；pre-commit 只检查 staged 文件，pre-push 跑完整 check |
 | 2026-11-06 | 0.2.5 | 增加平台 TSDoc 规范和 check:tsdoc 本地门禁 |
+| 2026-11-06 | 0.2.6 | 包管理器从 npm 迁移到 pnpm；本地命令、锁文件和 workspace 配置同步更新 |

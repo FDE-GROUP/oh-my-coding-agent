@@ -2,6 +2,6 @@
 set -eu
 
 echo "Running full local checks before push..."
-npm run check
+pnpm run check
 
 echo "Pre-push checks passed."

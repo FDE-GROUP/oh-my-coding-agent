@@ -155,7 +155,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 - 本地 fork，`upstream` 指向 Pi 官方仓库；`main` 是产品主分支，`pages` 是文档站分支。
 - 已裁剪与当前核心能力无关的四个子系统，仓库体积约减少一半。
 - 保留 9 个包：`agent`、`ai`、`coding-agent`、`codemode`、`evals`、`mcp`、`schema`、`telemetry`、`tui`。
-- 平台骨架：`apps/omfde` 提供 `npm run omfde` 入口，`extensions/omfde-core` 提供第一个扩展骨架。
+- 平台骨架：`apps/omfde` 提供 `pnpm run omfde` 入口，`extensions/omfde-core` 提供第一个扩展骨架。
 - 核心代码未改，仅删除了 2 行失效注释。
 - 详见 `docs/explains/26-fork-and-prune.md`。
 
@@ -211,7 +211,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 
 原因：平台化线需要一个可持续的代码落点，避免平台代码散落在 `.pi`、脚本或 Pi 核心里。
 
-影响：根 workspace 新增 `apps/*` 和 `extensions/*`；`apps/omfde` 作为第一个平台入口，负责启动 Pi 并设置平台环境；`extensions/omfde-core` 作为第一个扩展骨架。Pi 包继续留在 `packages/`，不移动，以保持上游 rebase 能力。根脚本新增 `npm run omfde`。
+影响：根 workspace 新增 `apps/*` 和 `extensions/*`；`apps/omfde` 作为第一个平台入口，负责启动 Pi 并设置平台环境；`extensions/omfde-core` 作为第一个扩展骨架。Pi 包继续留在 `packages/`，不移动，以保持上游 rebase 能力。根脚本新增 `pnpm run omfde`。
 
 ### 2026-11-06：分支整理
 
@@ -237,6 +237,12 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 
 影响：`upstream` 只用于 fetch 和 rebase；不向上游开 PR，也不 push 分支到上游。PR 只保留两种情况：外部贡献者从 fork 提交，以及决策者特批的内部例外。
 
+### 2026-11-06：包管理器迁移到 pnpm
+
+原因：项目需要更好的 monorepo 依赖隔离、workspace 管理和更快的安装；同时与 DSH 的工程实践保持一致。
+
+影响：`package.json` 固定 `packageManager: pnpm@11.15.1`；新增 `pnpm-workspace.yaml` 和 `pnpm-lock.yaml`；日常命令、pre-commit、test.sh 和文档改用 pnpm；npm 时代的 `install-lock` 和发布脚本标记为遗留路径。
+
 ## 未决问题
 
 - 团队里最重复、最耗时的三类工作是什么？
@@ -245,7 +251,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 - FDE 平台在企业内部运行时，权限、审计、数据边界的最低要求是什么？先记录需求，不急着实现。
 - 平台需要连接哪些企业系统（代码托管、工单、知识库、CI/CD、部署、权限）？哪些必须第一期，哪些可以手工？
 - 平台化线的下一刀是什么：项目、知识、权限，还是审计？
-- `apps/omfde` 与 `npm run tui` 的分工如何稳定：只做启动器，还是承担默认配置、扩展编排和平台入口校验？
+- `apps/omfde` 与 `pnpm run tui` 的分工如何稳定：只做启动器，还是承担默认配置、扩展编排和平台入口校验？
 - 是否需要固定的上游同步节奏？多久 rebase 一次。
 - 配置和扩展放在仓库内还是用户目录，才能既个人可用又能团队共享。
 

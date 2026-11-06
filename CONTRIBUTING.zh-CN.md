@@ -82,11 +82,11 @@ GitHub Issues 是团队记录需求、bug 和任务的统一视图和任务板�
 ## 质量门禁
 
 - 所有质量门禁都在本地执行。远程 CI 不是门禁；不要 push 后等 GitHub Actions 发现问题。
-- 代码改动：运行 `npm run check`（只读）。只有需要格式化或安全的 lint 自动修复时才运行 `npm run check:fix`，并确保产生的 diff 在 write scope 内。
-- `apps/*/src` 和 `extensions/*/src` 中的新平台导出必须写 TSDoc；`npm run check:tsdoc` 已包含在 `check` 中。
-- pre-commit 只检查 staged 文件；pre-push 运行完整 `npm run check`。
+- 代码改动：运行 `pnpm run check`（只读）。只有需要格式化或安全的 lint 自动修复时才运行 `pnpm run check:fix`，并确保产生的 diff 在 write scope 内。
+- `apps/*/src` 和 `extensions/*/src` 中的新平台导出必须写 TSDoc；`pnpm run check:tsdoc` 已包含在 `check` 中。
+- pre-commit 只检查 staged 文件；pre-push 运行完整 `pnpm run check`。
 - 运行相关测试；非 e2e 测试用 `./test.sh`。
-- 平台入口改动：运行 `npm run omfde -- --version`，并跑一条 `npm run omfde -- -p "..."` 冒烟。
+- 平台入口改动：运行 `pnpm run omfde -- --version`，并跑一条 `pnpm run omfde -- -p "..."` 冒烟。
 - 记录命令、输出和环境。不要用 skip 或放宽断言掩盖失败。
 - 如果你创建或修改了测试，运行它并迭代到通过。
 

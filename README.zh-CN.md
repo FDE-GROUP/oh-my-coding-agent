@@ -35,7 +35,7 @@ Pi 自带强大的默认配置，但刻意跳过了 sub-agents 和 plan mode 这
 启动平台入口：
 
 ```bash
-npm run omfde
+pnpm run omfde
 ```
 
 ## 快速开始
@@ -84,7 +84,7 @@ nix run github:earendil-works/pi/stable
 Nix 构建在离线环境下进行，因此内置的模型数据来自 `nix/model-catalog.json` 中固定的 pi.dev 模型目录版本。运行时，Pi 仍会像往常一样用 pi.dev 上更新的目录数据覆盖它。当固定版本与 checkout 不再匹配时（例如新增了 provider 或新的模型类型），Nix 工作流会在 `main` 上替换这个 pin。手动刷新：
 
 ```bash
-npm run update:model-catalog-pin
+pnpm run update:model-catalog-pin
 ```
 
 ## 包
@@ -121,11 +121,13 @@ Pi 不包含用于限制文件系统、进程、网络或凭据访问的内置�
 
 ## 开发
 
+本仓库使用 pnpm 作为包管理器。
+
 ```bash
-npm install --ignore-scripts  # 安装所有依赖，但不运行生命周期脚本
-npm run build         # 刷新模型数据，然后构建所有包
-npm run build:offline # 使用已有模型数据重新构建，不访问网络
-npm run check         # Lint、格式化和类型检查
+pnpm install --ignore-scripts  # 安装所有依赖，但不运行生命周期脚本
+pnpm run build         # 刷新模型数据，然后构建所有包
+pnpm run build:offline # 使用已有模型数据重新构建，不访问网络
+pnpm run check         # Lint、格式化和类型检查
 ./test.sh            # 运行测试（没有 API key 时跳过依赖 LLM 的测试）
 ./pi-test.sh         # 从源码运行 pi（可以在任意目录运行）
 ```
@@ -135,7 +137,7 @@ npm run check         # Lint、格式化和类型检查
 把所有公开包构建成一套相互匹配的本地产物：
 
 ```bash
-npm run pack:packages -- --out .artifacts/pi-packages
+pnpm run pack:packages -- --out .artifacts/pi-packages
 ```
 
 这一步会在构建 `pi-ai` 之前刷新模型数据。如果模型数据已经 hydrate，可以传入
@@ -189,17 +191,14 @@ cd "pi-${VERSION}"
 
 ## 供应链加固
 
-我们把 npm 依赖变更当作需要审查的代码变更。
+我们把 pnpm 依赖变更当作需要审查的代码变更。
 
 - 直接外部依赖固定为精确版本。内部 workspace 包仍使用版本范围。
-- `.npmrc` 设置 `save-exact=true` 和 `min-release-age=2`，避免 npm 解析到当天发布的依赖。
-- `package-lock.json` 是依赖的唯一事实来源。除非设置 `PI_ALLOW_LOCKFILE_CHANGE=1`，否则 pre-commit 会阻止意外提交 lockfile。
-- `npm run check` 会校验固定版本的直接依赖、原生 TypeScript import 兼容性，以及生成的 coding-agent 安装锁。
-- pi.dev 安装器从 `packages/coding-agent/install-lock/` 安装，该目录由根 lockfile 生成，用于锁定传递依赖。npm 包不锁定传递依赖。
-- 本地发布冒烟测试和 npm 发布使用同一个 tarball 打包器；npm 发布的是已经验证过的 tarball，而不是重新打包 workspace 目录。
-- 本地发布安装、文档中的 npm 安装和 `pi update --self` 在支持时都使用 `--ignore-scripts`。
-- CI 使用 `npm ci --ignore-scripts` 安装，并有一个定时 GitHub workflow 运行 `npm audit --omit=dev` 和 `npm audit signatures --omit=dev`。
-- 安装锁生成过程对依赖生命周期脚本有显式 allowlist；新的带生命周期脚本的依赖会让检查失败，直到完成审查。
+- `.npmrc` 设置 `save-exact=true`；依赖变更必须审查 lockfile。
+- `pnpm-lock.yaml` 是依赖的唯一事实来源。除非设置 `PI_ALLOW_LOCKFILE_CHANGE=1`，否则 pre-commit 会阻止意外提交 lockfile。
+- `pnpm run check` 会校验固定版本的直接依赖、TypeScript import 兼容性、secret、TSDoc 和入口图。
+- 本 fork 不发布版本；`install-lock` 和发布脚本是上游遗留路径，当前不使用。
+- 本 fork 的质量门禁只在本地执行，不使用远程 CI。
 
 ## 分享你的 OSS coding agent 会话
 

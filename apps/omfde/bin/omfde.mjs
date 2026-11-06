@@ -8,7 +8,10 @@ const repoRoot = fileURLToPath(new URL("../../../", import.meta.url));
 const localBin = join(repoRoot, "node_modules", ".bin", process.platform === "win32" ? "pi.cmd" : "pi");
 const command = existsSync(localBin) ? localBin : "pi";
 
-const child = spawn(command, process.argv.slice(2), {
+const args = process.argv.slice(2);
+if (args[0] === "--") args.shift();
+
+const child = spawn(command, args, {
 	stdio: "inherit",
 	env: { ...process.env, OMFDE_PLATFORM: "1" },
 });

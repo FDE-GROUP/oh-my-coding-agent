@@ -98,13 +98,13 @@ doc 块必须紧贴符号：
 工具：`scripts/check-tsdoc.mjs`。
 
 ```bash
-npm run check:tsdoc
-npm run check:tsdoc -- --staged
+pnpm run check:tsdoc
+pnpm run check:tsdoc -- --staged
 ```
 
 已纳入：
 
-- `npm run check`
+- `pnpm run check`
 - pre-commit（staged-only）
 - pre-push（完整 check）
 

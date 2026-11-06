@@ -30,7 +30,7 @@
 		"clean": "node ../../scripts/package-files.mjs clean dist",
 		"build": "tsc -p tsconfig.build.json",
 		"test": "vitest --run",
-		"prepublishOnly": "npm run clean && npm run build"
+		"prepublishOnly": "pnpm run clean && pnpm run build"
 	},
 	"keywords": [
 		"telemetry",
