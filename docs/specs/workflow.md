@@ -1,6 +1,6 @@
 # 开发工作流
 
-> 版本：0.2.1 | 日期：2026-11-06 | 状态：现行
+> 版本：0.2.3 | 日期：2026-11-06 | 状态：现行
 
 本文件把 vision、RAD、AGENTS 的规则串成可重复执行的闭环。它不新设产品边界；边界以 `docs/specs/vision.md` 为准。贡献者的操作细节和代码门禁见 `CONTRIBUTING.md`。
 
@@ -34,19 +34,19 @@
 
 ### 3.1 GitHub Issues：统一入口
 
-GitHub Issues 是团队提交需求、bug 和任务的唯一入口，也是阶段目标的统一视图。
+GitHub Issues 是团队记录任务、bug 和阶段目标的统一视图，不是新需求的起点。
 
-- 需求、bug、chore、决策都先建 issue；使用 `.github/ISSUE_TEMPLATE/omfde-task.yml`，write scope 为必填。
+- **新需求**：由决策者发起讨论；讨论有初步结论后，决策者决定是否需要 RAD，再同步补 issue。需要 RAD 时，issue 关联 `docs/rads/<slug>.md`；不需要时在 issue 正文说明理由。
+- **Bug**：可以直接开 issue，也可以在讨论后补；修复用 `fixes #N` 关闭。
+- **Chore / 决策**：可以开 issue，也可以先讨论再补；团队可见任务仍以 issue 为准。
+- 使用 `.github/ISSUE_TEMPLATE/omfde-task.yml`，write scope 为必填。
 - 类型建议：`type:requirement`、`type:bug`、`type:chore`、`type:decision`。
-- 需要 RAD 的需求类 issue 必须关联 RAD；不需要 RAD 的 issue 在正文说明理由。RAD 的“关联 issue”回链。
 - 非平凡实现必须关联 plan；plan 的“关联 issue 和 RAD（如有）”回链。
 - 阶段目标用 GitHub Milestone 或 tracking issue 表示；每个开发 issue 归入对应 milestone。
-- 团队可见的开发任务以 issue 为准；聊天或口头结论要回写 issue。
 - 状态建议：`needs-rad` → `needs-spike` → `needs-plan` → `ready` → `in-progress` → `done`；阻塞用 `blocked`。
-- bug 修复用 `fixes #N` 关闭；需求或任务在验收后关闭并附结果。
 - A 类机械修复可以例外不建 issue；如果影响共享文档、行为或多人协作，仍然建 issue。
 
-需求可以由任何团队成员通过 issue 提出，决策者确认是否需要 RAD。bug 修复、chore、机械修复不强制 RAD。不是每个 B 都需要完整仪式；判断标准是：是否新增能力、改变行为、跨越模块边界，或存在关键不确定性。
+新需求由决策者发起。团队成员可以反馈问题和建议，但是否成为需求、是否需要 RAD，由决策者决定。bug 修复、chore、机械修复不强制 RAD。不是每个 B 都需要完整仪式；判断标准是：是否新增能力、改变行为、跨越模块边界，或存在关键不确定性。
 
 ### 3.2 Agent 写范围
 
@@ -63,13 +63,15 @@ GitHub Issues 是团队提交需求、bug 和任务的唯一入口，也是阶�
 ## 4. 主循环
 
 ```text
-GitHub Issue（需求 / 缺陷 / 任务 / 决策）
+讨论（新需求由决策者发起）/ 缺陷 / 任务
   │
+  ├─ 新需求 → 决策者决定是否 RAD → 补 issue（+ RAD）→ B
+  ├─ Bug / chore → 补 issue → A / B
   ├─ A 机械 → 直接实现 → 验证 → 提交
   ├─ B 常规 → RAD? → Spike? → Plan? → 实现 → 验证 → 提交
   └─ C 决策 → 讨论 → vision / 决策记录 → 转 B
   │
-[Issue 闸] 团队任务以 issue 为准；缺 issue 先补 issue
+[Issue 闸] 讨论有结论后补 issue；团队任务以 issue 为准
 [Scope 闸] 每个 Agent 的 write scope 明确且尽量不重叠
 [Vision 闸] 每个任务先检查是否越过 vision
 [Spike 闸] 关键不确定点 → 预研 → 决策者裁定
@@ -91,7 +93,7 @@ GitHub Issue（需求 / 缺陷 / 任务 / 决策）
 
 ## 6. RAD 闸
 
-- **触发**：需求类 issue，由团队成员提出，决策者确认是否需要 RAD。
+- **触发**：新需求由决策者发起讨论，并决定是否需要 RAD；需要时再同步补 issue 并关联 RAD。
 - **模板**：`docs/rads/TEMPLATE.md`。
 - **产物**：`docs/rads/<slug>.md`。
 - **内容**：背景与价值、Vision 对齐、干系人、场景、范围与非目标、FR-N、非功能约束、开放问题、US-N、验收指标、决策者确认记录。
@@ -131,6 +133,7 @@ GitHub Issue（需求 / 缺陷 / 任务 / 决策）
 - 平台入口改动至少运行：
   - `npm run omfde -- --version`
   - 一条 `npm run omfde -- -p "..."`
+- 所有检查都在本地执行；不依赖远程 CI，也不等待 GitHub Actions 结果。推送前本地必须通过。
 - 记录命令、输出和环境；不能只说“通过”。
 - 失败必须如实记录，不能用 skip、放宽断言或删除测试来掩盖。
 
@@ -185,7 +188,7 @@ GitHub Issue（需求 / 缺陷 / 任务 / 决策）
 1. 读 `docs/specs/vision.md`。
 2. 读本文件。
 3. 读 `AGENTS.md`。
-4. 查看 GitHub Issues 和当前 milestone，确认本次对应哪个 issue。
+4. 查看 GitHub Issues 和当前 milestone；新需求确认是否已由决策者发起并同步到 issue。
 5. 确认当前在 `main`，且没有未经授权的分支切换；尤其不要切到 `pages`。
 6. 确认本次任务属于 A/B/C 哪类、对应哪条目标线。
 7. 明确边界：本次不做什么。
@@ -207,7 +210,8 @@ GitHub Issue（需求 / 缺陷 / 任务 / 决策）
 
 | 动作 | AI | 决策者（当前为 Abel） |
 |---|---|---|
-| issue 提交与分诊 | 起草、整理、补全上下文 | 提交需求、确认优先级、分配 milestone |
+| 需求发起与讨论 | 整理讨论、提炼成文 | 发起新需求，决定是否进入 RAD |
+| issue 记录与分诊 | 起草、整理、补全上下文 | 决定优先级、分配 milestone |
 | Agent 写范围 | 按 scope 执行，越界前申请 | 为每个任务指定 write scope、read-only scope 和 shared files |
 | 阶段目标 | 建议 milestone / tracking issue | 决定阶段目标和优先级 |
 | 起草 RAD / spike / plan | 执行 | 确认 RAD、裁定 spike、批准 plan |
@@ -238,3 +242,5 @@ GitHub Issue（需求 / 缺陷 / 任务 / 决策）
 | 2026-11-06 | 0.1.4 | 明确只提交自己修改且在 write scope 内的文件；超范围提交须经决策者同意 |
 | 2026-11-06 | 0.2.0 | 明确 PR/合并约定；pages 为发布分支，未经授权不得切换；共享 worktree 的 Git 操作串行 |
 | 2026-11-06 | 0.2.1 | 明确不向上游 Pi 贡献；PR 只保留外部贡献和决策者特批的内部例外两种情况 |
+| 2026-11-06 | 0.2.2 | 新需求改为决策者先发起讨论、再同步补 issue；是否建立 RAD 由决策者决定 |
+| 2026-11-06 | 0.2.3 | 质量门禁改为只在本地执行，不依赖远程 CI |

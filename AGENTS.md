@@ -38,6 +38,7 @@ These override convenience and local preference.
 - Commit only files you changed in this session and that are inside your write scope. Do not stage or commit other agents' files. Out-of-scope commits require explicit decision-maker approval.
 - `pages` is publish-only. Do not switch the shared worktree to `pages`, commit on it, or push it without explicit decision-maker authorization. Authorized publishing uses a separate clone or worktree.
 - Branch-changing and shared-state Git operations are serialized. Do not run `git switch`, `git checkout <branch>`, `git rebase`, `git reset`, `git stash`, or branch deletion in the shared worktree without decision-maker coordination.
+- All quality gates run locally. Do not rely on GitHub Actions or any remote CI; push only after local checks pass.
 - Shared files are single-writer: package manifests, lockfiles, `tsconfig.json`, `AGENTS.md`, `docs/specs/`, the root README, and generated files.
 
 ## Conversational Style
@@ -131,9 +132,9 @@ Syncing upstream:
 
 ## Issues and PRs
 
-This fork does not use the upstream issue/PR gate. GitHub Issues are the internal intake and task board for requirements, bugs, and stage goals; the durable product record stays in `docs/specs/vision.md`, `docs/rads/`, `docs/plans/`, and `docs/explains/`.
+This fork does not use the upstream issue/PR gate. GitHub Issues are the internal record and task board for requirements, bugs, and stage goals; the durable product record stays in `docs/specs/vision.md`, `docs/rads/`, `docs/plans/`, and `docs/explains/`.
 
-- Requirement and bug issues start in GitHub Issues. Link requirement issues to `docs/rads/<slug>.md`; link implementation issues to `docs/plans/<slug>.md`; track stage goals with milestones or tracking issues.
+- New requirements start with a decision-maker-led discussion. After the decision, create or link the issue and, if needed, the RAD. Bugs can start as issues. Link requirement issues to `docs/rads/<slug>.md`; link implementation issues to `docs/plans/<slug>.md`; track stage goals with milestones or tracking issues.
 - Team-visible development tasks are tracked by issue. A-class mechanical fixes may skip an issue unless they touch shared docs, behavior, or parallel work.
 - Internal work does not open PRs by default. PRs are only for external contributors or a decision-maker-approved internal exception. Internal exception PRs use a separate fork or clone, not a branch in this repository.
 - Only the decision-maker or an explicitly authorized agent may merge. Use squash merge, delete the source branch, and update the issue with the result.

@@ -1,13 +1,9 @@
-name: CI
+name: CI (manual only)
 
+# Local-only quality gates: run npm run check and the relevant tests before push.
+# This workflow is not a push or PR gate; it is kept only for an explicit manual run.
 on:
-  push:
-    branches: [main]
-    # The release commit is pushed together with the next commit, so a push to main never builds it; the tag run does,
-    # and preview-packages.yml releases its packages on pkg.earendil.com.
-    tags: ['v*.*.*']
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.ref }}

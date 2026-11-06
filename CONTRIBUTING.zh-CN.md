@@ -14,12 +14,13 @@
 
 你必须理解自己的代码。用 AI 写代码没问题；提交自己无法解释的代码不行。如果你无法解释一个改动做了什么，以及它如何与系统其余部分交互，它就还没有准备好。
 
-## Issue 优先
+## Issue 与讨论
 
-GitHub Issues 是团队提交需求、bug 和任务的统一入口，也通过 milestone 或 tracking issue 跟踪阶段目标。
+GitHub Issues 是团队记录需求、bug 和任务的统一视图和任务板，也通过 milestone 或 tracking issue 跟踪阶段目标。
 
+- 新需求先由决策者发起讨论。决定后，再创建 issue；如需要 RAD，一并关联。
+- Bug 可以直接开 issue，也可以在讨论后马上记录。不要只靠聊天报告。
 - 使用“omfde Task”issue 表单；它要求填写明确的 write scope。
-- 需求或 bug：先开 issue，不要只靠聊天提出。
 - 需求类 issue：如需要 RAD，关联 `docs/rads/<slug>.md`；不需要 RAD 时说明理由。由决策者确认。
 - 实现类 issue：关联 `docs/plans/<slug>.md` 中的 plan；非平凡工作必须先有已批准的 plan 才能编码。
 - Bug issue：写清复现步骤、期望/实际行为和环境；用 `fixes #N` 关闭。
@@ -28,7 +29,7 @@ GitHub Issues 是团队提交需求、bug 和任务的统一入口，也通过 m
 
 ## 工作流
 
-1. 开 issue 或领取 issue。
+1. 新需求先由决策者发起讨论，然后开 issue 或领取 issue；Bug 可以直接开 issue。
 2. 如需要，写 RAD；由决策者确认，用户故事同步冻结。
 3. 如有关键不确定点，先做 spike。
 4. 非平凡工作写 plan；由决策者批准。plan 是编码依据。
@@ -80,6 +81,7 @@ GitHub Issues 是团队提交需求、bug 和任务的统一入口，也通过 m
 
 ## 质量门禁
 
+- 所有质量门禁都在本地执行。远程 CI 不是门禁；不要 push 后等 GitHub Actions 发现问题。
 - 代码改动：运行 `npm run check`。
 - 运行相关测试；非 e2e 测试用 `./test.sh`。
 - 平台入口改动：运行 `npm run omfde -- --version`，并跑一条 `npm run omfde -- -p "..."` 冒烟。

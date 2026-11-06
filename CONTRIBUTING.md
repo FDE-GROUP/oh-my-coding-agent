@@ -12,12 +12,13 @@ This repository is the internal FDE platform for oh-my-fde (omfde), built on Pi.
 
 You must understand your code. AI-generated code is fine; submitting code you cannot explain is not. If you cannot explain what a change does and how it interacts with the rest of the system, it is not ready.
 
-## Issue-first
+## Issue and discussion
 
-GitHub Issues are the team intake for requirements, bugs, and tasks; they also track stage goals through milestones or tracking issues.
+GitHub Issues are the team record and task board for requirements, bugs, and tasks; they also track stage goals through milestones or tracking issues.
 
+- New requirements start with a decision-maker-led discussion. After the decision, create the issue and link the RAD if one is needed.
+- Bugs can start as an issue, or be recorded right after the discussion. Do not rely on chat-only reports.
 - Use the "omfde Task" issue form. It requires an explicit write scope.
-- Requirement or bug: open an issue first. Do not rely on chat-only requests.
 - Requirement issue: if a RAD is needed, link it in `docs/rads/<slug>.md`; otherwise state why no RAD is needed. The decision-maker decides.
 - Implementation issue: link the plan in `docs/plans/<slug>.md`. Non-trivial work needs an approved plan before coding.
 - Bug issue: include reproduction, expected/actual behavior, and environment. Close it with `fixes #N`.
@@ -26,7 +27,7 @@ GitHub Issues are the team intake for requirements, bugs, and tasks; they also t
 
 ## Workflow
 
-1. Open or pick an issue.
+1. For a new requirement, start with a decision-maker discussion; then open or pick an issue. Bugs can start with an issue.
 2. Write a RAD if needed; the decision-maker confirms it and the user stories freeze.
 3. Run a spike if a key uncertainty remains.
 4. Write a plan for non-trivial work; the decision-maker approves it. The plan is the coding basis.
@@ -78,6 +79,7 @@ The full process is in [`docs/specs/workflow.md`](docs/specs/workflow.md).
 
 ## Quality gates
 
+- All quality gates run locally. Remote CI is not a gate; do not push expecting GitHub Actions to catch failures.
 - Code changes: run `npm run check`.
 - Run the relevant tests; use `./test.sh` for non-e2e tests.
 - Platform entry changes: run `npm run omfde -- --version` and one `npm run omfde -- -p "..."` smoke.

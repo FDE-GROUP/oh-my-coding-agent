@@ -1,5 +1,5 @@
 name: omfde Task
-description: 提交需求、bug、chore 或决策，并声明可检查的 write scope
+description: 记录需求、bug、chore 或决策，并声明可检查的 write scope
 title: "[Task] "
 labels: []
 body:
@@ -7,6 +7,7 @@ body:
     attributes:
       value: |
         先读 `docs/specs/workflow.md` 和 `CONTRIBUTING.md`。
+        新需求先由决策者发起讨论并决定是否建立 RAD；讨论有结论后再提交本 issue。
         没有填写 write scope 的任务视为未就绪，不要开始实现。
 
   - type: dropdown

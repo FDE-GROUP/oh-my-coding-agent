@@ -40,6 +40,7 @@
 - 只提交本次会话中你修改、且位于 write scope 内的文件。不要 stage 或提交其他 Agent 的文件。超范围提交必须经决策者明确同意。
 - `pages` 只用于发布。未经决策者明确授权，不要把共享 worktree 切到 `pages`，不要在上面提交或 push。获授权的发布使用独立的 clone 或 worktree。
 - 切换分支和改变共享状态的 Git 操作必须串行。未经决策者协调，不要在共享 worktree 中运行 `git switch`、`git checkout <branch>`、`git rebase`、`git reset`、`git stash` 或删除分支。
+- 所有质量门禁都在本地执行。不要依赖 GitHub Actions 或任何远程 CI；本地检查通过后才能 push。
 - 共享文件单写者：package manifest、lockfile、`tsconfig.json`、`AGENTS.md`、`docs/specs/`、根 README 和生成文件。
 
 ## 交流风格
@@ -133,9 +134,9 @@
 
 ## Issue 与 PR
 
-本 fork 不使用上游的 issue/PR 门槛。GitHub Issues 是团队提交需求、bug 和阶段目标的统一入口和任务板；耐久的产品记录仍在 `docs/specs/vision.md`、`docs/rads/`、`docs/plans/` 和 `docs/explains/`。
+本 fork 不使用上游的 issue/PR 门槛。GitHub Issues 是团队记录需求、bug 和阶段目标的统一视图和任务板；耐久的产品记录仍在 `docs/specs/vision.md`、`docs/rads/`、`docs/plans/` 和 `docs/explains/`。
 
-- 需求和 bug 从 GitHub Issue 开始。需求类 issue 关联 `docs/rads/<slug>.md`；实现类 issue 关联 `docs/plans/<slug>.md`；阶段目标用 milestone 或 tracking issue 跟踪。
+- 新需求先由决策者发起讨论。决定后，再创建或关联 issue；需要 RAD 时一并关联。bug 可以直接开 issue。需求类 issue 关联 `docs/rads/<slug>.md`；实现类 issue 关联 `docs/plans/<slug>.md`；阶段目标用 milestone 或 tracking issue 跟踪。
 - 团队可见的开发任务以 issue 为准。A 类机械修复可以例外不建 issue；如果涉及共享文档、行为变化或多人并行，仍然建 issue。
 - 内部工作默认不开 PR。PR 只用于外部贡献者，或决策者批准的内部例外。内部例外 PR 使用独立的 fork 或 clone，不在本仓库创建源分支。
 - 只有决策者，或获得明确授权的 Agent 可以合并。使用 squash merge，删除源分支，并在 issue 中附结果。
