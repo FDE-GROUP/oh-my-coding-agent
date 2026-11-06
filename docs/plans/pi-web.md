@@ -244,6 +244,8 @@ SSE 信封：
 
 完成判据：并发工具调用不乱序；错误结果可见。
 
+状态：已完成（2026-11-06）。验证：reducer 覆盖 start/update/end 与错误态；真实 RPC 测试产生 `tool_execution_*` 与 toolResult；`pnpm run check` 通过。
+
 ### S5 会话与控制
 
 - 会话列表、新建、恢复、重命名。

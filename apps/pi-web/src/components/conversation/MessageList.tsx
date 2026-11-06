@@ -1,8 +1,9 @@
 // biome-ignore-all lint/suspicious/noArrayIndexKey: Pi 消息与内容块没有稳定 id，只能按位置渲染。
 import { useEffect, useRef, useState } from "react";
-import type { ConversationMessage, StreamingMessage } from "../../lib/conversation.ts";
+import type { ConversationMessage, StreamingMessage, ToolExecution } from "../../lib/conversation.ts";
 import { IconButton } from "../primitives/IconButton.tsx";
 import { ArrowDownIcon } from "../primitives/icons.tsx";
+import { ToolCard } from "../tools/ToolCard.tsx";
 
 function TextBlock({ text }: { text: string }) {
 	return <p className="whitespace-pre-wrap break-words text-sm leading-6">{text}</p>;
@@ -20,18 +21,51 @@ function ThinkingBlock({ thinking }: { thinking: string }) {
 	);
 }
 
-function ToolCallRow({ name }: { name: string }) {
-	return (
-		<div className="inline-flex w-fit items-center gap-2 rounded-dsw-sm border border-hairline border-dsw-border-l1 px-2 py-1 text-xs text-dsw-label-secondary">
-			<span className="size-1.5 rounded-full bg-dsw-state-business" />
-			工具调用 · <span className="font-mono text-dsw-label-primary">{name}</span>
-		</div>
-	);
+interface ToolResultView {
+	text: string;
+	isError: boolean;
+	durationMs?: number;
 }
 
 type RenderableMessage = Extract<ConversationMessage, { role: "user" | "assistant" }>;
 
-function MessageContent({ message }: { message: RenderableMessage }) {
+function textFromContent(content: unknown): string {
+	if (typeof content === "string") return content;
+	if (!Array.isArray(content)) return "";
+	return content
+		.map((block) => {
+			if (!block || typeof block !== "object") return "";
+			const candidate = block as { type?: string; text?: string };
+			if (candidate.type === "text" && typeof candidate.text === "string") return candidate.text;
+			if (candidate.type === "image") return "[图片]";
+			return "";
+		})
+		.filter(Boolean)
+		.join("\n");
+}
+
+function collectToolResults(messages: ConversationMessage[]): Map<string, ToolResultView> {
+	const results = new Map<string, ToolResultView>();
+	for (const message of messages) {
+		if (message.role !== "toolResult") continue;
+		results.set(message.toolCallId, {
+			text: textFromContent(message.content),
+			isError: message.isError,
+			durationMs: message.durationMs,
+		});
+	}
+	return results;
+}
+
+function MessageContent({
+	message,
+	tools,
+	results,
+}: {
+	message: RenderableMessage;
+	tools: Record<string, ToolExecution>;
+	results: Map<string, ToolResultView>;
+}) {
 	if (typeof message.content === "string") {
 		return <TextBlock text={message.content} />;
 	}
@@ -40,7 +74,20 @@ function MessageContent({ message }: { message: RenderableMessage }) {
 			{message.content.map((block, index) => {
 				if (block.type === "text") return <TextBlock key={index} text={block.text} />;
 				if (block.type === "thinking") return <ThinkingBlock key={index} thinking={block.thinking} />;
-				if (block.type === "toolCall") return <ToolCallRow key={index} name={block.name} />;
+				if (block.type === "toolCall") {
+					const execution = tools[block.id];
+					const result = results.get(block.id);
+					return (
+						<ToolCard
+							key={block.id}
+							callId={block.id}
+							name={block.name}
+							args={block.arguments}
+							execution={execution}
+							result={result}
+						/>
+					);
+				}
 				if (block.type === "image") {
 					return (
 						<span key={index} className="text-xs text-dsw-label-tertiary">
@@ -59,23 +106,28 @@ function RoleLabel({ author }: { author: string }) {
 	return <span className="text-[11px] font-medium tracking-wide text-dsw-label-tertiary">{label}</span>;
 }
 
-function MessageRow({ message }: { message: ConversationMessage }) {
+function MessageRow({
+	message,
+	tools,
+	results,
+	renderedCallIds,
+}: {
+	message: ConversationMessage;
+	tools: Record<string, ToolExecution>;
+	results: Map<string, ToolResultView>;
+	renderedCallIds: Set<string>;
+}) {
 	if (message.role !== "user" && message.role !== "assistant" && message.role !== "toolResult") return null;
 
 	if (message.role === "toolResult") {
-		const text = Array.isArray(message.content)
-			? message.content
-					.filter((block) => block.type === "text")
-					.map((block) => (block.type === "text" ? block.text : ""))
-					.join("\n")
-			: String(message.content);
+		if (renderedCallIds.has(message.toolCallId)) return null;
 		return (
 			<details className="rounded-dsw-sm border border-hairline border-dsw-border-l1 bg-dsw-bg-layer-1">
 				<summary className="cursor-pointer select-none px-3 py-2 text-xs text-dsw-label-secondary">
 					工具结果 · <span className="font-mono">{message.toolName}</span>
 				</summary>
 				<pre className="max-h-72 overflow-auto whitespace-pre-wrap break-words px-3 pb-3 font-mono text-xs leading-5 text-dsw-label-secondary">
-					{text}
+					{textFromContent(message.content)}
 				</pre>
 			</details>
 		);
@@ -91,7 +143,7 @@ function MessageRow({ message }: { message: ConversationMessage }) {
 						: "px-1"
 				}
 			>
-				<MessageContent message={message} />
+				<MessageContent message={message} tools={tools} results={results} />
 			</div>
 		</article>
 	);
@@ -114,11 +166,20 @@ function StreamingRow({ streaming }: { streaming: StreamingMessage }) {
 export interface MessageListProps {
 	messages: ConversationMessage[];
 	streaming: StreamingMessage | null;
+	tools: Record<string, ToolExecution>;
 }
 
-export function MessageList({ messages, streaming }: MessageListProps) {
+export function MessageList({ messages, streaming, tools }: MessageListProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [nearBottom, setNearBottom] = useState(true);
+	const results = collectToolResults(messages);
+	const renderedCallIds = new Set<string>();
+	for (const message of messages) {
+		if (message.role !== "assistant" || typeof message.content === "string") continue;
+		for (const block of message.content) {
+			if (block.type === "toolCall") renderedCallIds.add(block.id);
+		}
+	}
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: 新消息或流式增量到达时触发滚动。
 	useEffect(() => {
@@ -139,7 +200,13 @@ export function MessageList({ messages, streaming }: MessageListProps) {
 			<div ref={containerRef} onScroll={onScroll} className="h-full overflow-y-auto px-4 py-6">
 				<div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
 					{messages.map((message, index) => (
-						<MessageRow key={index} message={message} />
+						<MessageRow
+							key={index}
+							message={message}
+							tools={tools}
+							results={results}
+							renderedCallIds={renderedCallIds}
+						/>
 					))}
 					{streaming && <StreamingRow streaming={streaming} />}
 				</div>

@@ -93,4 +93,59 @@ describe("conversationReducer", () => {
 		expect(state.status).toBe("idle");
 		expect(state.streaming).toBeNull();
 	});
+
+	it("tracks tool execution lifecycle", () => {
+		let state = conversationReducer(initialConversationState, {
+			type: "event",
+			event: {
+				type: "tool_execution_start",
+				toolCallId: "call-1",
+				toolName: "read",
+				args: { path: "a.txt" },
+			},
+		});
+		expect(state.tools["call-1"]?.status).toBe("running");
+
+		state = conversationReducer(state, {
+			type: "event",
+			event: {
+				type: "tool_execution_update",
+				toolCallId: "call-1",
+				toolName: "read",
+				partialResult: { content: [{ type: "text", text: "partial" }] },
+			},
+		});
+		expect(state.tools["call-1"]?.partialOutput).toBe("partial");
+
+		state = conversationReducer(state, {
+			type: "event",
+			event: {
+				type: "tool_execution_end",
+				toolCallId: "call-1",
+				toolName: "read",
+				result: { content: [{ type: "text", text: "final" }] },
+				isError: false,
+				durationMs: 42,
+			},
+		});
+		expect(state.tools["call-1"]).toMatchObject({ status: "done", output: "final", durationMs: 42 });
+	});
+
+	it("marks tool errors", () => {
+		let state = conversationReducer(initialConversationState, {
+			type: "event",
+			event: { type: "tool_execution_start", toolCallId: "call-2", toolName: "bash", args: {} },
+		});
+		state = conversationReducer(state, {
+			type: "event",
+			event: {
+				type: "tool_execution_end",
+				toolCallId: "call-2",
+				toolName: "bash",
+				result: { content: [{ type: "text", text: "boom" }] },
+				isError: true,
+			},
+		});
+		expect(state.tools["call-2"]?.status).toBe("error");
+	});
 });

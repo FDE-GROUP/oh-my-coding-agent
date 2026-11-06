@@ -84,7 +84,17 @@ describe("SessionRuntime", () => {
 
 		const snapshot = await runtime.snapshot();
 		expect(snapshot.messages.some((message) => message.role === "assistant")).toBe(true);
+		expect(snapshot.messages.some((message) => message.role === "toolResult")).toBe(true);
 		expect(snapshot.stats.totalMessages).toBeGreaterThan(0);
+
+		const toolStart = events.find(
+			(event) => event.kind === "record" && event.record.type === "tool_execution_start",
+		);
+		const toolEnd = events.find(
+			(event) => event.kind === "record" && event.record.type === "tool_execution_end",
+		);
+		expect(toolStart).toBeTruthy();
+		expect(toolEnd).toBeTruthy();
 
 		await runtime.command({ type: "prompt", message: "/uispike" });
 		const dialog = await waitFor(

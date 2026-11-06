@@ -1,9 +1,10 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { fauxAssistantMessage, registerFauxProvider } from "@earendil-works/pi-ai/compat";
+import { fauxAssistantMessage, fauxToolCall, registerFauxProvider } from "@earendil-works/pi-ai/compat";
 
 export default function (pi: ExtensionAPI) {
 	const faux = registerFauxProvider({ tokensPerSecond: 20 });
 	faux.setResponses([
+		fauxAssistantMessage([fauxToolCall("read", { path: "hello.txt" })]),
 		fauxAssistantMessage("hello from faux"),
 		fauxAssistantMessage("resume answer"),
 		fauxAssistantMessage("third answer"),

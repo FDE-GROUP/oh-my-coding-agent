@@ -90,7 +90,11 @@ export function Conversation({ health }: { health: Health }) {
 					<ConversationPlaceholder health={health} />
 				</div>
 			) : (
-				<MessageList messages={conversation.messages} streaming={conversation.streaming} />
+				<MessageList
+					messages={conversation.messages}
+					streaming={conversation.streaming}
+					tools={conversation.tools}
+				/>
 			)}
 
 			<Composer disabled={creating} streaming={streaming} onSend={send} onAbort={abort} />
