@@ -10,7 +10,7 @@
 
 oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forward Deployed Engineer，前置交付工程师）平台**。以 Pi 为底座，参考 DSH（DeepSeek Harness）的平台化路径，一步一步演化，而不是重写或整体替换。
 
-演化分两条线并行：**教程线**以文档为主线，**平台化线**以代码结构为主线。
+演化分三条线并行：**教程线**以文档为主线，**平台化线**以代码结构为主线，**Pi Web UI 线**以独立应用为主线。
 
 当前不做的事：**为了改而改**。核心代码已经由我们维护，但每次核心改动仍然要先证明现有扩展和配置不够。
 
@@ -47,19 +47,21 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 - 团队通过 GitHub Issues 记录任务、bug 和阶段目标；新需求由决策者先发起讨论，再同步到 issue；
 - 平台化能力以这个小团队的维护能力为上限，不按平台团队的规模铺开。
 
-## 两条目标线
+## 三条目标线
 
-目标不是一条线性路径，而是两条并行、节奏不同的线：
+目标不是一条线性路径，而是三条并行、节奏不同的线：
 
 ```
-线 1：教程线    理解 → 会用 → 用好              以文档为主线
-线 2：平台化线  骨架 → 核心能力 → 协作 → 企业集成 → 治理
+线 1：教程线    理解 → 会用 → 用好                      以文档为主线
+线 2：平台化线  骨架 → 核心能力 → 协作 → 企业集成 → 治理  以代码结构为主线
+线 3：Pi Web UI 可用 → 对齐 DSH → 会话完整 → 团队可用    以独立应用为主线
 ```
 
 - **教程线**回答“怎么理解、怎么用、怎么用好”，产物是文档、示例和验证记录。
 - **平台化线**回答“代码和组织结构怎么长”，产物是仓库结构、包边界、扩展点和服务。
-- 两条线互相供料：教程线提供真实用法和缺口，平台化线把稳定下来的做法固化成代码结构。
-- 平台化线不必等教程线全部完成，但每一步都必须由教程线暴露的真实需求触发，不能先搭空架子。
+- **Web UI 线**回答“界面和交互怎么交付”，产物是一个独立可运行的 Web 应用。
+- 三条线互相供料：教程线提供真实用法，平台化线固化结构，Web UI 线提供交互入口和真实反馈。
+- 各线不必互相等待，但都不能先搭空架子；每条线的每一步都要有真实需求或可验证结果。
 
 ### 线 1：教程线（以文档为主线）
 
@@ -105,11 +107,42 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 - 核心代码可以修改，但必须走 vision → RAD → plan → 验证，不把“能改”当成“应该改”。
 - 原“增强”不再是第四阶段，而是平台化线的总称。
 
-#### 向 DSH 借鉴什么
+### 线 3：Pi Web UI（以独立应用为主线）
+
+按“先可用、再对齐、后完整”推进：
+
+1. **可用界面**：在浏览器里新建会话、发送 prompt、流式查看文本/thinking/工具调用、中止。
+2. **对齐 DSH**：布局和设计系统与 DSH 一致，样式用 Tailwind 实现，主题与共享控件成形。
+3. **会话完整**：会话列表与恢复、模型切换、费用与 token、steering / follow-up。
+4. **团队可用**：团队成员能各自用它完成日常工作，而不是只有作者能跑起来。
+
+Web UI 线的约束：
+
+- 独立应用：不依赖 `apps/omfde`，不作为 omfde 平台的子模块；先能单独启动、单独交付。
+- 底座不变：通过 Pi 已有的 RPC 或 SDK 接缝接入，不为了 Web UI 重写 agent loop、session 或工具系统。
+- 技术栈：遵循“前端技术栈”一节；Web UI 属于应用型界面，使用 TanStack Start。
+- 单用户、本地优先，默认只监听回环地址。
+- 不做多租户、登录、组织与权限体系；不做云端 IDE，不替代完整文件树与编辑器。
+- 是否并入 omfde，由平台化线以后单独决定，不是 Web UI 线的前提。
+
+#### 布局、设计系统与样式实现
+
+| 层面 | 对齐内容 |
+|---|---|
+| 布局 | 三栏 AppFrame：左侧栏（会话/工作区）、中间会话、右侧可停靠面板；侧栏宽度范围、折叠与自动收起行为；窄屏抽屉；窗口 chrome 留白 |
+| 设计系统 | 语义 token 分层（静态色阶 → 语义别名 → 组件变量）；light/dark/system 主题；字号与字体角色分离（正文、代码、终端）；圆角、阴影、焦点环、滚动条由主题统一拥有 |
+| 样式系统 | Tailwind CSS 作为统一实现层：`--dsw-*` 语义 token 映射为 Tailwind theme 或工具类；共享控件先进 primitives 复用，不在功能包里复制；功能组件只消费语义 token 对应的工具类，不写字面色值、不写主题分支；全局样式表由主题层拥有 |
+
+### 与 DSH 的关系
+
+DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式和已验证做法。
+
+#### 借鉴什么
 
 - 插件与能力接缝的组织方式：Service Definition / Provider / Consumer。
 - session 作为事实来源，以及 “Model-visible ⟺ logged” 不变量。
 - 多端交付：CLI、Web、SDK、自动化协议共用同一套会话和事件。
+- Web 客户端的布局骨架、token 分层和共享控件复用方式。
 - 企业关注点：sandbox、credentials、approval、telemetry、workspace。
 - 测试与发布纪律：快照回放、真实入口验证、构建产物与源码分离。
 
@@ -118,6 +151,23 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 - 379 个包、30 条 workflow、per-file 100% 覆盖这类大规模流程。
 - 用全插件架构重写 Pi；我们保持 Pi 为底座，优先扩展。
 - DSH 的 pre-stable 契约和 breaking changes 节奏。
+- DSH 样式规范中“只用 CSS Modules、禁止 Tailwind”的限制；我们用 Tailwind 实现同一套设计系统。
+- 为对齐视觉而重写 Pi 的会话、工具或 TUI。
+
+## 前端技术栈
+
+前端开发统一使用一套栈，避免每个应用各起一套：
+
+| 场景 | 栈 |
+|---|---|
+| 应用型界面（Pi Web UI、平台控制台等） | React + TanStack Start + Tailwind CSS + Vite |
+| 内容型站点（文档、博客、官网） | React + Astro + Tailwind CSS + Vite |
+
+- **分界按交互形态，不按项目大小**：需要长会话、实时状态和复杂交互的用 TanStack Start；以阅读和展示为主的用 Astro。
+- **React 是统一组件模型**：两种栈都用 React，组件、hooks 和设计 token 可以互相迁移。
+- **Tailwind CSS 是统一样式层**：设计系统仍由主题层提供 token，Tailwind 负责消费。
+- **Vite 是共同构建基础**：TanStack Start 和 Astro 都基于 Vite，构建、开发服务器和环境变量约定保持一致。
+- 具体版本在 plan 中锁定，不在本文档中固定。
 
 ## 当前边界
 
@@ -134,6 +184,10 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 | 在自有代码上逐步长出平台能力 | 把 Pi 整体替换成 DSH |
 | 教程线验证需求，平台化线固化结构 | 平台代码先于使用证据 |
 | 平台代码优先分层 | 无边界地把所有东西塞进核心 |
+| 独立交付 Pi Web UI | 把 Web UI 做成 omfde 的子模块 |
+| Web UI 的布局与设计系统对齐 DSH | 另起一套视觉语言或照搬 DSH 全部包 |
+| 样式统一用 Tailwind CSS | 混用 CSS Modules、CSS-in-JS 或额外组件库 |
+| 前端统一 React + TanStack Start / Astro + Tailwind + Vite | 每个应用自选框架或样式方案 |
 
 ## 已确认的系统认识
 
@@ -170,6 +224,11 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 | `README.zh-CN.md`、`AGENTS.zh-CN.md`、`CONTRIBUTING.zh-CN.md` | 中文译本 |
 | `apps/omfde` | 平台入口（当前是 Pi 的薄启动器） |
 | `extensions/omfde-core` | 平台扩展骨架 |
+| `docs/rads/pi-web.md` | Pi Web UI 的确认需求（M1） |
+| `docs/rads/pi-web-m2.md` | Pi Web UI M2 需求草案 |
+| `docs/plans/pi-web-m2.md` | Pi Web UI M2 实现计划（待批准） |
+| `docs/spikes/pi-web-m2.md` | Pi Web UI M2 spike 结果 |
+| `docs/plans/pi-web.md` | Pi Web UI M1 的实现计划 |
 | `docs/rads/TEMPLATE.md` | 需求描述模板 |
 | `docs/specs/workflow.md` | 开发工作流：RAD、Spike、Plan 与验证闭环 |
 | `docs/specs/tsdoc-comment-standards.md` | 平台 TypeScript 注释规范与检查门禁 |
@@ -207,6 +266,8 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 
 影响：教程线保持“理解 → 会用 → 用好”，以文档为主线；平台化线按“仓库骨架 → 核心能力 → 协作 → 企业集成 → 治理”推进，以代码结构为主线。两条线并行，但平台化每一步都必须由教程线暴露的真实需求触发。原“增强”不再是第四阶段，而是平台化线的总称。
 
+> 已由 2026-11-06“Pi Web UI 成为第三条目标线”扩展。
+
 ### 2026-11-06：完成第一版 monorepo 骨架
 
 原因：平台化线需要一个可持续的代码落点，避免平台代码散落在 `.pi`、脚本或 Pi 核心里。
@@ -237,6 +298,8 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 
 影响：`upstream` 只用于 fetch 和 rebase；不向上游开 PR，也不 push 分支到上游。PR 只保留两种情况：外部贡献者从 fork 提交，以及决策者特批的内部例外。
 
+> 已由 2026-11-06“切断上游，转为独立维护”取代。
+
 ### 2026-11-06：包管理器迁移到 pnpm
 
 原因：项目需要更好的 monorepo 依赖隔离、workspace 管理和更快的安装；同时与 DSH 的工程实践保持一致。
@@ -248,6 +311,30 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 原因：项目定位已经是独立的企业内部 FDE 平台；继续以 Pi 上游为同步基线会限制核心改动，且上游规则、节奏和发布方式与本项目不一致。
 
 影响：删除 `upstream` remote 和 remote-tracking refs，保留 `pi-fork-base-20d86c365` 与 `omfde-cutover` 标签。Pi 代码由本项目维护，核心改动不再受 rebase 约束，但仍按 vision → RAD → plan 控制。不再要求持续同步上游。
+
+### 2026-11-06：Pi Web UI 成为第三条目标线
+
+原因：此前把 Web UI 当作平台化线的一步，会把“界面交付”和“平台结构建设”混在一起：Web UI 有独立的交付节奏、独立的技术栈和独立的视觉标准，也需要单独验收。DSH 的 Web 客户端已经验证了布局骨架、token 分层和共享控件复用方式，直接对齐它的布局、设计系统和样式系统，比自建一套视觉语言更快、更一致。
+
+影响：目标线从两条扩展为三条。新增“线 3：Pi Web UI”，以独立应用为主线，按“可用 → 对齐 DSH → 会话完整 → 团队可用”推进。Web UI 作为独立应用开发，不并入 `apps/omfde`，也不依赖平台代码；布局和设计系统以 DSH 为参考。是否并入 omfde 由平台化线以后单独决定。具体形态（目录位置、RPC 还是 SDK、事件传输方式、会话生命周期）留给 RAD 决定，不在本文档中锁定。
+
+### 2026-11-06：Web UI 样式实现使用 Tailwind CSS
+
+原因：维护者不熟悉 CSS Modules，强制沿用 DSH 的实现方式会提高上手和评审成本。DSH 的价值在布局骨架和设计系统，不在“必须用 CSS Modules”这条实现约束。
+
+影响：“布局、设计系统与样式实现”中，样式系统改为 Tailwind CSS：`--dsw-*` 语义 token 映射为 Tailwind theme 或工具类，功能组件只消费语义 token 对应的工具类。设计系统仍与 DSH 对齐，实现层有意偏离 DSH 的样式规范；这一偏离记录在“不照搬什么”中，避免以后被误认为疏漏。
+
+### 2026-11-06：前端开发统一技术栈
+
+原因：前端应用和内容站点如果各自选框架，构建、路由、样式和部署方式会分裂，团队需要重复学习和维护。React 是统一的组件模型，Tailwind 是已确定的样式层；TanStack Start 和 Astro 都基于 Vite，分别覆盖应用型与内容型场景。
+
+影响：新增“前端技术栈”一节。应用型界面统一 React + TanStack Start + Tailwind CSS + Vite；内容型站点用 Astro 替换 TanStack Start，即 React + Astro + Tailwind CSS + Vite。Pi Web UI 属于应用型界面。具体版本在 plan 中锁定。
+
+### 2026-11-06：新增 `apps/pi-web` 独立应用包
+
+原因：Pi Web UI 需要独立启动、独立交付的代码落点；放进 `apps/omfde` 会让界面与平台骨架耦合。按 AGENTS 规则，新增 workspace 包需要先在 vision 记录决定。
+
+影响：package graph 新增 `apps/pi-web`（包名 `@omfde/pi-web`），不依赖 `apps/omfde`，也不共享平台代码。需求与实现方案见 `docs/rads/pi-web.md` 和 `docs/plans/pi-web.md`。
 
 ## 未决问题
 
@@ -261,6 +348,9 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 - 独立维护后的依赖更新、模型目录更新和安全审计节奏如何定？
 - 是否以及何时把 `@earendil-works/pi-*` 包名迁移到自有 scope？
 - 配置和扩展放在仓库内还是用户目录，才能既个人可用又能团队共享。
+- Tailwind 用哪个大版本，`--dsw-*` token 如何映射到 theme（工具类前缀、暗色模式策略）？
+- 现有 GitHub Pages 文档站是否迁移到 Astro 栈？
+- Web UI 在什么条件下并入 omfde 平台？
 
 ## 维护方式
 

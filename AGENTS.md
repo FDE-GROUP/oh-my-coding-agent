@@ -12,7 +12,7 @@ This repository is an independently maintained fork of `earendil-works/pi`, not 
 - Platform layout: `apps/` holds runnable apps, `extensions/` holds platform extensions, and `packages/` holds the Pi fork and shared libraries.
 - `apps/omfde` is the first platform entrypoint. It launches Pi with `OMFDE_PLATFORM=1`; `extensions/omfde-core` is the first extension skeleton.
 - Pi core is now maintained by this project. Core changes are allowed, but they still require an explicit decision and plan.
-- Goals run as two parallel lines: the tutorial line (理解 → 会用 → 用好) and the platform line (骨架 → 核心能力 → 协作 → 企业集成 → 治理). The project is in 会用. Prefer extensions and configuration; change core only for a demonstrated gap.
+- Goals run as three parallel lines: the tutorial line (理解 → 会用 → 用好), the platform line (骨架 → 核心能力 → 协作 → 企业集成 → 治理), and the Web UI line (可用 → 对齐 DSH → 会话完整 → 团队可用). The project is in 会用. Prefer extensions and configuration; change core only for a demonstrated gap.
 - The vision and its decision log live in `docs/specs/vision.md`. Reading notes, validation scripts, and fork details live in `docs/explains/`.
 - Prune scope and recovery instructions: `docs/explains/26-fork-and-prune.md`.
 

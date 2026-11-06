@@ -29,7 +29,7 @@ GitHub Issues are the team record and task board for requirements, bugs, and tas
 
 1. For a new requirement, start with a decision-maker discussion; then open or pick an issue. Bugs can start with an issue.
 2. Write a RAD if needed; the decision-maker confirms it and the user stories freeze.
-3. Run a spike if a key uncertainty remains.
+3. Pass the spike gate: the agent proposes a spike list (or a "no spike needed" conclusion) and the decision-maker decides. This gate always happens between RAD and plan.
 4. Write a plan for non-trivial work; the decision-maker approves it. The plan is the coding basis.
 5. Implement inside the approved plan.
 6. Validate with commands and recorded evidence.
