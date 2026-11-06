@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi 文档站点与导航配置/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi 文档站点与导航配置/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi 文档站点与导航配置/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi 文档站点与导航配置/编码规范",
+  "markdown": "- 每个功能域对应一个独立的 `.md` 文件，文件名采用小写连字符命名（如 `cli-integration.md`、`rpc-extension-ui.md`）。\n- `docs.json` 中通过 `title`+`path` 对声明页面，并按 Get Started / Guides / Reference 三大板块分层组织。\n- 历史路径变更通过 `redirects.from`→`redirects.to` 显式映射，而非直接删除旧文件。"
+}

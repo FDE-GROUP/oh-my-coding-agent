@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Google 与 Google Vertex AI 模型提供方/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Google 与 Google Vertex AI 模型提供方/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Google 与 Google Vertex AI 模型提供方/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Google 与 Google Vertex AI 模型提供方/编码规范",
+  "markdown": "- Provider 通过 `createProvider({ id, name, baseUrl?, auth, models, api })` 装配，认证策略统一以 `{ apiKey: ... }` 形式注入。\n- 外部 API 客户端一律通过 `../api/*.lazy.ts` 懒加载导入，避免启动期依赖开销。\n- 模型清单集中放在 `*.models.ts` 文件中，并由 `catalog/generate.ts` 自动生成，运行时通过 `Object.values(MODELS)` 注入 Provider。"
+}

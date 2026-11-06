@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/编码代理运行模式层/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/编码代理运行模式层/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/编码代理运行模式层/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/编码代理运行模式层/编码规范",
+  "markdown": "- 每个模式导出一个顶层入口函数（`runPrintMode`、`runRpcMode`、`InteractiveMode`），统一接收 `AgentSessionRuntime` 作为运行时宿主。\n- stdout 写入一律通过 `output-guard.ts` 的 `writeRawStdout` / `flushRawStdout` / `takeOverStdout`，并在需要时配合 `waitForRawStdoutBackpressure` 做背压控制。\n- SIGTERM/SIGHUP 信号处理器在两个模式中采用相同模式：注册清理回调数组、首次信号触发优雅 dispose、重复信号直接 `process.exit`。\n- JSON 事件输出统一经由 `toJsonEvent` 转换后再序列化，保证 print 与 rpc 两种模式的流式事件结构一致。\n- RPC 命令通过 `switch (command.type)` 分派到按语义分组（Prompting / State / Model / Thinking / Queue Modes / Compaction / Retry / Bash / Session / Messages / Commands）的 case 块，未知命令返回 `error(id, type, ...)`。"
+}

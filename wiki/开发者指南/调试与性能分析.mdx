@@ -1,0 +1,301 @@
+# 调试与性能分析
+
+
+**本文引用的文件**   
+- [README.md](https://github.com/FDE-GROUP/oh-my-fde/blob/main/README.md)
+- [profile-coding-agent-node.mjs](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs)
+- [index.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/index.ts)
+- [metrics.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/metrics.ts)
+- [memory.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/memory.ts)
+- [interactive-mode.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/modes/interactive/interactive-mode.ts)
+
+
+## 目录
+1. [简介](#简介)
+2. [项目结构](#项目结构)
+3. [核心组件](#核心组件)
+4. [架构总览](#架构总览)
+5. [详细组件分析](#详细组件分析)
+6. [依赖关系分析](#依赖关系分析)
+7. [性能注意事项](#性能注意事项)
+8. [故障排查指南](#故障排查指南)
+9. [结论](#结论)
+10. [附录](#附录)
+
+## 简介
+本指南聚焦于在 Node.js 环境下对 Pi 项目的调试技巧与性能分析方法，覆盖以下主题：
+- Node.js 调试器使用要点
+- 日志与遥测记录策略（基于 telemetry 包）
+- 内存泄漏检测思路
+- 启动性能分析与基准测试（含 CPU Profiling）
+- 常用调试命令、性能监控指标与问题诊断方法
+
+本项目为多包仓库，包含 CLI、Agent、TUI、AI 等模块。仓库根 README 提供了安装、开发与构建说明；脚本层提供启动性能分析工具；telemetry 包提供可插拔的遥测与度量能力；交互模式包含终端错误处理逻辑，有助于定位 TTY 相关问题。
+
+## 项目结构
+从调试与性能视角，重点关注以下位置：
+- scripts/profile-coding-agent-node.mjs：启动性能基准与 CPU Profile 生成
+- packages/telemetry：遥测上下文、指标定义与内存实现
+- packages/coding-agent：CLI 入口与交互模式（TTY 错误处理）
+- README.md：开发工作流与运行环境要求
+
+```mermaid
+graph TB
+A["仓库根<br/>README.md"] --> B["脚本层<br/>scripts/profile-coding-agent-node.mjs"]
+A --> C["遥测包<br/>packages/telemetry"]
+A --> D["编码代理包<br/>packages/coding-agent"]
+C --> C1["接口与类型<br/>src/index.ts"]
+C --> C2["指标定义<br/>src/metrics.ts"]
+C --> C3["内存实现<br/>src/memory.ts"]
+D --> D1["交互模式<br/>src/modes/interactive/interactive-mode.ts"]
+```
+
+**图示来源**
+- [README.md:86-95](https://github.com/FDE-GROUP/oh-my-fde/blob/main/README.md#L86-L95)
+- [profile-coding-agent-node.mjs:1-50](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L1-L50)
+- [index.ts:1-130](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/index.ts#L1-L130)
+- [metrics.ts:1-50](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/metrics.ts#L1-L50)
+- [memory.ts:309-330](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/memory.ts#L309-L330)
+- [interactive-mode.ts:298-325](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L298-L325)
+
+**章节来源**
+- [README.md:86-95](https://github.com/FDE-GROUP/oh-my-fde/blob/main/README.md#L86-L95)
+
+## 核心组件
+- 启动性能分析脚本：支持 Node/Bun 双运行时，测量 TUI/RPC 两种模式的启动耗时，输出统计与 METRIC 行，并可生成 CPU Profile 文件用于后续火焰图分析。
+- 遥测系统：提供 TelemetryContext、TelemetryMetrics、TelemetryStore 等接口，以及 InMemoryTelemetryContext 内存实现，便于本地调试、测试与可视化。
+- 交互模式错误处理：识别并过滤“已死终端”相关错误码，辅助定位 TTY 异常导致的崩溃或中断。
+
+**章节来源**
+- [profile-coding-agent-node.mjs:19-50](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L19-L50)
+- [index.ts:94-130](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/index.ts#L94-L130)
+- [memory.ts:309-330](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/memory.ts#L309-L330)
+- [interactive-mode.ts:298-325](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L298-L325)
+
+## 架构总览
+下图展示启动性能分析脚本如何驱动被测进程、收集标准错误中的启动计时信息，并在需要时生成 CPU Profile。
+
+```mermaid
+sequenceDiagram
+participant Dev as "开发者"
+participant Script as "profile-coding-agent-node.mjs"
+participant Child as "被测进程(Node/Bun)"
+participant Runtime as "Node/Bun 运行时"
+Dev->>Script : 执行性能分析命令
+Script->>Child : 启动子进程(传入环境变量 PI_TIMING=1 等)
+Child->>Runtime : 加载应用并启动(TUI/RPC)
+Runtime-->>Child : 输出启动阶段计时到 stderr
+Child-->>Script : 返回退出码与 stderr
+Script->>Script : 解析启动计时并汇总统计
+Script-->>Dev : 输出结果与 METRIC 行
+Script->>Runtime : (可选) 启用 --cpu-prof 生成 .cpuprofile
+Runtime-->>Script : 写入 CPU Profile 文件
+```
+
+**图示来源**
+- [profile-coding-agent-node.mjs:379-394](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L379-L394)
+- [profile-coding-agent-node.mjs:396-441](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L396-L441)
+- [profile-coding-agent-node.mjs:456-544](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L456-L544)
+- [profile-coding-agent-node.mjs:626-665](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L626-L665)
+
+## 详细组件分析
+
+### 启动性能分析脚本
+该脚本提供以下关键能力：
+- 模式选择：tui/rpc
+- 运行次数与预热：runs/warmup
+- 运行时选择：node/bun/auto
+- 构建控制：skip-build、bundle
+- 隔离 Agent 目录：isolated-agent-dir
+- CPU Profile：cpu-profile、profile-dir、label
+
+```mermaid
+flowchart TD
+Start(["开始"]) --> Parse["解析参数<br/>mode/runs/warmup/runtime/bundle/cpuProfile..."]
+Parse --> Validate{"参数有效?"}
+Validate --> |否| Error["抛出错误并退出"]
+Validate --> |是| Build["按需构建依赖与编码代理入口"]
+Build --> Spawn["启动子进程(设置 PI_TIMING=1 等环境变量)"]
+Spawn --> Collect["收集 stderr 与退出码"]
+Collect --> ParseTimings["解析启动计时块"]
+ParseTimings --> Summarize["计算最小/中位/平均/最大"]
+Summarize --> Output["输出结果与 METRIC 行"]
+Output --> End(["结束"])
+```
+
+**图示来源**
+- [profile-coding-agent-node.mjs:75-176](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L75-L176)
+- [profile-coding-agent-node.mjs:289-348](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L289-L348)
+- [profile-coding-agent-node.mjs:379-394](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L379-L394)
+- [profile-coding-agent-node.mjs:396-441](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L396-L441)
+- [profile-coding-agent-node.mjs:456-544](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L456-L544)
+- [profile-coding-agent-node.mjs:626-665](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L626-L665)
+
+实用要点：
+- 通过 PI_TIMING=1 触发被测进程输出“启动计时”块，脚本解析这些行以得到各阶段耗时。
+- 在 Node 下可通过 --cpu-prof 与 --cpu-prof-dir/--cpu-prof-name 生成 .cpuprofile，供 Chrome DevTools 或 VS Code 打开进行火焰图分析。
+- 支持 RPC 模式：向子进程 stdin 发送 get_state 请求，等待响应后关闭 stdin 以优雅退出，从而精确测量“可用状态”时间。
+
+**章节来源**
+- [profile-coding-agent-node.mjs:19-50](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L19-L50)
+- [profile-coding-agent-node.mjs:379-394](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L379-L394)
+- [profile-coding-agent-node.mjs:456-544](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L456-L544)
+- [profile-coding-agent-node.mjs:626-665](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L626-L665)
+
+### 遥测系统与指标
+遥测包提供统一的上下文、传播、指标与存储接口，并提供内存实现用于本地调试与测试。
+
+```mermaid
+classDiagram
+class TelemetryContext {
++metrics
++propagation
++startSpan(options, callback)
+}
+class TelemetrySpan {
++addLink(link)
++addEvent(name, attributes)
++setAttributes(attributes)
++setStatus(status)
+}
+class TelemetryMetrics {
++counter(name, options)
++upDownCounter(name, options)
++histogram(name, options)
+}
+class TelemetryStore {
++findTraces(query)
++getTrace(traceId)
++findMetrics(query)
+}
+class InMemoryTelemetryContext {
++startSpan()
++inject()
++extract()
++counter()
++upDownCounter()
++histogram()
++findTraces()
++getTrace()
++findMetrics()
++getSpans()
++getMetrics()
+}
+TelemetryContext <|-- InMemoryTelemetryContext
+TelemetryMetrics <|-- InMemoryTelemetryContext
+TelemetryStore <|-- InMemoryTelemetryContext
+TelemetrySpan ..> TelemetryContext : "由 startSpan 创建"
+```
+
+**图示来源**
+- [index.ts:94-130](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/index.ts#L94-L130)
+- [memory.ts:309-330](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/memory.ts#L309-L330)
+- [memory.ts:356-366](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/memory.ts#L356-L366)
+- [memory.ts:394-460](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/memory.ts#L394-L460)
+- [memory.ts:462-493](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/memory.ts#L462-L493)
+
+实践建议：
+- 使用 InMemoryTelemetryContext 在本地捕获 span、事件与指标，结合 getSpans()/getMetrics() 做断言与可视化。
+- 通过 defineTelemetrySchema/createTypedSpanStarter/createTypedMetrics 获得强类型的 span 与指标 API，减少拼写错误与属性遗漏。
+- 利用 propagation.inject/extract 跨进程/线程传递追踪上下文，便于分布式链路分析。
+
+**章节来源**
+- [index.ts:1-130](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/index.ts#L1-L130)
+- [metrics.ts:1-50](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/metrics.ts#L1-L50)
+- [memory.ts:309-330](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/memory.ts#L309-L330)
+
+### 交互模式与终端错误处理
+交互模式中包含针对“已死终端”的错误码集合与判断逻辑，可用于快速定位 TTY 读取失败、挂起或权限变更等问题。
+
+```mermaid
+flowchart TD
+Enter(["捕获异常"]) --> CheckObj{"是否为对象且含 code?"}
+CheckObj --> |否| Ignore["忽略非预期错误"]
+CheckObj --> |是| Match{"code 是否属于 EIO/EPIPE/ENOTCONN/ENOTTY?"}
+Match --> |是| Dead["判定为已死终端错误"]
+Match --> |否| Other["其他错误分支"]
+Dead --> Hint["提示禁用扩展或 -ne 模式验证"]
+Other --> Handle["按常规错误处理"]
+```
+
+**图示来源**
+- [interactive-mode.ts:298-325](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L298-L325)
+
+**章节来源**
+- [interactive-mode.ts:298-325](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L298-L325)
+
+## 依赖关系分析
+- 启动性能分析脚本依赖 Node 子进程与 perf_hooks，负责构建、启动被测进程、解析 stderr 中的启动计时，并可选择启用 CPU Profiling。
+- 遥测包提供抽象接口与内存实现，被上层业务代码注入以采集 span、事件与指标。
+- 交互模式依赖 Node TTY 语义，对特定错误码进行识别与提示。
+
+```mermaid
+graph LR
+Script["scripts/profile-coding-agent-node.mjs"] --> Node["Node 子进程/运行时"]
+Script --> Perf["perf_hooks(性能计时)"]
+App["被测应用"] --> Telemetry["packages/telemetry"]
+TUI["交互模式"] --> Errors["终端错误处理"]
+```
+
+**图示来源**
+- [profile-coding-agent-node.mjs:1-10](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L1-L10)
+- [index.ts:1-130](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/index.ts#L1-L130)
+- [interactive-mode.ts:298-325](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L298-L325)
+
+**章节来源**
+- [profile-coding-agent-node.mjs:1-10](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L1-L10)
+- [index.ts:1-130](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/index.ts#L1-L130)
+- [interactive-mode.ts:298-325](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L298-L325)
+
+## 性能注意事项
+- 启动性能基线：
+  - 使用脚本分别测量 tui 与 rpc 模式，多次运行取中位数，关注 startup_time_ms 与各阶段计时。
+  - 对比 unbundled 与 bundled 入口的差异，确认打包对冷启动的影响。
+- CPU Profiling：
+  - 在 Node 下启用 --cpu-prof，将 .cpuprofile 导入浏览器或 IDE 查看热点函数与调用栈。
+  - 注意区分 JIT 预热影响，合理设置 warmup 次数。
+- 遥测与指标：
+  - 使用 histogram 记录延迟分布，counter/upDownCounter 记录事件计数与资源占用变化。
+  - 通过 findMetrics/getMetrics 拉取原始数据，结合外部可视化工具绘制趋势图。
+- 内存泄漏检测：
+  - 使用 Node 堆快照（heap snapshot）与 --inspect 进行交互式分析。
+  - 结合遥测指标（如连接数、缓存大小）定位增长趋势。
+  - 在长时间运行的 RPC 模式下观察指标曲线，发现异常增长。
+
+[本节为通用指导，不直接分析具体文件]
+
+## 故障排查指南
+- TTY 相关错误：
+  - 若出现 EIO/EPIPE/ENOTCONN/ENOTTY，优先检查终端会话、管道与权限变更。
+  - 尝试禁用可疑扩展或使用 -ne 模式验证问题范围。
+- 启动失败或无响应：
+  - 检查脚本构建步骤是否成功，确保 dist/cli.js 未被误用为 bundle facade。
+  - 在 RPC 模式下确认 get_state 响应是否到达，必要时抓取 stderr 与 stdout。
+- 遥测数据缺失：
+  - 确认 InMemoryTelemetryContext 是否正确注入，span 是否被 startSpan 包裹。
+  - 检查 propagate.inject/extract 是否正确传递上下文。
+
+**章节来源**
+- [interactive-mode.ts:298-325](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L298-L325)
+- [profile-coding-agent-node.mjs:585-596](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L585-L596)
+- [profile-coding-agent-node.mjs:456-544](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L456-L544)
+- [memory.ts:309-330](https://github.com/FDE-GROUP/oh-my-fde/blob/main/packages/telemetry/src/memory.ts#L309-L330)
+
+## 结论
+通过脚本化的启动性能分析与遥测体系，可以在 Node.js 环境中高效定位冷启动瓶颈、运行时热点与潜在内存问题。结合 TTY 错误处理与 RPC/TUI 双模式基准，能够形成完整的调试与性能优化闭环。建议在 CI 中集成启动耗时与关键指标的回归检查，持续保障产品性能。
+
+[本节为总结性内容，不直接分析具体文件]
+
+## 附录
+- 常用调试命令（示例）：
+  - 启动性能基准（tui 模式，Node）：node scripts/profile-coding-agent-node.mjs --mode tui --runs 5 --warmup 2 --cpu-profile
+  - 启动性能基准（rpc 模式，Bun）：bun run scripts/profile-coding-agent-node.mjs --mode rpc --runtime bun --runs 5
+  - 仅构建并复用产物（Node）：node scripts/profile-coding-agent-node.mjs --skip-build --mode tui
+  - 使用隔离 Agent 目录：node scripts/profile-coding-agent-node.mjs --isolated-agent-dir --mode tui
+- 性能监控指标（脚本输出）：
+  - startup_time_ms：整体启动耗时
+  - 各阶段计时（例如依赖构建、编码代理构建、UI 就绪等），以 METRIC 行输出，便于自动化采集
+
+**章节来源**
+- [profile-coding-agent-node.mjs:19-50](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L19-L50)
+- [profile-coding-agent-node.mjs:626-665](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/profile-coding-agent-node.mjs#L626-L665)

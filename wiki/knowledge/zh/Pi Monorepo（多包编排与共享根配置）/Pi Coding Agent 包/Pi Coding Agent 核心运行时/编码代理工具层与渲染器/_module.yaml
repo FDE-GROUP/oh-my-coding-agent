@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: coding_agent/core_agent_runtime/tools_and_renderers
-title: 编码代理工具层与渲染器
-scope:
-    - packages/coding-agent/src/core/tools/
-source_files: []
-depends_on: []
-related_to:
-    - path: coding_agent/core_agent_runtime/agent_session_lifecycle

@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/概述",
+  "markdown": "为 coding-agent 包提供全面的单元测试、集成测试与 MCP 协议一致性验证，覆盖 AgentSession、工具执行、MCP、模型运行时、主题、配置等所有核心子系统。"
+}

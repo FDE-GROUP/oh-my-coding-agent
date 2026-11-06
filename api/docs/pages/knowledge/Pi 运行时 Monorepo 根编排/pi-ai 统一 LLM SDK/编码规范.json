@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/编码规范",
+  "markdown": "- 每个 provider 采用 `<name>.ts` + `<name>.models.ts` + `data/<name>.json` 三件套结构，并在 `providers/all.ts` 中集中注册。\n- API 适配器文件按 `<provider>-<feature>.ts` 命名，并通过 `.lazy.ts` 变体配合 `api/lazy.ts` 实现按需懒加载以降低冷启动开销。\n- 模型定义通过 `catalog/families/*.ts` 中的 family 规则与 `catalog/define.ts` 声明式描述，而非手写枚举。\n- OAuth 流程按 provider 拆分为 `auth/oauth/<name>.ts`，统一通过 `auth/resolve.ts` 与 `auth/context.ts` 暴露凭据。\n- 跨 provider 的通用能力（重试、流式 JSON、事件流、代理、诊断、溢出检测等）集中在 `src/utils/` 下被各 provider 复用。"
+}

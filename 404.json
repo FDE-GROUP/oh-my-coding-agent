@@ -1,0 +1,38 @@
+{
+  "code": "PAGE_NOT_FOUND",
+  "detail": "我们找不到你要访问的页面。",
+  "resolution": "Where to look next: https://fde-group.github.io/oh-my-fde, https://fde-group.github.io/oh-my-fde/docs, https://fde-group.github.io/oh-my-fde/wiki, https://fde-group.github.io/oh-my-fde/knowledge, https://fde-group.github.io/oh-my-fde/sitemap.xml, https://fde-group.github.io/oh-my-fde/llms.txt, https://fde-group.github.io/oh-my-fde/openapi.json",
+  "status": 404,
+  "title": "页面未找到",
+  "type": "about:blank",
+  "links": [
+    {
+      "href": "https://fde-group.github.io/oh-my-fde",
+      "label": "返回首页"
+    },
+    {
+      "href": "https://fde-group.github.io/oh-my-fde/docs",
+      "label": "项目文档"
+    },
+    {
+      "href": "https://fde-group.github.io/oh-my-fde/wiki",
+      "label": "仓库 Wiki"
+    },
+    {
+      "href": "https://fde-group.github.io/oh-my-fde/knowledge",
+      "label": "架构知识卡"
+    },
+    {
+      "href": "https://fde-group.github.io/oh-my-fde/sitemap.xml",
+      "label": "Sitemap"
+    },
+    {
+      "href": "https://fde-group.github.io/oh-my-fde/llms.txt",
+      "label": "Docs index for AI agents (llms.txt)"
+    },
+    {
+      "href": "https://fde-group.github.io/oh-my-fde/openapi.json",
+      "label": "JSON API description (openapi.json)"
+    }
+  ]
+}

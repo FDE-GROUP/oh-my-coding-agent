@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 前端 UI 组件与样式/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 前端 UI 组件与样式/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 前端 UI 组件与样式/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 前端 UI 组件与样式/技术栈",
+  "markdown": "React + TypeScript，Tailwind CSS v4（`@import \"tailwindcss\"`）+ clsx，路由使用 @tanstack/react-router，通过 `openEventStream` 与后端进行 SSE 事件通信。"
+}

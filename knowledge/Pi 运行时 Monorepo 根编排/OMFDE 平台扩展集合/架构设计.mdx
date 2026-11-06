@@ -1,0 +1,1 @@
+该模块是独立的扩展目录，与 `packages/` 分离以避免与上游 Pi 包混在一起。当前仅包含一个子扩展 `omfde-core/`，作为基础骨架：其 `package.json` 将自身声明为私有 npm 包 `@omfde/extension-core`，并通过 `exports` 指向 `src/index.ts`；`index.ts` 默认导出一个函数，接收 `ExtensionAPI` 并调用 `pi.registerCommand('omfde', ...)` 注册 `/omfde` 命令作为加载探针，同时通过 `ctx.ui.notify` 反馈状态。依赖方向单向：扩展 → `@earendil-works/pi-coding-agent` 的 `ExtensionAPI`，不反向依赖 Pi 内核实现。

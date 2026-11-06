@@ -1,0 +1,46 @@
+---
+title: "pnpm workspace 多包依赖管理与版本锁定体系"
+---
+
+> **知识卡元数据**（Repo Wiki 自动生成，可能过时）
+>
+> - 类型：`dependency_management`
+> - 适用范围：`**`
+> - 覆盖源文件（12）：[`package.json`](https://github.com/FDE-GROUP/oh-my-fde/blob/main/package.json)、[`pnpm-workspace.yaml`](https://github.com/FDE-GROUP/oh-my-fde/blob/main/pnpm-workspace.yaml)、[`pnpm-lock.yaml`](https://github.com/FDE-GROUP/oh-my-fde/blob/main/pnpm-lock.yaml)、[`.npmrc`](https://github.com/FDE-GROUP/oh-my-fde/blob/main/.npmrc)、[`scripts/check-pinned-deps.mjs`](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/check-pinned-deps.mjs)、[`scripts/check-runtime-deps.mjs`](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/check-runtime-deps.mjs)、[`scripts/check-lockfile-commit.mjs`](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/check-lockfile-commit.mjs)、[`scripts/npm-audit.mjs`](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/npm-audit.mjs)、[`scripts/pack-packages.mjs`](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/pack-packages.mjs)、[`scripts/package-artifacts.mjs`](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/package-artifacts.mjs)、[`scripts/use-local-packages.mjs`](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/use-local-packages.mjs)、[`scripts/sync-versions.js`](https://github.com/FDE-GROUP/oh-my-fde/blob/main/scripts/sync-versions.js)
+
+## 1. 使用的系统与工具
+
+仓库采用 **pnpm** 作为唯一的包管理器与 monorepo 工作区引擎，根 `package.json` 通过 `"packageManager": "pnpm@11.15.1"` 声明固定版本（Corepack 可自动安装），并配合 `pnpm-workspace.yaml` 定义工作区成员。所有第三方依赖以精确版本号声明在各自包的 `package.json` 中，由根级 `pnpm-lock.yaml`（lockfileVersion: '9.0'）统一锁定。
+
+## 2. 关键文件
+
+- `package.json`：根工作区入口，声明 `pnpm`、`husky`、`typescript`、`esbuild`、`@biomejs/biome` 等开发依赖，以及 `version:*` / `release:*` / `check:*` 脚本。
+- `pnpm-workspace.yaml`：声明 `packages/*`、`apps/*`、`extensions/*` 及若干示例扩展为工作区成员；启用 `linkWorkspacePackages: true` 与 `preferWorkspacePackages: true`；通过 `overrides.protobufjs: 7.6.6` 强制子树中的 protobufjs 版本。
+- `pnpm-lock.yaml`：全局锁文件，记录每个 importer 的 specifier 与解析后的 version，workspace 内包以 `link:../xxx` 形式链接。
+- `.npmrc`：`save-exact=true`（默认保存精确版本）、`min-release-age=2`（新发布包需等待至少 2 分钟才可安装）。
+- `scripts/check-pinned-deps.mjs`：递归扫描仓库所有 `package.json`，要求 registry 依赖必须使用精确语义化版本（正则 `^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$`），允许 `workspace:`/`file:`/`git+`/`github:`/`https?:`/`ssh:`/`git://` 等非 registry 来源。
+- `scripts/check-runtime-deps.mjs`：基于 TypeScript API 分析公开包的源码，校验所有运行时 import/export/dynamic require 对应的包名已声明在 `dependencies`/`optionalDependencies`/`peerDependencies` 中，拒绝未声明的运行时依赖。
+- `scripts/check-lockfile-commit.mjs`：pre-commit 钩子检查是否提交了 `pnpm-lock.yaml`，若提交则拒绝（可通过环境变量 `PI_ALLOW_LOCKFILE_CHANGE=1` 绕过）。
+- `scripts/npm-audit.mjs`：调用 `npm audit --omit=dev`，对 severity ≥ moderate 的漏洞告警进行阻断，仅允许在脚本内白名单 `acceptedAdvisories` 中显式接受的告警。
+- `scripts/pack-packages.mjs`、`scripts/package-artifacts.mjs`、`scripts/use-local-packages.mjs`：构建并发布本地 artifact set，供外部项目通过 manifest 连接本地包。
+
+## 3. 架构与约定
+
+- **Monorepo 结构**：`packages/*` 为对外发布的库（如 `pi-ai`、`pi-schema`、`pi-tui`、`pi-mcp`、`pi-agent-core`、`pi-codemode`、`pi-telemetry`），`apps/*` 为应用（`omfde`），`extensions/*` 为平台扩展。工作区内包之间通过 `@earendil-works/pi-*` 命名空间互相引用，并在 lockfile 中以 `link:../xxx` 表示。
+- **版本策略**：所有 registry 依赖必须使用精确版本（major.minor.patch[-prerelease][+build]），不允许 caret (`^`)、tilde (`~`) 或 range。非 registry 来源（`workspace:`、`file:`、`git+`、`github:`、`https:`、`ssh:`、`git://`）不受此限制。
+- **依赖提升与覆盖**：通过 pnpm `overrides` 强制 `protobufjs` 到 `7.6.6`，解决下游包版本冲突。
+- **安全门禁**：`pnpm run check` 串联 `check:pinned-deps`、`check:runtime-deps`、`check:ts-imports`、`check:entry-graphs`、`check:secrets`、`check:tsdoc` 等脚本；`npm-audit.mjs` 单独运行审计。
+- **锁文件保护**：`.husky/pre-commit` 调用 `check-lockfile-commit.mjs`，禁止意外提交锁文件变更；CI 流程中 `pnpm install --frozen-lockfile` 用于验证锁文件一致性。
+- **发布与打包**：`scripts/publish.mjs`、`scripts/release.mjs`、`scripts/local-release.mjs`、`scripts/pack-packages.mjs` 协同完成版本同步（`scripts/sync-versions.js`）、构建、打包与发布；`scripts/generate-coding-agent-install-lock.mjs` 生成编码代理的安装锁。
+
+## 4. 约定与约束
+
+- **精确版本约束**：`scripts/check-pinned-deps.mjs` 强制所有 registry 依赖使用精确语义化版本，否则 `pnpm run check:pinned-deps` 失败退出。
+- **运行时依赖声明约束**：`scripts/check-runtime-deps.mjs` 通过 TypeScript AST 分析源码，任何运行时 import/export/dynamic require 的包名必须在 `dependencies`/`optionalDependencies`/`peerDependencies` 中声明，否则报错并退出。
+- **锁文件提交约束**：`scripts/check-lockfile-commit.mjs` 在 pre-commit 阶段拦截包含 `pnpm-lock.yaml` 的提交，除非设置 `PI_ALLOW_LOCKFILE_CHANGE=1`。
+- **最小发布年龄**：`.npmrc` 中 `min-release-age=2` 阻止安装刚发布的包，防止引入尚未稳定的上游依赖。
+- **精确保存**：`.npmrc` 中 `save-exact=true` 使 `pnpm add` 默认写入精确版本。
+- **Node 版本约束**：根 `package.json` 的 `engines.node >= 22.19.0` 与 `packageManager pnpm@11.15.1` 共同约束运行环境。
+- **漏洞审计门槛**：`scripts/npm-audit.mjs` 将 `moderate` 及以上严重级别的漏洞视为失败，仅允许在脚本内 `acceptedAdvisories` 白名单中显式接受且附带原因说明的告警。
+- **工作区包优先**：`pnpm-workspace.yaml` 中 `linkWorkspacePackages: true` 与 `preferWorkspacePackages: true` 确保内部包优先使用本地 link 而非 npm 注册表版本。
+- **protobufjs 版本覆盖**：通过顶层 `overrides.protobufjs: 7.6.6` 强制整个依赖树使用该版本，避免下游包引入不兼容版本。

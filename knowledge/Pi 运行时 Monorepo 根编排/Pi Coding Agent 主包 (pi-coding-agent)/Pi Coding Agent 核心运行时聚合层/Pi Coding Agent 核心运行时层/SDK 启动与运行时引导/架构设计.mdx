@@ -1,0 +1,5 @@
+本模块由三个职责互补的入口文件组成：
+- sdk.ts 是对外主入口，导出 CreateAgentSessionOptions / CreateAgentSessionResult 以及 createAgentSession 工厂函数；它协调 ModelRuntime、SettingsManager、SessionManager、DefaultResourceLoader、CacheWarmer、ExtensionRunner 等子系统，完成模型选择（findInitialModel + 会话恢复）、thinking level 推导与钳制、工具白名单/黑名单计算、convertToLlm 图像过滤包装、Provider 请求钩子（before_provider_request / after_provider_response / provider_stream_event）注入，最终构造 Agent 与 AgentSession。
+- client-identity.ts 通过 getClientIdentity 将 VERSION 与安装态 telemetry 状态组合为 pi-ai 的 ClientIdentity，作为每次 Provider 请求的身份标识。
+- session-cwd.ts 提供 SessionCwdSource 抽象与 MissingSessionCwdError，用于校验持久化会话中记录的 cwd 是否仍存在，并提供格式化错误与提示的工具函数。
+依赖方向单向向外：sdk.ts 依赖 client-identity.ts 与 session-cwd.ts，三者均不反向依赖上层 UI 或 CLI 层，仅通过 SettingsManager 等接口解耦配置来源。

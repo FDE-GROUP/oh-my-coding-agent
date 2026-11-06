@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/架构设计",
+  "markdown": "本模块是 coding-agent 的运行时内核，按职责拆分为多个子目录并通过 src/core/index.ts 统一对外暴露：\n- agent-session-runtime / agent-session-services / agent-session.ts 构成会话编排三层：services 工厂注入依赖，runtime 装配并启动，session 执行业务逻辑。\n- compaction 在会话切换/分叉时作为 hook 接入 session lifecycle，压缩上下文；html_export 复用 tools/renderers 将会话导出为静态页面。\n- extensions_system 提供 ExtensionRunner 与事件总线，tools_and_renderers 通过 defineTool 注册的内置工具可被扩展覆盖或增强。\n- model_provider_registry 与 settings_config 共同消费 schemas/ 下的 JSON Schema（settings/models/keybindings/theme）进行校验，model-resolver 再组合认证与目录刷新。\n- 所有跨子模块共享的类型（AgentSessionEvent、ExtensionAPI、ToolDefinition、CompactionResult 等）集中在 index.ts 重新导出，形成单一稳定契约面。"
+}

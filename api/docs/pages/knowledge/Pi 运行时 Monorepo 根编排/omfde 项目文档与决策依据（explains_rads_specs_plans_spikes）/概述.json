@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/omfde 项目文档与决策依据（explains_rads_specs_plans_spikes）/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/omfde 项目文档与决策依据（explains_rads_specs_plans_spikes）/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/omfde 项目文档与决策依据（explains_rads_specs_plans_spikes）/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/omfde 项目文档与决策依据（explains_rads_specs_plans_spikes）/概述",
+  "markdown": "维护 omfde 项目的架构阅读笔记、需求模板、愿景与工作流等代码外决策依据，并附带可运行的 TypeScript 验证脚本。"
+}

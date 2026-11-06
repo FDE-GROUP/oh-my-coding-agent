@@ -1,0 +1,44 @@
+{
+  "entries": [
+    {
+      "displayName": "oh-my-fde",
+      "identifier": "urn:air:fde-group.github.io:skill:oh-my-fde",
+      "representativeQueries": [
+        "load the oh-my-fde agent skill",
+        "how do I use oh-my-fde"
+      ],
+      "type": "application/agent-skills+md",
+      "url": "https://fde-group.github.io/oh-my-fde/.well-known/agent-skills/oh-my-fde/SKILL.md",
+      "description": "Read the oh-my-fde 文档 docs instead of answering from memory. omfde（Pi 的企业内部 FDE 平台）项目文档、仓库 Wiki 与架构知识卡，供人与 coding agent 双读。 Use when a task involves oh-my-fde 文档: how it works, how to set it up or configure it, or its API."
+    },
+    {
+      "displayName": "oh-my-fde 文档 docs API",
+      "identifier": "urn:air:fde-group.github.io:api:docs",
+      "representativeQueries": [
+        "fetch a page of the oh-my-fde 文档 docs as JSON",
+        "list the pages in the oh-my-fde 文档 docs",
+        "get the navigation tree of the oh-my-fde 文档 docs"
+      ],
+      "type": "application/vnd.oai.openapi+json",
+      "url": "https://fde-group.github.io/oh-my-fde/openapi.json",
+      "description": "REST API over the oh-my-fde 文档 documentation: the page index, each page as JSON or Markdown, and the navigation tree, described by this OpenAPI document."
+    },
+    {
+      "displayName": "oh-my-fde 文档 llms.txt",
+      "identifier": "urn:air:fde-group.github.io:docs:llms-txt",
+      "representativeQueries": [
+        "what is oh-my-fde 文档",
+        "overview of the oh-my-fde 文档 documentation"
+      ],
+      "type": "text/plain",
+      "url": "https://fde-group.github.io/oh-my-fde/llms.txt",
+      "description": "llms.txt index of the oh-my-fde 文档 documentation: every page with a one-line summary, plus the agent-facing resources on this site."
+    }
+  ],
+  "host": {
+    "displayName": "oh-my-fde 文档",
+    "documentationUrl": "https://fde-group.github.io/oh-my-fde",
+    "identifier": "did:web:fde-group.github.io"
+  },
+  "specVersion": "1.0"
+}

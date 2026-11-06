@@ -1,0 +1,4 @@
+- 每个 provider 以 `<name>.ts` 导出命名工厂函数（如 `openaiProvider`、`anthropicProvider`），并在 `all.ts` 的 `builtinProviders()` 中集中注册。
+- 模型元数据拆分为 `<name>.models.ts`（手写常量）+ `data/<name>.json`（构建期生成清单）双文件，由 `.manifest.json` 统一追踪生成时间。
+- provider 工厂通过 `createProvider({ id, auth, models, api })` 构造，认证方式统一走 `auth.apiKey.resolve` 或 OAuth 适配器。
+- OpenAI 兼容供应商（openai、qwen-token-plan、xiaomi-token-plan、opencode、openrouter 等）复用 OpenAI Completions API 适配器，仅通过 baseUrl、headers、modelMap 差异化配置。

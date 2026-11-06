@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Agent 会话生命周期与运行时编排/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Agent 会话生命周期与运行时编排/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Agent 会话生命周期与运行时编排/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Agent 会话生命周期与运行时编排/编码规范",
+  "markdown": "- 会话切换/分叉/导入统一走 teardownCurrent → emitSessionShutdownEvent('session_shutdown') → beforeSessionInvalidate → session.dispose 的顺序，确保活跃响应持久化后再释放扩展上下文。\n- 所有可被扩展拦截的边界操作（switch/fork/import）在变更前通过 runner.emit('session_before_switch' | 'session_before_fork') 发出钩子并检查 cancel 标志决定是否中止。\n- 服务与资源加载器按 effective cwd 重建，CLI 传入的资源路径在进入 createAgentSessionServices 前解析为绝对路径，避免后续 cwd 切换重新解释相对路径。\n- 扩展注册的 provider、nativeProvider、virtualModel 在 createAgentSessionServices 中逐个 try/catch 后以 { type: 'error', message } 形式推入 diagnostics 数组，而非直接抛出异常。\n- AgentSession 通过 _install* 方法（_installAgentToolHooks / _installAgentRequestProjection / _installAgentBoundaryHooks / _installAgentNextTurnRefresh）在构造函数内一次性包装 agent 回调，使 extension reload 后无需重新安装。"
+}

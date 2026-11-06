@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/架构设计",
+  "markdown": "本模块是 `packages/ai` 中各第三方 LLM 供应商适配器的集中地，每个 provider（如 openai、anthropic、google、cloudflare、qwen-token-plan、xiaomi-token-plan 等）遵循相同的三件套结构：`<provider>.ts` 暴露 `xxxProvider()` 工厂、`<provider>.models.ts` 声明该供应商支持的模型常量、`data/<provider>.json` 提供由构建期脚本生成的模型清单（`.manifest.json` 汇总时间戳）。所有 provider 通过 `createProvider` 构造并返回统一的 `Provider` 对象，最终在 `all.ts` 中由 `builtinProviders()` 统一装配成数组，再由 `builtinModels()` 调用 `createModels().setProvider(...)` 注册进全局 `Models` 集合；类型层面则依赖上层 `../models.generated.ts` 中的 `MODELS` / `IMAGE_MODELS` / `CLASSIFIER_MODELS` 生成类型，使 `BuiltinProvider` 与 `getBuiltinModel*` API 具备完整泛型推断。此外，`faux.ts` 提供不依赖任何外部服务的测试用 fake provider，复用同一 `createProvider` + `Model` 契约，作为真实 provider 的行为替身。"
+}

@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 示例与 SDK 演示/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 示例与 SDK 演示/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 示例与 SDK 演示/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 示例与 SDK 演示/技术栈",
+  "markdown": "TypeScript + Node.js；示例通过 `@earendil-works/pi-coding-agent` 的 `createAgentSession` / `RpcClient` API 与核心交互，并通过 `@earendil-works/pi-ai` 的 TypeBox `Type` 定义工具参数 schema。"
+}

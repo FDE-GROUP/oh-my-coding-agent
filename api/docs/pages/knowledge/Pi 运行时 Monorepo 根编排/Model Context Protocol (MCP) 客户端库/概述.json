@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/概述",
+  "markdown": "独立的 Model Context Protocol 客户端实现，提供传输无关的核心、stdio/Streamable HTTP/Pipe 传输、OAuth 认证流程以及 MCP 协议类型与工具函数。"
+}

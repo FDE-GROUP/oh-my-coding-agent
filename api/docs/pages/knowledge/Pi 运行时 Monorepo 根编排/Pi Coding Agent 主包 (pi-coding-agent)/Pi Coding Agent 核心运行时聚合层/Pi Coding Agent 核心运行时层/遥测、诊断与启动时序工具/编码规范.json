@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/遥测、诊断与启动时序工具/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/遥测、诊断与启动时序工具/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/遥测、诊断与启动时序工具/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/遥测、诊断与启动时序工具/编码规范",
+  "markdown": "- 环境开关统一以 `process.env.X === \"1\"` 形式判定，未命中时回退到默认行为（如 settings manager 或空实现）。\n- 诊断数据采用纯 interface 描述（`ResourceCollision`、`ResourceDiagnostic`），不包含业务逻辑，便于跨模块共享。\n- 可插拔功能通过顶层布尔常量（如 `ENABLED`、`isTruthyEnvFlag`）包裹调用点，关闭路径直接 return，避免条件分支扩散。"
+}

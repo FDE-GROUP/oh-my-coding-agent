@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Google 与 Google Vertex AI 模型提供方/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Google 与 Google Vertex AI 模型提供方/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Google 与 Google Vertex AI 模型提供方/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Google 与 Google Vertex AI 模型提供方/架构设计",
+  "markdown": "本模块以 `createProvider` 为核心装配点，导出两个并列的 Provider 工厂：\n- `google.ts`：面向 Gemini REST（`generativelanguage.googleapis.com/v1beta`），通过 `envApiKeyAuth(\"Gemini API key\", [\"GEMINI_API_KEY\"])` 从环境变量读取密钥，并复用懒加载的 `googleGenerativeAIApi()`。\n- `google-vertex.ts`：面向 Vertex AI，定义自定义 `ApiKeyAuth`（含交互式 `login` + `resolve`），支持三种认证路径——API Key、Application Default Credentials（ADC）与服务账号文件，并在 `resolve` 中按优先级回退 `GOOGLE_CLOUD_API_KEY` / `GOOGLE_APPLICATION_CREDENTIALS` / `~/.config/gcloud/application_default_credentials.json`，同时要求 `GOOGLE_CLOUD_PROJECT` 与 `GOOGLE_CLOUD_LOCATION`。\n- `google.models.ts`：由 `catalog/generate.ts` 自动生成的模型清单，基于 `data/google.json` 经 `flattenChatModelCatalog` / `flattenImageModelCatalog` / `flattenClassifierModelCatalog` 展开为三类 Catalog，供 Provider 注入 `models` 字段。\n依赖方向单向向外：本模块仅消费 `../api/*.lazy.ts`、`../auth/helpers.ts`、`../models.ts` 与自身 model catalog，不反向引用上层框架。"
+}

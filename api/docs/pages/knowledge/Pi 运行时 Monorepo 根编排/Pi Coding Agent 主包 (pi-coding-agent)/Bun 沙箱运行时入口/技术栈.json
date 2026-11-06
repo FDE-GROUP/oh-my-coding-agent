@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Bun 沙箱运行时入口/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Bun 沙箱运行时入口/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Bun 沙箱运行时入口/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Bun 沙箱运行时入口/技术栈",
+  "markdown": "Bun 编译产物 + Node.js 兼容层（`node:fs`）；依赖 `@earendil-works/pi-ai/bun-oauth`、`bedrock-provider`、`quickjs-wasi` 的 WASM 二进制嵌入。"
+}

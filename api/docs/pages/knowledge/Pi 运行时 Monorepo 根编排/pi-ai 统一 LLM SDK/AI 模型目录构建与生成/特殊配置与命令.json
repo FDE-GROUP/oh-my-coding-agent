@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 模型目录构建与生成/特殊配置与命令.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 模型目录构建与生成/特殊配置与命令.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 模型目录构建与生成/特殊配置与命令",
+  "title": "特殊配置与命令",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 模型目录构建与生成/特殊配置与命令",
+  "markdown": "`node packages/ai/catalog/generate.ts --strict --data-only` 仅刷新 JSON 数据；`--json-only --json-output <dir>` 输出 pi.dev 消费用的公开 JSON；仓库根目录执行 `npm run diff:model-catalog -- [provider ...]` 对比 HEAD 与工作区差异。"
+}

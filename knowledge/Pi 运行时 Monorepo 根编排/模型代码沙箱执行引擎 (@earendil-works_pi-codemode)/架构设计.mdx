@@ -1,0 +1,12 @@
+模块以 `src/types.ts` 定义统一的 `CodemodeTool` / `CodemodeResult` / `CodemodeRun` 等类型，所有宿主共享同一脚本环境与结果格式。
+
+- 运行时核心位于 `src/runtime/execution.ts`：`Execution` 类实现一次执行的完整生命周期（deadline、abort、输出缓冲、调用记录、store 写入），并通过 `VmLauncher` + `VmChannel` + `VmEvents` 抽象与 VM 解耦；`CodemodeSandboxBase` 持有工具表、全局函数与并发执行集合，提供 `execute()` 与确定性回放入口 `start()`。
+- 协议层 `src/runtime/protocol.ts` 定义 `HostToWorkerMessage` / `WorkerToHostMessage` 消息体，是 VM 与宿主之间唯一的通信边界。
+- 三种宿主通过不同的 `VmLauncher` 复用同一核心：
+  - `src/runtime/host.ts` → `CodemodeSandbox`，基于 `node:worker_threads` 为每次执行启动一个 Worker 线程。
+  - `src/runtime/inline.ts` → `InlineCodemodeSandbox`，在调用线程直接实例化 QuickJS VM，用于 Cloudflare 或任何可运行 WASM 的环境。
+  - `src/runtime/remote.ts` → `RemoteCodemodeSandbox` + `serveCodemodeRemote()`，将 VM 放在另一个 isolate（通常是 Durable Object）中，通过 RPC 往返传递工具调用。
+  - `src/runtime/vm.ts` / `src/runtime/worker.ts` / `src/runtime/prelude-source.ts` 负责 QuickJS 初始化、预加载桥接代码与中断预算。
+- 顶层导出按环境拆分：主入口 `src/index.ts` 导出 Node/Bun 的 `CodemodeSandbox`；`src/portable.ts` 导出无 `node:*` 依赖的 `InlineCodemodeSandbox` 与 `RemoteCodemodeSandbox`；`src/cloudflare.ts` 额外提供 Wrangler 编译的 `quickjs.wasm`、`createInlineCodemodeSandbox` 与 `CodemodeSandboxDurableObject`。
+- 辅助子模块：`declarations.ts` 把 JSON Schema 渲染为 TypeScript 声明供模型阅读；`source.ts` 解析 `// @options:` 源码头；`identifier.ts` 做工具名到标识符的映射；`wasm.ts` 封装 `loadQuickJSWasm`。
+- 依赖方向单向：cloudflare → portable → runtime/* → types；runtime/* 不反向依赖 cloudflare 或 host，从而保持三种宿主可独立替换。

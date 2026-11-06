@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/模型代码沙箱执行引擎 (@earendil-works_pi-codemode)/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/模型代码沙箱执行引擎 (@earendil-works_pi-codemode)/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/模型代码沙箱执行引擎 (@earendil-works_pi-codemode)/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/模型代码沙箱执行引擎 (@earendil-works_pi-codemode)/概述",
+  "markdown": "在 QuickJS WebAssembly VM 中运行模型生成的 JavaScript，仅暴露注入的 tools、store/load 等能力，并支持 Node/Bun worker、Cloudflare Durable Object 与内联三种宿主。"
+}

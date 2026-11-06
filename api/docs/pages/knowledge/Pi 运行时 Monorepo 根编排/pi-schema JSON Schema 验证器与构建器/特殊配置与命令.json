@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-schema JSON Schema 验证器与构建器/特殊配置与命令.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-schema JSON Schema 验证器与构建器/特殊配置与命令.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-schema JSON Schema 验证器与构建器/特殊配置与命令",
+  "title": "特殊配置与命令",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-schema JSON Schema 验证器与构建器/特殊配置与命令",
+  "markdown": "`pnpm run build` 调用 `tsc -p tsconfig.build.json` 产出 `dist/`；`pnpm test` 运行 vitest（含官方 JSON-Schema-Test-Suite conformance）；`pnpm bench` 执行 `node --expose-gc test/bench/all.ts` 进行跨库基准（约 12 分钟）。"
+}

@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI SDK 共享工具集/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI SDK 共享工具集/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI SDK 共享工具集/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI SDK 共享工具集/技术栈",
+  "markdown": "依赖 partial-json 用于不完整 JSON 的容错解析；Bun sandbox 环境下通过 require('node:fs').readFileSync('/proc/self/environ') 读取环境变量以绕过 process.env 为空的问题。"
+}

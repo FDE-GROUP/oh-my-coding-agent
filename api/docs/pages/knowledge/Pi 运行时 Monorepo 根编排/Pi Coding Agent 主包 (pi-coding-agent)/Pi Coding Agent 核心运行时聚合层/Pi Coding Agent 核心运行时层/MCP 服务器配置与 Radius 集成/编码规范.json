@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/MCP 服务器配置与 Radius 集成/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/MCP 服务器配置与 Radius 集成/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/MCP 服务器配置与 Radius 集成/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/MCP 服务器配置与 Radius 集成/编码规范",
+  "markdown": "- 对外暴露的配置类型通过在 pi-mcp 的类型上交叉继承（如 `extends McpStdioServerFields, McpServerConfigBase`）来叠加 pi 自有字段，保持与上游类型兼容。\n- 配置校验函数返回联合类型 `T | string`（成功为对象、失败为错误消息字符串），调用方用 `kind === \"invalid\"` 分支处理。\n- 对旧版配置值采用「别名映射表 + resolve 函数」模式（如 `MCP_EXPOSURE_ALIASES` 把 `codemode-deferred` 替换为 `codemode`），在验证前完成归一化。\n- 敏感连接（HTTP server 的 `auth.provider`）强制安全约束：非 localhost/127.0.0.1/[::1] 时必须使用 https，否则返回错误消息。"
+}

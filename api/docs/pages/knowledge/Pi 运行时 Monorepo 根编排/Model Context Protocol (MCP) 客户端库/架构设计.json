@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/架构设计",
+  "markdown": "模块按职责划分为四层：\n- 协议层 `protocol/`：定义 JSON-RPC 消息解析 (`jsonrpc.ts`)、MCP 内容块 (`content.ts`) 与协议类型 (`types.ts`)，是其他层的依赖基础。\n- 传输抽象层 `transports/transport.ts` 通过 `McpTransport` 接口与 `TransportEvents` 基类统一事件模型；具体实现包括 `stdio.ts`（子进程 stdio）、`streamable-http.ts`（带 Last-Event-ID 重连的 Streamable HTTP）、`pipe.ts`（对调用方提供的管道进行 MCP 帧封装）、`lines.ts`/`in-memory.ts` 等辅助传输。\n- 客户端核心 `client.ts` 维护连接状态机、请求/进度/取消关联、初始化协商与分页列表，仅依赖 `McpTransport` 接口，不感知底层 I/O。\n- OAuth 子包 `oauth/` 独立暴露为 `@earendil-works/pi-mcp/oauth`，包含发现 (`discovery.ts`)、PKCE 授权码流 (`flow.ts`)、回调服务器 (`callback.ts`)、loopback 登录 (`loopback.ts`)、状态存储 (`provider.ts`) 等，适配到 `auth-provider.ts` 供传输层使用。\n\n顶层 `src/index.ts` 作为单一入口重新导出所有公共 API；`package.json` 通过 `exports` 字段将根、`./oauth`、`./testing` 三个子路径分别映射到 source/types/import，测试传输由 `src/testing/index.ts` 单独暴露。依赖方向单向：client → transports → protocol，oauth 独立于 client 但可被 transport 注入。"
+}

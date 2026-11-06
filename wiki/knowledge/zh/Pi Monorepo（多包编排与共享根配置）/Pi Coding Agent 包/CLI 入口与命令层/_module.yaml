@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: coding_agent/cli_commands
-title: CLI 入口与命令层
-scope:
-    - packages/coding-agent/src/cli/
-source_files: []
-depends_on: []
-related_to:
-    - path: coding_agent/app_bootstrap

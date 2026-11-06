@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/认证凭据存储与项目信任决策/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/认证凭据存储与项目信任决策/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/认证凭据存储与项目信任决策/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/认证凭据存储与项目信任决策/编码规范",
+  "markdown": "- 对外暴露的 CredentialStore 实现同时提供同步 `withLock` 与异步 `withLockAsync` 两套 API，后者接受 `AuthOperationOptions` 中的 AbortSignal 用于取消。\n- 所有对 `auth.json` 的写操作统一通过 `AUTH_FILE_WRITE_OPTIONS`（utf-8、mode 0o600）写入，目录创建使用 mode 0o700，保证凭据文件权限隔离。\n- JSON 文件读取一律先经 `stripBom` 去 BOM，再以对象结构校验后再 `as AuthStorageData` 强转，避免直接 `JSON.parse` 后直接使用。\n- 用户可见的错误/提示文案集中在 `auth-guidance.ts` 中通过 `join(getDocsPath(), ...)` 拼接文档路径，避免在调用方硬编码相对路径。\n- 项目信任决策遵循固定优先级链：`trustOverride` → extension `project_trust` 事件 → `trustStore.get(cwd)` → `defaultProjectTrust` 配置 → UI 交互，任一阶段返回即短路。"
+}

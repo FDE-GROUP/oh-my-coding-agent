@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 提供商 API 适配器层/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 提供商 API 适配器层/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 提供商 API 适配器层/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 提供商 API 适配器层/技术栈",
+  "markdown": "使用各提供商官方 SDK（`@anthropic-ai/sdk`、`openai`、`@google/generative-ai`、`@google-cloud/vertexai`、`@mistralai/client`、`@ai-sdk/amazon-bedrock` 等）并通过 `lazyApi` 延迟加载以减小初始包体；Cloudflare Workers 场景通过 `env.AI.fetch()` binding 直连 AI Gateway。"
+}

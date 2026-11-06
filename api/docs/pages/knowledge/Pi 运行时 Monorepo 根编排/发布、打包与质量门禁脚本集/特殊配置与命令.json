@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/发布、打包与质量门禁脚本集/特殊配置与命令.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/发布、打包与质量门禁脚本集/特殊配置与命令.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/发布、打包与质量门禁脚本集/特殊配置与命令",
+  "title": "特殊配置与命令",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/发布、打包与质量门禁脚本集/特殊配置与命令",
+  "markdown": "- 本地完整发布：`node scripts/local-release.mjs [--out <dir>] [--skip-test] [--skip-bun-install]`，会构建 artifact set、在隔离目录安装 tarball 并执行 smoke test。\n- 正式发布：`node scripts/release.mjs <major|minor|patch|x.y.z>`，需工作区干净且所有公共包已在 npm 注册。\n- 多平台二进制本地构建：`./scripts/build-binaries.sh [--platform <plat>] [--skip-install] [--skip-build] [--offline-model-data]`，输出到 `packages/coding-agent/binaries/`。\n- 质量门禁单独运行：`node scripts/check-runtime-deps.mjs`、`node scripts/check-pinned-deps.mjs`、`node scripts/check-tsdoc.mjs` 等。"
+}

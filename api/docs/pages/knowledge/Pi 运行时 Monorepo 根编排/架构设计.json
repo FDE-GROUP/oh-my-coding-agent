@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/架构设计",
+  "markdown": "根目录作为 monorepo 编排层，通过 pnpm-workspace.yaml 将 packages/*、apps/*、extensions/* 及若干 examples 纳入同一依赖图，并以 linkWorkspacePackages + preferWorkspacePackages 强制子包间使用本地版本而非 registry。\n- 构建链：`pnpm build` 按 telemetry → schema → tui → codemode → mcp → ai → agent-core → coding-agent 的拓扑顺序依次触发各子包的 build 脚本，最终产出 pi 可执行文件。\n- 共享基础配置由 tsconfig.base.json 提供（ES2024 / Node16 module / strict / verbatimModuleSyntax），vitest.base.ts 统一测试环境；所有子包通过 `extends: ./tsconfig.base.json` 继承。\n- 质量门禁集中在 scripts/*.mjs（biome、pinned-deps、runtime-deps、ts-imports、entry-graphs、secrets、tsdoc、browser-smoke），由根 `check` 脚本串联。\n- 发布流程由根 scripts/publish.mjs、release.mjs、local-release.mjs 等驱动，配合 husky pre-commit 钩子在提交前运行 check。\n- 运行时入口分为两条线：coding-agent 输出 `pi` CLI，omfde_cli 在 apps/omfde/bin/omfde.mjs 中包装并注入 OMFDE_PLATFORM 环境变量区分平台化调用。"
+}

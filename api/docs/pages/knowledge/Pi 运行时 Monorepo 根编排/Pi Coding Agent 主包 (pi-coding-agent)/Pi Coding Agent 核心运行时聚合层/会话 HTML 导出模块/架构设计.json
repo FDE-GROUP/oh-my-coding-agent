@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/会话 HTML 导出模块/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/会话 HTML 导出模块/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/会话 HTML 导出模块/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/会话 HTML 导出模块/架构设计",
+  "markdown": "模块以 `index.ts` 为对外入口，暴露 `exportSessionToHtml`（基于 SessionManager + AgentState）和 `exportFromFile`（纯文件模式）两个异步函数，二者共享内部 `generateHtml`：从 `getExportTemplateDir()` 读取 `template.html/css/js` 以及 `vendor/` 下的 marked、highlight.js 等内嵌资源，通过 base64 序列化 `SessionData`（header/entries/leafId/systemPrompt/tools/renderedTools）并替换模板占位符。\n\n- 主题系统：`generateThemeVars` 调用 `getResolvedThemeColors` / `getThemeExportColors` 生成 CSS 变量，并通过 `deriveExportColors` 从 `userMessageBg` 派生 page/card/info 背景色。\n- 工具渲染分层：`tool-renderer.ts` 提供 `createToolHtmlRenderer`，按 `TEMPLATE_RENDERED_TOOLS = {bash, read, write, edit, ls}` 白名单区分——这些工具由 HTML 模板直接渲染，其余工具走 TUI Component → ANSI → HTML 管线；`ansi-to-html.ts` 实现完整的 SGR 解析器（标准/明亮/256色/RGB 前景背景、bold/dim/italic/underline/reset）。\n- 扩展点：`ToolHtmlRenderer` 接口在 `index.ts` 与 `tool-renderer.ts` 中重复声明，供外部（如 agent-session）预渲染自定义工具输出后注入到 `renderedTools` 字段。\n- 依赖方向：本模块仅向上依赖 `config`、`modes/interactive/theme`、`utils/paths`、`core/extensions/types`、`core/session-manager`，不反向被它们引用，是单向消费层。"
+}

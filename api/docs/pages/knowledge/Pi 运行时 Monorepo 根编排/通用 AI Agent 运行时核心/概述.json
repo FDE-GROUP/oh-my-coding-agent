@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/通用 AI Agent 运行时核心/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/通用 AI Agent 运行时核心/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/通用 AI Agent 运行时核心/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/通用 AI Agent 运行时核心/概述",
+  "markdown": "提供可插拔的 LLM Agent 运行时，封装对话轮次循环、工具调用编排、事件流与代理传输，对外暴露 Agent 类与类型定义。"
+}

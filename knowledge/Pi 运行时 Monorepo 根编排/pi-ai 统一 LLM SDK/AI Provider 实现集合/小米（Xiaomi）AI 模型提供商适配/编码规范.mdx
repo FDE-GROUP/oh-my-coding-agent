@@ -1,0 +1,3 @@
+- 每个 Provider 以单独文件暴露一个工厂函数（如 `xiaomiProvider`、`xiaomiTokenPlanCnProvider`），返回 `createProvider` 构造的 `Provider<'openai-completions'>`。
+- 鉴权统一通过 `envApiKeyAuth(提示文案, [环境变量名数组])` 配置，不同区域/产品使用独立的环境变量名。
+- 模型清单从同目录下的 `*.models.ts` 文件导入并以 `Object.values(...)` 展开，避免在 Provider 定义中内联模型列表。

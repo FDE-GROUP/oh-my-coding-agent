@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/遥测、诊断与启动时序工具/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/遥测、诊断与启动时序工具/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/遥测、诊断与启动时序工具/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/遥测、诊断与启动时序工具/技术栈",
+  "markdown": "TypeScript；遥测开关读取 `process.env.PI_TELEMETRY`，计时开关读取 `process.env.PI_TIMING`，均使用 Node.js 原生 API。"
+}

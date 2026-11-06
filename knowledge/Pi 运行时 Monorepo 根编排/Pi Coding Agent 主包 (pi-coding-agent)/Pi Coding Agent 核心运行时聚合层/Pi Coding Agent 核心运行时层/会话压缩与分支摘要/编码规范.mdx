@@ -1,0 +1,6 @@
+- LLM 调用统一走 `completeSummarization` 封装，自动设置 `cacheRetention: 'none'` 并复用 `retryAssistantCall` 实现重试与 abort 传播。
+- 摘要 prompt 采用固定结构化模板（Goal / Constraints & Preferences / Progress / Key Decisions / Next Steps / Critical Context），初始与增量更新分别使用 `SUMMARIZATION_PROMPT` 与 `UPDATE_SUMMARIZATION_PROMPT`。
+- 文件操作追踪通过 `createFileOps` + `extractFileOpsFromMessage` 从 assistant 的 toolCall 或 toolResult.nestedCalls 中抽取 read/write/edit 集合，最终用 `computeFileLists` 去重输出 readFiles / modifiedFiles。
+- 令牌估算统一使用 `estimateTokens` 的 chars/4 启发式，对 system/user/assistant/toolResult/bashExecution/branchSummary/compactionSummary 等角色分别处理 content 块。
+- 摘要失败通过 `getSummarizationFailure` 集中判断 `stopReason === 'error' | 'length'` 并返回可读错误字符串，调用方据此抛出或返回 error 字段。
+- 分支与压缩的条目收集均遵循「从新到旧」逆序遍历并按 token 预算截断，同时保留 summary 类条目作为关键上下文优先纳入。

@@ -1,0 +1,11 @@
+模块以 `ModelRuntime`（model-runtime.ts）为核心聚合器：它持有内置 Provider 列表、扩展配置、虚拟模型表、凭据存储与 ModelsStore，并通过 `composeModelProvider` 把三层来源（内置 provider → models.json → extension ProviderConfigInput）合并成单一 Provider；`ModelRegistry` 是面向扩展的同步门面，所有方法转发到 `ModelRuntime`。
+
+内部分层清晰：
+- 目录层：`remote-catalog-provider.ts` 通过 `withRemoteCatalog` / `withPersonalizedCatalog` 给静态 Provider 叠加 pi.dev 动态目录缓存，支持 ETag/Last-Modified 校验与 4 小时刷新间隔。
+- 组合层：`provider-composer.ts` 负责 API Key / OAuth 认证组装、headers 合并、`authHeader` Bearer 注入、模型覆盖（modelOverrides）以及 `streamSimple` 扩展点。
+- 持久化层：`models-store.ts` 提供 `InMemoryCodingAgentModelsStore` 与基于文件锁的 `FileModelsStore`，共享读状态避免并发重复读取。
+- 解析层：`model-resolver.ts` 实现 `--model` / `--models` 的模式匹配（exact → fuzzy → thinking suffix `:high`），并维护 `defaultModelPerProvider` 默认模型映射。
+- 路由层：`virtual-models.ts` 定义 `pi-virtual` 虚拟模型，按会话分支在 user/continuation/retry/direct 场景下将请求路由到物理模型。
+- 辅助层：`provider-matching.ts` 做 provider id/name 大小写无关匹配；`radius.ts` / `radius-mcp.ts` 集中 Radius 网关 URL 与 MCP 服务器计划生成。
+
+依赖方向单向向内：registry → runtime → (composer, resolver, virtual-models, remote-catalog, models-store)；runtime 不反向依赖 registry。

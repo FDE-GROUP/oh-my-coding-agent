@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）/技术栈",
+  "markdown": "Node.js 原生 `events` + `process`；HTTP 请求通过 `undici`（`EnvHttpProxyAgent`、`Client`、`Pool`、`setGlobalDispatcher`、`install`）实现全局 fetch 调度器替换。"
+}

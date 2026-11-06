@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/技术栈",
+  "markdown": "TypeScript ESM 包，Node ≥22.19.0；运行时仅依赖 `cross-spawn` 用于启动 stdio 子进程，测试使用 Vitest 4；OAuth 实现改编自 MIT 许可的 Model Context Protocol TypeScript SDK v1.29.0（见 `THIRD_PARTY_NOTICES/`）。"
+}

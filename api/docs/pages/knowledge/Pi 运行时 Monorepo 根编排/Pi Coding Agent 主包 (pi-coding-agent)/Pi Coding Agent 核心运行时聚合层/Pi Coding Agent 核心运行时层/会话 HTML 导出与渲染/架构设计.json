@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/会话 HTML 导出与渲染/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/会话 HTML 导出与渲染/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/会话 HTML 导出与渲染/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/会话 HTML 导出与渲染/架构设计",
+  "markdown": "模块以 `index.ts` 为入口，提供两个对外 API：`exportSessionToHtml`（基于 SessionManager + AgentState）和 `exportFromFile`（仅读取 .jsonl 会话文件），二者共享内部 `generateHtml` 流水线。\n\n- 模板层：`template.html` 是静态骨架，通过 `{{CSS}}` / `{{JS}}` / `{{SESSION_DATA}}` / `{{MARKED_JS}}` / `{{HIGHLIGHT_JS}}` 占位符注入；`template.css` 与 `template.js` 由运行时填充 CSS 变量（`--exportPageBg` 等）并解析 base64 编码的会话数据后在浏览器端渲染树形会话视图。\n- 主题层：从 `../../modes/interactive/theme/theme.ts` 获取 `getResolvedThemeColors` / `getThemeExportColors`，并通过 `deriveExportColors` 根据 `userMessageBg` 自动推导页面/卡片/信息区背景色。\n- 工具渲染层：`tool-renderer.ts` 实现 `ToolHtmlRenderer` 接口，通过依赖注入的 `getToolRenderers` 调用扩展工具的 `renderCall` / `renderResult`，把 TUI Component 输出的 ANSI 行经 `ansi-to-html.ts` 转为带内联样式的 `<span>` 片段，并以 collapsed/expanded 双态缓存。\n- ANSI 转换：`ansi-to-html.ts` 纯函数实现 SGR 码解析，覆盖标准 16 色、256 色索引、RGB 真彩及 bold/dim/italic/underline/reset 样式，输出到 `vendor/` 下的 marked、highlight.js 等第三方库一并内嵌。\n- 依赖方向：本模块向上依赖 session-manager、extensions/types、interactive theme；不反向被 core 其他子模块引用，仅被上层 TUI/CLI 消费。"
+}

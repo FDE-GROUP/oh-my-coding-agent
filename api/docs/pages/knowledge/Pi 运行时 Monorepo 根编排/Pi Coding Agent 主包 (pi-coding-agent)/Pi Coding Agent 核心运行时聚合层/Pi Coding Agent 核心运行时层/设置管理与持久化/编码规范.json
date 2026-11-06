@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/设置管理与持久化/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/设置管理与持久化/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/设置管理与持久化/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/设置管理与持久化/编码规范",
+  "markdown": "- 所有可配置字段在 `SettingsSchema` 中以 `Type.Optional(...)` 包裹并附带 `description`，同时从 `SETTINGS_DEFAULTS` 注入 `default`，确保 schema 与默认值同源。\n- SettingsManager 的 getter 读取当前 `this.settings` 并在缺失时回退到 `SETTINGS_DEFAULTS.xxx`，setter 则直接写 `this.globalSettings` 或 `this.projectSettings` 后调用 `markModified` + `save()`。\n- 对嵌套字段的修改采用双集合追踪：顶层字段用 `Set<keyof Settings>`，子键用 `Map<keyof Settings, Set<string>>`，持久化时仅序列化被标记的分支。\n- 项目作用域的写入前统一调用 `assertProjectTrustedForWrite()` 校验 `projectTrusted`，未信任时抛错而非静默丢弃。\n- JSON 文件读取一律先 `stripBom` 再 `JSON.parse`，错误通过 `tryLoadFromStorage` 捕获为 `SettingsError` 列表，不中断初始化。\n- 向后兼容通过 `migrateSettings` 中的字段重命名/结构升级处理（如 `queueMode→steeringMode`、`websockets→transport`、旧 `skills` 对象→数组），并在 schema 中将旧字段标为 `deprecated: true`。"
+}

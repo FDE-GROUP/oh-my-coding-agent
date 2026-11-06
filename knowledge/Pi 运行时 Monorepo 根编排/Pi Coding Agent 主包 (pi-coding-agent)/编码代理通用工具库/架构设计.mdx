@@ -1,0 +1,7 @@
+本模块是纯函数式工具集合，按职责拆分为独立文件，彼此之间依赖方向单一且浅：
+- 进程与 Shell 层：`child-process.ts` 封装 `node:child_process` 并兼容 Windows 的 `cross-spawn`；`shell.ts` 基于它实现 bash / PowerShell 发现、环境变量注入、进程树销毁（Windows 用 `taskkill.exe`，Unix 用 `-pid SIGKILL`）。
+- 图像管线：`image-resize-core.ts` 通过 `photon.ts` 加载 Rust/WASM Photon 执行缩放；`image-resize.ts` 在其之上用 `node:worker_threads` 启动 `image-resize-worker.ts` 避免阻塞 TUI，Bun 编译产物下回退到 in-process。
+- 剪贴板：`clipboard.ts` 作为统一入口，优先调用 `@earendil-works/pi-tui` 的原生接口，再依次尝试 `wl-copy`/`xclip`/`xsel`/`pbcopy`/`clip`，WSL 无 WSLg 时经 `clipboard-command.ts` + PowerShell 写 Windows 剪贴板，并通过 OSC 52 协议回退到终端。
+- 工具分发：`tools-manager.ts` 维护 `fd`/`ripgrep` 的 `ToolConfig` 表，从 GitHub Releases 拉取预编译二进制，解压后落盘到 `getBinDir()`，支持离线模式与 Termux。
+- 辅助域：`git.ts`、`wsl.ts`、`open-browser.ts`、`zip.ts`、`fs-watch.ts`、`syntax-highlight.ts`、`frontmatter.ts`、`exif-orientation.ts`、`mime.ts`、`terminal-question.ts` 等各自封装一个系统/协议细节。
+所有工具均不持有全局状态（除 `shell.ts` 中用于清理的 detached pid Set），对外只暴露命名函数与类型。

@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/架构设计",
+  "markdown": "模块以 `index.ts` 为装配入口，导出 `builtInExtensions: InlineExtension[]`，每个子目录对应一个扩展，遵循 `index.ts` 暴露 `createXxxExtension()` 工厂函数 + 默认导出的模式。\n\n- `codemode/`：实现 `codemode` 工具（执行脚本、渲染器、worker），由 `tool.ts` 生成工具定义，`execute.ts`/`execute.lazy.ts` 负责同步/懒加载 worker 执行，`renderer.ts` 处理输出渲染。\n- `llama/`：封装 llama.cpp 服务端交互，`client.ts` 调用 HTTP API，`huggingface.ts` 对接 HuggingFace 模型搜索与下载，`provider.ts` 注册 `LLAMA_PROVIDER_ID` 模型提供方，`ui.ts` 提供 TUI 菜单；默认导出扩展向 `pi.registerProvider` 和 `/llama` 命令注册能力。\n- `mcp/`：最复杂的扩展，集中管理 `mcp.json` 与运行时注册的 MCP 服务器连接生命周期（`runtime.ts`/`runtime.lazy.ts`）、OAuth 认证（`oauth.ts`）、资源工具（`resources.ts`）、工具映射（`tools.ts`）与 `/mcp` 管理器 UI（`ui.ts`）。支持 `codemode`/`deferred`/`direct`/`hidden` 四种 exposure 策略，并通过 `registerToolRenderer` 注入 MCP 工具的渲染逻辑。\n- `tool-search/`：最小扩展，仅包装 `createToolSearchToolDefinition` 注册 `tool_search` 工具。\n\n依赖方向单向指向 `../../core/extensions/types.ts` 定义的 `ExtensionAPI`/`ExtensionFactory`/`ToolDefinition`，不反向依赖其他扩展；`mcp/index.ts` 通过常量引用 `codemode` 与 `tool-search` 的工具名来自动激活它们，体现扩展间的松耦合协作。"
+}

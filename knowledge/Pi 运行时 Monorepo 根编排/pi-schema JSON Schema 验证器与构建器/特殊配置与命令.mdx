@@ -1,0 +1,1 @@
+`pnpm run build` 调用 `tsc -p tsconfig.build.json` 产出 `dist/`；`pnpm test` 运行 vitest（含官方 JSON-Schema-Test-Suite conformance）；`pnpm bench` 执行 `node --expose-gc test/bench/all.ts` 进行跨库基准（约 12 分钟）。

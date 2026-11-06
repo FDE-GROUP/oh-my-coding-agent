@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Telemetry 契约与内存参考实现/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Telemetry 契约与内存参考实现/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Telemetry 契约与内存参考实现/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Telemetry 契约与内存参考实现/概述",
+  "markdown": "为 pi 提供与后端无关的遥测接口、类型化 schema 工具、内存记录器以及 trace 渲染，供各适配器统一实现。"
+}

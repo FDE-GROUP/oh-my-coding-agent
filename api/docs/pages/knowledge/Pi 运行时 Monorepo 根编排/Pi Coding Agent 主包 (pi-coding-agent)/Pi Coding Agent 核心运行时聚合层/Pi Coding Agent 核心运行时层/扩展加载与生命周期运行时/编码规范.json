@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/扩展加载与生命周期运行时/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/扩展加载与生命周期运行时/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/扩展加载与生命周期运行时/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/扩展加载与生命周期运行时/编码规范",
+  "markdown": "- 扩展 API 方法在执行前统一调用 `assertActive()` 检查状态，区分 loading/active/failed 三态，失败后丢弃 pending 变更并清理 eventBus 订阅。\n- 需要延迟生效的注册（provider、native provider、virtual model、flag default）先写入 `runtime.pending*Registrations` 队列，由 `bindCore()` 在宿主就绪后一次性 flush。\n- 对外暴露的扩展对象（handlers/tools/commands/flags/shortcuts/messageRenderers/entryRenderers）一律以 `Map` 存储，并通过 `createExtension()` 集中初始化。\n- 事件派发采用 snapshot 模式：`snapshotEventHandlers` 复制当前 handlers 数组后再遍历，防止扩展在 handler 内修改自身监听器导致迭代错乱。\n- 扩展工具通过 `wrapRegisteredTool` / `wrapRegisteredTools` 经 `wrapToolDefinition` 包装，统一由 `ExtensionRunner.createToolContext()` 注入一致的上下文，而非各自构造。"
+}

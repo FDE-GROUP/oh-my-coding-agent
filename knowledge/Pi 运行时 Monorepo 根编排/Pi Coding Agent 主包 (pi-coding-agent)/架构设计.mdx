@@ -1,0 +1,6 @@
+本包是 @earendil-works/pi-coding-agent 的顶层装配层：
+- 启动链路：`src/bun/cli.ts`（Bun 沙箱入口）→ `src/cli.ts`（参数解析/子命令路由）→ `src/modes/index.ts`（选择 interactive/rpc/print 三种运行模式）→ `core_runtime.createAgentSessionRuntime()` 组装会话。
+- 依赖边界：`core_runtime` 提供 createAgentSessionRuntime 作为唯一装配点；`built_in_extensions`（codemode、llama、mcp、tool-search）通过 ExtensionFactory 注册到该运行时；`cli_layer` 仅消费 CLI 能力而不直接调用 core_runtime 内部；`modes` 在 TUI/RPC/Print 三种外壳下复用同一 runtime。
+- 构建产物：`package.json` 的 bin 指向 `dist/bundle/cli.js`，由根脚本 `scripts/build-coding-agent-bundle.mjs` 将 src 与 node_modules 合并为单 bundle；`build:binary` 再用 `bun build --compile` 编译出原生 `dist/pi` 可执行文件。
+- 对外契约：`main` 导出 SDK (`./dist/index.js`)，`rpc-entry` 导出 JSON-RPC 子进程入口 (`./dist/bundle/rpc-entry.js`)，供外部进程以 RPC 模式驱动 agent。
+- 配置与文档：`schemas/*.schema.json` 由 `scripts/generate-schemas.ts` 从 TypeBox schema 生成，`docs/` 由 docs.json 驱动站点导航。

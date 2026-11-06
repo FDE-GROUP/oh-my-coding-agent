@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 服务端运行时与会话管理/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 服务端运行时与会话管理/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 服务端运行时与会话管理/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 服务端运行时与会话管理/概述",
+  "markdown": "为 Pi Web 提供 Pi RPC 子进程生命周期管理、会话索引与访问控制，并通过 TanStack Router 文件路由暴露 REST API。"
+}

@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/模型配置、注册与解析层/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/模型配置、注册与解析层/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/模型配置、注册与解析层/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/模型配置、注册与解析层/架构设计",
+  "markdown": "模块由三个职责分明的文件组成，依赖方向单向：\n- model-config.ts：基于 TypeBox schema（ModelsConfigSchema / ProviderConfigSchema / ModelDefinitionSchema / ModelOverrideSchema）对 models.json 进行读取、JSONC 解析、schema 校验与 deepFreeze，产出不可变的 ModelConfig 快照，仅暴露 getProvider/getProviderIds/getError。\n- model-registry.ts：ModelRegistry 是面向扩展的同步门面，内部持有 ModelRuntime 实例，所有方法（refresh/find/stream/complete/classify/generateImages/registerProvider 等）直接转发到 runtime，同时封装 ResolvedRequestAuth 联合类型与 API key 头解析；类型通过 `export type { ... }` 从 provider-composer.ts 和 virtual-models.ts 重新导出。\n- model-resolver.ts：纯函数式解析层，提供 resolveModelReference（支持 provider/id 前缀、`:thinkingLevel` 后缀、fuzzy 匹配）、resolveModelScopeFromModels（glob + minimatch 批量匹配）、resolveCliModel、findInitialModel、restoreModelFromSession 等入口，使用 defaultModelPerProvider 为各 KnownProvider 提供默认模型 ID。\n\n依赖方向：model-registry → model-runtime；model-resolver → model-runtime；model-config 独立不依赖运行时。扩展只能看到 ModelRegistry 的同步接口，内部调用走异步 ModelRuntime。"
+}

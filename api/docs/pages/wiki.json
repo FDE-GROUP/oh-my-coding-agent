@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/wiki.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/wiki.md",
+  "route": "/wiki",
+  "title": "仓库 Wiki",
+  "url": "https://fde-group.github.io/oh-my-fde/wiki",
+  "markdown": "# 仓库 Wiki\n\n由 Repo Wiki 工具生成的主题式仓库说明，按使用与运维主题组织。**内容为自动生成，可能过时**；与 [项目文档](/oh-my-fde/docs) 或源码冲突时，以后者为准。\n\n## 常用主题\n\n- [配置管理](/oh-my-fde/wiki/配置管理)：分层设置、模型目录与环境变量解析。\n- [故障排除](/oh-my-fde/wiki/故障排除)：常见问题与定位方法。\n\n## 全部主题\n\n左侧栏按主题分组，涵盖：项目概述、快速开始、核心架构、工具系统、扩展开发、CLI 工具参考、SDK API 参考、开发者指南、部署与运维、AI 集成。\n"
+}

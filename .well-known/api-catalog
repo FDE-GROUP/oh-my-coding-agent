@@ -1,0 +1,19 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://fde-group.github.io/oh-my-fde/api/docs",
+      "service-desc": [
+        {
+          "href": "https://fde-group.github.io/oh-my-fde/openapi.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://fde-group.github.io/oh-my-fde",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}

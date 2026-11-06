@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/内置工具执行与渲染层/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/内置工具执行与渲染层/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/内置工具执行与渲染层/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/内置工具执行与渲染层/架构设计",
+  "markdown": "模块以 `index.ts` 作为统一入口，通过 `createToolDefinition` / `createTool` 的 switch 分发到各工具子模块，并暴露 `createCodingTools`（读写+编辑）、`createReadOnlyTools`（只读查询）和 `createAllTools` 三类装配器。\n\n- 每个工具遵循同一模式：定义 TypeBox 参数 schema → 导出 `createXxxToolDefinition(cwd, options)` 返回 `ToolDefinition` → 再经 `wrapToolDefinition` 包装为 `AgentTool`；如 `read.ts`、`write.ts`、`edit.ts`、`bash.ts`、`powershell.ts`、`grep.ts`、`find.ts`、`ls.ts`。\n- 可插拔抽象：工具通过 Options + Operations 接口注入行为（如 `ReadOperations`、`BashOperations`、`PowerShellOperations`），默认实现走 Node fs/promises 或 `child_process.spawn`，便于远程/SSH 覆盖。\n- 共享基础设施：`truncate.ts` 提供行/字节截断与提示文案；`path-utils.ts` 处理路径解析；`file-mutation-queue.ts` 基于 `Map<string, Promise<void>>` 按真实路径串行化文件写入，避免并发写冲突；`output-accumulator.ts`、`render-utils.ts`、`edit-diff.ts` 提供通用辅助。\n- 渲染层独立于执行层：`renderers/` 子目录仅包含各工具的 `renderCall` / `renderResult`，由 `renderers/index.ts` 的 `createAllToolRenderers` 聚合，供不加载工具实现的展示进程单独引入，从而把 ~17 MB 的工具图排除出纯渲染流程。\n- 类型桥接：`tool-definition-wrapper.ts` 在 `ToolDefinition`（扩展模型）与 `AgentTool`（核心运行时模型）之间双向转换，并提供带 TypeBox `Static` 类型的 `TypeBoxAgentTool`。\n- 依赖方向：工具模块 → 共享基础设施 → `../extensions/types.ts` 与 `@earendil-works/pi-agent-core`；渲染器反向依赖工具名但不依赖执行实现。"
+}

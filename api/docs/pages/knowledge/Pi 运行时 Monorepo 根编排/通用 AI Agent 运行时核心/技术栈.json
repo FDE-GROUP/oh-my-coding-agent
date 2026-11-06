@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/通用 AI Agent 运行时核心/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/通用 AI Agent 运行时核心/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/通用 AI Agent 运行时核心/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/通用 AI Agent 运行时核心/技术栈",
+  "markdown": "TypeScript (ESM) + Node ≥22.19；构建使用 `tsc -p tsconfig.build.json`，测试使用 Vitest (`vitest --run`)；运行时依赖 `@earendil-works/pi-ai`（Model/Tool/EventStream/TranscriptContext 等）与 `@earendil-works/pi-schema`（TypeBox Static 类型推导）。"
+}

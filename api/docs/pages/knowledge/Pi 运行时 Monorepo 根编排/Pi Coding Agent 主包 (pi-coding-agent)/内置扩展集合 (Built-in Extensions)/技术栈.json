@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/技术栈",
+  "markdown": "TypeScript；MCP 客户端基于 `@earendil-works/pi-mcp`；TUI 菜单使用 `@earendil-works/pi-tui`；llama.cpp 扩展通过 HTTP 与本地/远程 llama.cpp server 通信，并调用 HuggingFace API 搜索模型。"
+}

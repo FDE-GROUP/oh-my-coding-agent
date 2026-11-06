@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 服务端运行时与会话管理/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 服务端运行时与会话管理/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 服务端运行时与会话管理/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 服务端运行时与会话管理/技术栈",
+  "markdown": "Node.js child_process + JSONL 协议与外部 `pi --mode rpc` 子进程通信；TanStack React Router 的文件路由 (`createFileRoute`)；类型来自 `@earendil-works/pi-coding-agent` 的 `RpcCommand/RpcResponse`。"
+}

@@ -1,0 +1,414 @@
+<!DOCTYPE html><html dir="ltr" lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/oh-my-fde/_astro/ClientRouter.astro_astro_type_script_index_0_lang.C49ra6Wy.js"></script><script>(()=>{const sel='body link[rel="stylesheet"]';document.addEventListener("astro:before-preparation",(e)=>{const load=e.loader;e.loader=async()=>{await load();const links=[...e.newDocument.querySelectorAll(sel)].filter((l)=>!document.head.querySelector('link[rel="stylesheet"][href="'+l.getAttribute("href")+'"]'));await Promise.all(links.map((l)=>new Promise((done)=>{const c=document.createElement("link");for(const a of l.attributes){c.setAttribute(a.name,a.value);}c.onload=done;c.onerror=done;document.head.append(c);})));};});document.addEventListener("astro:before-swap",(e)=>{for(const l of e.newDocument.querySelectorAll(sel)){e.newDocument.head.append(l);}});})();</script><title>开发工作流 - oh-my-fde 文档</title><link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAABSUlEQVR42r2VYZGAIBCFvwhEIIIRiECDo8HZQBtoA6+B14AIRjACEbgZh9k5XfEGf9x7fwCZt/DcXXiAYSKR2fjkBSw7WbhhaEQknzi2xs8X7jTBkRX/REfAyThfmMRaj8fqI0c5agBgvwgsAAwkmRvluPAD8BcHLDCd1jYEizquAbzIRuytsYGCpD51YqaX8ah2fVOQFT0aWiBSsFdO4JhYmIrnvdq11LQ35cwAGJIKI1iV48NlswPCU3IHNjKJGQuYyn0tK4lExLWnchO6doGBnczOgr01LBbhSDpmAaBuov4zQaX3gCDcRpvJwh5dMRlHwabua4uVMwsjVoc5ONdT2bWlcqoKdL+Kqa8X03zb/zzpZKurlbO2J1QayqwrRksk+tsKXS8+rBidfR5Xlt1DU3V4zPu2/v5h+eenTT+uL2D54qjQp+g/ajTbP/Y2NqMAAAAASUVORK5CYII=" rel="icon" type="image/png"><link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABqklEQVRYhdWXi23FIAxFPcIbgREyAiNkg2aDZoN0g2aDdIN0A0bICBmBEW5FayqLR4LhKf1cCUXKB67DsQECQA3tBuAVgMeXNgDPLX1Rw0cGwI68NjZ3qQGHc71cacCgrP1KAxY6PWygAzDwgOn9knwG2J6bKRkwmTne2Ux85wjAqEW8O4lMkc+/QSUl3UFP/F6I5Ei7iDKkKU6y5c7AUojMC+d9xqwTg2tgHVID6a/KqctA2Wfuh1Qs6T01oFGvpFtjwKUGSnAhidTyPC98lYSPir4+YaUK15uCl0mkntcEQ8mvWxV0h0HOFGtHgKxYrikzfwNHC45iFoOHyFRzK7Jh5X48P7P/ohTTSYm+3MAkMmJn4EwFXC4x7MQ3Linr1AJhKVsGRcmecgaGisgCmDmNynUFEUYSnUbyzySLjWUjC/8VUxEM+FuqLcX2ylLsGwx0B4vR2LIYzRV7vT5jWIJqW5ZjUwBHQ7c0MdduSOjAhBd0k4LutcDCerQlo8zc2uSgYRs3pXHjcnu0FFv8QCmmv3wwod8+mpHicFrVX4uBaOItWTWrIo/tAxbGz/Psd1EVAAAAAElFTkSuQmCC" media="(prefers-color-scheme: dark)" rel="icon" type="image/png"><link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAABSUlEQVR42r2VYZGAIBCFvwhEIIIRiECDo8HZQBtoA6+B14AIRjACEbgZh9k5XfEGf9x7fwCZt/DcXXiAYSKR2fjkBSw7WbhhaEQknzi2xs8X7jTBkRX/REfAyThfmMRaj8fqI0c5agBgvwgsAAwkmRvluPAD8BcHLDCd1jYEizquAbzIRuytsYGCpD51YqaX8ah2fVOQFT0aWiBSsFdO4JhYmIrnvdq11LQ35cwAGJIKI1iV48NlswPCU3IHNjKJGQuYyn0tK4lExLWnchO6doGBnczOgr01LBbhSDpmAaBuov4zQaX3gCDcRpvJwh5dMRlHwabua4uVMwsjVoc5ONdT2bWlcqoKdL+Kqa8X03zb/zzpZKurlbO2J1QayqwrRksk+tsKXS8+rBidfR5Xlt1DU3V4zPu2/v5h+eenTT+uL2D54qjQp+g/ajTbP/Y2NqMAAAAASUVORK5CYII=" media="(prefers-color-scheme: light)" rel="icon" type="image/png"><style>@font-face{font-family:Inter-bee4a7829ca556b7;src:url("/oh-my-fde/_astro/fonts/91753f8d8da3aeb7.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400 700;font-style:italic;}@font-face{font-family:Inter-bee4a7829ca556b7;src:url("/oh-my-fde/_astro/fonts/e868cdf4720e9ea5.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400 700;font-style:normal;}@font-face{font-family:"Inter-bee4a7829ca556b7 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400 700;font-style:italic;size-adjust:107.7766%;ascent-override:89.885%;descent-override:22.3806%;line-gap-override:0%;}@font-face{font-family:"Inter-bee4a7829ca556b7 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400 700;font-style:normal;size-adjust:107.7766%;ascent-override:89.885%;descent-override:22.3806%;line-gap-override:0%;}:root{--blume-ff-inter:Inter-bee4a7829ca556b7,"Inter-bee4a7829ca556b7 fallback: Arial",ui-sans-serif,system-ui,sans-serif;}</style><link rel="preload" href="/oh-my-fde/_astro/fonts/e868cdf4720e9ea5.woff2" as="font" type="font/woff2" crossorigin><style>@font-face{font-family:"IBM Plex Mono-e618a2d4817f8a9c";src:url("/oh-my-fde/_astro/fonts/04dd54f8b9dc7022.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:"IBM Plex Mono-e618a2d4817f8a9c";src:url("/oh-my-fde/_astro/fonts/6289d3ddfa5c9533.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:"IBM Plex Mono-e618a2d4817f8a9c";src:url("/oh-my-fde/_astro/fonts/f7a5011e02f4baeb.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:italic;}@font-face{font-family:"IBM Plex Mono-e618a2d4817f8a9c";src:url("/oh-my-fde/_astro/fonts/45f5561f938fa232.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:"IBM Plex Mono-e618a2d4817f8a9c";src:url("/oh-my-fde/_astro/fonts/e24ff982d90e3401.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:"IBM Plex Mono-e618a2d4817f8a9c";src:url("/oh-my-fde/_astro/fonts/f276da2ba24f5203.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:"IBM Plex Mono-e618a2d4817f8a9c fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:italic;size-adjust:99.9837%;ascent-override:102.5167%;descent-override:27.5045%;}@font-face{font-family:"IBM Plex Mono-e618a2d4817f8a9c fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:italic;size-adjust:99.9837%;ascent-override:102.5167%;descent-override:27.5045%;}@font-face{font-family:"IBM Plex Mono-e618a2d4817f8a9c fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:italic;size-adjust:99.9837%;ascent-override:102.5167%;descent-override:27.5045%;}@font-face{font-family:"IBM Plex Mono-e618a2d4817f8a9c fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.9837%;ascent-override:102.5167%;descent-override:27.5045%;}@font-face{font-family:"IBM Plex Mono-e618a2d4817f8a9c fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:normal;size-adjust:99.9837%;ascent-override:102.5167%;descent-override:27.5045%;}@font-face{font-family:"IBM Plex Mono-e618a2d4817f8a9c fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:normal;size-adjust:99.9837%;ascent-override:102.5167%;descent-override:27.5045%;}:root{--blume-ff-ibm-plex-mono:"IBM Plex Mono-e618a2d4817f8a9c","IBM Plex Mono-e618a2d4817f8a9c fallback: Courier New",ui-monospace,"SF Mono",Menlo,monospace;}</style><link rel="preload" href="/oh-my-fde/_astro/fonts/45f5561f938fa232.woff2" as="font" type="font/woff2" crossorigin><link rel="canonical" href="https://fde-group.github.io/oh-my-fde/docs/specs/workflow"><link href="https://fde-group.github.io/oh-my-fde/docs/specs/workflow" hreflang="zh-CN" rel="alternate"><link href="https://fde-group.github.io/oh-my-fde/docs/specs/workflow" hreflang="x-default" rel="alternate"><meta name="description" content="omfde（Pi 的企业内部 FDE 平台）项目文档、仓库 Wiki 与架构知识卡，供人与 coding agent 双读。"><meta property="og:type" content="website"><meta property="og:site_name" content="oh-my-fde 文档"><meta property="og:title" content="开发工作流 - oh-my-fde 文档"><meta property="og:description" content="omfde（Pi 的企业内部 FDE 平台）项目文档、仓库 Wiki 与架构知识卡，供人与 coding agent 双读。"><meta property="og:url" content="https://fde-group.github.io/oh-my-fde/docs/specs/workflow"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="开发工作流 - oh-my-fde 文档"><meta name="twitter:description" content="omfde（Pi 的企业内部 FDE 平台）项目文档、仓库 Wiki 与架构知识卡，供人与 coding agent 双读。"><link href="/oh-my-fde/agent-readability.json" rel="describedby" type="application/json"><link href="/oh-my-fde/llms.txt" rel="describedby" type="text/plain"><link href="/oh-my-fde/.well-known/ai-catalog.json" rel="ai-catalog" type="application/ai-catalog+json"><link href="/oh-my-fde/.well-known/ard.json" rel="ard" type="application/json"><link href="/oh-my-fde/docs/specs/workflow.md" rel="alternate" type="text/markdown"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://fde-group.github.io#website","@type":"WebSite","name":"oh-my-fde 文档","url":"https://fde-group.github.io/oh-my-fde"},{"@id":"https://fde-group.github.io/oh-my-fde/docs/specs/workflow#page","@type":"TechArticle","inLanguage":"zh-CN","name":"开发工作流","url":"https://fde-group.github.io/oh-my-fde/docs/specs/workflow","headline":"开发工作流","description":"omfde（Pi 的企业内部 FDE 平台）项目文档、仓库 Wiki 与架构知识卡，供人与 coding agent 双读。","isPartOf":{"@id":"https://fde-group.github.io#website"}}]}</script><script data-mode="system">(()=>{const ds=document.currentScript?.dataset;const m=ds?.mode??"system";const fixed=ds?.fixed!==undefined;const apply=()=>{const r=document.documentElement;let s=null;let blocked=false;try{s=fixed?null:localStorage.getItem("blume-theme");}catch{blocked=true;}const sys=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";r.dataset.theme=s??(blocked&&r.dataset.theme?r.dataset.theme:m==="system"?sys:m);};apply();document.addEventListener("astro:before-swap",(e)=>{const t=document.documentElement.dataset.theme;if(t){e.newDocument.documentElement.dataset.theme=t;}});document.addEventListener("astro:after-swap",apply);let printed=null;addEventListener("beforeprint",()=>{const r=document.documentElement;if(r.dataset.theme==="dark"){printed="dark";r.dataset.theme="light";}});addEventListener("afterprint",()=>{if(printed){document.documentElement.dataset.theme=printed;printed=null;}});})();</script><link rel="stylesheet" href="/oh-my-fde/_astro/WebMcp.DBxMkqVG.css"><link rel="stylesheet" href="/oh-my-fde/_astro/_..BkhlaTmY.css"><script type="module" src="/oh-my-fde/_astro/page.DZ88yi4l.js"></script></head><body class="bg-background font-sans text-foreground antialiased" data-blume-code-copy="" data-blume-image-zoom data-i18n-copied="已复制！" data-i18n-copy-code="复制代码" data-i18n-diagram-error="无法渲染此图表。" data-i18n-show-less="显示更少" data-i18n-show-more="显示更多"><a class="absolute start-[-999px] top-0 z-[100] bg-accent px-4 py-2 text-accent-foreground focus:start-0" href="#blume-content">跳到内容</a><span hidden id="blume-new-tab-hint">在新标签页中打开</span><header class="sticky top-0 z-40 flex h-16 items-center gap-2 bg-background/90 px-4 backdrop-blur sm:gap-3 md:px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(max-content,1fr)]" data-blume-header><div class="flex min-w-0 items-center gap-2 sm:gap-3 lg:col-start-1"><button aria-controls="blume-nav-drawer" aria-expanded="false" aria-label="切换导航" class="inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground lg:hidden" data-blume-nav-toggle type="button"><svg aria-hidden="true" height="20" width="20"><use href="#blume-i-menu"></use></svg></button><a class="inline-flex min-w-0 items-center gap-2 font-semibold text-base text-foreground" href="/oh-my-fde"><span class="truncate">oh-my-fde 文档</span></a></div><nav aria-label="章节" class="hidden shrink-0 gap-1 md:flex lg:col-start-2"><a aria-current="page" class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-medium text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground aria-[current=page]:text-foreground" href="/oh-my-fde/docs">项目文档</a><a class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-medium text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground aria-[current=page]:text-foreground" href="/oh-my-fde/wiki">仓库 Wiki</a><a class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-medium text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground aria-[current=page]:text-foreground" href="/oh-my-fde/knowledge">架构知识卡</a></nav><div class="flex-1 lg:hidden"></div><div class="flex shrink-0 items-center gap-1 lg:col-start-3 lg:justify-self-end"><script type="module" src="/oh-my-fde/_astro/Search.astro_astro_type_script_index_0_lang.CnAGAYM2.js"></script><blume-search class="contents" data-i18n-all="全部" data-i18n-ask="助手" data-i18n-ask-hint="从 AI 即时获取答案" data-i18n-dev="搜索在生产构建中可用。" data-i18n-empty="未找到结果。" data-i18n-error="出了点问题，请重试。" data-i18n-latest="最新" data-i18n-popular="热门" data-i18n-results="结果"><button aria-keyshortcuts="Meta+K Control+K" aria-label="搜索" class="inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" data-blume-search-open data-blume-tooltip="搜索 (⁦⌘K⁩)" data-label="搜索" type="button"><svg aria-hidden="true" height="18" width="18"><use href="#blume-i-search"></use></svg></button><dialog aria-label="搜索文档" class="mx-auto mt-[8vh] mb-auto h-[min(480px,90dvh)] w-[min(62.5rem,94vw)] flex-col overflow-hidden rounded-blume border border-border bg-background/80 p-0 text-foreground shadow-2xl outline-none backdrop-blur-xl backdrop:bg-black/30 open:flex sm:mt-auto" data-blume-search-dialog><div class="flex items-center gap-2.5 border-border border-b px-4 py-3 text-muted-foreground"><svg aria-hidden="true" height="18" width="18"><use href="#blume-i-search"></use></svg><input aria-autocomplete="list" aria-controls="blume-search-listbox" aria-expanded="false" aria-label="搜索文档" autocomplete="off" class="flex-1 border-0 bg-transparent text-foreground text-sm pointer-coarse:text-base focus:outline-none [&amp;::-webkit-search-cancel-button]:appearance-none" data-blume-search-input placeholder="搜索文档…" role="combobox" type="search"><kbd class="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[0.7rem]">Esc</kbd></div><div class="grid min-h-0 flex-1 md:grid-cols-[22rem_minmax(0,1fr)]" data-blume-search-grid><div class="flex min-h-0 flex-col md:border-border md:border-e"><div class="flex max-h-[5.75rem] flex-wrap gap-1.5 overflow-x-hidden overflow-y-auto overscroll-contain border-border border-b px-3 py-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent" data-blume-search-filters hidden></div><div aria-label="搜索文档" class="min-h-0 flex-1 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent overflow-y-auto p-2" data-blume-search-results id="blume-search-listbox" role="listbox"></div><p class="m-0 px-4 py-6 text-center text-muted-foreground text-sm" data-blume-search-message hidden></p></div><div class="hidden min-h-0 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent overflow-y-auto p-5 md:block" data-blume-search-preview></div></div><div class="flex items-center justify-between gap-3 border-border border-t px-3 py-2 text-muted-foreground text-xs"><span></span><div class="flex items-center gap-3"><span class="flex items-center gap-1"><kbd class="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[0.65rem]">↑</kbd><kbd class="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[0.65rem]">↓</kbd>导航</span><span class="flex items-center gap-1"><kbd class="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[0.65rem]">↵</kbd>打开</span><span class="flex items-center gap-1 max-md:hidden"><kbd class="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[0.65rem]" data-blume-search-preview-kbd dir="ltr">⌘J</kbd>预览</span></div></div></dialog><script data-blume-search-popular type="application/json">[{"href":"/oh-my-fde","label":"oh-my-fde 文档"},{"href":"/oh-my-fde/docs","label":"Docs"},{"href":"/oh-my-fde/docs/explains","label":"Explains"},{"href":"/oh-my-fde/docs/explains/baseline","label":"基线记录"},{"href":"/oh-my-fde/docs/explains/repo-map","label":"仓库地图"},{"href":"/oh-my-fde/docs/explains/prune-plan","label":"裁剪方案与执行记录"}]</script></blume-search><button aria-label="切换颜色主题" class="inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" data-blume-theme-toggle data-blume-tooltip="切换颜色主题" type="button"><span class="inline-flex dark:hidden"><svg aria-hidden="true" height="18" width="18"><use href="#blume-i-sun"></use></svg></span><span class="hidden dark:inline-flex"><svg aria-hidden="true" height="18" width="18"><use href="#blume-i-moon"></use></svg></span></button></div></header><script>(()=>{const dr=()=>{const h=document.querySelector("[data-blume-header]");if(h){document.documentElement.style.setProperty("--blume-drawer-top",h.getBoundingClientRect().bottom+"px");}};const save=(k,v)=>{try{localStorage.setItem(k,v);}catch{}};document.addEventListener("click",(e)=>{const t=e.target.closest("[data-blume-theme-toggle]");if(t){const d=document.documentElement;const next=d.dataset.theme==="dark"?"light":"dark";const s=document.createElement("style");s.appendChild(document.createTextNode("*,*::before,*::after{transition:none!important}"));document.head.appendChild(s);d.dataset.theme=next;window.getComputedStyle(d).opacity;setTimeout(()=>document.head.removeChild(s),1);save("blume-theme",next);}const n=e.target.closest("[data-blume-nav-toggle]");if(n){const d=document.documentElement;const open=d.toggleAttribute("data-blume-nav-open");if(open){dr();}}const b=e.target.closest("[data-blume-banner-dismiss]");if(b){document.documentElement.setAttribute("data-blume-banner-hidden","");requestAnimationFrame(dr);const bar=b.closest("[data-blume-banner]");const k=bar&&bar.getAttribute("data-banner-key");if(k){save("blume-banner:"+k,"1");}}});addEventListener("resize",()=>{const d=document.documentElement;if(!d.hasAttribute("data-blume-nav-open")){return;}if(matchMedia("(min-width:64rem)").matches){d.removeAttribute("data-blume-nav-open");}else{dr();}});})();</script><div class="mx-auto grid grid-cols-1 items-start lg:grid-cols-[17.5rem_minmax(0,1fr)] xl:grid-cols-[17.5rem_minmax(0,1fr)_17.5rem]" data-blume-doc-grid><aside aria-label="主要" data-blume-nav-drawer id="blume-nav-drawer" class="fixed top-[var(--blume-drawer-top,4rem)] start-0 z-[35] h-[calc(100dvh-var(--blume-drawer-top,4rem))] w-64 max-w-[80vw] -translate-x-[105%] overflow-y-auto border-border border-e bg-background px-5 pt-4 pb-6 transition-transform rtl:translate-x-[105%] [:where([data-blume-nav-open])_&amp;]:translate-x-0! lg:sticky lg:top-16 lg:z-auto lg:h-[calc(100dvh-4rem)] lg:w-auto lg:max-w-none lg:translate-x-0! lg:scrollbar-thin lg:scrollbar-thumb-border lg:scrollbar-track-transparent lg:border-e-0 lg:bg-transparent lg:px-4"><nav aria-label="章节" class="mb-4 border-border border-b pb-4 md:hidden"><ul class="m-0 list-none p-0"><li><a aria-current="page" class="flex items-center gap-2 rounded-[0.65rem] px-2.5 py-1.5 font-medium text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground aria-[current=page]:bg-muted aria-[current=page]:text-foreground" href="/oh-my-fde/docs"><span class="flex-1 truncate">项目文档</span></a></li><li><a class="flex items-center gap-2 rounded-[0.65rem] px-2.5 py-1.5 font-medium text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground aria-[current=page]:bg-muted aria-[current=page]:text-foreground" href="/oh-my-fde/wiki"><span class="flex-1 truncate">仓库 Wiki</span></a></li><li><a class="flex items-center gap-2 rounded-[0.65rem] px-2.5 py-1.5 font-medium text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground aria-[current=page]:bg-muted aria-[current=page]:text-foreground" href="/oh-my-fde/knowledge"><span class="flex-1 truncate">架构知识卡</span></a></li></ul></nav><nav data-blume-nav-tree><ul class="m-0 list-none space-y-px p-0"><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs">项目文档</a></li><li class="mt-6"><p class="blume-nav-heading"><a class="blume-nav-heading-link" href="/oh-my-fde/docs/explains"><span class="truncate">Explains</span></a></p><div class="space-y-0.5"><ul class="m-0 list-none space-y-px p-0"><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains">omfde 代码阅读笔记</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/baseline">基线记录</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/repo-map">仓库地图</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/prune-plan">裁剪方案与执行记录</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/critical-path">关键路径与接缝</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/session-transcript">Session 与 Transcript</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/provider-stream">Provider 与 Stream</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/extension-loading">扩展加载与配置</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/package-manager">Package Manager</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/boot-and-session">启动装配线与 Session 生命周期</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/system-prompt">System Prompt 的组装</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/compaction">Compaction 与 Branch Summarization</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/model-runtime">Model Runtime 与认证</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/tools">Tools 实现</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/modes">Modes：RPC、Print、Interactive</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/mcp-codemode">MCP 与 codemode</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/tui">TUI</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/provider-adapters">Provider 适配层</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/system-overview">系统总览</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/mcp-package">MCP 包内部</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/schema">Schema</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/tui-editor-markdown">TUI 编辑器与 Markdown</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/cache-warmer-evals">Cache Warming 与 Evals</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/openai-responses">OpenAI Responses 适配器</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/openai-codex">OpenAI Codex 适配器</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/latex-autocomplete-docker">LaTeX、Autocomplete 与 Evals Docker</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/validation">验证记录</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/fork-and-prune">Fork 与裁剪说明</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/explains/tui-usage">TUI 使用记录</a></li></ul></div></li><li class="mt-6"><p class="blume-nav-heading"><span class="truncate">Plans</span></p><div class="space-y-0.5"><ul class="m-0 list-none space-y-px p-0"><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/plans/pi-web">Plan：Pi Web UI M1</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/plans/pi-web-m2">Plan：Pi Web UI M2</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/plans/pi-web-m3">Plan：Pi Web UI M3</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/plans/pi-web-m4">Plan：Pi Web UI M4</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/plans/pi-web-m5">Plan：Pi Web UI M5</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/plans/pi-web-sqlite">Plan：pi-web SQLite 元数据存储</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/plans/omfde-web-integration">Plan：Web UI 接入 omfde 平台</a></li></ul></div></li><li class="mt-6"><p class="blume-nav-heading"><a class="blume-nav-heading-link" href="/oh-my-fde/docs/rads"><span class="truncate">Rads</span></a></p><div class="space-y-0.5"><ul class="m-0 list-none space-y-px p-0"><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/rads">RADS</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/rads/TEMPLATE">RAD：&lt;需求名&gt;</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/rads/pi-web">RAD：Pi Web UI</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/rads/pi-web-m2">RAD：Pi Web UI M2</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/rads/pi-web-m3">RAD：Pi Web UI M3</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/rads/pi-web-m4">RAD：Pi Web UI M4</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/rads/pi-web-m5">RAD：Pi Web UI M5</a></li></ul></div></li><li class="mt-6"><p class="blume-nav-heading"><span class="truncate">Specs</span></p><div class="space-y-0.5"><ul class="m-0 list-none space-y-px p-0"><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/specs/tsdoc-comment-standards">TypeScript 注释规范（TSDoc）</a></li><li><a aria-current="page" class="blume-nav-link truncate" href="/oh-my-fde/docs/specs/workflow">开发工作流</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/specs/vision">项目愿景</a></li></ul></div></li><li class="mt-6"><p class="blume-nav-heading"><span class="truncate">Spikes</span></p><div class="space-y-0.5"><ul class="m-0 list-none space-y-px p-0"><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/spikes/pi-web-m2">Spike：Pi Web UI M2</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/spikes/pi-web-m3">Spike：Pi Web UI M3</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/spikes/pi-web-m4">Spike：Pi Web UI M4</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/spikes/pi-web-m5">Spike：Pi Web UI M5</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/spikes/pi-web-stack">Spike：Pi Web UI 技术栈与 RPC 契约</a></li><li><a class="blume-nav-link truncate" href="/oh-my-fde/docs/spikes/pi-web-sqlite">Spike：pi-web SQLite 元数据存储</a></li></ul></div></li></ul></nav></aside><script>(()=>{const drawer=()=>document.querySelector("[data-blume-nav-drawer]");const center=()=>{const n=drawer();const s=n&&(n.querySelector("[data-blume-nav-tree]")||n);if(!s)return;let l=null;for(const a of s.querySelectorAll('a[aria-current="page"]')){if(a.getClientRects().length){l=a;break;}}if(!l)return;const r=n.getBoundingClientRect();const t=l.getBoundingClientRect();if(t.top>=r.top&&t.bottom<=r.bottom)return;n.scrollTop+=t.top-r.top-(n.clientHeight-t.height)/2;};let saved=-1;document.addEventListener("astro:before-swap",()=>{const n=drawer();saved=n?n.scrollTop:-1;});document.addEventListener("astro:after-swap",()=>{const n=drawer();if(n&&saved>=0){n.scrollTop=saved;}center();});center();})();</script><main class="px-6 pt-6 pb-10 lg:px-8 xl:px-10" id="blume-content"><nav aria-label="面包屑导航" class="mb-2 text-muted-foreground text-sm mx-auto max-w-content"><span>Specs</span></nav><details class="group mx-auto mb-6 max-w-content rounded-blume border border-border xl:hidden"><summary class="flex cursor-pointer list-none items-center justify-between gap-2 px-4 py-3 font-medium text-foreground text-sm [&amp;::-webkit-details-marker]:hidden"><span>本页内容</span><svg aria-hidden="true" class="text-muted-foreground transition-transform group-open:rotate-180" height="16" width="16"><use href="#blume-i-chevron-down"></use></svg></summary><blume-toc class="block"><ul class="m-0 list-none border-border border-t p-2"><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#1-权威层级">1. 权威层级</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#2-三条工作线">2. 三条工作线</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#3-任务分级">3. 任务分级</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#31-github-issues统一入口">3.1 GitHub Issues：统一入口</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#32-agent-写范围">3.2 Agent 写范围</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#4-主循环">4. 主循环</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#5-vision-闸">5. Vision 闸</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#6-rad-闸">6. RAD 闸</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#7-spike-闸必经">7. Spike 闸（必经）</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#8-plan-闸">8. Plan 闸</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#9-实现与验证">9. 实现与验证</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#10-提交pr-与合并">10. 提交、PR 与合并</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#101-提交">10.1 提交</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#102-开-pr">10.2 开 PR</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#103-合并">10.3 合并</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#104-pages-分支">10.4 pages 分支</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#105-共享-worktree-串行操作">10.5 共享 worktree 串行操作</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#11-会话协议">11. 会话协议</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#12-角色分工">12. 角色分工</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#13-例外与事故">13. 例外与事故</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block rounded-md px-2 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#14-变更记录">14. 变更记录</a></li></ul></blume-toc><div data-blume-page-actions-mount></div></details><article class="prose mx-auto max-w-content" data-pagefind-body dir="ltr"><h1 id="开发工作流">开发工作流</h1>
+<blockquote>
+<p>版本：0.3.2 | 日期：2026-11-06 | 状态：现行</p>
+</blockquote>
+<p>本文件把 vision、RAD、AGENTS 的规则串成可重复执行的闭环。它不新设产品边界；边界以 <code>docs/specs/vision.md</code> 为准。贡献者的操作细节和代码门禁见 <code>CONTRIBUTING.md</code>。</p>
+<h2 id="1-权威层级"><a class="blume-heading-anchor" href="#1-权威层级">1. 权威层级</a></h2>
+<ol>
+<li><strong><code>docs/specs/vision.md</code></strong>：项目宪法，决定目标、边界和阶段。</li>
+<li><strong><code>docs/rads/</code></strong>：确认需求，是 spike 和 plan 的制定依据。</li>
+<li><strong><code>docs/plans/</code></strong>：已批准方案，是实现和验收的唯一编码依据。</li>
+<li><strong><code>docs/spikes/</code></strong>：预研证据，不构成编码依据。</li>
+<li><strong>代码与文档</strong>：当前实现。</li>
+<li><strong><code>AGENTS.md</code></strong>：执行纪律、命令和 Git 规则，始终适用。</li>
+</ol>
+<p>产品事实冲突时按 1 到 5 裁决；执行纪律以 <code>AGENTS.md</code> 为准。代码不能反向定义 vision。决策者可以修改 vision，但必须先显式修改；在修改前，任何“先做再说”的指令都不构成越过 vision 的授权。</p>
+<h2 id="2-三条工作线"><a class="blume-heading-anchor" href="#2-三条工作线">2. 三条工作线</a></h2>
+<div class="blume-table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>线</th>
+<th>主线</th>
+<th>产物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>教程线</td>
+<td>理解 → 会用 → 用好</td>
+<td><code>docs/explains/</code>、使用文档、示例、验证记录</td>
+</tr>
+<tr>
+<td>平台化线</td>
+<td>骨架 → 核心能力 → 协作 → 企业集成 → 治理</td>
+<td><code>apps/omfde</code>、<code>packages/</code>、<code>extensions/</code></td>
+</tr>
+<tr>
+<td>Web UI 线</td>
+<td>可用 → 对齐 DSH → 会话完整 → 团队可用</td>
+<td><code>apps/pi-web</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>三条线并行。每条线都由真实需求或可验证结果触发，不能先搭空架子。</p>
+<h2 id="3-任务分级"><a class="blume-heading-anchor" href="#3-任务分级">3. 任务分级</a></h2>
+<div class="blume-table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>例子</th>
+<th>路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A 机械</td>
+<td>typo、格式、链接、排序、无行为变化的文档修正</td>
+<td>直接修改 → 验证 → 提交</td>
+</tr>
+<tr>
+<td>B 常规</td>
+<td>功能、文档、扩展、平台骨架、行为变更</td>
+<td>Vision 闸 → RAD（如需要）→ Spike 闸（必经）→ Plan（非平凡任务）→ 实现 → 验证 → 提交</td>
+</tr>
+<tr>
+<td>C 决策</td>
+<td>架构、流程、边界、依赖、平台方向</td>
+<td>先讨论 → 修改 vision 或记录决定 → 再走 B</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="31-github-issues统一入口"><a class="blume-heading-anchor" href="#31-github-issues统一入口">3.1 GitHub Issues：统一入口</a></h3>
+<p>GitHub Issues 是团队记录任务、bug 和阶段目标的统一视图，不是新需求的起点。</p>
+<ul>
+<li><strong>新需求</strong>：由决策者发起讨论；讨论有初步结论后，决策者决定是否需要 RAD，再同步补 issue。需要 RAD 时，issue 关联 <code>docs/rads/&lt;slug&gt;.md</code>；不需要时在 issue 正文说明理由。</li>
+<li><strong>Bug</strong>：可以直接开 issue，也可以在讨论后补；修复用 <code>fixes #N</code> 关闭。</li>
+<li><strong>Chore / 决策</strong>：可以开 issue，也可以先讨论再补；团队可见任务仍以 issue 为准。</li>
+<li>使用 <code>.github/ISSUE_TEMPLATE/omfde-task.yml</code>，write scope 为必填。</li>
+<li>类型建议：<code>type:requirement</code>、<code>type:bug</code>、<code>type:chore</code>、<code>type:decision</code>。</li>
+<li>非平凡实现必须关联 plan；plan 的“关联 issue 和 RAD（如有）”回链。</li>
+<li>阶段目标用 GitHub Milestone 或 tracking issue 表示；每个开发 issue 归入对应 milestone。</li>
+<li>状态建议：<code>needs-rad</code> → <code>needs-spike</code> → <code>needs-plan</code> → <code>ready</code> → <code>in-progress</code> → <code>done</code>；阻塞用 <code>blocked</code>。</li>
+<li>A 类机械修复可以例外不建 issue；如果影响共享文档、行为或多人协作，仍然建 issue。</li>
+</ul>
+<p>新需求由决策者发起。团队成员可以反馈问题和建议，但是否成为需求、是否需要 RAD，由决策者决定。bug 修复、chore、机械修复不强制 RAD。不是每个 B 都需要完整仪式；判断标准是：是否新增能力、改变行为、跨越模块边界，或存在关键不确定性。</p>
+<h3 id="32-agent-写范围"><a class="blume-heading-anchor" href="#32-agent-写范围">3.2 Agent 写范围</a></h3>
+<p>多 Agent 并行时，冲突控制首先是写范围，不是分支。</p>
+<ul>
+<li>每个 issue 或任务在开始前，由决策者指定 <strong>write scope</strong>：允许写入的文件或目录。没有 scope 的任务视为未就绪，不得开始。A 类机械修复可以跳过 issue，但仍必须在会话任务中声明 scope。</li>
+<li>同时指定 <strong>read-only scope</strong> 和 <strong>shared files</strong>。共享文件默认单写者、串行修改。</li>
+<li>Agent 只能写 write scope 内的文件。需要扩大范围时，停下来申请，不得自行越界。</li>
+<li>共享文件的例子：<code>package.json</code>、<code>pnpm-lock.yaml</code>、<code>tsconfig.json</code>、<code>AGENTS.md</code>、<code>docs/specs/</code>、根 README、生成文件。</li>
+<li>提交前用 <code>git status</code> 和 <code>git diff --name-only</code> 检查改动只落在 write scope 内；越界就停下。</li>
+<li>提交时只 stage 自己修改且在 scope 内的文件；其他 Agent 的改动保持未暂存。超范围提交必须经决策者明确同意。</li>
+<li>这是硬规则：所有工作只在 <code>main</code> 上。不切功能分支，也不在其他分支的 worktree 中工作。范围重叠时串行处理或重新划分 scope，不靠分支解决。</li>
+</ul>
+<h2 id="4-主循环"><a class="blume-heading-anchor" href="#4-主循环">4. 主循环</a></h2>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>讨论（新需求由决策者发起）/ 缺陷 / 任务</span></span>
+<span class="line"><span>  │</span></span>
+<span class="line"><span>  ├─ 新需求 → 决策者决定是否 RAD → 补 issue（+ RAD）→ B</span></span>
+<span class="line"><span>  ├─ Bug / chore → 补 issue → A / B</span></span>
+<span class="line"><span>  ├─ A 机械 → 直接实现 → 验证 → 提交</span></span>
+<span class="line"><span>  ├─ B 常规 → RAD? → Spike 闸（Agent 提清单 → 决策者裁定）→ Plan? → 实现 → 验证 → 提交</span></span>
+<span class="line"><span>  └─ C 决策 → 讨论 → vision / 决策记录 → 转 B</span></span>
+<span class="line"><span>  │</span></span>
+<span class="line"><span>[Issue 闸] 讨论有结论后补 issue；团队任务以 issue 为准</span></span>
+<span class="line"><span>[Scope 闸] 每个 Agent 的 write scope 明确且尽量不重叠</span></span>
+<span class="line"><span>[Vision 闸] 每个任务先检查是否越过 vision</span></span>
+<span class="line"><span>[Spike 闸] Agent 提出 spike 清单或“无需 spike”的结论 → 决策者裁定 → 才可进入 Plan</span></span>
+<span class="line"><span>[Plan 闸] 非平凡方案成文 → 决策者批准</span></span>
+<span class="line"><span>[实现] 只在批准范围和 write scope 内写代码</span></span>
+<span class="line"><span>[验证] check / 测试 / 冒烟，附命令和输出</span></span>
+<span class="line"><span>[提交] 引用 issue，确认未越界，明确证据和下一步</span></span></code></pre>
+<h2 id="5-vision-闸"><a class="blume-heading-anchor" href="#5-vision-闸">5. Vision 闸</a></h2>
+<p>每个 RAD、plan 和实现前都要检查 <code>docs/specs/vision.md</code>：</p>
+<ul>
+<li>是否属于当前目标线和阶段；</li>
+<li>是否触碰 vision 的“当前边界”；</li>
+<li>是否偏离“首批用户是 3~5 人团队”的约束。</li>
+</ul>
+<p>边界内的实现细节不需要改 vision。与 vision 冲突或需要扩大边界时，停止实现，先商议是否修改 vision；修改写入 vision 的决策记录后再继续。</p>
+<h2 id="6-rad-闸"><a class="blume-heading-anchor" href="#6-rad-闸">6. RAD 闸</a></h2>
+<ul>
+<li><strong>触发</strong>：新需求由决策者发起讨论，并决定是否需要 RAD；需要时再同步补 issue 并关联 RAD。</li>
+<li><strong>模板</strong>：<code>docs/rads/TEMPLATE.md</code>。</li>
+<li><strong>产物</strong>：<code>docs/rads/&lt;slug&gt;.md</code>。</li>
+<li><strong>内容</strong>：背景与价值、Vision 对齐、干系人、场景、范围与非目标、FR-N、非功能约束、开放问题、US-N、验收指标、决策者确认记录。</li>
+<li><strong>确认</strong>：决策者确认后，用户故事同步建立并冻结；后续修订需再次确认并留痕。</li>
+<li><strong>效力</strong>：确认后的 RAD 是 spike 和 plan 的制定依据，但不是编码依据。</li>
+</ul>
+<h2 id="7-spike-闸必经"><a class="blume-heading-anchor" href="#7-spike-闸必经">7. Spike 闸（必经）</a></h2>
+<ul>
+<li><strong>位置</strong>：RAD 确认后、plan 起草前，必须通过本闸。没有“跳过 spike 直接写 plan”的路径。</li>
+<li><strong>Agent 职责</strong>：判断是否需要实际执行 spike，并给出清单。即使判断“无需 spike”，也要显式说明理由并提交决策者。</li>
+<li><strong>清单内容</strong>：每条候选 spike 写明要回答的问题、对 plan 的影响、建议的验证方式、粗略成本和是否建议执行。</li>
+<li><strong>决策者职责</strong>：决定执行哪些 spike，或批准“无需 spike”的结论。</li>
+<li><strong>产物</strong>：
+<ul>
+<li>需要执行：<code>docs/spikes/&lt;slug&gt;.md</code>，至少包含要回答的问题、调研方法和验证结果、选型对比与否决项、风险清单、结论与建议。</li>
+<li>无需执行：在 issue 或 plan 中记录“Spike 闸已过：无需 spike”及理由，并注明决策者的裁定。</li>
+</ul>
+</li>
+<li><strong>验证代码可丢弃</strong>：spike 代码不进 <code>main</code>，除非决策者明确要求保留。</li>
+<li><strong>效力</strong>：spike 是证据和输入，不是编码依据；决策者裁定后，才可进入 Plan 闸。</li>
+</ul>
+<h2 id="8-plan-闸"><a class="blume-heading-anchor" href="#8-plan-闸">8. Plan 闸</a></h2>
+<ul>
+<li><strong>触发</strong>：RAD 确认后，且 Spike 闸已由决策者裁定；非平凡 B/C 任务必须有 plan。</li>
+<li><strong>产物</strong>：首次使用时创建 <code>docs/plans/&lt;slug&gt;.md</code>，至少包含：
+<ul>
+<li>背景与目标</li>
+<li>非目标</li>
+<li>关联 issue 和 RAD（如有）</li>
+<li>设计要点与否决项及理由</li>
+<li>实施切片</li>
+<li>验收判据</li>
+<li>决策者批准记录</li>
+</ul>
+</li>
+<li><strong>批准 = 授权范围</strong>：实现选择在范围内由 AI 决定；出圈即停-问。</li>
+<li><strong>唯一编码依据</strong>：实现和验收只对照已批准 plan；RAD、spike 只作溯源。</li>
+</ul>
+<h2 id="9-实现与验证"><a class="blume-heading-anchor" href="#9-实现与验证">9. 实现与验证</a></h2>
+<ul>
+<li>只改 plan 范围内的内容。涉及 Pi 核心的改动必须先在 plan 中说明；当前阶段默认不改核心。</li>
+<li>代码改动后运行 <code>pnpm run check</code>（只读）；需要自动修复时再运行 <code>pnpm run check:fix</code>，并确认改动在 write scope 内。涉及测试时运行对应测试；需要时运行 <code>./test.sh</code>。</li>
+<li>平台导出必须按 <code>docs/specs/tsdoc-comment-standards.md</code> 写 TSDoc；<code>pnpm run check:tsdoc</code> 已包含在 <code>check</code> 中。</li>
+<li>pre-commit 只检查 staged 文件；pre-push 运行完整 <code>pnpm run check</code>。</li>
+<li>平台入口改动至少运行：
+<ul>
+<li><code>pnpm run omfde -- --version</code></li>
+<li>一条 <code>pnpm run omfde -- -p "..."</code></li>
+</ul>
+</li>
+<li>所有检查都在本地执行；不依赖远程 CI，也不等待 GitHub Actions 结果。推送前本地必须通过。</li>
+<li>记录命令、输出和环境；不能只说“通过”。</li>
+<li>失败必须如实记录，不能用 skip、放宽断言或删除测试来掩盖。</li>
+</ul>
+<h2 id="10-提交pr-与合并"><a class="blume-heading-anchor" href="#10-提交pr-与合并">10. 提交、PR 与合并</a></h2>
+<h3 id="101-提交"><a class="blume-heading-anchor" href="#101-提交">10.1 提交</a></h3>
+<ul>
+<li>只在 <code>main</code> 上工作。不创建功能分支，也不在其他分支的 worktree 中工作。提交按 <code>AGENTS.md</code> 的“用户要求才提交”规则执行。</li>
+<li>只提交自己修改且在 write scope 内的文件；其他 Agent 的改动不要 stage 或 commit。超范围提交必须经决策者明确同意。</li>
+<li>提交前运行 <code>git status</code> 和 <code>git diff --cached --name-only</code>，确认每个 staged 路径都是自己的且在 scope 内；显式 <code>git add &lt;paths&gt;</code>。</li>
+<li>提交消息：<code>{feat,fix,docs}[(repo|ai|tui|agent|coding-agent)]: &lt;summary&gt;</code>，正文引用 issue：<code>refs #N</code>，完成时用 <code>fixes #N</code> 或 <code>closes #N</code>。</li>
+<li><code>git commit</code> 和 <code>git push</code> 是共享状态的短临界区：一次只允许一个 Agent 执行；执行前确认没有其他 Agent 正在提交，执行后报告 commit hash。</li>
+<li>已删除 <code>upstream</code> remote；不要重新添加或恢复自动 upstream rebase，除非决策者明确重新开启该决定。需要查阅上游时使用临时 clone 或经批准的归档 ref。</li>
+</ul>
+<h3 id="102-开-pr"><a class="blume-heading-anchor" href="#102-开-pr">10.2 开 PR</a></h3>
+<ul>
+<li>内部默认不开 PR。<code>main</code> 是唯一开发分支，canonical repo 中没有功能分支。</li>
+<li>PR 只用于两种情况：
+<ul>
+<li>外部贡献者从自己的 fork 提交；</li>
+<li>决策者特批的内部例外（高风险、大改动、需要多人评审）。</li>
+</ul>
+</li>
+<li>内部例外 PR 的源分支不得建在 canonical repo；使用独立的 fork 或 clone，合并后删除源分支。</li>
+<li>PR 必须关联 issue、RAD / plan（如有），写清 write scope、实际 diff、验证命令与输出、风险和回滚方式。</li>
+<li>PR 的 diff 必须与 write scope 一致；不得夹带其他 Agent 的改动、无关格式化或密钥。</li>
+<li>作者不能自行合并自己的 PR，除非决策者明确授权。</li>
+</ul>
+<h3 id="103-合并"><a class="blume-heading-anchor" href="#103-合并">10.3 合并</a></h3>
+<ul>
+<li>只有决策者，或获得明确授权的 Agent 可以合并 PR。</li>
+<li>合并前必须确认：检查通过、diff 在 scope 内、issue / RAD / plan 关联完整、无密钥和无关文件。</li>
+<li>统一使用 squash merge，保持 <code>main</code> 线性；合并后删除源分支。</li>
+<li>合并后回到 issue 附验收结果；bug 用 <code>fixes #N</code> 关闭。</li>
+<li>不 force push。</li>
+</ul>
+<h3 id="104-pages-分支"><a class="blume-heading-anchor" href="#104-pages-分支">10.4 pages 分支</a></h3>
+<ul>
+<li><code>pages</code> 是发布分支，不是开发分支。</li>
+<li>未经决策者明确授权，Agent 不得切换、checkout、提交、push 或合并 <code>pages</code>。</li>
+<li>授权发布时，使用独立的 clone 或 worktree；不要切换共享的 <code>main</code> worktree。发布完成后删除临时目录。</li>
+<li>不把 <code>pages</code> 合并进 <code>main</code>，也不把 <code>main</code> 合并进 <code>pages</code>；发布流程重建文档内容。</li>
+<li>如果必须在共享 worktree 中操作 <code>pages</code>，先停止所有 Agent，并取得决策者的明确授权。</li>
+</ul>
+<h3 id="105-共享-worktree-串行操作"><a class="blume-heading-anchor" href="#105-共享-worktree-串行操作">10.5 共享 worktree 串行操作</a></h3>
+<ul>
+<li>所有 Agent 共享同一个 <code>main</code> worktree。切换分支、rebase、reset、stash、清理和删除分支都必须由决策者协调，并确保没有其他 Agent 在运行。</li>
+<li>不在后台并发运行 Git 命令；<code>git status</code> 发现异常 staged 文件时先停下，不要自行清理。</li>
+</ul>
+<h2 id="11-会话协议"><a class="blume-heading-anchor" href="#11-会话协议">11. 会话协议</a></h2>
+<p><strong>开始：</strong></p>
+<ol>
+<li>读 <code>docs/specs/vision.md</code>。</li>
+<li>读本文件。</li>
+<li>读 <code>AGENTS.md</code>。</li>
+<li>查看 GitHub Issues 和当前 milestone；新需求确认是否已由决策者发起并同步到 issue。</li>
+<li>确认当前在 <code>main</code>，且没有未经授权的分支切换；尤其不要切到 <code>pages</code>。</li>
+<li>确认本次任务属于 A/B/C 哪类、对应哪条目标线。</li>
+<li>明确边界：本次不做什么。</li>
+</ol>
+<p><strong>进行中：</strong></p>
+<ul>
+<li>撞到 vision、RAD 或 plan 边界就停-问。</li>
+<li>不把“实现方便”当作修改需求的理由。</li>
+<li>不确定就记录为开放问题，不猜。</li>
+</ul>
+<p><strong>收尾：</strong></p>
+<ul>
+<li>vision 边界变化：更新 vision 决策记录。</li>
+<li>事实变化：更新 RAD、plan 或 <code>docs/explains/</code>。</li>
+<li>汇报通过、失败、跳过，附命令和结果。</li>
+<li>未完成事项写成 issue 或明确的下一步。</li>
+</ul>
+<h2 id="12-角色分工"><a class="blume-heading-anchor" href="#12-角色分工">12. 角色分工</a></h2>
+<div class="blume-table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>动作</th>
+<th>AI</th>
+<th>决策者（当前为 Abel）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求发起与讨论</td>
+<td>整理讨论、提炼成文</td>
+<td>发起新需求，决定是否进入 RAD</td>
+</tr>
+<tr>
+<td>issue 记录与分诊</td>
+<td>起草、整理、补全上下文</td>
+<td>决定优先级、分配 milestone</td>
+</tr>
+<tr>
+<td>Agent 写范围</td>
+<td>按 scope 执行，越界前申请</td>
+<td>为每个任务指定 write scope、read-only scope 和 shared files</td>
+</tr>
+<tr>
+<td>阶段目标</td>
+<td>建议 milestone / tracking issue</td>
+<td>决定阶段目标和优先级</td>
+</tr>
+<tr>
+<td>起草 RAD / spike / plan</td>
+<td>执行</td>
+<td>确认 RAD、裁定 spike 清单、批准 plan</td>
+</tr>
+<tr>
+<td>需求主权</td>
+<td>建议</td>
+<td>决定</td>
+</tr>
+<tr>
+<td>实现 / 验证</td>
+<td>执行</td>
+<td>抽查</td>
+</tr>
+<tr>
+<td>vision 修改</td>
+<td>提议</td>
+<td>确认</td>
+</tr>
+<tr>
+<td>开 PR / 合并</td>
+<td>准备 PR、执行获授权的合并</td>
+<td>批准 PR、决定合并、授权内部例外</td>
+</tr>
+<tr>
+<td>pages 发布</td>
+<td>未经授权不切换；获授权后使用独立 clone/worktree</td>
+<td>授权发布并协调共享 worktree</td>
+</tr>
+<tr>
+<td>提交 / push</td>
+<td>按指令执行</td>
+<td>可撤销</td>
+</tr>
+<tr>
+<td>事故复盘</td>
+<td>起草</td>
+<td>裁决</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-例外与事故"><a class="blume-heading-anchor" href="#13-例外与事故">13. 例外与事故</a></h2>
+<ul>
+<li>门禁失败不得用 skip 或放宽断言掩盖；记录在 <code>docs/explains/00-baseline.md</code> 或 issue。</li>
+<li>事故：记录现象、根因、修复和防复发的门禁；必要时更新本工作流。</li>
+<li>代码冻结：决策者可宣布，期间只做文档或 issue。</li>
+<li>已批准方案的变体：回到 Plan 闸，或由决策者明确豁免并留痕。</li>
+<li>当前不引入 ADR 编号体系；决策记录优先写入 vision 决策记录，实施级取舍留在 issue/PR 中。</li>
+</ul>
+<h2 id="14-变更记录"><a class="blume-heading-anchor" href="#14-变更记录">14. 变更记录</a></h2>
+<div class="blume-table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>版本</th>
+<th>变更</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-11-06</td>
+<td>0.1.0</td>
+<td>首版，参考 OdooThink 的 RAD / Spike / Plan 闭环，按 3~5 人团队和 Pi 底座裁剪</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.1.1</td>
+<td>明确 GitHub Issues 是需求、缺陷、任务和阶段目标的统一入口，并建立 issue ↔ RAD ↔ plan 关联</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.1.2</td>
+<td>增加 Agent 写范围（write scope / read-only scope / shared files），以范围隔离控制多 Agent 冲突</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.1.3</td>
+<td>将“只在 main 工作”和“每个任务必须有可检查的 write scope”定为硬规则；新增 omfde Task issue 表单，write scope 必填</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.1.4</td>
+<td>明确只提交自己修改且在 write scope 内的文件；超范围提交须经决策者同意</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.2.0</td>
+<td>明确 PR/合并约定；pages 为发布分支，未经授权不得切换；共享 worktree 的 Git 操作串行</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.2.1</td>
+<td>明确不向上游 Pi 贡献；PR 只保留外部贡献和决策者特批的内部例外两种情况</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.2.2</td>
+<td>新需求改为决策者先发起讨论、再同步补 issue；是否建立 RAD 由决策者决定</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.2.3</td>
+<td>质量门禁改为只在本地执行，不依赖远程 CI</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.2.4</td>
+<td>check 改为只读，新增 check:fix 和 secret scan；pre-commit 只检查 staged 文件，pre-push 跑完整 check</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.2.5</td>
+<td>增加平台 TSDoc 规范和 check:tsdoc 本地门禁</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.2.6</td>
+<td>包管理器从 npm 迁移到 pnpm；本地命令、锁文件和 workspace 配置同步更新</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.3.0</td>
+<td>切断上游，转为独立维护；删除 upstream remote 和自动 rebase 约定</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.3.1</td>
+<td>Spike 闸改为 RAD 到 plan 的必经环节：Agent 提清单或“无需 spike”结论，决策者裁定</td>
+</tr>
+<tr>
+<td>2026-11-06</td>
+<td>0.3.2</td>
+<td>工作线从两条扩展为三条，新增 Web UI 线</td>
+</tr>
+</tbody>
+</table></div>
+</article><div data-blume-page-end><section aria-label="这个页面有帮助吗？" class="mx-auto mt-12 max-w-content border-border border-t pt-6" data-blume-page-feedback><div class="flex items-center justify-between gap-4"><p class="text-muted-foreground text-sm">这个页面有帮助吗？</p><div class="flex items-center gap-2" data-feedback-actions><button class="inline-flex items-center gap-2 rounded-blume border border-border px-4 py-2 text-foreground text-sm transition-colors hover:border-foreground" data-feedback-value="yes" type="button"><svg aria-hidden="true" height="16" width="16"><use href="#blume-i-thumbs-up"></use></svg>有帮助</button><button class="inline-flex items-center gap-2 rounded-blume border border-border px-4 py-2 text-foreground text-sm transition-colors hover:border-foreground" data-feedback-value="no" type="button"><svg aria-hidden="true" height="16" width="16"><use href="#blume-i-thumbs-down"></use></svg>没有帮助</button></div><p class="hidden text-muted-foreground text-sm focus:outline-none" data-feedback-thanks role="status" tabindex="-1">感谢你的反馈！</p></div></section><script type="module" src="/oh-my-fde/_astro/PageFeedback.astro_astro_type_script_index_0_lang.Ct6xENdt.js"></script><nav aria-label="分页" class="mx-auto mt-12 flex max-w-content justify-between gap-4 border-border border-t pt-6"><a class="flex max-w-[48%] flex-1 items-center gap-2 rounded-blume border border-border px-4 py-3 text-foreground transition-colors hover:border-foreground" href="/oh-my-fde/docs/specs/tsdoc-comment-standards"><svg aria-hidden="true" class="rtl:-scale-x-100" height="16" width="16"><use href="#blume-i-arrow-left"></use></svg><span class="min-w-0"><span class="block text-muted-foreground text-xs">上一页</span><span class="block font-medium max-md:line-clamp-2 max-md:wrap-break-word md:truncate">TypeScript 注释规范（TSDoc）</span></span></a><a class="ms-auto flex max-w-[48%] flex-1 items-center justify-end gap-2 rounded-blume border border-border px-4 py-3 text-end text-foreground transition-colors hover:border-foreground" href="/oh-my-fde/docs/specs/vision"><span class="min-w-0"><span class="block text-muted-foreground text-xs">下一页</span><span class="block font-medium max-md:line-clamp-2 max-md:wrap-break-word md:truncate">项目愿景</span></span><svg aria-hidden="true" class="rtl:-scale-x-100" height="16" width="16"><use href="#blume-i-arrow-right"></use></svg></a></nav></div></main><aside aria-label="本页内容" class="sticky top-16 hidden h-[calc(100dvh-4rem)] scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent overflow-y-auto [--blume-rail-inset:1rem] px-(--blume-rail-inset) pt-6 pb-10 text-sm xl:block" data-blume-toc><p class="mb-3 font-semibold text-foreground text-sm">本页内容</p><blume-toc class="block"><ul class="m-0 list-none p-0"><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#1-权威层级">1. 权威层级</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#2-三条工作线">2. 三条工作线</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#3-任务分级">3. 任务分级</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#31-github-issues统一入口">3.1 GitHub Issues：统一入口</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#32-agent-写范围">3.2 Agent 写范围</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#4-主循环">4. 主循环</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#5-vision-闸">5. Vision 闸</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#6-rad-闸">6. RAD 闸</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#7-spike-闸必经">7. Spike 闸（必经）</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#8-plan-闸">8. Plan 闸</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#9-实现与验证">9. 实现与验证</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#10-提交pr-与合并">10. 提交、PR 与合并</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#101-提交">10.1 提交</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#102-开-pr">10.2 开 PR</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#103-合并">10.3 合并</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#104-pages-分支">10.4 pages 分支</a></li><li data-depth="3" style="padding-inline-start:0.75rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#105-共享-worktree-串行操作">10.5 共享 worktree 串行操作</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#11-会话协议">11. 会话协议</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#12-角色分工">12. 角色分工</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#13-例外与事故">13. 例外与事故</a></li><li data-depth="2" style="padding-inline-start:0rem"><a class="block py-1.5 text-muted-foreground transition-colors hover:text-foreground aria-[current=location]:font-medium aria-[current=location]:text-foreground" href="#14-变更记录">14. 变更记录</a></li></ul></blume-toc><div class="space-y-0.5 mt-8 border-border border-t pt-4" data-blume-page-actions data-i18n-chat-prompt="请阅读 {url} 以便我就此页面提问。" data-i18n-copied="已复制！" data-i18n-copy-failed="复制失败" data-i18n-generating="生成中…" data-md="/docs/specs/workflow.md"><button class="flex w-full items-center gap-2.5 py-1.5 text-start text-muted-foreground text-sm transition-colors hover:text-foreground" data-blume-scroll-top type="button"><svg aria-hidden="true" height="16" width="16"><use href="#blume-i-arrow-up"></use></svg>回到顶部</button><button class="flex w-full items-center gap-2.5 py-1.5 text-start text-muted-foreground text-sm transition-colors hover:text-foreground" data-blume-copy-page type="button"><svg aria-hidden="true" height="16" width="16"><use href="#blume-i-copy"></use></svg><span data-blume-copy-label>复制为 Markdown</span></button><details class="relative" data-blume-dropdown><summary class="flex w-full items-center gap-2.5 py-1.5 text-start text-muted-foreground text-sm transition-colors hover:text-foreground cursor-pointer list-none [&amp;::-webkit-details-marker]:hidden"><svg aria-hidden="true" height="16" width="16"><use href="#blume-i-external-link"></use></svg>在聊天中打开<svg aria-hidden="true" class="ms-auto transition-transform [details[open]>summary_&amp;]:rotate-180" height="14" width="14"><use href="#blume-i-chevron-down"></use></svg></summary><div class="absolute top-full end-0 z-50 mt-1 w-max [--blume-menu-room:calc(100%+var(--blume-rail-inset,1rem)-2px)] min-w-[min(14rem,var(--blume-menu-room))] max-w-(--blume-menu-room) wrap-anywhere rounded-blume border border-border bg-background p-1 shadow-xl" data-blume-menu><a class="flex w-full items-start gap-2.5 rounded-md px-2 py-1.5 text-start text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground" data-open-in="v0" aria-describedby="blume-new-tab-hint" rel="noreferrer" target="_blank"><span class="flex h-lh shrink-0 items-center"><svg class="size-4 shrink-0" fill="currentColor" viewBox="0 0 147 70" xmlns="http://www.w3.org/2000/svg"><path d="M56 50.2031V14H70V60.1562C70 65.5928 65.5928 70 60.1562 70C57.5605 70 54.9982 68.9992 53.1562 67.1573L0 14H19.7969L56 50.2031Z"/><path d="M147 56H133V23.9531L100.953 56H133V70H96.6875C85.8144 70 77 61.1856 77 50.3125V14H91V46.1562L123.156 14H91V0H127.312C138.186 0 147 8.81439 147 19.6875V56Z"/></svg></span><span class="flex-1">在 v0 中打开</span><span class="flex h-lh shrink-0 items-center"><svg aria-hidden="true" height="13" width="13"><use href="#blume-i-external-link"></use></svg></span></a><hr class="my-1 border-border border-t"><a class="flex w-full items-start gap-2.5 rounded-md px-2 py-1.5 text-start text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground" data-open-in="chatgpt" aria-describedby="blume-new-tab-hint" rel="noreferrer" target="_blank"><span class="flex h-lh shrink-0 items-center"><svg class="size-4 shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span><span class="flex-1">在 ChatGPT 中打开</span><span class="flex h-lh shrink-0 items-center"><svg aria-hidden="true" height="13" width="13"><use href="#blume-i-external-link"></use></svg></span></a><a class="flex w-full items-start gap-2.5 rounded-md px-2 py-1.5 text-start text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground" data-open-in="claude" aria-describedby="blume-new-tab-hint" rel="noreferrer" target="_blank"><span class="flex h-lh shrink-0 items-center"><svg class="size-4 shrink-0" fill="currentColor" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" fill-rule="evenodd" d="M2.3545 7.9775L4.7145 6.654L4.7545 6.539L4.7145 6.475H4.6L4.205 6.451L2.856 6.4145L1.6865 6.366L0.5535 6.305L0.268 6.2445L0 5.892L0.0275 5.716L0.2675 5.5555L0.6105 5.5855L1.3705 5.637L2.5095 5.716L3.3355 5.7645L4.56 5.892H4.7545L4.782 5.8135L4.715 5.7645L4.6635 5.716L3.4845 4.918L2.2085 4.074L1.5405 3.588L1.1785 3.3425L0.9965 3.1115L0.9175 2.6075L1.2455 2.2465L1.686 2.2765L1.7985 2.307L2.245 2.65L3.199 3.388L4.4445 4.3045L4.627 4.4565L4.6995 4.405L4.709 4.3685L4.627 4.2315L3.9495 3.0085L3.2265 1.7635L2.9045 1.2475L2.8195 0.938C2.78711 0.819128 2.76965 0.696687 2.7675 0.5735L3.1415 0.067L3.348 0L3.846 0.067L4.056 0.249L4.366 0.956L4.867 2.0705L5.6445 3.5855L5.8725 4.0345L5.994 4.4505L6.0395 4.578H6.1185V4.505L6.1825 3.652L6.301 2.6045L6.416 1.257L6.456 0.877L6.644 0.422L7.0175 0.176L7.3095 0.316L7.5495 0.6585L7.516 0.8805L7.373 1.806L7.0935 3.2575L6.9115 4.2285H7.0175L7.139 4.1075L7.6315 3.4545L8.4575 2.4225L8.8225 2.0125L9.2475 1.5605L9.521 1.345H10.0375L10.4175 1.9095L10.2475 2.4925L9.7155 3.166L9.275 3.737L8.643 4.587L8.248 5.267L8.2845 5.322L8.3785 5.312L9.8065 5.009L10.578 4.869L11.4985 4.7115L11.915 4.9055L11.9605 5.103L11.7965 5.5065L10.812 5.7495L9.6575 5.9805L7.938 6.387L7.917 6.402L7.9415 6.4325L8.716 6.5055L9.047 6.5235H9.858L11.368 6.636L11.763 6.897L12 7.216L11.9605 7.4585L11.353 7.7685L10.533 7.574L8.6185 7.119L7.9625 6.9545H7.8715V7.0095L8.418 7.5435L9.421 8.4485L10.6755 9.6135L10.739 9.9025L10.578 10.13L10.408 10.1055L9.3055 9.277L8.88 8.9035L7.917 8.0935H7.853V8.1785L8.075 8.503L9.2475 10.2635L9.3085 10.8035L9.2235 10.98L8.9195 11.0865L8.5855 11.0255L7.8985 10.063L7.191 8.9795L6.6195 8.008L6.5495 8.048L6.2125 11.675L6.0545 11.86L5.69 12L5.3865 11.7695L5.2255 11.396L5.3865 10.658L5.581 9.696L5.7385 8.931L5.8815 7.981L5.9665 7.665L5.9605 7.644L5.8905 7.653L5.1735 8.6365L4.0835 10.109L3.2205 11.0315L3.0135 11.1135L2.655 10.9285L2.6885 10.5975L2.889 10.303L4.083 8.785L4.803 7.844L5.268 7.301L5.265 7.222H5.2375L2.066 9.28L1.501 9.353L1.2575 9.125L1.288 8.752L1.4035 8.6305L2.3575 7.9745L2.3545 7.9775Z"/></svg></span><span class="flex-1">在 Claude 中打开</span><span class="flex h-lh shrink-0 items-center"><svg aria-hidden="true" height="13" width="13"><use href="#blume-i-external-link"></use></svg></span></a><a class="flex w-full items-start gap-2.5 rounded-md px-2 py-1.5 text-start text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground" data-open-in="t3" aria-describedby="blume-new-tab-hint" rel="noreferrer" target="_blank"><span class="flex h-lh shrink-0 items-center"><svg class="size-4 shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span><span class="flex-1">在 T3 Chat 中打开</span><span class="flex h-lh shrink-0 items-center"><svg aria-hidden="true" height="13" width="13"><use href="#blume-i-external-link"></use></svg></span></a><a class="flex w-full items-start gap-2.5 rounded-md px-2 py-1.5 text-start text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground" data-open-in="scira" aria-describedby="blume-new-tab-hint" rel="noreferrer" target="_blank"><span class="flex h-lh shrink-0 items-center"><svg class="size-4 shrink-0" fill="none" viewBox="0 0 910 934" xmlns="http://www.w3.org/2000/svg"><path d="M647.664 197.775C569.13 189.049 525.5 145.419 516.774 66.8849C508.048 145.419 464.418 189.049 385.884 197.775C464.418 206.501 508.048 250.131 516.774 328.665C525.5 250.131 569.13 206.501 647.664 197.775Z" fill="currentColor" stroke="currentColor" stroke-linejoin="round" stroke-width="8"/><path d="M857.5 508.116C763.259 497.644 710.903 445.288 700.432 351.047C689.961 445.288 637.605 497.644 543.364 508.116C637.605 518.587 689.961 570.943 700.432 665.184C710.903 570.943 763.259 518.587 857.5 508.116Z" stroke="currentColor" stroke-linejoin="round" stroke-width="20"/><path d="M889.949 121.237C831.049 114.692 798.326 81.9698 791.782 23.0692C785.237 81.9698 752.515 114.692 693.614 121.237C752.515 127.781 785.237 160.504 791.782 219.404C798.326 160.504 831.049 127.781 889.949 121.237Z" fill="currentColor" stroke="currentColor" stroke-linejoin="round" stroke-width="8"/><path d="M760.632 764.337C720.719 814.616 669.835 855.1 611.872 882.692C553.91 910.285 490.404 924.255 426.213 923.533C362.022 922.812 298.846 907.419 241.518 878.531C184.19 849.643 134.228 808.026 95.4548 756.863C56.6815 705.7 30.1238 646.346 17.8129 583.343C5.50207 520.339 7.76433 455.354 24.4266 393.359C41.089 331.364 71.7099 274.001 113.947 225.658C156.184 177.315 208.919 139.273 268.117 114.442" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="30"/></svg></span><span class="flex-1">在 Scira 中打开</span><span class="flex h-lh shrink-0 items-center"><svg aria-hidden="true" height="13" width="13"><use href="#blume-i-external-link"></use></svg></span></a><a class="flex w-full items-start gap-2.5 rounded-md px-2 py-1.5 text-start text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground" data-open-in="cursor" aria-describedby="blume-new-tab-hint" rel="noreferrer" target="_blank"><span class="flex h-lh shrink-0 items-center"><svg class="size-4 shrink-0" viewBox="0 0 466.73 532.09" xmlns="http://www.w3.org/2000/svg"><path d="M457.43,125.94L244.42,2.96c-6.84-3.95-15.28-3.95-22.12,0L9.3,125.94c-5.75,3.32-9.3,9.46-9.3,16.11v247.99c0,6.65,3.55,12.79,9.3,16.11l213.01,122.98c6.84,3.95,15.28,3.95,22.12,0l213.01-122.98c5.75-3.32,9.3-9.46,9.3-16.11v-247.99c0-6.65-3.55-12.79-9.3-16.11h-.01ZM444.05,151.99l-205.63,356.16c-1.39,2.4-5.06,1.42-5.06-1.36v-233.21c0-4.66-2.49-8.97-6.53-11.31L24.87,145.67c-2.4-1.39-1.42-5.06,1.36-5.06h411.26c5.84,0,9.49,6.33,6.57,11.39h-.01Z" fill="currentColor"/></svg></span><span class="flex-1">在 Cursor 中打开</span><span class="flex h-lh shrink-0 items-center"><svg aria-hidden="true" height="13" width="13"><use href="#blume-i-external-link"></use></svg></span></a></div></details></div><script type="module" src="/oh-my-fde/_astro/PageActions.astro_astro_type_script_index_0_lang.CgM1DhBe.js"></script></aside></div><footer class="border-border border-t px-4 md:px-6" data-blume-footer><div class="flex min-h-16 flex-wrap items-center gap-x-6 gap-y-3 py-3"><ul class="-me-[9px] -my-[9px] ms-auto flex flex-wrap items-center gap-1 md:col-start-3"><li><a aria-label="GitHub 仓库" class="inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:text-foreground" href="https://github.com/FDE-GROUP/oh-my-fde" title="GitHub 仓库" aria-describedby="blume-new-tab-hint" rel="noreferrer" target="_blank"><svg aria-hidden="true" fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></a></li></ul></div></footer><button aria-label="关闭导航" class="fixed inset-0 z-[30] hidden cursor-pointer border-0 bg-black/40 [:where([data-blume-nav-open])_&amp;]:block lg:hidden" data-blume-nav-toggle type="button"></button><script type="module" src="/oh-my-fde/_astro/RootLayout.astro_astro_type_script_index_0_lang.ES-GPpqo.js"></script><blume-webmcp data-llms="true" data-search="true" data-skills="true" hidden="true"></blume-webmcp><script type="module" src="/oh-my-fde/_astro/WebMcp.astro_astro_type_script_index_0_lang.BIdkgEfY.js"></script><svg aria-hidden="true" hidden xmlns="http://www.w3.org/2000/svg"><symbol id="blume-i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h16M4 12h16M4 19h16"/></symbol><symbol id="blume-i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></g></symbol><symbol id="blume-i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol><symbol id="blume-i-chevron-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9l6 6l6-6"/></symbol><symbol id="blume-i-thumbs-up" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5.88L14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88M7 10v12"/></symbol><symbol id="blume-i-thumbs-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 18.12L10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88M17 14V2"/></symbol><symbol id="blume-i-arrow-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m12 19l-7-7l7-7m7 7H5"/></symbol><symbol id="blume-i-arrow-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7l7 7l-7 7"/></symbol><symbol id="blume-i-arrow-up" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l7-7l7 7m-7 7V5"/></symbol><symbol id="blume-i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></g></symbol><symbol id="blume-i-external-link" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol><symbol id="blume-i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m21 21l-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g></symbol></svg></body></html>

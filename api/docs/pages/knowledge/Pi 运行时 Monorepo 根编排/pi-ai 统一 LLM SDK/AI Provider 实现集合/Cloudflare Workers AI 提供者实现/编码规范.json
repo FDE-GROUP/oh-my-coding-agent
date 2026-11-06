@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Cloudflare Workers AI 提供者实现/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Cloudflare Workers AI 提供者实现/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Cloudflare Workers AI 提供者实现/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Cloudflare Workers AI 提供者实现/编码规范",
+  "markdown": "- 认证凭据与环境变量的合并遵循「credential 字段优先，再回退到 ctx.env」的 per-field 策略，并通过 `AbortSignal.throwIfAborted()` 在异步边界检查取消信号。\n- 对 `ProviderStreams` 与 `ProviderClassifier` 采用装饰器模式包装，在转发调用前用 `resolveCloudflareModel` 注入 account/gateway 占位符。\n- Cloudflare 环境变量常量集中声明为模块级字符串（如 `CLOUDFLARE_API_KEY`），并在 auth 与 stream 中重复引用以避免硬编码散落在逻辑中。"
+}

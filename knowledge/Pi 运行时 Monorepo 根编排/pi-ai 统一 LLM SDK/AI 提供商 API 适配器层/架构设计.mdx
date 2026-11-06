@@ -1,0 +1,7 @@
+本模块是 `packages/ai` 的 API 适配层，按「一个文件 = 一个提供商 + 一种协议」组织：每个 `.ts` 文件导出 `stream` / `streamSimple`（以及可选的 `fetchDeferred` / `cancelDeferred`），统一实现 `ProviderStreams` 接口（见上层 `types.ts`）。
+
+- 懒加载入口：每个提供商同时存在 `<provider>.ts` 与 `<provider>.lazy.ts`，后者通过本模块的 `lazyApi(load)` 包装动态 `import()`，在首次调用时才加载 SDK 并解析认证；`lazyStream` 把异步 setup 错误转成 `AssistantMessageEventStream` 上的 error 事件。
+- 共享基础设施：`simple-options.ts` 提供 `buildBaseOptions` / `clampMaxTokensToContext` / `resolveSamplingParams` / thinking budget 计算；`constrained-sampling.ts` 提供 JSON Schema 严格化与 Grammar 工具输入缓冲；`transform-messages.ts`、`openai-prompt-cache.ts`、`github-copilot-headers.ts`、`classifier-shared.ts`、`system-one-shared.ts`、`openai-responses-shared.ts`、`google-shared.ts` 等跨提供商复用。
+- 传输抽象：`cloudflare-ai-binding.ts` 提供基于 Workers AI binding 的 `createAiBindingFetch`，使同一套 HTTPS 请求代码可走原生 binding 通道；各适配器通过 `model.baseUrl` + `options.fetch` 注入具体 fetch。
+- 错误与重试：统一经 `../utils/provider-retry.ts` 重试、`../utils/error-body.ts` 规范化、`../utils/openrouter-cost.ts` 处理 OpenRouter 上报用量。
+- 依赖方向单向向下：适配器 → 共享 utils → 上层 `types.ts` / `models.ts`，不反向引用具体适配器。

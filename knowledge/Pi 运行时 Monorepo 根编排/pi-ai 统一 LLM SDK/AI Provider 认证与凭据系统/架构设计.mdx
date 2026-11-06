@@ -1,0 +1,6 @@
+模块以 `types.ts` 定义的接口为核心契约，将认证体系划分为三层：
+- 类型与上下文层：`types.ts` 定义 `CredentialStore`（应用实现的凭据持久化）、`AuthContext`（可注入的 env/fileExists 抽象）、`ApiKeyAuth`/`OAuthAuth`/`ProviderAuth`（每个提供商的认证实现）以及 `AuthInteraction`（登录交互回调）；`context.ts` 提供默认实现，通过动态 `import('node:fs/promises')` 在浏览器中回退为 false。
+- 解析与协调层：`resolve.ts` 暴露 `resolveProviderAuth` 与 `refreshStoredOAuthCredential`，按「覆盖 > 已存凭据 > 环境/文件」优先级解析，并对 OAuth 使用基于 `CredentialStore.modify` 的双检锁（5 分钟阈值 + 15s 刷新超时），保证并发与跨进程不重复刷新。
+- 凭据存储层：`credential-store.ts` 提供 `InMemoryCredentialStore`，通过 per-provider Promise 链串行化所有写操作，是 `CredentialStore` 的默认实现。
+- OAuth 子目录 `oauth/`：`load.ts` 通过变量名动态 import 各厂商实现，并支持 `registerBundledOAuthFlowLoaders` 注入静态打包器生成的加载器，从而把 Node-only 代码（`node:http`、`node:crypto`）排除出浏览器 bundle；具体厂商实现（anthropic/openai-codex/openai-chatgpt/github-copilot/openrouter/kimi-coding/meta/xai/radius）各自导出一个 `OAuthAuth`；`pkce.ts` 用 Web Crypto 生成 PKCE verifier/challenge；`callback-server.ts`、`device-code.ts`、`trusted-url.ts` 等提供通用 OAuth 子流程。
+依赖方向单向：providers → helpers/load → types；上层 Models 仅依赖 `CredentialStore`、`AuthContext`、`ProviderAuth` 三个接口。

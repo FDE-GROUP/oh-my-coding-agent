@@ -1,0 +1,5 @@
+- 构建器函数统一接受一个 options 对象，先展开 `Annotations`（title/description/examples/deprecated/default），再追加对应 keyword，返回值是纯 JSON Schema 字面量。
+- schema 的静态类型通过 TypeScript 泛型参数 + 私有 symbol（`STATIC`、`OPTIONAL_TYPE`）在类型层标注，运行时不产生额外字段。
+- 可选功能（format 校验、coercion）通过独立的可选入口 (`@earendil-works/pi-schema/formats`、`compile(schema, { coerce: true })`) 引入，默认路径零开销。
+- 惰性初始化：`Validator.explainer` 与 `CoercingValidator.coercer` 仅在首次调用 `errors()` / `coerce()` 时构造，避免对始终通过的 schema 付费。
+- 编译器异常采用哨兵值（`RESTART`）而非 throw/catch 语义来切换编译模式，由 `validator.ts` 捕获后重建 Compiler。

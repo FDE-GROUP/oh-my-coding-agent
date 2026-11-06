@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/模型代码沙箱执行引擎 (@earendil-works_pi-codemode)/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/模型代码沙箱执行引擎 (@earendil-works_pi-codemode)/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/模型代码沙箱执行引擎 (@earendil-works_pi-codemode)/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/模型代码沙箱执行引擎 (@earendil-works_pi-codemode)/技术栈",
+  "markdown": "基于 `quickjs-wasi@3.6.2` 的 QuickJS WebAssembly 解释器；Node/Bun 宿主使用 `node:worker_threads`，Cloudflare 宿主通过 `cloudflare:workers` 的 `DurableObject` 与 Wrangler 的 `CompiledWasm` 规则加载预编译 wasm；测试使用 Vitest。"
+}

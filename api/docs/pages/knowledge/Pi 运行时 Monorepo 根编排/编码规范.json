@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/编码规范",
+  "markdown": "- 子包通过 `extends: ./tsconfig.base.json` 继承统一的 TS 编译选项，不重复声明 target/module/lib/strict 等基础字段。\n- 跨子包依赖一律通过 pnpm workspace 解析，禁止绕过 workspace 直接引用绝对路径或硬编码版本号。\n- 构建产物与类型声明由各自 package.json 中的 build 脚本产出，根 `pnpm build` 仅负责按依赖拓扑顺序调度。\n- 新增脚本放在根 scripts/ 目录下并以 .mjs/.ts 后缀，由根 package.json 的 scripts 字段统一暴露。"
+}

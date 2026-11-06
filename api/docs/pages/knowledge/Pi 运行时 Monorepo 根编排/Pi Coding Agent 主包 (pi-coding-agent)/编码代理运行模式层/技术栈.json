@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/编码代理运行模式层/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/编码代理运行模式层/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/编码代理运行模式层/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/编码代理运行模式层/技术栈",
+  "markdown": "TypeScript + Deno 风格 import（`.ts` 后缀）；RPC 模式使用 Node.js `process.stdin/stdout` 与 `node:crypto.randomUUID()` 进行 JSON-Lines 协议通信；交互式模式基于 Ink TUI 框架（由 `tui-renderer.ts` 驱动）。"
+}

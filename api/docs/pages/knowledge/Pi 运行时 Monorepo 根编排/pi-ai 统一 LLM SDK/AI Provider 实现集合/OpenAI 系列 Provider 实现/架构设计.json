@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenAI 系列 Provider 实现/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenAI 系列 Provider 实现/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenAI 系列 Provider 实现/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenAI 系列 Provider 实现/架构设计",
+  "markdown": "本模块由三个文件组成，职责清晰分层：\n- `openai.ts` 通过 `createProvider` 注册 `openai-responses` provider，组合 `openAIResponsesApi`（主聊天/图像能力）与 `openAIDecisionsApi`（决策分类器），并配置双认证：环境变量 `OPENAI_API_KEY` 与基于 ChatGPT 订阅的 OAuth；通过 `filterAllModels` 在 OAuth 模式下过滤掉 classifier 类型模型，因为 Decisions API 不接受 OAuth token。\n- `openai-codex.ts` 单独注册 `openai-codex-responses` provider，指向 legacy 后端 `https://chatgpt.com/backend-api`，仅支持 ChatGPT Plus/Pro 的 OAuth 登录。\n- `openai.models.ts` 是自动生成文件（头部注释声明由 `catalog/generate.ts` 产出），从 `data/openai.json` 通过 `flattenChatModelCatalog` / `flattenClassifierModelCatalog` / `flattenImageModelCatalog` 生成三类模型常量，供 provider 消费。\n依赖方向单向向外：provider 实现 → `../api/*.lazy.ts`（懒加载的 HTTP 客户端）、`../auth/*`（认证）、`../models.ts`（`createProvider` 抽象）、`./openai.models.ts`（模型清单）。两个 provider 共享同一份模型数据源但暴露不同的 API 端点。"
+}

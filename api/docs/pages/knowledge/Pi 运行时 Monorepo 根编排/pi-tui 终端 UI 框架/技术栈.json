@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/技术栈",
+  "markdown": "TypeScript + Node.js >=22.19（ESM），渲染基于 xterm 能力探测；图像支持 Kitty/iTerm2 协议；原生剪贴板通过 N-API 加载预编译 `.node` 模块（darwin 用 Objective-C `.m`，win32 用 C，linux 用 X11/CB 的 C 代码，编译参数 `-std=c11 -fPIC -shared -nostdlib -Wl,--unresolved-symbols=ignore-all`）。"
+}

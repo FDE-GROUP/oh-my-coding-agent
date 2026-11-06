@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi 模型评估与文档变体运行器/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi 模型评估与文档变体运行器/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi 模型评估与文档变体运行器/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi 模型评估与文档变体运行器/架构设计",
+  "markdown": "模块以 `src/cli.ts` 为入口，按职责拆分为四个内部子层：\n- `plan.ts`：定义 `DiscoveredEvalCase` / `EvalTask` 数据契约，并通过 `createTaskPlan` 将每个用例展开为 `(without_docs, with_docs)` 双变体 × `runsPerVariant` 次重复的任务矩阵。\n- `docker.ts`：封装 Docker 子进程调用，构建两个带不同 target 的镜像（`pi-evals-<repo-hash>-with-docs:local` 与 `-without-docs:local`），通过 `discoverCases` 在容器内跑 Vitest discovery，再通过 `runTask` 逐个任务执行并读取 `vitest.json` 产物。\n- `harness.ts`：基于 `vitest-evals/harness` 暴露 `createPiCodingAgentHarness` 与 `createPiDocumentationEvalHarness`，前者直接驱动 `@earendil-works/pi-coding-agent` 的 `AgentSession`，后者强制要求 `PI_EVAL_CONTAINER=1` + `PI_EVAL_SANDBOX_UID/GID`，并在容器内通过 `setuid/setgid` 降级到非 root 用户执行工具调用，同时用 `excludePiDocumentation` 剥离 `<docs>` 段以构造 without_docs 变体。\n- `report.ts`：汇总 `protocol.json` / `expected-runs.json` / `observations.jsonl` 并生成 `report.json` 与 `report.txt` 对比报告。\n\n外部依赖方向单向：`cli → docker/plan/report → harness`；`evals/*.docs.eval.ts` 仅消费 harness 导出，不反向引用运行时。Dockerfile 提供 `with_docs` / `without_docs` 两个 build target，entrypoint 由 `install-runtime.mjs` 安装依赖后启动 `node --experimental-strip-types` 执行 eval 文件。Vitest 配置 (`vitest.evals.config.ts`) 声明三个 project：`docs`（`.docs.eval.ts`）、`host`（普通 `.eval.ts`）和 `audit`（`documentation-audit.eval.ts`），其中 docs 项目禁用并行且超时 300s。"
+}

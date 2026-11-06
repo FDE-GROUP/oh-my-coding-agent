@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/omfde 项目文档与决策依据（explains_rads_specs_plans_spikes）/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/omfde 项目文档与决策依据（explains_rads_specs_plans_spikes）/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/omfde 项目文档与决策依据（explains_rads_specs_plans_spikes）/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/omfde 项目文档与决策依据（explains_rads_specs_plans_spikes）/技术栈",
+  "markdown": "纯 Markdown 文档 + 少量 TypeScript 验证脚本（位于 `docs/explains/validation/`），由仓库自带的 faux provider 驱动运行。"
+}

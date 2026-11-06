@@ -1,0 +1,5 @@
+- 对外暴露的不可变数据通过构造函数私有化 + static load 工厂返回，并使用 deepFreeze(structuredClone(...)) 冻结提供者配置。
+- 错误路径以字符串字段（error/warning/message）形式在结果对象中返回，而非抛出异常，便于调用方统一处理。
+- 面向扩展的同步门面类（ModelRegistry）将所有方法委托给内部的 ModelRuntime，避免扩展直接依赖异步运行时。
+- 模型解析结果采用带 status 字段的联合类型（resolved / ambiguous / not-found），将歧义与未找到两种失败分支显式区分。
+- Thinking level 通过文本末尾的 `:<level>` 后缀解析，并在 splitThinkingSuffix 中集中校验，解析失败时根据 thinkingSuffix 策略决定丢弃或保留为 id 的一部分。

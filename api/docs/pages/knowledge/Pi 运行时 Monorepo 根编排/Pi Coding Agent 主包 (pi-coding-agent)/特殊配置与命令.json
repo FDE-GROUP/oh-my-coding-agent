@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/特殊配置与命令.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/特殊配置与命令.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/特殊配置与命令",
+  "title": "特殊配置与命令",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/特殊配置与命令",
+  "markdown": "`pnpm run build` 先 tsc 再 bundle；`pnpm run build:binary` 额外编译原生二进制 dist/pi；`pnpm run generate:schemas` 重新生成 schemas/*.schema.json；`pnpm test` 运行 vitest 套件。"
+}

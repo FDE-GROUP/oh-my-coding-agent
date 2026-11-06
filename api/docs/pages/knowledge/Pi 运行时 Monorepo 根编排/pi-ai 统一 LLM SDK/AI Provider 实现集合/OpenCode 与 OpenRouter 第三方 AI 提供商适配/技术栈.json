@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenCode 与 OpenRouter 第三方 AI 提供商适配/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenCode 与 OpenRouter 第三方 AI 提供商适配/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenCode 与 OpenRouter 第三方 AI 提供商适配/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenCode 与 OpenRouter 第三方 AI 提供商适配/技术栈",
+  "markdown": "基于项目内部 `createProvider` 抽象与 lazy 加载的 API 适配器；OpenRouter 支持 API Key 与 OAuth 双认证（`lazyOAuth` + `loadOpenRouterOAuth`）。"
+}

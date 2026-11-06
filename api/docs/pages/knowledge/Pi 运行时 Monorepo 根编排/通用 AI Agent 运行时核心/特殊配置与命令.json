@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/通用 AI Agent 运行时核心/特殊配置与命令.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/通用 AI Agent 运行时核心/特殊配置与命令.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/通用 AI Agent 运行时核心/特殊配置与命令",
+  "title": "特殊配置与命令",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/通用 AI Agent 运行时核心/特殊配置与命令",
+  "markdown": "包脚本：`pnpm build` 调用 `tsc -p tsconfig.build.json`，`pnpm test` 调用 `vitest --run`，`pnpm prepublishOnly` 自动先 build。Node 引擎要求 `>=22.19.0`。"
+}

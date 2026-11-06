@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台扩展集合/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台扩展集合/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台扩展集合/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台扩展集合/编码规范",
+  "markdown": "- 扩展以默认导出的函数形式暴露，函数签名统一为 `(pi: ExtensionAPI) => void`，由 Pi 内核在加载时调用。\n- 新增平台能力优先通过 `ExtensionAPI` 暴露的命令、事件、工具或 UI 接口接入，避免直接修改 Pi 内核代码。"
+}

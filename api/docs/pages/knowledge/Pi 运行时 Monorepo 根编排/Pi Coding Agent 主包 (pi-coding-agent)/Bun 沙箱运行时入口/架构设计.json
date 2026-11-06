@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Bun 沙箱运行时入口/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Bun 沙箱运行时入口/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Bun 沙箱运行时入口/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Bun 沙箱运行时入口/架构设计",
+  "markdown": "模块以 `cli.ts` 作为唯一可执行入口（`#!/usr/bin/env node`），按固定顺序串联三个副作用阶段：先通过 `sandbox-env-setup.ts` → `restore-sandbox-env.ts` 从 `/proc/self/environ` 恢复被沙箱清空的环境变量；再由 `runtime-setup.ts` 注册 Bun OAuth flows、设置 Bedrock provider 模块、并将 QuickJS WASM 路径写入全局配置；最后才 `import \"../cli.ts\"` 启动主 CLI。依赖方向单向：入口 → 环境修复 → 运行时初始化 → 业务 CLI。`quickjs-wasm.d.ts` 仅声明 Bun loader 对 `.wasm` 导入返回文件路径的类型契约，供 `runtime-setup.ts` 使用。该模块与上层 `packages/ai/src/utils/provider-env.ts` 中的 `getBunSandboxEnvValue()` 保持实现同步，以便不经过本入口的直接消费者也能复用相同的环境恢复逻辑。"
+}

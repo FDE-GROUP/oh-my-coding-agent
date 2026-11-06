@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/会话压缩与分支摘要/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/会话压缩与分支摘要/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/会话压缩与分支摘要/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/会话压缩与分支摘要/架构设计",
+  "markdown": "模块按职责拆分为三个文件并通过 `index.ts` 统一导出：\n- `compaction.ts`：核心压缩管线，包含令牌估算（`estimateTokens`/`estimateContextTokens`）、切点查找（`findCutPoint`/`findProjectedCutPoint`）、摘要生成（`generateSummary`/`generateSummaryWithUsage`/`completeSummarization`）以及主入口 `prepareCompaction` + `compact`；依赖 `../session-manager.ts` 获取投影与会话条目，依赖 `../messages.ts` 做消息转换。\n- `branch-summarization.ts`：处理树形会话导航时离开分支的摘要，提供 `collectEntriesForBranchSummary`、`prepareBranchEntries`、`generateBranchSummary`，复用 `compaction.ts` 的 `completeSummarization` 与 `utils.ts` 的文件操作追踪。\n- `utils.ts`：纯工具层，定义 `FileOperations` 结构并提供 `extractFileOpsFromMessage`、`computeFileLists`、`formatFileOperations`、`serializeConversation` 及共享系统提示 `SUMMARIZATION_SYSTEM_PROMPT`。\n\n依赖方向单向：`branch-summarization.ts` → `compaction.ts` → `utils.ts`；I/O（模型调用、重试、流式输出）集中在 `completeSummarization` 这一 choke point，由 `retryAssistantCall` 包装以支持可配置的重试策略。所有 prompt 文本以常量形式内联在各自文件中，便于扩展通过 `customInstructions` / `replaceInstructions` 注入。"
+}

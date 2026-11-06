@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/小米（Xiaomi）AI 模型提供商适配/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/小米（Xiaomi）AI 模型提供商适配/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/小米（Xiaomi）AI 模型提供商适配/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/小米（Xiaomi）AI 模型提供商适配/编码规范",
+  "markdown": "- 每个 Provider 以单独文件暴露一个工厂函数（如 `xiaomiProvider`、`xiaomiTokenPlanCnProvider`），返回 `createProvider` 构造的 `Provider<'openai-completions'>`。\n- 鉴权统一通过 `envApiKeyAuth(提示文案, [环境变量名数组])` 配置，不同区域/产品使用独立的环境变量名。\n- 模型清单从同目录下的 `*.models.ts` 文件导入并以 `Object.values(...)` 展开，避免在 Provider 定义中内联模型列表。"
+}

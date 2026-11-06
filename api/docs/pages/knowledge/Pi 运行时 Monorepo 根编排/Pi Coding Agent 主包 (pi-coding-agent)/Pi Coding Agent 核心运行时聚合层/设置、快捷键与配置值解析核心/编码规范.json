@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/设置、快捷键与配置值解析核心/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/设置、快捷键与配置值解析核心/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/设置、快捷键与配置值解析核心/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/设置、快捷键与配置值解析核心/编码规范",
+  "markdown": "- JSON Schema 字段的 `default` 一律引用 `SETTINGS_DEFAULTS` 同名属性，避免默认值在多处重复声明。\n- SettingsManager 的 getter/setter 成对出现：getter 从 `this.settings` 取值并在缺失时回退到 `SETTINGS_DEFAULTS`，setter 修改 `globalSettings` 后调用 `markModified` + `save()`。\n- 对可写字段采用“标记+队列”模式：先记录到 `modifiedFields`/`modifiedNestedFields`，再通过 `enqueueWrite` 串行写入，避免并发覆盖。\n- 旧版配置字段在 `migrateSettings` 或 `migrateKeybindingsConfig` 中集中迁移，并在 schema 上标注 `deprecated: true`，保持向后兼容。\n- 所有 JSON 文件读取统一经 `stripBom` 后再 `JSON.parse`，错误路径返回 undefined/null 而非抛错，由上层收集为诊断。\n- 配置值解析区分 `!command` 与 `$ENV`/${ENV} 模板两种形式，并以进程级 `Map` 缓存命令输出，暴露 `clearConfigValueCache` 供测试清理。"
+}

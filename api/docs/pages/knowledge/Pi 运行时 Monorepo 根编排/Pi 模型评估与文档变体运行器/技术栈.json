@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi 模型评估与文档变体运行器/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi 模型评估与文档变体运行器/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi 模型评估与文档变体运行器/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi 模型评估与文档变体运行器/技术栈",
+  "markdown": "TypeScript (ESM) + Node 22 `--experimental-strip-types` 直跑 eval 文件；Docker 多阶段镜像构建区分文档变体；`vitest-evals` 作为 harness 运行时；底层 LLM 调用委托给 `@earendil-works/pi-coding-agent` 与 `@earendil-works/pi-ai`。"
+}

@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/设置管理与持久化/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/设置管理与持久化/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/设置管理与持久化/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/设置管理与持久化/架构设计",
+  "markdown": "模块由三个文件构成清晰的三层：\n- `settings-schema.ts`：基于 TypeBox (`@sinclair/typebox`) 声明 `SettingsSchema`，导出 `Settings` 等 TypeScript 类型，作为运行时类型契约与 JSON Schema 的唯一来源。\n- `settings-defaults.ts`：集中维护 `SETTINGS_DEFAULTS` 常量对象，被 schema 和 manager 共同引用，保证默认值单点一致。\n- `settings-manager.ts`：核心运行时层，通过 `SettingsStorage` 接口（`FileSettingsStorage` / `InMemorySettingsStorage`）抽象存储后端，使用 `proper-lockfile` 对 `settings.json` 加锁读写；提供 `global` 与 `project` 两个 scope，按 `deepMergeSettings` 递归合并，并通过 `+name`/`-name` 语法支持 `defaultTools` 增量覆盖。\n依赖方向单向：manager → defaults + schema；schema 不反向依赖 manager。写入路径经 `enqueueWrite` 串行化到 `writeQueue`，并通过 `modifiedFields` / `modifiedNestedFields` 追踪变更字段以最小化磁盘写入。旧格式（`queueMode`、`websockets`、旧 `skills` 对象、`retry.maxDelayMs`）在 `migrateSettings` 中统一迁移。"
+}

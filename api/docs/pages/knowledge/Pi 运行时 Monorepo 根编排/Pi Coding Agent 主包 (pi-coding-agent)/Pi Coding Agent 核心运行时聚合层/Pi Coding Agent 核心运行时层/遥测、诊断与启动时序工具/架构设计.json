@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/遥测、诊断与启动时序工具/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/遥测、诊断与启动时序工具/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/遥测、诊断与启动时序工具/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/遥测、诊断与启动时序工具/架构设计",
+  "markdown": "模块由三个职责正交的薄文件组成，均不引入运行时依赖：\n- `telemetry.ts`：通过 `PI_TELEMETRY` 环境变量或 `SettingsManager.getEnableInstallTelemetry()` 决定安装遥测是否启用，对外仅暴露 `isInstallTelemetryEnabled`。\n- `diagnostics.ts`：纯类型声明，定义 `ResourceCollision` 与 `ResourceDiagnostic` 接口，供上层在扩展/技能/提示词/主题加载时报告命名冲突。\n- `timings.ts`：基于 `PI_TIMING=1` 启用的全局计时器，维护按 `TimingLabel`（main/extensions）划分的命名空间，支持 `resetTimings` / `time` / `printTimings` 三件套，输出到 stderr。\n依赖方向单向向外：本模块被 core 层其他组件消费，自身只依赖 `settings-manager` 的类型定义，无内部子包。"
+}

@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/特殊配置与命令.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/特殊配置与命令.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/特殊配置与命令",
+  "title": "特殊配置与命令",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/特殊配置与命令",
+  "markdown": "构建命令 `pnpm build` 执行 `tsc -p tsconfig.build.json`；测试 `pnpm test` 执行 `vitest --run`；发布前 `prepublishOnly` 会先 clean 再 build。"
+}

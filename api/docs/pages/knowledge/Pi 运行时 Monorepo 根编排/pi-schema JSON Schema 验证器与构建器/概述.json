@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-schema JSON Schema 验证器与构建器/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-schema JSON Schema 验证器与构建器/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-schema JSON Schema 验证器与构建器/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-schema JSON Schema 验证器与构建器/概述",
+  "markdown": "实现 JSON Schema drafts 2020-12 与 draft 7 的无 eval 编译型验证器，提供类型安全的 schema 构建器、可选格式校验与宽松输入强制转换。"
+}

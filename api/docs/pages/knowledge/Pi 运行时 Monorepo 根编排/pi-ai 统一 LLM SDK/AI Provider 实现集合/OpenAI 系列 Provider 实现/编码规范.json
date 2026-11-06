@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenAI 系列 Provider 实现/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenAI 系列 Provider 实现/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenAI 系列 Provider 实现/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenAI 系列 Provider 实现/编码规范",
+  "markdown": "- Provider 通过调用 `createProvider` 工厂函数并以 `{ id, name, baseUrl, auth, models, api }` 对象字面量返回，区分官方 Responses API 与 legacy Codex 后端。\n- OAuth 认证统一使用 `lazyOAuth` 包装 `loadOpenAIChatGPTOAuth` / `loadOpenAICodexOAuth`，并标注 `isSubscription: true` 以表明订阅型凭证。\n- 模型清单集中放在独立的 `*.models.ts` 文件中，由 `catalog/generate.ts` 自动从 `data/*.json` 生成，禁止手动编辑。\n- HTTP 客户端通过 `../api/*.lazy.ts` 懒加载导入（如 `openAIResponsesApi`、`openAIDecisionsApi`），避免启动期冷路径开销。"
+}

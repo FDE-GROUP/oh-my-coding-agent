@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/发布、打包与质量门禁脚本集/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/发布、打包与质量门禁脚本集/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/发布、打包与质量门禁脚本集/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/发布、打包与质量门禁脚本集/编码规范",
+  "markdown": "- CLI 入口脚本统一以 `#!/usr/bin/env node` shebang 开头，并通过 `process.argv` 或 `node:util.parseArgs` 解析参数，错误时 `console.error` + `process.exit(1)`。\n- 对外暴露的函数返回结构化对象（如 `produceArtifactSet` 返回 `{ artifactDirectory, manifestPath, packages, getPackage }`），而非直接抛出异常，调用方负责校验返回值。\n- 对 `package.json` 的读取与解析集中在 `findPackageDirectories` / `getPublicWorkspacePackages` 等共享函数中，其他脚本通过相对路径 import 复用，避免重复遍历 `packages/`。\n- 子进程调用统一走 `execNpmSync`（Windows 下从 `npm_execpath` 解析）或直接 `execFileSync('bash', [...])`，不在脚本内硬编码 `npm` / `bun` 可执行路径。\n- 需要向后兼容的数据结构通过显式 `schemaVersion` 字段 + 解析器校验（如 `manifestSchemaVersion`、`MODEL_CATALOG_SCHEMA_VERSION`），旧格式拒绝并抛错。\n- 测试文件与源脚本同名并列并以 `.test.mjs` / `.test.ts` 后缀命名，便于通过文件名映射发现对应被测脚本。"
+}

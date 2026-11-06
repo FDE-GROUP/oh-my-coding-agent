@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/MCP 服务器配置与 Radius 集成/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/MCP 服务器配置与 Radius 集成/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/MCP 服务器配置与 Radius 集成/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/MCP 服务器配置与 Radius 集成/架构设计",
+  "markdown": "模块由三个文件组成清晰的职责分层：\n- `radius.ts` 提供常量与工具（`RADIUS_PROVIDER_ID`、`ENV_RADIUS_GATEWAY`、`RADIUS_MCP_URL`、`getRadiusGatewayUrl()`），仅依赖 `@earendil-works/pi-ai/providers/radius-config`，作为所有其他文件的常量源。\n- `mcp-servers.ts` 是核心层：在 `@earendil-works/pi-mcp` 的 `McpStdioServerConfig` / `McpHttpServerConfig` / `McpOAuthConfig` 之上叠加 pi 自有字段（`exposure`、`toolExposure`、`description`、`timeout`、`auth.provider`），通过 `validateMcpServerConfig` 完成别名解析、暴露策略校验与 HTTP auth 安全约束（非 loopback 必须 https）；同时导出 `McpServerRegistry` 类，供扩展通过 `pi.registerMcpServer()` 注册服务器并在变更时触发 `mcp_servers_change` 事件。\n- `radius-mcp.ts` 是适配层：读取全局 `mcp.json`（`loadMcpConfig`），比较现有 entry 的 URL 与 `auth.provider`，生成 `RadiusMcpServerPlan`（`mcpPath` + `name` + `config`），用于增量写入或更新以让 Radius MCP 使用指定 provider 登录。\n依赖方向单向：`radius-mcp.ts` → `radius.ts` + `mcp-servers.ts`，`mcp-servers.ts` 不反向引用 radius。"
+}

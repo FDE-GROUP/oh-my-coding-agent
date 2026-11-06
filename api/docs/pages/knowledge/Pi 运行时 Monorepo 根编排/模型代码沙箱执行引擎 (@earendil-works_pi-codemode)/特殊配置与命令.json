@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/模型代码沙箱执行引擎 (@earendil-works_pi-codemode)/特殊配置与命令.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/模型代码沙箱执行引擎 (@earendil-works_pi-codemode)/特殊配置与命令.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/模型代码沙箱执行引擎 (@earendil-works_pi-codemode)/特殊配置与命令",
+  "title": "特殊配置与命令",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/模型代码沙箱执行引擎 (@earendil-works_pi-codemode)/特殊配置与命令",
+  "markdown": "构建命令 `pnpm build` 调用 `tsc -p tsconfig.build.json`；测试 `pnpm test` 即 `vitest --run`；Cloudflare 示例位于 `examples/cloudflare/`，需分别部署 agent 与 sandbox 两个 Worker，本地调试用 `wrangler dev -c agent/wrangler.jsonc -c sandbox/wrangler.jsonc`。"
+}

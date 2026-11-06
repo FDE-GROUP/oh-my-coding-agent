@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台 CLI 启动器/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台 CLI 启动器/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台 CLI 启动器/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台 CLI 启动器/概述",
+  "markdown": "为 omfde 平台提供薄包装 CLI，根据参数在 Pi Web UI 或 Pi TUI 之间切换，并注入 OMFDE_PLATFORM 环境变量以区分平台化调用。"
+}

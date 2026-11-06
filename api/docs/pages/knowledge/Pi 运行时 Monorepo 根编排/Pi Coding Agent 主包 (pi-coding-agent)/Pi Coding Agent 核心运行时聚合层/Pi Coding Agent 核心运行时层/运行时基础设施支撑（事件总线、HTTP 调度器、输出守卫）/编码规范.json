@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/运行时基础设施支撑（事件总线、HTTP 调度器、输出守卫）/编码规范",
+  "markdown": "- 可配置的数值型参数统一提供 parse/format 双函数（如 `parseHttpIdleTimeoutMs` / `formatHttpIdleTimeoutMs`），并以 `*_CHOICES` 常量数组配合 label/timeoutMs 结构供外部 UI 消费。\n- 全局状态变更类 API（`takeOverStdout`、`configureHttpDispatcher`）采用幂等设计：内部维护 module-level 状态变量，重复调用直接返回或跳过，避免副作用叠加。\n- 异步 I/O 错误在边界处被捕获并降级处理：事件处理器 catch 后 `console.error`，stdout 写入遇到 ENOBUFS/EAGAIN/EWOULDBLOCK 则指数退避重试，undici dispatcher 的 error 事件通过空监听器静默忽略。"
+}

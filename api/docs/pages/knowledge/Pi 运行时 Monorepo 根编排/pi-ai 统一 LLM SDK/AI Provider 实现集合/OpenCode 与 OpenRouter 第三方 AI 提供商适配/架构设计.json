@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenCode 与 OpenRouter 第三方 AI 提供商适配/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenCode 与 OpenRouter 第三方 AI 提供商适配/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenCode 与 OpenRouter 第三方 AI 提供商适配/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenCode 与 OpenRouter 第三方 AI 提供商适配/架构设计",
+  "markdown": "本模块由三个文件组成两层结构：\n- 适配层（`opencode.ts`、`openrouter.ts`）：通过 `createProvider` 构造 `Provider` 对象，将上游的 `anthropic-messages`、`openai-completions`、`openai-responses`、`google-generative-ai`、`openrouter-images`、`typesafe-system-one` 等 API 适配器注册到各自的 `api`/`images`/`classifiers` 映射中。\n- 协议层（`openrouter-api.ts`）：纯类型与工具函数，定义 OpenRouter `/models` 响应结构 (`OpenRouterModel`、`OpenRouterPricing`) 并提供 `openRouterCost` 把 $/token 价格转换为 pi 内部的 `$/1M tokens` 成本模型。\n\n依赖方向单向向外：provider 实现 → `../api/*` 中的具体协议适配器 + `../auth/helpers.ts` 的认证辅助 + `./opencode.models.ts` / `./openrouter.models.ts` 的模型常量；`openrouter-api.ts` 仅依赖 `../types.ts`，被 `openrouter.ts` 反向引用以在 `personalizeOpenRouterCatalog` 中解析 `GET /models/user` 返回的定价数据。\n\n关键边界：\n- OpenCode 通过 `withOpenCodeSessionHeader` 包装所有 API 适配器以注入会话头，自身不直接调用 HTTP。\n- OpenRouter 额外暴露 `personalizeOpenRouterCatalog` 作为 `RefreshModelsContext` 钩子，按 key 权限裁剪 chat 模型目录并回填 contextWindow/maxTokens/cost。\n- 两者均声明 `typesafe-system-one` classifier，分别指向各自网关上的 System One 端点路径。"
+}

@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/特殊配置与命令.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/特殊配置与命令.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/特殊配置与命令",
+  "title": "特殊配置与命令",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/特殊配置与命令",
+  "markdown": "`pnpm run generate-models` 触发 `catalog/generate.ts --strict` 重建模型目录；`pnpm run build:offline` 先校验模型数据、编译 TypeScript，再复制 `src/providers/data` 到 `dist/providers/data`；`pnpm run hydrate-model-data` 仅生成 JSON 元数据；`pnpm run check:model-data` 校验已生成数据。"
+}

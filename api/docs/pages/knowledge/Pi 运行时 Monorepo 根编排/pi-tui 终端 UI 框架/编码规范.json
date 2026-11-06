@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/编码规范",
+  "markdown": "- 组件类实现 `Component` 接口并提供 `render(width)`、可选 `handleInput`/`handleMouse` 与 `invalidate()`，容器组件在 `handleMouse` 中调用 `dispatchMouseEvent` 将事件转发给子组件。\n- 可聚焦组件实现 `Focusable` 接口并在渲染输出中插入 `CURSOR_MARKER`（APC 零宽序列），由 TUI 定位硬件光标用于 IME 候选窗口。\n- 渲染结果缓存通过私有 `cache` 字段 + `invalidateCache`/`invalidate` 失效机制实现，变更 children/padding/bgFn 时清空缓存以保证差分比较高效。\n- 原生模块加载统一走 `getNativePlatformHelper` / `getNativeClipboard`，通过 `createRequire` 动态 require `.node` 并按 `process.platform`+`process.arch` 选择路径，失败返回 `undefined` 而非抛错。\n- 公共 API 从 `src/index.ts` 集中 re-export，按功能域（colors、components、keybindings、keys、terminal-image 等）分组注释划分。"
+}

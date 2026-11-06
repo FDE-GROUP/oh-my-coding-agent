@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI SDK 共享工具集/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI SDK 共享工具集/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI SDK 共享工具集/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI SDK 共享工具集/架构设计",
+  "markdown": "本模块是纯函数/类形式的工具库，按职责拆分为若干独立文件，彼此之间仅通过类型（../types.ts）和少量内部工具互相引用，无框架依赖：\n- 重试层：retry.ts 面向 AssistantMessage 的语义级重试（基于正则匹配可重试/不可重试错误），provider-retry.ts 面向底层 HTTP 请求的重试（遵循 OpenAI/Anthropic SDK 策略，支持 retry-after / x-should-retry 头）。\n- 流式数据：event-stream.ts 提供通用的 EventStream<T,R> 异步迭代器及 AssistantMessageEventStream；streaming-json.ts 提供 StreamingJsonParser 增量解析与 ToolCallArgumentsStream 增量参数聚合；json-parse.ts 提供 repairJson / parseStreamingJson / parseToolCallArguments。\n- 模型操作：model-operations.ts 提供 isModelType / assert* 断言与 imageErrorResult / classifierErrorResult 构造器，统一使用 models-error.ts 抛出的 ModelsError。\n- 运行时环境：provider-env.ts 在 process.env 为空时回退到 Bun sandbox 的 /proc/self/environ；node-http-proxy.ts 基于 getProviderEnvValue 解析 http_proxy / https_proxy / all_proxy / no_proxy。\n- 辅助设施：abort-signals.ts / abort.ts / sleep.ts 提供可中断睡眠；oauth-page.ts 生成内嵌 SVG logo 的 OAuth 成功/失败 HTML；hash.ts / uuid.ts / version.ts / identity.ts / text.ts / overflow.ts / sanitize-unicode.ts / diagnostics.ts / error-body.ts / headers.ts / string-enum.ts / validation.ts / transcript.ts / openrouter-cost.ts 等提供字符串、校验、诊断、OpenRouter 计费计算等零依赖小工具。\n依赖方向单向指向 ../types.ts，不反向被 provider 实现以外的代码直接依赖，作为 SDK 内部的横切能力层。"
+}

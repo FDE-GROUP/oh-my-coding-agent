@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/编码规范",
+  "markdown": "- 所有跨模块共享的类型定义集中在 core_runtime 并通过 index.ts 统一 re-export，其他子模块不重复声明同名类型。\n- 扩展实现遵循 ExtensionFactory 接口并注册到 core_runtime 的 extensions 系统，而非直接耦合调用方。\n- CLI 子命令通过 args.ts 中的 minimist 风格参数解析后路由到独立 handler 文件，保持入口与业务逻辑分离。\n- 运行时能力按职责拆分为 src/core/* 下的单一功能模块，并由 src/core/index.ts 聚合导出。"
+}

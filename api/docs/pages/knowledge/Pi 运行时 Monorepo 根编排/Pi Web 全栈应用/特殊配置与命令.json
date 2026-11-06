@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/特殊配置与命令.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/特殊配置与命令.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/特殊配置与命令",
+  "title": "特殊配置与命令",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/特殊配置与命令",
+  "markdown": "`pnpm dev` 启动 Vite 开发服务器（端口 3210），`pnpm build` 产出 `dist/client` 与 `dist/server`，`pnpm start` 运行 `server.mjs` 生产入口；`pnpm tokens` / `pnpm token` / `pnpm import-sessions` 提供令牌生成与会话导入脚本。"
+}

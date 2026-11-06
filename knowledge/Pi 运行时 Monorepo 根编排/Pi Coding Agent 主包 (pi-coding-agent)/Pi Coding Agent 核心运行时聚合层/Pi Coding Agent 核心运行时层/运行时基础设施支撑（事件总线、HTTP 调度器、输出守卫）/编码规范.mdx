@@ -1,0 +1,3 @@
+- 可配置的数值型参数统一提供 parse/format 双函数（如 `parseHttpIdleTimeoutMs` / `formatHttpIdleTimeoutMs`），并以 `*_CHOICES` 常量数组配合 label/timeoutMs 结构供外部 UI 消费。
+- 全局状态变更类 API（`takeOverStdout`、`configureHttpDispatcher`）采用幂等设计：内部维护 module-level 状态变量，重复调用直接返回或跳过，避免副作用叠加。
+- 异步 I/O 错误在边界处被捕获并降级处理：事件处理器 catch 后 `console.error`，stdout 写入遇到 ENOBUFS/EAGAIN/EWOULDBLOCK 则指数退避重试，undici dispatcher 的 error 事件通过空监听器静默忽略。

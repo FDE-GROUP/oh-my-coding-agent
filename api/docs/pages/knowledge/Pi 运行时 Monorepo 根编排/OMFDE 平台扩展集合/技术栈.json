@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台扩展集合/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台扩展集合/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台扩展集合/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台扩展集合/技术栈",
+  "markdown": "TypeScript + ESM（`\"type\": \"module\"`），基于 `@earendil-works/pi-coding-agent` 1.5.0 提供的 `ExtensionAPI` 进行扩展开发。"
+}

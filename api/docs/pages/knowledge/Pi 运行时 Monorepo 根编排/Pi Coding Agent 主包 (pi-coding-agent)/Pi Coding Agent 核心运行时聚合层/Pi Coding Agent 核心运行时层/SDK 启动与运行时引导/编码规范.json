@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/SDK 启动与运行时引导/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/SDK 启动与运行时引导/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/SDK 启动与运行时引导/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/SDK 启动与运行时引导/编码规范",
+  "markdown": "- 对外 API 以工厂函数形式暴露（如 createAgentSession），并通过 Options/Result 接口对象传递可选参数与返回值，便于扩展字段而不破坏调用方。\n- 可替换的子系统（ModelRuntime、SettingsManager、SessionManager、ResourceLoader）优先从 options 注入，未提供时再在工厂内部 new 默认实现，保持测试可插拔。\n- 对 Provider 的请求生命周期通过 onPayload/onResponse/onProviderStreamEvent 回调钩入 ExtensionRunner 事件总线，而非直接耦合扩展逻辑。\n- 工作目录与会话元数据校验采用「issue 对象 + 专用 Error 类 + format* 辅助函数」的组合模式，便于上层统一呈现诊断信息。"
+}

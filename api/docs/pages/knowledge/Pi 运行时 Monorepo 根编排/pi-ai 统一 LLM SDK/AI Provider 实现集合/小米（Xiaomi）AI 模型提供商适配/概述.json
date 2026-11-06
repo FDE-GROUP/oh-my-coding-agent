@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/小米（Xiaomi）AI 模型提供商适配/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/小米（Xiaomi）AI 模型提供商适配/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/小米（Xiaomi）AI 模型提供商适配/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/小米（Xiaomi）AI 模型提供商适配/概述",
+  "markdown": "为小米 Mimo 平台提供三个 Provider 实现：通用 xiaomi、中国区 token-plan-cn 与海外区 token-plan-ams，均复用 OpenAI Completions API。"
+}

@@ -1,0 +1,6 @@
+- 跨平台差异通过 `process.platform === 'win32'` 分支处理，并在注释中标注对应 issue 编号以便追溯。
+- 对外部命令调用统一包裹 try/catch 并以 `spawnSync` 或自定义 `runClipboardCommand` 获取 stderr/stdout 错误信息，失败时返回 null 而非抛错。
+- 需要长时间运行的 CPU 密集操作（如图像缩放）放在 `node:worker_threads` 中执行，主线程仅负责 postMessage 与超时兜底。
+- 可配置的外部工具以 Record 常量（如 `TOOLS`、`TERMUX_PACKAGES`）集中声明 name/repo/binaryName/tagPrefix/getAssetName，新增工具只需追加一条配置。
+- 面向用户的错误消息采用多行字符串拼接，列出可选解决方案（如 shell 未找到时的 Git Bash 安装指引）。
+- 对 Node 自身可能投递的 worker 通道消息（如 `watch:require`）通过显式的 type 标记（`IMAGE_RESIZE_WORKER_RESPONSE_TYPE`）进行过滤识别。

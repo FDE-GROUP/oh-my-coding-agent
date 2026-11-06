@@ -1,0 +1,7 @@
+包以 `src/index.ts` 为无副作用核心入口（仅导出类型、models、auth context、faux provider 与 utils），真正的运行时副作用通过子路径按需加载：
+- `catalog/` 在构建期从 models.dev / OpenRouter / Vercel AI Gateway 等上游拉取元数据，按 family 规则合并后生成 `src/providers/data/*.json` 与 `src/models.generated.ts`，供运行时 `model-catalog.ts` 消费。
+- `src/api/` 提供各厂商协议适配器（Anthropic Messages、OpenAI Completions/Responses/Codex、Google Gemini/Vertex、Bedrock Converse、Cloudflare Workers AI、Mistral、Llama.cpp、OpenRouter、Pi、System One 等），被上层 `providers/*` 复用。
+- `src/providers/*` 每个厂商一个目录（含 `<name>.ts` + `<name>.models.ts` + `data/<name>.json`），通过 `all.ts` 汇总并注册到共享的 Models 目录；`images/register-builtins.ts` 作为 sideEffect 自动注入图像模型。
+- `src/auth/` 提供 API Key 解析、OAuth 设备码/回调服务器/凭据存储，被各 provider 通过 `resolve.ts` 统一获取凭据。
+- `src/utils/` 是跨 provider 的重试、流式 JSON、事件流、代理、诊断等基础设施。
+- `package.json` 通过 `exports` 将 `.`、`./models`、`./compat`、`./providers/*`、`./api/*`、`./utils/*`、`./oauth`、`./bedrock-provider`、`./lazy-*` 分别暴露给消费者，CLI 由 `dist/cli.js` 提供。

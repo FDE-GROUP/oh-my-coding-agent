@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent JSON Schema 定义集/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent JSON Schema 定义集/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent JSON Schema 定义集/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent JSON Schema 定义集/编码规范",
+  "markdown": "- 每个 schema 文件顶部声明 `$schema`、`$id`（以 https://pi.dev/schemas/ 为命名空间）以及提示“由 TypeScript 源码生成”的 $comment。\n- 可选字段通过 anyOf 同时声明基础类型与 const 字面量枚举值，并附带 description 说明各取值含义。\n- 重复出现的复杂结构（如 ModelThinkingLevel、ModelCost、ColorValue、KeybindingValue）集中放在文件末尾的 $defs 中，通过 $ref 引用。\n- 需要按任意键名索引的对象属性统一使用 patternProperties: {\"^.*$\": ...} 表达动态键。\n- 废弃字段保留但添加 deprecated: true，并在 description 中标明迁移目标（如 queueMode→steeringMode、websockets→transport）。"
+}

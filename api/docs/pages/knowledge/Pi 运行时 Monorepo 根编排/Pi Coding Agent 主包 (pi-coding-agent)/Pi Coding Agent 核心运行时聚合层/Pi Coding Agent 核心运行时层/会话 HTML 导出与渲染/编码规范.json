@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/会话 HTML 导出与渲染/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/会话 HTML 导出与渲染/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/会话 HTML 导出与渲染/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/会话 HTML 导出与渲染/编码规范",
+  "markdown": "- 对外暴露的渲染器（如 ToolHtmlRenderer）采用接口 + createXxxFactory(deps) 工厂模式，依赖通过对象注入而非全局单例。\n- 模板渲染统一通过 readFileSync 加载 template.* 与 vendor/* 资源，并用字符串 replace 替换 `{{PLACEHOLDER}}` 占位符完成注入。\n- 会话数据在写入前经 JSON.stringify + Buffer.toString('base64') 编码，避免 HTML 中转义问题，并在浏览器端直接反序列化。\n- 可选渲染路径（如工具自定义渲染）返回 undefined 时调用方回退到结构化结果渲染，错误被 try/catch 吞掉以保证导出鲁棒性。"
+}

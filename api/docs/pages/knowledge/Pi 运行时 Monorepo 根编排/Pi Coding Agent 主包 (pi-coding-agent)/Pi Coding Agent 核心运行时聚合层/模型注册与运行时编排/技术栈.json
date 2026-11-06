@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/模型注册与运行时编排/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/模型注册与运行时编排/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/模型注册与运行时编排/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/模型注册与运行时编排/技术栈",
+  "markdown": "基于 `@earendil-works/pi-ai` 的 Provider/Model 抽象；使用 `minimatch` 进行 glob 模式匹配；远程目录拉取走 `fetchWithRetry` 并带 `REMOTE_CATALOG_ATTEMPT_TIMEOUT_MS=4000ms` 超时与 4 小时刷新周期；Radius 集成通过 `@earendil-works/pi-mcp` 命名空间管理 mcp.json。"
+}

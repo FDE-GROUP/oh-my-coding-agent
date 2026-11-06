@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Bun 沙箱运行时入口/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Bun 沙箱运行时入口/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Bun 沙箱运行时入口/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Bun 沙箱运行时入口/编码规范",
+  "markdown": "- 入口文件采用纯副作用 import 链式编排：先加载环境修复与运行时初始化，再加载业务 CLI，确保副作用按严格顺序执行。\n- 针对 Bun 沙箱缺陷的修复函数以 try/catch 包裹 `/proc/self/environ` 读取，失败时静默降级而不抛出异常。"
+}

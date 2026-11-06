@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/技术栈",
+  "markdown": "Node.js + TypeScript；测试框架未显式导入（由上层 vitest/jest 配置驱动）；MCP 一致性测试依赖 `@modelcontextprotocol/conformance@0.2.0-alpha.11`，通过 `npx` 动态安装并禁用 install scripts (`npm_config_ignore_scripts=true`)。"
+}

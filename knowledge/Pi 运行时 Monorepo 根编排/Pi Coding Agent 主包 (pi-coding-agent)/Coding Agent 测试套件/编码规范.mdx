@@ -1,0 +1,5 @@
+- 新 suite 测试通过 `suite/harness.ts` 的 `createHarness()` 创建 `Harness`，使用 `fauxProvider.setResponses()` 声明式编排模型响应，避免真实网络调用。
+- 回归用例统一放在 `suite/regressions/` 下，文件名以对应 GitHub issue 编号前缀（如 `7911-json-stream-usage.test.ts`）。
+- 每个被测子系统在根目录或 `session-manager/` 下拥有独立的 `*.test.ts` 文件，一个文件聚焦单一职责（如 `save-entry.test.ts`、`labels.test.ts`）。
+- 测试夹具集中在 `fixtures/` 下，SKILL 相关用例使用 `fixtures/skills/<capability>/SKILL.md` 结构组织，便于按特性分组。
+- MCP 一致性测试结果与 `mcp-conformance/baseline.json` 比对，新增失败需显式更新基线而非静默忽略。

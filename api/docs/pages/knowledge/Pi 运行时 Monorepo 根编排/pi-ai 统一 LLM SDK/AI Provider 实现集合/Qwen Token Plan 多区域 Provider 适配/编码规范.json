@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Qwen Token Plan 多区域 Provider 适配/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Qwen Token Plan 多区域 Provider 适配/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Qwen Token Plan 多区域 Provider 适配/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Qwen Token Plan 多区域 Provider 适配/编码规范",
+  "markdown": "- 每个 Provider 以同名工厂函数导出，返回 `createProvider` 构造的 `Provider<'openai-completions'>`，并在对象字面量中集中声明 id、name、baseUrl、auth、models、api 六个字段。\n- 鉴权统一通过 `envApiKeyAuth(prompt, envNames)` 包装，将用户提示与环境变量名数组传入，避免直接暴露密钥字符串。\n- 模型列表通过 `Object.values(QWEN_..._MODELS)` 从独立 `.models.ts` 文件解构导入，Provider 实现与模型元数据分离。"
+}

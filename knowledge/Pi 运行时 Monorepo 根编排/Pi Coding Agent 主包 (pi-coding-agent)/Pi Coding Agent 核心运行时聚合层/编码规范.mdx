@@ -1,0 +1,4 @@
+- 对外 API 通过 src/core/index.ts 集中 re-export，子模块内部路径不直接暴露给上层消费者。
+- 配置类模块（settings、models、keybindings、theme）均配套 schemas/*.schema.json，运行时使用 ajv 校验用户配置。
+- 可扩展点（工具、命令、快捷键、UI 上下文）以 ExtensionAPI 类型契约定义，由 extensions_system 分发，内置实现位于 tools/ 与对应 renderer 目录。
+- 异步事件通过 event-bus.ts 的 EventBus 发布订阅，而非直接回调，便于扩展与测试。

@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: agent_package
-title: Pi Agent Core（通用 AI Agent 运行时）
-scope:
-    - packages/agent/
-source_files: []
-depends_on: []
-related_to:
-    - path: coding_agent

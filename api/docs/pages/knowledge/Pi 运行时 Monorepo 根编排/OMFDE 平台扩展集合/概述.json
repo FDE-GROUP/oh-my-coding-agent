@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台扩展集合/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台扩展集合/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台扩展集合/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台扩展集合/概述",
+  "markdown": "存放 OMFDE 平台级 Pi 扩展，通过 ExtensionAPI 以插件形式接入 Pi 内核能力而不修改内核。"
+}

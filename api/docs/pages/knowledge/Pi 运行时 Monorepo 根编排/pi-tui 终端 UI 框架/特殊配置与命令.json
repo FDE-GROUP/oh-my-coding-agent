@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/特殊配置与命令.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/特殊配置与命令.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/特殊配置与命令",
+  "title": "特殊配置与命令",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/特殊配置与命令",
+  "markdown": "构建命令：`pnpm run build`（tsc -p tsconfig.build.json）；原生模块需按平台执行 `pnpm run build:native:darwin` / `build:native:linux` / `build:native:win32`；Linux 构建要求本机 Linux + C 编译器（默认 `$CC`），且仅支持 x64/arm64；测试通过 `pnpm test`（Node --test 并行运行 `test/*.test.ts`）。"
+}

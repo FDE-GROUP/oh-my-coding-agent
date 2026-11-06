@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/特殊配置与命令.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/特殊配置与命令.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/特殊配置与命令",
+  "title": "特殊配置与命令",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/特殊配置与命令",
+  "markdown": "运行 MCP 一致性测试：`npm run test:mcp-conformance`，首次需要网络访问以拉取 conformance 套件；更新基线：`node packages/coding-agent/test/mcp-conformance/run.ts --update-baseline`；按子集运行：`--mode 2025-11-25 --scenario auth/scope-step-up --verbose`。"
+}

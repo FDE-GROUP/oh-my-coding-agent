@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/内置工具与渲染器集合/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/内置工具与渲染器集合/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/内置工具与渲染器集合/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/内置工具与渲染器集合/架构设计",
+  "markdown": "模块按职责分为三层：\n- 工具实现层（`bash.ts`、`powershell.ts`、`read.ts`、`write.ts`、`edit.ts`、`find.ts`、`grep.ts`、`ls.ts`）：每个文件导出 `createXxxTool` / `createXxxToolDefinition` 一对工厂，以及对应的 `XxxOperations`、`XxxToolOptions`、`XxxToolInput`、`XxxToolDetails` 类型，统一通过 `tool-definition-wrapper.ts` 的 `wrapToolDefinition` 把 `ToolDefinition` 适配为 `AgentTool`。\n- 装配层（`index.ts`）：集中导出所有工具，并通过 `ToolName` 字面量联合 + `switch` 分发暴露 `createTool` / `createToolDefinition` / `createAllTools` / `createCodingTools` / `createReadOnlyTools` / `createAllToolDefinitions` 等工厂，同时区分「可写工具集」和「只读工具集」两套组合。\n- 渲染层（`renderers/`）：独立于执行逻辑，仅导出 `ToolRenderers`（`renderCall` / `renderResult`），由 `renderers/index.ts` 的 `createAllToolRenderers` 聚合，并提供 `withBuiltInRenderers` 让外部定义在缺失时回退到内置渲染器；该子目录刻意避免导入工具实现以减小渲染进程的模块图体积。\n\n共享基础设施位于同级：`file-mutation-queue.ts` 基于 `Map<string, Promise<void>>` 对同一真实路径的文件写入做串行化；`output-accumulator.ts` 用流式 UTF-8 解码 + 尾缓存 + 临时文件策略限制内存并产出截断快照；`truncate.ts`、`path-utils.ts`、`render-utils.ts` 提供截断、路径格式化、ANSI 清理、超链接、计时器等通用渲染辅助。依赖方向单向：工具实现 → 共享基础设施 → 渲染层；`index.ts` 不反向依赖 `renderers/`。"
+}

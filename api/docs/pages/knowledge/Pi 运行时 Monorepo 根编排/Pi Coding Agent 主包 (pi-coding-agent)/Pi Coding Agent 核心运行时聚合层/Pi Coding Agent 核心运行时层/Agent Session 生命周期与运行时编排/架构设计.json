@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/Agent Session 生命周期与运行时编排/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/Agent Session 生命周期与运行时编排/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/Agent Session 生命周期与运行时编排/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/Agent Session 生命周期与运行时编排/架构设计",
+  "markdown": "本模块由三层组成，依赖方向自上而下：\n- `agent-session.ts`：导出 `AgentSession` 类及其事件类型（`AgentSessionEvent`）、配置（`AgentSessionConfig`）和工具注册表等。它订阅底层 `Agent` 的生命周期钩子（`beforeToolCall` / `afterToolCall` / `prepareRequest` / `finishTurn` / `prepareNextTurnWithContext`），把工具调用、上下文投影、自动压缩、重试、分支摘要、扩展边界等横切逻辑注入到 agent 运行中，是跨交互/print/rpc 三种模式共享的核心抽象。\n- `agent-session-services.ts`：提供 cwd 绑定的基础设施——`ModelRuntime`、`SettingsManager`、`DefaultResourceLoader`、扩展 flag 解析与诊断收集，暴露 `createAgentSessionServices` 与 `createAgentSessionFromServices`，将“服务创建”和“会话创建”解耦，使模型/工具选项能在 cwd 变化后重新解析。\n- `agent-session-runtime.ts`：`AgentSessionRuntime` 持有当前 `AgentSession` + `AgentSessionServices`，通过闭包保存 `CreateAgentSessionRuntimeFactory`，对外暴露 `newSession` / `switchSession` / `fork` / `importFromJsonl` / `dispose`，统一执行 `session_before_switch`、`session_shutdown` 扩展钩子并在失败时回滚；顶层 `createAgentSessionRuntime` 是入口工厂。\n依赖方向严格单向：runtime → services → session；services 不引用 runtime，session 不反向引用 runtime 编排层。"
+}

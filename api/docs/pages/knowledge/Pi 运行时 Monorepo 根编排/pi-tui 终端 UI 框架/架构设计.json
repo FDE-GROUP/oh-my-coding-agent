@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-tui 终端 UI 框架/架构设计",
+  "markdown": "模块以 `src/index.ts` 为统一导出入口，内部按职责分层：\n- 核心运行时：`tui.ts` 定义 `Component` / `Focusable` 接口、`dispatchMouseEvent` 事件分发、`TuiMainScreen` / `TuiAltScreen` 主屏与备用屏管理、OSC 调色板探测与光标定位；`terminal.ts`、`terminal-colors.ts`、`terminal-image.ts` 封装 xterm 能力检测、ANSI 颜色与 Kitty/iTerm2 图像协议。\n- 组件层：`src/components/` 下每个文件实现一个 `Component`（Box、Stack/HStack/VStack、ScrollView、Editor、Input、SelectList、SettingsList、Image、Markdown、Loader、Text、TruncatedText、Spacer、MouseRegion、CancellableLoader），通过容器组合布局并转发 mouse/input 事件。\n- 输入与交互：`keys.ts` / `keybindings.ts` 解析 Kitty 协议键码、维护全局 `KeybindingsManager`；`stdin-buffer.ts` 做批量输入拆分；`fuzzy.ts`、`autocomplete.ts`、`word-navigation.ts`、`kill-ring.ts`、`undo-stack.ts`、`wheel-scroll.ts` 提供辅助能力。\n- 原生扩展：`native-platform.ts` 通过 `createRequire` 动态加载 `native/<platform>/prebuilds/*.node`（darwin/win32 使用 Objective-C/C，linux 使用 X11 C 代码），暴露 `NativeClipboard`（getText/getImage/getFilePaths/setText）和修饰键查询；构建脚本位于 `native/{darwin,linux,win32}/build.*`，分别产出对应架构的预编译 `.node` 二进制。\n- 依赖方向：components → tui.ts → terminal/image/colors/utils；原生层仅由 `native-platform.ts` 单向引入，对上层透明；测试位于 `test/`，使用 Node 内置 `--test` 运行。"
+}

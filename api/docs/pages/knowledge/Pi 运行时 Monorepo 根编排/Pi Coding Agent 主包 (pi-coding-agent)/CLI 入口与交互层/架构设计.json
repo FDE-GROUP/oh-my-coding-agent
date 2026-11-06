@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/CLI 入口与交互层/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/CLI 入口与交互层/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/CLI 入口与交互层/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/CLI 入口与交互层/架构设计",
+  "markdown": "本模块是 `packages/coding-agent` 的 CLI 门面，按职责拆分为若干独立文件：\n- 参数解析：`args.ts` 定义 `Args` 类型与 `parseArgs()`，集中处理所有 `--flag`/短选项、`@file` 位置参数、未知扩展标志（`unknownFlags` Map）和诊断信息；`printHelp()` 生成帮助文本。\n- 子命令路由：`auth-command.ts` 将 `pi auth <check|print-api-key|print-bearer-token>` 解析为带 `kind` 的 `AuthCommand`，并由 `auth-login.ts` / `auth-logout.ts` / `auth-check.ts` / `credential-print.ts` 分别实现具体逻辑，通过 `AuthCommandError` 统一报错。\n- TUI 启动与引导：`startup-ui.ts` 封装 `createStartupTui` / `showStartupSelector` / `showFirstTimeSetup` / `showStartupInput`，基于 `@earendil-works/pi-tui` 的 `TuiMainScreen` + `ProcessTerminal` 渲染首次设置、主题选择与输入框；`config-selector.ts` 复用同一模式实现 `pi config` 交互式配置器。\n- 初始化钩子：`setup.ts` 暴露 `setupCli()`，在进程启动时设置 `process.title`、注入环境变量并调用 `configureHttpDispatcher`。\n- 辅助工具：`file-processor.ts` 把 `@path` 参数读入为 `<file>` 文本或 `ImageContent` 附件；`initial-message.ts`、`session_picker.ts`、`project-trust.ts`、`list-models.ts`、`auth-terminal.ts` 各自封装一个面向上层的交互/查询函数。\n依赖方向单向向下：本层仅消费 `../core/*`（SettingsManager、PackageManager、KeybindingsManager、http-dispatcher）、`../modes/interactive/components/*`（TUI 组件）和 `../utils/*`，不反向被 core 依赖。"
+}

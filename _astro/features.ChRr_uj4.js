@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["_astro/mermaid-element.CWtRaQnd.js","_astro/preload-helper.C_RAhBqc.js"])))=>i.map(i=>d[i]);
+import{n as e}from"./rolldown-runtime.COiEfhsA.js";import{t}from"./preload-helper.C_RAhBqc.js";var n=e({loadEpub:()=>null}),r=()=>t(()=>import(`./mermaid-element.CWtRaQnd.js`),__vite__mapDeps([0,1]));export{r as n,n as t};

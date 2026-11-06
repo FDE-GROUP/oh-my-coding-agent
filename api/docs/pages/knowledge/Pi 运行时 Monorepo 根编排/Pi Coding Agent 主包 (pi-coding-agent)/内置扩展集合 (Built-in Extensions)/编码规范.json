@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/编码规范",
+  "markdown": "- 每个扩展目录提供 `index.ts` 暴露 `createXxxExtension(options)` 工厂函数，并默认导出一个无参实例作为 CLI 直接使用的内置扩展。\n- 扩展在 `builtInExtensions` 中声明时，对可能被第三方替换的能力（`codemode`、`tool-search`、`mcp`）设置 `replaceable: true`，而 `llama.cpp` 保持不可替换。\n- 需要用户交互的扩展通过 `ctx.ui` 提供的 `notify`/`select`/`menu`/`confirm` 等 TUI 方法完成输入，错误信息统一经 `errorMessage`/`connectionErrorMessage` 等辅助函数格式化后上报。\n- 异步后台任务（连接建立、OAuth 流程、配置保存）通过 `track` 或 `AbortController` 绑定会话生命周期，确保 session 结束时清理未完成的工作。\n- 工具注册统一调用 `pi.registerTool({ ...definition, defaultActive: false })`，将内置工具默认设为非活跃状态，由 MCP/codemode/tool_search 之间按需激活。"
+}

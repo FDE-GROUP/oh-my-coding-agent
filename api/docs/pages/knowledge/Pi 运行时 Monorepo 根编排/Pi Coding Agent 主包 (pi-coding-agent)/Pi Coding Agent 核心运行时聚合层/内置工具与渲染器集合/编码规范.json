@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/内置工具与渲染器集合/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/内置工具与渲染器集合/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/内置工具与渲染器集合/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/内置工具与渲染器集合/编码规范",
+  "markdown": "- 每个工具文件成对导出 `createXxxTool` 与 `createXxxToolDefinition`，并配套 `XxxOperations` / `XxxToolOptions` / `XxxToolInput` / `XxxToolDetails` 类型族，便于分别实例化工具与生成定义。\n- 新增工具需在 `index.ts` 的 `ToolName` 字面量联合、`allToolNames` Set、`createTool` / `createToolDefinition` switch、`createAllTools` / `createAllToolDefinitions` 对象字面量中同步注册。\n- 工具实现通过 `wrapToolDefinition` 从 `ToolDefinition` 适配为 `AgentTool`，将上下文注入作为可选第五参数传入，保持核心运行时与扩展定义的解耦。\n- 渲染器单独放在 `renderers/` 子目录，仅导出 `ToolRenderers` 而不引用工具执行逻辑，以便纯展示进程按需引入。\n- 对外暴露的工具选项采用可选属性 + 默认值模式（如 `maxLines`、`maxBytes`、`tempFilePrefix`），并在 `OutputAccumulator` 等组件中以 `options.x ?? DEFAULT_X` 形式合并。\n- 文件写入操作通过 `withFileMutationQueue` 包裹，按解析后的真实路径键序列化并发，不同文件仍并行执行。"
+}

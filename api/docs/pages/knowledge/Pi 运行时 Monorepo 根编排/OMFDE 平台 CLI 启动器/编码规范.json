@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台 CLI 启动器/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台 CLI 启动器/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台 CLI 启动器/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台 CLI 启动器/编码规范",
+  "markdown": "- CLI 入口采用 ESM 脚本并通过 package.json 的 `bin` 字段暴露，而非 CommonJS require。\n- 二进制路径解析优先使用本地 `node_modules/.bin` 下的链接版本，再回退到全局 PATH，以兼容 workspace 开发模式。\n- 子进程生命周期通过统一的 `exitWithChild` 处理，转发 exit code、signal 并将 SIGINT/SIGTERM 透传给子进程。\n- 环境变量注入采用 `{ ...process.env, KEY: value }` 的合并方式，保留父进程环境的同时追加平台标识。"
+}

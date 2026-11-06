@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Coding Agent 测试套件/编码规范",
+  "markdown": "- 新 suite 测试通过 `suite/harness.ts` 的 `createHarness()` 创建 `Harness`，使用 `fauxProvider.setResponses()` 声明式编排模型响应，避免真实网络调用。\n- 回归用例统一放在 `suite/regressions/` 下，文件名以对应 GitHub issue 编号前缀（如 `7911-json-stream-usage.test.ts`）。\n- 每个被测子系统在根目录或 `session-manager/` 下拥有独立的 `*.test.ts` 文件，一个文件聚焦单一职责（如 `save-entry.test.ts`、`labels.test.ts`）。\n- 测试夹具集中在 `fixtures/` 下，SKILL 相关用例使用 `fixtures/skills/<capability>/SKILL.md` 结构组织，便于按特性分组。\n- MCP 一致性测试结果与 `mcp-conformance/baseline.json` 比对，新增失败需显式更新基线而非静默忽略。"
+}

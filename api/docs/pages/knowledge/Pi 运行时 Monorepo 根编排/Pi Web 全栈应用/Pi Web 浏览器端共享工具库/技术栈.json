@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 浏览器端共享工具库/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 浏览器端共享工具库/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 浏览器端共享工具库/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 浏览器端共享工具库/技术栈",
+  "markdown": "浏览器原生 Fetch / EventSource / Canvas / createImageBitmap；React hooks（useState/useEffect）；localStorage 持久化主题偏好。"
+}

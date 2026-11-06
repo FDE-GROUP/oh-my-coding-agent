@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Qwen Token Plan 多区域 Provider 适配/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Qwen Token Plan 多区域 Provider 适配/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Qwen Token Plan 多区域 Provider 适配/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Qwen Token Plan 多区域 Provider 适配/架构设计",
+  "markdown": "本模块由三个并列的 Provider 工厂函数组成：`qwenTokenPlanProvider`（国际站 ap-southeast-1）、`qwenTokenPlanCnProvider`（中国站 cn-beijing）、`qwenTokenPlanIndividualProvider`（个人版 ap-southeast-1）。三者结构完全一致，均通过 `createProvider` 注册一个 `Provider<'openai-completions'>`，复用同一套基础设施：`openAICompletionsApi()` 作为 HTTP 客户端、`envApiKeyAuth` 从环境变量读取 API Key、各自独立的 models 定义文件（`qwen-token-plan.models.ts` / `cn.models.ts` / `individual.models.ts`）。依赖方向单向向外：仅依赖 `../api/openai-completions.lazy.ts`、`../auth/helpers.ts` 与 `../models.ts`，不互相引用，便于按部署区域独立启用。"
+}

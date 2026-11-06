@@ -1,0 +1,5 @@
+- 组件以函数式组件导出，props 通过独立 interface 声明（如 `AppFrameProps`、`ConversationProps`、`ButtonProps`）。
+- 异步副作用统一采用 `let cancelled = false; ... return () => { cancelled = true; }` 模式在 useEffect 中清理竞态。
+- 错误处理通过 try/catch 捕获后调用统一的 `errorText` 辅助函数转换为字符串，再写入 `setError` 状态。
+- UI 样式全部使用 Tailwind 原子类与 `clsx` 拼接，颜色/圆角/阴影等视觉值一律引用 `--dsw-*` / `--dsh-*` CSS 变量对应的 Tailwind 别名（如 `bg-dsw-bg-base`、`rounded-dsw-sm`、`shadow-dsw-panel`）。
+- 主题切换通过读写 `window.localStorage` 与 `data-theme` 属性配合 `applyTheme`/`watchSystemTheme` 实现，组件内部只消费 `preference` 状态。

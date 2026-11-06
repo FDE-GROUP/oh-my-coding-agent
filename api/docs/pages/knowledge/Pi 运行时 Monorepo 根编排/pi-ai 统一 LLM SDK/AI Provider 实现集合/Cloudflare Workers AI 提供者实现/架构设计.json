@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Cloudflare Workers AI 提供者实现/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Cloudflare Workers AI 提供者实现/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Cloudflare Workers AI 提供者实现/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Cloudflare Workers AI 提供者实现/架构设计",
+  "markdown": "模块由三个职责分明的文件组成：\n- `cloudflare-auth.ts`：导出 `cloudflareWorkersAIAuth` 与 `cloudflareAIGatewayAuth` 两个 `ApiKeyAuth` 实现，统一通过 `resolveValue`/`resolveCloudflareEnv` 从 `credential` 字段或 `ctx.env` 按优先级合并 `CLOUDFLARE_API_KEY`、`CLOUDFLARE_ACCOUNT_ID`、`CLOUDFLARE_GATEWAY_ID`；前者返回标准 `apiKey` auth，后者将 key 注入 `cf-aig-authorization` 请求头。\n- `cloudflare-stream.ts`：提供 `resolveCloudflareModel` 工具函数，把模型 `baseUrl` 中的 `{CLOUDFLARE_ACCOUNT_ID}` / `{CLOUDFLARE_GATEWAY_ID}` 占位符替换为已解析的环境变量值，并包装 `ProviderStreams` 与 `ProviderClassifier` 以在分发前完成替换。\n- `cloudflare-workers-ai.ts`：作为 Provider 装配层，组合上述 auth、stream/classifier 装饰器与 `openAICompletionsApi`、`cloudflareWorkersAISystemOneApi`，通过 `createProvider` 注册 `cloudflare-workers-ai` 提供者。\n依赖方向单向：workers-ai → auth + stream → 底层 API；auth 与 stream 彼此独立，可被其他 Cloudflare 相关 provider 复用。"
+}

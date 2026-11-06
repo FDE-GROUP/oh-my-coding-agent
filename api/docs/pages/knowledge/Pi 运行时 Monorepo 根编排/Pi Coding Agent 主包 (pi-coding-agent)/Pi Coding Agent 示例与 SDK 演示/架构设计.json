@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 示例与 SDK 演示/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 示例与 SDK 演示/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 示例与 SDK 演示/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 示例与 SDK 演示/架构设计",
+  "markdown": "模块按用途分为三个层次：\n- `sdk/`：14 个编号脚本（01-minimal → 14-codemode-mcp），从 `createAgentSession()` 的最小用法逐步展示自定义模型、prompt、skills、tools、extensions、context files、settings、sessions、full-control 以及 session runtime 的完整组合方式。\n- `extensions/`：大量单文件示例（如 hello.ts、tools.ts、commands.ts、modal-editor.ts、doom-overlay/、subagent/ 等）演示生命周期钩子、自定义工具、命令、UI 组件、Git 集成、外部集成与自定义 provider；其中带独立 `package.json` 的子目录（custom-provider-anthropic、custom-provider-gitlab-duo、gondolin、with-deps）作为可独立安装的扩展包存在。\n- 顶层 `rpc-client.ts` / `rpc-extension-ui.ts`：通过 `RpcClient` 以子进程方式启动已构建的 `dist/cli.js`，订阅事件流并等待 run settle，用于端到端验证。\n\n类型层面由 `tsconfig.json` 通过 `paths` 将 `@earendil-works/pi-*` 等别名映射到仓库内各包的 `src/` 源码，使示例在开发时直接对源码进行类型检查；`include` 覆盖 `extensions/**/*`，并排除 `gondolin/node_modules`。依赖方向单向指向 `@earendil-works/pi-coding-agent`、`@earendil-works/pi-ai` 及其 extension view，示例本身不反向被核心包引用。"
+}

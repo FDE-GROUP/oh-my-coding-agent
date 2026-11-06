@@ -1,0 +1,5 @@
+- 所有涉及 cwd 的路径在到达 services/session 前通过 `resolvePath` 或构造函数参数归一化为绝对路径，避免 cwd 切换后重新解释 CLI 传入的相对路径。
+- 会话变更操作（new/switch/fork/import）统一先触发 `session_before_switch` / `session_before_fork` 扩展钩子，若返回 cancel 则直接中止，不进入 teardown。
+- teardown 流程固定为 abort 活跃响应 → emit `session_shutdown` → 调用 `beforeSessionInvalidate` → 调用 `session.dispose()`，保证扩展与 UI 清理顺序一致。
+- 服务创建与会话创建分离：先 `createAgentSessionServices` 产出 cwd 绑定的 `AgentSessionServices`，再 `createAgentSessionFromServices` 构造 `AgentSession`，以便在 cwd 变化后重新解析模型/工具选项。
+- 非致命错误以 `AgentSessionRuntimeDiagnostic`（type: info|warning|error）形式累积并通过返回值返回，而非直接抛出或打印，由上层决定展示策略。

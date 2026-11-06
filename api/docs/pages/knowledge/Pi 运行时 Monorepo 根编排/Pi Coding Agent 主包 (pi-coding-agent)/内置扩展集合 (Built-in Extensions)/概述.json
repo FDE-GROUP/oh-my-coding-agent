@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/内置扩展集合 (Built-in Extensions)/概述",
+  "markdown": "提供 coding-agent 的四个内置扩展：codemode、llama.cpp 模型管理、MCP 服务器集成与 tool_search，统一通过 ExtensionFactory 注册到核心扩展框架。"
+}

@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台 CLI 启动器/特殊配置与命令.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台 CLI 启动器/特殊配置与命令.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台 CLI 启动器/特殊配置与命令",
+  "title": "特殊配置与命令",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/OMFDE 平台 CLI 启动器/特殊配置与命令",
+  "markdown": "通过 `npm start`（即 `node ./bin/omfde.mjs`）运行；也支持 `npm run omfde -- <pi-args>` 形式，其中首个 `--`（pnpm 分隔符）会被脚本剥离后丢弃。"
+}

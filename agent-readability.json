@@ -1,0 +1,27 @@
+{
+  "artifacts": {
+    "markdown": {
+      "pattern": "https://fde-group.github.io/oh-my-fde/{route}.md"
+    },
+    "api": {
+      "openapi": "https://fde-group.github.io/oh-my-fde/openapi.json",
+      "pages": "https://fde-group.github.io/oh-my-fde/api/docs/pages.json"
+    },
+    "llmsFullTxt": "https://fde-group.github.io/oh-my-fde/llms-full.txt",
+    "llmsTxt": "https://fde-group.github.io/oh-my-fde/llms.txt",
+    "aiCatalog": "https://fde-group.github.io/oh-my-fde/.well-known/ai-catalog.json",
+    "apiCatalog": "https://fde-group.github.io/oh-my-fde/.well-known/api-catalog",
+    "agentSkills": "https://fde-group.github.io/oh-my-fde/.well-known/agent-skills/index.json",
+    "sitemap": "https://fde-group.github.io/oh-my-fde/sitemap.xml"
+  },
+  "description": "omfde（Pi 的企业内部 FDE 平台）项目文档、仓库 Wiki 与架构知识卡，供人与 coding agent 双读。",
+  "generator": "blume@2.2.6",
+  "name": "oh-my-fde 文档",
+  "site": "https://fde-group.github.io",
+  "contentUsage": {
+    "search": true,
+    "ai-input": true,
+    "ai-train": true
+  },
+  "repository": "https://github.com/FDE-GROUP/oh-my-fde"
+}

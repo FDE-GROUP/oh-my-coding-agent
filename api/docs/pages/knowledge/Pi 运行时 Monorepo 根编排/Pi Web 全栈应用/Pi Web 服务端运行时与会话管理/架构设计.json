@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 服务端运行时与会话管理/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 服务端运行时与会话管理/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 服务端运行时与会话管理/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Web 全栈应用/Pi Web 服务端运行时与会话管理/架构设计",
+  "markdown": "模块分为两层：`server/` 是纯 Node.js 服务层，`routes/api/` 是基于 `@tanstack/react-router` 的文件路由处理器。\n\n- 子进程层：`runtime.ts` 的 `SessionRuntime` 通过 `child_process.spawn` 启动 `pi --mode rpc`，使用 `jsonl.ts` 的 JSONL 分帧器解析 stdout，按 `id` 匹配请求-响应，并维护 pending Promise 表、超时与事件订阅；`runtime-manager.ts` 的 `RuntimeManager` 以 session id 为键注册运行时，实现 per-owner 与全局并发上限、空闲回收（`sweep`）与优雅退出（SIGTERM→SIGKILL），并通过 `globalThis.__piWebRuntimeManager` 暴露进程级单例。\n- 会话与权限层：`sessions.ts` 调用 `@earendil-works/pi-coding-agent` 的 `SessionManager.list` 扫描工作区下的会话文件，结合 `owners.ts` 的旁路 owner 索引做用户隔离；`access.ts` 的 `sessionAccess` 统一校验当前用户是否可访问某会话。\n- 配置与工作区：`config.ts` 缓存 `../../config.mjs` 解析结果，`workspaces.ts` 提供工作区列表与查找，`files.ts`、`user.ts`、`health.ts`、`jsonl.ts` 等提供辅助能力。\n- API 层：每个 `routes/api/*.ts` 导出一个由 `createFileRoute` 生成的 `Route`，在 `handlers.{GET|POST|PATCH|DELETE}` 中调用 server 层函数并返回 `Response.json`；动态段如 `$sessionId` 通过 params 传入。\n\n依赖方向单向：`routes/api/*` → `server/*` → `@earendil-works/pi-coding-agent` / Node 内置模块，server 内部无环依赖。"
+}

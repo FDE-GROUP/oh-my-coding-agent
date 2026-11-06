@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Google 与 Google Vertex AI 模型提供方/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Google 与 Google Vertex AI 模型提供方/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Google 与 Google Vertex AI 模型提供方/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/Google 与 Google Vertex AI 模型提供方/技术栈",
+  "markdown": "Google Generative AI REST API（v1beta）与 Google Cloud Vertex AI；Vertex ADC 依赖 `gcloud auth application-default login` 及 `application_default_credentials.json`。"
+}

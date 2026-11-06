@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 模型目录构建与生成/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 模型目录构建与生成/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 模型目录构建与生成/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 模型目录构建与生成/编码规范",
+  "markdown": "- 每个 provider 通过 `defineProvider({ id, models(ctx), compat, finalize })` 声明式配置，并在 `providers/index.ts` 的 `PROVIDERS` 数组中集中注册。\n- 跨 provider 的通用行为集中在 `families/*.ts` 的 `apply*FamilyRules(model)` 函数中，由 `buildCatalog` 在共享阶段统一调用，而非散落在 provider 定义内。\n- 对模型的增量修改通过 `mergeCompat`、`mergeThinking`、`withInputLimits` 等纯函数完成，保持 model 对象不可变语义。\n- 上游模型映射统一走 `modelsDevModels(ctx, sourceProvider, options)`，通过 `include`/`map` 做 provider 级过滤与字段调整，避免在每个 provider 里重复解析 models.dev 结构。\n- provider 定义遵循四阶段钩子顺序：`models()` → `compat` 默认合并 → `finalize()` → `finalizeAll(models)`，共享规则插入在第二阶段与第三阶段之间。"
+}

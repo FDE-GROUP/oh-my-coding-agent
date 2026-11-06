@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Telemetry 契约与内存参考实现/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Telemetry 契约与内存参考实现/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Telemetry 契约与内存参考实现/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Telemetry 契约与内存参考实现/架构设计",
+  "markdown": "模块以 `src/index.ts` 暴露核心契约（`TelemetryContext`/`TelemetrySpan`/`TelemetryStore`/`TelemetryPropagation`/`TelemetryMetrics` 等接口）和基于泛型的类型化工具（`defineTelemetrySchema`、`createTypedSpanStarter`、`createTypedMetrics`），将 span/metric 的名称、属性、事件约束编译期绑定到调用方。\n\n- 运行时实现层：`memory.ts` 中的 `InMemoryTelemetryContext` 同时实现 `TelemetryContext`、`TelemetryPropagation`、`TelemetryMetrics`、`TelemetryStore`，在进程内维护 span 树、测量值与按 10s 区间聚合的指标；通过 `pi-memory-scope`/`pi-memory-span`/`pi-memory-trace` 三个 carrier 字段做上下文传播。\n- 空实现层：`noop.ts` 提供冻结的 `NOOP_TELEMETRY_CONTEXT` / `NOOP_TELEMETRY_METRICS` / `NOOP_TELEMETRY_PROPAGATION`，作为未接入适配器的默认值。\n- 渲染层：`render.ts` 的 `renderTrace` 把 `StoredSpan[]` 输出为带缩进的文本森林，并对控制字符进行转义。\n- 测试辅助层：`src/testing/` 导出 `createTelemetryAdapterConformance` 及 fixture 类型，用于验证第三方适配器对契约的一致性。\n\n依赖方向单向：`memory.ts` → `index.ts` + `metrics.ts` + `noop.ts`；`render.ts` 仅依赖 `index.ts` 的类型；`testing/` 独立于运行时实现，仅消费契约类型。包通过 `package.json` 的 `exports` 字段分别暴露 `.`、`./render`、`./testing` 三个入口，构建产物位于 `dist/`，由 `tsc -p tsconfig.build.json` 产出。"
+}

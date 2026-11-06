@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/设置、快捷键与配置值解析核心/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/设置、快捷键与配置值解析核心/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/设置、快捷键与配置值解析核心/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/设置、快捷键与配置值解析核心/架构设计",
+  "markdown": "模块按职责拆分为四个相互独立的子域，依赖方向单向向外：\n- 运行时设置：`settings-manager.ts` 通过 `SettingsStorage` 接口（`FileSettingsStorage` 使用 `proper-lockfile` 加锁读写 `settings.json`，`InMemorySettingsStorage` 用于测试）实现 `global`/`project` 双层合并；`migrateSettings` 集中处理旧字段迁移（queueMode→steeringMode、websockets→transport、skills 对象→数组、retry.maxDelayMs→provider.maxRetryDelayMs），并通过 `writeQueue` 串行化持久化。\n- 类型与默认值：`settings-schema.ts` 用 TypeBox 定义 `SettingsSchema` 并导出 TS 类型，`settings-defaults.ts` 提供 `SETTINGS_DEFAULTS` 常量，schema 中的每个可选字段都从该常量取 `default`，保证 JSON Schema 与运行时默认值同源。\n- 诊断：`settings-diagnostics.ts` 仅消费 `SettingsManager.drainErrors()` 输出 `AgentSessionRuntimeDiagnostic[]`，并提供跨启动/运行阶段去重。\n- 快捷键：`keybindings.ts` 在 `@earendil-works/pi-tui` 的 `KeybindingsManager` 之上扩展应用级 `APP_KEYBINDINGS`，通过 `KEYBINDING_NAME_MIGRATIONS` 映射旧键名，`keybindings-schema.ts` 动态遍历 `KEYBINDINGS` 生成 TypeBox schema。\n- Pi 清单：`pi-manifest.ts` 从包的 `package.json.pi` 中抽取 extensions/skills/prompts/themes/changelogPath。\n- 配置值解析：`resolve-config-value.ts` 独立于 settings 系统，支持以 `!` 前缀执行 shell 命令、`$VAR`/`${VAR}` 模板插值，并对命令结果做进程级缓存，被 auth-storage 与 model-registry 复用。\n\n模块内文件之间无循环依赖：schema/defaults 是叶子，manager/diagnostics/keybindings/pi-manifest/resolve-config-value 各自只依赖它们。"
+}

@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Model Context Protocol (MCP) 客户端库/编码规范",
+  "markdown": "- 对外 API 通过 `src/index.ts` 与 `src/oauth/index.ts` 两个 barrel 文件集中 re-export，内部模块不直接对外暴露。\n- 传输实现遵循 `McpTransport` 接口并通过继承 `TransportEvents` 复用 onMessage/onError/onClose 与 emitClose 去重逻辑。\n- JSON-RPC 消息在进入业务逻辑前一律经 `protocol/jsonrpc.ts` 中的 `isJsonRpcRequest`/`isJsonRpcResponse`/`parseJsonRpcMessage` 校验，错误统一包装为 `McpError` 并附带 `JSON_RPC_ERROR_CODES`。\n- 客户端侧的异步操作以 `AbortSignal` 透传取消语义（`McpRequestOptions.signal`、`PendingRequest.sendController`），避免在取消后继续派发或重试。\n- OAuth 相关错误以具名 Error 子类表达（如 `McpOAuthAuthorizationRequiredError`、`McpRefreshLockBusyError`），便于调用方按类型分支处理。"
+}

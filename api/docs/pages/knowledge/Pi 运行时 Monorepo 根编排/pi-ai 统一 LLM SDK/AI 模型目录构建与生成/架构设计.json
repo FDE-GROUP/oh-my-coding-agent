@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 模型目录构建与生成/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 模型目录构建与生成/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 模型目录构建与生成/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI 模型目录构建与生成/架构设计",
+  "markdown": "模块以 `build.ts` 中的 `buildCatalog()` 为构建核心，按固定流水线处理每个 provider：\n- `sources/`：上游抓取器（`models-dev.ts`、`openrouter.ts`、`vercel-ai-gateway.ts`、`models-dev.ts`），在构建前统一拉取。\n- `providers/<id>.ts`：每个内置 provider 一个文件，通过 `defineProvider()` 声明其数据来源、API/baseUrl、compat 默认值、修正逻辑与 `finalize`；全部注册在 `providers/index.ts` 的 `PROVIDERS` 数组中，新增 provider 只需在此追加。\n- `families/`：跨 provider 的家族规则（Anthropic effort levels、DeepSeek、OpenAI thinking levels / long-context pricing / tool search），由 `buildCatalog` 在共享阶段调用 `apply*FamilyRules` 注入到模型上。\n- `define.ts`：对外暴露 `defineProvider`、`modelsDevModels`、`mergeCompat`、`withInputLimits`、`addMissing` 等构造辅助，以及 `ProviderDefinition` / `ProviderContext` 接口。\n- `generate.ts`：CLI 入口（`node catalog/generate.ts` / `npm run generate-models`），串联 `loadCatalogSources` + `buildCatalog`，输出三类产物：`src/providers/data/<provider>.json`（gitignore）、`src/providers/<provider>.models.ts` + `src/models.generated.ts`（提交）、可选 `--json-output` 给 pi.dev 消费的公开 JSON。\n依赖方向单向：`generate.ts` → `build.ts` → `providers/*` + `families/*` + `sources/*` → `../src/types.ts`，family 层不反向引用 providers。"
+}

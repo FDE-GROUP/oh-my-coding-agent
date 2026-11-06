@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: schema_lib
-title: pi-schema JSON Schema 验证库
-scope:
-    - packages/schema/
-source_files: []
-depends_on: []
-related_to:
-    - path: coding_agent

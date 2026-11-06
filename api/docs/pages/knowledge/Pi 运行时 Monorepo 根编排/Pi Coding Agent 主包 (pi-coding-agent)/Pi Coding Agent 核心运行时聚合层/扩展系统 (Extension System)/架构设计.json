@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/扩展系统 (Extension System)/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/扩展系统 (Extension System)/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/扩展系统 (Extension System)/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/扩展系统 (Extension System)/架构设计",
+  "markdown": "模块按职责拆分为四个层次：\n- 类型契约层 `types.ts`：集中定义 Extension / ExtensionRuntime / ExtensionContext / ToolDefinition / 各类事件（session_*、agent_*、tool_*、provider_*）等所有对外暴露的类型，是宿主与扩展之间的唯一边界。\n- 加载层 `loader.ts` + `jiti-loader.ts` / `jiti-static-loader.ts` + `virtual-modules.ts`：通过 jiti 动态 import 扩展工厂函数；在 Node/Bun/SEA/bundled 环境下分别走别名解析或虚拟模块映射，把 `@earendil-works/pi-*` 和 `typebox` 等依赖重定向到宿主版本，避免扩展拿到独立副本。\n- 运行期层 `runner.ts`：`ExtensionRunner` 持有 extensions 列表，负责绑定核心 action（bindCore）、构建 ExtensionContext、分发事件、聚合工具/命令/快捷键、处理 MCP server 变更与未连接告警。\n- 适配层 `wrapper.ts`：将 `RegisteredTool` 包装成 `AgentTool`，统一注入 runner 提供的 tool context。\n\n入口 `index.ts` 仅做 re-export，不引入实现；`pi-ai-extension-view.ts` 作为 pi-ai 兼容入口供扩展使用。加载器维护基于 cwd+generation 的 extension 缓存，支持 `discoverAndLoadExtensions` 从项目本地、全局目录及显式路径三级发现扩展。"
+}

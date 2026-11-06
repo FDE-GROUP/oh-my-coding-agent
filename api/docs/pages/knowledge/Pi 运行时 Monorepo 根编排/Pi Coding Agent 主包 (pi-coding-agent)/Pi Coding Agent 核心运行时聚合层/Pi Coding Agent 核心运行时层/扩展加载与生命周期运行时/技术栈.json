@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/扩展加载与生命周期运行时/技术栈.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/扩展加载与生命周期运行时/技术栈.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/扩展加载与生命周期运行时/技术栈",
+  "title": "技术栈",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/扩展加载与生命周期运行时/技术栈",
+  "markdown": "使用 jiti 对 .ts/.js 扩展进行运行时转译与按需 Babel 加载；通过虚拟模块 (`virtual-modules.ts`) 与别名表 (`getAliases`) 在编译产物中重定向 `@earendil-works/pi-*`、`typebox`、`@sinclair/typebox` 以及旧 `@mariozechner/*` 包名到宿主实例；结合 `isBunBinary` / `isNodeSeaBinary` / `isBundledNode` 在三类嵌入二进制场景下切换加载策略。"
+}

@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/会话压缩与分支摘要/架构设计.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/会话压缩与分支摘要/架构设计.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/会话压缩与分支摘要/架构设计",
+  "title": "架构设计",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/会话压缩与分支摘要/架构设计",
+  "markdown": "模块按职责拆分为四个文件：\n- `compaction.ts`：核心压缩管线，包含 token 估算（`estimateTokens`、`estimateContextTokens`）、切点查找（`findCutPoint`/`findProjectedCutPoint`）、摘要生成（`generateSummary`/`generateSummaryWithUsage`）以及主入口 `prepareCompaction` + `compact`；通过 `completeSummarization` 统一走 `retryAssistantCall` 重试。\n- `branch-summarization.ts`：分支导航场景，提供 `collectEntriesForBranchSummary`、`prepareBranchEntries`、`generateBranchSummary`，复用 `compaction.ts` 中的 `completeSummarization`、`estimateTokens`、`getSummarizationFailure` 和 `utils.ts` 的工具函数。\n- `utils.ts`：纯工具层，提供跨两个场景共享的文件操作追踪（`FileOperations`、`extractFileOpsFromMessage`、`computeFileLists`、`formatFileOperations`）、对话序列化（`serializeConversation`）以及系统提示词 `SUMMARIZATION_SYSTEM_PROMPT`。\n- `index.ts`：仅做 barrel 重导出，不引入额外依赖。\n\n依赖方向单向：`branch-summarization.ts` → `compaction.ts` → `utils.ts`；两者都向上依赖 `../messages.ts`（消息转换）、`../session-manager.ts`（SessionEntry/Projection 类型与投影）、`../usage-totals.ts`（usage 合并），并调用 `@earendil-works/pi-ai` 的 `Model`/`SimpleStreamOptions`/`retryAssistantCall` 等能力。模块本身是纯函数库，I/O 与 session 持久化由上层 session-manager 负责。"
+}

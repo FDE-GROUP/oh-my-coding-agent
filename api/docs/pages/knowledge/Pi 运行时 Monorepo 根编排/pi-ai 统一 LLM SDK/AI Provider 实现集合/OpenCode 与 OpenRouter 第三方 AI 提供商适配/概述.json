@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenCode 与 OpenRouter 第三方 AI 提供商适配/概述.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenCode 与 OpenRouter 第三方 AI 提供商适配/概述.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenCode 与 OpenRouter 第三方 AI 提供商适配/概述",
+  "title": "概述",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/pi-ai 统一 LLM SDK/AI Provider 实现集合/OpenCode 与 OpenRouter 第三方 AI 提供商适配/概述",
+  "markdown": "为 OpenCode Zen 和 OpenRouter 两个第三方 LLM 聚合网关提供 Provider 实现，复用底层 API 适配器并注入会话头、OAuth 认证与模型目录个性化。"
+}

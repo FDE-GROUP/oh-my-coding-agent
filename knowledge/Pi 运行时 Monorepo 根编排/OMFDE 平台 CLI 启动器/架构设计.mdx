@@ -1,0 +1,6 @@
+模块仅包含一个 Node.js ESM 脚本 `bin/omfde.mjs`，通过 `package.json` 的 `bin.omfde` 字段暴露为可执行命令。入口按以下流程组织：
+- 从 `import.meta.url` 推导 monorepo 根路径（`fileURLToPath(new URL("../../../", import.meta.url))`），据此定位本地 `node_modules/.bin/pi`（Windows 下为 `pi.cmd`）以及 `apps/pi-web/server.mjs` 与构建产物 `apps/pi-web/dist/server/server.js`。
+- 解析自身选项（`--tui`、`--port`、`--host`、`--config`、`--no-open`、`--open`、`-h/--help`），将剩余参数归入 `tuiArgs`；非 `--tui` 模式下遇到未知参数即报错退出。
+- `--tui` 分支直接 `spawn` pi 二进制，透传 `tuiArgs` 并设置 `OMFDE_PLATFORM=1`；Web UI 分支则用 `process.execPath` 启动 `server.mjs`，同时注入 `PI_WEB_CWD`、`PI_WEB_HOST`、`PI_WEB_PORT`、`PI_WEB_CONFIG` 等环境变量，并在构建产物缺失时给出中文提示。
+- 通过 `exitWithChild` 统一转发子进程的 exit code、signal 以及父进程收到的 SIGINT/SIGTERM，使 omfde 在行为上等价于被调用的后端进程。
+- 依赖方向单向指向外部包 `@earendil-works/pi-coding-agent`（当前未使用），对 monorepo 内其他应用（pi、pi-web）仅通过文件系统路径访问，不引入运行时依赖。

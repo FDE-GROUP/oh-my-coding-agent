@@ -1,0 +1,11 @@
+{
+  "contentType": "doc",
+  "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/编码规范.json",
+  "lastModified": null,
+  "locale": "zh-CN",
+  "markdownUrl": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/编码规范.md",
+  "route": "/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/编码规范",
+  "title": "编码规范",
+  "url": "https://fde-group.github.io/oh-my-fde/knowledge/Pi 运行时 Monorepo 根编排/Pi Coding Agent 主包 (pi-coding-agent)/Pi Coding Agent 核心运行时聚合层/Pi Coding Agent 核心运行时层/编码规范",
+  "markdown": "- 对外 API 以 async factory 形式暴露（如 createAgentSession、createAgentSessionServices），内部状态由对应 Session/Manager 类封装。\n- 可插拔能力（工具、扩展、渲染器、MCP 端点）通过 defineTool / ExtensionFactory 等契约注册，而非直接 import 耦合。\n- 运行时可观测性统一通过 event-bus 事件与 timings.ts 计时点记录，不直接打印日志。\n- 配置项集中由 SettingsManager 提供 getter，SDK 层在请求构建时动态读取以保证会话中生效。"
+}
