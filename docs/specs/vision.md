@@ -364,6 +364,12 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 
 影响：四层状态表的“团队协作/企业集成”更新为“Web UI 线已供料、平台化线本体待固化”；线3 标注 M1–M5 实际推进；约束中“单用户/回环”“不做登录/权限”“是否并入 omfde”同步为 M3 团队共用与令牌登录、M3/M4 两级角色、组合式接入既成事实。本条为正文与已批准决策（各 RAD 确认 + 组合式接入决策）的一致性同步，未新增目标或边界；DSH 视觉/设计系统完整对齐的排期留入“未决问题”。
 
+### 2026-11-06：新增 `apps/docs-site` 统一文档站，内容站点落到 Astro/Blume 栈
+
+原因：仓库文档分散在 `docs/`（项目文档）与 `.qoder/repowiki/`（Repo Wiki，机器生成）两处，现有 GitHub Pages 站（`pages` 分支，docsify）内容过时、导航与当前结构不符，且只服务人读。本条落实“前端开发统一技术栈”中“内容型站点用 Astro”的既定决策：用 Blume（Astro + Vite 静态站框架）把两处内容汇聚为一个中文站，人与 coding agent 双读。按 AGENTS 规则，新增 workspace 包先在 vision 记录决定；本条同时回答原未决问题“现有 GitHub Pages 文档站是否迁移到 Astro 栈？”（结论：迁移）。
+
+影响：package graph 新增 `apps/docs-site`（包名 `@omfde/docs-site`，private，engines >=22.19），不依赖 `apps/omfde`/`apps/pi-web`，只读消费 `docs/**` 与 `.qoder/repowiki/**`（构建时镜像进包内 `content/`，为 gitignore 产物）。纯静态发布到 `pages` 分支替换 docsify（`https://fde-group.github.io/oh-my-fde/`，base `/oh-my-fde`），文档内容全部公开（含本 vision）。面向 agent 的表面（llms.txt、每页 `.md` 镜像、JSON docs API）随静态构建生成；不开 server 端能力（MCP server / Ask AI），保留日后经 deployment adapter 升级的路径。
+
 ## 未决问题
 
 - 团队里最重复、最耗时的三类工作是什么？
@@ -377,7 +383,6 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 - 是否以及何时把 `@earendil-works/pi-*` 包名迁移到自有 scope？
 - 配置和扩展放在仓库内还是用户目录，才能既个人可用又能团队共享。
 - Tailwind 用哪个大版本，`--dsw-*` token 如何映射到 theme（工具类前缀、暗色模式策略）？
-- 现有 GitHub Pages 文档站是否迁移到 Astro 栈？
 - Web UI 已组合式接入为 omfde 默认入口；是否进一步做代码级并入（合并 `apps/pi-web` 与平台骨架），在什么条件下进行？
 - 线3“对齐 DSH”的视觉与设计系统完整对齐，是否在 M1 之后单独排期，还是随功能里程碑收尾？
 
