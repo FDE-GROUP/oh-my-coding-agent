@@ -34,6 +34,7 @@
 | `22-openai-responses.md` | item 模型、工具变化、流处理、与 Anthropic 的对比 |
 | `23-openai-codex.md` | WebSocket 续传、连接复用、SSE 回退、配额错误 |
 | `24-latex-autocomplete-docker.md` | LaTeX 布局、补全逻辑、评测容器沙箱 |
+| `25-validation.md` | **用 faux provider 实跑：事件流、持久化、投影、压缩** |
 
 ## 已覆盖的调用链
 
@@ -77,3 +78,9 @@ CLI → main() → runtime factory → services → createAgentSession
 - 从调用方倒推，不从目录正推。
 - 先读接口和状态机，再读实现细节。
 - 每个子系统只回答三个问题：输入是什么、状态存在哪、失败怎么处理。
+
+## 验证
+
+`docs/omca/validation/` 下有两个可运行脚本，用仓库自带的 faux provider
+确定性驱动 `AgentSession`，验证事件流、JSONL 持久化、session projection、
+context_edit 和 compaction。结果见 `25-validation.md`。
