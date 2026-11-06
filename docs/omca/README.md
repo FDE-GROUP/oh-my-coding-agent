@@ -35,6 +35,7 @@
 | `23-openai-codex.md` | WebSocket 续传、连接复用、SSE 回退、配额错误 |
 | `24-latex-autocomplete-docker.md` | LaTeX 布局、补全逻辑、评测容器沙箱 |
 | `25-validation.md` | **用 faux provider 实跑：事件流、持久化、投影、压缩** |
+| `26-fork-and-prune.md` | **fork 与裁剪的准确说明：删了什么、没改什么、如何恢复** |
 
 ## 已覆盖的调用链
 
