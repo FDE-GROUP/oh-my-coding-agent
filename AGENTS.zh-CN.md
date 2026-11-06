@@ -6,8 +6,9 @@
 
 本仓库是 `earendil-works/pi` 的本地 fork，不是 GitHub 意义上的 fork。
 
-- `upstream` 是 Pi 远端。`main` 是产品主分支；`upstream/main` 是只读的 Pi 镜像；`pages` 发布文档站。
-- 所有工作都在 `main` 上进行；不要向 `upstream/main` 提交。
+- `upstream` 是 Pi 远端。`main` 是产品主分支；`upstream/main` 是只读的 Pi 镜像，只用于同步；`pages` 发布文档站。不要向上游贡献。
+- 所有工作都在 `main` 上进行。不要创建功能分支，也不要在其他分支的 worktree 中工作。
+- 不要向 `upstream/main` 提交。
 - 已裁剪的上游子系统：`apps/p2`、`packages/env`、`packages/durable`、`packages/chord` 和 `scripts/durable-browser-smoke-entry.ts`。
 - 保留的包：`agent`、`ai`、`coding-agent`、`codemode`、`evals`、`mcp`、`schema`、`telemetry`、`tui`。
 - 平台布局：`apps/` 放可运行应用，`extensions/` 放平台扩展，`packages/` 放 Pi 和共享库。Pi 包保留在 `packages/`，这样上游 rebase 仍然适用。
@@ -18,6 +19,28 @@
 - 裁剪范围和恢复方法：`docs/explains/26-fork-and-prune.md`。
 
 当前阶段优先使用配置和扩展，而不是改核心。核心改动必须先在 `docs/specs/vision.md` 中记录明确决定。
+
+## Vision 的宪法地位
+
+`docs/specs/vision.md` 是项目宪法。
+
+- 代码、文档和开发决策都不能超出 vision 的目标、边界和阶段。
+- 在边界内的实现细节属于正常开发，不需要修改 vision。
+- 如果具体决策与 vision 冲突，或会扩大其边界，先停下来，商议是否修改 vision。不要先实现冲突的改动，也不要悄悄重新解释 vision。
+- 修改 vision 的决定要先写入 vision 的决策记录，再实施。
+- vision 不是实施计划。它回答项目要去哪，以及现在不做什么。
+
+## 硬规则
+
+这些规则优先于便利和局部偏好。
+
+- 只在 `main` 上工作。不要创建功能分支，也不要在其他分支的 worktree 中工作。如果任务看起来需要分支，先停下来询问决策者。
+- 每个任务必须在 issue 或任务说明中声明明确的 write scope。A 类机械修复可以用会话任务作为声明。没有 scope 的任务视为未就绪，不得开始。
+- 只写声明的 scope 内的文件。提交前用 `git status` 和 `git diff --name-only` 检查。
+- 只提交本次会话中你修改、且位于 write scope 内的文件。不要 stage 或提交其他 Agent 的文件。超范围提交必须经决策者明确同意。
+- `pages` 只用于发布。未经决策者明确授权，不要把共享 worktree 切到 `pages`，不要在上面提交或 push。获授权的发布使用独立的 clone 或 worktree。
+- 切换分支和改变共享状态的 Git 操作必须串行。未经决策者协调，不要在共享 worktree 中运行 `git switch`、`git checkout <branch>`、`git rebase`、`git reset`、`git stash` 或删除分支。
+- 共享文件单写者：package manifest、lockfile、`tsconfig.json`、`AGENTS.md`、`docs/specs/`、根 README 和生成文件。
 
 ## 交流风格
 
@@ -85,14 +108,17 @@
 
 同一个 cwd 中可能同时运行多个 pi 会话，每个会话修改不同的文件。触碰你改动之外的未暂存、已暂存或未跟踪文件的 Git 操作，会破坏其他会话的工作。
 
-- 只在 `main` 上工作。永远不要向 `upstream/main` 提交；它是只读的 Pi 镜像。
+- 只在 `main` 上工作。不要创建功能分支，也不要在其他分支的 worktree 中工作。如果任务看起来需要分支，先停下来询问决策者。
+- 永远不要向 `upstream/main` 提交；它是只读的 Pi 镜像。
 - 把 `pages` 保留为独立的文档分支；不要把它合并进 `main`。
-- 只提交你在本次会话中修改的文件。
+- 未经决策者协调，不要把共享 worktree 切到 `pages`，也不要在那里运行切换分支的 Git 操作。获授权的发布使用独立的 clone 或 worktree。
+- 遵守 issue 中分配的 write scope。未经明确批准，不要编辑范围外的文件。把 package manifest、lockfile、`tsconfig.json`、`AGENTS.md`、`docs/specs/`、根 README 和生成文件当作单写者共享文件。
+- 只提交你在本次会话中修改、且位于 write scope 内的文件。不要 stage 或提交其他 Agent 的文件。
 - 显式 stage 路径（`git add <path1> <path2>`）；绝不要用 `git add -A` / `git add .`。
-- 提交前运行 `git status`，确认你只 stage 了自己的文件。
-- `packages/ai/src/models.generated.ts` 可以始终和你的文件一起包含。
-- 消息格式：`{feat,fix,docs}[(ai,tui,agent,coding-agent)]: <commit message>`（可选多行）。消息要有信息量且精炼。
-- 除非用户明确要求，否则不要 push 到 `upstream`，也不要向上游开 PR。
+- 提交前运行 `git status` 和 `git diff --cached --name-only`，确认每个 staged 路径都是你的、且在 write scope 内。超范围提交必须经决策者明确同意。
+- `packages/ai/src/models.generated.ts` 是生成文件、共享文件。只有在你的改动重新生成它时才包含；否则保持未暂存。它仍然受 write scope 约束。
+- 消息格式：`{feat,fix,docs}[(repo|ai|tui|agent|coding-agent)]: <commit message>`（可选多行）。消息要有信息量且精炼。
+- 永远不要 push 到 `upstream`，也不要向上游开 PR。上游是只读的。
 
 永远不要运行（会破坏其他 agent 的工作或绕过检查）：
 
@@ -107,16 +133,20 @@
 
 ## Issue 与 PR
 
-本 fork 不使用上游的 issue/PR 门槛。内部工作记录在 `docs/specs/vision.md` 和 `docs/explains/`。
+本 fork 不使用上游的 issue/PR 门槛。GitHub Issues 是团队提交需求、bug 和阶段目标的统一入口和任务板；耐久的产品记录仍在 `docs/specs/vision.md`、`docs/rads/`、`docs/plans/` 和 `docs/explains/`。
 
-- 向上游贡献时，遵守上游 `CONTRIBUTING.md` 及其 `lgtm`/`lgtmi` 门槛。
-- 审查上游 PR 时，除非用户明确要求，否则不要运行 `gh pr checkout`、`git switch`，也不要以其他方式把 worktree 移到 PR 分支。使用 `gh pr view`、`gh pr diff`、`gh api`，以及针对已 fetch ref 的本地 `git show`/`git diff`。
+- 需求和 bug 从 GitHub Issue 开始。需求类 issue 关联 `docs/rads/<slug>.md`；实现类 issue 关联 `docs/plans/<slug>.md`；阶段目标用 milestone 或 tracking issue 跟踪。
+- 团队可见的开发任务以 issue 为准。A 类机械修复可以例外不建 issue；如果涉及共享文档、行为变化或多人并行，仍然建 issue。
+- 内部工作默认不开 PR。PR 只用于外部贡献者，或决策者批准的内部例外。内部例外 PR 使用独立的 fork 或 clone，不在本仓库创建源分支。
+- 只有决策者，或获得明确授权的 Agent 可以合并。使用 squash merge，删除源分支，并在 issue 中附结果。
+- 本仓库不向上游 Pi 贡献。不要向上游开 PR，也不要 push 分支到 `upstream`。
 - 发布 issue/PR 评论时，把评论写入临时文件，用 `gh issue/pr comment --body-file` 发布。评论要简洁、技术性，并在每条 AI 发布的评论末尾加上发起 prompt 指定的 AI 生成免责声明行。
 - 通过 commit 关闭 issue 时，包含 `fixes #<number>` 或 `closes #<number>`；多个 issue 时每个 issue 重复一次关键字。
 
 ## 文档
 
-- `docs/specs/vision.md` 是动态愿景和决策记录。目标、边界或阶段变化时更新它。它是用户的工作文档；除非用户要求，否则不要 stage 或提交它。
+- `docs/specs/vision.md` 是已跟踪的项目宪法和决策记录。目标、边界或阶段变化时，更新并提交它；不要留下未提交的 vision 变更。
+- `docs/specs/workflow.md` 是开发工作流。RAD、spike、plan、验证和收尾都遵循它。
 - `docs/explains/` 保存架构笔记、验证脚本和 fork 记录。理解变化时更新它，优先使用可执行验证，而不是只有文字结论。
 - 保持中文译本与英文源文件同步：`README.zh-CN.md`、`AGENTS.zh-CN.md`、`CONTRIBUTING.zh-CN.md`。
 - 不要提交 `.env`、`~/.pi/agent/auth.json` 或任何 API key。
@@ -128,7 +158,7 @@
 ## Changelog 与发布
 
 - 本 fork 不发布版本，也不维护每个包的 changelog。内部工作不要编辑 `packages/*/CHANGELOG.md`；把内部变更记录在 `docs/explains/`。
-- 如果准备向上游贡献，到那时再遵守上游的 changelog 和发布规则。
+- 本仓库不向上游 Pi 贡献，因此上游的 changelog 和发布规则不适用。
 
 ## 用户覆盖
 

@@ -1,103 +1,102 @@
 [English](CONTRIBUTING.md) | 简体中文
 
-# 为 pi 做贡献
+# 为 omfde 做贡献
 
-这份指南是为了节省双方的时间。
+本仓库是 oh-my-fde（omfde）的内部 FDE 平台，基于 Pi 构建。
 
-## 理念
+## 先读这些
 
-先说最重要的一点：**pi 的核心是精简的**。
-
-如果你的功能不属于核心，就应该做成扩展。让核心变得臃肿的 PR 很可能会被拒绝。
-
-Pi 的核心之所以存在，是为了保持精简并且可扩展，从而让扩展能够影响和操控它。不过，即使是给扩展用的 hook 点，也应该经过充分考虑和讨论，避免增加无法维护的臃肿和复杂的交互。
+- [`docs/specs/vision.md`](docs/specs/vision.md)
+- [`docs/specs/workflow.md`](docs/specs/workflow.md)
+- [`AGENTS.md`](AGENTS.md)
 
 ## 唯一规则
 
-**你必须理解自己的代码。** 如果你无法解释自己的改动做了什么，以及它如何与系统其余部分交互，你的 PR 会被关闭。
+你必须理解自己的代码。用 AI 写代码没问题；提交自己无法解释的代码不行。如果你无法解释一个改动做了什么，以及它如何与系统其余部分交互，它就还没有准备好。
 
-用 AI 写代码没问题。不理解内容就提交 AI 生成的垃圾，不行。
+## Issue 优先
 
-如果你使用 agent，请从 `pi` 根目录运行它，这样它会自动读取 `AGENTS.md`。你的 agent 必须遵守该文件中的规则和指南。
+GitHub Issues 是团队提交需求、bug 和任务的统一入口，也通过 milestone 或 tracking issue 跟踪阶段目标。
 
-## 贡献门槛
+- 使用“omfde Task”issue 表单；它要求填写明确的 write scope。
+- 需求或 bug：先开 issue，不要只靠聊天提出。
+- 需求类 issue：如需要 RAD，关联 `docs/rads/<slug>.md`；不需要 RAD 时说明理由。由决策者确认。
+- 实现类 issue：关联 `docs/plans/<slug>.md` 中的 plan；非平凡工作必须先有已批准的 plan 才能编码。
+- Bug issue：写清复现步骤、期望/实际行为和环境；用 `fixes #N` 关闭。
+- A 类机械修复可以跳过 issue；如果涉及共享文档、行为变化或多人并行，仍然要建 issue。
+- 阶段目标用 milestone 或 tracking issue 表示；每个开发 issue 归入一个阶段目标。
 
-所有来自新贡献者的 issue 和 PR 默认都会被自动关闭。
+## 工作流
 
-周五到周日提交的 issue 不保证会被审查。如果有紧急事项，请在 Discord 上询问：https://discord.com/invite/3cU7Bz4UPx
+1. 开 issue 或领取 issue。
+2. 如需要，写 RAD；由决策者确认，用户故事同步冻结。
+3. 如有关键不确定点，先做 spike。
+4. 非平凡工作写 plan；由决策者批准。plan 是编码依据。
+5. 只在已批准 plan 的范围内实现。
+6. 用命令和记录下来的证据验证。
+7. 关闭 issue，并链接结果。
 
-维护者每天会审查被自动关闭的 issue，并重新打开有价值的那些。不符合下方质量标准的 issue 不会被重新打开，也不会收到回复。
+完整流程见 [`docs/specs/workflow.md`](docs/specs/workflow.md)。
 
-批准通过维护者在 issue 中的回复完成：
+## 范围与边界
 
-- `lgtmi`：你未来的 issue 不会被自动关闭
-- `lgtm`：你未来的 issue 和 PR 不会被自动关闭
+- `docs/specs/vision.md` 是项目宪法。不要超出它的目标、边界和阶段。如果改动与它冲突，先停下来商议是否修改 vision。
+- Pi 核心保持精简。优先用应用、扩展和配置，而不是改核心。
+- 除非 vision 决策和已批准的 plan 都明确说明，否则不要修改 Pi 核心。
+- Pi 包保留在 `packages/`，这样上游 rebase 仍然适用。
+- 平台代码按职责放在 `apps/`、`packages/` 或 `extensions/`。
 
-该命令必须位于回复开头（可以在一个或多个 `@username` 提及之后），或者位于回复末尾。`lgtmi` 不授予提交 PR 的权利。只有 `lgtm` 才授予提交 PR 的权利。
+## 分支与提交
 
-## Issue 质量标准
+- 只在 `main` 上工作。不要创建功能分支，也不要在其他分支的 worktree 中工作。如果任务看起来需要分支，先停下来询问决策者。
+- 每个 Agent 任务都要声明明确的 write scope。A 类机械修复可以用会话任务作为声明。没有 scope 的任务视为未就绪，不得开始。
+- 只写声明的 scope 内的文件；提交前用 `git status` 和 `git diff --name-only` 检查。共享文件单写者、串行修改。
+- 只提交本次会话中你修改、且位于 write scope 内的文件。绝不 stage 或提交其他 Agent 的文件。超范围提交必须经决策者明确同意。
+- 显式 stage 路径；绝不要用 `git add -A` 或 `git add .`。提交前检查 `git status` 和 `git diff --cached --name-only`。
+- 提交消息：`{feat,fix,docs}[(repo|ai|tui|agent|coding-agent)]: <summary>`。正文用 `refs #N`；完成时用 `fixes #N` 或 `closes #N`。
+- 不要提交 `.env`、`~/.pi/agent/auth.json` 或 API key。
+- 不要直接改 `pages`；文档站有自己的发布流程。
+- 内部工作不要编辑 `packages/*/CHANGELOG.md`；把内部变更记录在 `docs/explains/`。
+- 所有 Agent 共享 `main` worktree。切换分支和改变 Git 状态的操作（switch、checkout、rebase、reset、stash、删除分支）必须串行，不要并发执行。
 
-如果你要开 issue，必须使用两个 GitHub issue 模板之一。
+## PR 与合并
 
-如果你要开 issue，请保持简短、具体、值得一读。
+- 内部工作默认不开 PR。`main` 是唯一开发分支。
+- 本仓库不向上游 Pi 贡献，也不向上游开 PR。
+- PR 只用于：外部贡献者从自己的 fork 提交，或决策者批准的内部例外。
+- 内部例外 PR 必须使用独立的 fork 或 clone；不要在 canonical 仓库中创建它的源分支。
+- PR 必须关联 issue 和 RAD / plan（如有），写清 write scope，列出验证命令和输出，并且只包含 scope 内的改动。
+- 只有决策者，或获得明确授权的 Agent 可以合并。
+- 使用 squash merge，保持 `main` 线性；合并后删除源分支，并在 issue 中附结果。
+- 永远不要 force push。
 
-- 保持精炼。如果一屏放不下，就太长了。
-- 用你自己的语气写（不要用 LLM 生成文本；如果确实用了，请随后补一条明确标注为 AI 生成的评论）。
-- 清楚说明 bug 或需求。
-- 解释为什么它重要。
-- 如果你想自己实现这个改动，请说明。
+## pages 分支
 
-如果 issue 是真实且写得好的，维护者可能会重新打开它，或者在上述命令位置回复 `lgtmi` 或 `lgtm`。
+- `pages` 是发布分支，不是开发分支。
+- 未经决策者明确授权，不要切换、checkout、提交、push 或合并 `pages`。
+- 获授权的发布使用独立的 clone 或 worktree；不要切换共享的 `main` worktree。
+- 不要把 `pages` 合并进 `main`，也不要把 `main` 合并进 `pages`。
+- 如果必须在共享 worktree 中发布，先停止所有 Agent，并取得明确授权。
 
-## 封禁
+## 质量门禁
 
-如果你两次无视本文档，或者用 agent 生成的 issue 刷 tracker，你的 GitHub 账号会被永久封禁。
+- 代码改动：运行 `npm run check`。
+- 运行相关测试；非 e2e 测试用 `./test.sh`。
+- 平台入口改动：运行 `npm run omfde -- --version`，并跑一条 `npm run omfde -- -p "..."` 冒烟。
+- 记录命令、输出和环境。不要用 skip 或放宽断言掩盖失败。
+- 如果你创建或修改了测试，运行它并迭代到通过。
 
-如果你通过自动化提交大量 issue，你的 GitHub 账号会被永久封禁。没有反悔的机会。
+## 上游同步
 
-## 提交 PR 之前
+本仓库把 `earendil-works/pi` 作为只读来源。内部工作遵循本指南和 `docs/specs/workflow.md`。
 
-除非维护者已经通过上述命令位置的 `lgtm` 批准了你，否则不要开 PR。
+- 不要向上游 Pi 开 PR，也不要 push 分支到 `upstream`。
+- 上游只用于 fetch 和 rebase；上游的 issue/PR 门槛不适用于我们的内部工作。
 
-提交 PR 之前：
+## 外部贡献
 
-```bash
-npm run check
-./test.sh
-```
+仓库是公开的，但当前开发主要服务内部团队。外部贡献者应先开 issue 讨论，得到决定后再开 PR。
 
-两者都必须通过。
+## 问题
 
-不要编辑 `CHANGELOG.md`。Changelog 条目由维护者添加。
-
-如果你要往 `packages/ai` 添加新的 provider，请查看 `AGENTS.md` 中关于必需测试的要求。
-
-## 有问题？
-
-在 [Discord](https://discord.com/invite/nKXTsAcmbT) 上提问。
-
-## FAQ
-
-### 为什么新的 issue 和 PR 会被自动关闭？
-
-pi 收到的 issue 数量超过了维护者能实时负责任地审查的数量。许多报告不符合本指南中的质量标准，或者没有遵守 CONTRIBUTING.md。有些是有人通过 agent 不加思考地甩到仓库里的，而不是由提交者本人审查和打磨过的。自动关闭创造了一个缓冲，让维护者可以按自己的节奏审查 tracker，并重新打开符合质量标准的 issue。
-
-### 为什么周末的 issue 优先级更低？
-
-我们在工作时间内处理 tracker。这意味着周末可能会积累更多 issue。周五到周日提交的任何内容都可能在周一的审查队列中被遗漏或降低优先级。如果问题紧急，请在 Discord 上提问，并附上简短说明、复现步骤和相关日志。
-
-### 为什么有些 issue 没有回复？
-
-回复也是维护工作。低信号 issue、不清楚的报告、重复项以及不遵守本指南的 issue，可能会在不讨论的情况下被关闭。这样才能把时间留给可复现的 bug、经过思考的需求，以及那些已经把报告整理得可执行的贡献者。
-
-### 为什么不让 AI 处理所有 triage？
-
-AI 可以帮助归并重复项、总结报告、发现缺失信息。但它不被信任来做维护者的最终决定。打磨过的 AI 生成 issue 仍然可能是错误的、有误导性的，或者调查成本很高。人工审查仍然是最后一道门。
-
-### 这是对贡献者不友好吗？
-
-不是。这是防止维护者过劳和 tracker 被刷的护栏。简短、具体、可复现的 issue 是受欢迎的。经过思考的贡献是受欢迎的。自动化的垃圾内容、理所当然的态度，以及大量低质量报告，不受欢迎。
-
-## 在哪里了解计划？
-
-Earendil 使用 RFC 讨论较大的变更。不是所有 RFC 都公开，但相当一部分是公开的。可以在 [rfc.earendil.com](https://rfc.earendil.com/keyword/pi/) 找到。
+开 issue 或询问决策者。架构问题先读 `docs/explains/`。

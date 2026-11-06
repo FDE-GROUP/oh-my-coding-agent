@@ -4,8 +4,9 @@
 
 This repository is a local fork of `earendil-works/pi`, not a GitHub fork.
 
-- `upstream` is the Pi remote. `main` is the product branch; `upstream/main` is the read-only Pi mirror. `pages` publishes the docs site.
-- All work happens on `main`; do not commit to `upstream/main`.
+- `upstream` is the Pi remote. `main` is the product branch; `upstream/main` is the read-only Pi mirror used only for sync. `pages` publishes the docs site. Do not contribute upstream.
+- All work happens on `main`. Do not create feature branches or worktrees on other branches.
+- Do not commit to `upstream/main`.
 - Pruned upstream subsystems: `apps/p2`, `packages/env`, `packages/durable`, `packages/chord`, and `scripts/durable-browser-smoke-entry.ts`.
 - Kept packages: `agent`, `ai`, `coding-agent`, `codemode`, `evals`, `mcp`, `schema`, `telemetry`, `tui`.
 - Platform layout: `apps/` holds runnable apps, `extensions/` holds platform extensions, and `packages/` holds Pi and shared libraries. Pi packages stay in `packages/` so upstream rebases keep applying.
@@ -16,6 +17,28 @@ This repository is a local fork of `earendil-works/pi`, not a GitHub fork.
 - Prune scope and recovery instructions: `docs/explains/26-fork-and-prune.md`.
 
 In the current phase, prefer configuration and extensions over core changes. A core change needs an explicit decision recorded in `docs/specs/vision.md` first.
+
+## Vision Authority
+
+`docs/specs/vision.md` is the project constitution.
+
+- Code, docs, and development decisions must stay within the vision's goals, boundaries, and phase.
+- Decisions inside those boundaries are normal implementation work and do not need a vision change.
+- If a concrete decision conflicts with the vision, or would expand its boundaries, stop. Discuss whether to amend the vision first. Do not implement the conflicting change and do not silently reinterpret the vision.
+- Record an approved amendment in the vision's decision log before implementing it.
+- The vision is not an implementation plan. It answers where the project is going and what it is not doing.
+
+## Hard Rules
+
+These override convenience and local preference.
+
+- Work only on `main`. Do not create feature branches or worktrees on other branches. If a task seems to require one, stop and ask the decision-maker.
+- Every task must declare an explicit write scope in its issue or task. A-class mechanical fixes may use the session task as the declaration. No scope means the task is not ready; do not start.
+- Keep writes inside the declared scope. Before commit, verify with `git status` and `git diff --name-only`.
+- Commit only files you changed in this session and that are inside your write scope. Do not stage or commit other agents' files. Out-of-scope commits require explicit decision-maker approval.
+- `pages` is publish-only. Do not switch the shared worktree to `pages`, commit on it, or push it without explicit decision-maker authorization. Authorized publishing uses a separate clone or worktree.
+- Branch-changing and shared-state Git operations are serialized. Do not run `git switch`, `git checkout <branch>`, `git rebase`, `git reset`, `git stash`, or branch deletion in the shared worktree without decision-maker coordination.
+- Shared files are single-writer: package manifests, lockfiles, `tsconfig.json`, `AGENTS.md`, `docs/specs/`, the root README, and generated files.
 
 ## Conversational Style
 
@@ -83,14 +106,17 @@ Known environmental failures are tracked in `docs/explains/00-baseline.md`. Do n
 
 Multiple pi sessions may run in this cwd at the same time, each modifying different files. Git operations that touch unstaged, staged, or untracked files outside your own changes will stomp on other sessions' work.
 
-- Work only on `main`. Never commit to `upstream/main`; it is the read-only Pi mirror.
+- Work only on `main`. Do not create feature branches or worktrees on other branches. If a task seems to require one, stop and ask the decision-maker.
+- Never commit to `upstream/main`; it is the read-only Pi mirror.
 - Keep `pages` as a standalone docs branch; do not merge it into `main`.
-- Only commit files YOU changed in THIS session.
+- Do not switch the shared worktree to `pages` or run branch-changing Git operations there without decision-maker coordination. Authorized publishing uses a separate clone or worktree.
+- Respect the write scope assigned in the issue. Do not edit outside it without explicit approval. Treat package manifests, lockfiles, `tsconfig.json`, `AGENTS.md`, `docs/specs/`, the root README, and generated files as shared single-writer files.
+- Only commit files YOU changed in THIS session and that are inside your write scope. Do not stage or commit other agents' files.
 - Stage explicit paths (`git add <path1> <path2>`); never `git add -A` / `git add .`.
-- Before committing, run `git status` and verify you are only staging your files.
-- `packages/ai/src/models.generated.ts` may always be included alongside your files.
-- Message format: `{feat,fix,docs}[(ai,tui,agent,coding-agent)]: <commit message>` (optionally multiple lines). Message is informative and concise.
-- Never push to `upstream`, and never open upstream PRs, unless the user explicitly asks.
+- Before committing, run `git status` and `git diff --cached --name-only`; verify every staged path is yours and inside your write scope. Out-of-scope commits require explicit decision-maker approval.
+- `packages/ai/src/models.generated.ts` is generated and shared. Include it only when your change regenerates it; otherwise leave it unstaged. It is still subject to the write-scope rule.
+- Message format: `{feat,fix,docs}[(repo|ai|tui|agent|coding-agent)]: <commit message>` (optionally multiple lines). Message is informative and concise.
+- Never push to `upstream` and never open upstream PRs. Upstream is read-only.
 
 Never run (destroys other agents' work or bypasses checks):
 
@@ -105,16 +131,20 @@ Syncing upstream:
 
 ## Issues and PRs
 
-This fork does not use the upstream issue/PR gate. Internal work is tracked in `docs/specs/vision.md` and `docs/explains/`.
+This fork does not use the upstream issue/PR gate. GitHub Issues are the internal intake and task board for requirements, bugs, and stage goals; the durable product record stays in `docs/specs/vision.md`, `docs/rads/`, `docs/plans/`, and `docs/explains/`.
 
-- When contributing upstream, follow upstream `CONTRIBUTING.md` and its `lgtm`/`lgtmi` gate.
-- When reviewing an upstream PR, do not run `gh pr checkout`, `git switch`, or otherwise move the worktree to the PR branch unless the user explicitly asks. Use `gh pr view`, `gh pr diff`, `gh api`, and local `git show`/`git diff` against fetched refs.
+- Requirement and bug issues start in GitHub Issues. Link requirement issues to `docs/rads/<slug>.md`; link implementation issues to `docs/plans/<slug>.md`; track stage goals with milestones or tracking issues.
+- Team-visible development tasks are tracked by issue. A-class mechanical fixes may skip an issue unless they touch shared docs, behavior, or parallel work.
+- Internal work does not open PRs by default. PRs are only for external contributors or a decision-maker-approved internal exception. Internal exception PRs use a separate fork or clone, not a branch in this repository.
+- Only the decision-maker or an explicitly authorized agent may merge. Use squash merge, delete the source branch, and update the issue with the result.
+- This repository does not contribute to upstream Pi. Do not open PRs or push branches to `upstream`.
 - When posting issue/PR comments, write the comment to a temp file and post with `gh issue/pr comment --body-file`. Keep comments concise, technical, and end every AI-posted comment with the AI-generated disclaimer line specified by the originating prompt.
 - When closing issues via commit, include `fixes #<number>` or `closes #<number>`; repeat the keyword per issue.
 
 ## Documentation
 
-- `docs/specs/vision.md` is the dynamic vision and decision log. Update it when goals, boundaries, or phase change. It is the user's working document; do not stage or commit it unless the user asks.
+- `docs/specs/vision.md` is the tracked project constitution and decision log. Update and commit it with any change to goals, boundaries, or phase; do not leave vision changes uncommitted.
+- `docs/specs/workflow.md` is the development workflow. Follow it for RAD, spike, plan, validation, and closing work.
 - `docs/explains/` holds architecture notes, validation scripts, and the fork record. Update it when understanding changes, and prefer executable validation over prose-only claims.
 - Keep the Chinese translations in sync with their English sources: `README.zh-CN.md`, `AGENTS.zh-CN.md`, `CONTRIBUTING.zh-CN.md`.
 - Do not commit `.env`, `~/.pi/agent/auth.json`, or any API key.
@@ -126,7 +156,7 @@ For testing pi's interactive mode, load and follow [.pi/skills/interactive-testi
 ## Changelog and Releases
 
 - This fork does not publish releases and does not maintain per-package changelogs. Do not edit `packages/*/CHANGELOG.md` for internal work; record internal changes in `docs/explains/`.
-- If preparing an upstream contribution, follow upstream changelog and release rules at that point.
+- This repository does not contribute to upstream Pi, so upstream changelog and release rules do not apply.
 
 ## User Override
 

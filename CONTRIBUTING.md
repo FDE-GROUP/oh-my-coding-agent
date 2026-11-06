@@ -1,102 +1,100 @@
-# Contributing to pi
+# Contributing to omfde
 
-This guide exists to save both sides time.
+This repository is the internal FDE platform for oh-my-fde (omfde), built on Pi.
 
-## Philosophy
+## Read first
 
-First things first: **pi's core is minimal**.
+- [`docs/specs/vision.md`](docs/specs/vision.md)
+- [`docs/specs/workflow.md`](docs/specs/workflow.md)
+- [`AGENTS.md`](AGENTS.md)
 
-If your feature does not belong in the core, it should be an extension. PRs that bloat the core will likely be rejected.
+## The one rule
 
-Pi's core exists to be minimal and to be extensible so that it can be influenced and manipulated by extensions.  Even hook points for extensions however should be well considered and discussed to avoid adding unmaintainable bloat and complex interactions.
+You must understand your code. AI-generated code is fine; submitting code you cannot explain is not. If you cannot explain what a change does and how it interacts with the rest of the system, it is not ready.
 
-## The One Rule
+## Issue-first
 
-**You must understand your code.** If you cannot explain what your changes do and how they interact with the rest of the system, your PR will be closed.
+GitHub Issues are the team intake for requirements, bugs, and tasks; they also track stage goals through milestones or tracking issues.
 
-Using AI to write code is fine. Submitting AI-generated slop without understanding it is not.
+- Use the "omfde Task" issue form. It requires an explicit write scope.
+- Requirement or bug: open an issue first. Do not rely on chat-only requests.
+- Requirement issue: if a RAD is needed, link it in `docs/rads/<slug>.md`; otherwise state why no RAD is needed. The decision-maker decides.
+- Implementation issue: link the plan in `docs/plans/<slug>.md`. Non-trivial work needs an approved plan before coding.
+- Bug issue: include reproduction, expected/actual behavior, and environment. Close it with `fixes #N`.
+- A-class mechanical fixes may skip an issue unless they touch shared docs, behavior, or parallel work.
+- Use milestones or tracking issues for stage goals; assign each development issue to one.
 
-If you use an agent, run it from the `pi` root directory so it picks up `AGENTS.md` automatically. Your agent must follow the rules and guidelines in that file.
+## Workflow
 
-## Contribution Gate
+1. Open or pick an issue.
+2. Write a RAD if needed; the decision-maker confirms it and the user stories freeze.
+3. Run a spike if a key uncertainty remains.
+4. Write a plan for non-trivial work; the decision-maker approves it. The plan is the coding basis.
+5. Implement inside the approved plan.
+6. Validate with commands and recorded evidence.
+7. Close the issue and link the result.
 
-All issues and PRs from new contributors are auto-closed by default.
+The full process is in [`docs/specs/workflow.md`](docs/specs/workflow.md).
 
-Issues submitted Friday through Sunday are not guaranteed to be reviewed.  If something is urgent, ask on Discord: https://discord.com/invite/3cU7Bz4UPx
+## Scope and boundaries
 
-Maintainers review auto-closed issues daily and reopen worthwhile ones. Issues that do not meet the quality bar below will not be reopened or receive a reply.
+- `docs/specs/vision.md` is the project constitution. Do not exceed its goals, boundaries, or phase. If a change conflicts, stop and discuss amending the vision first.
+- Pi core stays minimal. Prefer apps, extensions, and configuration over core changes.
+- Do not modify Pi core unless the vision decision and the approved plan say so.
+- Keep Pi packages in `packages/` so upstream rebases keep applying.
+- Platform code belongs in `apps/`, `packages/`, or `extensions/` according to its role.
 
-Approval happens through maintainer replies on issues:
+## Branches and commits
 
-- `lgtmi`: your future issues will not be auto-closed
-- `lgtm`: your future issues and PRs will not be auto-closed
+- Work only on `main`. Do not create feature branches or worktrees on other branches. If a task seems to require one, stop and ask the decision-maker.
+- Every agent task declares an explicit write scope. A-class mechanical fixes may use the session task as the declaration. A task without a scope is not ready; do not start.
+- Keep writes inside the declared scope; verify with `git status` and `git diff --name-only` before committing. Shared files are single-writer and serialized.
+- Commit only files you changed in this session and inside your write scope. Never stage or commit other agents' files. Out-of-scope commits require explicit decision-maker approval.
+- Stage explicit paths; never use `git add -A` or `git add .`. Before commit, check `git status` and `git diff --cached --name-only`.
+- Commit message: `{feat,fix,docs}[(repo|ai|tui|agent|coding-agent)]: <summary>`. Use `refs #N` in the body; use `fixes #N` or `closes #N` when complete.
+- Do not commit `.env`, `~/.pi/agent/auth.json`, or API keys.
+- Do not edit `pages` directly; the docs site has its own publish flow.
+- Do not edit `packages/*/CHANGELOG.md` for internal work; record internal changes in `docs/explains/`.
+- All agents share the `main` worktree. Serialize branch-changing and Git-state operations (switch, checkout, rebase, reset, stash, branch deletion); do not run them concurrently.
 
-The command must be at the start of the reply (optionally after one or more `@username` mentions) or at the end. `lgtmi` does not grant rights to submit PRs. Only `lgtm` grants rights to submit PRs.
+## Pull requests and merges
 
-## Quality Bar For Issues
+- Internal work does not open PRs by default. `main` is the only development branch.
+- This repository does not contribute to upstream Pi and does not open upstream PRs.
+- PRs are only for external contributors (from their fork) or a decision-maker-approved internal exception.
+- An internal exception PR must use a separate fork or clone; do not create its source branch in the canonical repository.
+- A PR must link its issue and RAD/plan if present, state its write scope, list validation commands and output, and contain only scoped changes.
+- Only the decision-maker, or an agent explicitly authorized by them, may merge.
+- Use squash merge, keep `main` linear, delete the source branch, and update the issue with the result.
+- Never force push.
 
-If you open an issue, you must use one of the two GitHub issue templates.
+## pages branch
 
-If you open an issue, keep it short, concrete, and worth reading.
+- `pages` is a publish-only branch, not a development branch.
+- Without explicit decision-maker authorization, do not switch to, check out, commit on, push, or merge `pages`.
+- Authorized publishing uses a separate clone or worktree; never switch the shared `main` worktree.
+- Do not merge `pages` into `main` or `main` into `pages`.
+- If publishing must use the shared worktree, stop every agent first and get explicit authorization.
 
-- Keep it concise. If it does not fit on one screen, it is too long.
-- Write in your own voice (do not use an LLM to generate text, if you must, follow up with a clearly AI labeled comment).
-- State the bug or request clearly.
-- Explain why it matters.
-- If you want to implement the change yourself, say so.
+## Quality gates
 
-If the issue is real and written well, a maintainer may reopen it or reply with `lgtmi` or `lgtm` in the command position described above.
+- Code changes: run `npm run check`.
+- Run the relevant tests; use `./test.sh` for non-e2e tests.
+- Platform entry changes: run `npm run omfde -- --version` and one `npm run omfde -- -p "..."` smoke.
+- Record commands, output, and environment. Do not mask failures with skips or relaxed assertions.
+- If you create or modify a test, run it and iterate until it passes.
 
-## Blocking
+## Upstream sync
 
-If you ignore this document twice, or if you spam the tracker with agent-generated issues, your GitHub account will be permanently blocked.
+This repository tracks `earendil-works/pi` as a read-only source. Internal work follows this guide and `docs/specs/workflow.md`.
 
-If you send a large volume of issues through automation, your GitHub account will be permanently blocked. No taksies backsies.
+- Do not open PRs against upstream Pi or push branches to `upstream`.
+- Use upstream only to fetch and rebase; upstream's issue and PR gates do not apply to our internal work.
 
-## Before Submitting a PR
+## External contributions
 
-Do not open a PR unless you have already been approved by a maintainer using `lgtm` in the command position described above.
+The repository is public, but current development serves the internal team. External contributors should open an issue first and wait for a decision before opening a PR.
 
-Before submitting a PR:
+## Questions
 
-```bash
-npm run check
-./test.sh
-```
-
-Both must pass.
-
-Do not edit `CHANGELOG.md`. Changelog entries are added by maintainers.
-
-If you are adding a new provider to `packages/ai`, see `AGENTS.md` for required tests.
-
-## Questions?
-
-Ask on [Discord](https://discord.com/invite/nKXTsAcmbT).
-
-## FAQ
-
-### Why are new issues and PRs auto-closed?
-
-pi receives more issues than the maintainers can responsibly review in real time. Many reports do not meet the quality bar in this guide or do not follow CONTRIBUTING.md. Some are slung at the repository mindlessly via an agent instead of being reviewed and shaped by the person submitting them. Auto-closing creates a buffer so maintainers can review the tracker on their own schedule and reopen the issues that meet the quality bar.
-
-### Why are weekend issues lower priority?
-
-We triage the tracker during working hours. That means more issues can accumulate over the weekend. Anything submitted Friday through Sunday may be missed or given lower priority in the Monday review queue. If a problem is urgent, ask on Discord and include the short version, a repro, and the relevant logs.
-
-### Why do some issues get no reply?
-
-A reply is maintenance work too. Low-signal issues, unclear reports, duplicates, and issues that do not follow this guide may be closed without discussion. This keeps time available for reproducible bugs, thoughtful requests, and contributors who have done the work to make their report actionable.
-
-### Why not let AI triage everything?
-
-AI can help group duplicates, summarize reports, and spot missing information. It is not trusted to make final maintainer decisions. Polished AI-generated issues can still be wrong, misleading, or expensive to investigate. Human review remains the final gate.
-
-### Is this hostile to contributors?
-
-No. It is a guardrail against burnout and tracker spam. Short, concrete, reproducible issues are welcome. Thoughtful contributions are welcome. Automated slop, entitlement, and large volumes of low-effort reports are not.
-
-## Where can I learn about plans?
-
-Earendil uses RFCs to discuss larger changes.  Not all of them are public, but
-quite a few are.  They can be found at [rfc.earendil.com](https://rfc.earendil.com/keyword/pi/).
+Open an issue or ask the decision-maker. For architecture, read `docs/explains/` before asking.

@@ -1,0 +1,79 @@
+name: omfde Task
+description: 提交需求、bug、chore 或决策，并声明可检查的 write scope
+title: "[Task] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        先读 `docs/specs/workflow.md` 和 `CONTRIBUTING.md`。
+        没有填写 write scope 的任务视为未就绪，不要开始实现。
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 类型
+      options:
+        - requirement
+        - bug
+        - chore
+        - decision
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: 目标
+      description: 要改什么，为什么改，期望结果是什么。
+    validations:
+      required: true
+
+  - type: textarea
+    id: write_scope
+    attributes:
+      label: Write scope
+      description: 允许写入的文件或目录，一行一个路径或 glob。没有填写则任务未就绪。
+      placeholder: |
+        apps/omfde/**
+        extensions/omfde-core/**
+    validations:
+      required: true
+
+  - type: textarea
+    id: read_only_scope
+    attributes:
+      label: Read-only scope
+      description: 允许读取但不能写入的范围。
+    validations:
+      required: false
+
+  - type: textarea
+    id: shared_files
+    attributes:
+      label: Shared files
+      description: 需要单写者协调的共享文件。
+      placeholder: |
+        package.json
+        package-lock.json
+        tsconfig.json
+        AGENTS.md
+        docs/specs/**
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收条件
+      description: 如何验证完成，包括命令、输出或可观察行为。
+    validations:
+      required: true
+
+  - type: input
+    id: rad_plan
+    attributes:
+      label: 关联 RAD / plan
+      description: 链接到 docs/rads/<slug>.md 或 docs/plans/<slug>.md；没有则留空。
+    validations:
+      required: false
