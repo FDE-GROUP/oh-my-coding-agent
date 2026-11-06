@@ -17,7 +17,7 @@
 日常开发用 npm 脚本：
 
 ```bash
-cd /home/abel/omca
+cd /home/abel/omfde
 npm run tui
 ```
 
@@ -96,7 +96,7 @@ CLI 参数。当前没有这样做，因为 `auth.json` + `settings.json` 已经
 
 ```
  Trust project folder?
- /home/abel/omca
+ /home/abel/omfde
 
  → Trust
    Trust parent folder (/home/abel)
@@ -113,7 +113,7 @@ CLI 参数。当前没有这样做，因为 `auth.json` + `settings.json` 已经
 [Prompts]     /cl, /deslop, /dup, /is, /pr, /sa, /wr
 [Extensions]  import-repro.ts, prompt-url-widget.ts, redraws.ts, tps.ts
 
-~/omca (omca)
+~/omfde (main)
 0.0%/1.0M (auto)                    deepseek-flash • high
 ```
 
@@ -215,7 +215,7 @@ hello-from-bash
 `/session` 实际输出：
 
 ```
-File: /home/abel/.pi/agent/sessions/--home-abel-omca--/2026-...jsonl
+File: /home/abel/.pi/agent/sessions/--home-abel-omfde--/2026-...jsonl
 ID: 01a1ae54-...
 Messages: Total 11, User 2, Assistant 4, Tools 3 calls
 Tokens: Input 23,168, Cached 20,352 (87.8%), Output 296
