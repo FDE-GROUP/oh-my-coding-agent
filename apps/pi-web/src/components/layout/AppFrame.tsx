@@ -1,17 +1,48 @@
-import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { createSession, fetchSessions, renameSession } from "../../lib/api.ts";
 import { useViewport } from "../../lib/viewport.ts";
 import type { Health } from "../../server/health.ts";
+import type { SessionSummary } from "../../server/sessions.ts";
 import { Conversation } from "../conversation/Conversation.tsx";
 import { IconButton } from "../primitives/IconButton.tsx";
 import { PanelLeftIcon } from "../primitives/icons.tsx";
 import { RightPanel } from "./RightPanel.tsx";
 import { Sidebar } from "./Sidebar.tsx";
 
-export function AppFrame({ health }: { health: Health }) {
+export interface AppFrameProps {
+	health: Health;
+	sessionId?: string;
+}
+
+export function AppFrame({ health, sessionId }: AppFrameProps) {
 	const { width } = useViewport();
 	const isDrawer = width < 768;
 	const [expanded, setExpanded] = useState(true);
+	const [error, setError] = useState<string | null>(null);
+	const [sessions, setSessions] = useState<SessionSummary[]>([]);
+	const [sessionsLoaded, setSessionsLoaded] = useState(false);
 	const previousWide = useRef(width >= 1024);
+	const navigate = useNavigate();
+
+	const refreshSessions = useCallback(async () => {
+		try {
+			setSessions(await fetchSessions());
+		} catch (caught) {
+			setError(caught instanceof Error ? caught.message : String(caught));
+		} finally {
+			setSessionsLoaded(true);
+		}
+	}, []);
+
+	useEffect(() => {
+		void refreshSessions();
+	}, [refreshSessions]);
+
+	useEffect(() => {
+		if (!sessionsLoaded || sessionId || sessions.length === 0) return;
+		void navigate({ to: "/session/$sessionId", params: { sessionId: sessions[0].id }, replace: true });
+	}, [navigate, sessionId, sessions, sessionsLoaded]);
 
 	useEffect(() => {
 		const wide = width >= 1024;
@@ -21,13 +52,61 @@ export function AppFrame({ health }: { health: Health }) {
 
 	const layoutLabel = isDrawer ? "抽屉" : expanded ? "280px" : "56px";
 
+	const handleNew = useCallback(async () => {
+		setError(null);
+		try {
+			const created = await createSession();
+			await refreshSessions();
+			await navigate({ to: "/session/$sessionId", params: { sessionId: created.id } });
+		} catch (caught) {
+			setError(caught instanceof Error ? caught.message : String(caught));
+		}
+	}, [navigate, refreshSessions]);
+
+	const handleRename = useCallback(
+		async (id: string, name: string) => {
+			setError(null);
+			try {
+				await renameSession(id, name);
+				await refreshSessions();
+			} catch (caught) {
+				setError(caught instanceof Error ? caught.message : String(caught));
+			}
+		},
+		[refreshSessions],
+	);
+
+	const handleSessionCreated = useCallback(
+		(id: string) => {
+			void refreshSessions();
+			void navigate({ to: "/session/$sessionId", params: { sessionId: id } });
+		},
+		[navigate, refreshSessions],
+	);
+
 	return (
 		<div className="flex h-dvh overflow-hidden bg-dsw-bg-base text-dsw-label-primary">
-			{!isDrawer && <Sidebar collapsed={!expanded} />}
+			{!isDrawer && (
+				<Sidebar
+					collapsed={!expanded}
+					sessions={sessions}
+					activeId={sessionId}
+					onNew={handleNew}
+					onRename={handleRename}
+				/>
+			)}
 
 			{isDrawer && expanded && (
 				<div className="fixed inset-0 z-40 flex">
-					<Sidebar collapsed={false} drawer onClose={() => setExpanded(false)} />
+					<Sidebar
+						collapsed={false}
+						drawer
+						sessions={sessions}
+						activeId={sessionId}
+						onNew={handleNew}
+						onRename={handleRename}
+						onClose={() => setExpanded(false)}
+					/>
 					<button
 						type="button"
 						aria-label="关闭侧栏"
@@ -52,7 +131,13 @@ export function AppFrame({ health }: { health: Health }) {
 					</span>
 				</header>
 
-				<Conversation health={health} />
+				{error && (
+					<div className="border-b border-hairline border-dsw-border-l1 bg-dsw-bg-layer-1 px-4 py-2 text-xs text-dsw-state-error">
+						{error}
+					</div>
+				)}
+
+				<Conversation health={health} sessionId={sessionId} onSessionCreated={handleSessionCreated} />
 			</main>
 
 			<RightPanel />

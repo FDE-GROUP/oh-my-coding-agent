@@ -91,3 +91,11 @@ export function ArrowDownIcon(props: IconProps) {
 		</svg>
 	);
 }
+
+export function PencilIcon(props: IconProps) {
+	return (
+		<svg {...base} {...props}>
+			<path d="m10.5 2.75 2.75 2.75M2.75 13.25l.75-3 7.5-7.5 2.25 2.25-7.5 7.5-3 .75Z" />
+		</svg>
+	);
+}

@@ -7,6 +7,8 @@
  *
  * @internal
  */
+
+import { resolveProjectCwd } from "./project.ts";
 import { SessionRuntime, type SessionRuntimeOptions } from "./runtime.ts";
 
 /**
@@ -187,6 +189,7 @@ export function getRuntimeManager(): RuntimeManager {
 		globalStore.__piWebRuntimeManager = new RuntimeManager({
 			maxRuntimes: Number(process.env.PI_WEB_MAX_RUNTIMES ?? DEFAULT_MAX_RUNTIMES),
 			idleMs: Number(process.env.PI_WEB_IDLE_MS ?? DEFAULT_IDLE_MS),
+			runtimeOptions: { cwd: resolveProjectCwd() },
 		});
 	}
 	return globalStore.__piWebRuntimeManager;

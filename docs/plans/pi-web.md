@@ -255,6 +255,8 @@ SSE 信封：
 
 完成判据：RAD 场景 3、4 与 US-6、US-7 通过。
 
+状态：已完成（2026-11-06）。验证：dev 实测列表、恢复、重命名、模型命令与用量查询；工作目录按 `PI_WEB_CWD` → `INIT_CWD` → `process.cwd()` 解析；`pnpm run check` 通过。
+
 ### S6 排队与扩展
 
 - Composer 支持 steer / followUp；显示 `queue_update` 队列。

@@ -8,6 +8,7 @@
  */
 import type { RpcCommand, RpcSessionState } from "@earendil-works/pi-coding-agent";
 import type { RuntimeEvent, SessionSnapshot } from "../server/runtime.ts";
+import type { SessionSummary } from "../server/sessions.ts";
 
 /**
  * 新建会话的响应。
@@ -108,4 +109,51 @@ export function openEventStream(sessionId: string, handlers: EventStreamHandlers
 	});
 	source.addEventListener("error", () => handlers.onConnectionError?.());
 	return () => source.close();
+}
+
+/**
+ * 读取当前项目的会话列表。
+ *
+ * @returns 会话列表。
+ * @internal
+ */
+export async function fetchSessions(): Promise<SessionSummary[]> {
+	const response = await fetch("/api/sessions");
+	if (!response.ok) throw new Error(await readError(response));
+	const body = (await response.json()) as { sessions: SessionSummary[] };
+	return body.sessions;
+}
+
+/**
+ * 恢复一个已有会话。
+ *
+ * @param sessionId - Pi session id。
+ * @returns 会话 id 与状态。
+ * @internal
+ */
+export async function resumeSession(sessionId: string): Promise<CreatedSession> {
+	const response = await fetch("/api/sessions", {
+		method: "POST",
+		headers: { "content-type": "application/json" },
+		body: JSON.stringify({ resumeId: sessionId }),
+	});
+	if (!response.ok) throw new Error(await readError(response));
+	return (await response.json()) as CreatedSession;
+}
+
+/**
+ * 重命名会话。
+ *
+ * @param sessionId - Pi session id。
+ * @param name - 新名称。
+ * @returns 重命名请求完成后 resolve。
+ * @internal
+ */
+export async function renameSession(sessionId: string, name: string): Promise<void> {
+	const response = await fetch(`/api/sessions/${encodeURIComponent(sessionId)}`, {
+		method: "PATCH",
+		headers: { "content-type": "application/json" },
+		body: JSON.stringify({ name }),
+	});
+	if (!response.ok) throw new Error(await readError(response));
 }
