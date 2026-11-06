@@ -1,6 +1,8 @@
 import type { RpcCommand } from "@earendil-works/pi-coding-agent";
 import { createFileRoute } from "@tanstack/react-router";
+import { sessionAccess } from "../../server/access.ts";
 import { getRuntimeManager } from "../../server/runtime-manager.ts";
+import { getCurrentUser } from "../../server/user.ts";
 
 /**
  * 会话命令转发路由。
@@ -11,6 +13,9 @@ export const Route = createFileRoute("/api/sessions/$sessionId/commands")({
 	server: {
 		handlers: {
 			POST: async ({ params, request }) => {
+				const user = getCurrentUser();
+				const access = await sessionAccess(params.sessionId, user);
+				if (!access) return Response.json({ error: "会话不存在" }, { status: 404 });
 				const runtime = getRuntimeManager().get(params.sessionId);
 				if (!runtime) return Response.json({ error: "会话未加载" }, { status: 404 });
 

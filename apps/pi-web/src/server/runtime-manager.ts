@@ -8,7 +8,7 @@
  * @internal
  */
 
-import { resolveProjectCwd } from "./project.ts";
+import { getAppConfig } from "./config.ts";
 import { type RuntimeStatus, SessionRuntime, type SessionRuntimeOptions } from "./runtime.ts";
 
 /**
@@ -29,8 +29,10 @@ export class RuntimeCapacityError extends Error {
  * @internal
  */
 export interface RuntimeManagerOptions {
-	/** 最大活跃运行时数量，默认 4。 */
+	/** 全局最大活跃运行时数量。 */
 	maxRuntimes?: number;
+	/** 每用户最大活跃运行时数量。 */
+	maxPerOwner?: number;
 	/** 空闲回收阈值，默认 30 分钟。 */
 	idleMs?: number;
 	/** 清理间隔，默认 60 秒。 */
@@ -39,7 +41,8 @@ export interface RuntimeManagerOptions {
 	runtimeOptions?: Omit<SessionRuntimeOptions, "onExit" | "sessionPath">;
 }
 
-const DEFAULT_MAX_RUNTIMES = 4;
+const DEFAULT_MAX_RUNTIMES = 8;
+const DEFAULT_MAX_PER_OWNER = 2;
 const DEFAULT_IDLE_MS = 30 * 60_000;
 const DEFAULT_SWEEP_MS = 60_000;
 
@@ -50,6 +53,7 @@ const DEFAULT_SWEEP_MS = 60_000;
  */
 export class RuntimeManager {
 	readonly #runtimes = new Map<string, SessionRuntime>();
+	readonly #owners = new Map<string, string>();
 	readonly #options: Required<Omit<RuntimeManagerOptions, "runtimeOptions">> &
 		Pick<RuntimeManagerOptions, "runtimeOptions">;
 	readonly #sweepTimer: NodeJS.Timeout;
@@ -57,6 +61,7 @@ export class RuntimeManager {
 	constructor(options: RuntimeManagerOptions = {}) {
 		this.#options = {
 			maxRuntimes: options.maxRuntimes ?? DEFAULT_MAX_RUNTIMES,
+			maxPerOwner: options.maxPerOwner ?? DEFAULT_MAX_PER_OWNER,
 			idleMs: options.idleMs ?? DEFAULT_IDLE_MS,
 			sweepMs: options.sweepMs ?? DEFAULT_SWEEP_MS,
 			runtimeOptions: options.runtimeOptions,
@@ -79,14 +84,18 @@ export class RuntimeManager {
 	 * @returns 已初始化的运行时。
 	 * @internal
 	 */
-	async create(options: SessionRuntimeOptions = {}): Promise<SessionRuntime> {
-		await this.#makeRoom();
+	async create(options: SessionRuntimeOptions & { owner?: string } = {}): Promise<SessionRuntime> {
+		const { owner = "local", ...runtimeOptions } = options;
+		await this.#makeRoom(owner);
 		const runtime = new SessionRuntime({
 			...this.#options.runtimeOptions,
-			...options,
+			...runtimeOptions,
 			onExit: (exited) => {
 				const id = exited.sessionId;
-				if (id && this.#runtimes.get(id) === exited) this.#runtimes.delete(id);
+				if (id && this.#runtimes.get(id) === exited) {
+					this.#runtimes.delete(id);
+					this.#owners.delete(id);
+				}
 			},
 		});
 		try {
@@ -97,6 +106,7 @@ export class RuntimeManager {
 				return existing;
 			}
 			this.#runtimes.set(state.sessionId, runtime);
+			this.#owners.set(state.sessionId, owner);
 			return runtime;
 		} catch (error) {
 			await runtime.dispose();
@@ -116,6 +126,9 @@ export class RuntimeManager {
 		if (!runtime) return;
 		this.#runtimes.delete(oldId);
 		this.#runtimes.set(newId, runtime);
+		const owner = this.#owners.get(oldId);
+		this.#owners.delete(oldId);
+		if (owner) this.#owners.set(newId, owner);
 	}
 
 	/**
@@ -124,9 +137,10 @@ export class RuntimeManager {
 	 * @returns 运行时 id、忙碌状态与最后活动时间。
 	 * @internal
 	 */
-	list(): Array<{ id: string; busy: boolean; lastActivityAt: number; status: RuntimeStatus }> {
+	list(): Array<{ id: string; owner: string; busy: boolean; lastActivityAt: number; status: RuntimeStatus }> {
 		return [...this.#runtimes.entries()].map(([id, runtime]) => ({
 			id,
+			owner: this.#owners.get(id) ?? "unknown",
 			busy: runtime.busy,
 			lastActivityAt: runtime.lastActivityAt,
 			status: runtime.status,
@@ -155,6 +169,7 @@ export class RuntimeManager {
 		const runtime = this.#runtimes.get(id);
 		if (!runtime) return false;
 		this.#runtimes.delete(id);
+		this.#owners.delete(id);
 		await runtime.dispose();
 		return true;
 	}
@@ -193,15 +208,27 @@ export class RuntimeManager {
 		await Promise.all(runtimes.map((runtime) => runtime.dispose()));
 	}
 
-	async #makeRoom(): Promise<void> {
+	async #evict(id: string, runtime: SessionRuntime): Promise<void> {
+		this.#runtimes.delete(id);
+		this.#owners.delete(id);
+		await runtime.dispose();
+	}
+
+	async #makeRoom(owner: string): Promise<void> {
+		const owned = [...this.#runtimes.entries()].filter(([id]) => this.#owners.get(id) === owner);
+		if (owned.length >= this.#options.maxPerOwner) {
+			const idle = owned
+				.filter(([, runtime]) => !runtime.busy)
+				.sort(([, left], [, right]) => left.lastActivityAt - right.lastActivityAt)[0];
+			if (!idle) throw new RuntimeCapacityError(`用户 ${owner} 的活跃会话已达上限`);
+			await this.#evict(...idle);
+		}
 		if (this.#runtimes.size < this.#options.maxRuntimes) return;
 		const idle = [...this.#runtimes.entries()]
 			.filter(([, runtime]) => !runtime.busy)
 			.sort(([, left], [, right]) => left.lastActivityAt - right.lastActivityAt)[0];
 		if (!idle) throw new RuntimeCapacityError();
-		const [id, runtime] = idle;
-		this.#runtimes.delete(id);
-		await runtime.dispose();
+		await this.#evict(...idle);
 	}
 }
 
@@ -216,9 +243,10 @@ const globalStore = globalThis as typeof globalThis & { __piWebRuntimeManager?: 
 export function getRuntimeManager(): RuntimeManager {
 	if (!globalStore.__piWebRuntimeManager) {
 		globalStore.__piWebRuntimeManager = new RuntimeManager({
-			maxRuntimes: Number(process.env.PI_WEB_MAX_RUNTIMES ?? DEFAULT_MAX_RUNTIMES),
 			idleMs: Number(process.env.PI_WEB_IDLE_MS ?? DEFAULT_IDLE_MS),
-			runtimeOptions: { cwd: resolveProjectCwd() },
+			maxPerOwner: Number(process.env.PI_WEB_MAX_PER_USER ?? getAppConfig().config.limits.maxRuntimesPerUser),
+			maxRuntimes: Number(process.env.PI_WEB_MAX_RUNTIMES ?? getAppConfig().config.limits.maxRuntimesTotal),
+			runtimeOptions: {},
 		});
 	}
 	return globalStore.__piWebRuntimeManager;

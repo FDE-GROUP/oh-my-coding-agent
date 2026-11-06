@@ -1,6 +1,14 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { createSession, fetchRuntimes, fetchSessions, renameSession } from "../../lib/api.ts";
+import {
+	createSession,
+	fetchRuntimes,
+	fetchSessions,
+	fetchWorkspaces,
+	logout,
+	renameSession,
+	type WorkspaceInfo,
+} from "../../lib/api.ts";
 import { useViewport } from "../../lib/viewport.ts";
 import type { Health } from "../../server/health.ts";
 import type { SessionSummary } from "../../server/sessions.ts";
@@ -23,6 +31,9 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 	const [sessions, setSessions] = useState<SessionSummary[]>([]);
 	const [sessionsLoaded, setSessionsLoaded] = useState(false);
 	const [runtimeStatus, setRuntimeStatus] = useState<Record<string, { busy: boolean }>>({});
+	const [workspaces, setWorkspaces] = useState<WorkspaceInfo[]>([]);
+	const [user, setUser] = useState<{ id: string; name: string } | null>(null);
+	const [workspaceId, setWorkspaceId] = useState("");
 	const previousWide = useRef(width >= 1024);
 	const navigate = useNavigate();
 
@@ -39,6 +50,33 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 	useEffect(() => {
 		void refreshSessions();
 	}, [refreshSessions]);
+
+	useEffect(() => {
+		let cancelled = false;
+		fetchWorkspaces()
+			.then((data) => {
+				if (cancelled) return;
+				setUser(data.user);
+				setWorkspaces(data.workspaces);
+				const stored = window.localStorage.getItem("pi-web-workspace");
+				const preferred = data.workspaces.find((workspace) => workspace.id === stored) ?? data.workspaces[0];
+				if (preferred) setWorkspaceId((current) => current || preferred.id);
+			})
+			.catch((caught) => setError(caught instanceof Error ? caught.message : String(caught)));
+		return () => {
+			cancelled = true;
+		};
+	}, []);
+
+	const handleWorkspaceChange = useCallback((id: string) => {
+		setWorkspaceId(id);
+		window.localStorage.setItem("pi-web-workspace", id);
+	}, []);
+
+	const handleLogout = useCallback(async () => {
+		await logout();
+		window.location.href = "/login";
+	}, []);
 
 	useEffect(() => {
 		let cancelled = false;
@@ -75,13 +113,13 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 	const handleNew = useCallback(async () => {
 		setError(null);
 		try {
-			const created = await createSession();
+			const created = await createSession(workspaceId || undefined);
 			await refreshSessions();
 			await navigate({ to: "/session/$sessionId", params: { sessionId: created.id } });
 		} catch (caught) {
 			setError(caught instanceof Error ? caught.message : String(caught));
 		}
-	}, [navigate, refreshSessions]);
+	}, [navigate, refreshSessions, workspaceId]);
 
 	const handleRename = useCallback(
 		async (id: string, name: string) => {
@@ -105,7 +143,7 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 	);
 
 	return (
-		<div className="flex h-dvh overflow-hidden bg-dsw-bg-base text-dsw-label-primary">
+		<div className="flex h-dvh overflow-hidden bg-dsw-bg-base pb-[env(safe-area-inset-bottom)] text-dsw-label-primary">
 			{!isDrawer && (
 				<Sidebar
 					collapsed={!expanded}
@@ -115,6 +153,11 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 					onNew={handleNew}
 					onRename={handleRename}
 					runtimeStatus={runtimeStatus}
+					workspaces={workspaces}
+					workspaceId={workspaceId}
+					onWorkspaceChange={handleWorkspaceChange}
+					user={user}
+					onLogout={handleLogout}
 				/>
 			)}
 
@@ -129,6 +172,11 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 						onNew={handleNew}
 						onRename={handleRename}
 						runtimeStatus={runtimeStatus}
+						workspaces={workspaces}
+						workspaceId={workspaceId}
+						onWorkspaceChange={handleWorkspaceChange}
+						user={user}
+						onLogout={handleLogout}
 						onClose={() => setExpanded(false)}
 					/>
 					<button

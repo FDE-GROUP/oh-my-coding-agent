@@ -11,7 +11,6 @@ import type { Dirent } from "node:fs";
 import { readdir, readFile, realpath, stat } from "node:fs/promises";
 import { join, relative, resolve, sep } from "node:path";
 import { detectSupportedImageMimeTypeFromFile } from "@earendil-works/pi-coding-agent";
-import { resolveProjectCwd } from "./project.ts";
 
 /** 文本文件大小上限。 */
 const TEXT_LIMIT_BYTES = 256 * 1024;
@@ -68,13 +67,13 @@ export interface ExpandedFiles {
 /**
  * 搜索项目文件。
  *
+ * @param root - 工作区根目录。
  * @param query - 文件名或路径片段，大小写不敏感。
  * @param limit - 最多返回数量，默认 100。
  * @returns 匹配的相对路径。
  * @internal
  */
-export async function searchFiles(query: string, limit = 100): Promise<FileCandidate[]> {
-	const root = resolveProjectCwd();
+export async function searchFiles(root: string, query: string, limit = 100): Promise<FileCandidate[]> {
 	const needle = query.toLowerCase();
 	const results: string[] = [];
 	let visited = 0;
@@ -121,12 +120,13 @@ async function readText(path: string): Promise<string> {
 /**
  * 展开 `@file` 引用。
  *
- * @param paths - 相对项目目录的路径。
+ * @param rootPath - 工作区根目录。
+ * @param paths - 相对工作区的路径。
  * @returns 拼接后的文本、图片附件与跳过说明。
  * @internal
  */
-export async function expandFiles(paths: string[]): Promise<ExpandedFiles> {
-	const root = await realpath(resolveProjectCwd());
+export async function expandFiles(rootPath: string, paths: string[]): Promise<ExpandedFiles> {
+	const root = await realpath(rootPath);
 	const textParts: string[] = [];
 	const images: ExpandedImage[] = [];
 	const notes: string[] = [];

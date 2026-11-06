@@ -56,14 +56,15 @@ async function readError(response: Response): Promise<string> {
 /**
  * 创建一个新会话。
  *
+ * @param workspaceId - 工作区 id；省略时使用默认工作区。
  * @returns 新会话的 id 与初始状态。
  * @internal
  */
-export async function createSession(): Promise<CreatedSession> {
+export async function createSession(workspaceId?: string): Promise<CreatedSession> {
 	const response = await fetch("/api/sessions", {
 		method: "POST",
 		headers: { "content-type": "application/json" },
-		body: JSON.stringify({}),
+		body: JSON.stringify(workspaceId ? { workspaceId } : {}),
 	});
 	if (!response.ok) throw new Error(await readError(response));
 	return (await response.json()) as CreatedSession;
@@ -185,12 +186,15 @@ export interface ExpandedFilesResponse {
 /**
  * 搜索项目文件。
  *
+ * @param sessionId - 用于解析工作区的会话 id。
  * @param query - 文件名片段。
  * @returns 匹配的相对路径。
  * @internal
  */
-export async function searchProjectFiles(query: string): Promise<FileCandidate[]> {
-	const response = await fetch(`/api/files/search?q=${encodeURIComponent(query)}`);
+export async function searchProjectFiles(sessionId: string, query: string): Promise<FileCandidate[]> {
+	const response = await fetch(
+		`/api/files/search?sessionId=${encodeURIComponent(sessionId)}&q=${encodeURIComponent(query)}`,
+	);
 	if (!response.ok) throw new Error(await readError(response));
 	const body = (await response.json()) as { files: FileCandidate[] };
 	return body.files;
@@ -199,15 +203,16 @@ export async function searchProjectFiles(query: string): Promise<FileCandidate[]
 /**
  * 展开 `@file` 引用。
  *
- * @param paths - 相对项目目录的路径。
+ * @param sessionId - 用于解析工作区的会话 id。
+ * @param paths - 相对工作区的路径。
  * @returns 文本、图片与提示。
  * @internal
  */
-export async function expandProjectFiles(paths: string[]): Promise<ExpandedFilesResponse> {
+export async function expandProjectFiles(sessionId: string, paths: string[]): Promise<ExpandedFilesResponse> {
 	const response = await fetch("/api/files/expand", {
 		method: "POST",
 		headers: { "content-type": "application/json" },
-		body: JSON.stringify({ paths }),
+		body: JSON.stringify({ sessionId, paths }),
 	});
 	if (!response.ok) throw new Error(await readError(response));
 	return (await response.json()) as ExpandedFilesResponse;
@@ -271,4 +276,40 @@ export async function fetchRuntimes(): Promise<RuntimeInfo[]> {
 	if (!response.ok) throw new Error(await readError(response));
 	const body = (await response.json()) as { runtimes: RuntimeInfo[] };
 	return body.runtimes;
+}
+
+/**
+ * 当前用户与可用工作区。
+ *
+ * @internal
+ */
+export interface WorkspaceInfo {
+	id: string;
+	name: string;
+	path: string;
+}
+
+/**
+ * 读取当前用户和工作区。
+ *
+ * @returns 用户信息与工作区列表。
+ * @internal
+ */
+export async function fetchWorkspaces(): Promise<{
+	user: { id: string; name: string };
+	workspaces: WorkspaceInfo[];
+}> {
+	const response = await fetch("/api/workspaces");
+	if (!response.ok) throw new Error(await readError(response));
+	return (await response.json()) as { user: { id: string; name: string }; workspaces: WorkspaceInfo[] };
+}
+
+/**
+ * 登出。
+ *
+ * @returns 请求完成后 resolve。
+ * @internal
+ */
+export async function logout(): Promise<void> {
+	await fetch("/api/auth/logout", { method: "POST" });
 }

@@ -39,7 +39,7 @@ describe("files", () => {
 	});
 
 	it("wraps text files and attaches images", async () => {
-		const result = await expandFiles(["hello.txt", "image.png"]);
+		const result = await expandFiles(project, ["hello.txt", "image.png"]);
 		const absolute = realpathSync(join(project, "hello.txt"));
 		expect(result.text).toContain(`<file name="${absolute}">`);
 		expect(result.text).toContain("hello world");
@@ -49,7 +49,7 @@ describe("files", () => {
 	});
 
 	it("skips empty, binary, and out-of-project files", async () => {
-		const result = await expandFiles(["empty.txt", "binary.bin", "../outside.txt"]);
+		const result = await expandFiles(project, ["empty.txt", "binary.bin", "../outside.txt"]);
 		expect(result.text).toBe("");
 		expect(result.images).toHaveLength(0);
 		expect(result.notes).toHaveLength(3);
@@ -58,16 +58,16 @@ describe("files", () => {
 	});
 
 	it("rejects sensitive files", async () => {
-		const result = await expandFiles([".env", "id_rsa"]);
+		const result = await expandFiles(project, [".env", "id_rsa"]);
 		expect(result.notes).toHaveLength(2);
 		expect(result.notes.join(" ")).toContain("敏感文件");
 	});
 
 	it("searches the project and skips excluded directories", async () => {
-		const files = await searchFiles("hello");
+		const files = await searchFiles(project, "hello");
 		expect(files.map((file) => file.path)).toContain("hello.txt");
 
-		const hidden = await searchFiles("hidden");
+		const hidden = await searchFiles(project, "hidden");
 		expect(hidden).toHaveLength(0);
 	});
 });

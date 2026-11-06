@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { sessionAccess } from "../../server/access.ts";
 import { getRuntimeManager } from "../../server/runtime-manager.ts";
+import { getCurrentUser } from "../../server/user.ts";
 
 /**
- * 单个会话的快照与关闭路由。
+ * 单个会话的快照、重命名与关闭路由。
  *
  * @internal
  */
@@ -10,6 +12,9 @@ export const Route = createFileRoute("/api/sessions/$sessionId")({
 	server: {
 		handlers: {
 			GET: async ({ params }) => {
+				const user = getCurrentUser();
+				const access = await sessionAccess(params.sessionId, user);
+				if (!access) return Response.json({ error: "会话不存在" }, { status: 404 });
 				const runtime = getRuntimeManager().get(params.sessionId);
 				if (!runtime) return Response.json({ error: "会话未加载" }, { status: 404 });
 				try {
@@ -20,11 +25,17 @@ export const Route = createFileRoute("/api/sessions/$sessionId")({
 				}
 			},
 			DELETE: async ({ params }) => {
+				const user = getCurrentUser();
+				const access = await sessionAccess(params.sessionId, user);
+				if (!access) return Response.json({ error: "会话不存在" }, { status: 404 });
 				const closed = await getRuntimeManager().close(params.sessionId);
 				if (!closed) return Response.json({ error: "会话未加载" }, { status: 404 });
 				return Response.json({ ok: true });
 			},
 			PATCH: async ({ params, request }) => {
+				const user = getCurrentUser();
+				const access = await sessionAccess(params.sessionId, user);
+				if (!access) return Response.json({ error: "会话不存在" }, { status: 404 });
 				const runtime = getRuntimeManager().get(params.sessionId);
 				if (!runtime) return Response.json({ error: "会话未加载" }, { status: 404 });
 				let body: { name?: string } = {};

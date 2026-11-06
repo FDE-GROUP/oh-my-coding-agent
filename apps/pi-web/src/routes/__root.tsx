@@ -6,10 +6,16 @@ export const Route = createRootRoute({
 	head: () => ({
 		meta: [
 			{ charSet: "utf-8" },
-			{ name: "viewport", content: "width=device-width, initial-scale=1" },
+			{ name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
+			{ name: "theme-color", content: "#16181d" },
 			{ title: "Pi Web" },
 		],
-		links: [{ rel: "stylesheet", href: appCss }],
+		links: [
+			{ rel: "stylesheet", href: appCss },
+			{ rel: "manifest", href: "/manifest.webmanifest" },
+			{ rel: "icon", href: "/icons/icon.svg", type: "image/svg+xml" },
+			{ rel: "apple-touch-icon", href: "/icons/icon.svg" },
+		],
 	}),
 	shellComponent: RootDocument,
 });

@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { sessionAccess } from "../../server/access.ts";
+import { recordSessionOwner } from "../../server/owners.ts";
 import { getRuntimeManager } from "../../server/runtime-manager.ts";
+import { getCurrentUser } from "../../server/user.ts";
 
 /**
  * 从指定 user 消息分叉会话。
@@ -10,6 +13,9 @@ export const Route = createFileRoute("/api/sessions/$sessionId/fork")({
 	server: {
 		handlers: {
 			POST: async ({ params, request }) => {
+				const user = getCurrentUser();
+				const access = await sessionAccess(params.sessionId, user);
+				if (!access) return Response.json({ error: "会话不存在" }, { status: 404 });
 				const manager = getRuntimeManager();
 				const runtime = manager.get(params.sessionId);
 				if (!runtime) return Response.json({ error: "会话未加载" }, { status: 404 });
@@ -27,6 +33,7 @@ export const Route = createFileRoute("/api/sessions/$sessionId/fork")({
 					if (result.data.cancelled) return Response.json({ error: "分叉被取消" }, { status: 409 });
 					const state = await runtime.command({ type: "get_state" });
 					manager.rekey(params.sessionId, state.data.sessionId);
+					recordSessionOwner(state.data.sessionId, access.owner, access.workspaceId);
 					return Response.json({ id: state.data.sessionId, state: state.data });
 				} catch (error) {
 					return Response.json({ error: error instanceof Error ? error.message : String(error) }, { status: 500 });

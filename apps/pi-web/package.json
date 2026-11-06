@@ -16,7 +16,8 @@
 		"test": "vitest run --config vitest.config.ts",
 		"typecheck": "tsc --noEmit",
 		"check": "pnpm run typecheck && pnpm run build",
-		"tokens": "node scripts/generate-tokens.mjs"
+		"tokens": "node scripts/generate-tokens.mjs",
+		"token": "node scripts/hash-token.mjs"
 	},
 	"dependencies": {
 		"@earendil-works/pi-coding-agent": "1.5.0",

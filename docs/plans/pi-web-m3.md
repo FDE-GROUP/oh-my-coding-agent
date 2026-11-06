@@ -122,6 +122,8 @@ Token 生成：`node apps/pi-web/scripts/hash-token.mjs`，输出 SHA-256 十六
 
 完成判据：非回环必须登录；回环无认证行为不变；SSE 鉴权通过。
 
+状态：已完成（2026-11-06）。验证：未登录 401/302、cookie 标志、LAN 访问、SSE 鉴权、登出、非回环无认证拒绝启动。
+
 ### S2 工作区
 
 - 工作区 API、创建会话选择、cwd 绑定、列表聚合。
@@ -129,6 +131,8 @@ Token 生成：`node apps/pi-web/scripts/hash-token.mjs`，输出 SHA-256 十六
 - 侧栏显示工作区与会话所属工作区。
 
 完成判据：两工作区会话、列表、`@file` 完全隔离。
+
+状态：已完成（2026-11-06）。验证：会话 cwd 与 session 目录按工作区隔离；文件接口按 session 解析工作区；侧栏工作区选择器。
 
 ### S3 归属与并发
 
@@ -138,12 +142,16 @@ Token 生成：`node apps/pi-web/scripts/hash-token.mjs`，输出 SHA-256 十六
 
 完成判据：两个用户互相不可见；每用户超限返回 429。
 
+状态：已完成（2026-11-06）。验证：A 创建会话后 B 列表为空、详情与 SSE 均 404；owner 索引单测；每用户上限逻辑。
+
 ### S4 移动端与 PWA
 
 - manifest、图标、theme-color、安全区、触摸尺寸。
 - Playwright 设备模拟冒烟。
 
 完成判据：手机宽度可发送、中止、切换会话；可添加到主屏。
+
+状态：已完成（2026-11-06）。验证：Playwright 390px 抽屉可用；manifest 200；安装提示未在 headless 中验证。
 
 ### S5 加固与文档
 
@@ -152,6 +160,8 @@ Token 生成：`node apps/pi-web/scripts/hash-token.mjs`，输出 SHA-256 十六
 - 旧单用户模式回归。
 
 完成判据：RAD 第 10 节可复现；M1/M2 无回归。
+
+状态：已完成（2026-11-06）。验证：登录→工作区→会话→刷新→手机→登出浏览器冒烟通过；`pnpm run check` 通过；app 测试 23 项通过。
 
 ## 5. 测试与验证
 

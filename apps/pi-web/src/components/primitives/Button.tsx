@@ -18,7 +18,7 @@ export function Button({ variant = "secondary", className, type = "button", ...p
 		<button
 			type={type}
 			className={clsx(
-				"inline-flex h-8 items-center justify-center gap-1.5 rounded-dsw-sm px-3 text-sm font-medium transition-colors",
+				"inline-flex h-10 items-center justify-center gap-1.5 rounded-dsw-sm px-3 text-sm font-medium transition-colors",
 				"disabled:pointer-events-none disabled:opacity-50",
 				variants[variant],
 				className,

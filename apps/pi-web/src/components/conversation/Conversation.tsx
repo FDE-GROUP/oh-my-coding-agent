@@ -347,8 +347,12 @@ export function Conversation({ health, sessionId, onSessionCreated, onSessionSwi
 				commands={commands}
 				attachments={attachments}
 				onAttachmentsChange={setAttachments}
-				onSearchFiles={searchProjectFiles}
-				onExpandFiles={expandProjectFiles}
+				onSearchFiles={(query) => (activeId ? searchProjectFiles(activeId, query) : Promise.resolve([]))}
+				onExpandFiles={(paths) =>
+					activeId
+						? expandProjectFiles(activeId, paths)
+						: Promise.resolve({ text: "", images: [], notes: ["先发送一条消息创建会话，再引用文件"] })
+				}
 				onNotes={addNotes}
 				onSend={send}
 				onAbort={abort}

@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { clsx } from "clsx";
 import { useEffect, useState } from "react";
+import type { WorkspaceInfo } from "../../lib/api.ts";
 import type { SessionSummary } from "../../server/sessions.ts";
 import { Button } from "../primitives/Button.tsx";
 import { IconButton } from "../primitives/IconButton.tsx";
@@ -16,6 +17,11 @@ export interface SidebarProps {
 	onNew: () => void;
 	onRename: (id: string, name: string) => Promise<void>;
 	runtimeStatus?: Record<string, { busy: boolean }>;
+	workspaces: WorkspaceInfo[];
+	workspaceId: string;
+	onWorkspaceChange: (id: string) => void;
+	user: { id: string; name: string } | null;
+	onLogout: () => void;
 	onClose?: () => void;
 }
 
@@ -105,7 +111,7 @@ function SessionItem({
 					)}
 				</span>
 				<span className="truncate pl-3 font-mono text-[10px] text-dsw-label-tertiary">
-					{formatTime(session.modified)} · {session.messageCount} 条
+					{session.workspaceName} · {formatTime(session.modified)} · {session.messageCount} 条
 				</span>
 			</Link>
 			<IconButton
@@ -128,6 +134,11 @@ export function Sidebar({
 	onNew,
 	onRename,
 	runtimeStatus = {},
+	workspaces,
+	workspaceId,
+	onWorkspaceChange,
+	user,
+	onLogout,
 	onClose,
 }: SidebarProps) {
 	return (
@@ -151,6 +162,26 @@ export function Sidebar({
 					</>
 				)}
 			</div>
+
+			{!collapsed && workspaces.length > 0 && (
+				<div className="px-2 pb-2">
+					<label className="mb-1 block px-1 text-[11px] text-dsw-label-tertiary" htmlFor="workspace-select">
+						工作区
+					</label>
+					<select
+						id="workspace-select"
+						value={workspaceId}
+						onChange={(event) => onWorkspaceChange(event.target.value)}
+						className="h-8 w-full rounded-dsw-sm border border-hairline border-dsw-border-l1 bg-dsw-bg-layer-1 px-2 text-xs text-dsw-label-primary outline-none"
+					>
+						{workspaces.map((workspace) => (
+							<option key={workspace.id} value={workspace.id}>
+								{workspace.name}
+							</option>
+						))}
+					</select>
+				</div>
+			)}
 
 			<div className={clsx("px-2", collapsed && "flex justify-center px-0")}>
 				{collapsed ? (
@@ -195,6 +226,18 @@ export function Sidebar({
 				)}
 			>
 				<ThemeControl collapsed={collapsed} />
+				{!collapsed && user && user.id !== "local" && (
+					<div className="flex items-center gap-2 text-[11px] text-dsw-label-tertiary">
+						<span className="truncate">{user.name}</span>
+						<button
+							type="button"
+							onClick={onLogout}
+							className="ml-auto rounded-dsw-xs px-1.5 py-0.5 hover:text-dsw-label-primary"
+						>
+							退出
+						</button>
+					</div>
+				)}
 				{!collapsed && drawer && (
 					<Button variant="ghost" className="w-full justify-start" onClick={onClose}>
 						关闭侧栏

@@ -8,7 +8,7 @@
  * @internal
  */
 import { createServerFn } from "@tanstack/react-start";
-import { resolveProjectCwd } from "./project.ts";
+import { defaultWorkspace } from "./workspaces.ts";
 
 /**
  * 健康检查结果。
@@ -31,7 +31,7 @@ export interface Health {
 export function readHealth(): Health {
 	return {
 		ok: true,
-		cwd: resolveProjectCwd(),
+		cwd: defaultWorkspace().path,
 		node: process.version,
 		pid: process.pid,
 	};
