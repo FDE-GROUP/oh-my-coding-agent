@@ -24,6 +24,20 @@ Pi 自带强大的默认配置，但刻意跳过了 sub-agents 和 plan mode 这
 
 > **译注**：本文件根据仓库根目录的 `README.md` 翻译。本仓库是 Pi 的裁剪版，上游 README 中的 `packages/chord`、`packages/durable` 和 `apps/p2` 已被移除。下文的包列表按当前仓库实际内容调整，其余章节保持原意。裁剪范围见 [`docs/explains/26-fork-and-prune.md`](docs/explains/26-fork-and-prune.md)。
 
+## 本仓库结构
+
+| 目录 | 内容 |
+|---|---|
+| `packages/` | Pi 和共享库 |
+| `apps/` | 平台应用，当前为 `apps/omfde` |
+| `extensions/` | 平台扩展，当前为 `extensions/omfde-core` |
+
+启动平台入口：
+
+```bash
+npm run omfde
+```
+
 ## 快速开始
 
 安装命令行工具：

@@ -1,0 +1,15 @@
+{
+	"name": "@omfde/app",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"bin": {
+		"omfde": "./bin/omfde.mjs"
+	},
+	"scripts": {
+		"start": "node ./bin/omfde.mjs"
+	},
+	"dependencies": {
+		"@earendil-works/pi-coding-agent": "1.5.0"
+	}
+}

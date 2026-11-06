@@ -5,8 +5,10 @@
 This repository is a local fork of `earendil-works/pi`, not a GitHub fork.
 
 - `upstream` is the Pi remote. `main` mirrors upstream and receives no commits. All work happens on `omca`.
-- Pruned subsystems: `apps/p2`, `packages/env`, `packages/durable`, `packages/chord`, and `scripts/durable-browser-smoke-entry.ts`.
+- Pruned upstream subsystems: `apps/p2`, `packages/env`, `packages/durable`, `packages/chord`, and `scripts/durable-browser-smoke-entry.ts`.
 - Kept packages: `agent`, `ai`, `coding-agent`, `codemode`, `evals`, `mcp`, `schema`, `telemetry`, `tui`.
+- Platform layout: `apps/` holds runnable apps, `extensions/` holds platform extensions, and `packages/` holds Pi and shared libraries. Pi packages stay in `packages/` so upstream rebases keep applying.
+- `apps/omfde` is the first platform entrypoint. It launches Pi with `OMFDE_PLATFORM=1`; `extensions/omfde-core` is the first extension skeleton.
 - Pi core code is unmodified except for two removed comment lines in `packages/coding-agent/src/utils/shell.ts`.
 - Current goal order: 理解 → 会用 → 用好 → 增强. The project is in 会用. Do not modify Pi core behavior until a real gap justifies the 增强 phase.
 - The vision and its decision log live in `docs/specs/vision.md`. Reading notes, validation scripts, and fork details live in `docs/explains/`.
@@ -46,6 +48,7 @@ In the current phase, prefer configuration and extensions over core changes. A c
 ## Commands
 
 - After code changes (not docs): `npm run check` (full output, no tail). Fix all errors, warnings, and infos before committing. Does not run tests.
+- `npm run omfde` launches the platform entrypoint. `npm run tui` still launches Pi directly from source.
 - Run `npm run build` only when something needs built output (`dist/`), for example tests that import built packages. Never use it to type check or lint: that is `npm run check`.
 - Never run `npm test` unless requested by the user.
 - Never run the full vitest suite directly: it includes e2e tests that activate when endpoint/auth env vars are present. For all non-e2e tests, run `./test.sh` from the repo root. It runs `packages/*` only. Otherwise run specific tests from the package root:

@@ -7,8 +7,10 @@
 本仓库是 `earendil-works/pi` 的本地 fork，不是 GitHub 意义上的 fork。
 
 - `upstream` 是 Pi 远端。`main` 镜像上游，不接收提交。所有工作都在 `omca` 分支上进行。
-- 已裁剪的子系统：`apps/p2`、`packages/env`、`packages/durable`、`packages/chord` 和 `scripts/durable-browser-smoke-entry.ts`。
+- 已裁剪的上游子系统：`apps/p2`、`packages/env`、`packages/durable`、`packages/chord` 和 `scripts/durable-browser-smoke-entry.ts`。
 - 保留的包：`agent`、`ai`、`coding-agent`、`codemode`、`evals`、`mcp`、`schema`、`telemetry`、`tui`。
+- 平台布局：`apps/` 放可运行应用，`extensions/` 放平台扩展，`packages/` 放 Pi 和共享库。Pi 包保留在 `packages/`，这样上游 rebase 仍然适用。
+- `apps/omfde` 是第一个平台入口，启动 Pi 时设置 `OMFDE_PLATFORM=1`；`extensions/omfde-core` 是第一个扩展骨架。
 - 除删除 `packages/coding-agent/src/utils/shell.ts` 中两行注释外，Pi 核心代码未修改。
 - 当前目标顺序：理解 → 会用 → 用好 → 增强。项目处于“会用”阶段。在真实缺口证明需要进入“增强”之前，不要修改 Pi 核心行为。
 - 愿景和决策记录在 `docs/specs/vision.md`。阅读笔记、验证脚本和 fork 说明在 `docs/explains/`。
@@ -48,6 +50,7 @@
 ## 命令
 
 - 代码改动（不是文档）之后：运行 `npm run check`（完整输出，不要只看尾部）。提交前修复所有 error、warning 和 info。它不运行测试。
+- `npm run omfde` 启动平台入口。`npm run tui` 仍然直接从源码启动 Pi。
 - 只在某些东西需要构建产物（`dist/`）时运行 `npm run build`，例如导入已构建包的测试。永远不要用它做类型检查或 lint：那应该用 `npm run check`。
 - 除非用户要求，否则永远不要运行 `npm test`。
 - 永远不要直接运行完整的 vitest 套件：它包含 e2e 测试，当存在 endpoint/auth 环境变量时这些测试会激活。要运行所有非 e2e 测试，在仓库根目录运行 `./test.sh`。它只运行 `packages/*`。否则从包根目录运行特定测试：

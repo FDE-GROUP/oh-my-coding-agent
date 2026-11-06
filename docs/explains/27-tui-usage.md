@@ -5,27 +5,31 @@
 
 ## 1. 启动方式
 
-仓库里有两个入口：
+仓库里有四个入口：
 
 | 入口 | 命令 | 用途 |
 |---|---|---|
+| 平台入口 | `npm run omfde` | 启动 omfde 平台入口，当前是 Pi 的薄启动器 |
+| npm 脚本 | `npm run tui` | 等价于 `./pi-test.sh`，直接跑 Pi |
 | 源码 | `./pi-test.sh` | 开发用，直接跑 `packages/coding-agent/src/cli.ts` |
 | 构建产物 | `node packages/coding-agent/dist/cli.js` | 跑 `dist/`，需要先 `npm run build` |
 
-日常开发用源码入口：
+日常开发用 npm 脚本：
 
 ```bash
 cd /home/abel/omca
-./pi-test.sh
+npm run tui
 ```
 
-带参数时直接追加，例如：
+带参数时用 `--` 分隔，例如：
 
 ```bash
-./pi-test.sh --provider deepseek --model deepseek-flash
-./pi-test.sh --continue          # 恢复当前目录最近的会话
-./pi-test.sh -p "只回复 OK"      # 非交互模式
+npm run omfde -- --provider deepseek --model deepseek-flash
+npm run omfde -- --continue          # 恢复当前目录最近的会话
+npm run omfde -- -p "只回复 OK"      # 非交互模式
 ```
+
+`npm run tui` 仍然保留，用于跳过平台入口、直接启动 Pi。
 
 ## 2. DeepSeek 配置
 
