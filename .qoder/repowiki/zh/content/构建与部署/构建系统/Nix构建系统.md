@@ -1,7 +1,7 @@
 # Nix构建系统
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [flake.nix](file://flake.nix)
 - [nix/package.nix](file://nix/package.nix)
 - [nix/model-catalog.json](file://nix/model-catalog.json)

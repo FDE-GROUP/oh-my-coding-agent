@@ -1,8 +1,8 @@
 schema_version: 1
 module_path: docs_omca
-title: OMCA 代码阅读笔记与验证脚本
+title: earendil-works/pi 代码阅读与验证笔记（OMCA）
 scope:
-    - docs/explains/
+    - docs/omca/
 source_files: []
 depends_on: []
 related_to: []

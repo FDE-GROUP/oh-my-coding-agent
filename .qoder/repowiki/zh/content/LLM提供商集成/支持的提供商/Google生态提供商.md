@@ -1,7 +1,7 @@
 # Google生态提供商
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [README.md](file://README.md)
 - [packages/ai/catalog/providers/google.ts](file://packages/ai/catalog/providers/google.ts)
 - [packages/ai/catalog/providers/google-vertex.ts](file://packages/ai/catalog/providers/google-vertex.ts)

@@ -1,7 +1,7 @@
 # Agent核心架构
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [packages/agent/src/index.ts](file://packages/agent/src/index.ts)
 - [packages/agent/src/types.ts](file://packages/agent/src/types.ts)
 - [packages/agent/src/agent.ts](file://packages/agent/src/agent.ts)

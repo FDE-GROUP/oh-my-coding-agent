@@ -1,7 +1,7 @@
 # 参数Schema定义
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [packages/schema/README.md](file://packages/schema/README.md)
 - [packages/schema/src/index.ts](file://packages/schema/src/index.ts)
 - [packages/schema/src/builders.ts](file://packages/schema/src/builders.ts)

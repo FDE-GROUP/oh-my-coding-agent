@@ -1,7 +1,7 @@
 # MCP协议集成
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [packages/mcp/README.md](file://packages/mcp/README.md)
 - [packages/mcp/package.json](file://packages/mcp/package.json)
 - [packages/mcp/src/index.ts](file://packages/mcp/src/index.ts)

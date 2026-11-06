@@ -1,7 +1,7 @@
 # LLM提供商集成
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [README.md](file://README.md)
 - [all.ts](file://packages/ai/src/providers/all.ts)
 - [openai.ts](file://packages/ai/src/providers/openai.ts)

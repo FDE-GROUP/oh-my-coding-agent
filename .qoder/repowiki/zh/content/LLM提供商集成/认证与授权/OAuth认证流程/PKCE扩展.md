@@ -1,7 +1,7 @@
 # PKCE扩展
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [packages/mcp/src/oauth/flow.ts](file://packages/mcp/src/oauth/flow.ts)
 - [packages/ai/src/auth/oauth/pkce.ts](file://packages/ai/src/auth/oauth/pkce.ts)
 - [packages/ai/src/auth/oauth/anthropic.ts](file://packages/ai/src/auth/oauth/anthropic.ts)

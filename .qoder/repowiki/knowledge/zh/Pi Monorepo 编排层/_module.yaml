@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: ""
-title: Pi Monorepo（多包编排与共享根配置）
+title: Pi Monorepo 编排层
 scope:
     - README.md
     - CONTRIBUTING.md

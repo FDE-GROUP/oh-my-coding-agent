@@ -1,7 +1,7 @@
 # API密钥认证
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [packages/ai/src/env-api-keys.ts](file://packages/ai/src/env-api-keys.ts)
 - [packages/coding-agent/src/core/provider-composer.ts](file://packages/coding-agent/src/core/provider-composer.ts)
 - [packages/coding-agent/src/core/resolve-config-value.ts](file://packages/coding-agent/src/core/resolve-config-value.ts)

@@ -1,7 +1,7 @@
 # UI组件库
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [packages/tui/README.md](file://packages/tui/README.md)
 - [packages/tui/src/index.ts](file://packages/tui/src/index.ts)
 - [packages/tui/src/components/text.ts](file://packages/tui/src/components/text.ts)

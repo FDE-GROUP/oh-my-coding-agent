@@ -1,8 +1,8 @@
 # MCP集成与代码模式沙箱
 
 <cite>
-**本文引用的文件**   
-- [14-mcp-codemode.md](file://docs/explains/14-mcp-codemode.md)
+**本文引用的文件**
+- [14-mcp-codemode.md](file://docs/omca/14-mcp-codemode.md)
 - [index.ts（MCP扩展）](file://packages/coding-agent/src/extensions/mcp/index.ts)
 - [tools.ts（MCP工具定义与结果转换）](file://packages/coding-agent/src/extensions/mcp/tools.ts)
 - [runtime.ts（MCP服务器连接）](file://packages/coding-agent/src/extensions/mcp/runtime.ts)
@@ -64,7 +64,7 @@ Codemode_Index --> Inline_Sandbox
 - [inline.ts:122-126](file://packages/codemode/src/runtime/inline.ts#L122-L126)
 
 **章节来源**
-- [14-mcp-codemode.md:1-17](file://docs/explains/14-mcp-codemode.md#L1-L17)
+- [14-mcp-codemode.md:1-17](file://docs/omca/14-mcp-codemode.md#L1-L17)
 - [index.ts（MCP扩展）:1-27](file://packages/coding-agent/src/extensions/mcp/index.ts#L1-L27)
 
 ## 核心组件
@@ -112,7 +112,7 @@ Agent-->>User : "返回内容"
 ```
 
 **图表来源**
-- [index.ts（MCP扩展）:46-64](file://docs/explains/14-mcp-codemode.md#L46-L64)
+- [index.ts（MCP扩展）:46-64](file://docs/omca/14-mcp-codemode.md#L46-L64)
 - [tools.ts:275-286](file://packages/coding-agent/src/extensions/mcp/tools.ts#L275-L286)
 - [runtime.ts:239-250](file://packages/coding-agent/src/extensions/mcp/runtime.ts#L239-L250)
 - [client.ts:204-213](file://packages/mcp/src/client.ts#L204-L213)
@@ -147,15 +147,15 @@ Convert --> Return(["返回模型"])
 ```
 
 **图表来源**
-- [14-mcp-codemode.md:43-64](file://docs/explains/14-mcp-codemode.md#L43-L64)
+- [14-mcp-codemode.md:43-64](file://docs/omca/14-mcp-codemode.md#L43-L64)
 - [index.ts（MCP扩展）:502-537](file://packages/coding-agent/src/extensions/mcp/index.ts#L502-L537)
 - [tools.ts:215-235](file://packages/coding-agent/src/extensions/mcp/tools.ts#L215-L235)
 - [runtime.ts:276-303](file://packages/coding-agent/src/extensions/mcp/runtime.ts#L276-L303)
 
 **章节来源**
-- [14-mcp-codemode.md:18-31](file://docs/explains/14-mcp-codemode.md#L18-L31)
-- [14-mcp-codemode.md:68-110](file://docs/explains/14-mcp-codemode.md#L68-L110)
-- [14-mcp-codemode.md:112-128](file://docs/explains/14-mcp-codemode.md#L112-L128)
+- [14-mcp-codemode.md:18-31](file://docs/omca/14-mcp-codemode.md#L18-L31)
+- [14-mcp-codemode.md:68-110](file://docs/omca/14-mcp-codemode.md#L68-L110)
+- [14-mcp-codemode.md:112-128](file://docs/omca/14-mcp-codemode.md#L112-L128)
 - [index.ts（MCP扩展）:280-330](file://packages/coding-agent/src/extensions/mcp/index.ts#L280-L330)
 - [tools.ts:249-289](file://packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
 - [runtime.ts:141-456](file://packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L456)
@@ -277,12 +277,12 @@ OutputBudget --> ScriptEnd["脚本结束"]
 ```
 
 **图表来源**
-- [14-mcp-codemode.md:140-199](file://docs/explains/14-mcp-codemode.md#L140-L199)
+- [14-mcp-codemode.md:140-199](file://docs/omca/14-mcp-codemode.md#L140-L199)
 - [host.ts:84-88](file://packages/codemode/src/runtime/host.ts#L84-L88)
 - [inline.ts:122-126](file://packages/codemode/src/runtime/inline.ts#L122-L126)
 
 **章节来源**
-- [14-mcp-codemode.md:140-199](file://docs/explains/14-mcp-codemode.md#L140-L199)
+- [14-mcp-codemode.md:140-199](file://docs/omca/14-mcp-codemode.md#L140-L199)
 - [index.ts（codemode导出）:1-66](file://packages/codemode/src/index.ts#L1-L66)
 
 ## 依赖关系分析
@@ -326,9 +326,9 @@ Codemode_Index --> Inline_Sandbox["inline.ts"]
 **章节来源**
 - [runtime.ts:50-53](file://packages/coding-agent/src/extensions/mcp/runtime.ts#L50-L53)
 - [runtime.ts:276-303](file://packages/coding-agent/src/extensions/mcp/runtime.ts#L276-L303)
-- [14-mcp-codemode.md:140-147](file://docs/explains/14-mcp-codemode.md#L140-L147)
-- [14-mcp-codemode.md:192-199](file://docs/explains/14-mcp-codemode.md#L192-L199)
-- [14-mcp-codemode.md:216-222](file://docs/explains/14-mcp-codemode.md#L216-L222)
+- [14-mcp-codemode.md:140-147](file://docs/omca/14-mcp-codemode.md#L140-L147)
+- [14-mcp-codemode.md:192-199](file://docs/omca/14-mcp-codemode.md#L192-L199)
+- [14-mcp-codemode.md:216-222](file://docs/omca/14-mcp-codemode.md#L216-L222)
 
 ## 故障排查指南
 - 连接失败：检查mcp.json配置、网络可达性与OAuth设置；查看/mcp管理器中的状态与错误信息。
@@ -338,7 +338,7 @@ Codemode_Index --> Inline_Sandbox["inline.ts"]
 - 脚本异常：查看console输出与codemode-store custom entry，定位store/load数据与工具调用链。
 
 **章节来源**
-- [14-mcp-codemode.md:112-128](file://docs/explains/14-mcp-codemode.md#L112-L128)
+- [14-mcp-codemode.md:112-128](file://docs/omca/14-mcp-codemode.md#L112-L128)
 - [runtime.ts:319-331](file://packages/coding-agent/src/extensions/mcp/runtime.ts#L319-L331)
 - [tools.ts:215-235](file://packages/coding-agent/src/extensions/mcp/tools.ts#L215-L235)
 

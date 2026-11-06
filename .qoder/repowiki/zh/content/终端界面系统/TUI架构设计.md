@@ -1,7 +1,7 @@
 # TUI架构设计
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [terminal.ts](file://packages/tui/src/terminal.ts)
 - [tui.ts](file://packages/tui/src/tui.ts)
 - [tui-main-screen.ts](file://packages/tui/src/tui-main-screen.ts)

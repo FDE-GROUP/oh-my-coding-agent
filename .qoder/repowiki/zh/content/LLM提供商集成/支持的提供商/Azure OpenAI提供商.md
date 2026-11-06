@@ -1,7 +1,7 @@
 # Azure OpenAI提供商
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [README.md](file://README.md)
 - [azure-openai-config.ts](file://packages/ai/src/api/azure-openai-config.ts)
 - [azure-openai-responses.ts](file://packages/ai/src/api/azure-openai-responses.ts)

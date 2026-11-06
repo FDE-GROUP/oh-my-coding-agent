@@ -1,7 +1,7 @@
 # OMCA项目文档
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [README.md](file://README.md)
 - [package.json](file://package.json)
 - [00-baseline.md](file://docs/explains/00-baseline.md)
@@ -9,6 +9,10 @@
 - [02-prune-plan.md](file://docs/explains/02-prune-plan.md)
 - [03-critical-path.md](file://docs/explains/03-critical-path.md)
 - [26-fork-and-prune.md](file://docs/explains/26-fork-and-prune.md)
+- [README.md](file://docs/explains/README.md)
+- [validate-events.ts](file://docs/explains/validation/validate-events.ts)
+- [validate-projection.ts](file://docs/explains/validation/validate-projection.ts)
+- [validate-tool-call.ts](file://docs/explains/validation/validate-tool-call.ts)
 - [packages/coding-agent/package.json](file://packages/coding-agent/package.json)
 - [packages/agent/package.json](file://packages/agent/package.json)
 - [packages/ai/package.json](file://packages/ai/package.json)
@@ -16,11 +20,11 @@
 
 ## 更新摘要
 **变更内容**
-- 新增 Fork 与裁剪策略章节，详细说明代码库缩减的技术方法
-- 更新项目结构部分，反映已删除的子系统（apps/p2, packages/env, packages/durable, packages/chord）
-- 增强依赖关系分析，明确保留的9个核心包及其职责
-- 补充 git 工作流和上游同步的最佳实践
-- 更新验证状态和故障排查指南
+- 更新文档目录结构引用，从 `docs/omca/` 迁移到 `docs/explains/`
+- 扩展文档索引，包含新增的 27+ 个技术文档
+- 增强验证系统说明，包含新的 validation 子目录和可运行脚本
+- 更新治理模型，反映新的 changelog 和发布策略
+- 补充完整的系统概览和架构文档索引
 
 ## 目录
 1. [引言](#引言)
@@ -69,7 +73,7 @@ git checkout -B omca
 删除的四个子系统：
 
 | 删除 | 文件 | 行数 | 原因 |
-|---|---:|---:|---|
+|---|---|---|---|
 | `apps/p2` | 700 | 137,228 | 一个应用，依赖全部包 |
 | `packages/env` | 46 | 11,272 | SSH 远程执行 daemon，依赖 durable/chord |
 | `packages/durable` | 275 | 100,948 | 持久化运行时，只被 env/p2 使用 |
@@ -472,6 +476,58 @@ OMCA 不是从零开始的独立项目，而是基于 Pi monorepo 的工作分�
 - [03-critical-path.md:111-158](file://docs/explains/03-critical-path.md#L111-L158)
 
 ## 附录：OMCA裁剪与演进记录
+
+### 文档结构重构
+**重要更新**：OMCA 的技术文档已从 `docs/omca/` 迁移到 `docs/explains/`，形成了更完善的文档体系：
+
+#### 新增文档索引
+- `00-baseline.md` - 环境、构建、测试基线、已知环境问题
+- `01-repo-map.md` - 包依赖图、规模、四条关键路径、阅读顺序
+- `02-prune-plan.md` - 裁剪执行记录（已完成的仓库缩减）
+- `03-critical-path.md` - agent loop 与工具执行的完整调用链
+- `04-session-transcript.md` - JSONL 会话格式、树结构、投影、压缩语义
+- `05-provider-stream.md` - Context/TranscriptContext、prompt 增量流、缓存
+- `06-extension-loading.md` - 扩展发现、加载、Handler 顺序、API 能力面
+- `07-package-manager.md` - npm/git/本地来源、过滤语义、优先级、autoload
+- `08-boot-and-session.md` - 从 CLI 到第一次请求的装配线与 Session 生命周期
+- `09-system-prompt.md` - 分节 prompt、AGENTS.md、skills、prompt templates
+- `10-compaction.md` - 触发条件、切点、摘要、溢出恢复、分支摘要
+- `11-model-runtime.md` - provider 组合、auth.json、虚拟模型、模型解析
+- `12-tools.md` - read/write/edit/bash/grep/find/ls、路径、截断、输出累积
+- `13-modes.md` - print / RPC / interactive 如何消费事件流
+- `14-mcp-codemode.md` - 工具暴露、MCP 连接与 OAuth、QuickJS 沙箱、tool_search
+- `15-tui.md` - 组件模型、差分渲染、布局、overlay、终端抽象
+- `16-provider-adapters.md` - Provider 契约、消息可移植层、Anthropic 适配器
+- `17-system-overview.md` - **总览：不变量、完整路径、状态地图、设计张力**
+- `18-mcp-package.md` - JSON-RPC、stdio/HTTP 传输、客户端会话、OAuth
+- `19-schema.md` - JSON Schema 编译、校验、coercion、类型推导
+- `20-tui-editor-markdown.md` - 编辑器状态机、粘贴标记、撤销/kill ring、Markdown 流式渲染
+- `21-cache-warmer-evals.md` - 缓存预热经济学、评测 harness、配对报告
+- `22-openai-responses.md` - item 模型、工具变化、流处理、与 Anthropic 的对比
+- `23-openai-codex.md` - WebSocket 续传、连接复用、SSE 回退、配额错误
+- `24-latex-autocomplete-docker.md` - LaTeX 布局、补全逻辑、评测容器沙箱
+- `25-validation.md` - **用 faux provider 实跑：事件流、持久化、投影、压缩**
+- `26-fork-and-prune.md` - **fork 与裁剪的准确说明：删了什么、没改什么、如何恢复**
+- `27-tui-usage.md` - **实际跑通 TUI：DeepSeek 配置、工具调用、斜杠命令、会话恢复**
+
+#### 验证系统增强
+新增 `docs/explains/validation/` 子目录，包含可运行的验证脚本：
+- `validate-events.ts` - 事件流验证
+- `validate-projection.ts` - 投影验证
+- `validate-tool-call.ts` - 工具调用拦截验证
+
+这些脚本使用仓库自带的 faux provider 确定性驱动 `AgentSession`，验证事件流、JSONL 持久化、session projection、context_edit、compaction，以及 `tool_call` 拦截与嵌套调用。
+
+#### 治理模型更新
+根据新的治理策略：
+- 本 fork 不发布版本，也不维护每个包的 changelog
+- 内部工作不要编辑 `packages/*/CHANGELOG.md`
+- 把内部变更记录在 `docs/explains/`
+- 如果准备向上游贡献，到那时再遵守上游的 changelog 和发布规则
+
+**章节来源**
+- [README.md:1-90](file://docs/explains/README.md#L1-L90)
+- [AGENTS.zh-CN.md:123-131](file://AGENTS.zh-CN.md#L123-L131)
 
 ### 基线与环境
 - 上游仓库：`https://github.com/earendil-works/pi.git`

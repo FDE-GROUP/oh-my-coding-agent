@@ -1,7 +1,7 @@
 # RPC模式
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [rpc-entry.ts](file://packages/coding-agent/src/rpc-entry.ts)
 - [rpc-mode.ts](file://packages/coding-agent/src/modes/rpc/rpc-mode.ts)
 - [rpc-client.ts](file://packages/coding-agent/src/modes/rpc/rpc-client.ts)

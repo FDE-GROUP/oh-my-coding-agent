@@ -1,7 +1,7 @@
 # Agent生命周期管理
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [packages/agent/src/agent.ts](file://packages/agent/src/agent.ts)
 - [packages/agent/src/agent-loop.ts](file://packages/agent/src/agent-loop.ts)
 - [packages/agent/src/types.ts](file://packages/agent/src/types.ts)

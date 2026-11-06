@@ -3,11 +3,11 @@ schema_version: 1
 locale: zh-CN
 branch: omca
 nodes_managed: true
-exported_at: "2026-11-06T01:00:56Z"
+exported_at: "2026-11-06T03:35:35Z"
 modules:
     "":
-        dir_name: Pi Monorepo（多包编排与共享根配置）
-        title: Pi Monorepo（多包编排与共享根配置）
+        dir_name: Pi Monorepo 编排层
+        title: Pi Monorepo 编排层
         scope:
             - README.md
             - CONTRIBUTING.md
@@ -529,10 +529,10 @@ modules:
         depends_on: []
         related_to: []
     docs_omca:
-        dir_name: OMCA 代码阅读笔记与验证脚本
-        title: OMCA 代码阅读笔记与验证脚本
+        dir_name: earendil-works_pi 代码阅读与验证笔记（OMCA）
+        title: earendil-works/pi 代码阅读与验证笔记（OMCA）
         scope:
-            - docs/explains/
+            - docs/omca/
         source_files: []
         children: []
         depends_on: []

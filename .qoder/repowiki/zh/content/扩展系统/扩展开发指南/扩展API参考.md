@@ -1,7 +1,7 @@
 # 扩展API参考
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [types.ts](file://packages/coding-agent/src/core/extensions/types.ts)
 - [loader.ts](file://packages/coding-agent/src/core/extensions/loader.ts)
 - [runner.ts](file://packages/coding-agent/src/core/extensions/runner.ts)

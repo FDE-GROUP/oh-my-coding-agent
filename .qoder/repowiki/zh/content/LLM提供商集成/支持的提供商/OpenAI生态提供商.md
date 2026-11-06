@@ -1,7 +1,7 @@
 # OpenAI生态提供商
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [packages/ai/src/providers/openai.ts](file://packages/ai/src/providers/openai.ts)
 - [packages/ai/src/providers/openai-codex.ts](file://packages/ai/src/providers/openai-codex.ts)
 - [packages/ai/src/api/openai-responses.lazy.ts](file://packages/ai/src/api/openai-responses.lazy.ts)

@@ -1,7 +1,7 @@
 # CLI参考手册
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [README.md](file://README.md)
 - [packages/coding-agent/package.json](file://packages/coding-agent/package.json)
 - [packages/coding-agent/src/cli.ts](file://packages/coding-agent/src/cli.ts)

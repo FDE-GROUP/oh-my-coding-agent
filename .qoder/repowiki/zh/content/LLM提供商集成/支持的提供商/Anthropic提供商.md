@@ -1,7 +1,7 @@
 # Anthropic提供商
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [packages/ai/src/providers/anthropic.ts](file://packages/ai/src/providers/anthropic.ts)
 - [packages/ai/src/api/anthropic-messages.ts](file://packages/ai/src/api/anthropic-messages.ts)
 - [packages/ai/src/providers/anthropic.models.ts](file://packages/ai/src/providers/anthropic.models.ts)

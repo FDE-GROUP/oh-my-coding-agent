@@ -1,7 +1,7 @@
 # OAuth认证流程
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [packages/mcp/src/oauth/flow.ts](file://packages/mcp/src/oauth/flow.ts)
 - [packages/mcp/src/oauth/discovery.ts](file://packages/mcp/src/oauth/discovery.ts)
 - [packages/mcp/src/oauth/types.ts](file://packages/mcp/src/oauth/types.ts)

@@ -1,7 +1,7 @@
 # Widget开发指南
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [packages/coding-agent/src/core/extensions/types.ts](file://packages/coding-agent/src/core/extensions/types.ts)
 - [packages/coding-agent/src/modes/interactive/interactive-mode.ts](file://packages/coding-agent/src/modes/interactive/interactive-mode.ts)
 - [packages/tui/src/tui.ts](file://packages/tui/src/tui.ts)

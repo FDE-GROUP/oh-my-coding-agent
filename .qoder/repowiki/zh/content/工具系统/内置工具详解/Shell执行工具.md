@@ -1,7 +1,7 @@
 # Shell执行工具
 
 <cite>
-**本文引用的文件**   
+**本文引用的文件**
 - [bash.ts](file://packages/coding-agent/src/core/tools/bash.ts)
 - [powershell.ts](file://packages/coding-agent/src/core/tools/powershell.ts)
 - [shell.ts](file://packages/coding-agent/src/utils/shell.ts)
