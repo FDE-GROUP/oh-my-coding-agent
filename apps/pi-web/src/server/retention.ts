@@ -3,7 +3,8 @@
  *
  * @remarks
  * 只清理有 owner 索引的会话；运行中的会话不删除。应用顺序：删除会话文件 →
- * 删除 owner/Issue 关联 → 清理分享 → 清理审计 → 写审计。失败时抛出并停止。
+ * 在单个 SQLite 事务中删除 owner/Issue 关联、分享与审计 → 写审计。事务失败时
+ * 回滚元数据删除。
  *
  * @internal
  */
@@ -11,6 +12,7 @@ import { rmSync } from "node:fs";
 import { SessionManager } from "@earendil-works/pi-coding-agent";
 import { appendAudit, previewAudit, pruneAudit } from "../../audit.mjs";
 import { getAppConfig } from "./config.ts";
+import { runInTransaction } from "./db.ts";
 import { removeIssueLinks } from "./links.ts";
 import { getSessionOwner, removeSessionOwner } from "./owners.ts";
 import { getRuntimeManager } from "./runtime-manager.ts";
@@ -146,13 +148,14 @@ export async function applyRetention(): Promise<RetentionResult> {
 	for (const item of removable) {
 		rmSync(item.path, { force: false });
 	}
-	for (const id of removedIds) removeSessionOwner(id);
-	removeIssueLinks(removedIds);
-	const deletedShares = pruneShares(
-		removedIds,
-		config.retention.sharesDays > 0 ? Date.now() - config.retention.sharesDays * DAY : undefined,
-	);
-	const deletedAudit = config.retention.auditDays > 0 ? pruneAudit(Date.now() - config.retention.auditDays * DAY) : 0;
+	const shareCutoff = config.retention.sharesDays > 0 ? Date.now() - config.retention.sharesDays * DAY : undefined;
+	const { deletedShares, deletedAudit } = runInTransaction(() => {
+		for (const id of removedIds) removeSessionOwner(id);
+		removeIssueLinks(removedIds);
+		const shares = pruneShares(removedIds, shareCutoff);
+		const audit = config.retention.auditDays > 0 ? pruneAudit(Date.now() - config.retention.auditDays * DAY) : 0;
+		return { deletedShares: shares, deletedAudit: audit };
+	});
 
 	appendAudit({
 		user: "system",

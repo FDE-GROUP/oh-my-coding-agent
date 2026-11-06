@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { hashToken, loadConfig } from "../config.mjs";
+import { getDb } from "../src/server/db.ts";
 import { getSessionOwner, listSessionOwners, recordSessionOwner, removeSessionOwner, resetOwnerCache } from "../src/server/owners.ts";
 
 describe("config", () => {
@@ -69,6 +70,7 @@ describe("owners", () => {
 	let dir: string;
 	let configPath: string;
 	const previous = process.env.PI_WEB_CONFIG;
+	const previousDb = process.env.PI_WEB_DB;
 
 	beforeEach(() => {
 		dir = mkdtempSync(join(tmpdir(), "pi-web-owners-"));
@@ -76,13 +78,16 @@ describe("owners", () => {
 		writeFileSync(configPath, JSON.stringify({ port: 3210, workspaces: [{ id: "w", name: "w", path: dir }] }));
 		chmodSync(configPath, 0o600);
 		process.env.PI_WEB_CONFIG = configPath;
+		delete process.env.PI_WEB_DB;
 		resetOwnerCache();
 	});
 
 	afterEach(() => {
+		resetOwnerCache();
 		if (previous === undefined) delete process.env.PI_WEB_CONFIG;
 		else process.env.PI_WEB_CONFIG = previous;
-		resetOwnerCache();
+		if (previousDb === undefined) delete process.env.PI_WEB_DB;
+		else process.env.PI_WEB_DB = previousDb;
 	});
 
 	it("records and filters session owners", () => {
@@ -93,8 +98,8 @@ describe("owners", () => {
 		expect(getSessionOwner("s2")?.owner).toBe("bob");
 		removeSessionOwner("s1");
 		expect(getSessionOwner("s1")).toBeUndefined();
-		const persisted = JSON.parse(readFileSync(join(dir, "sessions.json"), "utf8"));
-		expect(persisted.sessions).toHaveLength(2);
-		expect(statSync(join(dir, "sessions.json")).mode & 0o777).toBe(0o600);
+		const row = getDb().prepare("SELECT COUNT(*) AS count FROM session_owners").get() as { count: number };
+		expect(row.count).toBe(2);
+		expect(statSync(join(dir, "pi-web.db")).mode & 0o777).toBe(0o600);
 	});
 });

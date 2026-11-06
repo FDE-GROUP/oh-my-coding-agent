@@ -320,6 +320,12 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 
 影响：删除 `upstream` remote 和 remote-tracking refs，保留 `pi-fork-base-20d86c365` 与 `omfde-cutover` 标签。Pi 代码由本项目维护，核心改动不再受 rebase 约束，但仍按 vision → RAD → plan 控制。不再要求持续同步上游。
 
+### 2026-11-06：pi-web 引入 SQLite 存储元数据
+
+原因：会话归属、Issue 关联、分享和审计已经超出 JSON 文件能舒适承载的范围，后续任务与项目数据还需要事务、索引和查询。继续用多个 JSON 文件会增加一致性和清理成本。
+
+影响：`apps/pi-web` 使用 Node 内置 `node:sqlite`，数据库为 `~/.pi-web/pi-web.db`；配置继续使用 `config.json`。第一阶段把 `sessions.json`、`links.json`、`shares.json` 和 `audit.jsonl` 迁移到表，导入成功后删除旧 JSON；解析失败时保留文件并阻止启动。未来平台数据使用独立的 `~/.omfde/omfde.db`，与 pi-web 通过 API 共享，不共享表。引入前先验证 Node 22 的 WAL、并发、迁移和权限。
+
 ### 2026-11-06：Web UI 作为 omfde 平台界面（组合式接入）
 
 原因：Web UI 已具备会话、团队访问、分享、交接和审计能力，继续作为独立应用会让用户在两套入口之间切换；但把 `apps/pi-web` 整体迁入 `apps/omfde` 会让界面与平台骨架重新耦合。

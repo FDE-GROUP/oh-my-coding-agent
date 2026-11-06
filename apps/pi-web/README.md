@@ -106,6 +106,28 @@ pnpm --filter @omfde/pi-web import-sessions -- --owner abel
 pnpm --filter @omfde/pi-web import-sessions -- --owner abel --dry-run
 ```
 
+## 存储
+
+- 元数据（会话归属、Issue 关联、分享、审计）在 SQLite：`~/.pi-web/pi-web.db`，可用 `PI_WEB_DB` 覆盖。
+- 配置仍是 `config.json`，保持人工编辑。
+- 启动时启用 WAL、`busy_timeout=5000`；数据库与 `-wal`/`-shm` 权限收紧到 0600。
+- 首次启动把旧的 `sessions.json`、`links.json`、`shares.json`、`audit.jsonl` 一次性导入，成功后删除。是否已迁移记录在 `schema_migrations`。
+- 旧 JSON 解析失败会阻止启动并保留文件；修复后重启继续迁移。
+- 审计不再按 10MB 轮转；用 `retention.auditDays` 清理。
+- `node:sqlite` 仍是 Node 的实验特性，升级 Node 时需要回归数据库测试。
+
+备份与恢复：
+
+```bash
+# 停止服务后复制
+cp ~/.pi-web/pi-web.db /path/to/pi-web-backup.db
+
+# 或在运行中在线备份
+sqlite3 ~/.pi-web/pi-web.db "VACUUM INTO '/path/to/pi-web-backup.db'"
+```
+
+恢复时停止服务，替换 `pi-web.db`，删除同目录的 `pi-web.db-wal` 与 `pi-web.db-shm`，再启动。
+
 ## 分享与交接
 
 - 所有者可以在会话底栏创建只读分享链接，默认 7 天过期，可随时撤销。
@@ -138,7 +160,7 @@ pnpm --filter @omfde/pi-web import-sessions -- --owner abel --dry-run
 - 用户配置 `role: "admin"` 即管理员，默认 `member`。
 - 管理员侧栏可开启“全部会话”，打开他人会话时进入只读视图。
 - 管理员可查看最近审计记录；普通成员访问管理员接口返回 403。
-- 审计文件 `~/.pi-web/audit.jsonl`，权限 0600，超过 10MB 轮转为 `.1`。
+- 审计事件写入 SQLite 表 `audit_events`；管理员可查询最近记录。
 
 ## 工作区
 
@@ -151,6 +173,7 @@ pnpm --filter @omfde/pi-web import-sessions -- --owner abel --dry-run
 | 变量 | 默认 | 说明 |
 |---|---|---|
 | `PI_WEB_CONFIG` | `~/.pi-web/config.json` | 配置路径 |
+| `PI_WEB_DB` | 配置目录下的 `pi-web.db` | SQLite 数据库路径 |
 | `PI_WEB_HOST` | 配置或 `127.0.0.1` | 监听地址 |
 | `PI_WEB_PORT` / `PORT` | `3210` | 监听端口 |
 | `PI_WEB_CWD` | `INIT_CWD` 或当前目录 | 无配置文件时的默认工作区 |
@@ -208,7 +231,7 @@ pnpm --filter @omfde/pi-web import-sessions -- --owner abel --dry-run
 - 会话事实以 Pi 为准；SSE 重连时整体替换为快照。
 - 只为当前会话保持 SSE；后台会话继续运行。
 - `@file` 只允许工作区内普通文件；敏感文件名（`.env`、密钥等）默认跳过。
-- 归属索引 `~/.pi-web/sessions.json` 使用原子写，0600。
+- 归属、Issue 关联、分享与审计存放在 `~/.pi-web/pi-web.db`（WAL，0600）。
 
 ## 安全
 
@@ -245,7 +268,7 @@ location / {
 
 - 把代理后的地址加入 `publicOrigins`，例如 `https://pi.example.com`。
 - SSE 依赖关闭代理缓冲；服务端已发送 `X-Accel-Buffering: no`。
-- 备份 `~/.pi-web/config.json`、`~/.pi-web/sessions.json`、`~/.pi-web/shares.json`、`~/.pi-web/audit.jsonl` 和 `~/.pi/agent/sessions/`。
+- 备份 `~/.pi-web/config.json`、`~/.pi-web/pi-web.db` 和 `~/.pi/agent/sessions/`；数据库在线备份方式见“存储”一节。
 
 ## 测试
 

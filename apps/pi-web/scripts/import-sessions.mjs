@@ -6,10 +6,9 @@
  *   pnpm --filter @omfde/pi-web import-sessions -- --owner abel --workspace omfde
  *   pnpm --filter @omfde/pi-web import-sessions -- --list
  */
-import { chmodSync, existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
 import { SessionManager } from "@earendil-works/pi-coding-agent";
 import { loadConfig } from "../config.mjs";
+import { getDatabase, resolveDbPath, withTransaction } from "../db.mjs";
 
 function argument(name) {
 	const index = process.argv.indexOf(name);
@@ -35,23 +34,19 @@ if (workspaces.length === 0) {
 	process.exit(1);
 }
 
-const indexPath = join(dirname(loaded.path), "sessions.json");
-const entries = new Map();
-if (existsSync(indexPath)) {
-	try {
-		const parsed = JSON.parse(readFileSync(indexPath, "utf8"));
-		for (const entry of parsed.sessions ?? []) entries.set(entry.id, entry);
-	} catch (error) {
-		console.error(`无法读取 ${indexPath}: ${String(error)}`);
-		process.exit(1);
-	}
-}
+const db = getDatabase();
+const existing = new Set(
+	db
+		.prepare("SELECT id FROM session_owners")
+		.all()
+		.map((row) => String(row.id)),
+);
 
 const pending = [];
 for (const workspace of workspaces) {
 	const sessions = await SessionManager.list(workspace.path);
 	for (const session of sessions) {
-		if (entries.has(session.id)) continue;
+		if (existing.has(session.id)) continue;
 		pending.push({ session, workspace });
 	}
 }
@@ -78,19 +73,14 @@ if (!owner) {
 }
 
 if (!dryRun) {
-	for (const { session, workspace } of pending) {
-		entries.set(session.id, {
-			id: session.id,
-			owner,
-			workspaceId: workspace.id,
-			updatedAt: Date.now(),
-		});
-	}
-	mkdirSync(dirname(indexPath), { recursive: true });
-	const temp = `${indexPath}.tmp`;
-	writeFileSync(temp, `${JSON.stringify({ sessions: [...entries.values()] }, null, 2)}\n`);
-	chmodSync(temp, 0o600);
-	renameSync(temp, indexPath);
+	const insert = db.prepare(
+		"INSERT OR IGNORE INTO session_owners (id, owner, workspace_id, updated_at) VALUES (?, ?, ?, ?)",
+	);
+	withTransaction(() => {
+		for (const { session, workspace } of pending) {
+			insert.run(session.id, owner, workspace.id, Date.now());
+		}
+	});
 }
 
 console.log(
@@ -98,9 +88,9 @@ console.log(
 		{
 			owner,
 			imported: pending.length,
-			total: dryRun ? entries.size + pending.length : entries.size,
+			total: existing.size + pending.length,
 			dryRun,
-			path: indexPath,
+			path: resolveDbPath(),
 			workspaces: workspaces.map((workspace) => workspace.id),
 		},
 		null,

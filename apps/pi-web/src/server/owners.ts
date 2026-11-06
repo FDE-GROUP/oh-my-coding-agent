@@ -2,14 +2,12 @@
  * 会话归属旁路索引。
  *
  * @remarks
- * Pi 的 session 文件不记录 owner。这里用 `~/.pi-web/sessions.json` 维护
- * `session id → owner + workspace`，写入使用临时文件 + rename，权限 0600。
+ * Pi 的 session 文件不记录 owner。这里用 SQLite 表 `session_owners` 维护
+ * `session id → owner + workspace`，数据库默认位于 `~/.pi-web/pi-web.db`。
  *
  * @internal
  */
-import { chmodSync, existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { getAppConfig } from "./config.ts";
+import { closeDb, getDb } from "./db.ts";
 
 /**
  * 一条归属记录。
@@ -27,37 +25,20 @@ export interface SessionOwner {
 	updatedAt: number;
 }
 
-let cache: Map<string, SessionOwner> | undefined;
-let cachePath: string | undefined;
-
-function indexPath(): string {
-	return join(dirname(getAppConfig().path), "sessions.json");
+interface OwnerRow {
+	id: string;
+	owner: string;
+	workspace_id: string;
+	updated_at: number;
 }
 
-function load(): Map<string, SessionOwner> {
-	const path = indexPath();
-	if (cache && cachePath === path) return cache;
-	cache = new Map();
-	cachePath = path;
-	if (!existsSync(path)) return cache;
-	try {
-		const parsed = JSON.parse(readFileSync(path, "utf8")) as { sessions?: SessionOwner[] };
-		for (const entry of parsed.sessions ?? []) {
-			if (entry && typeof entry.id === "string" && typeof entry.owner === "string") cache.set(entry.id, entry);
-		}
-	} catch (error) {
-		console.warn(`[pi-web] 无法读取会话索引：${String(error)}`);
-	}
-	return cache;
-}
-
-function flush(): void {
-	const path = indexPath();
-	const temp = `${path}.tmp`;
-	mkdirSync(dirname(path), { recursive: true });
-	writeFileSync(temp, `${JSON.stringify({ sessions: [...load().values()] }, null, 2)}\n`);
-	chmodSync(temp, 0o600);
-	renameSync(temp, path);
+function toRecord(row: OwnerRow): SessionOwner {
+	return {
+		id: row.id,
+		owner: row.owner,
+		workspaceId: row.workspace_id,
+		updatedAt: Number(row.updated_at),
+	};
 }
 
 /**
@@ -69,8 +50,12 @@ function flush(): void {
  * @internal
  */
 export function recordSessionOwner(id: string, owner: string, workspaceId: string): void {
-	load().set(id, { id, owner, workspaceId, updatedAt: Date.now() });
-	flush();
+	getDb()
+		.prepare(
+			`INSERT INTO session_owners (id, owner, workspace_id, updated_at) VALUES (?, ?, ?, ?)
+			 ON CONFLICT(id) DO UPDATE SET owner = excluded.owner, workspace_id = excluded.workspace_id, updated_at = excluded.updated_at`,
+		)
+		.run(id, owner, workspaceId, Date.now());
 }
 
 /**
@@ -81,7 +66,10 @@ export function recordSessionOwner(id: string, owner: string, workspaceId: strin
  * @internal
  */
 export function getSessionOwner(id: string): SessionOwner | undefined {
-	return load().get(id);
+	const row = getDb().prepare("SELECT id, owner, workspace_id, updated_at FROM session_owners WHERE id = ?").get(id) as
+		| OwnerRow
+		| undefined;
+	return row ? toRecord(row) : undefined;
 }
 
 /**
@@ -91,37 +79,41 @@ export function getSessionOwner(id: string): SessionOwner | undefined {
  * @internal
  */
 export function removeSessionOwner(id: string): void {
-	if (!load().delete(id)) return;
-	flush();
+	getDb().prepare("DELETE FROM session_owners WHERE id = ?").run(id);
 }
 
 /**
  * 列出某个用户的会话归属。
  *
  * @param owner - 用户 id。
- * @returns 该用户的归属记录。
+ * @returns 该用户的归属记录，按更新时间升序。
  * @internal
  */
 export function listSessionOwners(owner: string): SessionOwner[] {
-	return [...load().values()].filter((entry) => entry.owner === owner);
+	const rows = getDb()
+		.prepare("SELECT id, owner, workspace_id, updated_at FROM session_owners WHERE owner = ? ORDER BY updated_at, id")
+		.all(owner) as unknown as OwnerRow[];
+	return rows.map(toRecord);
 }
 
 /**
  * 列出全部归属记录。
  *
- * @returns 所有归属记录。
+ * @returns 所有归属记录，按更新时间升序。
  * @internal
  */
 export function allSessionOwners(): SessionOwner[] {
-	return [...load().values()];
+	const rows = getDb()
+		.prepare("SELECT id, owner, workspace_id, updated_at FROM session_owners ORDER BY updated_at, id")
+		.all() as unknown as OwnerRow[];
+	return rows.map(toRecord);
 }
 
 /**
- * 清空内存缓存，仅供测试使用。
+ * 关闭数据库连接，仅供测试使用。
  *
  * @internal
  */
 export function resetOwnerCache(): void {
-	cache = undefined;
-	cachePath = undefined;
+	closeDb();
 }

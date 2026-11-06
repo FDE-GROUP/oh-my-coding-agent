@@ -2,13 +2,12 @@
  * 会话与 GitHub Issue 的关联索引。
  *
  * @remarks
- * 存储在 `~/.pi-web/links.json`，权限 0600，原子写。一个会话最多关联一个 Issue。
+ * 存储在 SQLite 表 `issue_links`，一个会话最多关联一个 Issue。数据库默认位于
+ * `~/.pi-web/pi-web.db`。
  *
  * @internal
  */
-import { chmodSync, existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { getAppConfig } from "./config.ts";
+import { closeDb, getDb } from "./db.ts";
 
 /**
  * Issue 关联记录。
@@ -23,37 +22,22 @@ export interface IssueLink {
 	url: string;
 }
 
-let cache: Map<string, IssueLink> | undefined;
-let cachePath: string | undefined;
-
-function storePath(): string {
-	return join(dirname(getAppConfig().path), "links.json");
+interface LinkRow {
+	session_id: string;
+	repo_id: string;
+	number: number;
+	title: string;
+	url: string;
 }
 
-function load(): Map<string, IssueLink> {
-	const path = storePath();
-	if (cache && cachePath === path) return cache;
-	cache = new Map();
-	cachePath = path;
-	if (!existsSync(path)) return cache;
-	try {
-		const parsed = JSON.parse(readFileSync(path, "utf8")) as { links?: IssueLink[] };
-		for (const link of parsed.links ?? []) {
-			if (link && typeof link.sessionId === "string") cache.set(link.sessionId, link);
-		}
-	} catch (error) {
-		console.warn(`[pi-web] 无法读取 Issue 关联：${String(error)}`);
-	}
-	return cache;
-}
-
-function flush(): void {
-	const path = storePath();
-	const temp = `${path}.tmp`;
-	mkdirSync(dirname(path), { recursive: true });
-	writeFileSync(temp, `${JSON.stringify({ links: [...load().values()] }, null, 2)}\n`);
-	chmodSync(temp, 0o600);
-	renameSync(temp, path);
+function toRecord(row: LinkRow): IssueLink {
+	return {
+		sessionId: row.session_id,
+		repoId: row.repo_id,
+		number: Number(row.number),
+		title: row.title,
+		url: row.url,
+	};
 }
 
 /**
@@ -63,8 +47,12 @@ function flush(): void {
  * @internal
  */
 export function recordIssueLink(link: IssueLink): void {
-	load().set(link.sessionId, link);
-	flush();
+	getDb()
+		.prepare(
+			`INSERT INTO issue_links (session_id, repo_id, number, title, url) VALUES (?, ?, ?, ?, ?)
+			 ON CONFLICT(session_id) DO UPDATE SET repo_id = excluded.repo_id, number = excluded.number, title = excluded.title, url = excluded.url`,
+		)
+		.run(link.sessionId, link.repoId, link.number, link.title, link.url);
 }
 
 /**
@@ -75,7 +63,10 @@ export function recordIssueLink(link: IssueLink): void {
  * @internal
  */
 export function getIssueLink(sessionId: string): IssueLink | undefined {
-	return load().get(sessionId);
+	const row = getDb()
+		.prepare("SELECT session_id, repo_id, number, title, url FROM issue_links WHERE session_id = ?")
+		.get(sessionId) as LinkRow | undefined;
+	return row ? toRecord(row) : undefined;
 }
 
 /**
@@ -85,8 +76,7 @@ export function getIssueLink(sessionId: string): IssueLink | undefined {
  * @internal
  */
 export function removeIssueLink(sessionId: string): void {
-	if (!load().delete(sessionId)) return;
-	flush();
+	getDb().prepare("DELETE FROM issue_links WHERE session_id = ?").run(sessionId);
 }
 
 /**
@@ -96,19 +86,15 @@ export function removeIssueLink(sessionId: string): void {
  * @internal
  */
 export function removeIssueLinks(sessionIds: Iterable<string>): void {
-	let changed = false;
-	for (const id of sessionIds) {
-		if (load().delete(id)) changed = true;
-	}
-	if (changed) flush();
+	const remove = getDb().prepare("DELETE FROM issue_links WHERE session_id = ?");
+	for (const id of sessionIds) remove.run(id);
 }
 
 /**
- * 清空内存缓存，仅供测试使用。
+ * 关闭数据库连接，仅供测试使用。
  *
  * @internal
  */
 export function resetLinkCache(): void {
-	cache = undefined;
-	cachePath = undefined;
+	closeDb();
 }

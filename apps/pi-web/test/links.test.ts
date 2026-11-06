@@ -1,12 +1,14 @@
-import { mkdtempSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { mkdtempSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { getDb } from "../src/server/db.ts";
 import { getIssueLink, recordIssueLink, removeIssueLink, removeIssueLinks, resetLinkCache } from "../src/server/links.ts";
 
 describe("issue links", () => {
 	let dir: string;
 	const previous = process.env.PI_WEB_CONFIG;
+	const previousDb = process.env.PI_WEB_DB;
 
 	beforeEach(() => {
 		dir = mkdtempSync(join(tmpdir(), "pi-web-links-"));
@@ -15,13 +17,16 @@ describe("issue links", () => {
 			process.env.PI_WEB_CONFIG,
 			JSON.stringify({ port: 3210, workspaces: [{ id: "w", name: "w", path: dir }] }),
 		);
+		delete process.env.PI_WEB_DB;
 		resetLinkCache();
 	});
 
 	afterEach(() => {
+		resetLinkCache();
 		if (previous === undefined) delete process.env.PI_WEB_CONFIG;
 		else process.env.PI_WEB_CONFIG = previous;
-		resetLinkCache();
+		if (previousDb === undefined) delete process.env.PI_WEB_DB;
+		else process.env.PI_WEB_DB = previousDb;
 	});
 
 	it("records, reads, and removes links", () => {
@@ -44,8 +49,8 @@ describe("issue links", () => {
 		expect(getIssueLink("s1")).toBeUndefined();
 		removeIssueLinks(["s2"]);
 		expect(getIssueLink("s2")).toBeUndefined();
-		const file = join(dir, "links.json");
-		expect(statSync(file).mode & 0o777).toBe(0o600);
-		expect(JSON.parse(readFileSync(file, "utf8")).links).toEqual([]);
+		const row = getDb().prepare("SELECT COUNT(*) AS count FROM issue_links").get() as { count: number };
+		expect(row.count).toBe(0);
+		expect(statSync(join(dir, "pi-web.db")).mode & 0o777).toBe(0o600);
 	});
 });
