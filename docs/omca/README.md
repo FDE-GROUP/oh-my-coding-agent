@@ -3,6 +3,8 @@
 这些文档是阅读 `earendil-works/pi` 的产物，不是设计提案。
 目标是把系统理解清楚，而不是决定改什么。
 
+**如果只读一篇，读 `17-system-overview.md`。** 它把其余笔记串成一条完整的系统叙事。
+
 ## 文档索引
 
 | 文档 | 内容 |
@@ -24,6 +26,7 @@
 | `14-mcp-codemode.md` | 工具暴露、MCP 连接与 OAuth、QuickJS 沙箱、tool_search |
 | `15-tui.md` | 组件模型、差分渲染、布局、overlay、终端抽象 |
 | `16-provider-adapters.md` | Provider 契约、消息可移植层、Anthropic 适配器 |
+| `17-system-overview.md` | **总览：不变量、完整路径、状态地图、设计张力** |
 
 ## 已覆盖的调用链
 
