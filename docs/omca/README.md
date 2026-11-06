@@ -33,6 +33,7 @@
 | `21-cache-warmer-evals.md` | 缓存预热经济学、评测 harness、配对报告 |
 | `22-openai-responses.md` | item 模型、工具变化、流处理、与 Anthropic 的对比 |
 | `23-openai-codex.md` | WebSocket 续传、连接复用、SSE 回退、配额错误 |
+| `24-latex-autocomplete-docker.md` | LaTeX 布局、补全逻辑、评测容器沙箱 |
 
 ## 已覆盖的调用链
 
@@ -63,8 +64,8 @@ CLI → main() → runtime factory → services → createAgentSession
 ## 建议的继续阅读顺序
 
 1. 其余 provider：OpenAI Completions、Google、Bedrock 的差异。
-2. `latex.ts` 与 `autocomplete.ts` 的实现细节。
-3. `packages/evals` 的 docker / cli / 其余 eval 用例。
+2. `packages/evals/src/cli.ts` 的调度与其余 eval 用例。
+3. `latex.ts` 的完整符号表与分数/根号布局算法。
 
 三种代表性 provider（Anthropic、Responses、Codex）已经覆盖了“消息模型 / item 模型 /
 有状态传输”三类差异。其余 provider 属于同一适配模式的变体。
