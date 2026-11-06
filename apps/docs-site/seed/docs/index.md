@@ -14,6 +14,6 @@
 
 ## 设计记录
 
-- [RAD](/docs/rads)：需求与决策记录（含 pi-web）。
-- [实现计划：pi-web](/docs/plans/pi-web)。
-- [Spike：pi-web 技术栈](/docs/spikes/pi-web-stack)。
+- [RAD](/docs/rads)：需求与决策记录（含 fdecode）。
+- [实现计划：fdecode](/docs/plans/fdecode)。
+- [Spike：fdecode 技术栈](/docs/spikes/fdecode-stack)。

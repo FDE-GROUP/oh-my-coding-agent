@@ -2,7 +2,7 @@
 /**
  * omfde platform launcher.
  *
- * Defaults to the Pi Web UI. `--tui` falls back to a direct Pi TUI launch with
+ * Defaults to the FDE Code UI. `--tui` falls back to a direct Pi TUI launch with
  * OMFDE_PLATFORM=1. The launcher only orchestrates processes; it does not import
  * Pi or the Web UI server.
  */
@@ -14,8 +14,8 @@ import { fileURLToPath } from "node:url";
 
 const repoRoot = fileURLToPath(new URL("../../../", import.meta.url));
 const piBin = join(repoRoot, "node_modules", ".bin", process.platform === "win32" ? "pi.cmd" : "pi");
-const webEntry = join(repoRoot, "apps", "pi-web", "server.mjs");
-const webDist = join(repoRoot, "apps", "pi-web", "dist", "server", "server.js");
+const webEntry = join(repoRoot, "apps", "fdecode", "server.mjs");
+const webDist = join(repoRoot, "apps", "fdecode", "dist", "server", "server.js");
 
 const args = process.argv.slice(2);
 if (args[0] === "--") args.shift();
@@ -34,7 +34,7 @@ Options:
   --tui            Start the Pi TUI instead of the Web UI
   --port <n>       Web UI port
   --host <h>       Web UI host
-  --config <path>  PI_WEB_CONFIG path
+  --config <path>  FDECODE_CONFIG path
   --no-open        Do not open the browser
   -h, --help       Show this help`);
 }
@@ -93,10 +93,10 @@ function readJson(path) {
 }
 
 function resolveEndpoint() {
-	const configFile = configPath ?? process.env.PI_WEB_CONFIG ?? join(homedir(), ".pi-web", "config.json");
+	const configFile = configPath ?? process.env.FDECODE_CONFIG ?? join(homedir(), ".fdecode", "config.json");
 	const config = readJson(configFile) ?? {};
-	const resolvedHost = host ?? process.env.PI_WEB_HOST ?? config.host ?? "127.0.0.1";
-	const resolvedPort = port ?? process.env.PI_WEB_PORT ?? process.env.PORT ?? config.port ?? 3210;
+	const resolvedHost = host ?? process.env.FDECODE_HOST ?? config.host ?? "127.0.0.1";
+	const resolvedPort = port ?? process.env.FDECODE_PORT ?? process.env.PORT ?? config.port ?? 3210;
 	const displayHost = resolvedHost === "0.0.0.0" || resolvedHost === "::" ? "127.0.0.1" : resolvedHost;
 	return { host: resolvedHost, port: resolvedPort, url: `http://${displayHost}:${resolvedPort}` };
 }
@@ -123,18 +123,18 @@ if (tui) {
 } else {
 	if (!existsSync(webDist)) {
 		console.error("omfde: Web UI 尚未构建。");
-		console.error("omfde: 先运行 pnpm --filter @omfde/pi-web build，或使用 omfde --tui。");
+		console.error("omfde: 先运行 pnpm --filter @omfde/fdecode build，或使用 omfde --tui。");
 		process.exit(1);
 	}
 	const endpoint = resolveEndpoint();
 	const env = {
 		...process.env,
 		OMFDE_PLATFORM: "1",
-		PI_WEB_CWD: process.env.PI_WEB_CWD ?? process.cwd(),
+		FDECODE_CWD: process.env.FDECODE_CWD ?? process.cwd(),
 	};
-	if (host) env.PI_WEB_HOST = host;
-	if (port) env.PI_WEB_PORT = String(port);
-	if (configPath) env.PI_WEB_CONFIG = configPath;
+	if (host) env.FDECODE_HOST = host;
+	if (port) env.FDECODE_PORT = String(port);
+	if (configPath) env.FDECODE_CONFIG = configPath;
 
 	const child = spawn(process.execPath, [webEntry], { stdio: "inherit", env });
 	exitWithChild(child);

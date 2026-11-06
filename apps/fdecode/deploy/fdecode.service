@@ -1,0 +1,17 @@
+[Unit]
+Description=FDE Code UI
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/abel/omfde/apps/fdecode
+ExecStart=/usr/bin/node server.mjs
+Environment=FDECODE_CONFIG=/home/abel/.fdecode/config.json
+Environment=NODE_ENV=production
+# 可选：仓库内没有全局 pi 时显式指定
+# Environment=FDECODE_PI_BIN=/home/abel/omfde/node_modules/.bin/pi
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

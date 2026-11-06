@@ -48,7 +48,7 @@ importers:
         specifier: 1.5.0
         version: link:../../packages/coding-agent
 
-  apps/pi-web:
+  apps/fdecode:
     dependencies:
       '@earendil-works/pi-coding-agent':
         specifier: 1.5.0

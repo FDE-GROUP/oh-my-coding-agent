@@ -12,7 +12,7 @@
 - 已裁剪的上游子系统：`apps/p2`、`packages/env`、`packages/durable`、`packages/chord` 和 `scripts/durable-browser-smoke-entry.ts`。
 - 保留的包：`agent`、`ai`、`coding-agent`、`codemode`、`evals`、`mcp`、`schema`、`telemetry`、`tui`。
 - 平台布局：`apps/` 放可运行应用，`extensions/` 放平台扩展，`packages/` 放 Pi fork 和共享库。
-- `apps/omfde` 是第一个平台入口。默认启动已构建的 Pi Web UI，并设置 `OMFDE_PLATFORM=1`；`--tui` 直接启动 Pi。`extensions/omfde-core` 是第一个扩展骨架。
+- `apps/omfde` 是第一个平台入口。默认启动已构建的 FDE Code UI，并设置 `OMFDE_PLATFORM=1`；`--tui` 直接启动 Pi。`extensions/omfde-core` 是第一个扩展骨架。
 - `apps/docs-site` 用 Blume/Astro 把 `docs/` 和 `.qoder/repowiki/` 构建成统一文档站（纯静态），发布到 `pages` 分支。机制见 `docs/explains/28-docs-site.md`。
 - Pi 核心现在由本项目维护。核心改动是允许的，但仍需要明确决定和 plan。
 - 目标分为三条并行线：教程线（理解 → 会用 → 用好）、平台化线（骨架 → 核心能力 → 协作 → 企业集成 → 治理）和 Web UI 线（可用 → 对齐 DSH → 会话完整 → 团队可用）。项目处于“会用”阶段。优先使用扩展和配置；只有出现真实缺口时才改核心。
