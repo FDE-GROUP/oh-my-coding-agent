@@ -26,6 +26,8 @@ describe("files", () => {
 		writeFileSync(join(project, "empty.txt"), "");
 		writeFileSync(join(project, "binary.bin"), Buffer.from([0, 1, 2, 0, 3]));
 		writeFileSync(join(project, "image.png"), png);
+		writeFileSync(join(project, ".env"), "SECRET=1\n");
+		writeFileSync(join(project, "id_rsa"), "key\n");
 		writeFileSync(join(project, "node_modules", "pkg", "hidden.ts"), "hidden\n");
 		writeFileSync(outside, "outside\n");
 		process.env.PI_WEB_CWD = project;
@@ -53,6 +55,12 @@ describe("files", () => {
 		expect(result.notes).toHaveLength(3);
 		expect(result.notes.join(" ")).toContain("空文件");
 		expect(result.notes.join(" ")).toContain("二进制");
+	});
+
+	it("rejects sensitive files", async () => {
+		const result = await expandFiles([".env", "id_rsa"]);
+		expect(result.notes).toHaveLength(2);
+		expect(result.notes.join(" ")).toContain("敏感文件");
 	});
 
 	it("searches the project and skips excluded directories", async () => {

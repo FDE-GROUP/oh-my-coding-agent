@@ -134,8 +134,7 @@ export function Composer({
 	async function selectSuggestion(item: SuggestionItem) {
 		const current = suggestion;
 		if (!current) return;
-		const caret = current.start + (current.kind === "file" ? current.query.length + 1 : current.query.length + 1);
-		const next = `${value.slice(0, current.start)}${value.slice(caret)}`;
+		const caret = current.start + current.query.length + 1;
 
 		if (current.kind === "command") {
 			const replaced = `${value.slice(0, current.start)}/${item.key} ${value.slice(caret)}`;
@@ -148,8 +147,7 @@ export function Composer({
 		setSuggestion(null);
 		try {
 			const expanded = await onExpandFiles([item.key]);
-			const prefix = next.endsWith("\n") || next.length === 0 ? next : `${next}\n`;
-			setValue(`${prefix}${expanded.text}`);
+			setValue(`${value.slice(0, current.start)}${expanded.text}${value.slice(caret)}`);
 			if (expanded.notes.length > 0) onNotes(expanded.notes);
 			if (expanded.images.length > 0) {
 				const added: ImageAttachment[] = expanded.images.map((image, index) => ({

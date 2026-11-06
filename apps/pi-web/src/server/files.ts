@@ -20,6 +20,18 @@ const IMAGE_LIMIT_BYTES = 10 * 1024 * 1024;
 /** 单次搜索最多访问的条目数。 */
 const MAX_VISITED = 50_000;
 const EXCLUDED_DIRS = new Set([".git", "node_modules", "dist", ".tanstack", ".next", "coverage", ".turbo"]);
+const DENIED_SEGMENTS = new Set([".git", ".ssh", "node_modules"]);
+const DENIED_NAMES = new Set([".env", ".npmrc", "auth.json", "id_rsa", "id_ed25519"]);
+const DENIED_SUFFIXES = [".pem", ".key", ".p12", ".pfx"];
+
+function isSensitive(path: string): boolean {
+	const segments = path.split(sep);
+	if (segments.some((segment) => DENIED_SEGMENTS.has(segment))) return true;
+	const name = segments.at(-1) ?? "";
+	if (DENIED_NAMES.has(name)) return true;
+	if (name.startsWith(".env.")) return true;
+	return DENIED_SUFFIXES.some((suffix) => name.toLowerCase().endsWith(suffix));
+}
 
 /**
  * 文件候选。
@@ -129,6 +141,10 @@ export async function expandFiles(paths: string[]): Promise<ExpandedFiles> {
 		}
 		if (!inside(root, absolute)) {
 			notes.push(`${path}: 不在项目目录内`);
+			continue;
+		}
+		if (isSensitive(relative(root, absolute))) {
+			notes.push(`${path}: 敏感文件已跳过`);
 			continue;
 		}
 

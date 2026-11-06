@@ -234,6 +234,9 @@ export class SessionRuntime {
 		if (!response.success) {
 			throw new Error(`命令 ${command.type} 失败：${response.error}`);
 		}
+		if (response.command === "get_state") {
+			this.#state = response.data;
+		}
 		return response as ResponseOf<C>;
 	}
 
