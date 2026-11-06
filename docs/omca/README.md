@@ -27,6 +27,7 @@
 | `15-tui.md` | 组件模型、差分渲染、布局、overlay、终端抽象 |
 | `16-provider-adapters.md` | Provider 契约、消息可移植层、Anthropic 适配器 |
 | `17-system-overview.md` | **总览：不变量、完整路径、状态地图、设计张力** |
+| `18-mcp-package.md` | JSON-RPC、stdio/HTTP 传输、客户端会话、OAuth |
 
 ## 已覆盖的调用链
 
@@ -46,20 +47,21 @@ CLI → main() → runtime factory → services → createAgentSession
 | ~~`core/system-prompt.ts` + skills/prompts~~ | ~~228 行 + loaders~~ | 已读，见 `09-system-prompt.md` |
 | ~~`core/tools/` 实现~~ | ~~4,838 行~~ | 已读，见 `12-tools.md` |
 | ~~`modes/`~~ | ~~24,612 行~~ | 已读结构与事件面，见 `13-modes.md` |
-| ~~`extensions/mcp` + `codemode`~~ | ~~13,331 行~~ | 已读整合层，见 `14-mcp-codemode.md`；底层 `packages/mcp` 未读 |
+| ~~`extensions/mcp` + `codemode`~~ | ~~13,331 行~~ | 已读整合层，见 `14-mcp-codemode.md` |
+| ~~`packages/mcp`~~ | ~~4,742 行~~ | 已读核心，见 `18-mcp-package.md`；OAuth 细节未读 |
 | `core/cache-warmer.ts` | 未统计 | 中：成本控制 |
 | ~~`packages/ai/src/api/*`~~ | ~~14,015 行~~ | 已读契约与 Anthropic 示例，见 `16-provider-adapters.md`；其余 provider 未读 |
-| ~~`packages/tui`~~ | ~~源码约 20k 行~~ | 已读架构，见 `15-tui.md`；细节未读 |
+| ~~`packages/tui`~~ | ~~源码约 20k 行~~ | 已读架构，见 `15-tui.md`；editor/markdown 等细节未读 |
 | `packages/schema` | 41,904 行 | 低：JSON Schema |
+| `packages/evals` | 3,732 行 | 低：评测夹具 |
 
 ## 建议的继续阅读顺序
 
-1. `system-prompt.ts` + skills/prompts loader：模型实际收到的指令是怎么拼的。
-2. `compaction/compaction.ts`：压缩触发、摘要、保留边界。
-3. `model-runtime.ts` + `auth-storage.ts`：认证、provider 注册、stream 路由。
-4. `core/tools/`：每个工具的行为、路径解析、输出截断。
-5. `modes/`：交互模式如何消费 AgentSession 事件。
-6. `extensions/mcp` + `codemode`：工具如何被包装和嵌套调用。
+1. `packages/schema`：TypeBox 替代品的类型与校验。
+2. TUI 的 `editor` / `markdown` / `latex`：交互与渲染细节。
+3. 其余 provider：OpenAI Responses、Google、Bedrock 的差异。
+4. `core/cache-warmer.ts`：缓存预热策略。
+5. `packages/evals`：评测夹具如何组织。
 
 ## 阅读方法
 
