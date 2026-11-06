@@ -18,6 +18,7 @@ export interface ComposerProps {
 	queued: number;
 	supportsImages: boolean;
 	commands: CommandSummary[];
+	initialDraft?: string;
 	attachments: ImageAttachment[];
 	onAttachmentsChange: (next: ImageAttachment[]) => void;
 	onSearchFiles: (query: string) => Promise<FileCandidate[]>;
@@ -66,6 +67,7 @@ export function Composer({
 	queued,
 	supportsImages,
 	commands,
+	initialDraft,
 	attachments,
 	onAttachmentsChange,
 	onSearchFiles,
@@ -80,6 +82,11 @@ export function Composer({
 	const [sending, setSending] = useState(false);
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 	const fileInputRef = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		if (!initialDraft) return;
+		setValue((current) => (current.length === 0 ? initialDraft : current));
+	}, [initialDraft]);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: 输入变化后需要重新计算 textarea 高度。
 	useEffect(() => {

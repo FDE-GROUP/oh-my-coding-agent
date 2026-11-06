@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { CiStatus } from "../../lib/api.ts";
 import type { RpcSessionStats } from "../../server/runtime.ts";
 import { SharePanel } from "./SharePanel.tsx";
 
@@ -17,6 +18,7 @@ export interface SessionBarProps {
 	onClone: () => void;
 	canClone: boolean;
 	sessionId?: string;
+	ci?: CiStatus | null;
 	canWrite: boolean;
 }
 
@@ -41,6 +43,7 @@ export function SessionBar({
 	onClone,
 	canClone,
 	sessionId,
+	ci,
 	canWrite,
 }: SessionBarProps) {
 	const [shareOpen, setShareOpen] = useState(false);
@@ -93,6 +96,20 @@ export function SessionBar({
 						>
 							交接
 						</button>
+					)}
+					{ci && (
+						<a
+							href={ci.url}
+							target="_blank"
+							rel="noreferrer"
+							className={
+								ci.conclusion === "failure"
+									? "rounded-dsw-xs border border-dsw-state-error px-1.5 py-0.5 text-[10px] text-dsw-state-error"
+									: "rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary"
+							}
+						>
+							CI {ci.conclusion ?? ci.status}
+						</a>
 					)}
 					{canWrite && (
 						<button

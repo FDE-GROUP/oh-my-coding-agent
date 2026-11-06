@@ -6,6 +6,7 @@ import {
 	fetchRuntimes,
 	fetchSessions,
 	fetchWorkspaces,
+	type GithubRepoInfo,
 	logout,
 	renameSession,
 	type WorkspaceInfo,
@@ -17,6 +18,9 @@ import { Conversation } from "../conversation/Conversation.tsx";
 import { IconButton } from "../primitives/IconButton.tsx";
 import { PanelLeftIcon } from "../primitives/icons.tsx";
 import { AuditPanel } from "./AuditPanel.tsx";
+import { IssuesPanel } from "./IssuesPanel.tsx";
+import { NotificationBell } from "./NotificationBell.tsx";
+import { RetentionPanel } from "./RetentionPanel.tsx";
 import { RightPanel } from "./RightPanel.tsx";
 import { Sidebar } from "./Sidebar.tsx";
 
@@ -34,6 +38,9 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 	const [sessionsLoaded, setSessionsLoaded] = useState(false);
 	const [adminView, setAdminView] = useState(false);
 	const [auditOpen, setAuditOpen] = useState(false);
+	const [issuesOpen, setIssuesOpen] = useState(false);
+	const [retentionOpen, setRetentionOpen] = useState(false);
+	const [githubRepos, setGithubRepos] = useState<GithubRepoInfo[]>([]);
 	const [runtimeStatus, setRuntimeStatus] = useState<Record<string, { busy: boolean }>>({});
 	const [workspaces, setWorkspaces] = useState<WorkspaceInfo[]>([]);
 	const [user, setUser] = useState<{ id: string; name: string; role: "admin" | "member" } | null>(null);
@@ -66,6 +73,7 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 				if (cancelled) return;
 				setUser(data.user);
 				setWorkspaces(data.workspaces);
+				setGithubRepos(data.githubRepos ?? []);
 				const stored = window.localStorage.getItem("pi-web-workspace");
 				const preferred = data.workspaces.find((workspace) => workspace.id === stored) ?? data.workspaces[0];
 				if (preferred) setWorkspaceId((current) => current || preferred.id);
@@ -90,6 +98,22 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 		await logout();
 		window.location.href = "/login";
 	}, []);
+
+	const handleCreateFromIssue = useCallback(
+		async (repoId: string, number: number) => {
+			setError(null);
+			try {
+				const created = await createSession(workspaceId || undefined, { repoId, number });
+				if (created.draft) window.sessionStorage.setItem(`pi-web-draft:${created.id}`, created.draft);
+				await refreshSessions();
+				setIssuesOpen(false);
+				await navigate({ to: "/session/$sessionId", params: { sessionId: created.id } });
+			} catch (caught) {
+				setError(caught instanceof Error ? caught.message : String(caught));
+			}
+		},
+		[navigate, refreshSessions, workspaceId],
+	);
 
 	useEffect(() => {
 		let cancelled = false;
@@ -179,6 +203,9 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 					adminView={adminView}
 					onAdminViewChange={handleAdminViewChange}
 					onShowAudit={() => setAuditOpen(true)}
+					hasGithubRepos={githubRepos.length > 0}
+					onOpenIssues={() => setIssuesOpen(true)}
+					onShowRetention={() => setRetentionOpen(true)}
 				/>
 			)}
 
@@ -202,6 +229,9 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 						adminView={adminView}
 						onAdminViewChange={handleAdminViewChange}
 						onShowAudit={() => setAuditOpen(true)}
+						hasGithubRepos={githubRepos.length > 0}
+						onOpenIssues={() => setIssuesOpen(true)}
+						onShowRetention={() => setRetentionOpen(true)}
 						onClose={() => setExpanded(false)}
 					/>
 					<button
@@ -223,7 +253,10 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 						<PanelLeftIcon />
 					</IconButton>
 					<span className="truncate text-sm font-medium">Pi Web</span>
-					<span className="ml-auto shrink-0 font-mono text-[11px] text-dsw-label-tertiary">
+					<span className="ml-auto flex items-center">
+						<NotificationBell />
+					</span>
+					<span className="shrink-0 font-mono text-[11px] text-dsw-label-tertiary">
 						{width}px · {layoutLabel}
 					</span>
 				</header>
@@ -245,6 +278,15 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 
 			<RightPanel />
 			{auditOpen && <AuditPanel onClose={() => setAuditOpen(false)} />}
+			{retentionOpen && <RetentionPanel onClose={() => setRetentionOpen(false)} />}
+			{issuesOpen && (
+				<IssuesPanel
+					repos={githubRepos}
+					workspaceId={workspaceId}
+					onClose={() => setIssuesOpen(false)}
+					onCreate={(repoId, number) => void handleCreateFromIssue(repoId, number)}
+				/>
+			)}
 		</div>
 	);
 }

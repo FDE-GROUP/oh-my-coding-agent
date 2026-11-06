@@ -146,3 +146,40 @@ export function resetShareCache(): void {
 	cache = undefined;
 	cachePath = undefined;
 }
+
+function shouldPrune(record: ShareRecord, removedSessions: ReadonlySet<string>, createdBefore?: number): boolean {
+	if (removedSessions.has(record.sessionId)) return true;
+	if (createdBefore !== undefined && record.createdAt < createdBefore) return true;
+	return false;
+}
+
+/**
+ * 预览需要清理的分享数量。
+ *
+ * @param removedSessions - 被删除的会话 id。
+ * @param createdBefore - 可选的时间阈值。
+ * @returns 将删除的分享数量。
+ * @internal
+ */
+export function previewSharePrune(removedSessions: ReadonlySet<string>, createdBefore?: number): number {
+	return [...load().values()].filter((record) => shouldPrune(record, removedSessions, createdBefore)).length;
+}
+
+/**
+ * 清理分享。
+ *
+ * @param removedSessions - 被删除的会话 id。
+ * @param createdBefore - 可选的时间阈值。
+ * @returns 删除数量。
+ * @internal
+ */
+export function pruneShares(removedSessions: ReadonlySet<string>, createdBefore?: number): number {
+	let removed = 0;
+	for (const [key, record] of load()) {
+		if (!shouldPrune(record, removedSessions, createdBefore)) continue;
+		load().delete(key);
+		removed += 1;
+	}
+	if (removed > 0) flush();
+	return removed;
+}

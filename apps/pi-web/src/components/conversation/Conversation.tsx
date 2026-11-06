@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import {
+	type CiStatus,
 	cloneSession,
 	createSession,
 	expandProjectFiles,
+	fetchCiStatus,
+	fetchIssueLink,
 	forkSession,
 	openEventStream,
 	resumeSession,
@@ -11,6 +14,7 @@ import {
 } from "../../lib/api.ts";
 import { type ConversationMessage, conversationReducer, initialConversationState } from "../../lib/conversation.ts";
 import type { ImageAttachment } from "../../lib/images.ts";
+import { pushNotification } from "../../lib/notifications.ts";
 import type { Health } from "../../server/health.ts";
 import type { RpcSessionStats } from "../../server/runtime.ts";
 import { type CommandSummary, Composer, type QueueMode } from "./Composer.tsx";
@@ -50,6 +54,9 @@ export function Conversation({
 	const [attachments, setAttachments] = useState<ImageAttachment[]>([]);
 	const [commands, setCommands] = useState<CommandSummary[]>([]);
 	const [forkMessages, setForkMessages] = useState<Array<{ entryId: string; text: string }>>([]);
+	const [initialDraft, setInitialDraft] = useState("");
+	const [issue, setIssue] = useState<{ number: number; title: string; url: string; repoId: string } | null>(null);
+	const [ci, setCi] = useState<CiStatus | null>(null);
 	const noticeId = useRef(0);
 	const activeIdRef = useRef<string | null>(null);
 
@@ -105,6 +112,45 @@ export function Conversation({
 			.catch(() => undefined);
 		return () => {
 			cancelled = true;
+		};
+	}, [activeId]);
+
+	useEffect(() => {
+		if (!activeId) return;
+		setInitialDraft(window.sessionStorage.getItem(`pi-web-draft:${activeId}`) ?? "");
+		window.sessionStorage.removeItem(`pi-web-draft:${activeId}`);
+	}, [activeId]);
+
+	useEffect(() => {
+		if (!activeId) {
+			setIssue(null);
+			setCi(null);
+			return;
+		}
+		let cancelled = false;
+		let timer: NodeJS.Timeout | undefined;
+		fetchIssueLink(activeId)
+			.then((link) => {
+				if (cancelled) return;
+				setIssue(link);
+				if (!link) {
+					setCi(null);
+					return;
+				}
+				const load = () => {
+					fetchCiStatus(link.repoId)
+						.then((status) => {
+							if (!cancelled) setCi(status);
+						})
+						.catch(() => undefined);
+				};
+				load();
+				timer = setInterval(load, 60_000);
+			})
+			.catch(() => undefined);
+		return () => {
+			cancelled = true;
+			if (timer) clearInterval(timer);
 		};
 	}, [activeId]);
 
@@ -169,6 +215,11 @@ export function Conversation({
 						]);
 					}
 					if (event.record.type === "agent_settled") {
+						const aborted = event.record.aborted === true;
+						pushNotification(
+							aborted ? "任务已中止" : "任务完成",
+							issue ? `Issue #${issue.number}：${issue.title}` : `会话 ${activeId.slice(0, 8)}`,
+						);
 						sendCommand(activeId, { type: "get_session_stats" })
 							.then((response) => setStats(response as RpcSessionStats))
 							.catch(() => undefined);
@@ -184,6 +235,7 @@ export function Conversation({
 				if (event.kind === "exit") {
 					setCrashed(true);
 					setError(event.error ? `Pi 已退出：${event.error}` : "Pi 已退出");
+					pushNotification("会话异常", event.error ?? activeId.slice(0, 8));
 				}
 			},
 			onConnectionError: () => setError("事件流连接中断，正在重试…"),
@@ -317,6 +369,14 @@ export function Conversation({
 
 	return (
 		<div className="flex min-h-0 flex-1 flex-col">
+			{issue && (
+				<div className="border-b border-hairline border-dsw-border-l1 bg-dsw-bg-layer-1 px-4 py-1.5 text-xs">
+					<a href={issue.url} target="_blank" rel="noreferrer" className="text-dsw-link">
+						Issue #{issue.number}：{issue.title}
+					</a>
+				</div>
+			)}
+
 			{error && (
 				<div className="flex items-center gap-3 border-b border-hairline border-dsw-border-l1 bg-dsw-bg-layer-1 px-4 py-2 text-xs text-dsw-state-error">
 					<span className="min-w-0 flex-1">{error}</span>
@@ -358,6 +418,7 @@ export function Conversation({
 						queued={conversation.queue.steering.length + conversation.queue.followUp.length}
 						supportsImages={model?.input?.includes("image") ?? false}
 						commands={commands}
+						initialDraft={initialDraft}
 						attachments={attachments}
 						onAttachmentsChange={setAttachments}
 						onSearchFiles={(query) => (activeId ? searchProjectFiles(activeId, query) : Promise.resolve([]))}
@@ -378,6 +439,7 @@ export function Conversation({
 						onClone={() => void handleClone()}
 						canClone={conversation.messages.length > 0}
 						sessionId={activeId ?? undefined}
+						ci={ci}
 						canWrite
 					/>
 				</>

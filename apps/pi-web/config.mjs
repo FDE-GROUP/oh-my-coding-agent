@@ -22,6 +22,8 @@ function defaultConfig() {
 		auth: { secret: "", users: [] },
 		workspaces: [{ id: "default", name: basename(cwd), path: cwd }],
 		limits: { maxRuntimesPerUser: 2, maxRuntimesTotal: 8 },
+		github: { token: "", repos: [] },
+		retention: { sessionsDays: 0, auditDays: 0, sharesDays: 0 },
 	};
 }
 
@@ -58,6 +60,30 @@ function normalize(config) {
 							path: resolve(workspace.path),
 						}))
 				: defaults.workspaces,
+		github: {
+			token: typeof config.github?.token === "string" ? config.github.token : "",
+			repos: Array.isArray(config.github?.repos)
+				? config.github.repos
+						.filter(
+							(repo) =>
+								repo &&
+								typeof repo.id === "string" &&
+								typeof repo.owner === "string" &&
+								typeof repo.name === "string",
+						)
+						.map((repo) => ({
+							id: repo.id,
+							owner: repo.owner,
+							name: repo.name,
+							branch: typeof repo.branch === "string" ? repo.branch : undefined,
+						}))
+				: [],
+		},
+		retention: {
+			sessionsDays: Number.isInteger(config.retention?.sessionsDays) ? config.retention.sessionsDays : 0,
+			auditDays: Number.isInteger(config.retention?.auditDays) ? config.retention.auditDays : 0,
+			sharesDays: Number.isInteger(config.retention?.sharesDays) ? config.retention.sharesDays : 0,
+		},
 		limits: {
 			maxRuntimesPerUser: Number.isInteger(config.limits?.maxRuntimesPerUser)
 				? config.limits.maxRuntimesPerUser

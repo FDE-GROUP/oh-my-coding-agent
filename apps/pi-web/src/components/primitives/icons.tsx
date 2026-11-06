@@ -100,6 +100,15 @@ export function PencilIcon(props: IconProps) {
 	);
 }
 
+export function BellIcon(props: IconProps) {
+	return (
+		<svg {...base} {...props}>
+			<path d="M4 11.5V8a4 4 0 1 1 8 0v3.5l1 1.5H3l1-1.5Z" />
+			<path d="M6.5 13.5a1.5 1.5 0 0 0 3 0" />
+		</svg>
+	);
+}
+
 export function ImageIcon(props: IconProps) {
 	return (
 		<svg {...base} {...props}>

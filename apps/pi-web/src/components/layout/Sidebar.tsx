@@ -26,6 +26,9 @@ export interface SidebarProps {
 	adminView: boolean;
 	onAdminViewChange: (value: boolean) => void;
 	onShowAudit: () => void;
+	hasGithubRepos?: boolean;
+	onOpenIssues?: () => void;
+	onShowRetention?: () => void;
 	onClose?: () => void;
 }
 
@@ -148,6 +151,9 @@ export function Sidebar({
 	adminView,
 	onAdminViewChange,
 	onShowAudit,
+	hasGithubRepos = false,
+	onOpenIssues,
+	onShowRetention,
 	onClose,
 }: SidebarProps) {
 	return (
@@ -189,6 +195,14 @@ export function Sidebar({
 							</option>
 						))}
 					</select>
+				</div>
+			)}
+
+			{!collapsed && hasGithubRepos && onOpenIssues && (
+				<div className="px-2 pb-2">
+					<Button variant="ghost" className="w-full justify-start" onClick={onOpenIssues}>
+						GitHub Issues
+					</Button>
 				</div>
 			)}
 
@@ -245,6 +259,15 @@ export function Sidebar({
 					>
 						审计记录
 					</button>
+					{onShowRetention && (
+						<button
+							type="button"
+							onClick={onShowRetention}
+							className="rounded-dsw-xs px-1 py-0.5 text-left text-[11px] text-dsw-label-tertiary hover:text-dsw-label-primary"
+						>
+							保留清理
+						</button>
+					)}
 				</div>
 			)}
 

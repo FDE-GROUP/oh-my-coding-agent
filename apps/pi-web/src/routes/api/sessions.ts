@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { appendAudit } from "../../../audit.mjs";
 import { readSessionAccess } from "../../server/access.ts";
+import { GithubError, getIssue, type IssueSummary } from "../../server/github.ts";
+import { recordIssueLink } from "../../server/links.ts";
 import { recordSessionOwner } from "../../server/owners.ts";
 import { getRuntimeManager, RuntimeCapacityError } from "../../server/runtime-manager.ts";
 import { listSessions, resolveSession } from "../../server/sessions.ts";
@@ -26,9 +28,13 @@ export const Route = createFileRoute("/api/sessions")({
 
 			POST: async ({ request }) => {
 				const user = getCurrentUser();
-				let body: { resumeId?: string; workspaceId?: string } = {};
+				let body: { resumeId?: string; workspaceId?: string; issue?: { repoId?: string; number?: number } } = {};
 				try {
-					body = (await request.json()) as { resumeId?: string; workspaceId?: string };
+					body = (await request.json()) as {
+						resumeId?: string;
+						workspaceId?: string;
+						issue?: { repoId?: string; number?: number };
+					};
 				} catch {
 					body = {};
 				}
@@ -55,12 +61,37 @@ export const Route = createFileRoute("/api/sessions")({
 						return Response.json({ id: state.sessionId, state });
 					}
 
+					let issue: IssueSummary | undefined;
+					if (body.issue?.repoId && Number.isInteger(body.issue.number) && (body.issue.number ?? 0) > 0) {
+						try {
+							issue = await getIssue(body.issue.repoId, body.issue.number ?? 0);
+						} catch (error) {
+							const status = error instanceof GithubError ? error.status : 502;
+							return Response.json(
+								{ error: error instanceof Error ? error.message : String(error) },
+								{ status },
+							);
+						}
+					}
+
 					const workspace = body.workspaceId ? findWorkspace(body.workspaceId) : defaultWorkspace();
 					if (!workspace) return Response.json({ error: "工作区不存在" }, { status: 400 });
 					const runtime = await manager.create({ cwd: workspace.path, owner: user.id });
 					const state = runtime.state;
 					if (!state) return Response.json({ error: "会话初始化失败" }, { status: 500 });
 					recordSessionOwner(state.sessionId, user.id, workspace.id);
+					let draft: string | undefined;
+					if (issue && body.issue?.repoId) {
+						recordIssueLink({
+							sessionId: state.sessionId,
+							repoId: body.issue.repoId,
+							number: issue.number,
+							title: issue.title,
+							url: issue.url,
+						});
+						draft =
+							`请处理 GitHub Issue #${issue.number}：${issue.title}\n${issue.url}\n\n${issue.body}`.trimEnd();
+					}
 					appendAudit({
 						user: user.id,
 						role: user.role,
@@ -68,7 +99,7 @@ export const Route = createFileRoute("/api/sessions")({
 						target: state.sessionId,
 						result: "ok",
 					});
-					return Response.json({ id: state.sessionId, state });
+					return Response.json({ id: state.sessionId, state, ...(draft ? { draft } : {}) });
 				} catch (error) {
 					if (error instanceof RuntimeCapacityError) {
 						return Response.json({ error: error.message }, { status: 429 });

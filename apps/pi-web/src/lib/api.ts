@@ -18,6 +18,7 @@ import type { SessionSummary } from "../server/sessions.ts";
 export interface CreatedSession {
 	id: string;
 	state: RpcSessionState;
+	draft?: string;
 }
 
 /**
@@ -57,14 +58,18 @@ async function readError(response: Response): Promise<string> {
  * 创建一个新会话。
  *
  * @param workspaceId - 工作区 id；省略时使用默认工作区。
- * @returns 新会话的 id 与初始状态。
+ * @param issue - 可选的 GitHub Issue 关联。
+ * @returns 新会话的 id、初始状态与可选草稿。
  * @internal
  */
-export async function createSession(workspaceId?: string): Promise<CreatedSession> {
+export async function createSession(
+	workspaceId?: string,
+	issue?: { repoId: string; number: number },
+): Promise<CreatedSession> {
 	const response = await fetch("/api/sessions", {
 		method: "POST",
 		headers: { "content-type": "application/json" },
-		body: JSON.stringify(workspaceId ? { workspaceId } : {}),
+		body: JSON.stringify({ ...(workspaceId ? { workspaceId } : {}), ...(issue ? { issue } : {}) }),
 	});
 	if (!response.ok) throw new Error(await readError(response));
 	return (await response.json()) as CreatedSession;
@@ -295,15 +300,30 @@ export interface WorkspaceInfo {
  * @returns 用户信息与工作区列表。
  * @internal
  */
+export interface GithubRepoInfo {
+	id: string;
+	owner: string;
+	name: string;
+	branch?: string;
+}
+
+/**
+ * 读取当前用户、工作区与 GitHub 仓库。
+ *
+ * @returns 用户、工作区与不含 token 的仓库配置。
+ * @internal
+ */
 export async function fetchWorkspaces(): Promise<{
 	user: { id: string; name: string; role: "admin" | "member" };
 	workspaces: WorkspaceInfo[];
+	githubRepos: GithubRepoInfo[];
 }> {
 	const response = await fetch("/api/workspaces");
 	if (!response.ok) throw new Error(await readError(response));
 	return (await response.json()) as {
 		user: { id: string; name: string; role: "admin" | "member" };
 		workspaces: WorkspaceInfo[];
+		githubRepos: GithubRepoInfo[];
 	};
 }
 
@@ -468,4 +488,135 @@ export function openSharedEventStream(token: string, handlers: EventStreamHandle
 	});
 	source.addEventListener("error", () => handlers.onConnectionError?.());
 	return () => source.close();
+}
+
+/**
+ * GitHub Issue 摘要。
+ *
+ * @internal
+ */
+export interface GithubIssue {
+	number: number;
+	title: string;
+	body: string;
+	url: string;
+	state: string;
+	labels: string[];
+	updatedAt: string;
+}
+
+/**
+ * 读取 open issues。
+ *
+ * @param repoId - 仓库配置 id。
+ * @returns Issue 摘要。
+ * @internal
+ */
+export async function fetchGithubIssues(repoId: string): Promise<GithubIssue[]> {
+	const response = await fetch(`/api/github/issues?repo=${encodeURIComponent(repoId)}`);
+	if (!response.ok) throw new Error(await readError(response));
+	const body = (await response.json()) as { issues: GithubIssue[] };
+	return body.issues;
+}
+
+/**
+ * 读取会话关联的 Issue。
+ *
+ * @param sessionId - 会话 id。
+ * @returns Issue 关联；没有时返回 `null`。
+ * @internal
+ */
+export async function fetchIssueLink(
+	sessionId: string,
+): Promise<{ number: number; title: string; url: string; repoId: string } | null> {
+	const response = await fetch(`/api/sessions/${encodeURIComponent(sessionId)}/issue`);
+	if (!response.ok) throw new Error(await readError(response));
+	const body = (await response.json()) as {
+		issue: { number: number; title: string; url: string; repoId: string } | null;
+	};
+	return body.issue;
+}
+
+/**
+ * CI 状态。
+ *
+ * @internal
+ */
+export interface CiStatus {
+	name: string;
+	status: string;
+	conclusion: string | null;
+	branch: string | null;
+	url: string;
+	updatedAt: string;
+}
+
+/**
+ * 读取仓库最近 CI 状态。
+ *
+ * @param repoId - 仓库配置 id。
+ * @param branch - 可选分支。
+ * @returns 最近一次 workflow run。
+ * @internal
+ */
+export async function fetchCiStatus(repoId: string, branch?: string): Promise<CiStatus | null> {
+	const query = new URLSearchParams({ repo: repoId });
+	if (branch) query.set("branch", branch);
+	const response = await fetch(`/api/github/ci?${query.toString()}`);
+	if (!response.ok) throw new Error(await readError(response));
+	const body = (await response.json()) as { ci: CiStatus | null };
+	return body.ci;
+}
+
+/**
+ * 保留清理预览。
+ *
+ * @internal
+ */
+export interface RetentionPreview {
+	sessions: Array<{
+		id: string;
+		owner: string;
+		workspaceId: string;
+		workspaceName: string;
+		modified: string;
+	}>;
+	shares: number;
+	audit: number;
+	skippedUnknown: number;
+	skippedActive: number;
+}
+
+/**
+ * 读取保留清理预览。
+ *
+ * @returns 预览结果。
+ * @internal
+ */
+export async function fetchRetentionPreview(): Promise<RetentionPreview> {
+	const response = await fetch("/api/admin/retention");
+	if (!response.ok) throw new Error(await readError(response));
+	const body = (await response.json()) as { preview: RetentionPreview };
+	return body.preview;
+}
+
+/**
+ * 应用保留清理。
+ *
+ * @returns 实际删除数量。
+ * @internal
+ */
+export async function applyRetention(): Promise<
+	RetentionPreview & { deletedSessions: number; deletedShares: number; deletedAudit: number }
+> {
+	const response = await fetch("/api/admin/retention", {
+		method: "POST",
+		headers: { "content-type": "application/json" },
+		body: JSON.stringify({ confirm: true }),
+	});
+	if (!response.ok) throw new Error(await readError(response));
+	const body = (await response.json()) as {
+		result: RetentionPreview & { deletedSessions: number; deletedShares: number; deletedAudit: number };
+	};
+	return body.result;
 }

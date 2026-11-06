@@ -52,3 +52,53 @@ export function queryAudit(limit = 100) {
 		return [];
 	}
 }
+
+export function previewAudit(beforeTs) {
+	const path = auditPath();
+	if (!existsSync(path)) return 0;
+	try {
+		return readFileSync(path, "utf8")
+			.trim()
+			.split("\n")
+			.filter(Boolean)
+			.map((line) => {
+				try {
+					return JSON.parse(line);
+				} catch {
+					return undefined;
+				}
+			})
+			.filter((entry) => entry && typeof entry.ts === "number" && entry.ts < beforeTs).length;
+	} catch {
+		return 0;
+	}
+}
+
+export function pruneAudit(beforeTs) {
+	const path = auditPath();
+	if (!existsSync(path)) return 0;
+	try {
+		const lines = readFileSync(path, "utf8").trim().split("\n").filter(Boolean);
+		const kept = [];
+		let removed = 0;
+		for (const line of lines) {
+			try {
+				const entry = JSON.parse(line);
+				if (typeof entry.ts === "number" && entry.ts < beforeTs) {
+					removed += 1;
+					continue;
+				}
+				kept.push(line);
+			} catch {
+				kept.push(line);
+			}
+		}
+		const temp = `${path}.tmp`;
+		writeFileSync(temp, `${kept.join("\n")}${kept.length > 0 ? "\n" : ""}`, { mode: 0o600 });
+		chmodSync(temp, 0o600);
+		renameSync(temp, path);
+		return removed;
+	} catch {
+		return 0;
+	}
+}

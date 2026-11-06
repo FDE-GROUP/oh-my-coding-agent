@@ -14,6 +14,9 @@
 - 并行：多个会话同时运行，侧栏显示状态。
 - 团队：访问令牌登录、用户归属、工作区白名单、每用户并发上限。
 - 协作：只读分享、交接文档导出、管理员只读视图、审计日志。
+- 集成：GitHub Issue 列表与上下文、CI 状态。
+- 通知：页面内通知、可选浏览器通知。
+- 运维：会话/审计/分享保留策略与手动清理。
 - 移动端：抽屉布局、PWA manifest。
 
 不做：文件编辑器、命令参数补全、SSO/LDAP、RBAC、审计库、多租户、云部署、内置 HTTPS 证书管理。
@@ -70,7 +73,12 @@ pnpm --filter @omfde/pi-web start
     ]
   },
   "workspaces": [{ "id": "omfde", "name": "omfde", "path": "/home/abel/omfde" }],
-  "limits": { "maxRuntimesPerUser": 2, "maxRuntimesTotal": 8 }
+  "limits": { "maxRuntimesPerUser": 2, "maxRuntimesTotal": 8 },
+  "github": {
+    "token": "<可选；PI_WEB_GITHUB_TOKEN 优先>",
+    "repos": [{ "id": "omfde", "owner": "FDE-GROUP", "name": "oh-my-fde", "branch": "main" }]
+  },
+  "retention": { "sessionsDays": 0, "auditDays": 0, "sharesDays": 0 }
 }
 ```
 
@@ -104,6 +112,27 @@ pnpm --filter @omfde/pi-web import-sessions -- --owner abel --dry-run
 - 分享链接必须登录后才能打开；只读页面没有输入框和写操作。
 - 会话底栏的“交接”会下载 Markdown，包含目标、结论、工具摘要、改动文件、风险与下一步；导出前对密钥模式脱敏。
 
+## GitHub 与 CI
+
+- 在配置里填写 `github.repos`；`github.token` 或环境 `PI_WEB_GITHUB_TOKEN` 提供 PAT。
+- token 只在服务端使用，不返回浏览器、不写日志。
+- 侧栏 “GitHub Issues” 列出 open issue；创建会话会填入草稿，不自动发送。
+- 会话关联 Issue 后，状态栏显示最近一次 Actions run；未配置时隐藏。
+- 代理环境需要 `NODE_USE_ENV_PROXY=1` 启动服务。
+
+## 通知
+
+- 标题栏铃铛显示页面内通知与未读数。
+- 浏览器通知默认关闭，需要在铃铛菜单中授权；只在页面隐藏且会话结束时发送。
+- 通知不包含 prompt 或工具输出正文。
+
+## 保留清理
+
+- 配置 `retention.sessionsDays`、`auditDays`、`sharesDays`；0 表示关闭。
+- 管理员侧栏 “保留清理” 可预览将删除的会话、分享与审计。
+- 只清理有归属记录的旧会话；活跃会话和未过期分享不会删除。
+- 清理前需要二次确认，清理结果写入审计。
+
 ## 管理员与审计
 
 - 用户配置 `role: "admin"` 即管理员，默认 `member`。
@@ -129,6 +158,8 @@ pnpm --filter @omfde/pi-web import-sessions -- --owner abel --dry-run
 | `PI_WEB_IDLE_MS` | `1800000` | 空闲回收阈值 |
 | `PI_WEB_MAX_RUNTIMES` | 配置或 `8` | 全局活跃运行时上限 |
 | `PI_WEB_MAX_PER_USER` | 配置或 `2` | 每用户活跃运行时上限 |
+| `PI_WEB_GITHUB_TOKEN` | 配置 | GitHub PAT，优先于配置文件 |
+| `PI_WEB_GITHUB_API` | `https://api.github.com` | GitHub API 地址（测试用） |
 
 ## HTTP 接口
 
@@ -159,6 +190,12 @@ pnpm --filter @omfde/pi-web import-sessions -- --owner abel --dry-run
 | GET | `/api/sessions/:id/handoff` | 下载交接 Markdown |
 | GET | `/api/admin/sessions` | 管理员会话列表 |
 | GET | `/api/admin/audit?limit=` | 管理员审计查询 |
+| GET | `/api/github/issues?repo=` | open issues |
+| GET | `/api/github/issue?repo=&number=` | 单条 issue |
+| GET | `/api/github/ci?repo=&branch=` | 最近 CI 状态 |
+| GET | `/api/sessions/:id/issue` | 会话关联 Issue |
+| GET | `/api/admin/retention` | 清理预览 |
+| POST | `/api/admin/retention` | 应用清理（需确认） |
 
 ## 架构
 

@@ -24,6 +24,15 @@ export interface AppConfig {
 		maxRuntimesPerUser: number;
 		maxRuntimesTotal: number;
 	};
+	github: {
+		token: string;
+		repos: Array<{ id: string; owner: string; name: string; branch?: string }>;
+	};
+	retention: {
+		sessionsDays: number;
+		auditDays: number;
+		sharesDays: number;
+	};
 }
 
 export interface LoadedConfig {
