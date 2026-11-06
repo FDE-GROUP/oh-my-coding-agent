@@ -8,7 +8,7 @@
     {
       "kind": "page",
       "label": "oh-my-fde 文档",
-      "pageId": "filesystem:index.md",
+      "pageId": "filesystem:index.mdx",
       "route": "/"
     },
     {
