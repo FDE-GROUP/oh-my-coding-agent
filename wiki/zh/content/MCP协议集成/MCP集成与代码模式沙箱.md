@@ -3,13 +3,13 @@
 <cite>
 **本文引用的文件**   
 - [14-mcp-codemode.md](#/explains/14-mcp-codemode.md)
-- [index.ts（MCP扩展）](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts)
-- [tools.ts（MCP工具定义与结果转换）](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts)
-- [runtime.ts（MCP服务器连接）](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts)
-- [client.ts（MCP客户端）](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts)
-- [index.ts（codemode导出）](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/index.ts)
-- [host.ts（CodemodeSandbox）](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/runtime/host.ts)
-- [inline.ts（InlineCodemodeSandbox）](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/runtime/inline.ts)
+- [index.ts（MCP扩展）](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts)
+- [tools.ts（MCP工具定义与结果转换）](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts)
+- [runtime.ts（MCP服务器连接）](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts)
+- [client.ts（MCP客户端）](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts)
+- [index.ts（codemode导出）](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/index.ts)
+- [host.ts（CodemodeSandbox）](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/runtime/host.ts)
+- [inline.ts（InlineCodemodeSandbox）](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/runtime/inline.ts)
 </cite>
 
 ## 目录
@@ -55,17 +55,17 @@ Codemode_Index --> Inline_Sandbox
 ```
 
 **图表来源**
-- [index.ts（MCP扩展）:1-27](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L1-L27)
-- [tools.ts:1-11](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L1-L11)
-- [runtime.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L1-L5)
-- [client.ts:173-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L173-L213)
-- [index.ts（codemode导出）:1-66](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/index.ts#L1-L66)
-- [host.ts:84-88](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/runtime/host.ts#L84-L88)
-- [inline.ts:122-126](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/runtime/inline.ts#L122-L126)
+- [index.ts（MCP扩展）:1-27](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L1-L27)
+- [tools.ts:1-11](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L1-L11)
+- [runtime.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L1-L5)
+- [client.ts:173-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L173-L213)
+- [index.ts（codemode导出）:1-66](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/index.ts#L1-L66)
+- [host.ts:84-88](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/runtime/host.ts#L84-L88)
+- [inline.ts:122-126](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/runtime/inline.ts#L122-L126)
 
 **章节来源**
-- [14-mcp-codemode.md:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/14-mcp-codemode.md#L1-L17)
-- [index.ts（MCP扩展）:1-27](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L1-L27)
+- [14-mcp-codemode.md:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/14-mcp-codemode.md#L1-L17)
+- [index.ts（MCP扩展）:1-27](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L1-L27)
 
 ## 核心组件
 - MCP扩展：加载mcp.json与插件注册的服务器，按exposure策略注册工具，维护连接状态，提供/mcp管理器。
@@ -75,11 +75,11 @@ Codemode_Index --> Inline_Sandbox
 - codemode导出与沙箱：对外暴露沙箱类型与常量；运行时支持worker或内联执行，限制内存、超时与I/O。
 
 **章节来源**
-- [index.ts（MCP扩展）:280-330](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L280-L330)
-- [tools.ts:249-289](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
-- [runtime.ts:141-456](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L456)
-- [client.ts:173-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L173-L213)
-- [index.ts（codemode导出）:1-66](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/index.ts#L1-L66)
+- [index.ts（MCP扩展）:280-330](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L280-L330)
+- [tools.ts:249-289](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
+- [runtime.ts:141-456](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L456)
+- [client.ts:173-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L173-L213)
+- [index.ts（codemode导出）:1-66](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/index.ts#L1-L66)
 
 ## 架构总览
 MCP扩展在会话启动时加载配置并后台连接所有启用的服务器；首次提示仅等待direct工具，其他工具由codemode或tool_search按需发现。工具以命名空间+哈希的方式注册，避免名称冲突。脚本在受限环境中运行，通过全局API调用工具，结果经统一管道返回给模型。
@@ -112,10 +112,10 @@ Agent-->>User : "返回内容"
 ```
 
 **图表来源**
-- [index.ts（MCP扩展）:46-64](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/14-mcp-codemode.md#L46-L64)
-- [tools.ts:275-286](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L275-L286)
-- [runtime.ts:239-250](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L239-L250)
-- [client.ts:204-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L204-L213)
+- [index.ts（MCP扩展）:46-64](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/14-mcp-codemode.md#L46-L64)
+- [tools.ts:275-286](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L275-L286)
+- [runtime.ts:239-250](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L239-L250)
+- [client.ts:204-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L204-L213)
 
 ## 详细组件分析
 
@@ -147,18 +147,18 @@ Convert --> Return(["返回模型"])
 ```
 
 **图表来源**
-- [14-mcp-codemode.md:43-64](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/14-mcp-codemode.md#L43-L64)
-- [index.ts（MCP扩展）:502-537](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L502-L537)
-- [tools.ts:215-235](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L215-L235)
-- [runtime.ts:276-303](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L276-L303)
+- [14-mcp-codemode.md:43-64](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/14-mcp-codemode.md#L43-L64)
+- [index.ts（MCP扩展）:502-537](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L502-L537)
+- [tools.ts:215-235](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L215-L235)
+- [runtime.ts:276-303](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L276-L303)
 
 **章节来源**
-- [14-mcp-codemode.md:18-31](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/14-mcp-codemode.md#L18-L31)
-- [14-mcp-codemode.md:68-110](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/14-mcp-codemode.md#L68-L110)
-- [14-mcp-codemode.md:112-128](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/14-mcp-codemode.md#L112-L128)
-- [index.ts（MCP扩展）:280-330](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L280-L330)
-- [tools.ts:249-289](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
-- [runtime.ts:141-456](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L456)
+- [14-mcp-codemode.md:18-31](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/14-mcp-codemode.md#L18-L31)
+- [14-mcp-codemode.md:68-110](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/14-mcp-codemode.md#L68-L110)
+- [14-mcp-codemode.md:112-128](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/14-mcp-codemode.md#L112-L128)
+- [index.ts（MCP扩展）:280-330](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L280-L330)
+- [tools.ts:249-289](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
+- [runtime.ts:141-456](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L456)
 
 ### MCP工具定义与结果转换
 - createMcpToolDefinition：生成代理工具定义，包含名称、标签、描述、参数Schema、输出Schema、exposure、namespace、渲染器与execute逻辑。
@@ -187,14 +187,14 @@ McpToolDefinition --> ResultConverter : "调用"
 ```
 
 **图表来源**
-- [tools.ts:249-289](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
-- [tools.ts:215-235](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L215-L235)
-- [tools.ts:172-212](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L172-L212)
-- [tools.ts:62-65](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L62-L65)
+- [tools.ts:249-289](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
+- [tools.ts:215-235](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L215-L235)
+- [tools.ts:172-212](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L172-L212)
+- [tools.ts:62-65](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L62-L65)
 
 **章节来源**
-- [tools.ts:249-289](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
-- [tools.ts:215-235](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L215-L235)
+- [tools.ts:249-289](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
+- [tools.ts:215-235](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L215-L235)
 
 ### MCP服务器连接与重连策略
 - McpServerConnection：封装MCP客户端，管理连接状态、工具列表、资源能力、OAuth挑战与日志。
@@ -219,13 +219,13 @@ failed --> closed : "会话结束"
 ```
 
 **图表来源**
-- [runtime.ts:141-166](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L166)
-- [runtime.ts:276-303](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L276-L303)
-- [runtime.ts:342-409](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L342-L409)
-- [runtime.ts:444-456](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L444-L456)
+- [runtime.ts:141-166](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L166)
+- [runtime.ts:276-303](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L276-L303)
+- [runtime.ts:342-409](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L342-L409)
+- [runtime.ts:444-456](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L444-L456)
 
 **章节来源**
-- [runtime.ts:141-456](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L456)
+- [runtime.ts:141-456](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L456)
 
 ### MCP客户端与传输
 - McpClient：维护连接状态、服务端信息与指令；connect绑定消息处理器、错误与关闭回调；roots可选。
@@ -251,12 +251,12 @@ McpClient --> Transport : "使用"
 ```
 
 **图表来源**
-- [client.ts:173-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L173-L213)
-- [runtime.ts:100-124](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L100-L124)
+- [client.ts:173-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L173-L213)
+- [runtime.ts:100-124](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L100-L124)
 
 **章节来源**
-- [client.ts:173-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L173-L213)
-- [runtime.ts:100-124](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L100-L124)
+- [client.ts:173-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L173-L213)
+- [runtime.ts:100-124](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L100-L124)
 
 ### 代码模式沙箱：执行环境与全局API
 - CodemodeSandbox：基于worker的进程隔离沙箱，默认最多2个worker，堆上限256MB，等待上限60秒。
@@ -277,13 +277,13 @@ OutputBudget --> ScriptEnd["脚本结束"]
 ```
 
 **图表来源**
-- [14-mcp-codemode.md:140-199](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/14-mcp-codemode.md#L140-L199)
-- [host.ts:84-88](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/runtime/host.ts#L84-L88)
-- [inline.ts:122-126](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/runtime/inline.ts#L122-L126)
+- [14-mcp-codemode.md:140-199](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/14-mcp-codemode.md#L140-L199)
+- [host.ts:84-88](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/runtime/host.ts#L84-L88)
+- [inline.ts:122-126](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/runtime/inline.ts#L122-L126)
 
 **章节来源**
-- [14-mcp-codemode.md:140-199](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/14-mcp-codemode.md#L140-L199)
-- [index.ts（codemode导出）:1-66](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/index.ts#L1-L66)
+- [14-mcp-codemode.md:140-199](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/14-mcp-codemode.md#L140-L199)
+- [index.ts（codemode导出）:1-66](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/index.ts#L1-L66)
 
 ## 依赖关系分析
 - MCP扩展依赖MCP工具定义与结果转换模块，以及MCP服务器连接模块。
@@ -301,20 +301,20 @@ Codemode_Index --> Inline_Sandbox["inline.ts"]
 ```
 
 **图表来源**
-- [index.ts（MCP扩展）:280-330](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L280-L330)
-- [tools.ts:249-289](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
-- [runtime.ts:141-456](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L456)
-- [client.ts:173-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L173-L213)
-- [index.ts（codemode导出）:1-66](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/index.ts#L1-L66)
-- [host.ts:84-88](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/runtime/host.ts#L84-L88)
-- [inline.ts:122-126](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/runtime/inline.ts#L122-L126)
+- [index.ts（MCP扩展）:280-330](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L280-L330)
+- [tools.ts:249-289](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
+- [runtime.ts:141-456](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L456)
+- [client.ts:173-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L173-L213)
+- [index.ts（codemode导出）:1-66](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/index.ts#L1-L66)
+- [host.ts:84-88](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/runtime/host.ts#L84-L88)
+- [inline.ts:122-126](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/runtime/inline.ts#L122-L126)
 
 **章节来源**
-- [index.ts（MCP扩展）:280-330](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L280-L330)
-- [tools.ts:249-289](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
-- [runtime.ts:141-456](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L456)
-- [client.ts:173-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L173-L213)
-- [index.ts（codemode导出）:1-66](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/codemode/src/index.ts#L1-L66)
+- [index.ts（MCP扩展）:280-330](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/index.ts#L280-L330)
+- [tools.ts:249-289](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L249-L289)
+- [runtime.ts:141-456](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L141-L456)
+- [client.ts:173-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L173-L213)
+- [index.ts（codemode导出）:1-66](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/codemode/src/index.ts#L1-L66)
 
 ## 性能与限制
 - 连接重试：HTTP瞬态错误重试两次，延迟[250ms, 1s]；只读请求额外重试一次。
@@ -324,11 +324,11 @@ Codemode_Index --> Inline_Sandbox["inline.ts"]
 - 工具发现：BM25搜索与命名空间匹配，减少上下文开销。
 
 **章节来源**
-- [runtime.ts:50-53](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L50-L53)
-- [runtime.ts:276-303](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L276-L303)
-- [14-mcp-codemode.md:140-147](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/14-mcp-codemode.md#L140-L147)
-- [14-mcp-codemode.md:192-199](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/14-mcp-codemode.md#L192-L199)
-- [14-mcp-codemode.md:216-222](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/14-mcp-codemode.md#L216-L222)
+- [runtime.ts:50-53](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L50-L53)
+- [runtime.ts:276-303](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L276-L303)
+- [14-mcp-codemode.md:140-147](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/14-mcp-codemode.md#L140-L147)
+- [14-mcp-codemode.md:192-199](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/14-mcp-codemode.md#L192-L199)
+- [14-mcp-codemode.md:216-222](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/14-mcp-codemode.md#L216-L222)
 
 ## 故障排查指南
 - 连接失败：检查mcp.json配置、网络可达性与OAuth设置；查看/mcp管理器中的状态与错误信息。
@@ -338,9 +338,9 @@ Codemode_Index --> Inline_Sandbox["inline.ts"]
 - 脚本异常：查看console输出与codemode-store custom entry，定位store/load数据与工具调用链。
 
 **章节来源**
-- [14-mcp-codemode.md:112-128](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/14-mcp-codemode.md#L112-L128)
-- [runtime.ts:319-331](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L319-L331)
-- [tools.ts:215-235](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L215-L235)
+- [14-mcp-codemode.md:112-128](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/14-mcp-codemode.md#L112-L128)
+- [runtime.ts:319-331](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/runtime.ts#L319-L331)
+- [tools.ts:215-235](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/extensions/mcp/tools.ts#L215-L235)
 
 ## 结论
 该方案通过暴露策略与多层懒加载，将MCP工具生态安全地接入模型与脚本环境：模型侧保持简洁的工具声明，脚本侧获得强大的批量与链式调用能力，连接层具备健壮的重连与认证机制，沙箱层提供严格的资源与时间限制。整体设计兼顾可扩展性、安全性与性能，适合在生产环境中集成多样化外部工具。

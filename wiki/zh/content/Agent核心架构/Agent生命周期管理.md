@@ -2,14 +2,14 @@
 
 <cite>
 **本文引用的文件**   
-- [packages/agent/src/agent.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts)
-- [packages/agent/src/agent-loop.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts)
-- [packages/agent/src/types.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts)
-- [packages/agent/src/stream-fn.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/stream-fn.ts)
-- [packages/agent/src/proxy.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/proxy.ts)
-- [packages/agent/src/index.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/index.ts)
-- [packages/coding-agent/src/core/agent-session.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session.ts)
-- [packages/coding-agent/src/core/agent-session-runtime.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts)
+- [packages/agent/src/agent.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts)
+- [packages/agent/src/agent-loop.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts)
+- [packages/agent/src/types.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts)
+- [packages/agent/src/stream-fn.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/stream-fn.ts)
+- [packages/agent/src/proxy.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/proxy.ts)
+- [packages/agent/src/index.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/index.ts)
+- [packages/coding-agent/src/core/agent-session.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session.ts)
+- [packages/coding-agent/src/core/agent-session-runtime.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts)
 </cite>
 
 ## 目录
@@ -60,24 +60,24 @@ R --> C
 ```
 
 **图表来源**
-- [packages/agent/src/index.ts:1-6](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/index.ts#L1-L6)
-- [packages/agent/src/agent.ts:194-263](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L194-L263)
-- [packages/agent/src/agent-loop.ts:111-160](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L111-L160)
-- [packages/agent/src/types.ts:193-342](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L193-L342)
-- [packages/agent/src/stream-fn.ts:11-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/stream-fn.ts#L11-L20)
-- [packages/agent/src/proxy.ts:108-255](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/proxy.ts#L108-L255)
-- [packages/coding-agent/src/core/agent-session.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session.ts#L1-L14)
-- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
+- [packages/agent/src/index.ts:1-6](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/index.ts#L1-L6)
+- [packages/agent/src/agent.ts:194-263](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L194-L263)
+- [packages/agent/src/agent-loop.ts:111-160](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L111-L160)
+- [packages/agent/src/types.ts:193-342](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L193-L342)
+- [packages/agent/src/stream-fn.ts:11-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/stream-fn.ts#L11-L20)
+- [packages/agent/src/proxy.ts:108-255](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/proxy.ts#L108-L255)
+- [packages/coding-agent/src/core/agent-session.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session.ts#L1-L14)
+- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
 
 **章节来源**
-- [packages/agent/src/index.ts:1-6](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/index.ts#L1-L6)
-- [packages/agent/src/agent.ts:194-263](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L194-L263)
-- [packages/agent/src/agent-loop.ts:111-160](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L111-L160)
-- [packages/agent/src/types.ts:193-342](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L193-L342)
-- [packages/agent/src/stream-fn.ts:11-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/stream-fn.ts#L11-L20)
-- [packages/agent/src/proxy.ts:108-255](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/proxy.ts#L108-L255)
-- [packages/coding-agent/src/core/agent-session.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session.ts#L1-L14)
-- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
+- [packages/agent/src/index.ts:1-6](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/index.ts#L1-L6)
+- [packages/agent/src/agent.ts:194-263](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L194-L263)
+- [packages/agent/src/agent-loop.ts:111-160](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L111-L160)
+- [packages/agent/src/types.ts:193-342](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L193-L342)
+- [packages/agent/src/stream-fn.ts:11-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/stream-fn.ts#L11-L20)
+- [packages/agent/src/proxy.ts:108-255](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/proxy.ts#L108-L255)
+- [packages/coding-agent/src/core/agent-session.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session.ts#L1-L14)
+- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
 
 ## 核心组件
 - Agent：封装对话状态、消息队列、事件订阅、工具调用编排与生命周期控制。
@@ -88,12 +88,12 @@ R --> C
 - AgentSession / AgentSessionRuntime：上层会话抽象，持有Agent实例、服务与诊断信息，提供会话创建、替换与清理能力。
 
 **章节来源**
-- [packages/agent/src/agent.ts:194-263](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L194-L263)
-- [packages/agent/src/agent-loop.ts:111-160](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L111-L160)
-- [packages/agent/src/types.ts:193-342](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L193-L342)
-- [packages/agent/src/stream-fn.ts:11-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/stream-fn.ts#L11-L20)
-- [packages/agent/src/proxy.ts:108-255](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/proxy.ts#L108-L255)
-- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
+- [packages/agent/src/agent.ts:194-263](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L194-L263)
+- [packages/agent/src/agent-loop.ts:111-160](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L111-L160)
+- [packages/agent/src/types.ts:193-342](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L193-L342)
+- [packages/agent/src/stream-fn.ts:11-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/stream-fn.ts#L11-L20)
+- [packages/agent/src/proxy.ts:108-255](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/proxy.ts#L108-L255)
+- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
 
 ## 架构总览
 Agent生命周期由“创建→初始化→运行→销毁”四阶段组成，贯穿事件流、工具执行与钩子回调。
@@ -124,11 +124,11 @@ Agent->>Agent : finishRun()清理状态
 ```
 
 **图表来源**
-- [packages/agent/src/agent.ts:379-467](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L379-L467)
-- [packages/agent/src/agent-loop.ts:111-160](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L111-L160)
-- [packages/agent/src/agent-loop.ts:390-479](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L390-L479)
-- [packages/agent/src/agent-loop.ts:518-670](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L518-L670)
-- [packages/agent/src/agent.ts:517-566](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L517-L566)
+- [packages/agent/src/agent.ts:379-467](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L379-L467)
+- [packages/agent/src/agent-loop.ts:111-160](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L111-L160)
+- [packages/agent/src/agent-loop.ts:390-479](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L390-L479)
+- [packages/agent/src/agent-loop.ts:518-670](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L518-L670)
+- [packages/agent/src/agent.ts:517-566](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L517-L566)
 
 ## 详细组件分析
 
@@ -174,17 +174,17 @@ class Agent {
 ```
 
 **图表来源**
-- [packages/agent/src/agent.ts:194-263](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L194-L263)
-- [packages/agent/src/agent.ts:275-377](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L275-L377)
-- [packages/agent/src/agent.ts:379-467](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L379-L467)
-- [packages/agent/src/agent.ts:517-566](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L517-L566)
+- [packages/agent/src/agent.ts:194-263](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L194-L263)
+- [packages/agent/src/agent.ts:275-377](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L275-L377)
+- [packages/agent/src/agent.ts:379-467](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L379-L467)
+- [packages/agent/src/agent.ts:517-566](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L517-L566)
 
 **章节来源**
-- [packages/agent/src/agent.ts:114-147](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L114-L147)
-- [packages/agent/src/agent.ts:194-263](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L194-L263)
-- [packages/agent/src/agent.ts:275-377](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L275-L377)
-- [packages/agent/src/agent.ts:379-467](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L379-L467)
-- [packages/agent/src/agent.ts:517-566](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L517-L566)
+- [packages/agent/src/agent.ts:114-147](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L114-L147)
+- [packages/agent/src/agent.ts:194-263](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L194-L263)
+- [packages/agent/src/agent.ts:275-377](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L275-L377)
+- [packages/agent/src/agent.ts:379-467](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L379-L467)
+- [packages/agent/src/agent.ts:517-566](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L517-L566)
 
 ### AgentLoop：事件驱动主循环
 - 入口
@@ -226,18 +226,18 @@ EndTurn --> End
 ```
 
 **图表来源**
-- [packages/agent/src/agent-loop.ts:111-160](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L111-L160)
-- [packages/agent/src/agent-loop.ts:172-330](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L172-L330)
-- [packages/agent/src/agent-loop.ts:390-479](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L390-L479)
-- [packages/agent/src/agent-loop.ts:518-670](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L518-L670)
-- [packages/agent/src/agent-loop.ts:488-513](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L488-L513)
+- [packages/agent/src/agent-loop.ts:111-160](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L111-L160)
+- [packages/agent/src/agent-loop.ts:172-330](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L172-L330)
+- [packages/agent/src/agent-loop.ts:390-479](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L390-L479)
+- [packages/agent/src/agent-loop.ts:518-670](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L518-L670)
+- [packages/agent/src/agent-loop.ts:488-513](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L488-L513)
 
 **章节来源**
-- [packages/agent/src/agent-loop.ts:111-160](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L111-L160)
-- [packages/agent/src/agent-loop.ts:172-330](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L172-L330)
-- [packages/agent/src/agent-loop.ts:390-479](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L390-L479)
-- [packages/agent/src/agent-loop.ts:518-670](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L518-L670)
-- [packages/agent/src/agent-loop.ts:488-513](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L488-L513)
+- [packages/agent/src/agent-loop.ts:111-160](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L111-L160)
+- [packages/agent/src/agent-loop.ts:172-330](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L172-L330)
+- [packages/agent/src/agent-loop.ts:390-479](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L390-L479)
+- [packages/agent/src/agent-loop.ts:518-670](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L518-L670)
+- [packages/agent/src/agent-loop.ts:488-513](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L488-L513)
 
 ### 事件与状态转换
 - 事件序列
@@ -264,16 +264,16 @@ Running --> Idle : "agent_end"
 ```
 
 **图表来源**
-- [packages/agent/src/types.ts:528-551](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L528-L551)
-- [packages/agent/src/agent.ts:575-622](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L575-L622)
-- [packages/agent/src/agent-loop.ts:126-134](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L126-L134)
-- [packages/agent/src/agent-loop.ts:254-330](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L254-L330)
+- [packages/agent/src/types.ts:528-551](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L528-L551)
+- [packages/agent/src/agent.ts:575-622](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L575-L622)
+- [packages/agent/src/agent-loop.ts:126-134](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L126-L134)
+- [packages/agent/src/agent-loop.ts:254-330](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L254-L330)
 
 **章节来源**
-- [packages/agent/src/types.ts:528-551](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L528-L551)
-- [packages/agent/src/agent.ts:575-622](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L575-L622)
-- [packages/agent/src/agent-loop.ts:126-134](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L126-L134)
-- [packages/agent/src/agent-loop.ts:254-330](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L254-L330)
+- [packages/agent/src/types.ts:528-551](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L528-L551)
+- [packages/agent/src/agent.ts:575-622](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L575-L622)
+- [packages/agent/src/agent-loop.ts:126-134](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L126-L134)
+- [packages/agent/src/agent-loop.ts:254-330](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L254-L330)
 
 ### 工具执行上下文与钩子
 - 工具定义`AgentTool`
@@ -300,14 +300,14 @@ H --> I["emit tool_execution_end + tool_result消息"]
 ```
 
 **图表来源**
-- [packages/agent/src/types.ts:478-511](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L478-L511)
-- [packages/agent/src/agent-loop.ts:718-787](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L718-L787)
-- [packages/agent/src/agent-loop.ts:540-670](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L540-L670)
+- [packages/agent/src/types.ts:478-511](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L478-L511)
+- [packages/agent/src/agent-loop.ts:718-787](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L718-L787)
+- [packages/agent/src/agent-loop.ts:540-670](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L540-L670)
 
 **章节来源**
-- [packages/agent/src/types.ts:478-511](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L478-L511)
-- [packages/agent/src/agent-loop.ts:718-787](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L718-L787)
-- [packages/agent/src/agent-loop.ts:540-670](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L540-L670)
+- [packages/agent/src/types.ts:478-511](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L478-L511)
+- [packages/agent/src/agent-loop.ts:718-787](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L718-L787)
+- [packages/agent/src/agent-loop.ts:540-670](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L540-L670)
 
 ### 扩展点与流函数
 - 默认流函数
@@ -335,14 +335,14 @@ StreamFn <|-- ProxyStream
 ```
 
 **图表来源**
-- [packages/agent/src/types.ts:19-37](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L19-L37)
-- [packages/agent/src/stream-fn.ts:11-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/stream-fn.ts#L11-L20)
-- [packages/agent/src/proxy.ts:108-255](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/proxy.ts#L108-L255)
+- [packages/agent/src/types.ts:19-37](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L19-L37)
+- [packages/agent/src/stream-fn.ts:11-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/stream-fn.ts#L11-L20)
+- [packages/agent/src/proxy.ts:108-255](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/proxy.ts#L108-L255)
 
 **章节来源**
-- [packages/agent/src/types.ts:19-37](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L19-L37)
-- [packages/agent/src/stream-fn.ts:11-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/stream-fn.ts#L11-L20)
-- [packages/agent/src/proxy.ts:108-255](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/proxy.ts#L108-L255)
+- [packages/agent/src/types.ts:19-37](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L19-L37)
+- [packages/agent/src/stream-fn.ts:11-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/stream-fn.ts#L11-L20)
+- [packages/agent/src/proxy.ts:108-255](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/proxy.ts#L108-L255)
 
 ### Agent与Session的关系
 - AgentSession：封装Agent状态访问、事件订阅、模型与thinking级别管理、压缩、Bash执行、会话切换与分支。
@@ -365,14 +365,14 @@ Session->>Agent : 使用Agent进行prompt/continue
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/agent-session.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session.ts#L1-L14)
-- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
-- [packages/coding-agent/src/core/agent-session-runtime.ts:421-445](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L421-L445)
+- [packages/coding-agent/src/core/agent-session.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session.ts#L1-L14)
+- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
+- [packages/coding-agent/src/core/agent-session-runtime.ts:421-445](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L421-L445)
 
 **章节来源**
-- [packages/coding-agent/src/core/agent-session.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session.ts#L1-L14)
-- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
-- [packages/coding-agent/src/core/agent-session-runtime.ts:421-445](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L421-L445)
+- [packages/coding-agent/src/core/agent-session.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session.ts#L1-L14)
+- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
+- [packages/coding-agent/src/core/agent-session-runtime.ts:421-445](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L421-L445)
 
 ## 依赖关系分析
 - Agent依赖
@@ -404,22 +404,22 @@ RUNTIME["AgentSessionRuntime"] --> SESSION
 ```
 
 **图表来源**
-- [packages/agent/src/agent.ts:1-36](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L1-L36)
-- [packages/agent/src/agent-loop.ts:1-34](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L1-L34)
-- [packages/agent/src/stream-fn.ts:1-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/stream-fn.ts#L1-L20)
-- [packages/agent/src/proxy.ts:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/proxy.ts#L1-L17)
-- [packages/agent/src/types.ts:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L1-L17)
-- [packages/coding-agent/src/core/agent-session.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session.ts#L1-L14)
-- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
+- [packages/agent/src/agent.ts:1-36](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L1-L36)
+- [packages/agent/src/agent-loop.ts:1-34](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L1-L34)
+- [packages/agent/src/stream-fn.ts:1-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/stream-fn.ts#L1-L20)
+- [packages/agent/src/proxy.ts:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/proxy.ts#L1-L17)
+- [packages/agent/src/types.ts:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L1-L17)
+- [packages/coding-agent/src/core/agent-session.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session.ts#L1-L14)
+- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
 
 **章节来源**
-- [packages/agent/src/agent.ts:1-36](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L1-L36)
-- [packages/agent/src/agent-loop.ts:1-34](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L1-L34)
-- [packages/agent/src/stream-fn.ts:1-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/stream-fn.ts#L1-L20)
-- [packages/agent/src/proxy.ts:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/proxy.ts#L1-L17)
-- [packages/agent/src/types.ts:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L1-L17)
-- [packages/coding-agent/src/core/agent-session.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session.ts#L1-L14)
-- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
+- [packages/agent/src/agent.ts:1-36](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L1-L36)
+- [packages/agent/src/agent-loop.ts:1-34](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L1-L34)
+- [packages/agent/src/stream-fn.ts:1-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/stream-fn.ts#L1-L20)
+- [packages/agent/src/proxy.ts:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/proxy.ts#L1-L17)
+- [packages/agent/src/types.ts:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L1-L17)
+- [packages/coding-agent/src/core/agent-session.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session.ts#L1-L14)
+- [packages/coding-agent/src/core/agent-session-runtime.ts:67-95](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/agent-session-runtime.ts#L67-L95)
 
 ## 性能与资源管理
 - 工具执行模式
@@ -453,11 +453,11 @@ RUNTIME["AgentSessionRuntime"] --> SESSION
   - 在beforeToolCall/afterToolCall中记录args/result与durationMs，辅助定位慢工具与失败原因。
 
 **章节来源**
-- [packages/agent/src/stream-fn.ts:15-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/stream-fn.ts#L15-L20)
-- [packages/agent/src/agent.ts:382-420](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L382-L420)
-- [packages/agent/src/agent-loop.ts:86-109](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L86-L109)
-- [packages/agent/src/agent-loop.ts:488-513](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent-loop.ts#L488-L513)
-- [packages/agent/src/agent.ts:542-558](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L542-L558)
+- [packages/agent/src/stream-fn.ts:15-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/stream-fn.ts#L15-L20)
+- [packages/agent/src/agent.ts:382-420](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L382-L420)
+- [packages/agent/src/agent-loop.ts:86-109](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L86-L109)
+- [packages/agent/src/agent-loop.ts:488-513](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent-loop.ts#L488-L513)
+- [packages/agent/src/agent.ts:542-558](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L542-L558)
 
 ## 结论
 Agent生命周期围绕Agent与AgentLoop协作展开：Agent负责状态、队列与钩子，AgentLoop负责事件驱动的主循环与工具执行。通过丰富的钩子与配置项，可在请求前、轮次间、工具执行前后灵活定制行为。上层Session与Runtime负责会话级管理与资源清理。借助事件流与状态监控，可实现可靠的UI渲染、日志追踪与错误恢复。
@@ -489,7 +489,7 @@ Agent生命周期围绕Agent与AgentLoop协作展开：Agent负责状态、队�
   - tool_execution_start/tool_execution_update/tool_execution_end
 
 **章节来源**
-- [packages/agent/src/agent.ts:114-147](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/agent.ts#L114-L147)
-- [packages/agent/src/types.ts:193-342](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L193-L342)
-- [packages/agent/src/types.ts:382-421](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L382-L421)
-- [packages/agent/src/types.ts:528-551](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/src/types.ts#L528-L551)
+- [packages/agent/src/agent.ts:114-147](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/agent.ts#L114-L147)
+- [packages/agent/src/types.ts:193-342](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L193-L342)
+- [packages/agent/src/types.ts:382-421](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L382-L421)
+- [packages/agent/src/types.ts:528-551](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/src/types.ts#L528-L551)

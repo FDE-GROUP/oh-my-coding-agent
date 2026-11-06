@@ -2,12 +2,12 @@
 
 <cite>
 **本文引用的文件**   
-- [packages/coding-agent/src/core/extensions/types.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts)
-- [packages/tui/src/tui.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/tui.ts)
-- [packages/tui/src/components/text.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/text.ts)
-- [packages/tui/src/components/spacer.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/spacer.ts)
-- [packages/coding-agent/examples/extensions/widget-placement.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/examples/extensions/widget-placement.ts)
+- [packages/coding-agent/src/core/extensions/types.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts)
+- [packages/tui/src/tui.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/tui.ts)
+- [packages/tui/src/components/text.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/text.ts)
+- [packages/tui/src/components/spacer.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/spacer.ts)
+- [packages/coding-agent/examples/extensions/widget-placement.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/examples/extensions/widget-placement.ts)
 </cite>
 
 ## 目录
@@ -59,20 +59,20 @@ TUI_CORE --> COMP_SPACER
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
-- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/tui.ts#L117-L148)
-- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/text.ts#L1-L116)
-- [packages/tui/src/components/spacer.ts:1-28](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/spacer.ts#L1-L28)
-- [packages/coding-agent/examples/extensions/widget-placement.ts:1-10](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/examples/extensions/widget-placement.ts#L1-L10)
+- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/tui.ts#L117-L148)
+- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/text.ts#L1-L116)
+- [packages/tui/src/components/spacer.ts:1-28](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/spacer.ts#L1-L28)
+- [packages/coding-agent/examples/extensions/widget-placement.ts:1-10](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/examples/extensions/widget-placement.ts#L1-L10)
 
 **章节来源**
-- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
-- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/tui.ts#L117-L148)
-- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/text.ts#L1-L116)
-- [packages/tui/src/components/spacer.ts:1-28](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/spacer.ts#L1-L28)
-- [packages/coding-agent/examples/extensions/widget-placement.ts:1-10](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/examples/extensions/widget-placement.ts#L1-L10)
+- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/tui.ts#L117-L148)
+- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/text.ts#L1-L116)
+- [packages/tui/src/components/spacer.ts:1-28](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/spacer.ts#L1-L28)
+- [packages/coding-agent/examples/extensions/widget-placement.ts:1-10](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/examples/extensions/widget-placement.ts#L1-L10)
 
 ## 核心概念
 - WidgetPlacement：Widget 的显示位置，支持 aboveEditor（编辑器上方）与 belowEditor（编辑器下方）。
@@ -82,8 +82,8 @@ TUI_CORE --> COMP_SPACER
   - 组件工厂函数：接收 TUI 与 Theme，返回一个实现了 Component 接口的对象，可附带可选的 dispose 方法。
 
 **章节来源**
-- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
-- [packages/coding-agent/src/core/extensions/types.ts:202-208](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L202-L208)
+- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
+- [packages/coding-agent/src/core/extensions/types.ts:202-208](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L202-L208)
 
 ## 架构总览
 下图展示了从扩展到 TUI 的调用链：扩展通过 ctx.ui.setWidget 设置 Widget，交互模式根据 placement 将组件放入对应容器，最终由 TUI 渲染。
@@ -113,10 +113,10 @@ TUI-->>Ext : 界面更新完成
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/extensions/types.ts:202-208](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L202-L208)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2615-2643](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2615-L2643)
-- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/tui.ts#L117-L148)
+- [packages/coding-agent/src/core/extensions/types.ts:202-208](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L202-L208)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2615-2643](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2615-L2643)
+- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/tui.ts#L117-L148)
 
 ## 详细组件分析
 
@@ -140,12 +140,12 @@ Render --> End(["结束"])
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
 
 **章节来源**
-- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
-- [packages/coding-agent/examples/extensions/widget-placement.ts:1-10](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/examples/extensions/widget-placement.ts#L1-L10)
+- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
+- [packages/coding-agent/examples/extensions/widget-placement.ts:1-10](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/examples/extensions/widget-placement.ts#L1-L10)
 
 ### setWidget 的两种使用方式
 - 字符串数组：
@@ -169,10 +169,10 @@ Render --> Done(["完成"])
 ```
 
 **图表来源**
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
 
 **章节来源**
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
 
 ### Component 接口与生命周期管理
 - Component 接口要求实现 render(width)，并提供可选的 handleInput、handleMouse、invalidate 等方法。
@@ -205,14 +205,14 @@ Component <|-- Spacer
 ```
 
 **图表来源**
-- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/tui.ts#L117-L148)
-- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/text.ts#L1-L116)
-- [packages/tui/src/components/spacer.ts:1-28](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/spacer.ts#L1-L28)
+- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/tui.ts#L117-L148)
+- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/text.ts#L1-L116)
+- [packages/tui/src/components/spacer.ts:1-28](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/spacer.ts#L1-L28)
 
 **章节来源**
-- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/tui.ts#L117-L148)
-- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/text.ts#L1-L116)
-- [packages/tui/src/components/spacer.ts:1-28](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/spacer.ts#L1-L28)
+- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/tui.ts#L117-L148)
+- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/text.ts#L1-L116)
+- [packages/tui/src/components/spacer.ts:1-28](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/spacer.ts#L1-L28)
 
 ### 交互模式中的 Widget 管理
 - setExtensionWidget：
@@ -239,14 +239,14 @@ ReRender --> End(["结束"])
 ```
 
 **图表来源**
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2566-2576](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2566-L2576)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2615-2643](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2615-L2643)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2566-2576](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2566-L2576)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2615-2643](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2615-L2643)
 
 **章节来源**
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2566-2576](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2566-L2576)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2615-2643](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2615-L2643)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2566-2576](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2566-L2576)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2615-2643](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2615-L2643)
 
 ## 依赖关系分析
 - 扩展类型定义（types.ts）声明了 ExtensionWidgetOptions、WidgetPlacement 以及 setWidget 的 API 契约。
@@ -264,20 +264,20 @@ Example["examples/widget-placement.ts"] --> Mode
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
-- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/tui.ts#L117-L148)
-- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/text.ts#L1-L116)
-- [packages/tui/src/components/spacer.ts:1-28](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/spacer.ts#L1-L28)
-- [packages/coding-agent/examples/extensions/widget-placement.ts:1-10](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/examples/extensions/widget-placement.ts#L1-L10)
+- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/tui.ts#L117-L148)
+- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/text.ts#L1-L116)
+- [packages/tui/src/components/spacer.ts:1-28](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/spacer.ts#L1-L28)
+- [packages/coding-agent/examples/extensions/widget-placement.ts:1-10](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/examples/extensions/widget-placement.ts#L1-L10)
 
 **章节来源**
-- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
-- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/tui.ts#L117-L148)
-- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/text.ts#L1-L116)
-- [packages/tui/src/components/spacer.ts:1-28](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/spacer.ts#L1-L28)
-- [packages/coding-agent/examples/extensions/widget-placement.ts:1-10](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/examples/extensions/widget-placement.ts#L1-L10)
+- [packages/coding-agent/src/core/extensions/types.ts:124-130](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L124-L130)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/tui.ts#L117-L148)
+- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/text.ts#L1-L116)
+- [packages/tui/src/components/spacer.ts:1-28](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/spacer.ts#L1-L28)
+- [packages/coding-agent/examples/extensions/widget-placement.ts:1-10](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/examples/extensions/widget-placement.ts#L1-L10)
 
 ## 性能与优化
 - 控制 Widget 行数：
@@ -307,9 +307,9 @@ Example["examples/widget-placement.ts"] --> Mode
   - 避免在 render 中进行昂贵计算，必要时拆分组件或使用节流策略。
 
 **章节来源**
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2566-2576](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2566-L2576)
-- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/tui.ts#L117-L148)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2566-2576](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2566-L2576)
+- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/tui.ts#L117-L148)
 
 ## 结论
 通过 ExtensionWidgetOptions 与 WidgetPlacement，扩展可以灵活地将 Widget 放置在编辑器上方或下方。setWidget 同时支持简单的字符串数组与复杂的组件工厂函数，配合 Component 接口与 dispose 生命周期，能够构建出高性能、可维护且主题友好的 TUI 界面。遵循本文的最佳实践，可以有效避免内存泄漏、渲染卡顿等问题，提升用户体验。
@@ -345,11 +345,11 @@ Mode->>Cmp : dispose() 清理资源
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/extensions/types.ts:202-208](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L202-L208)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
-- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/tui.ts#L117-L148)
+- [packages/coding-agent/src/core/extensions/types.ts:202-208](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L202-L208)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/tui.ts#L117-L148)
 
 **章节来源**
-- [packages/coding-agent/src/core/extensions/types.ts:202-208](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L202-L208)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
-- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/tui.ts#L117-L148)
+- [packages/coding-agent/src/core/extensions/types.ts:202-208](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L202-L208)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2564](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2564)
+- [packages/tui/src/tui.ts:117-148](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/tui.ts#L117-L148)

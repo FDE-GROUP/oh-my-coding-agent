@@ -2,11 +2,11 @@
 
 <cite>
 **本文引用的文件**   
-- [packages/mcp/src/oauth/flow.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts)
-- [packages/ai/src/auth/oauth/pkce.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/pkce.ts)
-- [packages/ai/src/auth/oauth/anthropic.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts)
-- [packages/ai/src/auth/oauth/openrouter.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openrouter.ts)
-- [packages/ai/src/auth/oauth/openai-codex.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts)
+- [packages/mcp/src/oauth/flow.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts)
+- [packages/ai/src/auth/oauth/pkce.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/pkce.ts)
+- [packages/ai/src/auth/oauth/anthropic.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts)
+- [packages/ai/src/auth/oauth/openrouter.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openrouter.ts)
+- [packages/ai/src/auth/oauth/openai-codex.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts)
 </cite>
 
 ## 目录
@@ -47,15 +47,15 @@ OPENAI --> |"调用PKCE"| PKCE
 ```
 
 图表来源
-- [packages/mcp/src/oauth/flow.ts:174-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L213)
-- [packages/ai/src/auth/oauth/pkce.ts:1-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L1-L35)
-- [packages/ai/src/auth/oauth/anthropic.ts:140-198](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L198)
-- [packages/ai/src/auth/oauth/openrouter.ts:113-157](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L113-L157)
-- [packages/ai/src/auth/oauth/openai-codex.ts:289-308](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L289-L308)
+- [packages/mcp/src/oauth/flow.ts:174-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L213)
+- [packages/ai/src/auth/oauth/pkce.ts:1-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L1-L35)
+- [packages/ai/src/auth/oauth/anthropic.ts:140-198](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L198)
+- [packages/ai/src/auth/oauth/openrouter.ts:113-157](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L113-L157)
+- [packages/ai/src/auth/oauth/openai-codex.ts:289-308](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L289-L308)
 
 章节来源
-- [packages/mcp/src/oauth/flow.ts:174-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L213)
-- [packages/ai/src/auth/oauth/pkce.ts:1-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L1-L35)
+- [packages/mcp/src/oauth/flow.ts:174-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L213)
+- [packages/ai/src/auth/oauth/pkce.ts:1-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L1-L35)
 
 ## 核心组件
 - PKCE工具函数：负责生成随机code_verifier，并计算SHA-256哈希后Base64URL编码得到code_challenge。
@@ -63,11 +63,11 @@ OPENAI --> |"调用PKCE"| PKCE
 - 各提供商登录流程：分别对接各自授权端点与令牌端点，统一通过PKCE工具生成challenge并在授权请求中携带S256方法。
 
 章节来源
-- [packages/ai/src/auth/oauth/pkce.ts:1-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L1-L35)
-- [packages/mcp/src/oauth/flow.ts:174-304](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L304)
-- [packages/ai/src/auth/oauth/anthropic.ts:140-198](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L198)
-- [packages/ai/src/auth/oauth/openrouter.ts:113-157](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L113-L157)
-- [packages/ai/src/auth/oauth/openai-codex.ts:289-308](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L289-L308)
+- [packages/ai/src/auth/oauth/pkce.ts:1-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L1-L35)
+- [packages/mcp/src/oauth/flow.ts:174-304](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L304)
+- [packages/ai/src/auth/oauth/anthropic.ts:140-198](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L198)
+- [packages/ai/src/auth/oauth/openrouter.ts:113-157](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L113-L157)
+- [packages/ai/src/auth/oauth/openai-codex.ts:289-308](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L289-L308)
 
 ## 架构总览
 下图展示从应用发起登录到最终获取令牌的端到端流程，涵盖PKCE参数生成、授权跳转、回调处理与令牌交换。
@@ -92,8 +92,8 @@ Flow-->>App : 授权成功
 ```
 
 图表来源
-- [packages/mcp/src/oauth/flow.ts:174-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L213)
-- [packages/mcp/src/oauth/flow.ts:290-304](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L290-L304)
+- [packages/mcp/src/oauth/flow.ts:174-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L213)
+- [packages/mcp/src/oauth/flow.ts:290-304](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L290-L304)
 
 ## 详细组件分析
 
@@ -112,10 +112,10 @@ EncodeChallenge --> Return(["返回{verifier, challenge}"])
 ```
 
 图表来源
-- [packages/ai/src/auth/oauth/pkce.ts:9-34](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L9-L34)
+- [packages/ai/src/auth/oauth/pkce.ts:9-34](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L9-L34)
 
 章节来源
-- [packages/ai/src/auth/oauth/pkce.ts:1-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L1-L35)
+- [packages/ai/src/auth/oauth/pkce.ts:1-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L1-L35)
 
 ### MCP OAuth流中的PKCE
 - 授权阶段：检查授权服务器是否支持authorization code与PKCE S256；构造授权URL时附加code_challenge与code_challenge_method=S256；保存code_verifier以便后续交换。
@@ -132,11 +132,11 @@ F --> G["exchangeAuthorizationCode()<br/>POST /token<br/>grant_type=authorizatio
 ```
 
 图表来源
-- [packages/mcp/src/oauth/flow.ts:174-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L213)
-- [packages/mcp/src/oauth/flow.ts:290-304](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L290-L304)
+- [packages/mcp/src/oauth/flow.ts:174-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L213)
+- [packages/mcp/src/oauth/flow.ts:290-304](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L290-L304)
 
 章节来源
-- [packages/mcp/src/oauth/flow.ts:174-304](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L304)
+- [packages/mcp/src/oauth/flow.ts:174-304](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L304)
 
 ### Anthropic提供商的PKCE流程
 - 登录入口：调用generatePKCE()生成verifier与challenge；构造授权URL并携带code_challenge与method=S256；支持浏览器回调与手动粘贴两种模式。
@@ -158,12 +158,12 @@ Auth-->>Anth : 返回access_token/refresh_token
 ```
 
 图表来源
-- [packages/ai/src/auth/oauth/anthropic.ts:140-198](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L198)
-- [packages/ai/src/auth/oauth/anthropic.ts:96-138](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L96-L138)
+- [packages/ai/src/auth/oauth/anthropic.ts:140-198](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L198)
+- [packages/ai/src/auth/oauth/anthropic.ts:96-138](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L96-L138)
 
 章节来源
-- [packages/ai/src/auth/oauth/anthropic.ts:140-198](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L198)
-- [packages/ai/src/auth/oauth/anthropic.ts:96-138](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L96-L138)
+- [packages/ai/src/auth/oauth/anthropic.ts:140-198](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L198)
+- [packages/ai/src/auth/oauth/anthropic.ts:96-138](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L96-L138)
 
 ### OpenRouter提供商的PKCE流程
 - 特点：以授权码换取长期有效的用户可控API key，而非短期access/refresh token对。
@@ -185,12 +185,12 @@ Auth-->>OR : 返回API key
 ```
 
 图表来源
-- [packages/ai/src/auth/oauth/openrouter.ts:113-157](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L113-L157)
-- [packages/ai/src/auth/oauth/openrouter.ts:58-111](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L58-L111)
+- [packages/ai/src/auth/oauth/openrouter.ts:113-157](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L113-L157)
+- [packages/ai/src/auth/oauth/openrouter.ts:58-111](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L58-L111)
 
 章节来源
-- [packages/ai/src/auth/oauth/openrouter.ts:113-157](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L113-L157)
-- [packages/ai/src/auth/oauth/openrouter.ts:58-111](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L58-L111)
+- [packages/ai/src/auth/oauth/openrouter.ts:113-157](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L113-L157)
+- [packages/ai/src/auth/oauth/openrouter.ts:58-111](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L58-L111)
 
 ### OpenAI Codex提供商的PKCE流程
 - 登录方式：支持浏览器登录与设备码登录；浏览器登录使用PKCE；设备码流程由服务端下发authorization_code与code_verifier。
@@ -221,14 +221,14 @@ end
 ```
 
 图表来源
-- [packages/ai/src/auth/oauth/openai-codex.ts:289-308](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L289-L308)
-- [packages/ai/src/auth/oauth/openai-codex.ts:145-165](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L145-L165)
-- [packages/ai/src/auth/oauth/openai-codex.ts:231-287](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L231-L287)
+- [packages/ai/src/auth/oauth/openai-codex.ts:289-308](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L289-L308)
+- [packages/ai/src/auth/oauth/openai-codex.ts:145-165](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L145-L165)
+- [packages/ai/src/auth/oauth/openai-codex.ts:231-287](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L231-L287)
 
 章节来源
-- [packages/ai/src/auth/oauth/openai-codex.ts:289-308](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L289-L308)
-- [packages/ai/src/auth/oauth/openai-codex.ts:145-165](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L145-L165)
-- [packages/ai/src/auth/oauth/openai-codex.ts:231-287](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L231-L287)
+- [packages/ai/src/auth/oauth/openai-codex.ts:289-308](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L289-L308)
+- [packages/ai/src/auth/oauth/openai-codex.ts:145-165](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L145-L165)
+- [packages/ai/src/auth/oauth/openai-codex.ts:231-287](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L231-L287)
 
 ## 依赖关系分析
 - PKCE工具函数被多个提供商复用，降低重复实现风险。
@@ -244,15 +244,15 @@ FLOW["mcp flow.ts"] --> |"通用流程"| PKCE
 ```
 
 图表来源
-- [packages/ai/src/auth/oauth/pkce.ts:1-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L1-L35)
-- [packages/ai/src/auth/oauth/anthropic.ts:140-198](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L198)
-- [packages/ai/src/auth/oauth/openrouter.ts:113-157](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L113-L157)
-- [packages/ai/src/auth/oauth/openai-codex.ts:289-308](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L289-L308)
-- [packages/mcp/src/oauth/flow.ts:174-304](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L304)
+- [packages/ai/src/auth/oauth/pkce.ts:1-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L1-L35)
+- [packages/ai/src/auth/oauth/anthropic.ts:140-198](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L198)
+- [packages/ai/src/auth/oauth/openrouter.ts:113-157](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openrouter.ts#L113-L157)
+- [packages/ai/src/auth/oauth/openai-codex.ts:289-308](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L289-L308)
+- [packages/mcp/src/oauth/flow.ts:174-304](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L304)
 
 章节来源
-- [packages/ai/src/auth/oauth/pkce.ts:1-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L1-L35)
-- [packages/mcp/src/oauth/flow.ts:174-304](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L304)
+- [packages/ai/src/auth/oauth/pkce.ts:1-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/pkce.ts#L1-L35)
+- [packages/mcp/src/oauth/flow.ts:174-304](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L304)
 
 ## 性能与实现特性
 - 随机数生成：使用Web Crypto API的getRandomValues，保证跨平台安全性与性能。
@@ -282,8 +282,8 @@ FLOW["mcp flow.ts"] --> |"通用流程"| PKCE
 - 令牌端点认证方法不匹配：根据授权服务器支持的token_endpoint_auth_methods_supported选择合适的client_secret传输方式。
 
 章节来源
-- [packages/mcp/src/oauth/flow.ts:192-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L192-L213)
-- [packages/mcp/src/oauth/flow.ts:290-304](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L290-L304)
+- [packages/mcp/src/oauth/flow.ts:192-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L192-L213)
+- [packages/mcp/src/oauth/flow.ts:290-304](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L290-L304)
 
 ## 结论
 本项目在MCP层与AI提供商层均实现了标准PKCE流程，通过统一的PKCE工具函数保证了实现的一致性与安全性。各提供商模块专注于自身端点差异，便于扩展与维护。遵循上述安全最佳实践与排错指南，可在不同环境中稳定地启用PKCE以提升授权码流程的安全性。

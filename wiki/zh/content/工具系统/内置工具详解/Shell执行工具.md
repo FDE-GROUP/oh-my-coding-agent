@@ -2,15 +2,15 @@
 
 <cite>
 **本文引用的文件**   
-- [bash.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts)
-- [powershell.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/powershell.ts)
-- [shell.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/shell.ts)
-- [output-accumulator.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts)
-- [child-process.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/child-process.ts)
-- [truncate.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/truncate.ts)
-- [tool-definition-wrapper.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/tool-definition-wrapper.ts)
-- [renderers/bash.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/renderers/bash.ts)
-- [harness.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/evals/src/harness.ts)
+- [bash.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts)
+- [powershell.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/powershell.ts)
+- [shell.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/shell.ts)
+- [output-accumulator.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts)
+- [child-process.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/child-process.ts)
+- [truncate.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/truncate.ts)
+- [tool-definition-wrapper.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/tool-definition-wrapper.ts)
+- [renderers/bash.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/renderers/bash.ts)
+- [harness.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/evals/src/harness.ts)
 </cite>
 
 ## 目录
@@ -72,18 +72,18 @@ OPS --> SHCFG
 ```
 
 **图表来源**
-- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
-- [powershell.ts:32-36](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L32-L36)
-- [shell.ts:84-167](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/shell.ts#L84-L167)
-- [child-process.ts:49-137](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/child-process.ts#L49-L137)
-- [output-accumulator.ts:35-119](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts#L35-L119)
+- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
+- [powershell.ts:32-36](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L32-L36)
+- [shell.ts:84-167](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/shell.ts#L84-L167)
+- [child-process.ts:49-137](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/child-process.ts#L49-L137)
+- [output-accumulator.ts:35-119](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts#L35-L119)
 
 **章节来源**
-- [bash.ts:1-477](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L1-L477)
-- [powershell.ts:1-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L1-L67)
-- [shell.ts:1-263](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/shell.ts#L1-L263)
-- [output-accumulator.ts:1-258](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts#L1-L258)
-- [child-process.ts:1-138](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/child-process.ts#L1-L138)
+- [bash.ts:1-477](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L1-L477)
+- [powershell.ts:1-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L1-L67)
+- [shell.ts:1-263](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/shell.ts#L1-L263)
+- [output-accumulator.ts:1-258](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts#L1-L258)
+- [child-process.ts:1-138](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/child-process.ts#L1-L138)
 
 ## 核心组件
 - Bash 工具定义与执行：
@@ -105,12 +105,12 @@ OPS --> SHCFG
   - snapshot 提供显示用截断内容；readFullOutput 提供程序调用方使用的完整输出（带省略标记）。
 
 **章节来源**
-- [bash.ts:39-68](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L39-L68)
-- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
-- [bash.ts:271-449](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L271-L449)
-- [powershell.ts:32-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L32-L67)
-- [child-process.ts:49-137](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/child-process.ts#L49-L137)
-- [output-accumulator.ts:35-176](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts#L35-L176)
+- [bash.ts:39-68](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L39-L68)
+- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
+- [bash.ts:271-449](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L271-L449)
+- [powershell.ts:32-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L32-L67)
+- [child-process.ts:49-137](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/child-process.ts#L49-L137)
+- [output-accumulator.ts:35-176](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts#L35-L176)
 
 ## 架构总览
 下图展示一次命令执行的端到端流程：从工具定义到本地 shell 执行、输出累积、超时与错误处理、最终结构化返回。
@@ -147,10 +147,10 @@ Tool-->>Caller : 结构化结果(output,truncated,exit_code,wall_time_seconds)
 ```
 
 **图表来源**
-- [bash.ts:271-449](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L271-L449)
-- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
-- [child-process.ts:49-137](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/child-process.ts#L49-L137)
-- [output-accumulator.ts:64-119](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts#L64-L119)
+- [bash.ts:271-449](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L271-L449)
+- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
+- [child-process.ts:49-137](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/child-process.ts#L49-L137)
+- [output-accumulator.ts:64-119](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts#L64-L119)
 
 ## 详细组件分析
 
@@ -192,13 +192,13 @@ Finish --> Return(["返回结构化结果"])
 ```
 
 **图表来源**
-- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
-- [bash.ts:271-449](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L271-L449)
+- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
+- [bash.ts:271-449](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L271-L449)
 
 **章节来源**
-- [bash.ts:39-68](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L39-L68)
-- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
-- [bash.ts:271-449](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L271-L449)
+- [bash.ts:39-68](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L39-L68)
+- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
+- [bash.ts:271-449](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L271-L449)
 
 ### PowerShell 工具
 - 特点：
@@ -228,12 +228,12 @@ LocalShellOperations --> ShellConfig : "读取"
 ```
 
 **图表来源**
-- [powershell.ts:32-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L32-L67)
-- [shell.ts:139-167](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/shell.ts#L139-L167)
+- [powershell.ts:32-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L32-L67)
+- [shell.ts:139-167](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/shell.ts#L139-L167)
 
 **章节来源**
-- [powershell.ts:1-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L1-L67)
-- [shell.ts:139-167](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/shell.ts#L139-L167)
+- [powershell.ts:1-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L1-L67)
+- [shell.ts:139-167](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/shell.ts#L139-L167)
 
 ### 本地 shell 操作后端
 - 关键职责：
@@ -263,12 +263,12 @@ J --> K["返回 exitCode"]
 ```
 
 **图表来源**
-- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
-- [shell.ts:218-262](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/shell.ts#L218-L262)
+- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
+- [shell.ts:218-262](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/shell.ts#L218-L262)
 
 **章节来源**
-- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
-- [shell.ts:218-262](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/shell.ts#L218-L262)
+- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
+- [shell.ts:218-262](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/shell.ts#L218-L262)
 
 ### 输出累积与截断
 - OutputAccumulator：
@@ -293,12 +293,12 @@ Snapshot --> Full["readFullOutput(): 完整输出(必要时省略中间)"]
 ```
 
 **图表来源**
-- [output-accumulator.ts:64-176](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts#L64-L176)
-- [truncate.ts:1-200](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/truncate.ts#L1-L200)
+- [output-accumulator.ts:64-176](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts#L64-L176)
+- [truncate.ts:1-200](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/truncate.ts#L1-L200)
 
 **章节来源**
-- [output-accumulator.ts:35-176](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts#L35-L176)
-- [truncate.ts:1-200](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/truncate.ts#L1-L200)
+- [output-accumulator.ts:35-176](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/output-accumulator.ts#L35-L176)
+- [truncate.ts:1-200](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/truncate.ts#L1-L200)
 
 ### 子进程等待与清理
 - waitForChildProcess：
@@ -332,11 +332,11 @@ Parent->>Parent : finalize(exitCode)
 ```
 
 **图表来源**
-- [child-process.ts:49-137](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/child-process.ts#L49-L137)
+- [child-process.ts:49-137](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/child-process.ts#L49-L137)
 
 **章节来源**
-- [child-process.ts:49-137](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/child-process.ts#L49-L137)
-- [shell.ts:218-262](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/shell.ts#L218-L262)
+- [child-process.ts:49-137](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/child-process.ts#L49-L137)
+- [shell.ts:218-262](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/shell.ts#L218-L262)
 
 ## 依赖关系分析
 - 模块耦合：
@@ -360,12 +360,12 @@ P --> B
 ```
 
 **图表来源**
-- [bash.ts:1-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L1-L20)
-- [powershell.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L1-L14)
+- [bash.ts:1-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L1-L20)
+- [powershell.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L1-L14)
 
 **章节来源**
-- [bash.ts:1-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L1-L20)
-- [powershell.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L1-L14)
+- [bash.ts:1-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L1-L20)
+- [powershell.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/powershell.ts#L1-L14)
 
 ## 性能与资源限制
 - 输出大小限制：
@@ -402,10 +402,10 @@ P --> B
   - 在 Windows 上优先安装 pwsh（PowerShell 7），以获得更好兼容性。
 
 **章节来源**
-- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
-- [shell.ts:169-181](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/shell.ts#L169-L181)
-- [shell.ts:139-167](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/shell.ts#L139-L167)
-- [harness.ts:82-188](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/evals/src/harness.ts#L82-L188)
+- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
+- [shell.ts:169-181](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/shell.ts#L169-L181)
+- [shell.ts:139-167](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/shell.ts#L139-L167)
+- [harness.ts:82-188](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/evals/src/harness.ts#L82-L188)
 
 ## 故障排除指南
 - “工作目录不存在”：
@@ -427,9 +427,9 @@ P --> B
   - 排查：确认 detached 模式下 PID 被跟踪；检查 killTrackedDetachedChildren 是否被调用。
 
 **章节来源**
-- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
-- [shell.ts:84-167](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/shell.ts#L84-L167)
-- [shell.ts:218-262](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/utils/shell.ts#L218-L262)
+- [bash.ts:109-194](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/tools/bash.ts#L109-L194)
+- [shell.ts:84-167](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/shell.ts#L84-L167)
+- [shell.ts:218-262](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/utils/shell.ts#L218-L262)
 
 ## 结论
 本工程的 Shell 执行工具以 Bash 与 PowerShell 为核心，提供了统一的工具定义、跨平台 shell 解析、健壮的子进程管理与输出累积机制。通过工作目录校验、环境变量注入、PowerShell 执行策略、进程树清理与超时/取消控制，系统在易用性与安全性之间取得平衡。对于大输出与长时间任务，建议结合临时文件与合理超时策略；在需要更高隔离性时，可参考 eval harness 的沙箱实现进一步加固。

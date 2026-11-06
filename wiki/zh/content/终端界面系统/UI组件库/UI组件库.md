@@ -2,16 +2,16 @@
 
 <cite>
 **本文引用的文件**   
-- [packages/tui/README.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md)
-- [packages/tui/src/index.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/index.ts)
-- [packages/tui/src/components/text.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/text.ts)
-- [packages/tui/src/components/box.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/box.ts)
-- [packages/tui/src/components/stack.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/stack.ts)
-- [packages/tui/src/components/v-stack.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/v-stack.ts)
-- [packages/tui/src/components/h-stack.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/h-stack.ts)
-- [packages/tui/src/components/editor.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/editor.ts)
-- [packages/tui/src/components/input.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/input.ts)
-- [packages/tui/src/components/select-list.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/select-list.ts)
+- [packages/tui/README.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md)
+- [packages/tui/src/index.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/index.ts)
+- [packages/tui/src/components/text.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/text.ts)
+- [packages/tui/src/components/box.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/box.ts)
+- [packages/tui/src/components/stack.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/stack.ts)
+- [packages/tui/src/components/v-stack.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/v-stack.ts)
+- [packages/tui/src/components/h-stack.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/h-stack.ts)
+- [packages/tui/src/components/editor.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/editor.ts)
+- [packages/tui/src/components/input.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/input.ts)
+- [packages/tui/src/components/select-list.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/select-list.ts)
 </cite>
 
 ## 目录
@@ -39,7 +39,7 @@
 - 在终端环境中实现无闪烁的同步输出与差异更新。
 
 **章节来源**
-- [packages/tui/README.md:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L1-L17)
+- [packages/tui/README.md:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L1-L17)
 
 ## 项目结构
 TUI 包的核心源码位于 `packages/tui/src`，其中：
@@ -60,10 +60,10 @@ A --> I["components/select-list.ts<br/>SelectList"]
 ```
 
 **图表来源**
-- [packages/tui/src/index.ts:39-78](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/index.ts#L39-L78)
+- [packages/tui/src/index.ts:39-78](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/index.ts#L39-L78)
 
 **章节来源**
-- [packages/tui/src/index.ts:1-198](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/index.ts#L1-L198)
+- [packages/tui/src/index.ts:1-198](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/index.ts#L1-L198)
 
 ## 核心组件总览
 | 组件 | 职责 | 关键属性与方法 | 典型用法 |
@@ -76,7 +76,7 @@ A --> I["components/select-list.ts<br/>SelectList"]
 | SelectList | 可筛选的选择列表，支持键盘与鼠标交互 | `setFilter()`、`onSelect`、`onCancel`、`onSelectionChange` | 菜单、命令选择、选项面板 |
 
 **章节来源**
-- [packages/tui/README.md:364-690](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L364-L690)
+- [packages/tui/README.md:364-690](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L364-L690)
 
 ## 架构总览
 TUI 以 `Component` 接口为核心，所有 UI 元素都实现 `render(width)` 返回若干行字符串；可选实现 `handleInput()`、`handleMouse()`、`invalidate()`。TUI 运行时负责焦点管理、输入分发、渲染调度与差异更新。
@@ -108,15 +108,15 @@ SelectList ..|> Component
 ```
 
 **图表来源**
-- [packages/tui/README.md:245-267](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L245-L267)
-- [packages/tui/src/components/text.ts:7-115](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/text.ts#L7-L115)
-- [packages/tui/src/components/box.ts:14-172](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/box.ts#L14-L172)
-- [packages/tui/src/components/stack.ts:32-80](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/stack.ts#L32-L80)
-- [packages/tui/src/components/v-stack.ts:3-30](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/v-stack.ts#L3-L30)
-- [packages/tui/src/components/h-stack.ts:5-43](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/h-stack.ts#L5-L43)
-- [packages/tui/src/components/editor.ts:297-387](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/editor.ts#L297-L387)
-- [packages/tui/src/components/input.ts:32-60](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/input.ts#L32-L60)
-- [packages/tui/src/components/select-list.ts:40-60](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/select-list.ts#L40-L60)
+- [packages/tui/README.md:245-267](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L245-L267)
+- [packages/tui/src/components/text.ts:7-115](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/text.ts#L7-L115)
+- [packages/tui/src/components/box.ts:14-172](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/box.ts#L14-L172)
+- [packages/tui/src/components/stack.ts:32-80](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/stack.ts#L32-L80)
+- [packages/tui/src/components/v-stack.ts:3-30](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/v-stack.ts#L3-L30)
+- [packages/tui/src/components/h-stack.ts:5-43](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/h-stack.ts#L5-L43)
+- [packages/tui/src/components/editor.ts:297-387](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/editor.ts#L297-L387)
+- [packages/tui/src/components/input.ts:32-60](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/input.ts#L32-L60)
+- [packages/tui/src/components/select-list.ts:40-60](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/select-list.ts#L40-L60)
 
 ## 详细组件分析
 
@@ -152,10 +152,10 @@ Flatten --> End(["返回行数组"])
 ```
 
 **图表来源**
-- [packages/tui/src/components/text.ts:52-113](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/text.ts#L52-L113)
+- [packages/tui/src/components/text.ts:52-113](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/text.ts#L52-L113)
 
 **章节来源**
-- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/text.ts#L1-L116)
+- [packages/tui/src/components/text.ts:1-116](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/text.ts#L1-L116)
 
 ### Box 组件
 Box 是一个通用容器，为所有子组件统一添加内边距与背景色，同时转发鼠标事件到子组件。
@@ -186,10 +186,10 @@ Box-->>Parent : 返回处理结果
 ```
 
 **图表来源**
-- [packages/tui/src/components/box.ts:80-104](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/box.ts#L80-L104)
+- [packages/tui/src/components/box.ts:80-104](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/box.ts#L80-L104)
 
 **章节来源**
-- [packages/tui/src/components/box.ts:1-173](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/box.ts#L1-L173)
+- [packages/tui/src/components/box.ts:1-173](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/box.ts#L1-L173)
 
 ### Stack、VStack、HStack
 Stack 是弹性布局基类，定义条目选项与尺寸分配算法；VStack 与 HStack 分别实现垂直与水平布局。
@@ -223,12 +223,12 @@ H --> I["返回最终尺寸数组"]
 ```
 
 **图表来源**
-- [packages/tui/src/components/stack.ts:95-154](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/stack.ts#L95-L154)
+- [packages/tui/src/components/stack.ts:95-154](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/stack.ts#L95-L154)
 
 **章节来源**
-- [packages/tui/src/components/stack.ts:1-155](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/stack.ts#L1-L155)
-- [packages/tui/src/components/v-stack.ts:1-34](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/v-stack.ts#L1-L34)
-- [packages/tui/src/components/h-stack.ts:1-45](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/h-stack.ts#L1-L45)
+- [packages/tui/src/components/stack.ts:1-155](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/stack.ts#L1-L155)
+- [packages/tui/src/components/v-stack.ts:1-34](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/v-stack.ts#L1-L34)
+- [packages/tui/src/components/h-stack.ts:1-45](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/h-stack.ts#L1-L45)
 
 ### Editor 组件
 Editor 是多行编辑器，具备：
@@ -265,12 +265,12 @@ Editor-->>User : onChange / onSubmit
 ```
 
 **图表来源**
-- [packages/tui/src/components/editor.ts:701-800](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/editor.ts#L701-L800)
+- [packages/tui/src/components/editor.ts:701-800](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/editor.ts#L701-L800)
 
 **章节来源**
-- [packages/tui/src/components/editor.ts:297-387](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/editor.ts#L297-L387)
-- [packages/tui/src/components/editor.ts:526-635](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/editor.ts#L526-L635)
-- [packages/tui/src/components/editor.ts:638-699](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/editor.ts#L638-L699)
+- [packages/tui/src/components/editor.ts:297-387](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/editor.ts#L297-L387)
+- [packages/tui/src/components/editor.ts:526-635](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/editor.ts#L526-L635)
+- [packages/tui/src/components/editor.ts:638-699](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/editor.ts#L638-L699)
 
 ### Input 组件
 Input 是单行输入框，具备：
@@ -290,9 +290,9 @@ API 要点：
 - 使用虚拟光标与硬件光标标记配合 IME 候选窗定位。
 
 **章节来源**
-- [packages/tui/src/components/input.ts:32-60](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/input.ts#L32-L60)
-- [packages/tui/src/components/input.ts:71-234](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/input.ts#L71-L234)
-- [packages/tui/src/components/input.ts:419-500](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/input.ts#L419-L500)
+- [packages/tui/src/components/input.ts:32-60](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/input.ts#L32-L60)
+- [packages/tui/src/components/input.ts:71-234](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/input.ts#L71-L234)
+- [packages/tui/src/components/input.ts:419-500](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/input.ts#L419-L500)
 
 ### SelectList 组件
 SelectList 是可筛选的选择列表，具备：
@@ -320,10 +320,10 @@ ScrollInfo --> Done(["返回行数组"])
 ```
 
 **图表来源**
-- [packages/tui/src/components/select-list.ts:76-108](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/select-list.ts#L76-L108)
+- [packages/tui/src/components/select-list.ts:76-108](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/select-list.ts#L76-L108)
 
 **章节来源**
-- [packages/tui/src/components/select-list.ts:1-282](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/select-list.ts#L1-L282)
+- [packages/tui/src/components/select-list.ts:1-282](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/select-list.ts#L1-L282)
 
 ## 依赖关系分析
 组件之间的依赖关系如下：
@@ -349,16 +349,16 @@ SelectList --> Keybindings
 ```
 
 **图表来源**
-- [packages/tui/src/components/editor.ts:1-26](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/editor.ts#L1-L26)
-- [packages/tui/src/components/input.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/input.ts#L1-L14)
-- [packages/tui/src/components/select-list.ts:1-3](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/select-list.ts#L1-L3)
-- [packages/tui/src/components/stack.ts:1-2](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/stack.ts#L1-L2)
+- [packages/tui/src/components/editor.ts:1-26](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/editor.ts#L1-L26)
+- [packages/tui/src/components/input.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/input.ts#L1-L14)
+- [packages/tui/src/components/select-list.ts:1-3](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/select-list.ts#L1-L3)
+- [packages/tui/src/components/stack.ts:1-2](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/stack.ts#L1-L2)
 
 **章节来源**
-- [packages/tui/src/components/editor.ts:1-26](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/editor.ts#L1-L26)
-- [packages/tui/src/components/input.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/input.ts#L1-L14)
-- [packages/tui/src/components/select-list.ts:1-3](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/select-list.ts#L1-L3)
-- [packages/tui/src/components/stack.ts:1-2](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/stack.ts#L1-L2)
+- [packages/tui/src/components/editor.ts:1-26](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/editor.ts#L1-L26)
+- [packages/tui/src/components/input.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/input.ts#L1-L14)
+- [packages/tui/src/components/select-list.ts:1-3](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/select-list.ts#L1-L3)
+- [packages/tui/src/components/stack.ts:1-2](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/stack.ts#L1-L2)
 
 ## 性能与渲染特性
 - 差异渲染：TUI 仅更新变化的行或视口行，避免全屏刷新。
@@ -373,9 +373,9 @@ SelectList --> Keybindings
 - 在 AltScreen 模式下使用 VStack/HStack/ScrollView 构建固定视口布局，提升交互体验。
 
 **章节来源**
-- [packages/tui/README.md:745-755](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L745-L755)
-- [packages/tui/src/components/text.ts:52-113](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/text.ts#L52-L113)
-- [packages/tui/src/components/box.ts:106-162](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/box.ts#L106-L162)
+- [packages/tui/README.md:745-755](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L745-L755)
+- [packages/tui/src/components/text.ts:52-113](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/text.ts#L52-L113)
+- [packages/tui/src/components/box.ts:106-162](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/box.ts#L106-L162)
 
 ## 组合模式与布局策略
 推荐组合模式：
@@ -391,8 +391,8 @@ SelectList --> Keybindings
 - 在 AltScreen 中设置布局根节点，使 VStack/HStack/ScrollView 获得视口语义。
 
 **章节来源**
-- [packages/tui/README.md:119-164](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L119-L164)
-- [packages/tui/src/components/stack.ts:4-22](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/stack.ts#L4-L22)
+- [packages/tui/README.md:119-164](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L119-L164)
+- [packages/tui/src/components/stack.ts:4-22](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/stack.ts#L4-L22)
 
 ## 交互行为与事件模型
 - 键盘输入：通过 `handleInput(data)` 接收原始终端输入，结合 `matchesKey` 与 `Key` 常量进行匹配。
@@ -415,11 +415,11 @@ end
 ```
 
 **图表来源**
-- [packages/tui/README.md:269-306](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L269-L306)
-- [packages/tui/README.md:166-235](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L166-L235)
+- [packages/tui/README.md:269-306](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L269-L306)
+- [packages/tui/README.md:166-235](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L166-L235)
 
 **章节来源**
-- [packages/tui/README.md:245-336](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L245-L336)
+- [packages/tui/README.md:245-336](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L245-L336)
 
 ## 使用示例与最佳实践
 - 快速开始：创建 Terminal、构造 TUI、添加 Text 与 Editor、设置焦点、启动循环。
@@ -429,14 +429,14 @@ end
 - 自动补全：使用 `CombinedAutocompleteProvider` 支持斜杠命令与文件路径。
 
 参考路径：
-- [packages/tui/README.md:18-53](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L18-L53)
-- [packages/tui/README.md:81-117](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L81-L117)
-- [packages/tui/README.md:119-164](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L119-L164)
-- [packages/tui/README.md:166-235](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L166-L235)
-- [packages/tui/README.md:692-718](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L692-L718)
+- [packages/tui/README.md:18-53](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L18-L53)
+- [packages/tui/README.md:81-117](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L81-L117)
+- [packages/tui/README.md:119-164](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L119-L164)
+- [packages/tui/README.md:166-235](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L166-L235)
+- [packages/tui/README.md:692-718](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L692-L718)
 
 **章节来源**
-- [packages/tui/README.md:18-718](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L18-L718)
+- [packages/tui/README.md:18-718](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L18-L718)
 
 ## 自定义组件开发指南
 实现步骤：
@@ -452,10 +452,10 @@ end
 - 容器组件若嵌入 Input/Editor，应传播 `focused` 状态以保证 IME 候选窗定位正确。
 
 参考路径：
-- [packages/tui/README.md:245-336](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L245-L336)
+- [packages/tui/README.md:245-336](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L245-L336)
 
 **章节来源**
-- [packages/tui/README.md:245-336](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L245-L336)
+- [packages/tui/README.md:245-336](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L245-L336)
 
 ## 故障排查
 常见问题与建议：
@@ -466,12 +466,12 @@ end
 - 滚动视图行为异常：检查是否在 AltScreen 中设置了布局根节点，并确保 ScrollView 的 `follow`、`primary`、`overscroll` 配置符合预期。
 
 参考路径：
-- [packages/tui/README.md:269-306](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L269-L306)
-- [packages/tui/README.md:119-164](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L119-L164)
+- [packages/tui/README.md:269-306](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L269-L306)
+- [packages/tui/README.md:119-164](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L119-L164)
 
 **章节来源**
-- [packages/tui/README.md:269-306](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L269-L306)
-- [packages/tui/README.md:119-164](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/README.md#L119-L164)
+- [packages/tui/README.md:269-306](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L269-L306)
+- [packages/tui/README.md:119-164](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/README.md#L119-L164)
 
 ## 结论
 本 UI 组件库以 `Component` 接口为核心，提供了 Text、Box、Stack、Editor、Input、SelectList 等常用组件，并配套了丰富的布局、交互、主题与工具能力。通过组合模式与弹性布局，开发者可以快速构建终端应用的用户界面。建议在 AltScreen 模式下使用 VStack/HStack/ScrollView 构建视口布局，合理使用覆盖层与焦点管理，以获得流畅的交互体验。对于自定义组件，遵循 Component/Focusable 接口规范，并注意行宽限制与样式逐行应用，即可稳定集成到现有体系中。

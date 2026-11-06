@@ -2,15 +2,15 @@
 
 <cite>
 **本文引用的文件**   
-- [packages/mcp/src/oauth/flow.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts)
-- [packages/mcp/src/oauth/discovery.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts)
-- [packages/mcp/src/oauth/types.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/types.ts)
-- [packages/mcp/src/oauth/errors.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/errors.ts)
-- [packages/coding-agent/src/cli/auth-login.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts)
-- [packages/coding-agent/src/core/auth-storage.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/auth-storage.ts)
-- [packages/ai/src/utils/oauth-page.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/utils/oauth-page.ts)
-- [packages/ai/src/auth/oauth/device-code.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/device-code.ts)
-- [packages/ai/test/oauth-device-code.test.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/oauth-device-code.test.ts)
+- [packages/mcp/src/oauth/flow.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts)
+- [packages/mcp/src/oauth/discovery.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts)
+- [packages/mcp/src/oauth/types.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/types.ts)
+- [packages/mcp/src/oauth/errors.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/errors.ts)
+- [packages/coding-agent/src/cli/auth-login.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts)
+- [packages/coding-agent/src/core/auth-storage.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/auth-storage.ts)
+- [packages/ai/src/utils/oauth-page.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/utils/oauth-page.ts)
+- [packages/ai/src/auth/oauth/device-code.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/device-code.ts)
+- [packages/ai/test/oauth-device-code.test.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/oauth-device-code.test.ts)
 </cite>
 
 ## 目录
@@ -60,24 +60,24 @@ P --> L
 ```
 
 **图表来源**
-- [packages/mcp/src/oauth/flow.ts:1-531](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L1-L531)
-- [packages/mcp/src/oauth/discovery.ts:1-216](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts#L1-L216)
-- [packages/mcp/src/oauth/types.ts:1-216](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/types.ts#L1-L216)
-- [packages/mcp/src/oauth/errors.ts:1-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/errors.ts#L1-L67)
-- [packages/coding-agent/src/cli/auth-login.ts:1-278](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L1-L278)
-- [packages/coding-agent/src/core/auth-storage.ts:1-509](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L1-L509)
-- [packages/ai/src/auth/oauth/device-code.ts:1-31](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L31)
-- [packages/ai/src/utils/oauth-page.ts:1-110](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/utils/oauth-page.ts#L1-L110)
+- [packages/mcp/src/oauth/flow.ts:1-531](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L1-L531)
+- [packages/mcp/src/oauth/discovery.ts:1-216](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts#L1-L216)
+- [packages/mcp/src/oauth/types.ts:1-216](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/types.ts#L1-L216)
+- [packages/mcp/src/oauth/errors.ts:1-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/errors.ts#L1-L67)
+- [packages/coding-agent/src/cli/auth-login.ts:1-278](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L1-L278)
+- [packages/coding-agent/src/core/auth-storage.ts:1-509](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L1-L509)
+- [packages/ai/src/auth/oauth/device-code.ts:1-31](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L31)
+- [packages/ai/src/utils/oauth-page.ts:1-110](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/utils/oauth-page.ts#L1-L110)
 
 **章节来源**
-- [packages/mcp/src/oauth/flow.ts:1-531](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L1-L531)
-- [packages/mcp/src/oauth/discovery.ts:1-216](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts#L1-L216)
-- [packages/mcp/src/oauth/types.ts:1-216](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/types.ts#L1-L216)
-- [packages/mcp/src/oauth/errors.ts:1-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/errors.ts#L1-L67)
-- [packages/coding-agent/src/cli/auth-login.ts:1-278](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L1-L278)
-- [packages/coding-agent/src/core/auth-storage.ts:1-509](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L1-L509)
-- [packages/ai/src/auth/oauth/device-code.ts:1-31](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L31)
-- [packages/ai/src/utils/oauth-page.ts:1-110](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/utils/oauth-page.ts#L1-L110)
+- [packages/mcp/src/oauth/flow.ts:1-531](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L1-L531)
+- [packages/mcp/src/oauth/discovery.ts:1-216](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts#L1-L216)
+- [packages/mcp/src/oauth/types.ts:1-216](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/types.ts#L1-L216)
+- [packages/mcp/src/oauth/errors.ts:1-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/errors.ts#L1-L67)
+- [packages/coding-agent/src/cli/auth-login.ts:1-278](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L1-L278)
+- [packages/coding-agent/src/core/auth-storage.ts:1-509](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L1-L509)
+- [packages/ai/src/auth/oauth/device-code.ts:1-31](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L31)
+- [packages/ai/src/utils/oauth-page.ts:1-110](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/utils/oauth-page.ts#L1-L110)
 
 ## 核心组件
 - MCP OAuth流程引擎：封装授权码交换、PKCE、动态客户端注册、令牌刷新、Www-Authenticate挑战处理与重试逻辑。
@@ -89,14 +89,14 @@ P --> L
 - 回调页面：成功/失败HTML模板，用于本地回调或内嵌页面展示。
 
 **章节来源**
-- [packages/mcp/src/oauth/flow.ts:1-531](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L1-L531)
-- [packages/mcp/src/oauth/discovery.ts:1-216](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts#L1-L216)
-- [packages/mcp/src/oauth/types.ts:1-216](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/types.ts#L1-L216)
-- [packages/mcp/src/oauth/errors.ts:1-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/errors.ts#L1-L67)
-- [packages/coding-agent/src/cli/auth-login.ts:1-278](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L1-L278)
-- [packages/coding-agent/src/core/auth-storage.ts:1-509](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L1-L509)
-- [packages/ai/src/auth/oauth/device-code.ts:1-31](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L31)
-- [packages/ai/src/utils/oauth-page.ts:1-110](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/utils/oauth-page.ts#L1-L110)
+- [packages/mcp/src/oauth/flow.ts:1-531](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L1-L531)
+- [packages/mcp/src/oauth/discovery.ts:1-216](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts#L1-L216)
+- [packages/mcp/src/oauth/types.ts:1-216](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/types.ts#L1-L216)
+- [packages/mcp/src/oauth/errors.ts:1-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/errors.ts#L1-L67)
+- [packages/coding-agent/src/cli/auth-login.ts:1-278](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L1-L278)
+- [packages/coding-agent/src/core/auth-storage.ts:1-509](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L1-L509)
+- [packages/ai/src/auth/oauth/device-code.ts:1-31](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L31)
+- [packages/ai/src/utils/oauth-page.ts:1-110](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/utils/oauth-page.ts#L1-L110)
 
 ## 架构总览
 下图展示了从用户发起登录到获取令牌的端到端流程，涵盖授权码+PKCE和设备码两种路径，以及刷新与重试机制。
@@ -135,11 +135,11 @@ end
 ```
 
 **图表来源**
-- [packages/coding-agent/src/cli/auth-login.ts:1-278](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L1-L278)
-- [packages/mcp/src/oauth/flow.ts:174-316](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L316)
-- [packages/mcp/src/oauth/discovery.ts:119-193](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts#L119-L193)
-- [packages/ai/src/auth/oauth/device-code.ts:1-31](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L31)
-- [packages/coding-agent/src/core/auth-storage.ts:329-491](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L329-L491)
+- [packages/coding-agent/src/cli/auth-login.ts:1-278](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L1-L278)
+- [packages/mcp/src/oauth/flow.ts:174-316](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L316)
+- [packages/mcp/src/oauth/discovery.ts:119-193](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts#L119-L193)
+- [packages/ai/src/auth/oauth/device-code.ts:1-31](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L31)
+- [packages/coding-agent/src/core/auth-storage.ts:329-491](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L329-L491)
 
 ## 详细组件分析
 
@@ -170,14 +170,14 @@ Exchange --> SaveTokens
 ```
 
 **图表来源**
-- [packages/mcp/src/oauth/flow.ts:174-316](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L316)
-- [packages/mcp/src/oauth/flow.ts:339-466](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L339-L466)
-- [packages/mcp/src/oauth/flow.ts:468-531](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L468-L531)
+- [packages/mcp/src/oauth/flow.ts:174-316](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L316)
+- [packages/mcp/src/oauth/flow.ts:339-466](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L339-L466)
+- [packages/mcp/src/oauth/flow.ts:468-531](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L468-L531)
 
 **章节来源**
-- [packages/mcp/src/oauth/flow.ts:174-316](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L316)
-- [packages/mcp/src/oauth/flow.ts:339-466](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L339-L466)
-- [packages/mcp/src/oauth/flow.ts:468-531](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L468-L531)
+- [packages/mcp/src/oauth/flow.ts:174-316](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L174-L316)
+- [packages/mcp/src/oauth/flow.ts:339-466](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L339-L466)
+- [packages/mcp/src/oauth/flow.ts:468-531](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L468-L531)
 
 ### 发现与元数据处理
 - 受保护资源元数据：优先从/.well-known/oauth-protected-resource读取，路径不匹配时回退根路径。
@@ -198,23 +198,23 @@ G --> H["选择资源(resource)"]
 ```
 
 **图表来源**
-- [packages/mcp/src/oauth/discovery.ts:70-104](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts#L70-L104)
-- [packages/mcp/src/oauth/discovery.ts:119-193](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts#L119-L193)
-- [packages/mcp/src/oauth/discovery.ts:202-215](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts#L202-L215)
+- [packages/mcp/src/oauth/discovery.ts:70-104](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts#L70-L104)
+- [packages/mcp/src/oauth/discovery.ts:119-193](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts#L119-L193)
+- [packages/mcp/src/oauth/discovery.ts:202-215](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts#L202-L215)
 
 **章节来源**
-- [packages/mcp/src/oauth/discovery.ts:70-104](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts#L70-L104)
-- [packages/mcp/src/oauth/discovery.ts:119-193](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts#L119-L193)
-- [packages/mcp/src/oauth/discovery.ts:202-215](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts#L202-L215)
+- [packages/mcp/src/oauth/discovery.ts:70-104](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts#L70-L104)
+- [packages/mcp/src/oauth/discovery.ts:119-193](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts#L119-L193)
+- [packages/mcp/src/oauth/discovery.ts:202-215](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts#L202-L215)
 
 ### 类型与错误模型
 - 类型：AuthorizationServerMetadata、OAuthProtectedResourceMetadata、OAuthTokens、OAuthClientInformationMixed等，均带结构化校验。
 - 错误：OAuthError、OAuthIssuerMismatchError、OAuthInsecureEndpointError、OAuthRegistrationError、McpOAuthAuthorizationRequiredError等，便于上层统一处理。
 
 **章节来源**
-- [packages/mcp/src/oauth/types.ts:9-86](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/types.ts#L9-L86)
-- [packages/mcp/src/oauth/types.ts:145-215](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/types.ts#L145-L215)
-- [packages/mcp/src/oauth/errors.ts:1-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/errors.ts#L1-L67)
+- [packages/mcp/src/oauth/types.ts:9-86](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/types.ts#L9-L86)
+- [packages/mcp/src/oauth/types.ts:145-215](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/types.ts#L145-L215)
+- [packages/mcp/src/oauth/errors.ts:1-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/errors.ts#L1-L67)
 
 ### CLI登录交互与设备码流程
 - 登录入口：解析参数(providerRef、--api-key、--no-browser)，选择OAuth或API Key登录。
@@ -239,14 +239,14 @@ CLI-->>U : 登录成功
 ```
 
 **图表来源**
-- [packages/coding-agent/src/cli/auth-login.ts:36-92](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L36-L92)
-- [packages/coding-agent/src/cli/auth-login.ts:131-203](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L131-L203)
-- [packages/coding-agent/src/cli/auth-login.ts:223-277](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L223-L277)
+- [packages/coding-agent/src/cli/auth-login.ts:36-92](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L36-L92)
+- [packages/coding-agent/src/cli/auth-login.ts:131-203](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L131-L203)
+- [packages/coding-agent/src/cli/auth-login.ts:223-277](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L223-L277)
 
 **章节来源**
-- [packages/coding-agent/src/cli/auth-login.ts:36-92](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L36-L92)
-- [packages/coding-agent/src/cli/auth-login.ts:131-203](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L131-L203)
-- [packages/coding-agent/src/cli/auth-login.ts:223-277](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L223-L277)
+- [packages/coding-agent/src/cli/auth-login.ts:36-92](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L36-L92)
+- [packages/coding-agent/src/cli/auth-login.ts:131-203](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L131-L203)
+- [packages/coding-agent/src/cli/auth-login.ts:223-277](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L223-L277)
 
 ### 凭证存储（auth.json）
 - 文件写入：以0o600权限创建/写入，确保敏感信息最小暴露。
@@ -281,14 +281,14 @@ ReadOnlyAuthStorage ..> AuthStorage : "只读视图"
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/auth-storage.ts:61-203](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L61-L203)
-- [packages/coding-agent/src/core/auth-storage.ts:205-324](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L205-L324)
-- [packages/coding-agent/src/core/auth-storage.ts:329-491](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L329-L491)
+- [packages/coding-agent/src/core/auth-storage.ts:61-203](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L61-L203)
+- [packages/coding-agent/src/core/auth-storage.ts:205-324](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L205-L324)
+- [packages/coding-agent/src/core/auth-storage.ts:329-491](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L329-L491)
 
 **章节来源**
-- [packages/coding-agent/src/core/auth-storage.ts:61-203](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L61-L203)
-- [packages/coding-agent/src/core/auth-storage.ts:205-324](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L205-L324)
-- [packages/coding-agent/src/core/auth-storage.ts:329-491](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L329-L491)
+- [packages/coding-agent/src/core/auth-storage.ts:61-203](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L61-L203)
+- [packages/coding-agent/src/core/auth-storage.ts:205-324](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L205-L324)
+- [packages/coding-agent/src/core/auth-storage.ts:329-491](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/auth-storage.ts#L329-L491)
 
 ### 设备码轮询器（RFC 8628）
 - 初始轮询：立即发起第一次poll，随后按intervalSeconds周期轮询。
@@ -310,16 +310,16 @@ P2 --> R1
 ```
 
 **图表来源**
-- [packages/ai/src/auth/oauth/device-code.ts:1-31](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L31)
-- [packages/ai/test/oauth-device-code.test.ts:11-42](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/oauth-device-code.test.ts#L11-L42)
-- [packages/ai/test/oauth-device-code.test.ts:98-129](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/oauth-device-code.test.ts#L98-L129)
-- [packages/ai/test/oauth-device-code.test.ts:131-133](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/oauth-device-code.test.ts#L131-L133)
+- [packages/ai/src/auth/oauth/device-code.ts:1-31](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L31)
+- [packages/ai/test/oauth-device-code.test.ts:11-42](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/oauth-device-code.test.ts#L11-L42)
+- [packages/ai/test/oauth-device-code.test.ts:98-129](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/oauth-device-code.test.ts#L98-L129)
+- [packages/ai/test/oauth-device-code.test.ts:131-133](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/oauth-device-code.test.ts#L131-L133)
 
 **章节来源**
-- [packages/ai/src/auth/oauth/device-code.ts:1-31](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L31)
-- [packages/ai/test/oauth-device-code.test.ts:11-42](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/oauth-device-code.test.ts#L11-L42)
-- [packages/ai/test/oauth-device-code.test.ts:98-129](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/oauth-device-code.test.ts#L98-L129)
-- [packages/ai/test/oauth-device-code.test.ts:131-133](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/oauth-device-code.test.ts#L131-L133)
+- [packages/ai/src/auth/oauth/device-code.ts:1-31](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L31)
+- [packages/ai/test/oauth-device-code.test.ts:11-42](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/oauth-device-code.test.ts#L11-L42)
+- [packages/ai/test/oauth-device-code.test.ts:98-129](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/oauth-device-code.test.ts#L98-L129)
+- [packages/ai/test/oauth-device-code.test.ts:131-133](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/oauth-device-code.test.ts#L131-L133)
 
 ### 回调页面与状态展示
 - 成功页面：渲染标题、消息与可选详情。
@@ -327,7 +327,7 @@ P2 --> R1
 - HTML转义：对用户输入进行HTML转义，防止XSS。
 
 **章节来源**
-- [packages/ai/src/utils/oauth-page.ts:1-110](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/utils/oauth-page.ts#L1-L110)
+- [packages/ai/src/utils/oauth-page.ts:1-110](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/utils/oauth-page.ts#L1-L110)
 
 ## 依赖关系分析
 - flow.ts依赖discovery.ts进行元数据发现，依赖types.ts进行类型校验，依赖errors.ts抛出标准化错误。
@@ -346,16 +346,16 @@ disc --> types
 ```
 
 **图表来源**
-- [packages/mcp/src/oauth/flow.ts:1-34](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L1-L34)
-- [packages/mcp/src/oauth/discovery.ts:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts#L1-L17)
-- [packages/coding-agent/src/cli/auth-login.ts:1-11](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L1-L11)
-- [packages/ai/src/auth/oauth/device-code.ts:1-24](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L24)
+- [packages/mcp/src/oauth/flow.ts:1-34](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L1-L34)
+- [packages/mcp/src/oauth/discovery.ts:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts#L1-L17)
+- [packages/coding-agent/src/cli/auth-login.ts:1-11](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L1-L11)
+- [packages/ai/src/auth/oauth/device-code.ts:1-24](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L24)
 
 **章节来源**
-- [packages/mcp/src/oauth/flow.ts:1-34](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L1-L34)
-- [packages/mcp/src/oauth/discovery.ts:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/discovery.ts#L1-L17)
-- [packages/coding-agent/src/cli/auth-login.ts:1-11](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L1-L11)
-- [packages/ai/src/auth/oauth/device-code.ts:1-24](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L24)
+- [packages/mcp/src/oauth/flow.ts:1-34](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L1-L34)
+- [packages/mcp/src/oauth/discovery.ts:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/discovery.ts#L1-L17)
+- [packages/coding-agent/src/cli/auth-login.ts:1-11](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli/auth-login.ts#L1-L11)
+- [packages/ai/src/auth/oauth/device-code.ts:1-24](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/device-code.ts#L1-L24)
 
 ## 性能与可扩展性
 - 并发安全：auth-storage使用文件锁与异步链式操作，避免竞态条件；Windows EPERM重试提升稳定性。
@@ -378,12 +378,12 @@ disc --> types
 - 回调页面显示错误：核对HTML转义与错误详情输出。
 
 **章节来源**
-- [packages/mcp/src/oauth/flow.ts:191-213](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L191-L213)
-- [packages/mcp/src/oauth/flow.ts:259-288](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L259-L288)
-- [packages/mcp/src/oauth/flow.ts:468-531](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/flow.ts#L468-L531)
-- [packages/mcp/src/oauth/errors.ts:1-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/errors.ts#L1-L67)
-- [packages/ai/test/oauth-device-code.test.ts:98-129](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/oauth-device-code.test.ts#L98-L129)
-- [packages/ai/src/utils/oauth-page.ts:94-109](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/utils/oauth-page.ts#L94-L109)
+- [packages/mcp/src/oauth/flow.ts:191-213](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L191-L213)
+- [packages/mcp/src/oauth/flow.ts:259-288](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L259-L288)
+- [packages/mcp/src/oauth/flow.ts:468-531](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/flow.ts#L468-L531)
+- [packages/mcp/src/oauth/errors.ts:1-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/errors.ts#L1-L67)
+- [packages/ai/test/oauth-device-code.test.ts:98-129](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/oauth-device-code.test.ts#L98-L129)
+- [packages/ai/src/utils/oauth-page.ts:94-109](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/utils/oauth-page.ts#L94-L109)
 
 ## 结论
 该仓库提供了完整的OAuth2.0实现，涵盖授权码+PKCE、设备码流程、动态客户端注册、令牌刷新与401挑战处理，并通过auth.json实现安全的凭证存储。发现模块增强了跨提供商兼容性，CLI层提供了友好的交互体验。建议在集成时关注issuer校验、HTTPS要求与scope提升策略，并结合设备码轮询器的slow_down与超时机制进行健壮性设计。

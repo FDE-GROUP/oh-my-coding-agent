@@ -2,20 +2,20 @@
 
 <cite>
 **本文引用的文件**   
-- [README.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md)
-- [all.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/all.ts)
-- [openai.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts)
-- [amazon-bedrock.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts)
-- [openrouter-api.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openrouter-api.ts)
-- [model-runtime.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/model-runtime.ts)
-- [virtual-models.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/virtual-models.ts)
-- [provider-composer.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts)
-- [models.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/models.ts)
-- [model-catalog.json](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/model-catalog.json)
-- [model-runtime-auth-options.test.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/test/model-runtime-auth-options.test.ts)
-- [virtual-models.test.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/test/virtual-models.test.ts)
-- [openai-completions-retry.test.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/openai-completions-retry.test.ts)
-- [models-runtime.test.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/models-runtime.test.ts)
+- [README.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md)
+- [all.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/all.ts)
+- [openai.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts)
+- [amazon-bedrock.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts)
+- [openrouter-api.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openrouter-api.ts)
+- [model-runtime.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/model-runtime.ts)
+- [virtual-models.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/virtual-models.ts)
+- [provider-composer.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts)
+- [models.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/models.ts)
+- [model-catalog.json](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/model-catalog.json)
+- [model-runtime-auth-options.test.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/test/model-runtime-auth-options.test.ts)
+- [virtual-models.test.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/test/virtual-models.test.ts)
+- [openai-completions-retry.test.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/openai-completions-retry.test.ts)
+- [models-runtime.test.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/models-runtime.test.ts)
 </cite>
 
 ## 目录
@@ -65,19 +65,19 @@ I -.-> E
 ```
 
 图示来源
-- [all.ts:137-182](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/all.ts#L137-L182)
-- [openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
-- [amazon-bedrock.ts:82-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L82-L90)
-- [openrouter-api.ts:45-77](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openrouter-api.ts#L45-L77)
-- [model-runtime.ts:174-200](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/model-runtime.ts#L174-L200)
-- [virtual-models.ts:1-12](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/virtual-models.ts#L1-L12)
-- [provider-composer.ts:488-511](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L488-L511)
-- [models.ts:576-597](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/models.ts#L576-L597)
-- [model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/model-catalog.json#L1-L4)
+- [all.ts:137-182](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/all.ts#L137-L182)
+- [openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
+- [amazon-bedrock.ts:82-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L82-L90)
+- [openrouter-api.ts:45-77](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openrouter-api.ts#L45-L77)
+- [model-runtime.ts:174-200](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/model-runtime.ts#L174-L200)
+- [virtual-models.ts:1-12](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/virtual-models.ts#L1-L12)
+- [provider-composer.ts:488-511](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L488-L511)
+- [models.ts:576-597](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/models.ts#L576-L597)
+- [model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/model-catalog.json#L1-L4)
 
 章节来源
-- [README.md:72-86](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L72-L86)
-- [all.ts:1-48](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/all.ts#L1-L48)
+- [README.md:72-86](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L72-L86)
+- [all.ts:1-48](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/all.ts#L1-L48)
 
 ## 核心组件
 - 提供商抽象与注册：通过createProvider创建统一Provider对象，包含id、名称、认证、模型列表与API适配器。
@@ -87,10 +87,10 @@ I -.-> E
 - 认证组合：OAuth、API Key与环境变量合并，支持自定义请求头注入。
 
 章节来源
-- [all.ts:137-182](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/all.ts#L137-L182)
-- [model-runtime.ts:174-200](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/model-runtime.ts#L174-L200)
-- [virtual-models.ts:1-12](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/virtual-models.ts#L1-L12)
-- [provider-composer.ts:488-511](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L488-L511)
+- [all.ts:137-182](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/all.ts#L137-L182)
+- [model-runtime.ts:174-200](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/model-runtime.ts#L174-L200)
+- [virtual-models.ts:1-12](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/virtual-models.ts#L1-L12)
+- [provider-composer.ts:488-511](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L488-L511)
 
 ## 架构总览
 下图展示从应用侧到提供商的完整调用链，包括虚拟模型路由、认证与重试。
@@ -113,9 +113,9 @@ Runtime-->>App : 响应/重试决策
 ```
 
 图示来源
-- [model-runtime.ts:1022-1061](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/model-runtime.ts#L1022-L1061)
-- [virtual-models.ts:104-118](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/virtual-models.ts#L104-L118)
-- [models.ts:576-597](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/models.ts#L576-L597)
+- [model-runtime.ts:1022-1061](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/model-runtime.ts#L1022-L1061)
+- [virtual-models.ts:104-118](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/virtual-models.ts#L104-L118)
+- [models.ts:576-597](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/models.ts#L576-L597)
 
 ## 详细组件分析
 
@@ -144,14 +144,14 @@ Provider <|-- Bedrock_Provider
 ```
 
 图示来源
-- [all.ts:137-182](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/all.ts#L137-L182)
-- [openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
-- [amazon-bedrock.ts:82-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L82-L90)
+- [all.ts:137-182](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/all.ts#L137-L182)
+- [openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
+- [amazon-bedrock.ts:82-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L82-L90)
 
 章节来源
-- [all.ts:1-48](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/all.ts#L1-L48)
-- [openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
-- [amazon-bedrock.ts:82-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L82-L90)
+- [all.ts:1-48](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/all.ts#L1-L48)
+- [openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
+- [amazon-bedrock.ts:82-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L82-L90)
 
 ### 认证流程与密钥管理
 - 支持的认证类型包括API Key、OAuth与运行时API Key覆盖。
@@ -173,12 +173,12 @@ Call --> End(["结束"])
 ```
 
 图示来源
-- [provider-composer.ts:488-511](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L488-L511)
-- [model-runtime-auth-options.test.ts:77-106](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/test/model-runtime-auth-options.test.ts#L77-L106)
+- [provider-composer.ts:488-511](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L488-L511)
+- [model-runtime-auth-options.test.ts:77-106](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/test/model-runtime-auth-options.test.ts#L77-L106)
 
 章节来源
-- [provider-composer.ts:488-511](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L488-L511)
-- [model-runtime-auth-options.test.ts:77-106](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/test/model-runtime-auth-options.test.ts#L77-L106)
+- [provider-composer.ts:488-511](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L488-L511)
+- [model-runtime-auth-options.test.ts:77-106](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/test/model-runtime-auth-options.test.ts#L77-L106)
 
 ### 模型路由与虚拟模型
 - 虚拟模型不直接调用提供商，而是通过route函数在每个请求前决定实际物理模型与思考级别。
@@ -198,21 +198,21 @@ PersistState --> Exit(["退出"])
 ```
 
 图示来源
-- [model-runtime.ts:1022-1061](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/model-runtime.ts#L1022-L1061)
-- [virtual-models.ts:52-102](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/virtual-models.ts#L52-L102)
-- [virtual-models.test.ts:174-200](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/test/virtual-models.test.ts#L174-L200)
+- [model-runtime.ts:1022-1061](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/model-runtime.ts#L1022-L1061)
+- [virtual-models.ts:52-102](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/virtual-models.ts#L52-L102)
+- [virtual-models.test.ts:174-200](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/test/virtual-models.test.ts#L174-L200)
 
 章节来源
-- [virtual-models.ts:1-12](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/virtual-models.ts#L1-L12)
-- [virtual-models.ts:104-118](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/virtual-models.ts#L104-L118)
-- [virtual-models.test.ts:174-200](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/test/virtual-models.test.ts#L174-L200)
+- [virtual-models.ts:1-12](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/virtual-models.ts#L1-L12)
+- [virtual-models.ts:104-118](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/virtual-models.ts#L104-L118)
+- [virtual-models.test.ts:174-200](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/test/virtual-models.test.ts#L174-L200)
 
 ### 模型目录与离线数据
 - Nix构建使用固定的模型目录修订号，保证离线构建一致性；运行时仍可叠加在线目录更新。
 - 目录中包含各提供商的模型元数据，供生成代码与运行时查询。
 
 章节来源
-- [model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/model-catalog.json#L1-L4)
+- [model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/model-catalog.json#L1-L4)
 
 ### 价格与计费
 - 支持按输入/输出/缓存读写计费的ModelCost结构，并可定义基于输入Token阈值的分层计价。
@@ -235,12 +235,12 @@ SetFalse --> End
 ```
 
 图示来源
-- [openrouter-api.ts:45-77](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openrouter-api.ts#L45-L77)
-- [models-runtime.test.ts:126-173](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/models-runtime.test.ts#L126-L173)
+- [openrouter-api.ts:45-77](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openrouter-api.ts#L45-L77)
+- [models-runtime.test.ts:126-173](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/models-runtime.test.ts#L126-L173)
 
 章节来源
-- [openrouter-api.ts:45-77](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openrouter-api.ts#L45-L77)
-- [models-runtime.test.ts:126-173](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/models-runtime.test.ts#L126-L173)
+- [openrouter-api.ts:45-77](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openrouter-api.ts#L45-L77)
+- [models-runtime.test.ts:126-173](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/models-runtime.test.ts#L126-L173)
 
 ### 速率限制与错误重试
 - 对429等限速错误，系统会尊重服务端retry-after头，但存在最大重试延迟上限，超出则立即失败。
@@ -260,10 +260,10 @@ RetryCount --> |是| FailFast
 ```
 
 图示来源
-- [openai-completions-retry.test.ts:106-140](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/openai-completions-retry.test.ts#L106-L140)
+- [openai-completions-retry.test.ts:106-140](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/openai-completions-retry.test.ts#L106-L140)
 
 章节来源
-- [openai-completions-retry.test.ts:106-140](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/openai-completions-retry.test.ts#L106-L140)
+- [openai-completions-retry.test.ts:106-140](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/openai-completions-retry.test.ts#L106-L140)
 
 ## 依赖关系分析
 - 提供商层：all.ts集中导入并实例化各提供商，形成Provider[]；每个提供商依赖各自的models与api实现。
@@ -282,14 +282,14 @@ MR --> Catalog["model-catalog.json"]
 ```
 
 图示来源
-- [all.ts:137-182](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/all.ts#L137-L182)
-- [model-runtime.ts:174-200](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/model-runtime.ts#L174-L200)
-- [models.ts:576-597](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/models.ts#L576-L597)
-- [model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/model-catalog.json#L1-L4)
+- [all.ts:137-182](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/all.ts#L137-L182)
+- [model-runtime.ts:174-200](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/model-runtime.ts#L174-L200)
+- [models.ts:576-597](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/models.ts#L576-L597)
+- [model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/model-catalog.json#L1-L4)
 
 章节来源
-- [all.ts:1-48](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/all.ts#L1-L48)
-- [model-runtime.ts:174-200](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/model-runtime.ts#L174-L200)
+- [all.ts:1-48](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/all.ts#L1-L48)
+- [model-runtime.ts:174-200](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/model-runtime.ts#L174-L200)
 
 ## 性能与成本优化
 - 模型路由优化：通过虚拟模型根据上下文大小、失败历史与思考级别自动选择更合适或更便宜的物理模型，减少不必要的高成本调用。
@@ -313,9 +313,9 @@ MR --> Catalog["model-catalog.json"]
   - 凭证变更后需触发availability刷新，确保模型列表与认证状态同步。
 
 章节来源
-- [model-runtime-auth-options.test.ts:77-106](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/test/model-runtime-auth-options.test.ts#L77-L106)
-- [virtual-models.test.ts:174-200](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/test/virtual-models.test.ts#L174-L200)
-- [openai-completions-retry.test.ts:106-140](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/openai-completions-retry.test.ts#L106-L140)
+- [model-runtime-auth-options.test.ts:77-106](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/test/model-runtime-auth-options.test.ts#L77-L106)
+- [virtual-models.test.ts:174-200](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/test/virtual-models.test.ts#L174-L200)
+- [openai-completions-retry.test.ts:106-140](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/openai-completions-retry.test.ts#L106-L140)
 
 ## 结论
 该仓库通过统一的提供商抽象、灵活的虚拟模型路由、完善的认证组合与重试策略，实现了多LLM提供商的一体化集成。开发者可在不改动上层逻辑的前提下，动态切换提供商、优化成本与性能，并在复杂失败场景下实现稳健的故障转移。
@@ -329,5 +329,5 @@ MR --> Catalog["model-catalog.json"]
   - npm run build/npm run check/./test.sh等命令可用于构建、检查与测试。
 
 章节来源
-- [README.md:23-54](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L23-L54)
-- [README.md:102-111](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L102-L111)
+- [README.md:23-54](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L23-L54)
+- [README.md:102-111](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L102-L111)

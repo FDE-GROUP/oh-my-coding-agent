@@ -1,6 +1,6 @@
-# oh-my-coding-agent 文档
+# oh-my-fde 文档
 
-这是 `oh-my-coding-agent` 的文档站点，发布两套内容：
+这是 `oh-my-fde` 的文档站点，发布两套内容：
 
 - **代码阅读笔记**：从入口到 provider 的架构阅读记录，以及可运行验证脚本。
 - **仓库 Wiki**：按子系统组织的仓库知识库。
@@ -28,5 +28,5 @@
 
 ## 关于
 
-- 代码仓库：[FDE-GROUP/oh-my-coding-agent](https://github.com/FDE-GROUP/oh-my-coding-agent)
+- 代码仓库：[FDE-GROUP/oh-my-fde](https://github.com/FDE-GROUP/oh-my-fde)
 - 本分支只包含文档，不包含可运行代码。

@@ -2,11 +2,11 @@
 
 <cite>
 **本文引用的文件**   
-- [types.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts)
-- [loader.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts)
-- [runner.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/runner.ts)
-- [rpc-mode.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts)
-- [interactive-mode.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts)
+- [types.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts)
+- [loader.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts)
+- [runner.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/runner.ts)
+- [rpc-mode.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts)
+- [interactive-mode.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts)
 </cite>
 
 ## 目录
@@ -48,16 +48,16 @@ C --> F["types.ts<br/>类型与事件定义"]
 ```
 
 图表来源
-- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
-- [runner.ts:364-575](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L364-L575)
-- [rpc-mode.ts:140-299](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L140-L299)
-- [interactive-mode.ts:2757-2809](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2757-L2809)
-- [types.ts:160-320](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L160-L320)
+- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
+- [runner.ts:364-575](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L364-L575)
+- [rpc-mode.ts:140-299](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L140-L299)
+- [interactive-mode.ts:2757-2809](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2757-L2809)
+- [types.ts:160-320](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L160-L320)
 
 章节来源
-- [loader.ts:1-800](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L1-L800)
-- [runner.ts:1-800](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L1-L800)
-- [types.ts:1-800](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L1-L800)
+- [loader.ts:1-800](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L1-L800)
+- [runner.ts:1-800](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L1-L800)
+- [types.ts:1-800](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L1-L800)
 
 ## 核心组件
 本节聚焦三类核心对象：
@@ -97,8 +97,8 @@ ExtensionAPI 是扩展工厂函数接收的参数，提供：
 - MCP server 重复注册或命名冲突会抛错
 
 章节来源
-- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
-- [loader.ts:160-244](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L160-L244)
+- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
+- [loader.ts:160-244](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L160-L244)
 
 ### ExtensionContext
 ExtensionContext 提供给扩展的事件处理器和工具执行环境，包含：
@@ -121,9 +121,9 @@ ExtensionContext 提供给扩展的事件处理器和工具执行环境，包含
 - 新会话回调应使用 ReplacedSessionContext 提供的 withSession(ctx) 中的 ctx
 
 章节来源
-- [types.ts:322-385](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L322-L385)
-- [runner.ts:887-943](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L887-L943)
-- [loader.ts:160-244](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L160-L244)
+- [types.ts:322-385](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L322-L385)
+- [runner.ts:887-943](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L887-L943)
+- [loader.ts:160-244](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L160-L244)
 
 ### ExtensionUIContext
 ExtensionUIContext 提供扩展与用户的交互能力，按模式有不同实现：
@@ -139,9 +139,9 @@ ExtensionUIContext 提供扩展与用户的交互能力，按模式有不同实�
 - TUI 模式：完整实现，支持对话框栈、终端输入监听、主题切换、编辑器扩展等
 
 章节来源
-- [types.ts:160-320](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L160-L320)
-- [rpc-mode.ts:140-299](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L140-L299)
-- [interactive-mode.ts:2757-2809](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2757-L2809)
+- [types.ts:160-320](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L160-L320)
+- [rpc-mode.ts:140-299](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L140-L299)
+- [interactive-mode.ts:2757-2809](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2757-L2809)
 
 ## 架构总览
 扩展从加载到执行的典型流程如下：
@@ -164,11 +164,11 @@ Runner-->>Ext : 调用事件处理器/工具 execute()
 ```
 
 图表来源
-- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
-- [runner.ts:417-575](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L417-L575)
-- [rpc-mode.ts:140-299](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L140-L299)
-- [interactive-mode.ts:2757-2809](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2757-L2809)
-- [types.ts:1424-1457](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L1424-L1457)
+- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
+- [runner.ts:417-575](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L417-L575)
+- [rpc-mode.ts:140-299](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L140-L299)
+- [interactive-mode.ts:2757-2809](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2757-L2809)
+- [types.ts:1424-1457](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L1424-L1457)
 
 ## 详细组件分析
 
@@ -241,8 +241,8 @@ Runner-->>Ext : 调用事件处理器/工具 execute()
   - 行为：通过 EventBus 广播；on 返回取消订阅
 
 章节来源
-- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
-- [loader.ts:160-244](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L160-L244)
+- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
+- [loader.ts:160-244](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L160-L244)
 
 ### ExtensionContext 属性与方法详解
 - ui：ExtensionUIContext
@@ -264,9 +264,9 @@ Runner-->>Ext : 调用事件处理器/工具 execute()
 - 新会话回调请使用 ReplacedSessionContext.withSession(ctx)
 
 章节来源
-- [types.ts:322-385](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L322-L385)
-- [runner.ts:887-943](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L887-L943)
-- [loader.ts:160-244](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L160-L244)
+- [types.ts:322-385](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L322-L385)
+- [runner.ts:887-943](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L887-L943)
+- [loader.ts:160-244](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L160-L244)
 
 ### ExtensionUIContext 方法详解
 - select(title, options, opts)
@@ -343,9 +343,9 @@ Runner-->>Ext : 调用事件处理器/工具 execute()
   - 作用：工具输出展开状态
 
 章节来源
-- [types.ts:160-320](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L160-L320)
-- [rpc-mode.ts:140-299](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L140-L299)
-- [interactive-mode.ts:2757-2809](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2757-L2809)
+- [types.ts:160-320](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L160-L320)
+- [rpc-mode.ts:140-299](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L140-L299)
+- [interactive-mode.ts:2757-2809](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2757-L2809)
 
 ### 工具定义 ToolDefinition 关键点
 - name/label/description：工具标识与描述
@@ -366,7 +366,7 @@ Runner-->>Ext : 调用事件处理器/工具 execute()
 - renderCall/renderResult：自定义渲染
 
 章节来源
-- [types.ts:599-688](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L599-L688)
+- [types.ts:599-688](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L599-L688)
 
 ### 事件系统概览
 扩展可订阅多种事件，涵盖：
@@ -384,7 +384,7 @@ Runner-->>Ext : 调用事件处理器/工具 execute()
 - 工具调用与结果：tool_call/tool_result
 
 章节来源
-- [types.ts:720-1457](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L720-L1457)
+- [types.ts:720-1457](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L720-L1457)
 
 ## 依赖关系分析
 扩展系统的依赖关系如下：
@@ -485,14 +485,14 @@ ExtensionContext --> ExtensionUIContext : "提供"
 ```
 
 图表来源
-- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
-- [types.ts:322-385](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L322-L385)
-- [types.ts:160-320](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L160-L320)
+- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
+- [types.ts:322-385](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L322-L385)
+- [types.ts:160-320](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L160-L320)
 
 章节来源
-- [loader.ts:1-800](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L1-L800)
-- [runner.ts:1-800](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L1-L800)
-- [types.ts:1-800](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L1-L800)
+- [loader.ts:1-800](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L1-L800)
+- [runner.ts:1-800](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L1-L800)
+- [types.ts:1-800](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L1-L800)
 
 ## 性能与行为特性
 - 工具注册后立即刷新工具集，避免后续 LLM 调用遗漏
@@ -530,10 +530,10 @@ ExtensionContext --> ExtensionUIContext : "提供"
   - 解决：在 RPC 模式下降级处理或使用支持的 API
 
 章节来源
-- [loader.ts:160-244](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L160-L244)
-- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
-- [runner.ts:577-622](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L577-L622)
-- [rpc-mode.ts:140-299](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L140-L299)
+- [loader.ts:160-244](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L160-L244)
+- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
+- [runner.ts:577-622](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/runner.ts#L577-L622)
+- [rpc-mode.ts:140-299](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L140-L299)
 
 ## 结论
 扩展 API 围绕 ExtensionAPI、ExtensionContext 与 ExtensionUIContext 构建，提供工具注册、命令钩子、事件订阅、会话与模型管理、以及丰富的 UI 交互能力。理解 loader/runner 的职责边界与不同模式的 UI 实现差异，有助于编写稳定、可移植且高性能的扩展。
@@ -628,6 +628,6 @@ ExtensionContext --> ExtensionUIContext : "提供"
   - setToolsExpanded(expanded) → void
 
 章节来源
-- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
-- [types.ts:322-385](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L322-L385)
-- [types.ts:160-320](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L160-L320)
+- [loader.ts:253-540](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/loader.ts#L253-L540)
+- [types.ts:322-385](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L322-L385)
+- [types.ts:160-320](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L160-L320)

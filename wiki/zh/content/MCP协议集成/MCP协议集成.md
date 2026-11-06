@@ -2,17 +2,17 @@
 
 <cite>
 **本文引用的文件**   
-- [packages/mcp/README.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/README.md)
-- [packages/mcp/package.json](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/package.json)
-- [packages/mcp/src/index.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/index.ts)
-- [packages/mcp/src/client.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts)
-- [packages/mcp/src/config.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/config.ts)
-- [packages/mcp/src/auth-provider.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/auth-provider.ts)
-- [packages/mcp/src/oauth/index.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/index.ts)
-- [packages/mcp/src/oauth/client-settings.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/client-settings.ts)
-- [packages/mcp/src/transports/streamable-http.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts)
-- [packages/mcp/src/transports/stdio.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/stdio.ts)
-- [packages/mcp/src/protocol/types.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/protocol/types.ts)
+- [packages/mcp/README.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/README.md)
+- [packages/mcp/package.json](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/package.json)
+- [packages/mcp/src/index.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/index.ts)
+- [packages/mcp/src/client.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts)
+- [packages/mcp/src/config.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/config.ts)
+- [packages/mcp/src/auth-provider.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/auth-provider.ts)
+- [packages/mcp/src/oauth/index.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/index.ts)
+- [packages/mcp/src/oauth/client-settings.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/client-settings.ts)
+- [packages/mcp/src/transports/streamable-http.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts)
+- [packages/mcp/src/transports/stdio.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/stdio.ts)
+- [packages/mcp/src/protocol/types.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/protocol/types.ts)
 </cite>
 
 ## 目录
@@ -69,15 +69,15 @@ OAUTH_IDX --> AUTH_IF
 ```
 
 图表来源
-- [packages/mcp/src/index.ts:1-97](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/index.ts#L1-L97)
-- [packages/mcp/src/client.ts:155-250](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L155-L250)
-- [packages/mcp/src/transports/streamable-http.ts:248-389](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L248-L389)
-- [packages/mcp/src/transports/stdio.ts:69-145](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/stdio.ts#L69-L145)
-- [packages/mcp/src/protocol/types.ts:4-10](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/protocol/types.ts#L4-L10)
+- [packages/mcp/src/index.ts:1-97](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/index.ts#L1-L97)
+- [packages/mcp/src/client.ts:155-250](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L155-L250)
+- [packages/mcp/src/transports/streamable-http.ts:248-389](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L248-L389)
+- [packages/mcp/src/transports/stdio.ts:69-145](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/stdio.ts#L69-L145)
+- [packages/mcp/src/protocol/types.ts:4-10](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/protocol/types.ts#L4-L10)
 
 章节来源
-- [packages/mcp/README.md:1-30](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/README.md#L1-L30)
-- [packages/mcp/package.json:1-24](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/package.json#L1-L24)
+- [packages/mcp/README.md:1-30](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/README.md#L1-L30)
+- [packages/mcp/package.json:1-24](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/package.json#L1-L24)
 
 ## 核心组件
 - McpClient：封装初始化、请求/通知、分页列表、工具调用、进度与取消、超时控制、连接状态与事件。
@@ -89,12 +89,12 @@ OAUTH_IDX --> AUTH_IF
 - 协议类型：声明 MCP 协议版本、能力、工具、资源、模板、结果等类型。
 
 章节来源
-- [packages/mcp/src/client.ts:155-250](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L155-L250)
-- [packages/mcp/src/transports/stdio.ts:69-187](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/stdio.ts#L69-L187)
-- [packages/mcp/src/transports/streamable-http.ts:248-580](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L248-L580)
-- [packages/mcp/src/oauth/index.ts:1-80](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/index.ts#L1-L80)
-- [packages/mcp/src/config.ts:1-105](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/config.ts#L1-L105)
-- [packages/mcp/src/protocol/types.ts:4-132](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/protocol/types.ts#L4-L132)
+- [packages/mcp/src/client.ts:155-250](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L155-L250)
+- [packages/mcp/src/transports/stdio.ts:69-187](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/stdio.ts#L69-L187)
+- [packages/mcp/src/transports/streamable-http.ts:248-580](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L248-L580)
+- [packages/mcp/src/oauth/index.ts:1-80](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/index.ts#L1-L80)
+- [packages/mcp/src/config.ts:1-105](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/config.ts#L1-L105)
+- [packages/mcp/src/protocol/types.ts:4-132](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/protocol/types.ts#L4-L132)
 
 ## 架构总览
 MCP 客户端通过抽象传输层与服务器通信；HTTP 传输可注入 AuthProvider 完成 OAuth 认证；配置模块负责解析 mcpServers；协议类型保证消息结构正确。
@@ -127,10 +127,10 @@ Client-->>App : 返回结果
 ```
 
 图表来源
-- [packages/mcp/src/client.ts:204-249](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L204-L249)
-- [packages/mcp/src/transports/streamable-http.ts:285-323](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L285-L323)
-- [packages/mcp/src/transports/streamable-http.ts:352-389](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L352-L389)
-- [packages/mcp/src/auth-provider.ts:12-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/auth-provider.ts#L12-L20)
+- [packages/mcp/src/client.ts:204-249](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L204-L249)
+- [packages/mcp/src/transports/streamable-http.ts:285-323](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L285-L323)
+- [packages/mcp/src/transports/streamable-http.ts:352-389](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L352-L389)
+- [packages/mcp/src/auth-provider.ts:12-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/auth-provider.ts#L12-L20)
 
 ## 详细组件分析
 
@@ -168,14 +168,14 @@ class McpClient {
 ```
 
 图表来源
-- [packages/mcp/src/client.ts:155-622](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L155-L622)
+- [packages/mcp/src/client.ts:155-622](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L155-L622)
 
 章节来源
-- [packages/mcp/src/client.ts:38-153](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L38-L153)
-- [packages/mcp/src/client.ts:204-250](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L204-L250)
-- [packages/mcp/src/client.ts:292-386](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L292-L386)
-- [packages/mcp/src/client.ts:396-444](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L396-L444)
-- [packages/mcp/src/client.ts:465-583](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L465-L583)
+- [packages/mcp/src/client.ts:38-153](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L38-L153)
+- [packages/mcp/src/client.ts:204-250](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L204-L250)
+- [packages/mcp/src/client.ts:292-386](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L292-L386)
+- [packages/mcp/src/client.ts:396-444](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L396-L444)
+- [packages/mcp/src/client.ts:465-583](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L465-L583)
 
 ### 传输层：StdioTransport 与 StreamableHttpTransport
 - StdioTransport
@@ -207,16 +207,16 @@ Fail --> Done
 ```
 
 图表来源
-- [packages/mcp/src/transports/streamable-http.ts:285-323](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L285-L323)
-- [packages/mcp/src/transports/streamable-http.ts:440-478](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L440-L478)
-- [packages/mcp/src/transports/streamable-http.ts:514-534](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L514-L534)
-- [packages/mcp/src/transports/stdio.ts:147-185](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/stdio.ts#L147-L185)
+- [packages/mcp/src/transports/streamable-http.ts:285-323](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L285-L323)
+- [packages/mcp/src/transports/streamable-http.ts:440-478](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L440-L478)
+- [packages/mcp/src/transports/streamable-http.ts:514-534](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L514-L534)
+- [packages/mcp/src/transports/stdio.ts:147-185](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/stdio.ts#L147-L185)
 
 章节来源
-- [packages/mcp/src/transports/stdio.ts:55-187](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/stdio.ts#L55-L187)
-- [packages/mcp/src/transports/streamable-http.ts:147-157](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L147-L157)
-- [packages/mcp/src/transports/streamable-http.ts:248-389](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L248-L389)
-- [packages/mcp/src/transports/streamable-http.ts:405-580](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L405-L580)
+- [packages/mcp/src/transports/stdio.ts:55-187](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/stdio.ts#L55-L187)
+- [packages/mcp/src/transports/streamable-http.ts:147-157](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L147-L157)
+- [packages/mcp/src/transports/streamable-http.ts:248-389](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L248-L389)
+- [packages/mcp/src/transports/streamable-http.ts:405-580](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L405-L580)
 
 ### OAuth 认证流程
 - 发现与元数据：从服务器 URL 推导受保护资源元数据与授权服务器元数据，支持 RFC 8414/OpenID Connect Discovery。
@@ -245,14 +245,14 @@ Http-->>Client : 正常响应
 ```
 
 图表来源
-- [packages/mcp/src/transports/streamable-http.ts:352-389](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L352-L389)
-- [packages/mcp/src/oauth/index.ts:1-80](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/index.ts#L1-L80)
-- [packages/mcp/src/oauth/client-settings.ts:13-38](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/client-settings.ts#L13-L38)
+- [packages/mcp/src/transports/streamable-http.ts:352-389](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L352-L389)
+- [packages/mcp/src/oauth/index.ts:1-80](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/index.ts#L1-L80)
+- [packages/mcp/src/oauth/client-settings.ts:13-38](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/client-settings.ts#L13-L38)
 
 章节来源
-- [packages/mcp/src/oauth/index.ts:1-80](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/index.ts#L1-L80)
-- [packages/mcp/src/oauth/client-settings.ts:13-38](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/client-settings.ts#L13-L38)
-- [packages/mcp/src/transports/streamable-http.ts:192-202](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L192-L202)
+- [packages/mcp/src/oauth/index.ts:1-80](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/index.ts#L1-L80)
+- [packages/mcp/src/oauth/client-settings.ts:13-38](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/client-settings.ts#L13-L38)
+- [packages/mcp/src/transports/streamable-http.ts:192-202](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L192-L202)
 
 ### 协议消息格式与版本协商
 - 协议版本：客户端声明 LATEST_PROTOCOL_VERSION，并接受历史版本以兼容旧服务器。
@@ -272,16 +272,16 @@ F --> G["cancelled 通知"]
 ```
 
 图表来源
-- [packages/mcp/src/protocol/types.ts:4-10](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/protocol/types.ts#L4-L10)
-- [packages/mcp/src/client.ts:204-249](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L204-L249)
-- [packages/mcp/src/client.ts:292-386](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L292-L386)
-- [packages/mcp/src/client.ts:524-551](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L524-L551)
+- [packages/mcp/src/protocol/types.ts:4-10](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/protocol/types.ts#L4-L10)
+- [packages/mcp/src/client.ts:204-249](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L204-L249)
+- [packages/mcp/src/client.ts:292-386](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L292-L386)
+- [packages/mcp/src/client.ts:524-551](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L524-L551)
 
 章节来源
-- [packages/mcp/src/protocol/types.ts:4-132](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/protocol/types.ts#L4-L132)
-- [packages/mcp/src/client.ts:204-250](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L204-L250)
-- [packages/mcp/src/client.ts:292-386](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L292-L386)
-- [packages/mcp/src/client.ts:524-551](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L524-L551)
+- [packages/mcp/src/protocol/types.ts:4-132](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/protocol/types.ts#L4-L132)
+- [packages/mcp/src/client.ts:204-250](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L204-L250)
+- [packages/mcp/src/client.ts:292-386](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L292-L386)
+- [packages/mcp/src/client.ts:524-551](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L524-L551)
 
 ### 连接管理与错误处理
 - 连接状态机：idle/connecting/connected/closed，禁止重复连接与非法操作。
@@ -291,10 +291,10 @@ F --> G["cancelled 通知"]
 - 取消与超时：支持 AbortSignal 取消，progress 心跳重置超时计时器。
 
 章节来源
-- [packages/mcp/src/client.ts:41-72](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L41-L72)
-- [packages/mcp/src/client.ts:553-622](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L553-L622)
-- [packages/mcp/src/transports/streamable-http.ts:159-186](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L159-L186)
-- [packages/mcp/src/transports/streamable-http.ts:396-403](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L396-L403)
+- [packages/mcp/src/client.ts:41-72](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L41-L72)
+- [packages/mcp/src/client.ts:553-622](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L553-L622)
+- [packages/mcp/src/transports/streamable-http.ts:159-186](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L159-L186)
+- [packages/mcp/src/transports/streamable-http.ts:396-403](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L396-L403)
 
 ### 配置与服务器暴露
 - mcpServers 配置：支持 stdio（command/args/env/cwd）与 http（url/headers/oauth），通用 enabled/description/timeout。
@@ -311,15 +311,15 @@ Kind --> |invalid| Error["返回错误信息"]
 ```
 
 图表来源
-- [packages/mcp/src/config.ts:113-139](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/config.ts#L113-L139)
-- [packages/mcp/src/config.ts:155-227](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/config.ts#L155-L227)
-- [packages/mcp/src/config.ts:236-244](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/config.ts#L236-L244)
+- [packages/mcp/src/config.ts:113-139](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/config.ts#L113-L139)
+- [packages/mcp/src/config.ts:155-227](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/config.ts#L155-L227)
+- [packages/mcp/src/config.ts:236-244](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/config.ts#L236-L244)
 
 章节来源
-- [packages/mcp/src/config.ts:1-105](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/config.ts#L1-L105)
-- [packages/mcp/src/config.ts:113-139](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/config.ts#L113-L139)
-- [packages/mcp/src/config.ts:155-227](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/config.ts#L155-L227)
-- [packages/mcp/src/config.ts:236-244](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/config.ts#L236-L244)
+- [packages/mcp/src/config.ts:1-105](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/config.ts#L1-L105)
+- [packages/mcp/src/config.ts:113-139](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/config.ts#L113-L139)
+- [packages/mcp/src/config.ts:155-227](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/config.ts#L155-L227)
+- [packages/mcp/src/config.ts:236-244](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/config.ts#L236-L244)
 
 ### 工具暴露与 LLM 内容转换
 - 工具命名：createMcpToolName 生成 provider 友好的名称，mcpNamespace 提供服务器前缀。
@@ -328,9 +328,9 @@ Kind --> |invalid| Error["返回错误信息"]
 - 内容转换：toLlmContent 将 CallToolResult 转换为文本/图像/结构化内容，兼容多种资源类型。
 
 章节来源
-- [packages/mcp/src/index.ts:13-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/index.ts#L13-L20)
-- [packages/mcp/src/index.ts:21-34](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/index.ts#L21-L34)
-- [packages/mcp/README.md:48-75](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/README.md#L48-L75)
+- [packages/mcp/src/index.ts:13-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/index.ts#L13-L20)
+- [packages/mcp/src/index.ts:21-34](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/index.ts#L21-L34)
+- [packages/mcp/README.md:48-75](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/README.md#L48-L75)
 
 ## 依赖关系分析
 - McpClient 依赖协议类型与传输抽象，不直接耦合具体传输。
@@ -350,14 +350,14 @@ Config["配置校验"] --> Client
 ```
 
 图表来源
-- [packages/mcp/src/index.ts:1-97](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/index.ts#L1-L97)
-- [packages/mcp/src/auth-provider.ts:12-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/auth-provider.ts#L12-L20)
-- [packages/mcp/src/oauth/index.ts:1-80](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/index.ts#L1-L80)
+- [packages/mcp/src/index.ts:1-97](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/index.ts#L1-L97)
+- [packages/mcp/src/auth-provider.ts:12-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/auth-provider.ts#L12-L20)
+- [packages/mcp/src/oauth/index.ts:1-80](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/index.ts#L1-L80)
 
 章节来源
-- [packages/mcp/src/index.ts:1-97](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/index.ts#L1-L97)
-- [packages/mcp/src/auth-provider.ts:1-21](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/auth-provider.ts#L1-L21)
-- [packages/mcp/src/oauth/index.ts:1-80](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/oauth/index.ts#L1-L80)
+- [packages/mcp/src/index.ts:1-97](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/index.ts#L1-L97)
+- [packages/mcp/src/auth-provider.ts:1-21](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/auth-provider.ts#L1-L21)
+- [packages/mcp/src/oauth/index.ts:1-80](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/oauth/index.ts#L1-L80)
 
 ## 性能与可扩展性
 - 请求超时与进度心跳：progress 通知会重置超时计时器，避免长时间任务被误杀。
@@ -368,11 +368,11 @@ Config["配置校验"] --> Client
 - 进程组清理：StdioTransport 在非 Windows 下使用负 pid 终止整个进程组，避免包装进程残留。
 
 章节来源
-- [packages/mcp/src/client.ts:356-376](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L356-L376)
-- [packages/mcp/src/transports/streamable-http.ts:41-136](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L41-L136)
-- [packages/mcp/src/transports/streamable-http.ts:208-239](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L208-L239)
-- [packages/mcp/src/transports/streamable-http.ts:547-559](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L547-L559)
-- [packages/mcp/src/transports/stdio.ts:17-53](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/stdio.ts#L17-L53)
+- [packages/mcp/src/client.ts:356-376](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L356-L376)
+- [packages/mcp/src/transports/streamable-http.ts:41-136](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L41-L136)
+- [packages/mcp/src/transports/streamable-http.ts:208-239](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L208-L239)
+- [packages/mcp/src/transports/streamable-http.ts:547-559](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L547-L559)
+- [packages/mcp/src/transports/stdio.ts:17-53](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/stdio.ts#L17-L53)
 
 ## 故障排查指南
 - 连接失败
@@ -389,10 +389,10 @@ Config["配置校验"] --> Client
   - StdioTransport 暴露 stderr 字符串，可用于诊断子进程错误。
 
 章节来源
-- [packages/mcp/src/transports/streamable-http.ts:159-186](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L159-L186)
-- [packages/mcp/src/transports/streamable-http.ts:396-403](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L396-L403)
-- [packages/mcp/src/client.ts:378-386](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L378-L386)
-- [packages/mcp/src/transports/stdio.ts:92-94](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/stdio.ts#L92-L94)
+- [packages/mcp/src/transports/streamable-http.ts:159-186](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L159-L186)
+- [packages/mcp/src/transports/streamable-http.ts:396-403](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L396-L403)
+- [packages/mcp/src/client.ts:378-386](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L378-L386)
+- [packages/mcp/src/transports/stdio.ts:92-94](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/stdio.ts#L92-L94)
 
 ## 结论
 该 MCP 客户端实现提供了稳定、可组合的协议交互能力，涵盖本地进程与远程 HTTP 两种主要传输方式，并内置完整的 OAuth 客户端能力。其设计强调传输无关、错误可观测、性能可控与配置可验证，适合在生产环境中集成各类 MCP 服务器。
@@ -412,8 +412,8 @@ Config["配置校验"] --> Client
   - 通过 onError/onClose 订阅连接级错误与关闭事件，结合 stderr 与日志定位问题。
 
 章节来源
-- [packages/mcp/README.md:7-75](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/README.md#L7-L75)
-- [packages/mcp/README.md:77-150](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/README.md#L77-L150)
-- [packages/mcp/README.md:152-187](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/README.md#L152-L187)
-- [packages/mcp/src/config.ts:181-227](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/config.ts#L181-L227)
-- [packages/mcp/src/transports/stdio.ts:17-53](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/stdio.ts#L17-L53)
+- [packages/mcp/README.md:7-75](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/README.md#L7-L75)
+- [packages/mcp/README.md:77-150](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/README.md#L77-L150)
+- [packages/mcp/README.md:152-187](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/README.md#L152-L187)
+- [packages/mcp/src/config.ts:181-227](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/config.ts#L181-L227)
+- [packages/mcp/src/transports/stdio.ts:17-53](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/stdio.ts#L17-L53)

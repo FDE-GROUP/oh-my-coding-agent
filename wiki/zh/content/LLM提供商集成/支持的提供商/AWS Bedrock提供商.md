@@ -2,14 +2,14 @@
 
 <cite>
 **本文引用的文件**   
-- [packages/ai/src/providers/amazon-bedrock.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts)
-- [packages/ai/src/api/bedrock-converse-stream.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts)
-- [packages/ai/src/api/bedrock-converse-stream.lazy.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.lazy.ts)
-- [packages/ai/catalog/providers/amazon-bedrock.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts)
-- [packages/ai/src/providers/amazon-bedrock.models.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts)
-- [packages/ai/test/bedrock-utils.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/bedrock-utils.ts)
-- [packages/ai/test/bedrock-credentials.test.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/bedrock-credentials.test.ts)
-- [packages/ai/src/env-api-keys.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts)
+- [packages/ai/src/providers/amazon-bedrock.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts)
+- [packages/ai/src/api/bedrock-converse-stream.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts)
+- [packages/ai/src/api/bedrock-converse-stream.lazy.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.lazy.ts)
+- [packages/ai/catalog/providers/amazon-bedrock.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts)
+- [packages/ai/src/providers/amazon-bedrock.models.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts)
+- [packages/ai/test/bedrock-utils.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/bedrock-utils.ts)
+- [packages/ai/test/bedrock-credentials.test.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/bedrock-credentials.test.ts)
+- [packages/ai/src/env-api-keys.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts)
 </cite>
 
 ## 目录
@@ -55,17 +55,17 @@ RuntimeAPI --> SDK["@aws-sdk/client-bedrock-runtime"]
 ```
 
 **图表来源**
-- [packages/ai/src/providers/amazon-bedrock.ts:82-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L82-L90)
-- [packages/ai/src/api/bedrock-converse-stream.lazy.ts:38-43](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.lazy.ts#L38-L43)
-- [packages/ai/src/api/bedrock-converse-stream.ts:138-142](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L138-L142)
-- [packages/ai/catalog/providers/amazon-bedrock.ts:12-32](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L12-L32)
-- [packages/ai/src/providers/amazon-bedrock.models.ts:7-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts#L7-L14)
+- [packages/ai/src/providers/amazon-bedrock.ts:82-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L82-L90)
+- [packages/ai/src/api/bedrock-converse-stream.lazy.ts:38-43](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.lazy.ts#L38-L43)
+- [packages/ai/src/api/bedrock-converse-stream.ts:138-142](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L138-L142)
+- [packages/ai/catalog/providers/amazon-bedrock.ts:12-32](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L12-L32)
+- [packages/ai/src/providers/amazon-bedrock.models.ts:7-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts#L7-L14)
 
 **章节来源**
-- [packages/ai/src/providers/amazon-bedrock.ts:1-91](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L1-L91)
-- [packages/ai/src/api/bedrock-converse-stream.lazy.ts:1-43](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.lazy.ts#L1-L43)
-- [packages/ai/catalog/providers/amazon-bedrock.ts:1-33](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L1-L33)
-- [packages/ai/src/providers/amazon-bedrock.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts#L1-L15)
+- [packages/ai/src/providers/amazon-bedrock.ts:1-91](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L1-L91)
+- [packages/ai/src/api/bedrock-converse-stream.lazy.ts:1-43](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.lazy.ts#L1-L43)
+- [packages/ai/catalog/providers/amazon-bedrock.ts:1-33](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L1-L33)
+- [packages/ai/src/providers/amazon-bedrock.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts#L1-L15)
 
 ## 核心组件
 - Amazon Bedrock 提供商：负责认证交互、模型列表装配、API 绑定。
@@ -81,10 +81,10 @@ RuntimeAPI --> SDK["@aws-sdk/client-bedrock-runtime"]
 - 错误处理：标准化异常前缀、诊断信息、重试降级（严格工具模式）。
 
 **章节来源**
-- [packages/ai/src/providers/amazon-bedrock.ts:6-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L6-L90)
-- [packages/ai/src/api/bedrock-converse-stream.ts:84-116](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L84-L116)
-- [packages/ai/src/api/bedrock-converse-stream.ts:138-142](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L138-L142)
-- [packages/ai/catalog/providers/amazon-bedrock.ts:12-32](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L12-L32)
+- [packages/ai/src/providers/amazon-bedrock.ts:6-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L6-L90)
+- [packages/ai/src/api/bedrock-converse-stream.ts:84-116](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L84-L116)
+- [packages/ai/src/api/bedrock-converse-stream.ts:138-142](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L138-L142)
+- [packages/ai/catalog/providers/amazon-bedrock.ts:12-32](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L12-L32)
 
 ## 架构总览
 下图展示从应用调用到 Bedrock 服务端的完整链路，包括认证、区域、代理、流式事件与错误处理。
@@ -113,11 +113,11 @@ end
 ```
 
 **图表来源**
-- [packages/ai/src/providers/amazon-bedrock.ts:82-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L82-L90)
-- [packages/ai/src/api/bedrock-converse-stream.lazy.ts:38-43](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.lazy.ts#L38-L43)
-- [packages/ai/src/api/bedrock-converse-stream.ts:138-142](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L138-L142)
-- [packages/ai/src/api/bedrock-converse-stream.ts:261-305](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L261-L305)
-- [packages/ai/src/api/bedrock-converse-stream.ts:336-395](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L336-L395)
+- [packages/ai/src/providers/amazon-bedrock.ts:82-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L82-L90)
+- [packages/ai/src/api/bedrock-converse-stream.lazy.ts:38-43](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.lazy.ts#L38-L43)
+- [packages/ai/src/api/bedrock-converse-stream.ts:138-142](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L138-L142)
+- [packages/ai/src/api/bedrock-converse-stream.ts:261-305](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L261-L305)
+- [packages/ai/src/api/bedrock-converse-stream.ts:336-395](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L336-L395)
 
 ## 详细组件分析
 
@@ -143,8 +143,8 @@ Resolve --> End(["完成"])
 ```
 
 **图表来源**
-- [packages/ai/src/providers/amazon-bedrock.ts:11-53](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L11-L53)
-- [packages/ai/src/providers/amazon-bedrock.ts:54-80](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L54-L80)
+- [packages/ai/src/providers/amazon-bedrock.ts:11-53](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L11-L53)
+- [packages/ai/src/providers/amazon-bedrock.ts:54-80](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L54-L80)
 
 区域与端点解析策略：
 - 若模型 ID 是 ARN，则从 ARN 提取 region。
@@ -157,10 +157,10 @@ Resolve --> End(["完成"])
 - 可通过 `AWS_BEDROCK_FORCE_HTTP1=1` 强制使用 HTTP/1.1。
 
 **章节来源**
-- [packages/ai/src/providers/amazon-bedrock.ts:6-80](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L6-L80)
-- [packages/ai/src/api/bedrock-converse-stream.ts:173-250](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L173-L250)
-- [packages/ai/src/api/bedrock-converse-stream.ts:232-244](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L232-L244)
-- [packages/ai/test/bedrock-credentials.test.ts:71-115](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/bedrock-credentials.test.ts#L71-L115)
+- [packages/ai/src/providers/amazon-bedrock.ts:6-80](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L6-L80)
+- [packages/ai/src/api/bedrock-converse-stream.ts:173-250](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L173-L250)
+- [packages/ai/src/api/bedrock-converse-stream.ts:232-244](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L232-L244)
+- [packages/ai/test/bedrock-credentials.test.ts:71-115](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/bedrock-credentials.test.ts#L71-L115)
 
 ### 模型家族与目录
 Bedrock 模型目录通过 `defineProvider` 聚合模型，并按条件过滤不支持的工具或系统消息的模型。目录会为每个模型设置基础 URL，并根据结构化输出能力标记 `supportsStrictMode`。
@@ -198,12 +198,12 @@ BedrockCatalog --> Model : "生成/映射"
 ```
 
 **图表来源**
-- [packages/ai/catalog/providers/amazon-bedrock.ts:6-32](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L6-L32)
-- [packages/ai/src/providers/amazon-bedrock.models.ts:7-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts#L7-L14)
+- [packages/ai/catalog/providers/amazon-bedrock.ts:6-32](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L6-L32)
+- [packages/ai/src/providers/amazon-bedrock.models.ts:7-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts#L7-L14)
 
 **章节来源**
-- [packages/ai/catalog/providers/amazon-bedrock.ts:1-33](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L1-L33)
-- [packages/ai/src/providers/amazon-bedrock.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts#L1-L15)
+- [packages/ai/catalog/providers/amazon-bedrock.ts:1-33](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L1-L33)
+- [packages/ai/src/providers/amazon-bedrock.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts#L1-L15)
 
 ### 流式响应处理
 Bedrock Converse Stream 实现将 SDK 的事件流转换为内部事件：
@@ -232,10 +232,10 @@ Next --> End(["完成或继续"])
 ```
 
 **图表来源**
-- [packages/ai/src/api/bedrock-converse-stream.ts:336-369](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L336-L369)
-- [packages/ai/src/api/bedrock-converse-stream.ts:628-790](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L628-L790)
-- [packages/ai/src/api/bedrock-converse-stream.ts:746-763](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L746-L763)
-- [packages/ai/src/api/bedrock-converse-stream.ts:1229-1244](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L1229-L1244)
+- [packages/ai/src/api/bedrock-converse-stream.ts:336-369](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L336-L369)
+- [packages/ai/src/api/bedrock-converse-stream.ts:628-790](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L628-L790)
+- [packages/ai/src/api/bedrock-converse-stream.ts:746-763](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L746-L763)
+- [packages/ai/src/api/bedrock-converse-stream.ts:1229-1244](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L1229-L1244)
 
 ### 错误恢复与诊断
 错误处理包含：
@@ -257,16 +257,16 @@ StopReason --> |其他| Done["完成"]
 ```
 
 **图表来源**
-- [packages/ai/src/api/bedrock-converse-stream.ts:303-326](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L303-L326)
-- [packages/ai/src/api/bedrock-converse-stream.ts:386-395](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L386-L395)
-- [packages/ai/src/api/bedrock-converse-stream.ts:407-446](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L407-L446)
-- [packages/ai/src/api/bedrock-converse-stream.ts:475-494](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L475-L494)
+- [packages/ai/src/api/bedrock-converse-stream.ts:303-326](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L303-L326)
+- [packages/ai/src/api/bedrock-converse-stream.ts:386-395](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L386-L395)
+- [packages/ai/src/api/bedrock-converse-stream.ts:407-446](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L407-L446)
+- [packages/ai/src/api/bedrock-converse-stream.ts:475-494](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L475-L494)
 
 **章节来源**
-- [packages/ai/src/api/bedrock-converse-stream.ts:303-326](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L303-L326)
-- [packages/ai/src/api/bedrock-converse-stream.ts:386-395](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L386-L395)
-- [packages/ai/src/api/bedrock-converse-stream.ts:407-446](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L407-L446)
-- [packages/ai/src/api/bedrock-converse-stream.ts:475-494](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L475-L494)
+- [packages/ai/src/api/bedrock-converse-stream.ts:303-326](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L303-L326)
+- [packages/ai/src/api/bedrock-converse-stream.ts:386-395](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L386-L395)
+- [packages/ai/src/api/bedrock-converse-stream.ts:407-446](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L407-L446)
+- [packages/ai/src/api/bedrock-converse-stream.ts:475-494](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L475-L494)
 
 ## 依赖关系分析
 - 提供商层：`amazon-bedrock.ts` 依赖懒加载 API 与模型目录。
@@ -284,18 +284,18 @@ Provider --> Models
 ```
 
 **图表来源**
-- [packages/ai/src/providers/amazon-bedrock.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L1-L5)
-- [packages/ai/src/api/bedrock-converse-stream.lazy.ts:1-43](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.lazy.ts#L1-L43)
-- [packages/ai/src/api/bedrock-converse-stream.ts:1-25](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L1-L25)
-- [packages/ai/catalog/providers/amazon-bedrock.ts:1-33](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L1-L33)
-- [packages/ai/src/providers/amazon-bedrock.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts#L1-L15)
+- [packages/ai/src/providers/amazon-bedrock.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L1-L5)
+- [packages/ai/src/api/bedrock-converse-stream.lazy.ts:1-43](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.lazy.ts#L1-L43)
+- [packages/ai/src/api/bedrock-converse-stream.ts:1-25](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L1-L25)
+- [packages/ai/catalog/providers/amazon-bedrock.ts:1-33](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L1-L33)
+- [packages/ai/src/providers/amazon-bedrock.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts#L1-L15)
 
 **章节来源**
-- [packages/ai/src/providers/amazon-bedrock.ts:1-91](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L1-L91)
-- [packages/ai/src/api/bedrock-converse-stream.lazy.ts:1-43](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.lazy.ts#L1-L43)
-- [packages/ai/src/api/bedrock-converse-stream.ts:1-80](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L1-L80)
-- [packages/ai/catalog/providers/amazon-bedrock.ts:1-33](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L1-L33)
-- [packages/ai/src/providers/amazon-bedrock.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts#L1-L15)
+- [packages/ai/src/providers/amazon-bedrock.ts:1-91](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L1-L91)
+- [packages/ai/src/api/bedrock-converse-stream.lazy.ts:1-43](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.lazy.ts#L1-L43)
+- [packages/ai/src/api/bedrock-converse-stream.ts:1-80](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L1-L80)
+- [packages/ai/catalog/providers/amazon-bedrock.ts:1-33](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L1-L33)
+- [packages/ai/src/providers/amazon-bedrock.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.models.ts#L1-L15)
 
 ## 性能与成本控制
 - 用量与成本：通过 `metadata.usage` 更新 input/output/cacheRead/cacheWrite/totalTokens，并调用 `calculateCost` 计算费用。
@@ -309,9 +309,9 @@ Provider --> Models
 - 对非 Claude 模型谨慎开启思考功能，避免不必要的开销。
 
 **章节来源**
-- [packages/ai/src/api/bedrock-converse-stream.ts:746-763](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L746-L763)
-- [packages/ai/src/api/bedrock-converse-stream.ts:577-626](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L577-L626)
-- [packages/ai/catalog/providers/amazon-bedrock.ts:24-31](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L24-L31)
+- [packages/ai/src/api/bedrock-converse-stream.ts:746-763](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L746-L763)
+- [packages/ai/src/api/bedrock-converse-stream.ts:577-626](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L577-L626)
+- [packages/ai/catalog/providers/amazon-bedrock.ts:24-31](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L24-L31)
 
 ## 故障排查指南
 常见问题与定位方法：
@@ -327,10 +327,10 @@ Provider --> Models
 - 流事件中的异常类型（InternalServerException、ModelStreamErrorException、ValidationException、ThrottlingException、ServiceUnavailableException）。
 
 **章节来源**
-- [packages/ai/test/bedrock-utils.ts:1-19](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/bedrock-utils.ts#L1-L19)
-- [packages/ai/src/env-api-keys.ts:175-196](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L175-L196)
-- [packages/ai/src/api/bedrock-converse-stream.ts:407-446](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L407-L446)
-- [packages/ai/src/api/bedrock-converse-stream.ts:475-494](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L475-L494)
+- [packages/ai/test/bedrock-utils.ts:1-19](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/bedrock-utils.ts#L1-L19)
+- [packages/ai/src/env-api-keys.ts:175-196](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L175-L196)
+- [packages/ai/src/api/bedrock-converse-stream.ts:407-446](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L407-L446)
+- [packages/ai/src/api/bedrock-converse-stream.ts:475-494](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L475-L494)
 
 ## 结论
 本项目为 AWS Bedrock 提供了完整的提供商集成：
@@ -351,9 +351,9 @@ Provider --> Models
 - `AWS_WEB_IDENTITY_TOKEN_FILE`：IRSA Web Identity Token。
 
 **章节来源**
-- [packages/ai/src/providers/amazon-bedrock.ts:54-80](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L54-L80)
-- [packages/ai/test/bedrock-utils.ts:12-18](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/bedrock-utils.ts#L12-L18)
-- [packages/ai/src/env-api-keys.ts:175-196](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L175-L196)
+- [packages/ai/src/providers/amazon-bedrock.ts:54-80](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/amazon-bedrock.ts#L54-L80)
+- [packages/ai/test/bedrock-utils.ts:12-18](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/bedrock-utils.ts#L12-L18)
+- [packages/ai/src/env-api-keys.ts:175-196](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L175-L196)
 
 ### 区域与端点
 - 优先从模型 ARN 提取 region。
@@ -362,8 +362,8 @@ Provider --> Models
 - 自定义端点（VPC/代理）不被目录覆盖。
 
 **章节来源**
-- [packages/ai/src/api/bedrock-converse-stream.ts:173-250](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L173-L250)
-- [packages/ai/catalog/providers/amazon-bedrock.ts:6-10](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L6-L10)
+- [packages/ai/src/api/bedrock-converse-stream.ts:173-250](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L173-L250)
+- [packages/ai/catalog/providers/amazon-bedrock.ts:6-10](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/amazon-bedrock.ts#L6-L10)
 
 ### IAM 权限建议
 - 使用 Bearer Token 时，需授予 `bedrock:CallWithBearerToken` 权限。
@@ -371,4 +371,4 @@ Provider --> Models
 - 在企业环境中，建议使用托管策略与权限边界，限制资源范围与操作类型。
 
 **章节来源**
-- [packages/ai/src/api/bedrock-converse-stream.ts:110-115](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L110-L115)
+- [packages/ai/src/api/bedrock-converse-stream.ts:110-115](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/bedrock-converse-stream.ts#L110-L115)

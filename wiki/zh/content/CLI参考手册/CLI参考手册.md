@@ -2,16 +2,16 @@
 
 <cite>
 **本文引用的文件**   
-- [README.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md)
-- [packages/coding-agent/package.json](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/package.json)
-- [packages/coding-agent/src/cli.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli.ts)
-- [packages/coding-agent/docs/cli.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md)
-- [packages/coding-agent/docs/environment-variables.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/environment-variables.md)
-- [packages/coding-agent/docs/configuration.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/configuration.md)
-- [packages/coding-agent/docs/json.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/json.md)
-- [packages/coding-agent/docs/rpc.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/rpc.md)
-- [packages/coding-agent/docs/sessions.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/sessions.md)
-- [packages/coding-agent/docs/settings.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/settings.md)
+- [README.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md)
+- [packages/coding-agent/package.json](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/package.json)
+- [packages/coding-agent/src/cli.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli.ts)
+- [packages/coding-agent/docs/cli.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md)
+- [packages/coding-agent/docs/environment-variables.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/environment-variables.md)
+- [packages/coding-agent/docs/configuration.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/configuration.md)
+- [packages/coding-agent/docs/json.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/json.md)
+- [packages/coding-agent/docs/rpc.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/rpc.md)
+- [packages/coding-agent/docs/sessions.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/sessions.md)
+- [packages/coding-agent/docs/settings.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/settings.md)
 </cite>
 
 ## 目录
@@ -47,12 +47,12 @@ E --> H["工具与扩展"]
 ```
 
 图表来源
-- [packages/coding-agent/src/cli.ts:1-7](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli.ts#L1-L7)
-- [packages/coding-agent/package.json:9-11](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/package.json#L9-L11)
+- [packages/coding-agent/src/cli.ts:1-7](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli.ts#L1-L7)
+- [packages/coding-agent/package.json:9-11](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/package.json#L9-L11)
 
 章节来源
-- [packages/coding-agent/src/cli.ts:1-7](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli.ts#L1-L7)
-- [packages/coding-agent/package.json:1-11](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/package.json#L1-L11)
+- [packages/coding-agent/src/cli.ts:1-7](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli.ts#L1-L7)
+- [packages/coding-agent/package.json:1-11](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/package.json#L1-L11)
 
 ## 核心组件
 - 命令与模式
@@ -77,10 +77,10 @@ E --> H["工具与扩展"]
   - 项目 .pi 下同名结构与信任机制。
 
 章节来源
-- [packages/coding-agent/docs/cli.md:1-357](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L1-L357)
-- [packages/coding-agent/docs/environment-variables.md:1-104](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/environment-variables.md#L1-L104)
-- [packages/coding-agent/docs/configuration.md:1-48](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/configuration.md#L1-L48)
-- [packages/coding-agent/docs/settings.md:1-174](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/settings.md#L1-L174)
+- [packages/coding-agent/docs/cli.md:1-357](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L1-L357)
+- [packages/coding-agent/docs/environment-variables.md:1-104](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/environment-variables.md#L1-L104)
+- [packages/coding-agent/docs/configuration.md:1-48](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/configuration.md#L1-L48)
+- [packages/coding-agent/docs/settings.md:1-174](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/settings.md#L1-L174)
 
 ## 架构总览
 下图展示从 CLI 到各子系统的调用关系与数据流向。
@@ -114,9 +114,9 @@ MODES --> ENV
 ```
 
 图表来源
-- [packages/coding-agent/src/cli.ts:1-7](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/cli.ts#L1-L7)
-- [packages/coding-agent/docs/cli.md:21-53](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L21-L53)
-- [packages/coding-agent/docs/environment-variables.md:75-104](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/environment-variables.md#L75-L104)
+- [packages/coding-agent/src/cli.ts:1-7](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/cli.ts#L1-L7)
+- [packages/coding-agent/docs/cli.md:21-53](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L21-L53)
+- [packages/coding-agent/docs/environment-variables.md:75-104](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/environment-variables.md#L75-L104)
 
 ## 详细组件分析
 
@@ -153,10 +153,10 @@ Run --> End(["退出"])
 ```
 
 图表来源
-- [packages/coding-agent/docs/cli.md:21-53](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L21-L53)
+- [packages/coding-agent/docs/cli.md:21-53](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L21-L53)
 
 章节来源
-- [packages/coding-agent/docs/cli.md:1-53](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L1-L53)
+- [packages/coding-agent/docs/cli.md:1-53](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L1-L53)
 
 ### 模型选择与思考级别
 - 关键选项
@@ -171,7 +171,7 @@ Run --> End(["退出"])
   - thinking 级别会被钳制到模型支持的范围。
 
 章节来源
-- [packages/coding-agent/docs/cli.md:55-76](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L55-L76)
+- [packages/coding-agent/docs/cli.md:55-76](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L55-L76)
 
 ### 会话管理与分支
 - 关键选项
@@ -207,12 +207,12 @@ CLI-->>U : 进入会话流程
 ```
 
 图表来源
-- [packages/coding-agent/docs/cli.md:78-110](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L78-L110)
-- [packages/coding-agent/docs/sessions.md:5-28](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/sessions.md#L5-L28)
+- [packages/coding-agent/docs/cli.md:78-110](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L78-L110)
+- [packages/coding-agent/docs/sessions.md:5-28](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/sessions.md#L5-L28)
 
 章节来源
-- [packages/coding-agent/docs/cli.md:78-110](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L78-L110)
-- [packages/coding-agent/docs/sessions.md:1-75](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/sessions.md#L1-L75)
+- [packages/coding-agent/docs/cli.md:78-110](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L78-L110)
+- [packages/coding-agent/docs/sessions.md:1-75](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/sessions.md#L1-L75)
 
 ### 工具控制与 Codemode
 - 关键选项
@@ -230,8 +230,8 @@ CLI-->>U : 进入会话流程
   - 单次调用使用 --tools +codemode。
 
 章节来源
-- [packages/coding-agent/docs/cli.md:111-184](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L111-L184)
-- [packages/coding-agent/docs/settings.md:38-60](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/settings.md#L38-L60)
+- [packages/coding-agent/docs/cli.md:111-184](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L111-L184)
+- [packages/coding-agent/docs/settings.md:38-60](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/settings.md#L38-L60)
 
 ### 资源加载与主题
 - 关键选项
@@ -246,7 +246,7 @@ CLI-->>U : 进入会话流程
   - 资源路径仅对当前进程有效，相对路径基于当前工作目录解析。
 
 章节来源
-- [packages/coding-agent/docs/cli.md:186-219](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L186-L219)
+- [packages/coding-agent/docs/cli.md:186-219](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L186-L219)
 
 ### 提示与进程控制
 - 关键选项
@@ -260,7 +260,7 @@ CLI-->>U : 进入会话流程
   - -h/--help、-v/--version：帮助与版本。
 
 章节来源
-- [packages/coding-agent/docs/cli.md:221-250](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L221-L250)
+- [packages/coding-agent/docs/cli.md:221-250](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L221-L250)
 
 ### 包管理命令
 - 常用任务
@@ -273,7 +273,7 @@ CLI-->>U : 进入会话流程
   - 通过 PI_SELF_UPDATE_COMMAND 或 selfUpdateCommand 设置自定义更新命令。
 
 章节来源
-- [packages/coding-agent/docs/cli.md:252-303](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L252-L303)
+- [packages/coding-agent/docs/cli.md:252-303](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L252-L303)
 
 ### 凭证与认证
 - 登录/登出
@@ -287,7 +287,7 @@ CLI-->>U : 进入会话流程
   - 凭证打印命令会将机密写入 stdout。
 
 章节来源
-- [packages/coding-agent/docs/cli.md:305-339](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L305-L339)
+- [packages/coding-agent/docs/cli.md:305-339](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L305-L339)
 
 ### MCP 服务器管理
 - 命令
@@ -302,7 +302,7 @@ CLI-->>U : 进入会话流程
   - 项目 .pi/mcp.json 仅在已信任项目中读取。
 
 章节来源
-- [packages/coding-agent/docs/cli.md:341-357](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L341-L357)
+- [packages/coding-agent/docs/cli.md:341-357](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L341-L357)
 
 ### JSON 事件流模式
 - 用途
@@ -337,10 +337,10 @@ Pi-->>Client : {"type" : "agent_settled","aborted" : false}
 ```
 
 图表来源
-- [packages/coding-agent/docs/json.md:1-227](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/json.md#L1-L227)
+- [packages/coding-agent/docs/json.md:1-227](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/json.md#L1-L227)
 
 章节来源
-- [packages/coding-agent/docs/json.md:1-227](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/json.md#L1-L227)
+- [packages/coding-agent/docs/json.md:1-227](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/json.md#L1-L227)
 
 ### RPC 模式
 - 用途
@@ -376,10 +376,10 @@ Pi-->>Host : 进程退出
 ```
 
 图表来源
-- [packages/coding-agent/docs/rpc.md:1-196](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/rpc.md#L1-L196)
+- [packages/coding-agent/docs/rpc.md:1-196](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/rpc.md#L1-L196)
 
 章节来源
-- [packages/coding-agent/docs/rpc.md:1-196](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/rpc.md#L1-L196)
+- [packages/coding-agent/docs/rpc.md:1-196](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/rpc.md#L1-L196)
 
 ### 环境变量
 - 进程标记
@@ -390,7 +390,7 @@ Pi-->>Host : 进程退出
   - PI_CODING_AGENT_DIR、PI_CODING_AGENT_SESSION_DIR、PI_PACKAGE_DIR、PI_OFFLINE、PI_SKIP_VERSION_CHECK、PI_SELF_UPDATE_COMMAND、PI_TELEMETRY、PI_CODEMODE_MAX_WORKERS、PI_CACHE_RETENTION、PI_SHARE_VIEWER_URL、PI_RADIUS_GATEWAY、PI_CLEAR_ON_SHRINK、PI_HARDWARE_CURSOR、PI_CLIPBOARD_OSC52、PI_HYPERLINKS、PI_PROGRAM_STATUS、PI_IMAGE_PROTOCOL、PI_TRUE_COLOR、PI_TUI_ESC_TIMEOUT、VISUAL/EDITOR、HTTP_PROXY/HTTPS_PROXY。
 
 章节来源
-- [packages/coding-agent/docs/environment-variables.md:1-104](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/environment-variables.md#L1-L104)
+- [packages/coding-agent/docs/environment-variables.md:1-104](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/environment-variables.md#L1-L104)
 
 ### 配置文件
 - 用户级目录
@@ -401,7 +401,7 @@ Pi-->>Host : 进程退出
   - AGENTS.md/CLAUDE.md 从用户目录、工作目录及其父目录发现；AGENTS.override.md 仅在同级目录替换。
 
 章节来源
-- [packages/coding-agent/docs/configuration.md:1-48](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/configuration.md#L1-L48)
+- [packages/coding-agent/docs/configuration.md:1-48](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/configuration.md#L1-L48)
 
 ### 设置参考
 - 模型与思考
@@ -424,7 +424,7 @@ Pi-->>Host : 进程退出
   - collapseChangelog/enableInstallTelemetry/enableAnalytics/warnings.anthropicExtraUsage。
 
 章节来源
-- [packages/coding-agent/docs/settings.md:1-174](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/settings.md#L1-L174)
+- [packages/coding-agent/docs/settings.md:1-174](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/settings.md#L1-L174)
 
 ## 依赖关系分析
 - 包入口与依赖
@@ -442,10 +442,10 @@ Pkg --> MCP["@earendil-works/pi-mcp"]
 ```
 
 图表来源
-- [packages/coding-agent/package.json:43-65](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/package.json#L43-L65)
+- [packages/coding-agent/package.json:43-65](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/package.json#L43-L65)
 
 章节来源
-- [packages/coding-agent/package.json:1-98](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/package.json#L1-L98)
+- [packages/coding-agent/package.json:1-98](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/package.json#L1-L98)
 
 ## 性能考虑
 - 模型缓存预热
@@ -460,8 +460,8 @@ Pkg --> MCP["@earendil-works/pi-mcp"]
   - fullscreenWheelScrollLines、terminal.clearOnShrink、terminal.showTerminalProgress 等影响交互体验与性能。
 
 章节来源
-- [packages/coding-agent/docs/settings.md:1-174](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/settings.md#L1-L174)
-- [packages/coding-agent/docs/environment-variables.md:75-104](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/environment-variables.md#L75-L104)
+- [packages/coding-agent/docs/settings.md:1-174](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/settings.md#L1-L174)
+- [packages/coding-agent/docs/environment-variables.md:75-104](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/environment-variables.md#L75-L104)
 
 ## 故障排查指南
 - 常见错误
@@ -479,10 +479,10 @@ Pkg --> MCP["@earendil-works/pi-mcp"]
   - 如需更强隔离，使用容器或沙箱运行 Pi。
 
 章节来源
-- [packages/coding-agent/docs/rpc.md:73-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/rpc.md#L73-L90)
-- [packages/coding-agent/docs/sessions.md:24-28](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/sessions.md#L24-L28)
-- [packages/coding-agent/docs/sessions.md:50-56](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/sessions.md#L50-L56)
-- [packages/coding-agent/docs/cli.md:339-339](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L339-L339)
+- [packages/coding-agent/docs/rpc.md:73-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/rpc.md#L73-L90)
+- [packages/coding-agent/docs/sessions.md:24-28](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/sessions.md#L24-L28)
+- [packages/coding-agent/docs/sessions.md:50-56](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/sessions.md#L50-L56)
+- [packages/coding-agent/docs/cli.md:339-339](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L339-L339)
 
 ## 结论
 本手册系统梳理了 Pi CLI 的命令语法、选项参数、环境变量与配置文件，覆盖了交互、打印、JSON 与 RPC 四种模式的完整用法，并深入说明了会话管理、模型选择、工具控制与资源加载等高级功能。通过合理配置 settings.json 与环境变量，结合 JSON/RPC 的事件流与协议规范，你可以在不同运行环境中构建稳定、可扩展的自动化与集成方案。
@@ -493,4 +493,4 @@ Pkg --> MCP["@earendil-works/pi-mcp"]
   - 首次使用：在 Pi 内运行 /login 连接提供商或 API Key，然后给出任务。
 
 章节来源
-- [README.md:23-54](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L23-L54)
+- [README.md:23-54](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L23-L54)

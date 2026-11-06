@@ -2,16 +2,16 @@
 
 <cite>
 **本文引用的文件**   
-- [README.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md)
-- [package.json](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/package.json)
+- [README.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md)
+- [package.json](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/package.json)
 - [00-baseline.md](#/explains/00-baseline.md)
 - [01-repo-map.md](#/explains/01-repo-map.md)
 - [02-prune-plan.md](#/explains/02-prune-plan.md)
 - [03-critical-path.md](#/explains/03-critical-path.md)
 - [26-fork-and-prune.md](#/explains/26-fork-and-prune.md)
-- [packages/coding-agent/package.json](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/package.json)
-- [packages/agent/package.json](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/package.json)
-- [packages/ai/package.json](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/package.json)
+- [packages/coding-agent/package.json](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/package.json)
+- [packages/agent/package.json](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/package.json)
+- [packages/ai/package.json](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/package.json)
 </cite>
 
 ## 更新摘要
@@ -41,8 +41,8 @@ OMCA 是在 Pi 代码库基础上建立的本地工作分支，目标是围绕 `
 Pi 的定位是一个"可定制的 Agent harness"，提供交互式 CLI、RPC、SDK、扩展系统、工具注册、Provider 适配和终端 UI。OMCA 不改变这些能力，而是以扩展方式在工具调用前增加写路径白名单与审计策略，同时明确区分"策略层"和"进程/文件系统级边界"。
 
 **章节来源**
-- [README.md:13-21](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L13-L21)
-- [00-baseline.md:1-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/00-baseline.md#L1-L20)
+- [README.md:13-21](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L13-L21)
+- [00-baseline.md:1-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/00-baseline.md#L1-L20)
 
 ## Fork 与裁剪策略
 
@@ -182,13 +182,13 @@ git rebase upstream/main
 不要直接 `merge`，否则历史里会混入上游的合并提交，之后很难看清自己的改动。
 
 **章节来源**
-- [26-fork-and-prune.md:10-28](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/26-fork-and-prune.md#L10-L28)
-- [26-fork-and-prune.md:30-53](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/26-fork-and-prune.md#L30-L53)
-- [26-fork-and-prune.md:55-69](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/26-fork-and-prune.md#L55-L69)
-- [26-fork-and-prune.md:71-86](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/26-fork-and-prune.md#L71-L86)
-- [26-fork-and-prune.md:87-110](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/26-fork-and-prune.md#L87-L110)
-- [26-fork-and-prune.md:112-120](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/26-fork-and-prune.md#L112-L120)
-- [26-fork-and-prune.md:143-175](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/26-fork-and-prune.md#L143-L175)
+- [26-fork-and-prune.md:10-28](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/26-fork-and-prune.md#L10-L28)
+- [26-fork-and-prune.md:30-53](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/26-fork-and-prune.md#L30-L53)
+- [26-fork-and-prune.md:55-69](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/26-fork-and-prune.md#L55-L69)
+- [26-fork-and-prune.md:71-86](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/26-fork-and-prune.md#L71-L86)
+- [26-fork-and-prune.md:87-110](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/26-fork-and-prune.md#L87-L110)
+- [26-fork-and-prune.md:112-120](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/26-fork-and-prune.md#L112-L120)
+- [26-fork-and-prune.md:143-175](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/26-fork-and-prune.md#L143-L175)
 
 ## 项目结构
 仓库采用 npm workspaces monorepo 组织，根 `package.json` 声明所有 workspace，并提供统一的 build、check、test、release 脚本。核心产品入口位于 `packages/coding-agent`，它依赖 agent 运行时、AI 抽象、codemode、mcp 和 tui。
@@ -216,14 +216,14 @@ AI --> Telemetry
 ```
 
 **图表来源**
-- [package.json:5-11](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/package.json#L5-L11)
-- [packages/coding-agent/package.json:43-48](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/package.json#L43-L48)
-- [packages/agent/package.json:25-28](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/agent/package.json#L25-L28)
-- [packages/ai/package.json:77-87](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/package.json#L77-L87)
+- [package.json:5-11](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/package.json#L5-L11)
+- [packages/coding-agent/package.json:43-48](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/package.json#L43-L48)
+- [packages/agent/package.json:25-28](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/agent/package.json#L25-L28)
+- [packages/ai/package.json:77-87](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/package.json#L77-L87)
 
 **章节来源**
-- [package.json:1-11](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/package.json#L1-L11)
-- [01-repo-map.md:5-21](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/01-repo-map.md#L5-L21)
+- [package.json:1-11](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/package.json#L1-L11)
+- [01-repo-map.md:5-21](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/01-repo-map.md#L5-L21)
 
 ## 核心组件
 OMCA 关注的核心组件集中在以下包：
@@ -242,8 +242,8 @@ OMCA 关注的核心组件集中在以下包：
 OMCA 的第一个功能建议是：**在 `tool_call` 层实现写路径白名单扩展**，而不是修改 Agent 内核。这样能利用已有的 `block` 语义、嵌套调用覆盖、以及扩展零开销特性。
 
 **章节来源**
-- [01-repo-map.md:43-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/01-repo-map.md#L43-L90)
-- [03-critical-path.md:111-118](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/03-critical-path.md#L111-L118)
+- [01-repo-map.md:43-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/01-repo-map.md#L43-L90)
+- [03-critical-path.md:111-118](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/03-critical-path.md#L111-L118)
 
 ## 架构总览
 从一次用户 prompt 到工具执行，OMCA 需要重点理解如下分层：
@@ -279,9 +279,9 @@ Session-->>CLI : 输出结果
 ```
 
 **图表来源**
-- [03-critical-path.md:6-25](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/03-critical-path.md#L6-L25)
-- [03-critical-path.md:27-56](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/03-critical-path.md#L27-L56)
-- [03-critical-path.md:58-75](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/03-critical-path.md#L58-L75)
+- [03-critical-path.md:6-25](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/03-critical-path.md#L6-L25)
+- [03-critical-path.md:27-56](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/03-critical-path.md#L27-L56)
+- [03-critical-path.md:58-75](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/03-critical-path.md#L58-L75)
 
 ## 关键路径与处理流程
 
@@ -307,7 +307,7 @@ AgentSession.prompt()
 外层 while 处理 follow-up，内层处理 turn、tool、steering。`finishTurn` 返回结束动作时会直接结束，并通过 continue 保证再次发起请求。
 
 **章节来源**
-- [03-critical-path.md:6-25](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/03-critical-path.md#L6-L25)
+- [03-critical-path.md:6-25](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/03-critical-path.md#L6-L25)
 
 ### 工具执行链与权限接缝
 工具执行是 OMCA 最重要的接缝：
@@ -336,7 +336,7 @@ executeToolCalls()
 3. 嵌套工具调用走同一个入口，因此 codemode 和 MCP 发起的调用也会经过 `tool_call` 钩子。
 
 **章节来源**
-- [03-critical-path.md:27-56](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/03-critical-path.md#L27-L56)
+- [03-critical-path.md:27-56](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/03-critical-path.md#L27-L56)
 
 ### coding-agent 如何挂载扩展钩子
 `AgentSession._installAgentToolHooks()` 将 `beforeToolCall` 和 `afterToolCall` 挂到扩展 runner。第一个返回 `{ block: true }` 的 handler 立即胜出；handler 抛错会被转换成错误工具结果，即"抛错等价于阻断"。嵌套调用通过 `_executeNestedToolCall()` 传入父调用 ID。
@@ -358,22 +358,22 @@ ReturnUndefined --> End
 ```
 
 **图表来源**
-- [03-critical-path.md:58-75](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/03-critical-path.md#L58-L75)
+- [03-critical-path.md:58-75](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/03-critical-path.md#L58-L75)
 
 **章节来源**
-- [03-critical-path.md:58-75](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/03-critical-path.md#L58-L75)
+- [03-critical-path.md:58-75](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/03-critical-path.md#L58-L75)
 
 ### turn/settle 边界与收敛扩展点
 `finishTurn` 触发 `turn_end` 边界；`settle` 循环触发 `agent_before_settle`。OMCA 文档指出这是未来 `converge` 验证器的挂载点：在 `agent_before_settle` 中运行验证器，不通过则 `continue`，且没有处理器时零开销。
 
 **章节来源**
-- [03-critical-path.md:77-91](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/03-critical-path.md#L77-L91)
+- [03-critical-path.md:77-91](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/03-critical-path.md#L77-L91)
 
 ### 工具与配置的组装
 `AgentSession._buildRuntime()` 负责创建工具定义、扩展 runner 和刷新工具注册表。默认激活工具包括 read、bash、edit、write。配置文件位置分为用户级和项目级，目录名来自 `package.json` 的 `pi.configDir`，默认 `.pi`。
 
 **章节来源**
-- [03-critical-path.md:93-110](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/03-critical-path.md#L93-L110)
+- [03-critical-path.md:93-110](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/03-critical-path.md#L93-L110)
 
 ### 写路径白名单的设计约束
 OMCA 文档强调：**不要把"安全"寄托在 `tool_call` 上**。`tool_call` 是策略层，真正的边界必须是进程/文件系统层。
@@ -392,7 +392,7 @@ OMCA 文档强调：**不要把"安全"寄托在 `tool_call` 上**。`tool_call`
 建议组合 1 + 2：事前审计，事后把违规写入工具结果，避免"看起来拦住了其实没有"的假安全感。
 
 **章节来源**
-- [03-critical-path.md:111-158](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/03-critical-path.md#L111-L158)
+- [03-critical-path.md:111-158](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/03-critical-path.md#L111-L158)
 
 ## 依赖关系分析
 根据仓库地图和执行后的实际包集合，OMCA 保留的包依赖关系如下：
@@ -416,13 +416,13 @@ Evals["evals"] -.->|"private, 无依赖"| CodingAgent
 - `telemetry` 被 `ai` 直接依赖，是否可内联后删除仍在评估。
 
 **图表来源**
-- [01-repo-map.md:5-21](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/01-repo-map.md#L5-L21)
-- [packages/coding-agent/package.json:43-48](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/package.json#L43-L48)
-- [packages/ai/package.json:77-87](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/package.json#L77-L87)
+- [01-repo-map.md:5-21](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/01-repo-map.md#L5-L21)
+- [packages/coding-agent/package.json:43-48](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/package.json#L43-L48)
+- [packages/ai/package.json:77-87](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/package.json#L77-L87)
 
 **章节来源**
-- [01-repo-map.md:5-21](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/01-repo-map.md#L5-L21)
-- [02-prune-plan.md:47-56](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/02-prune-plan.md#L47-L56)
+- [01-repo-map.md:5-21](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/01-repo-map.md#L5-L21)
+- [02-prune-plan.md:47-56](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/02-prune-plan.md#L47-L56)
 
 ## 性能与构建特性
 - Node 版本要求：>=22.19.0。
@@ -433,10 +433,10 @@ Evals["evals"] -.->|"private, 无依赖"| CodingAgent
 - 供应链加固：直接依赖精确锁定，lockfile 作为依赖真相，pre-commit 阻止意外提交 lockfile，CI 使用 `npm ci --ignore-scripts` 并运行 audit。
 
 **章节来源**
-- [package.json:12-55](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/package.json#L12-L55)
-- [package.json:67-73](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/package.json#L67-L73)
-- [README.md:102-111](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L102-L111)
-- [README.md:168-180](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L168-L180)
+- [package.json:12-55](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/package.json#L12-L55)
+- [package.json:67-73](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/package.json#L67-L73)
+- [README.md:102-111](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L102-L111)
+- [README.md:168-180](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L168-L180)
 
 ## 故障排查指南
 OMCA 基线记录了对既有失败的系统性分类，这对定位问题很有帮助：
@@ -458,7 +458,7 @@ OMCA 基线记录了对既有失败的系统性分类，这对定位问题很有
 5. 对于 flaky 测试，优先确认是否为网络或时序问题，再决定是否修复。
 
 **章节来源**
-- [00-baseline.md:37-88](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/00-baseline.md#L37-L88)
+- [00-baseline.md:37-88](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/00-baseline.md#L37-L88)
 
 ## 结论
 OMCA 不是从零开始的独立项目，而是基于 Pi monorepo 的工作分支，聚焦于在 `tool_call` 层增加写路径白名单与审计策略。其设计原则是：
@@ -469,7 +469,7 @@ OMCA 不是从零开始的独立项目，而是基于 Pi monorepo 的工作分�
 - 通过 OMCA 文档记录基线、仓库地图、裁剪方案和关键路径，降低后续维护成本。
 
 **章节来源**
-- [03-critical-path.md:111-158](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/03-critical-path.md#L111-L158)
+- [03-critical-path.md:111-158](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/03-critical-path.md#L111-L158)
 
 ## 附录：OMCA裁剪与演进记录
 
@@ -481,7 +481,7 @@ OMCA 不是从零开始的独立项目，而是基于 Pi monorepo 的工作分�
 - 构建时需启用代理环境变量，否则 `packages/ai` 拉取 models.dev 会报网络错误
 
 **章节来源**
-- [00-baseline.md:1-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/00-baseline.md#L1-L20)
+- [00-baseline.md:1-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/00-baseline.md#L1-L20)
 
 ### 裁剪方案与结果
 - 删除 `apps/p2`、`packages/env`、`packages/chord`、`packages/durable` 及相关脚本。
@@ -490,7 +490,7 @@ OMCA 不是从零开始的独立项目，而是基于 Pi monorepo 的工作分�
 - 裁剪后 `npm run check` 通过；`./test.sh` 失败数下降，剩余失败基本为环境问题。
 
 **章节来源**
-- [02-prune-plan.md:6-48](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/02-prune-plan.md#L6-L48)
+- [02-prune-plan.md:6-48](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/02-prune-plan.md#L6-L48)
 
 ### 当前验证状态
 - `npm run check`：通过；
@@ -498,7 +498,7 @@ OMCA 不是从零开始的独立项目，而是基于 Pi monorepo 的工作分�
 - 四项基于 faux provider 的运行验证通过，见 `25-validation.md`。
 
 **章节来源**
-- [26-fork-and-prune.md:184-189](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/26-fork-and-prune.md#L184-L189)
+- [26-fork-and-prune.md:184-189](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/26-fork-and-prune.md#L184-L189)
 
 ### 建议阅读顺序
 1. 先看 `packages/agent/src/types.ts`，了解事件结构。
@@ -508,4 +508,4 @@ OMCA 不是从零开始的独立项目，而是基于 Pi monorepo 的工作分�
 5. 只读 `packages/ai/src/api/` 的 `streamSimple` 签名与调用点。
 
 **章节来源**
-- [01-repo-map.md:83-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/docs/explains/01-repo-map.md#L83-L90)
+- [01-repo-map.md:83-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/docs/explains/01-repo-map.md#L83-L90)

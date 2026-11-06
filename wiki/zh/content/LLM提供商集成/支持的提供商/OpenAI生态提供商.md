@@ -2,19 +2,19 @@
 
 <cite>
 **本文引用的文件**   
-- [packages/ai/src/providers/openai.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts)
-- [packages/ai/src/providers/openai-codex.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai-codex.ts)
-- [packages/ai/src/api/openai-responses.lazy.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.lazy.ts)
-- [packages/ai/src/api/openai-codex-responses.lazy.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.lazy.ts)
-- [packages/ai/src/api/openai-responses.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.ts)
-- [packages/ai/src/api/openai-codex-responses.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts)
-- [packages/ai/src/auth/oauth/openai-chatgpt.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-chatgpt.ts)
-- [packages/ai/src/auth/oauth/openai-codex.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts)
-- [packages/ai/src/models.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/models.ts)
-- [packages/ai/src/env-api-keys.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts)
-- [packages/ai/src/providers/openai.models.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.models.ts)
-- [packages/ai/src/providers/openai-codex.models.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai-codex.models.ts)
-- [packages/coding-agent/test/auth-check.test.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/test/auth-check.test.ts)
+- [packages/ai/src/providers/openai.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts)
+- [packages/ai/src/providers/openai-codex.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai-codex.ts)
+- [packages/ai/src/api/openai-responses.lazy.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.lazy.ts)
+- [packages/ai/src/api/openai-codex-responses.lazy.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.lazy.ts)
+- [packages/ai/src/api/openai-responses.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.ts)
+- [packages/ai/src/api/openai-codex-responses.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts)
+- [packages/ai/src/auth/oauth/openai-chatgpt.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-chatgpt.ts)
+- [packages/ai/src/auth/oauth/openai-codex.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts)
+- [packages/ai/src/models.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/models.ts)
+- [packages/ai/src/env-api-keys.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts)
+- [packages/ai/src/providers/openai.models.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.models.ts)
+- [packages/ai/src/providers/openai-codex.models.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai-codex.models.ts)
+- [packages/coding-agent/test/auth-check.test.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/test/auth-check.test.ts)
 </cite>
 
 ## 目录
@@ -71,22 +71,22 @@ P1 --> E
 ```
 
 图表来源
-- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
-- [packages/ai/src/providers/openai-codex.ts:7-22](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai-codex.ts#L7-L22)
-- [packages/ai/src/api/openai-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.lazy.ts#L1-L5)
-- [packages/ai/src/api/openai-codex-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.lazy.ts#L1-L5)
-- [packages/ai/src/api/openai-responses.ts:1-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.ts#L1-L35)
-- [packages/ai/src/api/openai-codex-responses.ts:1-50](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L1-L50)
-- [packages/ai/src/auth/oauth/openai-chatgpt.ts:1-30](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-chatgpt.ts#L1-L30)
-- [packages/ai/src/auth/oauth/openai-codex.ts:1-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L1-L35)
-- [packages/ai/src/providers/openai.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.models.ts#L1-L15)
-- [packages/ai/src/providers/openai-codex.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai-codex.models.ts#L1-L15)
-- [packages/ai/src/env-api-keys.ts:90-91](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L90-L91)
+- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
+- [packages/ai/src/providers/openai-codex.ts:7-22](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai-codex.ts#L7-L22)
+- [packages/ai/src/api/openai-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.lazy.ts#L1-L5)
+- [packages/ai/src/api/openai-codex-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.lazy.ts#L1-L5)
+- [packages/ai/src/api/openai-responses.ts:1-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.ts#L1-L35)
+- [packages/ai/src/api/openai-codex-responses.ts:1-50](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L1-L50)
+- [packages/ai/src/auth/oauth/openai-chatgpt.ts:1-30](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-chatgpt.ts#L1-L30)
+- [packages/ai/src/auth/oauth/openai-codex.ts:1-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L1-L35)
+- [packages/ai/src/providers/openai.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.models.ts#L1-L15)
+- [packages/ai/src/providers/openai-codex.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai-codex.models.ts#L1-L15)
+- [packages/ai/src/env-api-keys.ts:90-91](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L90-L91)
 
 章节来源
-- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
-- [packages/ai/src/providers/openai-codex.ts:7-22](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai-codex.ts#L7-L22)
-- [packages/ai/src/env-api-keys.ts:90-91](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L90-L91)
+- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
+- [packages/ai/src/providers/openai-codex.ts:7-22](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai-codex.ts#L7-L22)
+- [packages/ai/src/env-api-keys.ts:90-91](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L90-L91)
 
 ## 核心组件
 - OpenAI Provider（官方Responses）
@@ -102,8 +102,8 @@ P1 --> E
   - API：openai-codex-responses
 
 章节来源
-- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
-- [packages/ai/src/providers/openai-codex.ts:7-22](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai-codex.ts#L7-L22)
+- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
+- [packages/ai/src/providers/openai-codex.ts:7-22](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai-codex.ts#L7-L22)
 
 ## 架构总览
 OpenAI生态通过Provider工厂创建统一的Provider实例，内部绑定：
@@ -141,9 +141,9 @@ Provider <|-- CodexProvider
 ```
 
 图表来源
-- [packages/ai/src/models.ts:1072-1093](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/models.ts#L1072-L1093)
-- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
-- [packages/ai/src/providers/openai-codex.ts:7-22](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai-codex.ts#L7-L22)
+- [packages/ai/src/models.ts:1072-1093](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/models.ts#L1072-L1093)
+- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
+- [packages/ai/src/providers/openai-codex.ts:7-22](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai-codex.ts#L7-L22)
 
 ## 详细组件分析
 
@@ -175,15 +175,15 @@ API-->>App : AssistantMessageEventStream
 ```
 
 图表来源
-- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
-- [packages/ai/src/api/openai-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.lazy.ts#L1-L5)
-- [packages/ai/src/api/openai-responses.ts:155-273](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.ts#L155-L273)
+- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
+- [packages/ai/src/api/openai-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.lazy.ts#L1-L5)
+- [packages/ai/src/api/openai-responses.ts:155-273](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.ts#L155-L273)
 
 章节来源
-- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
-- [packages/ai/src/api/openai-responses.ts:155-273](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.ts#L155-L273)
-- [packages/ai/src/api/openai-responses.ts:295-338](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.ts#L295-L338)
-- [packages/ai/src/api/openai-responses.ts:340-425](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.ts#L340-L425)
+- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
+- [packages/ai/src/api/openai-responses.ts:155-273](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.ts#L155-L273)
+- [packages/ai/src/api/openai-responses.ts:295-338](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.ts#L295-L338)
+- [packages/ai/src/api/openai-responses.ts:340-425](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.ts#L340-L425)
 
 ### OpenAI Codex Provider与Responses API
 - Provider注册
@@ -214,14 +214,14 @@ ParseErr --> Error["抛出友好错误"]
 ```
 
 图表来源
-- [packages/ai/src/api/openai-codex-responses.ts:246-512](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L246-L512)
-- [packages/ai/src/api/openai-codex-responses.ts:541-621](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L541-L621)
-- [packages/ai/src/api/openai-codex-responses.ts:662-675](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L662-L675)
+- [packages/ai/src/api/openai-codex-responses.ts:246-512](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L246-L512)
+- [packages/ai/src/api/openai-codex-responses.ts:541-621](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L541-L621)
+- [packages/ai/src/api/openai-codex-responses.ts:662-675](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L662-L675)
 
 章节来源
-- [packages/ai/src/providers/openai-codex.ts:7-22](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai-codex.ts#L7-L22)
-- [packages/ai/src/api/openai-codex-responses.ts:246-512](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L246-L512)
-- [packages/ai/src/api/openai-codex-responses.ts:541-621](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L541-L621)
+- [packages/ai/src/providers/openai-codex.ts:7-22](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai-codex.ts#L7-L22)
+- [packages/ai/src/api/openai-codex-responses.ts:246-512](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L246-L512)
+- [packages/ai/src/api/openai-codex-responses.ts:541-621](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L541-L621)
 
 ### 认证机制与环境变量
 - API Key认证
@@ -251,22 +251,22 @@ Auth-->>CLI : 返回OAuth凭证(转为apiKey)
 ```
 
 图表来源
-- [packages/ai/src/auth/oauth/openai-chatgpt.ts:233-309](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-chatgpt.ts#L233-L309)
-- [packages/ai/src/auth/oauth/openai-codex.ts:359-438](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L359-L438)
+- [packages/ai/src/auth/oauth/openai-chatgpt.ts:233-309](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-chatgpt.ts#L233-L309)
+- [packages/ai/src/auth/oauth/openai-codex.ts:359-438](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L359-L438)
 
 章节来源
-- [packages/ai/src/env-api-keys.ts:90-91](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L90-L91)
-- [packages/ai/src/auth/oauth/openai-chatgpt.ts:1-30](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-chatgpt.ts#L1-L30)
-- [packages/ai/src/auth/oauth/openai-chatgpt.ts:233-309](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-chatgpt.ts#L233-L309)
-- [packages/ai/src/auth/oauth/openai-codex.ts:359-438](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L359-L438)
+- [packages/ai/src/env-api-keys.ts:90-91](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L90-L91)
+- [packages/ai/src/auth/oauth/openai-chatgpt.ts:1-30](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-chatgpt.ts#L1-L30)
+- [packages/ai/src/auth/oauth/openai-chatgpt.ts:233-309](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-chatgpt.ts#L233-L309)
+- [packages/ai/src/auth/oauth/openai-codex.ts:359-438](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/openai-codex.ts#L359-L438)
 
 ### 模型选择与清单
 - openai.models.ts与openai-codex.models.ts由catalog自动生成，分别导出Chat/Image/Classifier三类模型
 - Provider在注册时将模型列表注入，运行时根据provider/modelId选择具体模型
 
 章节来源
-- [packages/ai/src/providers/openai.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.models.ts#L1-L15)
-- [packages/ai/src/providers/openai-codex.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai-codex.models.ts#L1-L15)
+- [packages/ai/src/providers/openai.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.models.ts#L1-L15)
+- [packages/ai/src/providers/openai-codex.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai-codex.models.ts#L1-L15)
 
 ## 依赖关系分析
 - Provider与API解耦：Provider只负责注册与鉴权，API实现封装具体调用细节
@@ -283,14 +283,14 @@ LazyCodex --> ImplCodex["openai-codex-responses.ts"]
 ```
 
 图表来源
-- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
-- [packages/ai/src/api/openai-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.lazy.ts#L1-L5)
-- [packages/ai/src/api/openai-codex-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.lazy.ts#L1-L5)
+- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
+- [packages/ai/src/api/openai-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.lazy.ts#L1-L5)
+- [packages/ai/src/api/openai-codex-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.lazy.ts#L1-L5)
 
 章节来源
-- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
-- [packages/ai/src/api/openai-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.lazy.ts#L1-L5)
-- [packages/ai/src/api/openai-codex-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.lazy.ts#L1-L5)
+- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
+- [packages/ai/src/api/openai-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.lazy.ts#L1-L5)
+- [packages/ai/src/api/openai-codex-responses.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.lazy.ts#L1-L5)
 
 ## 性能与速率限制
 - 速率限制与重试
@@ -306,12 +306,12 @@ LazyCodex --> ImplCodex["openai-codex-responses.ts"]
   - flex/priority/fast等不同服务等级影响计费乘数，需在成本计算中考虑
 
 章节来源
-- [packages/ai/src/api/openai-codex-responses.ts:127-180](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L127-L180)
-- [packages/ai/src/api/openai-codex-responses.ts:395-401](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L395-L401)
-- [packages/ai/src/api/openai-codex-responses.ts:623-660](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L623-L660)
-- [packages/ai/src/api/openai-responses.ts:221-228](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.ts#L221-L228)
-- [packages/ai/src/api/openai-responses.ts:315-324](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.ts#L315-L324)
-- [packages/ai/src/api/openai-responses.ts:427-455](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.ts#L427-L455)
+- [packages/ai/src/api/openai-codex-responses.ts:127-180](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L127-L180)
+- [packages/ai/src/api/openai-codex-responses.ts:395-401](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L395-L401)
+- [packages/ai/src/api/openai-codex-responses.ts:623-660](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L623-L660)
+- [packages/ai/src/api/openai-responses.ts:221-228](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.ts#L221-L228)
+- [packages/ai/src/api/openai-responses.ts:315-324](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.ts#L315-L324)
+- [packages/ai/src/api/openai-responses.ts:427-455](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.ts#L427-L455)
 
 ## 故障排查指南
 - 常见错误类型
@@ -328,9 +328,9 @@ LazyCodex --> ImplCodex["openai-codex-responses.ts"]
   - 对于429/5xx，观察是否触发重试与退避
 
 章节来源
-- [packages/ai/src/api/openai-responses.ts:252-269](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.ts#L252-L269)
-- [packages/ai/src/api/openai-codex-responses.ts:475-484](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L475-L484)
-- [packages/ai/src/api/openai-codex-responses.ts:703-749](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L703-L749)
+- [packages/ai/src/api/openai-responses.ts:252-269](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.ts#L252-L269)
+- [packages/ai/src/api/openai-codex-responses.ts:475-484](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L475-L484)
+- [packages/ai/src/api/openai-codex-responses.ts:703-749](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L703-L749)
 
 ## 结论
 OpenAI生态在本仓库中以Provider+API实现的方式清晰解耦，支持官方Responses与Codex两条路径。认证方面同时支持API Key与OAuth，适配不同订阅场景。API实现涵盖流式处理、传输优化、重试与限流、会话亲和与缓存、Service Tier定价等关键特性。整体设计兼顾可扩展性与健壮性，便于后续扩展更多OpenAI相关能力。
@@ -356,9 +356,9 @@ OpenAI生态在本仓库中以Provider+API实现的方式清晰解耦，支持�
   - 在Codex路径利用zstd压缩与WebSocket优先策略
 
 章节来源
-- [packages/ai/src/models.ts:1072-1093](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/models.ts#L1072-L1093)
-- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
-- [packages/ai/src/providers/openai-codex.ts:7-22](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/openai-codex.ts#L7-L22)
-- [packages/ai/src/api/openai-responses.ts:155-273](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-responses.ts#L155-L273)
-- [packages/ai/src/api/openai-codex-responses.ts:246-512](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L246-L512)
-- [packages/coding-agent/test/auth-check.test.ts:37-62](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/test/auth-check.test.ts#L37-L62)
+- [packages/ai/src/models.ts:1072-1093](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/models.ts#L1072-L1093)
+- [packages/ai/src/providers/openai.ts:9-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai.ts#L9-L35)
+- [packages/ai/src/providers/openai-codex.ts:7-22](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/openai-codex.ts#L7-L22)
+- [packages/ai/src/api/openai-responses.ts:155-273](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-responses.ts#L155-L273)
+- [packages/ai/src/api/openai-codex-responses.ts:246-512](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/openai-codex-responses.ts#L246-L512)
+- [packages/coding-agent/test/auth-check.test.ts:37-62](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/test/auth-check.test.ts#L37-L62)

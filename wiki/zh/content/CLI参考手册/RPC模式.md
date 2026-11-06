@@ -2,22 +2,22 @@
 
 <cite>
 **本文引用的文件**   
-- [rpc-entry.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/rpc-entry.ts)
-- [rpc-mode.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts)
-- [rpc-client.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts)
-- [rpc-types.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts)
-- [jsonl.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/jsonl.ts)
-- [rpc.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/rpc.md)
-- [rpc-commands.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/rpc-commands.md)
-- [rpc-extension-ui.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/rpc-extension-ui.md)
-- [cli.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md)
-- [json.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/json.md)
-- [extensions.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/extensions.md)
-- [client.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts)
-- [streamable-http.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts)
-- [jsonrpc.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/protocol/jsonrpc.ts)
-- [metrics.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/telemetry/src/metrics.ts)
-- [memory.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/telemetry/src/memory.ts)
+- [rpc-entry.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/rpc-entry.ts)
+- [rpc-mode.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts)
+- [rpc-client.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts)
+- [rpc-types.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts)
+- [jsonl.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/jsonl.ts)
+- [rpc.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/rpc.md)
+- [rpc-commands.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/rpc-commands.md)
+- [rpc-extension-ui.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/rpc-extension-ui.md)
+- [cli.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md)
+- [json.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/json.md)
+- [extensions.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/extensions.md)
+- [client.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts)
+- [streamable-http.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts)
+- [jsonrpc.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/protocol/jsonrpc.ts)
+- [metrics.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/telemetry/src/metrics.ts)
+- [memory.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/telemetry/src/memory.ts)
 </cite>
 
 ## 目录
@@ -68,18 +68,18 @@ Client --> Jsonl
 ```
 
 图表来源
-- [rpc-entry.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/rpc-entry.ts#L1-L14)
-- [rpc-mode.ts:1-12](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L1-L12)
-- [rpc-client.ts:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L1-L17)
-- [rpc-types.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L1-L15)
-- [jsonl.ts:1-12](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/jsonl.ts#L1-L12)
+- [rpc-entry.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/rpc-entry.ts#L1-L14)
+- [rpc-mode.ts:1-12](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L1-L12)
+- [rpc-client.ts:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L1-L17)
+- [rpc-types.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L1-L15)
+- [jsonl.ts:1-12](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/jsonl.ts#L1-L12)
 
 章节来源
-- [rpc-entry.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/rpc-entry.ts#L1-L14)
-- [rpc-mode.ts:1-12](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L1-L12)
-- [rpc-client.ts:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L1-L17)
-- [rpc-types.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L1-L15)
-- [jsonl.ts:1-12](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/jsonl.ts#L1-L12)
+- [rpc-entry.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/rpc-entry.ts#L1-L14)
+- [rpc-mode.ts:1-12](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L1-L12)
+- [rpc-client.ts:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L1-L17)
+- [rpc-types.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L1-L15)
+- [jsonl.ts:1-12](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/jsonl.ts#L1-L12)
 
 ## 核心组件
 - 进程入口：设置进程名与环境变量，初始化HTTP调度器，并将参数转发给主入口以进入RPC模式
@@ -89,11 +89,11 @@ Client --> Jsonl
 - JSONL传输：严格LF分帧，避免Node readline对Unicode分隔符的歧义
 
 章节来源
-- [rpc-entry.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/rpc-entry.ts#L1-L14)
-- [rpc-mode.ts:50-135](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L50-L135)
-- [rpc-client.ts:56-167](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L56-L167)
-- [rpc-types.ts:16-75](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L16-L75)
-- [jsonl.ts:4-21](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/jsonl.ts#L4-L21)
+- [rpc-entry.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/rpc-entry.ts#L1-L14)
+- [rpc-mode.ts:50-135](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L50-L135)
+- [rpc-client.ts:56-167](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L56-L167)
+- [rpc-types.ts:16-75](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L16-L75)
+- [jsonl.ts:4-21](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/jsonl.ts#L4-L21)
 
 ## 架构总览
 RPC模式采用“进程内嵌+JSONL双向流”的轻量架构。宿主进程通过RpcClient启动Agent子进程，并以JSONL在stdin/stdout上交换命令、响应与事件。Agent侧由rpc-mode.ts统一解析命令、驱动会话、输出事件，并通过扩展UI子协议与宿主交互。
@@ -121,9 +121,9 @@ end
 ```
 
 图表来源
-- [rpc-client.ts:74-140](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L74-L140)
-- [rpc-mode.ts:54-135](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L54-L135)
-- [rpc-types.ts:16-75](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L16-L75)
+- [rpc-client.ts:74-140](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L74-L140)
+- [rpc-mode.ts:54-135](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L54-L135)
+- [rpc-types.ts:16-75](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L16-L75)
 
 ## 详细组件分析
 
@@ -132,8 +132,8 @@ end
 - CLI文档说明`--mode rpc`选择JSONL接口，stdout保留给协议记录，不支持`@file`提示词参数
 
 章节来源
-- [rpc-entry.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/rpc-entry.ts#L1-L14)
-- [cli.md:32-53](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/cli.md#L32-L53)
+- [rpc-entry.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/rpc-entry.ts#L1-L14)
+- [cli.md:32-53](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/cli.md#L32-L53)
 
 ### 协议规范与消息格式
 - 传输层：严格JSONL，每条记录以换行符结尾；客户端与服务端均使用同一序列化/解析工具
@@ -154,15 +154,15 @@ Parse --> |失败| ErrorOut["输出 parse 错误响应"]
 ```
 
 图表来源
-- [jsonl.ts:4-21](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/jsonl.ts#L4-L21)
-- [rpc-mode.ts:768-800](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L768-L800)
-- [rpc-types.ts:16-75](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L16-L75)
+- [jsonl.ts:4-21](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/jsonl.ts#L4-L21)
+- [rpc-mode.ts:768-800](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L768-L800)
+- [rpc-types.ts:16-75](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L16-L75)
 
 章节来源
-- [rpc-types.ts:16-75](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L16-L75)
-- [rpc-types.ts:112-245](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L112-L245)
-- [rpc-types.ts:247-297](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L247-L297)
-- [jsonl.ts:4-21](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/jsonl.ts#L4-L21)
+- [rpc-types.ts:16-75](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L16-L75)
+- [rpc-types.ts:112-245](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L112-L245)
+- [rpc-types.ts:247-297](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L247-L297)
+- [jsonl.ts:4-21](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/jsonl.ts#L4-L21)
 
 ### 连接管理与生命周期
 - 客户端启动：创建子进程，收集stderr，注册exit/error/stdin错误监听，启动JSONL读取器
@@ -180,14 +180,14 @@ Running --> Disposed : "异常/退出"
 ```
 
 图表来源
-- [rpc-client.ts:74-167](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L74-L167)
-- [rpc-mode.ts:373-395](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L373-L395)
-- [rpc-mode.ts:743-766](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L743-L766)
+- [rpc-client.ts:74-167](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L74-L167)
+- [rpc-mode.ts:373-395](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L373-L395)
+- [rpc-mode.ts:743-766](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L743-L766)
 
 章节来源
-- [rpc-client.ts:74-167](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L74-L167)
-- [rpc-mode.ts:373-395](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L373-L395)
-- [rpc-mode.ts:743-766](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L743-L766)
+- [rpc-client.ts:74-167](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L74-L167)
+- [rpc-mode.ts:373-395](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L373-L395)
+- [rpc-mode.ts:743-766](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L743-L766)
 
 ### 命令路由与业务处理
 - 命令分类：提示词、状态查询、模型切换、思考级别、队列模式、压缩、重试、Bash、会话操作、消息与命令枚举等
@@ -212,11 +212,11 @@ Default --> Resp
 ```
 
 图表来源
-- [rpc-mode.ts:400-738](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L400-L738)
+- [rpc-mode.ts:400-738](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L400-L738)
 
 章节来源
-- [rpc-mode.ts:400-738](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L400-L738)
-- [rpc-types.ts:16-75](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L16-L75)
+- [rpc-mode.ts:400-738](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L400-L738)
+- [rpc-types.ts:16-75](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L16-L75)
 
 ### 客户端调用方式
 - 高级API：prompt/steer/followUp/abort/newSession/getState/setModel/cycleModel/getAvailableModels/setThinkingLevel/cycleThinkingLevel/getAvailableThinkingLevels/setSteeringMode/setFollowUpMode/compact/setAutoCompaction/setAutoRetry/abortRetry/bash/abortBash/getSessionStats/exportHtml/switchSession/fork/clone/getForkMessages/getEntries/getTree/getLastAssistantText/setSessionName/getMessages/getCommands
@@ -239,14 +239,14 @@ C-->>App : 返回disposition
 ```
 
 图表来源
-- [rpc-client.ts:198-205](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L198-L205)
-- [rpc-client.ts:556-605](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L556-L605)
-- [rpc-mode.ts:409-435](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L409-L435)
+- [rpc-client.ts:198-205](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L198-L205)
+- [rpc-client.ts:556-605](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L556-L605)
+- [rpc-mode.ts:409-435](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L409-L435)
 
 章节来源
-- [rpc-client.ts:198-461](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L198-L461)
-- [rpc-client.ts:471-517](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L471-L517)
-- [rpc-client.ts:556-616](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L556-L616)
+- [rpc-client.ts:198-461](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L198-L461)
+- [rpc-client.ts:471-517](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L471-L517)
+- [rpc-client.ts:556-616](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L556-L616)
 
 ### 错误处理机制
 - 客户端侧：子进程exit/error/stdin错误会拒绝所有pending请求；send写失败时立即reject；getData对success:false抛出错误
@@ -254,10 +254,10 @@ C-->>App : 返回disposition
 - 扩展UI：取消/超时/Abort事件会清理待处理请求并返回默认值
 
 章节来源
-- [rpc-client.ts:107-140](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L107-L140)
-- [rpc-client.ts:545-616](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L545-L616)
-- [rpc-mode.ts:768-800](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L768-L800)
-- [rpc-mode.ts:734-738](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L734-L738)
+- [rpc-client.ts:107-140](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L107-L140)
+- [rpc-client.ts:545-616](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L545-L616)
+- [rpc-mode.ts:768-800](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L768-L800)
+- [rpc-mode.ts:734-738](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L734-L738)
 
 ### 扩展UI子协议
 - 服务端发出extension_ui_request，包含method、title、options、timeout等字段
@@ -265,9 +265,9 @@ C-->>App : 返回disposition
 - 支持select/confirm/input/editor/notify/setStatus/setWidget/setTitle/setEditorText
 
 章节来源
-- [rpc-types.ts:247-297](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L247-L297)
-- [rpc-mode.ts:94-135](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L94-L135)
-- [rpc-extension-ui.md:3-25](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/rpc-extension-ui.md#L3-L25)
+- [rpc-types.ts:247-297](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-types.ts#L247-L297)
+- [rpc-mode.ts:94-135](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L94-L135)
+- [rpc-extension-ui.md:3-25](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/rpc-extension-ui.md#L3-L25)
 
 ## 依赖关系分析
 - 进程入口依赖主入口与HTTP调度器
@@ -288,14 +288,14 @@ Client --> Types
 ```
 
 图表来源
-- [rpc-entry.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/rpc-entry.ts#L1-L14)
-- [rpc-mode.ts:14-48](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L14-L48)
-- [rpc-client.ts:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L1-L17)
+- [rpc-entry.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/rpc-entry.ts#L1-L14)
+- [rpc-mode.ts:14-48](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L14-L48)
+- [rpc-client.ts:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L1-L17)
 
 章节来源
-- [rpc-entry.ts:1-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/rpc-entry.ts#L1-L14)
-- [rpc-mode.ts:14-48](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L14-L48)
-- [rpc-client.ts:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L1-L17)
+- [rpc-entry.ts:1-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/rpc-entry.ts#L1-L14)
+- [rpc-mode.ts:14-48](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L14-L48)
+- [rpc-client.ts:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L1-L17)
 
 ## 性能与可观测性
 - 背压控制：服务端在事件输出后等待原始stdout背压，避免阻塞
@@ -314,16 +314,16 @@ F --> G
 ```
 
 图表来源
-- [rpc-mode.ts:368-370](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L368-L370)
-- [streamable-http.ts:486-512](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L486-L512)
-- [metrics.ts:43-145](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/telemetry/src/metrics.ts#L43-L145)
-- [memory.ts:261-366](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/telemetry/src/memory.ts#L261-L366)
+- [rpc-mode.ts:368-370](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L368-L370)
+- [streamable-http.ts:486-512](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L486-L512)
+- [metrics.ts:43-145](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/telemetry/src/metrics.ts#L43-L145)
+- [memory.ts:261-366](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/telemetry/src/memory.ts#L261-L366)
 
 章节来源
-- [rpc-mode.ts:368-370](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L368-L370)
-- [streamable-http.ts:486-512](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/transports/streamable-http.ts#L486-L512)
-- [metrics.ts:43-145](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/telemetry/src/metrics.ts#L43-L145)
-- [memory.ts:261-366](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/telemetry/src/memory.ts#L261-L366)
+- [rpc-mode.ts:368-370](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L368-L370)
+- [streamable-http.ts:486-512](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/transports/streamable-http.ts#L486-L512)
+- [metrics.ts:43-145](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/telemetry/src/metrics.ts#L43-L145)
+- [memory.ts:261-366](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/telemetry/src/memory.ts#L261-L366)
 
 ## 安全与权限控制
 - 当前RPC模式未内置鉴权与授权机制，适合受控环境（如本地进程或内网管道）使用
@@ -331,11 +331,11 @@ F --> G
 - MCP模块提供了OAuth保护资源发现、动态客户端注册、PKCE授权码流程与令牌刷新等能力，可作为网络RPC的安全参考
 
 章节来源
-- [rpc.md:15-20](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/rpc.md#L15-L20)
-- [rpc.md:108-144](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/rpc.md#L108-L144)
-- [client.ts:173-212](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L173-L212)
-- [client.ts:446-490](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/client.ts#L446-L490)
-- [jsonrpc.ts:103-113](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/mcp/src/protocol/jsonrpc.ts#L103-L113)
+- [rpc.md:15-20](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/rpc.md#L15-L20)
+- [rpc.md:108-144](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/rpc.md#L108-L144)
+- [client.ts:173-212](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L173-L212)
+- [client.ts:446-490](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/client.ts#L446-L490)
+- [jsonrpc.ts:103-113](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/mcp/src/protocol/jsonrpc.ts#L103-L113)
 
 ## API网关与微服务集成示例
 - 网关侧：将RPC命令序列化为HTTP请求，转发至后端Agent进程；将stdout事件流转换为SSE或WebSocket推送
@@ -365,10 +365,10 @@ ServiceB --> |扩展UI| Gateway
 - 优雅退出：确保信号处理与activeCommands计数正常，避免在命令进行中强制退出
 
 章节来源
-- [rpc-client.ts:107-140](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L107-L140)
-- [rpc-client.ts:556-605](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L556-L605)
-- [rpc-mode.ts:768-800](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L768-L800)
-- [rpc-mode.ts:743-766](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L743-L766)
+- [rpc-client.ts:107-140](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L107-L140)
+- [rpc-client.ts:556-605](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-client.ts#L556-L605)
+- [rpc-mode.ts:768-800](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L768-L800)
+- [rpc-mode.ts:743-766](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L743-L766)
 
 ## 结论
 RPC模式以简洁的JSONL协议和进程内嵌方式，为Agent能力提供了稳定可靠的编程接口。其清晰的命令-响应-事件三元结构与扩展UI子协议，便于在自动化、网关与微服务场景中复用。结合telemetry与MCP安全能力，可在生产环境中构建高性能、可观测且安全的RPC服务。

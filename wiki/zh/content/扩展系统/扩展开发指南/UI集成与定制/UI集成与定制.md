@@ -2,14 +2,14 @@
 
 <cite>
 **本文引用的文件**   
-- [packages/coding-agent/src/core/extensions/types.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts)
-- [packages/tui/src/index.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/index.ts)
-- [packages/tui/src/components/editor.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/editor.ts)
-- [packages/coding-agent/src/modes/interactive/theme/theme-controller.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-controller.ts)
-- [packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts)
-- [packages/coding-agent/src/modes/interactive/components/themed-text.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/components/themed-text.ts)
-- [packages/coding-agent/examples/rpc-extension-ui.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/examples/rpc-extension-ui.ts)
+- [packages/coding-agent/src/core/extensions/types.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts)
+- [packages/tui/src/index.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/index.ts)
+- [packages/tui/src/components/editor.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/editor.ts)
+- [packages/coding-agent/src/modes/interactive/theme/theme-controller.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-controller.ts)
+- [packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts)
+- [packages/coding-agent/src/modes/interactive/components/themed-text.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/components/themed-text.ts)
+- [packages/coding-agent/examples/rpc-extension-ui.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/examples/rpc-extension-ui.ts)
 </cite>
 
 ## 目录
@@ -50,13 +50,13 @@ IM --> EDITOR
 ```
 
 **图表来源**
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
-- [packages/tui/src/index.ts:158-186](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/index.ts#L158-L186)
-- [packages/coding-agent/src/modes/interactive/theme/theme-controller.ts:58-120](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-controller.ts#L58-L120)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
+- [packages/tui/src/index.ts:158-186](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/index.ts#L158-L186)
+- [packages/coding-agent/src/modes/interactive/theme/theme-controller.ts:58-120](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-controller.ts#L58-L120)
 
 **章节来源**
-- [packages/tui/src/index.ts:1-198](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/index.ts#L1-L198)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
+- [packages/tui/src/index.ts:1-198](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/index.ts#L1-L198)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
 
 ## 核心组件
 - ExtensionUIContext：扩展与宿主 UI 的契约，提供 select/confirm/input/notify/custom/setWidget/setFooter/setHeader/editor 等方法，以及主题与编辑器替换能力。
@@ -65,10 +65,10 @@ IM --> EDITOR
 - Theme 系统：ThemeController、ThemeTokens、ThemedText 等，用于主题解析、令牌映射与组件级主题化渲染。
 
 **章节来源**
-- [packages/coding-agent/src/core/extensions/types.ts:115-320](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L115-L320)
-- [packages/tui/src/index.ts:158-186](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/index.ts#L158-L186)
-- [packages/coding-agent/src/modes/interactive/theme/theme-controller.ts:58-120](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-controller.ts#L58-L120)
-- [packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts:24-121](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts#L24-L121)
+- [packages/coding-agent/src/core/extensions/types.ts:115-320](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L115-L320)
+- [packages/tui/src/index.ts:158-186](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/index.ts#L158-L186)
+- [packages/coding-agent/src/modes/interactive/theme/theme-controller.ts:58-120](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-controller.ts#L58-L120)
+- [packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts:24-121](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts#L24-L121)
 
 ## 架构总览
 下图展示扩展通过 ExtensionUIContext 调用 UI 能力的典型流程，包括对话框、覆盖层、Widget 与主题系统。
@@ -93,9 +93,9 @@ IM->>TUI : requestRender()
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/extensions/types.ts:228-248](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L228-L248)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:3054-3129](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L3054-L3129)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
+- [packages/coding-agent/src/core/extensions/types.ts:228-248](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L228-L248)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:3054-3129](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L3054-L3129)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
 
 ## 详细组件分析
 
@@ -115,11 +115,11 @@ HandleDone --> Dispose["component.dispose?()"]
 ```
 
 **图表来源**
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:3054-3129](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L3054-L3129)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:3054-3129](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L3054-L3129)
 
 **章节来源**
-- [packages/coding-agent/src/core/extensions/types.ts:164-248](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L164-L248)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:3054-3129](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L3054-L3129)
+- [packages/coding-agent/src/core/extensions/types.ts:164-248](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L164-L248)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:3054-3129](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L3054-L3129)
 
 ### Widget 创建与配置（placement、工厂函数、生命周期）
 - 位置 placement：aboveEditor/belowEditor，通过 ExtensionWidgetOptions.placement 指定。
@@ -146,14 +146,14 @@ InteractiveMode --> Component : "持有/销毁"
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/extensions/types.ts:123-130](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L123-L130)
-- [packages/coding-agent/src/core/extensions/types.ts:202-208](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L202-L208)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
+- [packages/coding-agent/src/core/extensions/types.ts:123-130](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L123-L130)
+- [packages/coding-agent/src/core/extensions/types.ts:202-208](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L202-L208)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
 
 **章节来源**
-- [packages/coding-agent/src/core/extensions/types.ts:123-130](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L123-L130)
-- [packages/coding-agent/src/core/extensions/types.ts:202-208](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L202-L208)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
+- [packages/coding-agent/src/core/extensions/types.ts:123-130](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L123-L130)
+- [packages/coding-agent/src/core/extensions/types.ts:202-208](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L202-L208)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
 
 ### 主题系统集成（获取、切换、自定义样式）
 - 获取主题：ctx.ui.theme 直接读取当前主题；getAllThemes() 列出可用主题；getTheme(name) 按名称加载。
@@ -170,16 +170,16 @@ D --> F["组件如 ThemedText 根据 Token 渲染"]
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/extensions/types.ts:303-313](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L303-L313)
-- [packages/coding-agent/src/modes/interactive/theme/theme-controller.ts:58-120](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-controller.ts#L58-L120)
-- [packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts:24-121](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts#L24-L121)
-- [packages/coding-agent/src/modes/interactive/components/themed-text.ts:11-40](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/components/themed-text.ts#L11-L40)
+- [packages/coding-agent/src/core/extensions/types.ts:303-313](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L303-L313)
+- [packages/coding-agent/src/modes/interactive/theme/theme-controller.ts:58-120](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-controller.ts#L58-L120)
+- [packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts:24-121](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts#L24-L121)
+- [packages/coding-agent/src/modes/interactive/components/themed-text.ts:11-40](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/components/themed-text.ts#L11-L40)
 
 **章节来源**
-- [packages/coding-agent/src/core/extensions/types.ts:303-313](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L303-L313)
-- [packages/coding-agent/src/modes/interactive/theme/theme-controller.ts:58-120](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-controller.ts#L58-L120)
-- [packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts:24-121](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts#L24-L121)
-- [packages/coding-agent/src/modes/interactive/components/themed-text.ts:11-40](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/components/themed-text.ts#L11-L40)
+- [packages/coding-agent/src/core/extensions/types.ts:303-313](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L303-L313)
+- [packages/coding-agent/src/modes/interactive/theme/theme-controller.ts:58-120](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-controller.ts#L58-L120)
+- [packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts:24-121](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts#L24-L121)
+- [packages/coding-agent/src/modes/interactive/components/themed-text.ts:11-40](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/components/themed-text.ts#L11-L40)
 
 ### 自定义编辑器与终端输入处理
 - 自定义编辑器：通过 ctx.ui.setEditorComponent(factory) 替换默认编辑器，factory 接收 TUI、EditorTheme、KeybindingsManager。推荐继承 CustomEditor 以复用应用级快捷键。
@@ -201,21 +201,21 @@ IM-->>Ext : handler(data) -> {consume?, data?}
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/extensions/types.ts:265-301](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L265-L301)
-- [packages/coding-agent/src/core/extensions/types.ts:177-178](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L177-L178)
-- [packages/tui/src/components/editor.ts:1-200](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/editor.ts#L1-L200)
+- [packages/coding-agent/src/core/extensions/types.ts:265-301](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L265-L301)
+- [packages/coding-agent/src/core/extensions/types.ts:177-178](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L177-L178)
+- [packages/tui/src/components/editor.ts:1-200](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/editor.ts#L1-L200)
 
 **章节来源**
-- [packages/coding-agent/src/core/extensions/types.ts:265-301](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L265-L301)
-- [packages/coding-agent/src/core/extensions/types.ts:177-178](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L177-L178)
-- [packages/tui/src/components/editor.ts:1-200](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/editor.ts#L1-L200)
+- [packages/coding-agent/src/core/extensions/types.ts:265-301](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L265-L301)
+- [packages/coding-agent/src/core/extensions/types.ts:177-178](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L177-L178)
+- [packages/tui/src/components/editor.ts:1-200](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/editor.ts#L1-L200)
 
 ### 交互式组件开发示例（RPC 场景）
 - RPC 扩展 UI 示例展示了如何在工作流中显示通知、更新 Widget 行、处理斜杠命令（选择/确认）并刷新渲染。
 - 该示例体现了在异步事件驱动场景中，结合 TUI.requestRender() 与 UI 上下文进行状态同步的最佳实践。
 
 **章节来源**
-- [packages/coding-agent/examples/rpc-extension-ui.ts:450-490](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/examples/rpc-extension-ui.ts#L450-L490)
+- [packages/coding-agent/examples/rpc-extension-ui.ts:450-490](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/examples/rpc-extension-ui.ts#L450-L490)
 
 ## 依赖关系分析
 - ExtensionUIContext 作为抽象契约，被 InteractiveMode 实现，向上暴露给扩展。
@@ -232,17 +232,17 @@ IM --> EditorComp["tui/components/editor.ts<br/>编辑器组件"]
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/extensions/types.ts:164-320](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L164-L320)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
-- [packages/tui/src/index.ts:158-186](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/index.ts#L158-L186)
-- [packages/coding-agent/src/modes/interactive/theme/theme-controller.ts:58-120](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-controller.ts#L58-L120)
-- [packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts:24-121](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts#L24-L121)
-- [packages/tui/src/components/editor.ts:1-200](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/components/editor.ts#L1-L200)
+- [packages/coding-agent/src/core/extensions/types.ts:164-320](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L164-L320)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
+- [packages/tui/src/index.ts:158-186](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/index.ts#L158-L186)
+- [packages/coding-agent/src/modes/interactive/theme/theme-controller.ts:58-120](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-controller.ts#L58-L120)
+- [packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts:24-121](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/theme/theme-tokens.ts#L24-L121)
+- [packages/tui/src/components/editor.ts:1-200](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/components/editor.ts#L1-L200)
 
 **章节来源**
-- [packages/coding-agent/src/core/extensions/types.ts:164-320](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L164-L320)
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
-- [packages/tui/src/index.ts:158-186](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/tui/src/index.ts#L158-L186)
+- [packages/coding-agent/src/core/extensions/types.ts:164-320](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L164-L320)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:2521-2656](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L2521-L2656)
+- [packages/tui/src/index.ts:158-186](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/tui/src/index.ts#L158-L186)
 
 ## 性能考虑
 - Widget 行数限制：InteractiveMode 对 Widget 总行数做了上限控制，避免视口溢出。
@@ -259,8 +259,8 @@ IM --> EditorComp["tui/components/editor.ts<br/>编辑器组件"]
 - 编辑器输入异常：若替换了编辑器，请确保正确处理应用级快捷键（如 escape、ctrl+d），必要时继承 CustomEditor 并调用 super.handleInput。
 
 **章节来源**
-- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:3054-3129](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L3054-L3129)
-- [packages/coding-agent/src/core/extensions/types.ts:265-301](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L265-L301)
+- [packages/coding-agent/src/modes/interactive/interactive-mode.ts:3054-3129](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/modes/interactive/interactive-mode.ts#L3054-L3129)
+- [packages/coding-agent/src/core/extensions/types.ts:265-301](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/extensions/types.ts#L265-L301)
 
 ## 结论
 通过 ExtensionUIContext，扩展可以安全地创建对话框、通知、状态栏与自定义 Widget，并与 TUI 基础能力与主题系统无缝集成。遵循工厂函数与生命周期约定、合理使用 overlay 与 placement、以及采用主题令牌进行样式定制，能够构建出高性能、可维护且用户体验良好的 TUI 界面。

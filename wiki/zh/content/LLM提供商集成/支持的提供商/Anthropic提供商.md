@@ -2,12 +2,12 @@
 
 <cite>
 **本文引用的文件**   
-- [packages/ai/src/providers/anthropic.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts)
-- [packages/ai/src/api/anthropic-messages.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts)
-- [packages/ai/src/providers/anthropic.models.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.models.ts)
-- [packages/ai/src/auth/oauth/anthropic.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts)
-- [packages/ai/src/env-api-keys.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts)
-- [packages/ai/test/stream.test.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/stream.test.ts)
+- [packages/ai/src/providers/anthropic.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts)
+- [packages/ai/src/api/anthropic-messages.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts)
+- [packages/ai/src/providers/anthropic.models.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.models.ts)
+- [packages/ai/src/auth/oauth/anthropic.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts)
+- [packages/ai/src/env-api-keys.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts)
+- [packages/ai/test/stream.test.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/stream.test.ts)
 </cite>
 
 ## 目录
@@ -50,12 +50,12 @@ C --> H["成本计算与用量统计"]
 ```
 
 图表来源
-- [packages/ai/src/providers/anthropic.ts:74-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts#L74-L90)
-- [packages/ai/src/api/anthropic-messages.ts:806-1174](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L806-L1174)
+- [packages/ai/src/providers/anthropic.ts:74-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts#L74-L90)
+- [packages/ai/src/api/anthropic-messages.ts:806-1174](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L806-L1174)
 
 章节来源
-- [packages/ai/src/providers/anthropic.ts:1-91](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts#L1-L91)
-- [packages/ai/src/providers/anthropic.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.models.ts#L1-L15)
+- [packages/ai/src/providers/anthropic.ts:1-91](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts#L1-L91)
+- [packages/ai/src/providers/anthropic.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.models.ts#L1-L15)
 
 ## 核心组件
 - 提供商工厂：创建 Anthropic 提供商实例，绑定基础地址、模型列表、认证方式和 API 实现。
@@ -64,10 +64,10 @@ C --> H["成本计算与用量统计"]
 - 环境变量：提供 Anthropic 各类密钥和环境变量的发现与读取。
 
 章节来源
-- [packages/ai/src/providers/anthropic.ts:19-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts#L19-L90)
-- [packages/ai/src/api/anthropic-messages.ts:74-120](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L74-L120)
-- [packages/ai/src/auth/oauth/anthropic.ts:140-307](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L307)
-- [packages/ai/src/env-api-keys.ts:29-36](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L29-L36)
+- [packages/ai/src/providers/anthropic.ts:19-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts#L19-L90)
+- [packages/ai/src/api/anthropic-messages.ts:74-120](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L74-L120)
+- [packages/ai/src/auth/oauth/anthropic.ts:140-307](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L307)
+- [packages/ai/src/env-api-keys.ts:29-36](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L29-L36)
 
 ## 架构总览
 Anthropic 提供商通过 `createProvider` 暴露统一的 Provider 接口，内部使用 `anthropicMessagesApi()` 提供的 `stream` 与 `streamSimple` 方法驱动 Beta Messages API。认证阶段优先从存储凭证、环境变量或 OAuth 获取凭据；当未显式提供密钥时，可启用工作负载身份联合，由 SDK 自行交换短期访问令牌。
@@ -90,8 +90,8 @@ Api-->>App : AssistantMessageEventStream(文本/思考/工具调用增量)
 ```
 
 图表来源
-- [packages/ai/src/providers/anthropic.ts:74-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts#L74-L90)
-- [packages/ai/src/api/anthropic-messages.ts:806-1174](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L806-L1174)
+- [packages/ai/src/providers/anthropic.ts:74-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts#L74-L90)
+- [packages/ai/src/api/anthropic-messages.ts:806-1174](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L806-L1174)
 
 ## 详细组件分析
 
@@ -120,12 +120,12 @@ AnthropicProvider --> ModelCatalog : "引用模型清单"
 ```
 
 图表来源
-- [packages/ai/src/providers/anthropic.ts:74-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts#L74-L90)
-- [packages/ai/src/providers/anthropic.models.ts:7-14](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.models.ts#L7-L14)
+- [packages/ai/src/providers/anthropic.ts:74-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts#L74-L90)
+- [packages/ai/src/providers/anthropic.models.ts:7-14](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.models.ts#L7-L14)
 
 章节来源
-- [packages/ai/src/providers/anthropic.ts:74-90](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts#L74-L90)
-- [packages/ai/src/providers/anthropic.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.models.ts#L1-L15)
+- [packages/ai/src/providers/anthropic.ts:74-90](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts#L74-L90)
+- [packages/ai/src/providers/anthropic.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.models.ts#L1-L15)
 
 ### 认证流程
 支持的认证方式与优先级：
@@ -155,14 +155,14 @@ UseOAuthKey --> End
 ```
 
 图表来源
-- [packages/ai/src/providers/anthropic.ts:19-72](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts#L19-L72)
-- [packages/ai/src/auth/oauth/anthropic.ts:140-307](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L307)
-- [packages/ai/src/env-api-keys.ts:29-36](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L29-L36)
+- [packages/ai/src/providers/anthropic.ts:19-72](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts#L19-L72)
+- [packages/ai/src/auth/oauth/anthropic.ts:140-307](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L307)
+- [packages/ai/src/env-api-keys.ts:29-36](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L29-L36)
 
 章节来源
-- [packages/ai/src/providers/anthropic.ts:19-72](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts#L19-L72)
-- [packages/ai/src/auth/oauth/anthropic.ts:140-307](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L307)
-- [packages/ai/src/env-api-keys.ts:73-82](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L73-L82)
+- [packages/ai/src/providers/anthropic.ts:19-72](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts#L19-L72)
+- [packages/ai/src/auth/oauth/anthropic.ts:140-307](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L307)
+- [packages/ai/src/env-api-keys.ts:73-82](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L73-L82)
 
 ### 消息格式与流式响应
 - 统一通过 `stream` 与 `streamSimple` 暴露流式接口，返回 `AssistantMessageEventStream`。
@@ -192,10 +192,10 @@ Stream-->>Caller : done(reason,message)
 ```
 
 图表来源
-- [packages/ai/src/api/anthropic-messages.ts:806-1174](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L806-L1174)
+- [packages/ai/src/api/anthropic-messages.ts:806-1174](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L806-L1174)
 
 章节来源
-- [packages/ai/src/api/anthropic-messages.ts:806-1174](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L806-L1174)
+- [packages/ai/src/api/anthropic-messages.ts:806-1174](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L806-L1174)
 
 ### 工具调用与严格模式
 - 工具定义会转换为 Anthropic Beta Tool 格式，支持延迟加载占位符以保持缓存命中。
@@ -215,12 +215,12 @@ SendNormal --> Success
 ```
 
 图表来源
-- [packages/ai/src/api/anthropic-messages.ts:1437-1455](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1437-L1455)
-- [packages/ai/src/api/anthropic-messages.ts:916-936](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L916-L936)
+- [packages/ai/src/api/anthropic-messages.ts:1437-1455](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1437-L1455)
+- [packages/ai/src/api/anthropic-messages.ts:916-936](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L916-L936)
 
 章节来源
-- [packages/ai/src/api/anthropic-messages.ts:1437-1455](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1437-L1455)
-- [packages/ai/src/api/anthropic-messages.ts:916-936](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L916-L936)
+- [packages/ai/src/api/anthropic-messages.ts:1437-1455](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1437-L1455)
+- [packages/ai/src/api/anthropic-messages.ts:916-936](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L916-L936)
 
 ### 思考模式与自适应推理
 - 支持两类思考模式：
@@ -242,12 +242,12 @@ BuildParams --> Send["发送请求"]
 ```
 
 图表来源
-- [packages/ai/src/api/anthropic-messages.ts:1201-1249](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1201-L1249)
-- [packages/ai/src/api/anthropic-messages.ts:1536-1570](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1536-L1570)
+- [packages/ai/src/api/anthropic-messages.ts:1201-1249](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1201-L1249)
+- [packages/ai/src/api/anthropic-messages.ts:1536-1570](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1536-L1570)
 
 章节来源
-- [packages/ai/src/api/anthropic-messages.ts:1201-1249](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1201-L1249)
-- [packages/ai/src/api/anthropic-messages.ts:1536-1570](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1536-L1570)
+- [packages/ai/src/api/anthropic-messages.ts:1201-1249](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1201-L1249)
+- [packages/ai/src/api/anthropic-messages.ts:1536-1570](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1536-L1570)
 
 ### 会话线程与继续回复
 - 当启用消息线程时，后续请求可仅发送新增消息并通过 `thread.continue` 继续上一次回复。
@@ -267,12 +267,12 @@ Record --> Done["完成"]
 ```
 
 图表来源
-- [packages/ai/src/api/anthropic-messages.ts:359-437](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L359-L437)
-- [packages/ai/src/api/anthropic-messages.ts:443-468](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L443-L468)
+- [packages/ai/src/api/anthropic-messages.ts:359-437](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L359-L437)
+- [packages/ai/src/api/anthropic-messages.ts:443-468](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L443-L468)
 
 章节来源
-- [packages/ai/src/api/anthropic-messages.ts:359-437](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L359-L437)
-- [packages/ai/src/api/anthropic-messages.ts:443-468](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L443-L468)
+- [packages/ai/src/api/anthropic-messages.ts:359-437](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L359-L437)
+- [packages/ai/src/api/anthropic-messages.ts:443-468](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L443-L468)
 
 ### 工作负载身份联合（OIDC Federation）
 - 当未提供 API Key 或 Authorization Header 时，若满足联邦环境变量条件，则构造 SDK 的 federation config。
@@ -289,12 +289,12 @@ BuildConfig --> UseClient["使用PiAnthropic(config=federation)"]
 ```
 
 图表来源
-- [packages/ai/src/api/anthropic-messages.ts:584-605](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L584-L605)
-- [packages/ai/src/providers/anthropic.ts:49-70](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts#L49-L70)
+- [packages/ai/src/api/anthropic-messages.ts:584-605](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L584-L605)
+- [packages/ai/src/providers/anthropic.ts:49-70](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts#L49-L70)
 
 章节来源
-- [packages/ai/src/api/anthropic-messages.ts:584-605](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L584-L605)
-- [packages/ai/src/providers/anthropic.ts:49-70](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts#L49-L70)
+- [packages/ai/src/api/anthropic-messages.ts:584-605](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L584-L605)
+- [packages/ai/src/providers/anthropic.ts:49-70](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts#L49-L70)
 
 ### OAuth（Claude Pro/Max）
 - 支持两种登录方式：
@@ -318,12 +318,12 @@ OAuth-->>CLI : toAuth({apiKey : access_token})
 ```
 
 图表来源
-- [packages/ai/src/auth/oauth/anthropic.ts:140-235](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L235)
-- [packages/ai/src/auth/oauth/anthropic.ts:278-307](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L278-L307)
+- [packages/ai/src/auth/oauth/anthropic.ts:140-235](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L235)
+- [packages/ai/src/auth/oauth/anthropic.ts:278-307](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L278-L307)
 
 章节来源
-- [packages/ai/src/auth/oauth/anthropic.ts:140-235](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L235)
-- [packages/ai/src/auth/oauth/anthropic.ts:278-307](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L278-L307)
+- [packages/ai/src/auth/oauth/anthropic.ts:140-235](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L140-L235)
+- [packages/ai/src/auth/oauth/anthropic.ts:278-307](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/auth/oauth/anthropic.ts#L278-L307)
 
 ## 依赖关系分析
 - 提供商层依赖：
@@ -344,12 +344,12 @@ API --> Utils["内部工具模块"]
 ```
 
 图表来源
-- [packages/ai/src/providers/anthropic.ts:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts#L1-L17)
-- [packages/ai/src/api/anthropic-messages.ts:1-55](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1-L55)
+- [packages/ai/src/providers/anthropic.ts:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts#L1-L17)
+- [packages/ai/src/api/anthropic-messages.ts:1-55](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1-L55)
 
 章节来源
-- [packages/ai/src/providers/anthropic.ts:1-17](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/anthropic.ts#L1-L17)
-- [packages/ai/src/api/anthropic-messages.ts:1-55](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1-L55)
+- [packages/ai/src/providers/anthropic.ts:1-17](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/anthropic.ts#L1-L17)
+- [packages/ai/src/api/anthropic-messages.ts:1-55](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1-L55)
 
 ## 性能与成本优化
 - 缓存控制：
@@ -364,8 +364,8 @@ API --> Utils["内部工具模块"]
   - OpenRouter 代理可在 delta 中注入计费字段，框架会合并上报。
 
 章节来源
-- [packages/ai/src/api/anthropic-messages.ts:74-102](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L74-L102)
-- [packages/ai/src/api/anthropic-messages.ts:950-1135](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L950-L1135)
+- [packages/ai/src/api/anthropic-messages.ts:74-102](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L74-L102)
+- [packages/ai/src/api/anthropic-messages.ts:950-1135](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L950-L1135)
 
 ## 故障排查指南
 常见错误与处理：
@@ -381,11 +381,11 @@ API --> Utils["内部工具模块"]
   - 当信号被中止时，流会标记为 aborted 并抛出相应错误。
 
 章节来源
-- [packages/ai/src/api/anthropic-messages.ts:560-562](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L560-L562)
-- [packages/ai/src/api/anthropic-messages.ts:800-804](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L800-L804)
-- [packages/ai/src/api/anthropic-messages.ts:916-936](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L916-L936)
-- [packages/ai/src/api/anthropic-messages.ts:386-437](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L386-L437)
-- [packages/ai/src/api/anthropic-messages.ts:1138-1147](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1138-L1147)
+- [packages/ai/src/api/anthropic-messages.ts:560-562](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L560-L562)
+- [packages/ai/src/api/anthropic-messages.ts:800-804](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L800-L804)
+- [packages/ai/src/api/anthropic-messages.ts:916-936](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L916-L936)
+- [packages/ai/src/api/anthropic-messages.ts:386-437](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L386-L437)
+- [packages/ai/src/api/anthropic-messages.ts:1138-1147](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L1138-L1147)
 
 ## 结论
 该实现为 Anthropic Claude 系列模型提供了完整的集成方案：
@@ -417,5 +417,5 @@ API --> Utils["内部工具模块"]
   - `sessionId`：会话标识，用于线程与亲和性头
 
 章节来源
-- [packages/ai/src/env-api-keys.ts:29-36](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L29-L36)
-- [packages/ai/src/api/anthropic-messages.ts:470-530](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/anthropic-messages.ts#L470-L530)
+- [packages/ai/src/env-api-keys.ts:29-36](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L29-L36)
+- [packages/ai/src/api/anthropic-messages.ts:470-530](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/anthropic-messages.ts#L470-L530)

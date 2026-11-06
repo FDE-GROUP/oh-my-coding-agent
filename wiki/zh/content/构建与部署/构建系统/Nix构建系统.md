@@ -2,10 +2,10 @@
 
 <cite>
 **本文引用的文件**   
-- [flake.nix](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/flake.nix)
-- [nix/package.nix](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix)
-- [nix/model-catalog.json](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/model-catalog.json)
-- [README.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md)
+- [flake.nix](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/flake.nix)
+- [nix/package.nix](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix)
+- [nix/model-catalog.json](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/model-catalog.json)
+- [README.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md)
 </cite>
 
 ## 目录
@@ -46,14 +46,14 @@ B --> E["外部依赖<br/>Node.js、Linux 库、剪贴板工具等"]
 ```
 
 **图表来源**
-- [flake.nix:1-54](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/flake.nix#L1-L54)
-- [nix/package.nix:1-183](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L1-L183)
-- [nix/model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/model-catalog.json#L1-L4)
+- [flake.nix:1-54](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/flake.nix#L1-L54)
+- [nix/package.nix:1-183](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L1-L183)
+- [nix/model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/model-catalog.json#L1-L4)
 
 **章节来源**
-- [flake.nix:1-54](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/flake.nix#L1-L54)
-- [nix/package.nix:1-183](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L1-L183)
-- [nix/model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/model-catalog.json#L1-L4)
+- [flake.nix:1-54](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/flake.nix#L1-L54)
+- [nix/package.nix:1-183](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L1-L183)
+- [nix/model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/model-catalog.json#L1-L4)
 
 ## 核心组件
 - Flake 输出层（flake.nix）
@@ -68,8 +68,8 @@ B --> E["外部依赖<br/>Node.js、Linux 库、剪贴板工具等"]
   - 元数据描述支持的平台与许可证
 
 **章节来源**
-- [flake.nix:4-52](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/flake.nix#L4-L52)
-- [nix/package.nix:17-183](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L17-L183)
+- [flake.nix:4-52](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/flake.nix#L4-L52)
+- [nix/package.nix:17-183](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L17-L183)
 
 ## 架构总览
 下图展示 Nix Flake 如何组织输入、系统与包构建，以及最终生成的可执行程序路径。
@@ -87,9 +87,9 @@ Wrapper --> Output["输出 /bin/pi 可执行文件"]
 ```
 
 **图表来源**
-- [flake.nix:13-52](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/flake.nix#L13-L52)
-- [nix/package.nix:32-144](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L32-L144)
-- [nix/model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/model-catalog.json#L1-L4)
+- [flake.nix:13-52](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/flake.nix#L13-L52)
+- [nix/package.nix:32-144](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L32-L144)
+- [nix/model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/model-catalog.json#L1-L4)
 
 ## 详细组件分析
 
@@ -126,11 +126,11 @@ Flake --> PackageNix : "callPackage"
 ```
 
 **图表来源**
-- [flake.nix:4-52](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/flake.nix#L4-L52)
-- [nix/package.nix:32-183](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L32-L183)
+- [flake.nix:4-52](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/flake.nix#L4-L52)
+- [nix/package.nix:32-183](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L32-L183)
 
 **章节来源**
-- [flake.nix:4-52](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/flake.nix#L4-L52)
+- [flake.nix:4-52](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/flake.nix#L4-L52)
 
 ### 包定义与构建流程（nix/package.nix）
 - 依赖与环境
@@ -175,10 +175,10 @@ Pkg-->>User : 输出 /bin/pi
 ```
 
 **图表来源**
-- [nix/package.nix:32-164](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L32-L164)
+- [nix/package.nix:32-164](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L32-L164)
 
 **章节来源**
-- [nix/package.nix:17-183](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L17-L183)
+- [nix/package.nix:17-183](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L17-L183)
 
 ### 模型目录管理与版本控制
 - 固定修订
@@ -199,15 +199,15 @@ Product --> Runtime["运行时叠加 pi.dev 最新目录"]
 ```
 
 **图表来源**
-- [nix/model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/model-catalog.json#L1-L4)
-- [nix/package.nix:24-30](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L24-L30)
-- [nix/package.nix:45-50](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L45-L50)
-- [README.md:66-70](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L66-L70)
+- [nix/model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/model-catalog.json#L1-L4)
+- [nix/package.nix:24-30](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L24-L30)
+- [nix/package.nix:45-50](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L45-L50)
+- [README.md:66-70](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L66-L70)
 
 **章节来源**
-- [nix/model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/model-catalog.json#L1-L4)
-- [nix/package.nix:24-50](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L24-L50)
-- [README.md:66-70](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L66-L70)
+- [nix/model-catalog.json:1-4](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/model-catalog.json#L1-L4)
+- [nix/package.nix:24-50](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L24-L50)
+- [README.md:66-70](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L66-L70)
 
 ## 依赖关系分析
 - 直接依赖
@@ -230,13 +230,13 @@ Catalog["模型目录<br/>model-catalog.json"] --> Pkg
 ```
 
 **图表来源**
-- [nix/package.nix:102-112](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L102-L112)
-- [nix/package.nix:78-92](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L78-L92)
-- [nix/package.nix:24-30](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L24-L30)
+- [nix/package.nix:102-112](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L102-L112)
+- [nix/package.nix:78-92](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L78-L92)
+- [nix/package.nix:24-30](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L24-L30)
 
 **章节来源**
-- [nix/package.nix:78-112](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L78-L112)
-- [nix/package.nix:24-30](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L24-L30)
+- [nix/package.nix:78-112](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L78-L112)
+- [nix/package.nix:24-30](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L24-L30)
 
 ## 性能与缓存优化
 - 离线构建
@@ -262,7 +262,7 @@ Catalog["模型目录<br/>model-catalog.json"] --> Pkg
 参考命令与说明见“Nix命令使用示例”。
 
 **章节来源**
-- [README.md:56-70](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L56-L70)
+- [README.md:56-70](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L56-L70)
 
 ## 跨平台兼容性
 - 支持平台
@@ -275,9 +275,9 @@ Catalog["模型目录<br/>model-catalog.json"] --> Pkg
   - 提供 wl-clipboard、xclip 以支持剪贴板功能
 
 **章节来源**
-- [flake.nix:20-33](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/flake.nix#L20-L33)
-- [nix/package.nix:107-112](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L107-L112)
-- [nix/package.nix:166-176](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L166-L176)
+- [flake.nix:20-33](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/flake.nix#L20-L33)
+- [nix/package.nix:107-112](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L107-L112)
+- [nix/package.nix:166-176](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L166-L176)
 
 ## Nix命令使用示例
 - 运行稳定版
@@ -294,7 +294,7 @@ Catalog["模型目录<br/>model-catalog.json"] --> Pkg
 以上命令与说明来自项目文档。
 
 **章节来源**
-- [README.md:56-70](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L56-L70)
+- [README.md:56-70](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L56-L70)
 
 ## 故障排除指南
 - 构建失败：原生模块未加载
@@ -316,9 +316,9 @@ Catalog["模型目录<br/>model-catalog.json"] --> Pkg
   - 解决：安装相应剪贴板工具；或在非 Linux 平台忽略此依赖
 
 **章节来源**
-- [nix/package.nix:147-164](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L147-L164)
-- [nix/package.nix:127-141](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/nix/package.nix#L127-L141)
-- [README.md:66-70](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L66-L70)
+- [nix/package.nix:147-164](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L147-L164)
+- [nix/package.nix:127-141](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/nix/package.nix#L127-L141)
+- [README.md:66-70](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L66-L70)
 
 ## 结论
 该项目的 Nix 构建系统通过 Flake 统一暴露多平台包与应用，结合离线模型目录与 install-lock 依赖锁定，实现了稳定、可复现且安全的构建流程。nix/package.nix 将工作区产物与运行时依赖解耦，并通过包装器注入必要工具与 PATH，确保在不同平台上的一致体验。配合 README 提供的命令与最佳实践，开发者可以快速搭建开发环境并进行跨平台构建与分发。

@@ -2,15 +2,15 @@
 
 <cite>
 **本文引用的文件**   
-- [README.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md)
-- [azure-openai-config.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-config.ts)
-- [azure-openai-responses.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-responses.ts)
-- [azure.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/azure.ts)
-- [azure.models.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/azure.models.ts)
-- [azure.ts（目录定义）](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/azure.ts)
-- [azure-openai-base-url.test.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/azure-openai-base-url.test.ts)
-- [azure-openai-completions.test.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/azure-openai-completions.test.ts)
-- [azure-utils.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/azure-utils.ts)
+- [README.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md)
+- [azure-openai-config.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-config.ts)
+- [azure-openai-responses.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-responses.ts)
+- [azure.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/azure.ts)
+- [azure.models.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/azure.models.ts)
+- [azure.ts（目录定义）](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/azure.ts)
+- [azure-openai-base-url.test.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/azure-openai-base-url.test.ts)
+- [azure-openai-completions.test.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/azure-openai-completions.test.ts)
+- [azure-utils.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/azure-utils.ts)
 </cite>
 
 ## 目录
@@ -67,14 +67,14 @@ B --> G
 ```
 
 图表来源
-- [azure.ts:1-56](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/azure.ts#L1-L56)
-- [azure-openai-config.ts:1-108](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-config.ts#L1-L108)
-- [azure-openai-responses.ts:1-257](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L1-L257)
-- [azure.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/azure.models.ts#L1-L15)
-- [azure.ts（目录定义）:1-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/azure.ts#L1-L67)
+- [azure.ts:1-56](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/azure.ts#L1-L56)
+- [azure-openai-config.ts:1-108](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-config.ts#L1-L108)
+- [azure-openai-responses.ts:1-257](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L1-L257)
+- [azure.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/azure.models.ts#L1-L15)
+- [azure.ts（目录定义）:1-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/azure.ts#L1-L67)
 
 章节来源
-- [README.md:72-84](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L72-L84)
+- [README.md:72-84](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L72-L84)
 
 ## 核心组件
 - Azure 端点与版本解析器：提供 baseUrl、apiVersion、deploymentName 的统一解析与校验逻辑
@@ -83,10 +83,10 @@ B --> G
 - Azure Catalog 提供者：声明 Azure 侧模型清单、上下文窗口覆盖、兼容性与成本
 
 章节来源
-- [azure-openai-config.ts:1-108](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-config.ts#L1-L108)
-- [azure-openai-responses.ts:1-257](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L1-L257)
-- [azure.ts:1-56](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/azure.ts#L1-L56)
-- [azure.ts（目录定义）:1-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/azure.ts#L1-L67)
+- [azure-openai-config.ts:1-108](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-config.ts#L1-L108)
+- [azure-openai-responses.ts:1-257](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L1-L257)
+- [azure.ts:1-56](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/azure.ts#L1-L56)
+- [azure.ts（目录定义）:1-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/azure.ts#L1-L67)
 
 ## 架构总览
 下图展示从应用调用到 Azure OpenAI 的请求流程，包括鉴权、端点解析、请求构造、流式响应与错误处理。
@@ -111,9 +111,9 @@ Note over Provider,Azure : 错误时返回 error 事件并记录 errorMessage
 ```
 
 图表来源
-- [azure.ts:31-54](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/azure.ts#L31-L54)
-- [azure-openai-config.ts:68-107](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-config.ts#L68-L107)
-- [azure-openai-responses.ts:40-129](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L40-L129)
+- [azure.ts:31-54](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/azure.ts#L31-L54)
+- [azure-openai-config.ts:68-107](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-config.ts#L68-L107)
+- [azure-openai-responses.ts:40-129](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L40-L129)
 
 ## 详细组件分析
 
@@ -141,11 +141,11 @@ Validate --> |合法| ReturnCfg["返回 { baseUrl, apiVersion }"]
 ```
 
 图表来源
-- [azure-openai-config.ts:37-94](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-config.ts#L37-L94)
-- [azure-openai-config.ts:96-107](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-config.ts#L96-L107)
+- [azure-openai-config.ts:37-94](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-config.ts#L37-L94)
+- [azure-openai-config.ts:96-107](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-config.ts#L96-L107)
 
 章节来源
-- [azure-openai-config.ts:1-108](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-config.ts#L1-L108)
+- [azure-openai-config.ts:1-108](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-config.ts#L1-L108)
 
 ### Azure Responses 流式实现
 职责：
@@ -178,12 +178,12 @@ AzureResponsesStream --> AzureEndpointOptions : "使用"
 ```
 
 图表来源
-- [azure-openai-responses.ts:30-35](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L30-L35)
-- [azure-openai-responses.ts:154-171](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L154-L171)
-- [azure-openai-responses.ts:173-256](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L173-L256)
+- [azure-openai-responses.ts:30-35](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L30-L35)
+- [azure-openai-responses.ts:154-171](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L154-L171)
+- [azure-openai-responses.ts:173-256](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L173-L256)
 
 章节来源
-- [azure-openai-responses.ts:1-257](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L1-L257)
+- [azure-openai-responses.ts:1-257](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L1-L257)
 
 ### Azure Provider 包装器
 职责：
@@ -207,11 +207,11 @@ Dispatch --> |openai-completions| CompAPI["openAICompletionsApi()"]
 ```
 
 图表来源
-- [azure.ts:10-42](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/azure.ts#L10-L42)
-- [azure.ts:44-55](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/azure.ts#L44-L55)
+- [azure.ts:10-42](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/azure.ts#L10-L42)
+- [azure.ts:44-55](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/azure.ts#L44-L55)
 
 章节来源
-- [azure.ts:1-56](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/azure.ts#L1-L56)
+- [azure.ts:1-56](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/azure.ts#L1-L56)
 
 ### Azure Catalog 提供者
 职责：
@@ -226,7 +226,7 @@ Dispatch --> |openai-completions| CompAPI["openAICompletionsApi()"]
 - 对 openai-completions 关闭 developer role、启用 mid-convo system messages 等
 
 章节来源
-- [azure.ts（目录定义）:1-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/azure.ts#L1-L67)
+- [azure.ts（目录定义）:1-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/azure.ts#L1-L67)
 
 ## 依赖关系分析
 - Provider 层依赖 API 层进行端点解析与请求构建
@@ -245,14 +245,14 @@ Tests --> RespAPI
 ```
 
 图表来源
-- [azure.ts（目录定义）:1-67](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/azure.ts#L1-L67)
-- [azure.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/azure.models.ts#L1-L15)
-- [azure.ts:1-56](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/azure.ts#L1-L56)
-- [azure-openai-responses.ts:1-257](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L1-L257)
+- [azure.ts（目录定义）:1-67](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/azure.ts#L1-L67)
+- [azure.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/azure.models.ts#L1-L15)
+- [azure.ts:1-56](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/azure.ts#L1-L56)
+- [azure-openai-responses.ts:1-257](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L1-L257)
 
 章节来源
-- [azure.ts:1-56](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/azure.ts#L1-L56)
-- [azure-openai-responses.ts:1-257](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L1-L257)
+- [azure.ts:1-56](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/azure.ts#L1-L56)
+- [azure-openai-responses.ts:1-257](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L1-L257)
 
 ## 性能与调优
 - 流式输出：Responses 流式接口减少首字节延迟，适合长文本与工具调用场景
@@ -266,8 +266,8 @@ Tests --> RespAPI
 - 服务端存储：store=false，避免额外存储开销
 
 章节来源
-- [azure-openai-responses.ts:204-256](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L204-L256)
-- [azure-openai-completions.test.ts:110-177](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/azure-openai-completions.test.ts#L110-L177)
+- [azure-openai-responses.ts:204-256](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L204-L256)
+- [azure-openai-completions.test.ts:110-177](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/azure-openai-completions.test.ts#L110-L177)
 
 ## 故障排查
 常见问题与定位方法：
@@ -293,10 +293,10 @@ Tests --> RespAPI
 - 针对 DeepSeek 模型，确认未发送 thinking/prompt cache 参数
 
 章节来源
-- [azure-openai-base-url.test.ts:167-175](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/azure-openai-base-url.test.ts#L167-L175)
-- [azure-openai-base-url.test.ts:224-230](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/azure-openai-base-url.test.ts#L224-L230)
-- [azure-openai-completions.test.ts:216-230](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/azure-openai-completions.test.ts#L216-L230)
-- [azure-utils.ts:18-22](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/azure-utils.ts#L18-L22)
+- [azure-openai-base-url.test.ts:167-175](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/azure-openai-base-url.test.ts#L167-L175)
+- [azure-openai-base-url.test.ts:224-230](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/azure-openai-base-url.test.ts#L224-L230)
+- [azure-openai-completions.test.ts:216-230](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/azure-openai-completions.test.ts#L216-L230)
+- [azure-utils.ts:18-22](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/azure-utils.ts#L18-L22)
 
 ## 合规、数据隐私与企业治理
 - 鉴权与密钥管理：
@@ -315,9 +315,9 @@ Tests --> RespAPI
   - 如需走企业代理，确保代理路径不被误改（非 Azure 域名不受影响）
 
 章节来源
-- [azure-openai-config.ts:72-94](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-config.ts#L72-L94)
-- [azure-openai-responses.ts:154-171](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L154-L171)
-- [azure-openai-base-url.test.ts:121-165](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/test/azure-openai-base-url.test.ts#L121-L165)
+- [azure-openai-config.ts:72-94](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-config.ts#L72-L94)
+- [azure-openai-responses.ts:154-171](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/azure-openai-responses.ts#L154-L171)
+- [azure-openai-base-url.test.ts:121-165](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/test/azure-openai-base-url.test.ts#L121-L165)
 
 ## 结论
 该代码库为企业使用 Azure OpenAI 提供了稳健的抽象与实现：

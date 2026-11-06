@@ -2,13 +2,13 @@
 
 <cite>
 **本文引用的文件**   
-- [packages/ai/src/env-api-keys.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts)
-- [packages/coding-agent/src/core/provider-composer.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts)
-- [packages/coding-agent/src/core/resolve-config-value.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts)
-- [packages/ai/src/types.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/types.ts)
-- [packages/ai/README.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/README.md)
-- [packages/coding-agent/docs/models.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/models.md)
-- [packages/coding-agent/docs/custom-provider.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/docs/custom-provider.md)
+- [packages/ai/src/env-api-keys.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts)
+- [packages/coding-agent/src/core/provider-composer.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts)
+- [packages/coding-agent/src/core/resolve-config-value.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts)
+- [packages/ai/src/types.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/types.ts)
+- [packages/ai/README.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/README.md)
+- [packages/coding-agent/docs/models.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/models.md)
+- [packages/coding-agent/docs/custom-provider.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/docs/custom-provider.md)
 </cite>
 
 ## 目录
@@ -56,16 +56,16 @@ RESOLVE --> COMPOSER
 ```
 
 **图表来源**
-- [packages/ai/src/env-api-keys.ts:73-127](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L73-L127)
-- [packages/ai/src/types.ts:90-134](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/types.ts#L90-L134)
-- [packages/coding-agent/src/core/resolve-config-value.ts:145-151](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L151)
-- [packages/coding-agent/src/core/provider-composer.ts:422-486](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L422-L486)
+- [packages/ai/src/env-api-keys.ts:73-127](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L73-L127)
+- [packages/ai/src/types.ts:90-134](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/types.ts#L90-L134)
+- [packages/coding-agent/src/core/resolve-config-value.ts:145-151](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L151)
+- [packages/coding-agent/src/core/provider-composer.ts:422-486](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L422-L486)
 
 **章节来源**
-- [packages/ai/src/env-api-keys.ts:1-197](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L1-L197)
-- [packages/coding-agent/src/core/provider-composer.ts:422-486](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L422-L486)
-- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
-- [packages/ai/src/types.ts:90-134](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/types.ts#L90-L134)
+- [packages/ai/src/env-api-keys.ts:1-197](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L1-L197)
+- [packages/coding-agent/src/core/provider-composer.ts:422-486](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L422-L486)
+- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
+- [packages/ai/src/types.ts:90-134](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/types.ts#L90-L134)
 
 ## 核心组件
 - 环境变量与密钥发现
@@ -88,9 +88,9 @@ RESOLVE --> COMPOSER
   - 支持通过authHeader开关控制是否自动注入Authorization头。
 
 **章节来源**
-- [packages/ai/src/env-api-keys.ts:137-196](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L137-L196)
-- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
-- [packages/coding-agent/src/core/provider-composer.ts:379-486](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L379-L486)
+- [packages/ai/src/env-api-keys.ts:137-196](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L137-L196)
+- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
+- [packages/coding-agent/src/core/provider-composer.ts:379-486](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L379-L486)
 
 ## 架构总览
 下图展示一次API调用时，认证信息如何被解析、合并并最终注入到请求中。
@@ -121,9 +121,9 @@ Provider-->>Caller : 返回响应
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/provider-composer.ts:422-486](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L422-L486)
-- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
-- [packages/ai/src/env-api-keys.ts:137-196](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L137-L196)
+- [packages/coding-agent/src/core/provider-composer.ts:422-486](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L422-L486)
+- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
+- [packages/ai/src/env-api-keys.ts:137-196](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L137-L196)
 
 ## 详细组件分析
 
@@ -160,12 +160,12 @@ BedrockResult --> |否| ReturnKey
 ```
 
 **图表来源**
-- [packages/ai/src/env-api-keys.ts:73-127](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L73-L127)
-- [packages/ai/src/env-api-keys.ts:137-196](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L137-L196)
+- [packages/ai/src/env-api-keys.ts:73-127](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L73-L127)
+- [packages/ai/src/env-api-keys.ts:137-196](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L137-L196)
 
 **章节来源**
-- [packages/ai/src/env-api-keys.ts:73-127](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L73-L127)
-- [packages/ai/src/env-api-keys.ts:137-196](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L137-L196)
+- [packages/ai/src/env-api-keys.ts:73-127](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L73-L127)
+- [packages/ai/src/env-api-keys.ts:137-196](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L137-L196)
 
 ### 配置值解析：命令、模板与字面量
 - 命令模式
@@ -193,10 +193,10 @@ Literal --> Done
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
+- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
 
 **章节来源**
-- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
+- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
 
 ### 认证组装与请求头注入
 - 认证来源优先级
@@ -232,12 +232,12 @@ ApiKeyAuth --> EnvApiKeyDiscovery : "可选探测环境变量"
 ```
 
 **图表来源**
-- [packages/coding-agent/src/core/provider-composer.ts:379-486](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L379-L486)
-- [packages/coding-agent/src/core/resolve-config-value.ts:229-282](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L229-L282)
-- [packages/ai/src/env-api-keys.ts:137-196](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L137-L196)
+- [packages/coding-agent/src/core/provider-composer.ts:379-486](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L379-L486)
+- [packages/coding-agent/src/core/resolve-config-value.ts:229-282](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L229-L282)
+- [packages/ai/src/env-api-keys.ts:137-196](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L137-L196)
 
 **章节来源**
-- [packages/coding-agent/src/core/provider-composer.ts:379-486](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L379-L486)
+- [packages/coding-agent/src/core/provider-composer.ts:379-486](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L379-L486)
 
 ## 依赖关系分析
 - 类型依赖
@@ -257,16 +257,16 @@ EnvKeys --> Composer
 ```
 
 **图表来源**
-- [packages/ai/src/types.ts:90-134](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/types.ts#L90-L134)
-- [packages/ai/src/env-api-keys.ts:73-127](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L73-L127)
-- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
-- [packages/coding-agent/src/core/provider-composer.ts:422-486](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L422-L486)
+- [packages/ai/src/types.ts:90-134](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/types.ts#L90-L134)
+- [packages/ai/src/env-api-keys.ts:73-127](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L73-L127)
+- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
+- [packages/coding-agent/src/core/provider-composer.ts:422-486](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L422-L486)
 
 **章节来源**
-- [packages/ai/src/types.ts:90-134](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/types.ts#L90-L134)
-- [packages/ai/src/env-api-keys.ts:73-127](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L73-L127)
-- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
-- [packages/coding-agent/src/core/provider-composer.ts:422-486](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L422-L486)
+- [packages/ai/src/types.ts:90-134](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/types.ts#L90-L134)
+- [packages/ai/src/env-api-keys.ts:73-127](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L73-L127)
+- [packages/coding-agent/src/core/resolve-config-value.ts:145-251](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L251)
+- [packages/coding-agent/src/core/provider-composer.ts:422-486](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L422-L486)
 
 ## 性能与行为特征
 - 命令结果缓存
@@ -291,8 +291,8 @@ EnvKeys --> Composer
   - 命令模式会缓存结果，如需立即生效，可在测试或运维流程中清除命令缓存。
 
 **章节来源**
-- [packages/coding-agent/src/core/resolve-config-value.ts:198-216](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L198-L216)
-- [packages/coding-agent/src/core/resolve-config-value.ts:284-287](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L284-L287)
+- [packages/coding-agent/src/core/resolve-config-value.ts:198-216](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L198-L216)
+- [packages/coding-agent/src/core/resolve-config-value.ts:284-287](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L284-L287)
 
 ### 权限最小化
 - 仅授予必要权限
@@ -312,7 +312,7 @@ EnvKeys --> Composer
   - 对于云厂商凭据，结合云平台审计日志（如AWS CloudTrail、GCP Audit Logs）追踪凭据使用。
 
 **章节来源**
-- [packages/coding-agent/src/core/provider-composer.ts:435-486](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L435-L486)
+- [packages/coding-agent/src/core/provider-composer.ts:435-486](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L435-L486)
 
 ## 常见配置问题与解决方案
 
@@ -326,8 +326,8 @@ EnvKeys --> Composer
   - 若为命令，检查命令是否可执行且返回非空值。
 
 **章节来源**
-- [packages/ai/README.md:494-515](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/README.md#L494-L515)
-- [packages/coding-agent/src/core/resolve-config-value.ts:229-251](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L229-L251)
+- [packages/ai/README.md:494-515](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/README.md#L494-L515)
+- [packages/coding-agent/src/core/resolve-config-value.ts:229-251](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L229-L251)
 
 ### 问题：Authorization头未注入
 - 现象
@@ -338,8 +338,8 @@ EnvKeys --> Composer
   - 若使用Anthropic OAuth令牌，注意该令牌需通过Authorization头传递，而非普通API Key环境变量。
 
 **章节来源**
-- [packages/coding-agent/src/core/provider-composer.ts:379-391](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L379-L391)
-- [packages/ai/src/env-api-keys.ts:78-82](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L78-L82)
+- [packages/coding-agent/src/core/provider-composer.ts:379-391](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/provider-composer.ts#L379-L391)
+- [packages/ai/src/env-api-keys.ts:78-82](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L78-L82)
 
 ### 问题：Vertex或Bedrock显示“已认证”但无法调用
 - 现象
@@ -349,7 +349,7 @@ EnvKeys --> Composer
   - 对于Bedrock：确认至少一个AWS凭据来源有效（如AWS_PROFILE、IAM Keys、ECS任务角色等）。
 
 **章节来源**
-- [packages/ai/src/env-api-keys.ts:161-193](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/env-api-keys.ts#L161-L193)
+- [packages/ai/src/env-api-keys.ts:161-193](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/env-api-keys.ts#L161-L193)
 
 ### 问题：models.json中apiKey未生效
 - 现象
@@ -360,8 +360,8 @@ EnvKeys --> Composer
   - 若使用!命令，确认命令成功执行并返回非空值。
 
 **章节来源**
-- [packages/coding-agent/test/model-registry.test.ts:1656-1786](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/test/model-registry.test.ts#L1656-L1786)
-- [packages/coding-agent/src/core/resolve-config-value.ts:145-151](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L151)
+- [packages/coding-agent/test/model-registry.test.ts:1656-1786](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/test/model-registry.test.ts#L1656-L1786)
+- [packages/coding-agent/src/core/resolve-config-value.ts:145-151](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/coding-agent/src/core/resolve-config-value.ts#L145-L151)
 
 ## 结论
 本项目通过分层设计实现了灵活、可扩展的API密钥认证机制：

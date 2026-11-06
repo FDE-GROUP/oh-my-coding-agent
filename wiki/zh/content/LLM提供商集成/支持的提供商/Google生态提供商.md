@@ -2,15 +2,15 @@
 
 <cite>
 **本文引用的文件**   
-- [README.md](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md)
-- [packages/ai/catalog/providers/google.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google.ts)
-- [packages/ai/catalog/providers/google-vertex.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google-vertex.ts)
-- [packages/ai/src/providers/google.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.ts)
-- [packages/ai/src/providers/google-vertex.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.ts)
-- [packages/ai/src/providers/google.models.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.models.ts)
-- [packages/ai/src/providers/google-vertex.models.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.models.ts)
-- [packages/ai/src/api/google-generative-ai.lazy.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/google-generative-ai.lazy.ts)
-- [packages/ai/src/api/google-vertex.lazy.ts](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/google-vertex.lazy.ts)
+- [README.md](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md)
+- [packages/ai/catalog/providers/google.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google.ts)
+- [packages/ai/catalog/providers/google-vertex.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google-vertex.ts)
+- [packages/ai/src/providers/google.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.ts)
+- [packages/ai/src/providers/google-vertex.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.ts)
+- [packages/ai/src/providers/google.models.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.models.ts)
+- [packages/ai/src/providers/google-vertex.models.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.models.ts)
+- [packages/ai/src/api/google-generative-ai.lazy.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/google-generative-ai.lazy.ts)
+- [packages/ai/src/api/google-vertex.lazy.ts](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/google-vertex.lazy.ts)
 </cite>
 
 ## 目录
@@ -69,17 +69,17 @@ GVProvImpl --> GVAPI
 ```
 
 图示来源
-- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
-- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
-- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
-- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
-- [packages/ai/src/providers/google.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.models.ts#L1-L15)
-- [packages/ai/src/providers/google-vertex.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.models.ts#L1-L15)
-- [packages/ai/src/api/google-generative-ai.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/google-generative-ai.lazy.ts#L1-L5)
-- [packages/ai/src/api/google-vertex.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/google-vertex.lazy.ts#L1-L5)
+- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
+- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
+- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
+- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
+- [packages/ai/src/providers/google.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.models.ts#L1-L15)
+- [packages/ai/src/providers/google-vertex.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.models.ts#L1-L15)
+- [packages/ai/src/api/google-generative-ai.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/google-generative-ai.lazy.ts#L1-L5)
+- [packages/ai/src/api/google-vertex.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/google-vertex.lazy.ts#L1-L5)
 
 章节来源
-- [README.md:72-84](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/README.md#L72-L84)
+- [README.md:72-84](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/README.md#L72-L84)
 
 ## 核心组件
 - Google Provider（Generative AI）
@@ -103,12 +103,12 @@ GVProvImpl --> GVAPI
   - 成本与上下文窗口：从目录源映射，Vertex对缓存读取价格做了修正
 
 章节来源
-- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
-- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
-- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
-- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
-- [packages/ai/src/providers/google.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.models.ts#L1-L15)
-- [packages/ai/src/providers/google-vertex.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.models.ts#L1-L15)
+- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
+- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
+- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
+- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
+- [packages/ai/src/providers/google.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.models.ts#L1-L15)
+- [packages/ai/src/providers/google-vertex.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.models.ts#L1-L15)
 
 ## 架构总览
 下图展示从应用到Google生态的调用链路，包括认证解析、模型选择与API流式调用。
@@ -135,10 +135,10 @@ APIV-->>App : 返回流式/非流式响应
 ```
 
 图示来源
-- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
-- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
-- [packages/ai/src/api/google-generative-ai.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/google-generative-ai.lazy.ts#L1-L5)
-- [packages/ai/src/api/google-vertex.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/google-vertex.lazy.ts#L1-L5)
+- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
+- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
+- [packages/ai/src/api/google-generative-ai.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/google-generative-ai.lazy.ts#L1-L5)
+- [packages/ai/src/api/google-vertex.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/google-vertex.lazy.ts#L1-L5)
 
 ## 详细组件分析
 
@@ -178,14 +178,14 @@ GoogleProvider --> GenerativeAIAPI : "懒加载"
 ```
 
 图示来源
-- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
-- [packages/ai/src/providers/google.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.models.ts#L1-L15)
-- [packages/ai/src/api/google-generative-ai.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/google-generative-ai.lazy.ts#L1-L5)
+- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
+- [packages/ai/src/providers/google.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.models.ts#L1-L15)
+- [packages/ai/src/api/google-generative-ai.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/google-generative-ai.lazy.ts#L1-L5)
 
 章节来源
-- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
-- [packages/ai/src/providers/google.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.models.ts#L1-L15)
-- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
+- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
+- [packages/ai/src/providers/google.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.models.ts#L1-L15)
+- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
 
 ### Google Vertex AI
 - Provider构造
@@ -214,12 +214,12 @@ SAFlow --> Ready
 ```
 
 图示来源
-- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
+- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
 
 章节来源
-- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
-- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
-- [packages/ai/src/providers/google-vertex.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.models.ts#L1-L15)
+- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
+- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
+- [packages/ai/src/providers/google-vertex.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.models.ts#L1-L15)
 
 ### 模型目录与家族特性
 - 滚动别名
@@ -247,12 +247,12 @@ H --> I
 ```
 
 图示来源
-- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
-- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
+- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
+- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
 
 章节来源
-- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
-- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
+- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
+- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
 
 ## 依赖关系分析
 - Provider与模型目录
@@ -275,14 +275,14 @@ GVProv --> GVProvCat["catalog/providers/google-vertex.ts"]
 ```
 
 图示来源
-- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
-- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
-- [packages/ai/src/providers/google.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.models.ts#L1-L15)
-- [packages/ai/src/providers/google-vertex.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.models.ts#L1-L15)
-- [packages/ai/src/api/google-generative-ai.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/google-generative-ai.lazy.ts#L1-L5)
-- [packages/ai/src/api/google-vertex.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/api/google-vertex.lazy.ts#L1-L5)
-- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
-- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
+- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
+- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
+- [packages/ai/src/providers/google.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.models.ts#L1-L15)
+- [packages/ai/src/providers/google-vertex.models.ts:1-15](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.models.ts#L1-L15)
+- [packages/ai/src/api/google-generative-ai.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/google-generative-ai.lazy.ts#L1-L5)
+- [packages/ai/src/api/google-vertex.lazy.ts:1-5](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/api/google-vertex.lazy.ts#L1-L5)
+- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
+- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
 
 ## 性能与优化建议
 - 模型选择与别名
@@ -315,10 +315,10 @@ GVProv --> GVProvCat["catalog/providers/google-vertex.ts"]
   - 使用目录层提供的 cost 映射，尤其是Vertex的缓存读取价格修正
 
 章节来源
-- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
-- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
-- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
-- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-coding-agent/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
+- [packages/ai/src/providers/google.ts:1-16](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google.ts#L1-L16)
+- [packages/ai/src/providers/google-vertex.ts:1-101](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/src/providers/google-vertex.ts#L1-L101)
+- [packages/ai/catalog/providers/google.ts:1-37](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google.ts#L1-L37)
+- [packages/ai/catalog/providers/google-vertex.ts:1-44](https://github.com/FDE-GROUP/oh-my-fde/blob/omca/packages/ai/catalog/providers/google-vertex.ts#L1-L44)
 
 ## 结论
 本项目通过Provider抽象统一接入Google两大生态：
