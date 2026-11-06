@@ -192,7 +192,6 @@ hello-from-bash
 
 ```
 → .pi/
-  nix/
   docs/
   .npmrc
   .husky/

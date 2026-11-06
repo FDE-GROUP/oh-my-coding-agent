@@ -71,22 +71,6 @@ pi
 
 完整安装和使用说明见[文档](https://pi.dev/docs/latest)，演示见 [pi.dev](https://pi.dev)。
 
-## 使用 Nix 运行
-
-```bash
-nix run github:earendil-works/pi/stable
-```
-
-`stable` 指向最新发布版本。用 `nix profile add github:earendil-works/pi/stable` 安装，用 `nix profile upgrade pi` 更新。要固定版本，可以使用发布标签，例如 `github:earendil-works/pi/v1.0.0`；要跟踪 `main` 上尚未发布的改动，使用 `github:earendil-works/pi`。Nix 会从源码构建 Pi。
-
-支持 Linux 和 macOS 上的 ARM64 与 x86-64。用 `nix build .` 或 `nix run .` 构建或运行当前 checkout。
-
-Nix 构建在离线环境下进行，因此内置的模型数据来自 `nix/model-catalog.json` 中固定的 pi.dev 模型目录版本。运行时，Pi 仍会像往常一样用 pi.dev 上更新的目录数据覆盖它。当固定版本与 checkout 不再匹配时（例如新增了 provider 或新的模型类型），Nix 工作流会在 `main` 上替换这个 pin。手动刷新：
-
-```bash
-pnpm run update:model-catalog-pin
-```
-
 ## 包
 
 这个 monorepo 包含 Pi CLI 及其支撑库。
