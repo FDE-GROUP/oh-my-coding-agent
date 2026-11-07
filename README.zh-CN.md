@@ -6,7 +6,7 @@
 
 [English](README.md) | 简体中文
 
-**企业内部 FDE（Forward Deployed Engineer，前置交付工程师）平台**，以独立维护的 [Pi](https://github.com/earendil-works/pi) fork 为底座。coding agent 是平台的核心能力，不是最终产品：平台沿团队协作、企业集成与治理逐步演化，而不是重写 Pi。
+**企业内部 FDE（Forward Deployed Engineer，前置交付工程师）项目管理平台**，以独立维护的 [Pi](https://github.com/earendil-works/pi) fork 为底座。平台内置 FDE 所需的工具链与扩展基建，让团队以最快方式接入项目、聚焦业务逻辑实现，而不是把时间浪费在 Agent 配置上——价值理念是**极度精简 = 无限扩展**。coding agent 是平台的核心能力，不是最终产品：平台沿团队协作、企业集成与治理逐步演化，而不是重写 Pi。
 
 本仓库不跟踪上游。`main` 是产品分支；历史由 `pi-fork-base-20d86c365` 与 `omfde-cutover` 标签锚定。见 [`docs/explains/26-fork-and-prune.md`](docs/explains/26-fork-and-prune.md)。
 
@@ -115,7 +115,7 @@ pnpm run tui                   # 从源码运行 Pi TUI
 MIT
 
 <p align="center">
-  <strong>omfde</strong> —— 企业内部 FDE 平台。
+  <strong>omfde</strong> —— 企业内部 FDE 项目管理平台。
 </p>
 
 <p align="center">

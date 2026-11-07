@@ -6,7 +6,7 @@
 
 [简体中文](README.zh-CN.md)
 
-An enterprise-internal **FDE (Forward Deployed Engineer) platform**, built on an independently maintained fork of [Pi](https://github.com/earendil-works/pi). The coding agent is the platform's core capability, not the final product: the platform evolves step by step toward team collaboration, enterprise integration, and governance — it is not a rewrite of Pi.
+An enterprise-internal **FDE (Forward Deployed Engineer) project management platform**, built on an independently maintained fork of [Pi](https://github.com/earendil-works/pi). It bundles the toolchain and extension infrastructure FDEs need so a team onboards a project fast and focuses on business logic instead of Agent configuration — the value idea is **extreme minimalism = infinite extensibility**. The coding agent is the platform's core capability, not the final product: the platform evolves step by step toward team collaboration, enterprise integration, and governance — it is not a rewrite of Pi.
 
 This repository does not track upstream. `main` is the product branch; history is anchored by the `pi-fork-base-20d86c365` and `omfde-cutover` tags. See [`docs/explains/26-fork-and-prune.md`](docs/explains/26-fork-and-prune.md).
 
@@ -115,7 +115,7 @@ This fork does not publish releases and does not contribute to upstream Pi. The 
 MIT
 
 <p align="center">
-  <strong>omfde</strong> — an enterprise-internal FDE platform.
+  <strong>omfde</strong> — an enterprise-internal FDE project management platform.
 </p>
 
 <p align="center">
