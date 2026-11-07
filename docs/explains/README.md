@@ -38,6 +38,7 @@
 | `26-fork-and-prune.md` | **fork 与裁剪的准确说明：删了什么、没改什么、如何恢复** |
 | `27-tui-usage.md` | **实际跑通 TUI：DeepSeek 配置、工具调用、斜杠命令、会话恢复** |
 | `28-docs-site.md` | **统一文档站：sync → blume build → publish worktree，路由 / base / .nojekyll / agent 表面** |
+| `29-pi-cli.md` | **pi CLI 在本项目的作用：装配链、模式分岔、三条消费路径、装配点开放问题** |
 
 ## 已覆盖的调用链
 

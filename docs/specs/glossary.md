@@ -1,6 +1,6 @@
 # 术语表（Glossary）
 
-> 状态：**已确认** | 版本：0.1.0 | 日期：2026-11-07
+> 状态：**已确认** | 版本：0.1.1 | 日期：2026-11-07
 > 归属：`docs/specs/` | 受众：**开发者 + AI + Agent**
 > 新词先改本表，再回写引用处。一词一义；冲突在此锐化。
 
@@ -128,8 +128,18 @@
 | **会话文件** | `~/.pi/agent/sessions/--<cwd>--/<id>.jsonl`。**唯一需要备份的东西**；其余（settings、auth、models 缓存）都是可重建的配置或缓存 |
 | **项目信任** | 启动路径上的 `project_trust` 决策点：决定当前 cwd 加载哪些项目级配置与扩展。不是权限沙箱 |
 
+## 6. 协议与观测
+
+| 词 | 含义 |
+|----|------|
+| **JSONL** | JSON Lines：一行一条完整 JSON 对象、以 LF（`\n`）结尾的文本格式。本仓承载两类数据：RPC 协议记录（stdin/stdout）与 transcript 会话文件（追加写，每条一个 entry）。解析只按 LF 分行——Node `readline` 会在 JSON 字符串内合法的 U+2028/U+2029 上误分行，不能用于协议解析 |
+| **RPC（pi）** | Pi 的 `--mode rpc` 模式：pi 作为常驻子进程，宿主经 stdin/stdout 管道用 JSONL 记录通信；命令/响应按 `id` 关联，会话事件流式推送，`prompt` 成功响应只表示已受理（完成看 `agent_settled`）。"remote" 实为"另一个进程"，不涉及网络。fdecode 每会话一个 pi RPC 子进程，对 Pi 的依赖收敛为该协议 + 会话 JSONL（窄耦合面实例）。正本 `packages/coding-agent/docs/rpc.md`；架构角色见 `docs/explains/29-pi-cli.md` |
+| **SSE** | Server-Sent Events：HTTP 长连接上服务端单向推送事件流的标准协议（`text/event-stream`）。fdecode 用它把 pi 子进程 stdout 的 RPC 事件转发给浏览器（流式文本、thinking、工具卡片）；重连以快照整体替换，不做增量补齐；反向代理需关闭缓冲（服务端已发送 `X-Accel-Buffering: no`） |
+| **观测面** | agent-visibility 需求（`docs/rads/agent-visibility.md`，已确认）交付的能力面：上下文解剖、装配视图、机制时间线、治理审计。核心侧为只读观测 RPC 命令族 + `tool_governance` 事件（vision 决策「agent 观测面走核心只读命令族 + 治理留痕事件」），视图在 fdecode。给人的 UI，不注入模型上下文、不产生 provider 费用 |
+
 ## 演变记录
 
 | 日期 | 版本 | 变更原因 | 内容修订 |
 |------|------|----------|----------|
 | 2026-11-07 | 0.1.0 | 决策者指令：参考 OdooThink glossary 建立本仓术语表 | 首版：项目身份与目标线、治理与协作、工程与工具、Web UI（fdecode）域、Pi 运行时五节建档；词条取自 vision/workflow/AGENTS/explains/fdecode RAD 系列的已裁事实 |
+| 2026-11-07 | 0.1.1 | pi CLI / RPC 讨论与 agent-visibility 需求立项，补协议与观测术语（合并另一会话同日起草的独立 glossary 草稿，其内容收编为本节） | 新增「协议与观测」一节：JSONL、RPC（pi）、SSE、观测面四词 |
