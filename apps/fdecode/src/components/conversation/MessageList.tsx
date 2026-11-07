@@ -4,10 +4,7 @@ import type { ConversationMessage, StreamingMessage, ToolExecution } from "../..
 import { IconButton } from "../primitives/IconButton.tsx";
 import { ArrowDownIcon } from "../primitives/icons.tsx";
 import { ToolCard } from "../tools/ToolCard.tsx";
-
-function TextBlock({ text }: { text: string }) {
-	return <p className="whitespace-pre-wrap break-words text-sm leading-6">{text}</p>;
-}
+import { Markdown } from "./Markdown.tsx";
 
 function ThinkingBlock({ thinking }: { thinking: string }) {
 	if (thinking.length === 0) return null;
@@ -67,12 +64,12 @@ function MessageContent({
 	results: Map<string, ToolResultView>;
 }) {
 	if (typeof message.content === "string") {
-		return <TextBlock text={message.content} />;
+		return <Markdown text={message.content} />;
 	}
 	return (
 		<div className="flex flex-col gap-2">
 			{message.content.map((block, index) => {
-				if (block.type === "text") return <TextBlock key={index} text={block.text} />;
+				if (block.type === "text") return <Markdown key={index} text={block.text} />;
 				if (block.type === "thinking") return <ThinkingBlock key={index} thinking={block.thinking} />;
 				if (block.type === "toolCall") {
 					const execution = tools[block.id];
@@ -169,7 +166,7 @@ function StreamingRow({ streaming }: { streaming: StreamingMessage }) {
 			<RoleLabel author="assistant" />
 			<div className="flex flex-col gap-2 px-1">
 				<ThinkingBlock thinking={streaming.thinking} />
-				{streaming.text.length > 0 && <TextBlock text={streaming.text} />}
+				{streaming.text.length > 0 && <Markdown text={streaming.text} />}
 				{empty && <p className="animate-pulse text-sm text-dsw-label-tertiary">正在思考…</p>}
 			</div>
 		</article>

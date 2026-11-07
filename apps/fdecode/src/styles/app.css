@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./tokens/generated.css";
 @import "./tokens/app-tokens.css";
+@import "./markdown.css";
 
 @theme {
 	--color-dsw-bg-base: var(--dsw-alias-bg-base);
