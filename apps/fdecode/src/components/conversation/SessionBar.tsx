@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { CiStatus } from "../../lib/api.ts";
 import type { RpcSessionStats } from "../../server/runtime.ts";
 import { ContextAnatomyPanel } from "./ContextAnatomyPanel.tsx";
+import { type MechanismEvent, MechanismTimelinePanel } from "./MechanismTimelinePanel.tsx";
 import { SharePanel } from "./SharePanel.tsx";
 
 export interface ModelSummary {
@@ -21,6 +22,8 @@ export interface SessionBarProps {
 	sessionId?: string;
 	ci?: CiStatus | null;
 	canWrite: boolean;
+	/** 机制时间线事件（压缩/自动重试/摘要重试），由会话页采集。 */
+	timeline?: MechanismEvent[];
 }
 
 function compact(value: number | undefined | null): string {
@@ -46,9 +49,11 @@ export function SessionBar({
 	sessionId,
 	ci,
 	canWrite,
+	timeline = [],
 }: SessionBarProps) {
 	const [shareOpen, setShareOpen] = useState(false);
 	const [anatomyOpen, setAnatomyOpen] = useState(false);
+	const [timelineOpen, setTimelineOpen] = useState(false);
 	const current = model ? `${model.provider}/${model.id}` : "";
 	const cost = stats?.cost ?? 0;
 	const tokens = stats?.tokens;
@@ -108,6 +113,15 @@ export function SessionBar({
 							解剖
 						</button>
 					)}
+					{sessionId && (
+						<button
+							type="button"
+							onClick={() => setTimelineOpen(true)}
+							className="rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary"
+						>
+							时间线{timeline.length > 0 ? ` ${timeline.length}` : ""}
+						</button>
+					)}
 					{ci && (
 						<a
 							href={ci.url}
@@ -143,6 +157,9 @@ export function SessionBar({
 			{shareOpen && sessionId && <SharePanel sessionId={sessionId} onClose={() => setShareOpen(false)} />}
 			{anatomyOpen && sessionId && (
 				<ContextAnatomyPanel sessionId={sessionId} onClose={() => setAnatomyOpen(false)} />
+			)}
+			{timelineOpen && sessionId && (
+				<MechanismTimelinePanel events={timeline} onClose={() => setTimelineOpen(false)} />
 			)}
 		</div>
 	);

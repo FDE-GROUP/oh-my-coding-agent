@@ -19,6 +19,11 @@ import type { Health } from "../../server/health.ts";
 import type { RpcSessionStats } from "../../server/runtime.ts";
 import { type CommandSummary, Composer, type QueueMode } from "./Composer.tsx";
 import { ConversationPlaceholder } from "./ConversationPlaceholder.tsx";
+import {
+	type MechanismEvent,
+	mechanismEventFromRecord,
+	mechanismEventsFromEntries,
+} from "./MechanismTimelinePanel.tsx";
 import { MessageList } from "./MessageList.tsx";
 import { type ModelSummary, SessionBar } from "./SessionBar.tsx";
 
@@ -57,6 +62,7 @@ export function Conversation({
 	const [initialDraft, setInitialDraft] = useState("");
 	const [issue, setIssue] = useState<{ number: number; title: string; url: string; repoId: string } | null>(null);
 	const [ci, setCi] = useState<CiStatus | null>(null);
+	const [timeline, setTimeline] = useState<MechanismEvent[]>([]);
 	const noticeId = useRef(0);
 	const activeIdRef = useRef<string | null>(null);
 
@@ -82,6 +88,7 @@ export function Conversation({
 		setAttachments([]);
 		setCommands([]);
 		setForkMessages([]);
+		setTimeline([]);
 		resumeSession(sessionId)
 			.then((created) => {
 				if (!cancelled) setActiveId(created.id);
@@ -119,6 +126,25 @@ export function Conversation({
 		if (!activeId) return;
 		setInitialDraft(window.sessionStorage.getItem(`fdecode-draft:${activeId}`) ?? "");
 		window.sessionStorage.removeItem(`fdecode-draft:${activeId}`);
+	}, [activeId]);
+
+	// 回填机制时间线的历史压缩；与切换会话后已收到的实时事件合并。
+	useEffect(() => {
+		if (!activeId) return;
+		let cancelled = false;
+		sendCommand(activeId, { type: "get_entries" })
+			.then((response) => {
+				if (cancelled) return;
+				const entries = (response as { entries?: Array<Record<string, unknown>> }).entries ?? [];
+				setTimeline((current) => [
+					...mechanismEventsFromEntries(entries),
+					...current.filter((event) => event.source === "live"),
+				]);
+			})
+			.catch(() => undefined);
+		return () => {
+			cancelled = true;
+		};
 	}, [activeId]);
 
 	useEffect(() => {
@@ -203,6 +229,10 @@ export function Conversation({
 			onEvent: (event) => {
 				if (event.kind === "record") {
 					dispatch({ type: "event", event: event.record });
+					const mechanism = mechanismEventFromRecord(event.record as Record<string, unknown>);
+					if (mechanism) {
+						setTimeline((current) => [...current.slice(-499), mechanism]);
+					}
 					if (
 						event.record.type === "extension_ui_request" &&
 						event.record.method === "notify" &&
@@ -441,6 +471,7 @@ export function Conversation({
 						sessionId={activeId ?? undefined}
 						ci={ci}
 						canWrite
+						timeline={timeline}
 					/>
 				</>
 			)}
