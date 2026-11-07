@@ -76,7 +76,7 @@ pnpm run fdecode   # 从源码运行 Web UI（dev）
 
 ```bash
 pnpm --filter @omfde/docs-site build   # 同步内容 + 构建 dist/
-pnpm --filter @omfde/docs-site deploy  # 演练发布到 pages（deploy:publish 才真正 push）
+pnpm --filter @omfde/docs-site run deploy  # 演练发布到 pages（run deploy:publish 才真正 push）
 ```
 
 构建与发布机制见 [`docs/explains/28-docs-site.md`](docs/explains/28-docs-site.md)。

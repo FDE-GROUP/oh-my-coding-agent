@@ -78,7 +78,7 @@ These override convenience and local preference.
 - Use `pnpm run check:fix` only when formatting or safe lint fixes are needed; it writes files, so inspect the diff and keep it inside your write scope. `pnpm run check:secrets` is included in `check` and can also run alone.
 - Pre-commit runs staged-only checks; pre-push runs the full `pnpm run check`. Both are local-only gates.
 - `pnpm run omfde` launches the platform entrypoint: Web UI by default, `--tui` for the Pi TUI. `pnpm run tui` still launches Pi directly from source.
-- `pnpm --filter @omfde/docs-site deploy` dry-runs the docs-site publish to `pages`; `deploy:publish` actually pushes. Publishing to `pages` requires decision-maker authorization.
+- `pnpm --filter @omfde/docs-site run deploy` dry-runs the docs-site publish to `pages`; `run deploy:publish` actually pushes. The explicit `run` is required: without it, pnpm's built-in `deploy` command shadows the package script. Publishing to `pages` requires decision-maker authorization.
 - Run `pnpm run build` only when something needs built output (`dist/`), for example tests that import built packages. Never use it to type check or lint: that is `pnpm run check`.
 - Never run `pnpm test` unless requested by the user.
 - Never run the full vitest suite directly: it includes e2e tests that activate when endpoint/auth env vars are present. For all non-e2e tests, run `./test.sh` from the repo root. It runs `packages/*` only. Otherwise run specific tests from the package root:

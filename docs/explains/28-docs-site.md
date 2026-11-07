@@ -71,9 +71,12 @@ header tab，每个 tab 把侧栏限定到本区——400+ 页跨三源，tab �
 
 ## 发布流程
 
-`pnpm --filter @omfde/docs-site deploy` 跑 `scripts/publish.mjs`，**默认 dry-run**：
+`pnpm --filter @omfde/docs-site run deploy` 跑 `scripts/publish.mjs`，**默认 dry-run**：
 只构建、在 `/tmp` 模拟拷贝、打印将执行的 git 动作，不碰 `pages`、不 push。加
-`--publish`（即 `deploy:publish`）才真正发布。
+`--publish`（即 `run deploy:publish`）才真正发布。
+
+命令必须带显式 `run`：`pnpm --filter … deploy`（省略 `run`）会被 pnpm 内建的
+`pnpm deploy` 命令遮蔽，报 `ERR_PNPM_INVALID_DEPLOY_TARGET` 而不会跑到包脚本。
 
 真发布时脚本：
 

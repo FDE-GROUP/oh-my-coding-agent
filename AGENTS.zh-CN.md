@@ -80,7 +80,7 @@
 - 只有需要格式化或安全的 lint 自动修复时才运行 `pnpm run check:fix`；它会写文件，必须检查 diff 并保持在 write scope 内。`pnpm run check:secrets` 已包含在 `check` 中，也可以单独运行。
 - pre-commit 只对 staged 文件做快速检查；pre-push 运行完整 `pnpm run check`。两者都只在本地执行。
 - `pnpm run omfde` 启动平台入口：默认 Web UI，`--tui` 回退 Pi TUI。`pnpm run tui` 仍然直接从源码启动 Pi。
-- `pnpm --filter @omfde/docs-site deploy` 演练文档站发布到 `pages`；`deploy:publish` 才真正 push。发布到 `pages` 需要决策者授权。
+- `pnpm --filter @omfde/docs-site run deploy` 演练文档站发布到 `pages`；`run deploy:publish` 才真正 push。必须带显式 `run`：省略时 pnpm 内建的 `deploy` 命令会遮蔽包脚本。发布到 `pages` 需要决策者授权。
 - 只在某些东西需要构建产物（`dist/`）时运行 `pnpm run build`，例如导入已构建包的测试。永远不要用它做类型检查或 lint：那应该用 `pnpm run check`。
 - 除非用户要求，否则永远不要运行 `pnpm test`。
 - 永远不要直接运行完整的 vitest 套件：它包含 e2e 测试，当存在 endpoint/auth 环境变量时这些测试会激活。要运行所有非 e2e 测试，在仓库根目录运行 `./test.sh`。它只运行 `packages/*`。否则从包根目录运行特定测试：

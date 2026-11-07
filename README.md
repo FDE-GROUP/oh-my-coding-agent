@@ -76,7 +76,7 @@ It publishes to the `pages` branch at <https://fde-group.github.io/oh-my-fde/>.
 
 ```bash
 pnpm --filter @omfde/docs-site build   # sync content + build dist/
-pnpm --filter @omfde/docs-site deploy  # dry-run the pages publish (deploy:publish to push)
+pnpm --filter @omfde/docs-site run deploy  # dry-run the pages publish (run deploy:publish to push)
 ```
 
 Build and publish mechanism: [`docs/explains/28-docs-site.md`](docs/explains/28-docs-site.md).
