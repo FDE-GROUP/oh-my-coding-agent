@@ -31,6 +31,8 @@
 	--dsw-elevation-soft:
 		var(--dsw-elevation-stroke), 0 4px 16px 0 rgba(0, 0, 0, 0.03), 0 0 24px 0 rgba(0, 0, 0, 0.03);
 	--dsw-menu-backdrop-filter: blur(40px) saturate(150%);
+	/* 弹窗与抽屉遮罩的背景模糊：比菜单轻，暗化已由 --dsw-alias-bg-mask-1 提供。fdecode 自有，非 DSH token。 */
+	--dsw-overlay-backdrop-filter: blur(8px);
 
 	--dsw-focus-ring-color: #4176e6;
 	--dsw-focus-ring-width: 2px;

@@ -237,7 +237,7 @@ export function AppFrame({ health, sessionId }: AppFrameProps) {
 					<button
 						type="button"
 						aria-label="关闭侧栏"
-						className="flex-1 bg-dsw-bg-mask-1"
+						className="flex-1 overlay-mask"
 						onClick={() => setExpanded(false)}
 					/>
 				</div>

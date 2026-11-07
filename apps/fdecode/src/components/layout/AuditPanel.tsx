@@ -27,7 +27,7 @@ export function AuditPanel({ onClose }: AuditPanelProps) {
 
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-			<button type="button" aria-label="关闭审计" className="absolute inset-0 bg-dsw-bg-mask-1" onClick={onClose} />
+			<button type="button" aria-label="关闭审计" className="absolute inset-0 overlay-mask" onClick={onClose} />
 			<div className="relative flex max-h-[80vh] w-full max-w-3xl flex-col rounded-dsw-card border border-hairline border-dsw-border-l1 bg-dsw-bg-base p-4 shadow-dsw-prominent">
 				<div className="flex items-center gap-2">
 					<h2 className="text-sm font-semibold">最近审计</h2>

@@ -53,6 +53,13 @@
 	border-width: var(--dsh-hairline-width);
 }
 
+/* 弹窗/抽屉遮罩：暗化（mask 语义色）+ 背景模糊，集中一处，避免各面板复制。 */
+@utility overlay-mask {
+	background-color: var(--dsw-alias-bg-mask-1);
+	-webkit-backdrop-filter: var(--dsw-overlay-backdrop-filter);
+	backdrop-filter: var(--dsw-overlay-backdrop-filter);
+}
+
 @layer base {
 	html {
 		color-scheme: light;

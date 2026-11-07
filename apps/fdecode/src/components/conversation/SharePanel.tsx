@@ -62,7 +62,7 @@ export function SharePanel({ sessionId, onClose }: SharePanelProps) {
 
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-			<button type="button" aria-label="关闭分享" className="absolute inset-0 bg-dsw-bg-mask-1" onClick={onClose} />
+			<button type="button" aria-label="关闭分享" className="absolute inset-0 overlay-mask" onClick={onClose} />
 			<div className="relative w-full max-w-lg rounded-dsw-card border border-hairline border-dsw-border-l1 bg-dsw-bg-base p-4 shadow-dsw-prominent">
 				<div className="flex items-center gap-2">
 					<h2 className="text-sm font-semibold">只读分享</h2>

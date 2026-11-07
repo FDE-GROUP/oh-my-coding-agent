@@ -150,7 +150,7 @@ export function MechanismTimelinePanel({ events, onClose }: MechanismTimelinePan
 			<button
 				type="button"
 				aria-label="关闭机制时间线"
-				className="absolute inset-0 bg-dsw-bg-mask-1"
+				className="absolute inset-0 overlay-mask"
 				onClick={onClose}
 			/>
 			<div className="relative flex max-h-[80vh] w-full max-w-lg flex-col rounded-dsw-card border border-hairline border-dsw-border-l1 bg-dsw-bg-base p-4 shadow-dsw-prominent">
