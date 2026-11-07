@@ -30,29 +30,31 @@
   <url><loc>https://fde-group.github.io/oh-my-fde/docs/explains/tui</loc></url>
   <url><loc>https://fde-group.github.io/oh-my-fde/docs/explains/validation</loc></url>
   <url><loc>https://fde-group.github.io/oh-my-fde/docs/explains</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m2</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m3</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m4</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m5</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-sqlite</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/fdecode</loc></url>
   <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/omfde-web-integration</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m2</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m3</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m4</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m5</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-sqlite</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/plans/pi-web</loc></url>
   <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads/TEMPLATE</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m2</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m3</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m4</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m5</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads/pi-web</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads/code-graph</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m2</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m3</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m4</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m5</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads/fdecode</loc></url>
   <url><loc>https://fde-group.github.io/oh-my-fde/docs/rads</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/specs/glossary</loc></url>
   <url><loc>https://fde-group.github.io/oh-my-fde/docs/specs/tsdoc-comment-standards</loc></url>
   <url><loc>https://fde-group.github.io/oh-my-fde/docs/specs/vision</loc></url>
   <url><loc>https://fde-group.github.io/oh-my-fde/docs/specs/workflow</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m2</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m3</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m4</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m5</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-sqlite</loc></url>
-  <url><loc>https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-stack</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m2</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m3</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m4</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m5</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-sqlite</loc></url>
+  <url><loc>https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-stack</loc></url>
   <url><loc>https://fde-group.github.io/oh-my-fde/docs</loc></url>
   <url><loc>https://fde-group.github.io/oh-my-fde/knowledge/%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%20%E2%80%94%20%E5%9F%BA%E4%BA%8E%E6%96%87%E4%BB%B6%E8%BF%BD%E5%8A%A0%E7%9A%84%20MCP%20%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A5%E5%BF%97%E4%B8%8E%E5%85%A8%E5%B1%80%20console%20%E8%BE%93%E5%87%BA/%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%20%E2%80%94%20%E5%9F%BA%E4%BA%8E%E6%96%87%E4%BB%B6%E8%BF%BD%E5%8A%A0%E7%9A%84%20MCP%20%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A5%E5%BF%97%E4%B8%8E%E5%85%A8%E5%B1%80%20console%20%E8%BE%93%E5%87%BA</loc></url>
   <url><loc>https://fde-group.github.io/oh-my-fde/knowledge/%E7%BB%88%E7%AB%AF%20TUI%20%E6%A0%B7%E5%BC%8F%E7%B3%BB%E7%BB%9F%EF%BC%9A%E5%9F%BA%E4%BA%8E%20ANSI_OSC%20%E7%9A%84%E7%BA%AF%E4%BB%A3%E7%A0%81%E4%B8%BB%E9%A2%98%E4%B8%8E%E8%89%B2%E5%BD%A9%E7%AE%A1%E7%BA%BF/%E7%BB%88%E7%AB%AF%20TUI%20%E6%A0%B7%E5%BC%8F%E7%B3%BB%E7%BB%9F%EF%BC%9A%E5%9F%BA%E4%BA%8E%20ANSI_OSC%20%E7%9A%84%E7%BA%AF%E4%BB%A3%E7%A0%81%E4%B8%BB%E9%A2%98%E4%B8%8E%E8%89%B2%E5%BD%A9%E7%AE%A1%E7%BA%BF</loc></url>

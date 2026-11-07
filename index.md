@@ -1,12 +1,24 @@
 # oh-my-fde 文档
 
-omfde 是 Pi（`earendil-works/pi`）的独立维护 fork，定位为企业内部 FDE（Forward Deployed Engineer）平台。本站把仓库内分散的文档汇聚为一处，供人与 coding agent 双读，内容全部公开。
+omfde（oh-my-fde）是**企业内部 FDE（Forward Deployed Engineer，前置交付工程师）平台**，以独立维护的 [Pi](https://github.com/earendil-works/pi) fork 为底座。coding agent 是平台的核心能力，不是最终产品；平台沿团队协作、企业集成与治理逐步演化，而不是重写 Pi。本站把仓库内分散的文档汇聚为一处，供人与 coding agent 双读，内容全部公开。
+
+## 当前状态
+
+三条目标线并行推进（口径以[项目宪法](/oh-my-fde/docs/specs/vision)为准）：
+
+| 线 | 路径 | 状态 |
+|---|---|---|
+| 教程线（文档） | 理解 → 会用 → 用好 | 会用已完成；用好转入后台持续推进 |
+| 平台化线（代码结构） | 骨架 → 核心能力 → 协作 → 企业集成 → 治理 | **核心能力进行中（当前重心）** |
+| Web UI 线（`apps/fdecode`） | 可用 → 对齐 DSH → 会话完整 → 团队可用 | 里程碑 M1–M5 已交付 |
+
+平台能力由真实使用暴露的缺口触发，不由计划表触发；每项能力仍须走 vision → RAD → plan → 验证。本仓不跟踪上游，`main` 是产品分支，fork 与裁剪记录见[这里](/oh-my-fde/docs/explains/fork-and-prune)。
 
 ## 三个分区
 
 **[项目文档](/oh-my-fde/docs)**
 
-愿景与决策记录、开发工作流、架构解读、RAD、计划与 spike。人工维护，是项目的权威记录。
+愿景与决策记录、开发工作流、术语表、架构解读、RAD、计划与 spike。人工维护，是项目的权威记录。
 
 **[仓库 Wiki](/oh-my-fde/wiki)**
 
@@ -15,6 +27,37 @@ omfde 是 Pi（`earendil-works/pi`）的独立维护 fork，定位为企业内�
 **[架构知识卡](/oh-my-fde/knowledge)**
 
 按模块拆分的架构知识卡：概述、技术栈、架构设计、编码规范等。由 Repo Wiki 工具生成，可能过时。
+
+## 治理入口
+
+**[项目宪法（vision）](/oh-my-fde/docs/specs/vision)**
+
+目标、边界、阶段与决策记录。开发决策不能越过它；冲突时先修宪再实施。
+
+**[开发工作流](/oh-my-fde/docs/specs/workflow)**
+
+RAD → Spike → Plan → 验证闭环，以及 Issue、Scope、Vision、Spike、Plan 各闸定义。
+
+**[术语表](/oh-my-fde/docs/specs/glossary)**
+
+项目级术语 SSOT：一词一义，统一人机交流口径。新词先改表，再回写引用处。
+
+**[系统总览](/oh-my-fde/docs/explains/system-overview)**
+
+一页看懂 Pi 底座：五个不变量、一次请求的完整路径、扩展能介入的层面。先读这篇。
+
+## 快速开始
+
+需要 Node.js 22.19+ 与 pnpm 11.15.1（由 `packageManager` 钉死）：
+
+```bash
+pnpm install --ignore-scripts          # 安装依赖（不运行生命周期脚本）
+pnpm --filter @omfde/fdecode build     # 首次启动前构建一次 Web UI
+pnpm run omfde                         # 平台入口：启动 FDE Code UI
+pnpm run omfde -- --tui                # 或直接启动 Pi TUI
+```
+
+仓库结构：`packages/` 是 Pi fork 与共享库（9 个包），`apps/` 是可运行应用（`omfde` 平台入口、`fdecode` Web UI、`docs-site` 文档站），`extensions/` 是平台扩展（`omfde-core` 骨架），`docs/` 是治理与架构记录。
 
 ## 面向 coding agent
 

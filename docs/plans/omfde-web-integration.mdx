@@ -14,13 +14,13 @@
 
 ## 1. 目标
 
-让 `pnpm run omfde` 默认启动 Pi Web UI，保留 `--tui` 回退。组合式接入：不移动、不合并 `apps/pi-web` 代码。
+让 `pnpm run omfde` 默认启动 FDE Code UI，保留 `--tui` 回退。组合式接入：不移动、不合并 `apps/fdecode` 代码。
 
 ## 2. 非目标
 
 - 任务、交接数据共享。
 - Web UI 代码迁移或包合并。
-- 反向代理、TLS、进程守护；沿用 pi-web 的部署方式。
+- 反向代理、TLS、进程守护；沿用 fdecode 的部署方式。
 - 自动构建 Web UI。
 
 ## 3. 设计要点
@@ -33,7 +33,7 @@
 | `--tui [pi args]` | 启动 Pi TUI，其余参数透传 |
 | `--port <n>` | Web UI 端口 |
 | `--host <h>` | 监听地址 |
-| `--config <path>` | `PI_WEB_CONFIG` |
+| `--config <path>` | `FDECODE_CONFIG` |
 | `--no-open` | 不自动打开浏览器 |
 | `--help` | 打印用法 |
 
@@ -42,16 +42,16 @@ Web UI 模式下不接受 Pi 参数透传；需要时用 `--tui`。
 ### 3.2 环境
 
 - 设置 `OMFDE_PLATFORM=1`。
-- `PI_WEB_CWD` 未设置时使用启动器的当前目录。
-- `--port`/`--host`/`--config` 映射到 `PI_WEB_PORT`/`PI_WEB_HOST`/`PI_WEB_CONFIG`。
+- `FDECODE_CWD` 未设置时使用启动器的当前目录。
+- `--port`/`--host`/`--config` 映射到 `FDECODE_PORT`/`FDECODE_HOST`/`FDECODE_CONFIG`。
 - 其余环境变量原样继承。
 
 ### 3.3 构建检查
 
-启动前检查 `apps/pi-web/dist/server/server.js`。缺失时退出并提示：
+启动前检查 `apps/fdecode/dist/server/server.js`。缺失时退出并提示：
 
 ```text
-omfde: Web UI 尚未构建。先运行 pnpm --filter @omfde/pi-web build，或使用 omfde --tui。
+omfde: Web UI 尚未构建。先运行 pnpm --filter @omfde/fdecode build，或使用 omfde --tui。
 ```
 
 ### 3.4 进程与信号
@@ -94,7 +94,7 @@ omfde: Web UI 尚未构建。先运行 pnpm --filter @omfde/pi-web build，或�
 | 风险 | 应对 |
 |---|---|
 | 未构建 Web UI | 启动前检查并给出明确命令 |
-| 端口占用 | 透传 pi-web 的启动错误 |
+| 端口占用 | 透传 fdecode 的启动错误 |
 | 浏览器打开失败 | 静默忽略，仍打印地址 |
 | 信号处理重复退出 | 统一在 child exit 处理 |
 

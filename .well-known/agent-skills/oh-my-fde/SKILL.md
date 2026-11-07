@@ -59,38 +59,40 @@ This skill points you at the oh-my-fde 文档 docs, at https://fde-group.github.
 
 #### Plans
 
-- [Plan：Pi Web UI M1](https://fde-group.github.io/oh-my-fde/docs/plans/pi-web.md)
-- [Plan：Pi Web UI M2](https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m2.md)
-- [Plan：Pi Web UI M3](https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m3.md)
-- [Plan：Pi Web UI M4](https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m4.md)
-- [Plan：Pi Web UI M5](https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m5.md)
-- [Plan：pi-web SQLite 元数据存储](https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-sqlite.md)
+- [Plan：FDE Code UI M1](https://fde-group.github.io/oh-my-fde/docs/plans/fdecode.md)
+- [Plan：FDE Code UI M2](https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m2.md)
+- [Plan：FDE Code UI M3](https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m3.md)
+- [Plan：FDE Code UI M4](https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m4.md)
+- [Plan：FDE Code UI M5](https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m5.md)
+- [Plan：fdecode SQLite 元数据存储](https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-sqlite.md)
 - [Plan：Web UI 接入 omfde 平台](https://fde-group.github.io/oh-my-fde/docs/plans/omfde-web-integration.md)
 
 #### Rads
 
 - [RADS](https://fde-group.github.io/oh-my-fde/docs/rads.md)
 - [RAD：<需求名>](https://fde-group.github.io/oh-my-fde/docs/rads/TEMPLATE.md)
-- [RAD：Pi Web UI](https://fde-group.github.io/oh-my-fde/docs/rads/pi-web.md)
-- [RAD：Pi Web UI M2](https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m2.md)
-- [RAD：Pi Web UI M3](https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m3.md)
-- [RAD：Pi Web UI M4](https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m4.md)
-- [RAD：Pi Web UI M5](https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m5.md)
+- [RAD：FDE Code UI](https://fde-group.github.io/oh-my-fde/docs/rads/fdecode.md)
+- [RAD：FDE Code UI M2](https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m2.md)
+- [RAD：FDE Code UI M3](https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m3.md)
+- [RAD：FDE Code UI M4](https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m4.md)
+- [RAD：FDE Code UI M5](https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m5.md)
+- [RAD：代码图谱（code graph）内置能力](https://fde-group.github.io/oh-my-fde/docs/rads/code-graph.md)
 
 #### Specs
 
 - [TypeScript 注释规范（TSDoc）](https://fde-group.github.io/oh-my-fde/docs/specs/tsdoc-comment-standards.md)
 - [开发工作流](https://fde-group.github.io/oh-my-fde/docs/specs/workflow.md)
+- [术语表（Glossary）](https://fde-group.github.io/oh-my-fde/docs/specs/glossary.md)
 - [项目愿景](https://fde-group.github.io/oh-my-fde/docs/specs/vision.md)
 
 #### Spikes
 
-- [Spike：Pi Web UI M2](https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m2.md)
-- [Spike：Pi Web UI M3](https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m3.md)
-- [Spike：Pi Web UI M4](https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m4.md)
-- [Spike：Pi Web UI M5](https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m5.md)
-- [Spike：Pi Web UI 技术栈与 RPC 契约](https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-stack.md)
-- [Spike：pi-web SQLite 元数据存储](https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-sqlite.md)
+- [Spike：FDE Code UI M2](https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m2.md)
+- [Spike：FDE Code UI M3](https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m3.md)
+- [Spike：FDE Code UI M4](https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m4.md)
+- [Spike：FDE Code UI M5](https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m5.md)
+- [Spike：FDE Code UI 技术栈与 RPC 契约](https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-stack.md)
+- [Spike：fdecode SQLite 元数据存储](https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-sqlite.md)
 
 ### Knowledge
 
@@ -342,7 +344,5 @@ This skill points you at the oh-my-fde 文档 docs, at https://fde-group.github.
 ###### 模型配置、注册与解析层
 
 - [技术栈](https://fde-group.github.io/oh-my-fde/knowledge/Pi%20%E8%BF%90%E8%A1%8C%E6%97%B6%20Monorepo%20%E6%A0%B9%E7%BC%96%E6%8E%92/Pi%20Coding%20Agent%20%E4%B8%BB%E5%8C%85%20%28pi-coding-agent%29/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E8%81%9A%E5%90%88%E5%B1%82/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B1%82/%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE%E3%80%81%E6%B3%A8%E5%86%8C%E4%B8%8E%E8%A7%A3%E6%9E%90%E5%B1%82/%E6%8A%80%E6%9C%AF%E6%A0%88.md)
-- [架构设计](https://fde-group.github.io/oh-my-fde/knowledge/Pi%20%E8%BF%90%E8%A1%8C%E6%97%B6%20Monorepo%20%E6%A0%B9%E7%BC%96%E6%8E%92/Pi%20Coding%20Agent%20%E4%B8%BB%E5%8C%85%20%28pi-coding-agent%29/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E8%81%9A%E5%90%88%E5%B1%82/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B1%82/%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE%E3%80%81%E6%B3%A8%E5%86%8C%E4%B8%8E%E8%A7%A3%E6%9E%90%E5%B1%82/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.md)
-- [概述](https://fde-group.github.io/oh-my-fde/knowledge/Pi%20%E8%BF%90%E8%A1%8C%E6%97%B6%20Monorepo%20%E6%A0%B9%E7%BC%96%E6%8E%92/Pi%20Coding%20Agent%20%E4%B8%BB%E5%8C%85%20%28pi-coding-agent%29/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E8%81%9A%E5%90%88%E5%B1%82/Pi%20Coding%20Agent%20%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B1%82/%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE%E3%80%81%E6%B3%A8%E5%86%8C%E4%B8%8E%E8%A7%A3%E6%9E%90%E5%B1%82/%E6%A6%82%E8%BF%B0.md)
 
-…and 228 more. [llms.txt](https://fde-group.github.io/oh-my-fde/llms.txt) lists every page.
+…and 230 more. [llms.txt](https://fde-group.github.io/oh-my-fde/llms.txt) lists every page.

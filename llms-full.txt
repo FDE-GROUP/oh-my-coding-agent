@@ -5,13 +5,25 @@
 # oh-my-fde 文档
 Source: https://fde-group.github.io/oh-my-fde
 
-omfde 是 Pi（`earendil-works/pi`）的独立维护 fork，定位为企业内部 FDE（Forward Deployed Engineer）平台。本站把仓库内分散的文档汇聚为一处，供人与 coding agent 双读，内容全部公开。
+omfde（oh-my-fde）是**企业内部 FDE（Forward Deployed Engineer，前置交付工程师）平台**，以独立维护的 [Pi](https://github.com/earendil-works/pi) fork 为底座。coding agent 是平台的核心能力，不是最终产品；平台沿团队协作、企业集成与治理逐步演化，而不是重写 Pi。本站把仓库内分散的文档汇聚为一处，供人与 coding agent 双读，内容全部公开。
+
+## 当前状态
+
+三条目标线并行推进（口径以[项目宪法](/oh-my-fde/docs/specs/vision)为准）：
+
+| 线 | 路径 | 状态 |
+|---|---|---|
+| 教程线（文档） | 理解 → 会用 → 用好 | 会用已完成；用好转入后台持续推进 |
+| 平台化线（代码结构） | 骨架 → 核心能力 → 协作 → 企业集成 → 治理 | **核心能力进行中（当前重心）** |
+| Web UI 线（`apps/fdecode`） | 可用 → 对齐 DSH → 会话完整 → 团队可用 | 里程碑 M1–M5 已交付 |
+
+平台能力由真实使用暴露的缺口触发，不由计划表触发；每项能力仍须走 vision → RAD → plan → 验证。本仓不跟踪上游，`main` 是产品分支，fork 与裁剪记录见[这里](/oh-my-fde/docs/explains/fork-and-prune)。
 
 ## 三个分区
 
 **[项目文档](/oh-my-fde/docs)**
 
-愿景与决策记录、开发工作流、架构解读、RAD、计划与 spike。人工维护，是项目的权威记录。
+愿景与决策记录、开发工作流、术语表、架构解读、RAD、计划与 spike。人工维护，是项目的权威记录。
 
 **[仓库 Wiki](/oh-my-fde/wiki)**
 
@@ -20,6 +32,37 @@ omfde 是 Pi（`earendil-works/pi`）的独立维护 fork，定位为企业内�
 **[架构知识卡](/oh-my-fde/knowledge)**
 
 按模块拆分的架构知识卡：概述、技术栈、架构设计、编码规范等。由 Repo Wiki 工具生成，可能过时。
+
+## 治理入口
+
+**[项目宪法（vision）](/oh-my-fde/docs/specs/vision)**
+
+目标、边界、阶段与决策记录。开发决策不能越过它；冲突时先修宪再实施。
+
+**[开发工作流](/oh-my-fde/docs/specs/workflow)**
+
+RAD → Spike → Plan → 验证闭环，以及 Issue、Scope、Vision、Spike、Plan 各闸定义。
+
+**[术语表](/oh-my-fde/docs/specs/glossary)**
+
+项目级术语 SSOT：一词一义，统一人机交流口径。新词先改表，再回写引用处。
+
+**[系统总览](/oh-my-fde/docs/explains/system-overview)**
+
+一页看懂 Pi 底座：五个不变量、一次请求的完整路径、扩展能介入的层面。先读这篇。
+
+## 快速开始
+
+需要 Node.js 22.19+ 与 pnpm 11.15.1（由 `packageManager` 钉死）：
+
+```bash
+pnpm install --ignore-scripts          # 安装依赖（不运行生命周期脚本）
+pnpm --filter @omfde/fdecode build     # 首次启动前构建一次 Web UI
+pnpm run omfde                         # 平台入口：启动 FDE Code UI
+pnpm run omfde -- --tui                # 或直接启动 Pi TUI
+```
+
+仓库结构：`packages/` 是 Pi fork 与共享库（9 个包），`apps/` 是可运行应用（`omfde` 平台入口、`fdecode` Web UI、`docs-site` 文档站），`extensions/` 是平台扩展（`omfde-core` 骨架），`docs/` 是治理与架构记录。
 
 ## 面向 coding agent
 
@@ -58,9 +101,9 @@ Source: https://fde-group.github.io/oh-my-fde/docs
 
 ## 设计记录
 
-- [RAD](/oh-my-fde/docs/rads)：需求与决策记录（含 pi-web）。
-- [实现计划：pi-web](/oh-my-fde/docs/plans/pi-web)。
-- [Spike：pi-web 技术栈](/oh-my-fde/docs/spikes/pi-web-stack)。
+- [RAD](/oh-my-fde/docs/rads)：需求与决策记录（含 fdecode）。
+- [实现计划：fdecode](/oh-my-fde/docs/plans/fdecode)。
+- [Spike：fdecode 技术栈](/oh-my-fde/docs/spikes/fdecode-stack)。
 
 ---
 
@@ -6254,119 +6297,10 @@ done
 
 ---
 
-# Plan：Web UI 接入 omfde 平台
-Source: https://fde-group.github.io/oh-my-fde/docs/plans/omfde-web-integration
+# Plan：FDE Code UI M1
+Source: https://fde-group.github.io/oh-my-fde/docs/plans/fdecode
 
-> 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。方向记录见 `docs/specs/vision.md`。
->
-> Spike 闸：无需 spike（2026-11-06，决策者已批准）。
-
-| 字段 | 值 |
-|---|---|
-| 状态 | 已批准 |
-| 决策者 | Abel |
-| 关联 issue | [#5](https://github.com/FDE-GROUP/oh-my-fde/issues/5) |
-| 关联 RAD | 无（组合式接入，由 vision 决策记录覆盖） |
-| 最后更新 | 2026-11-06 |
-
-## 1. 目标
-
-让 `pnpm run omfde` 默认启动 Pi Web UI，保留 `--tui` 回退。组合式接入：不移动、不合并 `apps/pi-web` 代码。
-
-## 2. 非目标
-
-- 任务、交接数据共享。
-- Web UI 代码迁移或包合并。
-- 反向代理、TLS、进程守护；沿用 pi-web 的部署方式。
-- 自动构建 Web UI。
-
-## 3. 设计要点
-
-### 3.1 启动器参数
-
-| 参数 | 行为 |
-|---|---|
-| 无参数 | 启动 Web UI |
-| `--tui [pi args]` | 启动 Pi TUI，其余参数透传 |
-| `--port <n>` | Web UI 端口 |
-| `--host <h>` | 监听地址 |
-| `--config <path>` | `PI_WEB_CONFIG` |
-| `--no-open` | 不自动打开浏览器 |
-| `--help` | 打印用法 |
-
-Web UI 模式下不接受 Pi 参数透传；需要时用 `--tui`。
-
-### 3.2 环境
-
-- 设置 `OMFDE_PLATFORM=1`。
-- `PI_WEB_CWD` 未设置时使用启动器的当前目录。
-- `--port`/`--host`/`--config` 映射到 `PI_WEB_PORT`/`PI_WEB_HOST`/`PI_WEB_CONFIG`。
-- 其余环境变量原样继承。
-
-### 3.3 构建检查
-
-启动前检查 `apps/pi-web/dist/server/server.js`。缺失时退出并提示：
-
-```text
-omfde: Web UI 尚未构建。先运行 pnpm --filter @omfde/pi-web build，或使用 omfde --tui。
-```
-
-### 3.4 进程与信号
-
-- 子进程 `stdio: inherit`。
-- 转发 SIGINT/SIGTERM，子进程退出后按原退出码结束。
-- 浏览器打开使用 `xdg-open` / `open` / `cmd /c start`，失败静默。
-
-## 4. 实施切片
-
-### S1 启动器
-
-- 解析参数与帮助。
-- Web UI 启动、构建检查、环境映射、信号转发。
-- `--tui` 回退保持现有行为。
-
-完成判据：`omfde --help`、`omfde --tui --version`、Web 启动冒烟通过。
-
-状态：已完成（2026-11-06）。验证：help 与 TUI 版本通过；Web UI 在 3211 启动，健康检查 200；SIGINT 后父子进程均退出；未构建时提示正确。
-
-### S2 文档与验证
-
-- 更新根 README、`AGENTS.md`/`AGENTS.zh-CN.md` 中的 omfde 入口说明。
-- 运行 `pnpm run check`。
-- Web 启动冒烟：curl `/api/health` 与 `/login`；TUI 回退验证。
-
-完成判据：文档与行为一致；检查通过。
-
-状态：已完成（2026-11-06）。验证：根 README.zh-CN、AGENTS 中英文入口说明已更新；`pnpm run check` 通过；app 测试 27 项通过。
-
-## 5. 测试与验证
-
-- `pnpm run omfde -- --help`：打印用法。
-- `pnpm run omfde -- --tui --version`：输出 Pi 版本并退出。
-- `pnpm run omfde -- --no-open --port 3211`：启动 Web UI，`/api/health` 200；停止后进程退出。
-- `pnpm run check` 通过。
-
-## 6. 风险
-
-| 风险 | 应对 |
-|---|---|
-| 未构建 Web UI | 启动前检查并给出明确命令 |
-| 端口占用 | 透传 pi-web 的启动错误 |
-| 浏览器打开失败 | 静默忽略，仍打印地址 |
-| 信号处理重复退出 | 统一在 child exit 处理 |
-
-## 7. 决策者批准记录
-
-- 批准范围：全文（启动器、参数、构建检查、文档与验证）。
-- 日期：2026-11-06
-- 备注：决策者以“同意，无需 spike”批准本 plan。
-
----
-
-# Plan：Pi Web UI M1
-Source: https://fde-group.github.io/oh-my-fde/docs/plans/pi-web
-
-> 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。需求见 `docs/rads/pi-web.md`；RAD 与 plan 冲突时以 RAD 为准。
+> 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。需求见 `docs/rads/fdecode.md`；RAD 与 plan 冲突时以 RAD 为准。
 >
 > 流程：vision → RAD → spike → plan → 实现，详见 `docs/specs/workflow.md`。
 
@@ -6375,16 +6309,16 @@ Source: https://fde-group.github.io/oh-my-fde/docs/plans/pi-web
 | 状态 | 已批准 |
 | 决策者 | Abel |
 | 关联 issue | [#1](https://github.com/FDE-GROUP/oh-my-fde/issues/1) |
-| 关联 RAD | `docs/rads/pi-web.md` |
+| 关联 RAD | `docs/rads/fdecode.md` |
 | 最后更新 | 2026-11-06 |
 
-> Spike 闸已过：S-1 到 S-4 完成，S-5 暂缓（2026-11-06）。结论见 `docs/spikes/pi-web-stack.md`；本文件已批准。
+> Spike 闸已过：S-1 到 S-4 完成，S-5 暂缓（2026-11-06）。结论见 `docs/spikes/fdecode-stack.md`；本文件已批准。
 
 ## 1. 背景与目标
 
-RAD 已确认 Pi Web UI M1 的范围与形态。本 plan 把它拆成可执行切片，锁定技术选型、目录结构、进程模型、HTTP/SSE 协议和验证方式。
+RAD 已确认 FDE Code UI M1 的范围与形态。本 plan 把它拆成可执行切片，锁定技术选型、目录结构、进程模型、HTTP/SSE 协议和验证方式。
 
-目标：在 `apps/pi-web` 交付一个本地启动、可连续几天代替 TUI 的浏览器客户端。
+目标：在 `apps/fdecode` 交付一个本地启动、可连续几天代替 TUI 的浏览器客户端。
 
 ## 2. 非目标
 
@@ -6397,7 +6331,7 @@ RAD 已确认 Pi Web UI M1 的范围与形态。本 plan 把它拆成可执行�
 ## 3. 关联
 
 - Issue #1
-- `docs/rads/pi-web.md`
+- `docs/rads/fdecode.md`
 - `packages/coding-agent/docs/rpc.md`、`rpc-commands.md`、`json.md`、`rpc-extension-ui.md`
 
 ## 4. 设计要点
@@ -6409,7 +6343,7 @@ RAD 已确认 Pi Web UI M1 的范围与形态。本 plan 把它拆成可执行�
   │  GET /api/sessions/:id/events   (SSE)
   │  POST /api/sessions/:id/commands
   ▼
-apps/pi-web 的 Node 服务
+apps/fdecode 的 Node 服务
   │  JSONL stdin/stdout
   ▼
 pi --mode rpc --session <path>
@@ -6422,7 +6356,7 @@ pi --mode rpc --session <path>
 ### 4.2 目录结构
 
 ```text
-apps/pi-web/
+apps/fdecode/
   package.json
   tsconfig.json
   vite.config.ts
@@ -6565,17 +6499,17 @@ SSE 信封：
 
 ## 5. 实施切片
 
-前置：Spike 闸由决策者裁定通过。需要实际验证的项见 `docs/spikes/pi-web-stack.md`；若某项被裁定不做，在对应切片中以文档结论为准。
+前置：Spike 闸由决策者裁定通过。需要实际验证的项见 `docs/spikes/fdecode-stack.md`；若某项被裁定不做，在对应切片中以文档结论为准。
 
 ### S1 workspace 与外壳
 
-- 新增 `apps/pi-web` 包、脚本、tsconfig、Vite 配置。
+- 新增 `apps/fdecode` 包、脚本、tsconfig、Vite 配置。
 - 增加自定义生产入口 `server.mjs`：服务 `dist/client` 静态资源，其余交给 `serverEntry.fetch`，支持流式响应。
 - `pnpm-workspace.yaml`、根 `package.json`、`pnpm-lock.yaml` 串行修改。
 - 实现 AppFrame、Sidebar、Conversation 占位、RightPanel 槽位、主题切换。
 - 实现 `tokens.css`、token 生成脚本与 Tailwind `@theme` 映射。
 
-完成判据：`pnpm --filter @omfde/pi-web dev` 可打开；生产构建可启动，`/api/health` 与 SSR 正常；1200/900/600px 布局正确；主题可切换并持久化。
+完成判据：`pnpm --filter @omfde/fdecode dev` 可打开；生产构建可启动，`/api/health` 与 SSR 正常；1200/900/600px 布局正确；主题可切换并持久化。
 
 状态：已完成（2026-11-06）。验证：`pnpm run check` 通过；dev 与生产入口的 `/api/health`、SSR HTML、token CSS 均已实测。
 
@@ -6589,7 +6523,7 @@ SSE 信封：
 
 完成判据：真实 Pi + faux provider 下命令/响应关联正确；SSE 能收到快照和事件；子进程退出有 exit 事件。
 
-状态：已完成（2026-11-06）。验证：`pnpm --filter @omfde/pi-web test` 5 项通过；dev 实测创建会话、快照、命令、SSE、关闭均正常；`pnpm run check` 通过。
+状态：已完成（2026-11-06）。验证：`pnpm --filter @omfde/fdecode test` 5 项通过；dev 实测创建会话、快照、命令、SSE、关闭均正常；`pnpm run check` 通过。
 
 ### S3 对话
 
@@ -6621,7 +6555,7 @@ SSE 信封：
 
 完成判据：RAD 场景 3、4 与 US-6、US-7 通过。
 
-状态：已完成（2026-11-06）。验证：dev 实测列表、恢复、重命名、模型命令与用量查询；工作目录按 `PI_WEB_CWD` → `INIT_CWD` → `process.cwd()` 解析；`pnpm run check` 通过。
+状态：已完成（2026-11-06）。验证：dev 实测列表、恢复、重命名、模型命令与用量查询；工作目录按 `FDECODE_CWD` → `INIT_CWD` → `process.cwd()` 解析；`pnpm run check` 通过。
 
 ### S6 排队与扩展
 
@@ -6642,19 +6576,19 @@ SSE 信封：
 
 完成判据：RAD 第 10 节验收步骤全部可复现。
 
-状态：已完成（2026-11-06）。验证：生产入口实测 CSP 与安全头、Host/Origin 拒绝、SSE 重连快照、崩溃重启入口、会话加载态；启动文档见 `apps/pi-web/README.md`。浏览器内视觉与水合仍需人工冒烟。
+状态：已完成（2026-11-06）。验证：生产入口实测 CSP 与安全头、Host/Origin 拒绝、SSE 重连快照、崩溃重启入口、会话加载态；启动文档见 `apps/fdecode/README.md`。浏览器内视觉与水合仍需人工冒烟。
 
 ## 6. 测试与验证
 
 - 单元：`jsonl` 分帧、命令关联、reducer、SSE 信封。
 - 集成：用 faux provider 扩展驱动真实 RPC 子进程，覆盖命令关联、事件顺序、中止、恢复和扩展 UI；不调用真实 provider。
 - 手工冒烟：真实 Pi + DeepSeek 小 prompt，按 RAD 验收步骤逐条记录。
-- 根门禁：`pnpm run check` 增加 `pnpm --filter @omfde/pi-web check`（typecheck + test + build）。
+- 根门禁：`pnpm run check` 增加 `pnpm --filter @omfde/fdecode check`（typecheck + test + build）。
 - 不引入 Playwright；响应式与主题先按手工冒烟验收，M2 再评估。
 
 ## 7. 验收判据
 
-1. `pnpm --filter @omfde/pi-web dev` 启动，`127.0.0.1` 可用。
+1. `pnpm --filter @omfde/fdecode dev` 启动，`127.0.0.1` 可用。
 2. RAD 第 10 节 9 条验收步骤全部通过并记录输出。
 3. `pnpm run check` 通过。
 4. 无真实 provider 的自动化测试通过。
@@ -6668,7 +6602,7 @@ SSE 信封：
 | 风险 | 无浏览器环境导致水合与视觉未验证 | 实现 S1 第一项就是浏览器冒烟和截图评审 |
 | 风险 | 扩展弹窗阻塞命令 | 命令端点并发 + 60 秒自动取消 |
 | 风险 | dev 模式模块热更新导致重复子进程 | runtime 存在 `globalThis` 单例 |
-| 风险 | Pi CLI 未构建时无法启动 | 文档要求先 `pnpm run build`，或设置 `PI_WEB_PI_BIN` |
+| 风险 | Pi CLI 未构建时无法启动 | 文档要求先 `pnpm run build`，或设置 `FDECODE_PI_BIN` |
 | 风险 | SSE 经过代理缓冲 | 本地直连 + 响应头 `Cache-Control: no-cache`、`X-Accel-Buffering: no` |
 | 依赖 | DSH token 数值 | MIT，复制时在文件头注明出处 |
 | 依赖 | Pi RPC 协议 | 只依赖文档化记录类型；协议变化先更新文档 |
@@ -6681,19 +6615,19 @@ SSE 信封：
 
 ---
 
-# Plan：Pi Web UI M2
-Source: https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m2
+# Plan：FDE Code UI M2
+Source: https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m2
 
-> 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。需求见 `docs/rads/pi-web-m2.md`。
+> 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。需求见 `docs/rads/fdecode-m2.md`。
 >
-> Spike 结论：`docs/spikes/pi-web-m2.md`。
+> Spike 结论：`docs/spikes/fdecode-m2.md`。
 
 | 字段 | 值 |
 |---|---|
 | 状态 | 已批准 |
 | 决策者 | Abel |
 | 关联 issue | [#2](https://github.com/FDE-GROUP/oh-my-fde/issues/2) |
-| 关联 RAD | `docs/rads/pi-web-m2.md` |
+| 关联 RAD | `docs/rads/fdecode-m2.md` |
 | 最后更新 | 2026-11-06 |
 
 ## 1. 背景与目标
@@ -6854,7 +6788,7 @@ API：
 - 单元：文件路径校验、展开格式、图片缩放参数、命令列表解析。
 - 集成：真实 RPC + faux provider 覆盖 fork/clone、图片 prompt、命令执行。
 - 手工：浏览器粘贴、拖拽、`@` 与 `/` 浮层、并行切换。
-- 门禁：`pnpm run check`；`pnpm --filter @omfde/pi-web test`；`check` 仍不跑测试。
+- 门禁：`pnpm run check`；`pnpm --filter @omfde/fdecode test`；`check` 仍不跑测试。
 
 ## 6. 风险
 
@@ -6874,24 +6808,24 @@ API：
 
 ---
 
-# Plan：Pi Web UI M3
-Source: https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m3
+# Plan：FDE Code UI M3
+Source: https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m3
 
-> 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。需求见 `docs/rads/pi-web-m3.md`。
+> 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。需求见 `docs/rads/fdecode-m3.md`。
 >
-> Spike 结论：`docs/spikes/pi-web-m3.md`。
+> Spike 结论：`docs/spikes/fdecode-m3.md`。
 
 | 字段 | 值 |
 |---|---|
 | 状态 | 已批准 |
 | 决策者 | Abel |
 | 关联 issue | [#3](https://github.com/FDE-GROUP/oh-my-fde/issues/3) |
-| 关联 RAD | `docs/rads/pi-web-m3.md` |
+| 关联 RAD | `docs/rads/fdecode-m3.md` |
 | 最后更新 | 2026-11-06 |
 
 ## 1. 背景与目标
 
-M3 让 3~5 人共用一套 Pi Web UI：可选 LAN 访问、令牌登录、用户归属、工作区选择和移动端基础能力。
+M3 让 3~5 人共用一套 FDE Code UI：可选 LAN 访问、令牌登录、用户归属、工作区选择和移动端基础能力。
 
 ## 2. 非目标
 
@@ -6904,7 +6838,7 @@ M3 让 3~5 人共用一套 Pi Web UI：可选 LAN 访问、令牌登录、用户
 
 ### 3.1 配置
 
-配置文件默认 `~/.pi-web/config.json`，权限 0600；环境变量 `PI_WEB_CONFIG` 可覆盖路径。
+配置文件默认 `~/.fdecode/config.json`，权限 0600；环境变量 `FDECODE_CONFIG` 可覆盖路径。
 
 ```json
 {
@@ -6931,23 +6865,23 @@ M3 让 3~5 人共用一套 Pi Web UI：可选 LAN 访问、令牌登录、用户
 
 认证在 `server.mjs` 边缘层完成，避免依赖 TanStack 中间件：
 
-- `POST /api/auth/login`：`{ token }`，按 SHA-256 哈希匹配用户；成功后设置 `piweb_session` cookie（HttpOnly、SameSite=Strict、Path=/、HTTPS 时 Secure）。
+- `POST /api/auth/login`：`{ token }`，按 SHA-256 哈希匹配用户；成功后设置 `fdecode_session` cookie（HttpOnly、SameSite=Strict、Path=/、HTTPS 时 Secure）。
 - `POST /api/auth/logout`：清 cookie。
 - `GET /login`：内联登录页，无需认证。
 - 其余页面与 API：校验 cookie；未登录页面重定向 `/login`，API 返回 401。
 - SSE 复用 cookie，不依赖 Authorization 头。
-- 通过校验后，边缘层写入 `x-piweb-user` 请求头，并**先删除客户端传入的同名头**；应用只信任该头。
+- 通过校验后，边缘层写入 `x-fdecode-user` 请求头，并**先删除客户端传入的同名头**；应用只信任该头。
 - 未启用认证时（仅回环），边缘层注入 `local` 用户，行为与 M1/M2 一致。
 - 保留现有 Host/Origin/Sec-Fetch-Site 校验；加入 `publicOrigins`。
 - 登录失败不区分“用户不存在”和“令牌错误”。
 
-Token 生成：`node apps/pi-web/scripts/hash-token.mjs`，输出 SHA-256 十六进制，供写入配置。
+Token 生成：`node apps/fdecode/scripts/hash-token.mjs`，输出 SHA-256 十六进制，供写入配置。
 
 ### 3.3 用户与归属
 
 新增 `server/owners.ts`：
 
-- 索引文件 `~/.pi-web/sessions.json`，权限 0600，临时文件 + rename 原子写。
+- 索引文件 `~/.fdecode/sessions.json`，权限 0600，临时文件 + rename 原子写。
 - 结构：`{ sessions: [{ id, owner, workspaceId, updatedAt }] }`。
 - 创建会话初始化后记录 owner 与 workspace；fork/clone 继承并记录新 id。
 - 列表默认只返回当前 owner 的会话；无索引项归为 `unknown`，不展示。
@@ -6963,7 +6897,7 @@ Token 生成：`node apps/pi-web/scripts/hash-token.mjs`，输出 SHA-256 十六
   - `GET /api/files/search?sessionId=&q=`
   - `POST /api/files/expand` `{ sessionId, paths }`
   - 服务端根据 session 的 owner + workspace 解析根目录，不接受浏览器传路径根。
-- `server/files.ts` 改为 `searchFiles(root, query)`、`expandFiles(root, paths)`，不再读全局 `PI_WEB_CWD`。
+- `server/files.ts` 改为 `searchFiles(root, query)`、`expandFiles(root, paths)`，不再读全局 `FDECODE_CWD`。
 
 ### 3.5 并发
 
@@ -6985,7 +6919,7 @@ Token 生成：`node apps/pi-web/scripts/hash-token.mjs`，输出 SHA-256 十六
 | Authorization 头 | EventSource 不支持 |
 | localStorage 令牌 | 可被 XSS 读取 |
 | 修改 Pi session 格式加 owner | 增加维护负担 |
-| 全局 `PI_WEB_CWD` | 并发会串工作区 |
+| 全局 `FDECODE_CWD` | 并发会串工作区 |
 | 非回环无认证启动 | 安全边界不允许 |
 
 ## 4. 实施切片
@@ -6993,7 +6927,7 @@ Token 生成：`node apps/pi-web/scripts/hash-token.mjs`，输出 SHA-256 十六
 ### S1 配置与认证
 
 - `config` 加载与校验、启动规则。
-- 边缘登录/登出/cookie/守卫、`x-piweb-user` 注入。
+- 边缘登录/登出/cookie/守卫、`x-fdecode-user` 注入。
 - 登录页、登出按钮、未登录重定向。
 - 测试：401、cookie 标志、跨站拒绝、LAN Host、非回环拒绝启动。
 
@@ -7045,7 +6979,7 @@ Token 生成：`node apps/pi-web/scripts/hash-token.mjs`，输出 SHA-256 十六
 - 单元：配置校验、cookie 签名/校验、owner 索引并发写、工作区路径校验。
 - 集成：登录 → API → SSE；两用户隔离；两工作区隔离；每用户 429。
 - 浏览器：登录/登出、工作区选择、手机宽度、既有 M1/M2 流程。
-- 门禁：`pnpm run check`；`pnpm --filter @omfde/pi-web test`。
+- 门禁：`pnpm run check`；`pnpm --filter @omfde/fdecode test`。
 
 ## 6. 风险
 
@@ -7065,19 +6999,19 @@ Token 生成：`node apps/pi-web/scripts/hash-token.mjs`，输出 SHA-256 十六
 
 ---
 
-# Plan：Pi Web UI M4
-Source: https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m4
+# Plan：FDE Code UI M4
+Source: https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m4
 
-> 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。需求见 `docs/rads/pi-web-m4.md`。
+> 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。需求见 `docs/rads/fdecode-m4.md`。
 >
-> Spike 结论：`docs/spikes/pi-web-m4.md`。
+> Spike 结论：`docs/spikes/fdecode-m4.md`。
 
 | 字段 | 值 |
 |---|---|
 | 状态 | 已批准 |
 | 决策者 | Abel |
 | 关联 issue | [#4](https://github.com/FDE-GROUP/oh-my-fde/issues/4) |
-| 关联 RAD | `docs/rads/pi-web-m4.md` |
+| 关联 RAD | `docs/rads/fdecode-m4.md` |
 | 最后更新 | 2026-11-06 |
 
 ## 1. 背景与目标
@@ -7098,7 +7032,7 @@ M3 已支持团队登录、工作区与归属。M4 补齐协作闭环：只读�
 
 新增 `server/shares.ts`：
 
-- 存储 `~/.pi-web/shares.json`，0600，原子写。
+- 存储 `~/.fdecode/shares.json`，0600，原子写。
 - 记录：`tokenHash`、`sessionId`、`owner`、`createdAt`、`expiresAt`、`revokedAt?`。
 - 默认有效期 7 天，可通过创建参数覆盖；token 32 字节随机，base64url。
 - 只存 SHA-256，不存明文。
@@ -7138,7 +7072,7 @@ API：
 ### 3.3 管理员
 
 - 配置用户增加 `role: "admin" | "member"`，默认 `member`。
-- 认证边缘层注入 `x-piweb-user-role`；应用只信任该头。
+- 认证边缘层注入 `x-fdecode-user-role`；应用只信任该头。
 - 权限模型：
   - `read`：所有者或管理员。
   - `write`：仅所有者。
@@ -7152,7 +7086,7 @@ API：
 
 新增 `audit.mjs`（边缘层与应用共用）+ `audit.d.mts`：
 
-- 文件：`~/.pi-web/audit.jsonl`，0600，追加写。
+- 文件：`~/.fdecode/audit.jsonl`，0600，追加写。
 - 写链串行；超过 10MB 轮转为 `audit.jsonl.1`。
 - 记录：`ts`、`user`、`role`、`action`、`target`、`result`、`detail?`。
 - 动作：`auth.login`、`auth.login_failed`、`session.create`、`session.fork`、`session.clone`、`session.delete`、`share.create`、`share.revoke`。
@@ -7212,7 +7146,7 @@ API：
 - 单元：share token/过期/撤销、handoff 生成与脱敏、audit 追加与轮转、role 解析。
 - 集成：owner/member/admin 三种身份；分享只读；交接下载。
 - 浏览器：创建分享、打开只读、撤销、导出、管理员列表。
-- 门禁：`pnpm run check`；`pnpm --filter @omfde/pi-web test`。
+- 门禁：`pnpm run check`；`pnpm --filter @omfde/fdecode test`。
 
 ## 6. 风险
 
@@ -7232,19 +7166,19 @@ API：
 
 ---
 
-# Plan：Pi Web UI M5
-Source: https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m5
+# Plan：FDE Code UI M5
+Source: https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m5
 
-> 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。需求见 `docs/rads/pi-web-m5.md`。
+> 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。需求见 `docs/rads/fdecode-m5.md`。
 >
-> Spike 结论：`docs/spikes/pi-web-m5.md`。
+> Spike 结论：`docs/spikes/fdecode-m5.md`。
 
 | 字段 | 值 |
 |---|---|
 | 状态 | 已批准 |
 | 决策者 | Abel |
 | 关联 issue | [#6](https://github.com/FDE-GROUP/oh-my-fde/issues/6) |
-| 关联 RAD | `docs/rads/pi-web-m5.md` |
+| 关联 RAD | `docs/rads/fdecode-m5.md` |
 | 最后更新 | 2026-11-06 |
 
 ## 1. 背景与目标
@@ -7265,7 +7199,7 @@ M5 接入 GitHub Issues、CI 状态、通知和保留清理。默认全部关闭
 ```json
 {
   "github": {
-    "token": "<可选；环境 PI_WEB_GITHUB_TOKEN 优先>",
+    "token": "<可选；环境 FDECODE_GITHUB_TOKEN 优先>",
     "repos": [{ "id": "omfde", "owner": "FDE-GROUP", "name": "oh-my-fde", "branch": "main" }]
   },
   "retention": { "sessionsDays": 0, "auditDays": 0, "sharesDays": 0 }
@@ -7295,7 +7229,7 @@ API：
 
 ### 3.3 Issue 关联与草稿
 
-- 新增 `server/links.ts`：`~/.pi-web/links.json`，0600，`sessionId → {repoId, number, title, url}`。
+- 新增 `server/links.ts`：`~/.fdecode/links.json`，0600，`sessionId → {repoId, number, title, url}`。
 - `POST /api/sessions` 支持 `issue: { repoId, number }`：
   - 创建会话后记录关联；
   - 返回 `draft`：issue 标题、正文、链接；
@@ -7390,7 +7324,7 @@ API：
 - 单元：GitHub 响应过滤、缓存、错误；links；retention 计算；通知存储。
 - 集成：fake GitHub 客户端；清理临时目录。
 - 浏览器：Issue 面板、草稿、通知、管理员清理面板。
-- 门禁：`pnpm run check`；`pnpm --filter @omfde/pi-web test`。
+- 门禁：`pnpm run check`；`pnpm --filter @omfde/fdecode test`。
 
 ## 6. 风险
 
@@ -7410,12 +7344,12 @@ API：
 
 ---
 
-# Plan：pi-web SQLite 元数据存储
-Source: https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-sqlite
+# Plan：fdecode SQLite 元数据存储
+Source: https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-sqlite
 
 > 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。方向见 `docs/specs/vision.md`。
 >
-> Spike 结论：`docs/spikes/pi-web-sqlite.md`。
+> Spike 结论：`docs/spikes/fdecode-sqlite.md`。
 
 | 字段 | 值 |
 |---|---|
@@ -7427,12 +7361,12 @@ Source: https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-sqlite
 
 ## 1. 目标
 
-把 pi-web 的元数据从 JSON 文件迁移到 SQLite，为后续任务、项目和证据数据打基础，同时保持现有 API 行为不变。
+把 fdecode 的元数据从 JSON 文件迁移到 SQLite，为后续任务、项目和证据数据打基础，同时保持现有 API 行为不变。
 
 ## 2. 非目标
 
 - 不改 Pi session 文件格式。
-- 不迁移 pi-web 配置（继续 `config.json`）。
+- 不迁移 fdecode 配置（继续 `config.json`）。
 - 不建任务/项目/证据表。
 - 不与 `apps/omfde` 共享数据库。
 - 不引入 ORM。
@@ -7441,7 +7375,7 @@ Source: https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-sqlite
 
 ### 3.1 数据库
 
-- 路径：`~/.pi-web/pi-web.db`，可由 `PI_WEB_DB` 覆盖（测试与运维）。
+- 路径：`~/.fdecode/fdecode.db`，可由 `FDECODE_DB` 覆盖（测试与运维）。
 - 打开时设置：`journal_mode=WAL`、`busy_timeout=5000`、`synchronous=NORMAL`、`foreign_keys=ON`。
 - 打开与迁移后 chmod 数据库、`-wal`、`-shm` 为 0600。
 - 备份：`VACUUM INTO`；文档说明先停止写入。
@@ -7474,7 +7408,7 @@ CREATE INDEX audit_events_ts ON audit_events(ts);
 
 新增 `src/server/db.ts`：
 
-- 读取 `PI_WEB_DB` 或默认路径；
+- 读取 `FDECODE_DB` 或默认路径；
 - 进程级单例；
 - 导出 `getDb()` 与 `withTransaction`；
 - 测试可关闭/重置。
@@ -7538,7 +7472,7 @@ CREATE INDEX audit_events_ts ON audit_events(ts);
 - 单元：迁移、导入幂等、CRUD、审计、事务回滚、retention。
 - 集成：dev 创建会话/分享/交接/清理。
 - 手工：删除 DB 后重启自动重建；迁移后旧 JSON 不再存在。
-- 门禁：`pnpm run check`；`pnpm --filter @omfde/pi-web test`。
+- 门禁：`pnpm run check`；`pnpm --filter @omfde/fdecode test`。
 
 ## 6. 风险
 
@@ -7556,6 +7490,115 @@ CREATE INDEX audit_events_ts ON audit_events(ts);
 - 批准范围：S1–S4。
 - 日期：2026-11-07。
 - 备注：旧 JSON 在迁移成功后删除。
+
+---
+
+# Plan：Web UI 接入 omfde 平台
+Source: https://fde-group.github.io/oh-my-fde/docs/plans/omfde-web-integration
+
+> 效力：经决策者批准后，本文件是实现和验收的唯一编码依据。方向记录见 `docs/specs/vision.md`。
+>
+> Spike 闸：无需 spike（2026-11-06，决策者已批准）。
+
+| 字段 | 值 |
+|---|---|
+| 状态 | 已批准 |
+| 决策者 | Abel |
+| 关联 issue | [#5](https://github.com/FDE-GROUP/oh-my-fde/issues/5) |
+| 关联 RAD | 无（组合式接入，由 vision 决策记录覆盖） |
+| 最后更新 | 2026-11-06 |
+
+## 1. 目标
+
+让 `pnpm run omfde` 默认启动 FDE Code UI，保留 `--tui` 回退。组合式接入：不移动、不合并 `apps/fdecode` 代码。
+
+## 2. 非目标
+
+- 任务、交接数据共享。
+- Web UI 代码迁移或包合并。
+- 反向代理、TLS、进程守护；沿用 fdecode 的部署方式。
+- 自动构建 Web UI。
+
+## 3. 设计要点
+
+### 3.1 启动器参数
+
+| 参数 | 行为 |
+|---|---|
+| 无参数 | 启动 Web UI |
+| `--tui [pi args]` | 启动 Pi TUI，其余参数透传 |
+| `--port <n>` | Web UI 端口 |
+| `--host <h>` | 监听地址 |
+| `--config <path>` | `FDECODE_CONFIG` |
+| `--no-open` | 不自动打开浏览器 |
+| `--help` | 打印用法 |
+
+Web UI 模式下不接受 Pi 参数透传；需要时用 `--tui`。
+
+### 3.2 环境
+
+- 设置 `OMFDE_PLATFORM=1`。
+- `FDECODE_CWD` 未设置时使用启动器的当前目录。
+- `--port`/`--host`/`--config` 映射到 `FDECODE_PORT`/`FDECODE_HOST`/`FDECODE_CONFIG`。
+- 其余环境变量原样继承。
+
+### 3.3 构建检查
+
+启动前检查 `apps/fdecode/dist/server/server.js`。缺失时退出并提示：
+
+```text
+omfde: Web UI 尚未构建。先运行 pnpm --filter @omfde/fdecode build，或使用 omfde --tui。
+```
+
+### 3.4 进程与信号
+
+- 子进程 `stdio: inherit`。
+- 转发 SIGINT/SIGTERM，子进程退出后按原退出码结束。
+- 浏览器打开使用 `xdg-open` / `open` / `cmd /c start`，失败静默。
+
+## 4. 实施切片
+
+### S1 启动器
+
+- 解析参数与帮助。
+- Web UI 启动、构建检查、环境映射、信号转发。
+- `--tui` 回退保持现有行为。
+
+完成判据：`omfde --help`、`omfde --tui --version`、Web 启动冒烟通过。
+
+状态：已完成（2026-11-06）。验证：help 与 TUI 版本通过；Web UI 在 3211 启动，健康检查 200；SIGINT 后父子进程均退出；未构建时提示正确。
+
+### S2 文档与验证
+
+- 更新根 README、`AGENTS.md`/`AGENTS.zh-CN.md` 中的 omfde 入口说明。
+- 运行 `pnpm run check`。
+- Web 启动冒烟：curl `/api/health` 与 `/login`；TUI 回退验证。
+
+完成判据：文档与行为一致；检查通过。
+
+状态：已完成（2026-11-06）。验证：根 README.zh-CN、AGENTS 中英文入口说明已更新；`pnpm run check` 通过；app 测试 27 项通过。
+
+## 5. 测试与验证
+
+- `pnpm run omfde -- --help`：打印用法。
+- `pnpm run omfde -- --tui --version`：输出 Pi 版本并退出。
+- `pnpm run omfde -- --no-open --port 3211`：启动 Web UI，`/api/health` 200；停止后进程退出。
+- `pnpm run check` 通过。
+
+## 6. 风险
+
+| 风险 | 应对 |
+|---|---|
+| 未构建 Web UI | 启动前检查并给出明确命令 |
+| 端口占用 | 透传 fdecode 的启动错误 |
+| 浏览器打开失败 | 静默忽略，仍打印地址 |
+| 信号处理重复退出 | 统一在 child exit 处理 |
+
+## 7. 决策者批准记录
+
+- 批准范围：全文（启动器、参数、构建检查、文档与验证）。
+- 日期：2026-11-06
+- 备注：决策者以“同意，无需 spike”批准本 plan。
 
 ---
 
@@ -7585,8 +7628,186 @@ Source: https://fde-group.github.io/oh-my-fde/docs/rads
 
 ---
 
-# RAD：Pi Web UI
-Source: https://fde-group.github.io/oh-my-fde/docs/rads/pi-web
+# RAD：代码图谱（code graph）内置能力
+Source: https://fde-group.github.io/oh-my-fde/docs/rads/code-graph
+
+> 效力：经决策者确认后，本文件 = 确认需求，是后续 spike、实现计划、任务拆分和验收的依据；实现计划另行编写。
+>
+> 流程：vision → RAD → spike → plan → 实现，详见 `docs/specs/workflow.md`。
+>
+> 约束：本需求不得超出 `docs/specs/vision.md` 的目标、边界和阶段。落点若涉及核心包改动或新增 workspace 包，须先在 vision 决策记录补一条，再确认本 RAD 并进入实现。
+
+| 字段 | 值 |
+|---|---|
+| 状态 | 草案 |
+| 决策者 | Abel |
+| 关联 issue | 待补（决策者确认需要 RAD 后同步） |
+| 关联 milestone | 平台化线 · 核心能力 |
+| 最后更新 | 2026-11-07 |
+
+## 1. 背景与价值
+
+coding agent 理解代码时是「慢发现」：grep / glob / read 一次一个文件，手工重建调用路径与依赖，正式动手前先烧掉一堆工具调用与往返轮次。本仓已在 vision 决策记录（2026-11-07「完成会用，重心转入平台化线核心能力」）中把这一点记为触发平台化线进入「核心能力」层的**真实缺口**：agent 靠逐文件爬取重建结构、缺少预建代码图谱。
+
+本需求要交付一个**预建的代码知识图谱**能力：把每个符号、调用边与依赖预先解析进本地图谱，让 agent 一次调用就拿到相关源码、符号间调用路径与改动影响面（blast radius），而不是逐文件搜索。价值是更少工具调用、更快回答、以及改动前可量化的影响评估。
+
+外部项目 `colbymchenry/codegraph`（MIT）是同方向的成熟先例：其可借鉴的是**概念与架构**（预建符号图、单一强工具 `explore`、去抖增量同步、连接时对账、per-file staleness 提示）。本需求走 **clean-room**：只借鉴概念、自研实现，不引入其依赖或二进制，故无需署名。它自己披露的权衡（一次返回大块原文换来更少检索轮次、但更大常驻上下文占用）对本需求同样成立，须在 §7 处理。
+
+## 2. Vision 对齐
+
+- 目标线：平台化线
+- 当前阶段：核心能力
+- 对应 vision 条目：决策记录 `### 2026-11-07：完成"会用"，重心转入平台化线核心能力（功能增强）`；「已确认的系统认识」第 6/7/8 条（`tool_call` 是统一接缝、扩展能在不改内核前提下完成拦截/改写/工具编排 ⇒ 权限、门禁、能力增强第一选择是扩展）；线 2 约束「优先扩展和配置，不轻易改核心」「每层只做已被教程线验证过的能力，不预先设计」。
+- 边界判断：**边界内**。以扩展形态装配、由已记录的真实缺口触发，符合「缺口触发、优先扩展」纪律。
+- 若冲突，先修改 vision 的哪一条：能力本身边界内。**但**落点已定为**新建独立 workspace 包**（见 §5、§8），属 package graph 变更——按 AGENTS 与 workflow，建包（实现）前须先在 `docs/specs/vision.md` 决策记录补一条「新增 packages/code-graph」。建议该 vision 决策在 spike 验证可行性之后再落，避免 spike 若判失败（回退挂外部 MCP）时又要撤销。
+
+## 3. 干系人
+
+| 角色 | 诉求 |
+|---|---|
+| 决策者（Abel） | 平台自有能力、零第三方二进制/供应链面、成本可控、可深度定制；不因增强而破坏「优先扩展、不改核心」纪律 |
+| 终端用户（3~5 人 FDE 团队及其 coding agent） | 更快更准的代码结构理解、跨文件调用追踪、改动影响评估；长会话不被检索上下文挤爆 |
+| 维护者 | 解析精度的长尾维护成本可控；跟随本仓 TS 版本；职责不与既有内置扩展（mcp / tool-search）重叠 |
+
+## 4. 使用场景
+
+### 场景 1：结构性问答
+
+- 触发条件：agent 需要回答「X 怎么工作」「X 如何到达 Y」这类跨文件结构问题。
+- 参与者：coding agent、代码图谱工具。
+- 期望结果：一次调用返回相关符号的逐字源码（按文件分组）+ 它们之间的调用路径 + 影响面摘要，agent 据此直接作答，不再逐文件 grep/read。
+
+### 场景 2：改动影响评估
+
+- 触发条件：FDE 或 agent 在修改一个符号前，需要知道会影响什么。
+- 参与者：FDE、agent、代码图谱工具。
+- 期望结果：列出该符号的 callers / callees / 影响半径（含跨文件、含实现→接口派发），供改动决策与评审使用。
+
+### 场景 3：增量新鲜度
+
+- 触发条件：agent 或人编辑、新增、删除源文件后继续提问。
+- 参与者：文件监听器、图谱、agent。
+- 期望结果：图谱在去抖窗口后自动同步受影响文件；对仍待同步的文件，工具响应给出明确的 staleness 提示（告知 agent 直接 Read 该文件），避免静默给出过时结构。
+
+## 5. 范围与非目标
+
+### 本期范围
+
+- **单语言高保真 MVP**：只覆盖本仓实际栈 TypeScript / JavaScript（`.ts`/`.tsx`/`.js`/`.jsx`/`.mjs`）。
+- 抽取符号（函数、类、方法、接口、类型别名、变量）与边（call、import、extends、implements、reference），用 **TypeScript Compiler API** 做类型检查器级别的跨文件 resolution（比 tree-sitter 保真更高、无需自研多语言抽取、无原生编译）。
+- 本地图谱存储（SQLite 或内存图 + 落盘缓存，具体由 spike 定）。
+- 一个 `explore` 式工具 + 渲染器，以 `pi.registerTool(...)` 形态装配（参照 codemode / tool-search / mcp / llama 内置扩展）。
+- 文件监听 + 去抖增量同步 + staleness 提示。
+- **落点：新建独立 workspace 包**（拟 `packages/code-graph`，包名 `@omfde/code-graph`），内含图谱引擎 + 一个扩展工厂（`createCodeGraphExtension()`）；由平台（`apps/omfde` / 扩展配置）经扩展加载器装配，**不接入 coding-agent 的 builtInExtensions、不改核心逻辑**。spike 验证代码一次性、留在 `/tmp`，不进 main；spike 通过并补 vision 决策后再建包。
+
+### 非目标
+
+- 多语言广度（codegraph 的 20+ 语言）、框架路由桥接、Swift↔ObjC / React Native / Expo 跨语言桥接、Rust 内核、跨语言动态派发。
+- hosted / 服务端形态；对外网络服务。
+- 全文名称搜索（FTS）——本期可后置，视 spike 结论决定是否纳入。
+- codegraph 式的自适应资源调度（cgroup 感知 worker pool、按内存定 cache 尺寸）。
+- **明确不引入 `colbymchenry/codegraph` 或任何第三方代码图谱依赖/二进制。**
+
+### 涉及区域（初判）
+
+- [ ] `apps/`（仅装配/加载配置，若需要）
+- [x] `packages/`（新建 `packages/code-graph`；建包前须补 vision 决策）
+- [ ] `extensions/`（`extensions/omfde-core` 仅按需加载该扩展，不改其骨架）
+- [x] `docs/`（本 RAD、spike、plan；及建包前的 vision 决策记录）
+
+## 6. 功能性需求
+
+- **FR-1 建图**：对一个 TS/JS 项目扫描并抽取符号与边，落地为本地图谱；跳过依赖/构建/缓存目录（`node_modules`、`dist` 等）与 `.gitignore` 内容。
+- **FR-2 explore 工具**：一次调用接受自然语言/符号查询，返回相关符号的逐字源码（按文件分组）+ 它们之间的调用路径 + 影响面摘要；查询里点名文件或符号时返回其带行号的当前源码。
+- **FR-3 精确关系查询**：callers / callees / impact-radius（可限深度）查询，跨文件、含接口→实现派发。
+- **FR-4 增量同步与新鲜度**：源文件保存后去抖重算受影响文件，图谱不过期；对仍待同步的文件在工具响应中给出 staleness 提示。
+- **FR-5 零外部图谱依赖**：仅用本仓已有栈（TypeScript Compiler API + Node/Bun 内置 SQLite 或落盘缓存）运行，不引入第三方图谱二进制。
+- **FR-6 扩展化装配**：新包导出扩展工厂，以 `pi.registerTool` + 渲染器注册工具，经平台扩展加载器装配，可停用、可替换，不接入 coding-agent builtInExtensions、不修改其核心逻辑。
+
+## 7. 非功能约束
+
+- **本地优先 / 隐私**：不上传代码、无 API key、无外部服务（对齐本仓企业内部边界与 codegraph 的 100% local）。
+- **上下文预算（关键）**：一次性大 payload 会增大常驻 context（codegraph 自披露同等机制下残留检索上下文约 +80%）。工具须提供结果上限（如 maxNodes）、分块或截断策略，避免小窗口长会话被挤爆。此为设计阶段必须定的取舍。
+- **性能**：增量同步目标亚秒级（codegraph 参照：4400 文件约 0.3s）；本仓首次全量索引（`packages/` + `apps/` 的 TS）可接受分钟级——具体阈值由 spike 校准，不在此固定。
+- **兼容**：跟随本仓 TypeScript 版本；落在 `packages/*/src` 的代码遵守 erasable-syntax-only（AGENTS）；`apps/*/src`、`extensions/*/src` 的平台导出遵守 `docs/specs/tsdoc-comment-standards.md`。
+- **可维护**：解析精度长尾是主要成本；本期只对 TS/JS 负责，明确不追多语言，以控制维护面。
+- **测试模型**：验证遵守 AGENTS「测试不得用真实 provider API / key / 付费 token」；对比实验用本地/faux 方式，小规模、可复现。
+
+## 8. 开放问题
+
+| 问题 | 影响 | 处理方式 |
+|---|---|---|
+| ~~落点~~ **已定：新建独立包 `packages/code-graph`** | 属 package graph 变更，建包前须补 vision 决策 | 已决策（2026-11-07，决策者选「新建独立包」）；vision 决策待 spike 后补 |
+| 存储：Node/Bun 内置 SQLite vs 内存图 + 落盘缓存 | 影响并发、查询能力、实现复杂度 | spike |
+| 图谱保真度：TS Compiler API 全程序（program）vs 单文件 + 启发式解析 | 影响 resolution 质量与索引耗时 | spike |
+| 上下文占用：payload 分块 / 截断 / maxNodes 策略 | 影响长会话可用性（§7 关键约束） | 决策 + spike |
+| 新鲜度模型：仅 watch 去抖 vs 加连接时 (size,mtime)+hash 对账 | 影响 staleness 正确性与实现量 | spike |
+| 是否本期纳入 FTS 名称搜索 | 影响范围与工作量 | 暂缓（默认非本期） |
+| 建包时机：spike 达到什么结论才建 `packages/code-graph` 并补 vision 决策 | 决定 package graph 变更时点 | 决策（建议 spike 判定可行后建包） |
+
+## 9. 用户故事
+
+### US-1 结构性问答
+
+- 作为 coding agent，我要一次调用拿到某结构问题的相关源码与调用路径，以便不逐文件爬取就能作答。
+- 验收条件：
+  - Given 一个已建图的 TS 项目，When 提出一个跨文件结构问题，Then 单次 explore 调用返回相关符号源码（按文件分组）与它们之间的调用路径，且答案与人工核对一致。
+- 对应：FR-2
+
+### US-2 改动影响评估
+
+- 作为 FDE，我要在改一个符号前看到它的影响半径，以便判断改动风险与需回归的范围。
+- 验收条件：
+  - Given 一个符号，When 查询 impact / callers / callees，Then 返回跨文件的调用者、被调用者与影响半径（含接口→实现派发），与人工抽样核对一致。
+- 对应：FR-3
+
+### US-3 增量新鲜度
+
+- 作为 coding agent，我要在文件被编辑后拿到不过期的结构，以便不被过时图谱误导。
+- 验收条件：
+  - Given 图谱已建，When 修改/新增/删除一个源文件并保存，Then 去抖窗口后图谱自动同步该文件；在同步完成前的查询响应中带明确 staleness 提示。
+- 对应：FR-4
+
+### US-4 零依赖自有能力
+
+- 作为决策者，我要该能力不引入任何第三方图谱二进制，以便平台自有、供应链面可控。
+- 验收条件：
+  - Given 本仓依赖清单，When 该能力上线，Then 未新增任何外部代码图谱依赖/二进制；仅使用 TypeScript Compiler API 与 Node/Bun 内置能力。
+- 对应：FR-5
+
+### US-5 可替换扩展装配
+
+- 作为维护者，我要该能力以扩展形态装配，以便可停用、可替换、不动核心。
+- 验收条件：
+  - Given 装配点，When 注册该工具，Then 通过扩展 API（`pi.registerTool` + 渲染器）注册，coding-agent 核心逻辑无改动，可被停用或替换。
+- 对应：FR-6
+
+## 10. 验收与成功指标
+
+- 验收命令或步骤：在本仓（或一个代表性 TS 样例项目）上建图；对一组代表性结构问题，对比「有图谱 / 无图谱」两臂的工具调用数、文件读取数与答案正确性（参照 codegraph 基准方法，但小规模、本地/faux、不烧付费 token）。
+- 成功指标（建议值，由 spike 校准后在 plan 固定）：结构性问题的工具调用数与文件读取数显著下降；callers/impact 与人工抽样核对的一致率达到约定阈值；增量同步亚秒级；零外部图谱依赖。
+- 失败判定：召回/精度不足以替代文件爬取（缺口仍在）；或常驻 context 膨胀导致长会话不可用；或解析长尾维护成本超出 3~5 人团队承受能力。
+
+## 11. 风险与依赖
+
+| 类型 | 内容 | 应对 |
+|---|---|---|
+| 依赖 | TypeScript Compiler API（`typescript` 已在本仓）、Node/Bun 内置 SQLite 或落盘缓存 | 无外部服务；版本跟随本仓 |
+| 风险 | resolution 长尾精度不足，图谱召回差 | 先窄范围只做 TS/JS；用真实任务与人工抽样校验；不达标即判失败并回到「挂外部 MCP」备选 |
+| 风险 | 一次大 payload 撑爆常驻 context（§7） | 设计阶段定 maxNodes / 分块 / 截断；spike 实测残留占用 |
+| 风险 | 与既有内置扩展（mcp / tool-search）职责重叠 | 明确定位：图谱=预建结构与影响面，tool-search=工具发现，mcp=外部服务接入 |
+| 风险 | 新建 workspace 包属 package graph 变更，治理成本最高 | spike 先验证可行性（一次性代码留 /tmp）；判可行后再补 vision 决策并建包；判失败则回退「挂外部 MCP」不建包 |
+
+## 12. 决策者确认记录
+
+- 确认范围（全文 / 部分条目；未确认条目列明）：待确认。落点已由决策者定为**新建独立包 `packages/code-graph`**（2026-11-07）；仍需决策者拍板「上下文占用策略」（建议提为 FR-2 硬约束）。其余开放问题交由 spike 消解。建包前须补 vision 决策（package graph 变更），建议在 spike 判定可行后落。
+- 日期：
+- 备注（确认后的修订须再次确认并在此留痕）：本文件当前为草案，未提交、未进入 spike/plan；build-vs-wire 已定向为自研（前提：平台自有、零第三方二进制、对 TS 栈更高保真、可深度定制），若决策者放弃「零外部二进制依赖」口径，则「直接挂载外部 codegraph MCP」重新成为优选，本 RAD 需重议。
+
+---
+
+# RAD：FDE Code UI
+Source: https://fde-group.github.io/oh-my-fde/docs/rads/fdecode
 
 > 效力：经决策者确认后，本文件 = 确认需求，是后续 spike、实现计划和验收的依据；实现计划另行编写。
 >
@@ -7597,14 +7818,14 @@ Source: https://fde-group.github.io/oh-my-fde/docs/rads/pi-web
 | 状态 | 已确认 |
 | 决策者 | Abel |
 | 关联 issue | [#1](https://github.com/FDE-GROUP/oh-my-fde/issues/1) |
-| 关联 milestone | Pi Web UI M1 |
+| 关联 milestone | FDE Code UI M1 |
 | 最后更新 | 2026-11-06 |
 
 ## 1. 背景与价值
 
 Pi 目前只有 TUI 和 RPC/SDK 两种使用方式。TUI 适合个人终端，但不便于演示、远程查看和团队统一体验；SDK 面向开发者，不提供现成界面。
 
-本项目需要一个**独立的 Pi Web UI**：在浏览器里完成一次完整的 Pi 会话，包括对话、工具调用、中止、模型切换和会话恢复。它同时是 DSH 设计系统的一次落地实践：布局、token 分层和共享控件复用方式对齐 DSH，但不复制 DSH 的包数量与插件架构。
+本项目需要一个**独立的 FDE Code UI**：在浏览器里完成一次完整的 Pi 会话，包括对话、工具调用、中止、模型切换和会话恢复。它同时是 DSH 设计系统的一次落地实践：布局、token 分层和共享控件复用方式对齐 DSH，但不复制 DSH 的包数量与插件架构。
 
 价值：
 
@@ -7615,7 +7836,7 @@ Pi 目前只有 TUI 和 RPC/SDK 两种使用方式。TUI 适合个人终端，�
 
 关联文档：
 
-- `docs/specs/vision.md`“线 3：Pi Web UI”
+- `docs/specs/vision.md`“线 3：FDE Code UI”
 - `packages/coding-agent/docs/rpc.md`
 - `packages/coding-agent/docs/rpc-commands.md`
 - `packages/coding-agent/docs/json.md`
@@ -7625,7 +7846,7 @@ Pi 目前只有 TUI 和 RPC/SDK 两种使用方式。TUI 适合个人终端，�
 
 - **目标线**：Web UI 线（第三条目标线）
 - **当前阶段**：线 3 第一阶段“可用界面”，并开始对齐 DSH
-- **对应 vision 条目**：“线 3：Pi Web UI”“布局、设计系统与样式实现”“前端技术栈”
+- **对应 vision 条目**：“线 3：FDE Code UI”“布局、设计系统与样式实现”“前端技术栈”
 - **边界判断**：边界内。独立应用、本地单用户、不改 Pi 内核，均符合 vision。
 - **若冲突**：无。
 
@@ -7680,7 +7901,7 @@ Pi 目前只有 TUI 和 RPC/SDK 两种使用方式。TUI 适合个人终端，�
 
 | 决策 | 结论 |
 |---|---|
-| 应用位置 | `apps/pi-web` 独立 package；不依赖 `apps/omfde`，不并入平台 |
+| 应用位置 | `apps/fdecode` 独立 package；不依赖 `apps/omfde`，不并入平台 |
 | 接入方式 | RPC 子进程（`pi --mode rpc`） |
 | 事件传输 | SSE + POST |
 | 进程模型 | 一会话一进程；空闲 30 分钟回收，会话文件保留 |
@@ -7700,7 +7921,7 @@ Pi 目前只有 TUI 和 RPC/SDK 两种使用方式。TUI 适合个人终端，�
 
 ### 涉及区域（初判）
 
-- [x] `apps/pi-web/`（新增）
+- [x] `apps/fdecode/`（新增）
 - [ ] `packages/`（只读引用公开导出）
 - [ ] `extensions/`
 - [x] `docs/rads/`、`docs/plans/`、`docs/spikes/`
@@ -7891,8 +8112,8 @@ Pi 目前只有 TUI 和 RPC/SDK 两种使用方式。TUI 适合个人终端，�
 
 ---
 
-# RAD：Pi Web UI M2
-Source: https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m2
+# RAD：FDE Code UI M2
+Source: https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m2
 
 > 效力：经决策者确认后，本文件 = M2 的确认需求，是 spike 和实现计划的依据。
 >
@@ -7903,7 +8124,7 @@ Source: https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m2
 | 状态 | 已确认 |
 | 决策者 | Abel |
 | 关联 issue | [#2](https://github.com/FDE-GROUP/oh-my-fde/issues/2) |
-| 关联 milestone | Pi Web UI M2 |
+| 关联 milestone | FDE Code UI M2 |
 | 最后更新 | 2026-11-06 |
 
 ## 1. 背景与价值
@@ -7922,7 +8143,7 @@ M1 已提供可日常使用的会话、流式对话、工具卡片、会话恢�
 
 - 目标线：Web UI 线。
 - 当前阶段：线 3 的“会话完整”阶段。
-- 对应 vision 条目：“线 3：Pi Web UI”“前端技术栈”。
+- 对应 vision 条目：“线 3：FDE Code UI”“前端技术栈”。
 - 边界判断：边界内。仍是独立应用、本地单用户、不改 Pi 内核。
 
 ## 3. 干系人
@@ -7982,7 +8203,7 @@ M1 已提供可日常使用的会话、流式对话、工具卡片、会话恢�
 
 ### 涉及区域（初判）
 
-- [x] `apps/pi-web/`
+- [x] `apps/fdecode/`
 - [x] `docs/spikes/`、`docs/plans/`
 - [ ] `packages/`（只读公开导出，预计不改）
 
@@ -8083,7 +8304,7 @@ M1 已提供可日常使用的会话、流式对话、工具卡片、会话恢�
 4. 从 user 消息 fork 后新会话可继续对话，原会话不变。
 5. 两个会话同时运行时，切换不丢事件，状态显示正确。
 6. 现有 M1 功能不回归。
-7. `pnpm run check` 与 `pnpm --filter @omfde/pi-web test` 通过。
+7. `pnpm run check` 与 `pnpm --filter @omfde/fdecode test` 通过。
 
 成功指标：连续使用一周，图片、文件引用和分叉不需要回 TUI。
 
@@ -8101,12 +8322,12 @@ M1 已提供可日常使用的会话、流式对话、工具卡片、会话恢�
 
 - 确认范围：全文。以“开始 M2（图片、@file、斜杠命令、会话分叉、多会话并行）”发起，并以“同意”批准 spike 清单。
 - 日期：2026-11-06
-- 备注：实现细节由 `docs/spikes/pi-web-m2.md` 和 `docs/plans/pi-web-m2.md` 落实；修订需再次确认。
+- 备注：实现细节由 `docs/spikes/fdecode-m2.md` 和 `docs/plans/fdecode-m2.md` 落实；修订需再次确认。
 
 ---
 
-# RAD：Pi Web UI M3
-Source: https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m3
+# RAD：FDE Code UI M3
+Source: https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m3
 
 > 效力：经决策者确认后，本文件 = M3 的确认需求，是 spike 和实现计划的依据。
 >
@@ -8117,7 +8338,7 @@ Source: https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m3
 | 状态 | 已确认 |
 | 决策者 | Abel |
 | 关联 issue | [#3](https://github.com/FDE-GROUP/oh-my-fde/issues/3) |
-| 关联 milestone | Pi Web UI M3 |
+| 关联 milestone | FDE Code UI M3 |
 | 最后更新 | 2026-11-06 |
 
 ## 1. 背景与价值
@@ -8129,13 +8350,13 @@ M1/M2 已经能在本机完成完整会话：流式对话、工具卡片、图�
 - 允许选择工作区，而不是只能使用服务启动目录。
 - 在笔记本、平板和手机上都能完成基本操作。
 
-M3 的目标是“团队能安全地共用一套 Pi Web UI”，不是企业级多租户平台。
+M3 的目标是“团队能安全地共用一套 FDE Code UI”，不是企业级多租户平台。
 
 ## 2. Vision 对齐
 
 - 目标线：Web UI 线。
 - 当前阶段：线 3 的“团队可用”阶段。
-- 对应 vision 条目：“线 3：Pi Web UI”“首批用户是 3~5 人团队”。
+- 对应 vision 条目：“线 3：FDE Code UI”“首批用户是 3~5 人团队”。
 - 边界判断：边界内，但会扩大部署与安全边界，需要先确认。
 
 ## 3. 干系人
@@ -8190,7 +8411,7 @@ M3 的目标是“团队能安全地共用一套 Pi Web UI”，不是企业级�
 
 ### 涉及区域（初判）
 
-- [x] `apps/pi-web/`
+- [x] `apps/fdecode/`
 - [x] `docs/`
 - [ ] `packages/`（预计不改）
 
@@ -8299,8 +8520,8 @@ M3 的目标是“团队能安全地共用一套 Pi Web UI”，不是企业级�
 
 ---
 
-# RAD：Pi Web UI M4
-Source: https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m4
+# RAD：FDE Code UI M4
+Source: https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m4
 
 > 效力：经决策者确认后，本文件 = M4 的确认需求，是 spike 和实现计划的依据。
 >
@@ -8311,7 +8532,7 @@ Source: https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m4
 | 状态 | 已确认 |
 | 决策者 | Abel |
 | 关联 issue | [#4](https://github.com/FDE-GROUP/oh-my-fde/issues/4) |
-| 关联 milestone | Pi Web UI M4 |
+| 关联 milestone | FDE Code UI M4 |
 | 最后更新 | 2026-11-06 |
 
 ## 1. 背景与价值
@@ -8328,7 +8549,7 @@ M4 补齐“协作与交接”闭环，仍保持本地优先、单实例、3~5 �
 
 - 目标线：Web UI 线，并向平台化线的“协作层”供料。
 - 当前阶段：团队可用之后的协作与交接。
-- 对应 vision 条目：“线 3：Pi Web UI”“平台化线：协作层”。
+- 对应 vision 条目：“线 3：FDE Code UI”“平台化线：协作层”。
 - 边界判断：边界内；不引入多租户或企业级治理。
 
 ## 3. 干系人
@@ -8383,7 +8604,7 @@ M4 补齐“协作与交接”闭环，仍保持本地优先、单实例、3~5 �
 
 ### 涉及区域（初判）
 
-- [x] `apps/pi-web/`
+- [x] `apps/fdecode/`
 - [x] `docs/`
 - [ ] `packages/`（预计不改）
 
@@ -8416,7 +8637,7 @@ M4 补齐“协作与交接”闭环，仍保持本地优先、单实例、3~5 �
 
 - **AUDIT-1** 记录登录成功/失败、会话创建、分叉、克隆、分享创建/撤销、会话删除。
 - **AUDIT-2** 每条记录包含时间、用户、动作、目标 id 和结果。
-- **AUDIT-3** 审计日志追加写入 `~/.pi-web/audit.jsonl`，权限 0600。
+- **AUDIT-3** 审计日志追加写入 `~/.fdecode/audit.jsonl`，权限 0600。
 - **AUDIT-4** 管理员可以查询最近 N 条记录。
 - **AUDIT-5** 不记录 prompt、工具输出或文件内容。
 
@@ -8490,8 +8711,8 @@ M4 补齐“协作与交接”闭环，仍保持本地优先、单实例、3~5 �
 
 ---
 
-# RAD：Pi Web UI M5
-Source: https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m5
+# RAD：FDE Code UI M5
+Source: https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m5
 
 > 效力：经决策者确认后，本文件 = M5 的确认需求，是 spike 和实现计划的依据。
 >
@@ -8502,7 +8723,7 @@ Source: https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m5
 | 状态 | 已确认 |
 | 决策者 | Abel |
 | 关联 issue | [#6](https://github.com/FDE-GROUP/oh-my-fde/issues/6) |
-| 关联 milestone | Pi Web UI M5 |
+| 关联 milestone | FDE Code UI M5 |
 | 最后更新 | 2026-11-06 |
 
 ## 1. 背景与价值
@@ -8520,7 +8741,7 @@ M5 把这些外部系统和运维能力接入，但保持本地单实例、3~5 �
 
 - 目标线：Web UI 线，向平台化线的“企业集成”供料。
 - 当前阶段：团队可用之后的集成与运维。
-- 对应 vision 条目：“线 3：Pi Web UI”“平台化线：企业集成”。
+- 对应 vision 条目：“线 3：FDE Code UI”“平台化线：企业集成”。
 - 边界判断：边界内；不引入多租户或企业级权限体系。
 
 ## 3. 干系人
@@ -8577,7 +8798,7 @@ M5 把这些外部系统和运维能力接入，但保持本地单实例、3~5 �
 
 ### 涉及区域（初判）
 
-- [x] `apps/pi-web/`
+- [x] `apps/fdecode/`
 - [x] `docs/`
 - [ ] `packages/`（预计不改）
 
@@ -8811,6 +9032,145 @@ Source: https://fde-group.github.io/oh-my-fde/docs/rads/TEMPLATE
 
 ---
 
+# 术语表（Glossary）
+Source: https://fde-group.github.io/oh-my-fde/docs/specs/glossary
+
+> 状态：**已确认** | 版本：0.1.0 | 日期：2026-11-07
+> 归属：`docs/specs/` | 受众：**开发者 + AI + Agent**
+> 新词先改本表，再回写引用处。一词一义；冲突在此锐化。
+
+## 0. 定位
+
+本表是 omfde 项目级术语 SSOT。词条来源限定为本仓已裁事实：`docs/specs/vision.md`（宪法与决策记录）、`docs/specs/workflow.md`、`AGENTS.md`、`docs/explains/`、已确认的 RAD 与已批准的 plan。参考 OdooThink `docs/specs/glossary.md` 的同构格式建立，但**不搬运其词条**——两仓治理模型（本仓无 ADR 编号体系）与产品域均不同。
+
+本仓不设 ADR 编号；决策记录写入 vision 的「决策记录」节，实施级取舍留在 issue / PR / plan 中。本表引用决策时以 vision 决策记录条目标题为准。
+
+## 1. 项目身份与目标线
+
+| 词 | 含义 |
+|----|------|
+| **omfde / oh-my-fde** | 本仓：以 Pi 为底座的**企业内部 FDE 平台**，独立维护的 Pi fork。不是通用 SaaS、不是公开产品、不是上游 Pi 的镜像 |
+| **FDE** | Forward Deployed Engineer，前置交付工程师。平台的最终服务对象；不是「全栈工程师」、不是外部顾问角色泛称 |
+| **Pi** | Earendil 的编码 Agent 与 toolkit（`earendil-works/pi`）。本仓**底座**：核心代码已由本仓独立维护，不再同步上游（vision 决策「切断上游，转为独立维护」）。不是外部依赖、不是需要跟踪的生活分支 |
+| **DSH** | DeepSeek Harness。平台化路径的**参考对象**：只借鉴接缝划分、session 不变量、多端交付、Web 布局骨架与 token 分层、测试纪律；不照搬其包数量、流程规模、契约节奏、样式实现约束（vision「与 DSH 的关系」）。不是替换目标、不是依赖 |
+| **三条目标线** | 教程线（理解 → 会用 → 用好，文档主线）、平台化线（骨架 → 核心能力 → 协作 → 企业集成 → 治理，代码结构主线）、Web UI 线（可用 → 对齐 DSH → 会话完整 → 团队可用，独立应用主线，以 M1–M5 落地）。三线并行、互相供料、都不先搭空架子 |
+| **教程线** | 以文档为主线的目标线；「会用」已完成，「用好」转入后台持续推进，**不再是门禁线**。不是代码工作线 |
+| **平台化线** | 以代码结构为主线的目标线；当前阶段 = **核心能力**（进行中）。原「增强」不再是第四阶段，而是平台化线的总称 |
+| **Web UI 线** | 以独立应用（`apps/fdecode`）为主线的目标线；M1–M5 已交付。不是平台化线的一步、不是 omfde 的子模块 |
+| **四层平台** | 核心 agent / 工作方式 / 团队协作 / 企业集成与治理。近期平台化线本体只做前两层；后两层已由 Web UI 线（M3–M5）先行供料，本体待固化 |
+| **当前阶段** | 平台化线「核心能力」层。进入增强由**真实缺口触发**，不由计划表触发；每项具体能力仍须走 vision → RAD → plan → 验证 |
+| **缺口触发** | 平台化能力的立项依据：教程线/真实使用暴露的可固化缺口（如缺预建代码图谱）。不是「为了改而改」、不是主动规划放行 |
+| **首批用户** | 以 Abel 为首的团队，规模 3~5 人。平台化能力以该团队的维护能力为上限；不是大型组织、不按平台团队规模铺开 |
+| **vision 宪法地位** | `docs/specs/vision.md` 是项目宪法：代码、文档、开发决策不能越过其目标、边界和阶段；冲突时先商议修改 vision 并写入决策记录，再实施。不是实施计划、不是事后说明；代码不能反向定义 vision |
+| **决策记录** | vision 内的追加式条目（日期 + 原因 + 影响）。本仓**不用 ADR 编号体系**（workflow 第 13 节）；被取代条目以「> 已由…取代」注记保留 |
+| **当前边界** | vision 的「做 / 不做」对照表。边界内的实现细节不需要改 vision；扩边界必须先修宪 |
+
+## 2. 治理与协作
+
+| 词 | 含义 |
+|----|------|
+| **决策者** | 最终裁决权角色（当前 = Abel）。发起新需求、确认 RAD、裁定 spike、批准 plan、指定 write scope、授权合并与 pages 发布（workflow 第 12 节） |
+| **任务分级** | A 机械（typo/格式/无行为变化，直接改→验证→提交）、B 常规（功能/文档/扩展/行为变更，走完整闸链）、C 决策（架构/流程/边界/依赖，先讨论→修 vision 或记录决定→转 B） |
+| **停-问** | 撞到 vision、RAD 或 plan 边界即停：给选项与带理由推荐，等决策者裁定；不静默选、不猜。「不确定就记录为开放问题」 |
+| **授权包络** | 已批准 plan 圈定的实现范围。包络内实现选择由 AI 决定；出圈即停-问 |
+| **Issue 闸** | GitHub Issues 是任务、bug、阶段目标的**统一视图**，不是新需求起点；新需求由决策者先发起讨论再补 issue。A 类机械修复可例外不建 issue，但影响共享文档、行为或多人协作时仍建 |
+| **Scope 闸** | 每个任务开始前必须有明确的 write scope；无 scope = 未就绪，不得开始。A 类可用会话任务作声明 |
+| **write scope** | 决策者为任务指定的允许写入的文件/目录集合。Agent 只能写 scope 内；需扩大时停下申请，不自行越界 |
+| **read-only scope** | 任务指定为只读的区域；可以读，不得写 |
+| **共享文件（单写者）** | package manifests、lockfiles、`tsconfig.json`、`AGENTS.md`、`docs/specs/`、根 README、生成文件。默认单写者、串行修改；提交须格外核对 |
+| **Vision 闸** | 每个 RAD、plan、实现前检查：是否属当前目标线和阶段、是否触碰当前边界、是否偏离 3~5 人约束 |
+| **RAD** | 需求分析文档（`docs/rads/<slug>.md`，模板 `TEMPLATE.md`）。决策者确认后 = spike/plan 的**制定依据**，不是编码依据；用户故事随确认冻结 |
+| **Spike 闸（必经）** | RAD 确认后、plan 起草前的必经环节：Agent 提 spike 清单或「无需 spike」的结论及理由，决策者裁定。没有「跳过 spike 直接写 plan」的路径 |
+| **Spike** | 预研报告（`docs/spikes/<slug>.md`）。**证据与输入，不是编码依据**；spike 验证代码不进 `main`，除非决策者明确要求保留 |
+| **Plan** | 实施方案（`docs/plans/<slug>.md`）。**唯一编码依据**；批准 = 授权包络。实现和验收只对照已批准 plan，RAD/spike 只作溯源 |
+| **Plan 闸** | 非平凡 B/C 任务必须有成文 plan 并经决策者批准；批准记录写入 plan |
+| **实证关闭** | 关闭 issue、宣布验证通过须附命令、输出和环境；不能只说「通过」，禁只凭推理关闭 |
+| **权威层级** | vision → RAD → plan → spike → 代码与文档；`AGENTS.md` 的执行纪律始终适用。产品事实冲突按此裁决 |
+| **main-only** | 所有工作只在 `main`：不建功能分支、不在其他分支的 worktree 工作。多 Agent 冲突靠 write scope 隔离，不靠分支；范围重叠时串行或重划 scope |
+| **内部不开 PR** | `main` 是唯一开发分支。PR 只有两种情况：外部贡献者从自己 fork 提交、决策者特批的内部例外（源分支不得建在 canonical repo）。内部例外合并后删源分支 |
+| **squash merge** | 唯一的合并方式，保持 `main` 线性；只有决策者或获明确授权的 Agent 可合并；作者不自并除非明确授权；不 force push |
+| **pages 发布分支** | `pages` 是文档站发布分支，publish-only：未经授权不切换、不 checkout、不提交、不 push、不合并；授权发布用独立 clone/worktree，不动共享 `main` worktree；两分支互不合并 |
+| **共享 worktree 串行** | 所有 Agent 共享同一 `main` worktree。`git switch` / `checkout <branch>` / `rebase` / `reset` / `stash` / 分支删除须决策者协调并确保无其他 Agent 运行；`git commit` / `git push` 是短临界区，一次一个 Agent |
+| **本地门禁** | 所有质量闸只在本地执行：pre-commit 查 staged 文件，pre-push 跑完整 `pnpm run check`。不依赖 GitHub Actions 或任何远程 CI；推送前本地必须通过 |
+| **fork 基点标签** | `pi-fork-base-20d86c365`（原始 fork 基点）与 `omfde-cutover`（切断上游、转独立维护）。历史比较用这两个标签；`upstream` remote 已删除，不重新添加、不恢复自动 rebase |
+| **裁剪子系统** | 已删除的四个上游子系统：`apps/p2`、`packages/env`、`packages/durable`、`packages/chord`（依据包依赖图，coding-agent 不依赖它们）。git 历史可找回；不是删功能 |
+| **保留 9 包** | `agent`、`ai`、`coding-agent`、`codemode`、`evals`、`mcp`、`schema`、`telemetry`、`tui`。新增 workspace 包或改包图须先在 vision 记录决定 |
+
+## 3. 工程与工具
+
+| 词 | 含义 |
+|----|------|
+| **pnpm** | 本仓**唯一包管理器**（vision 决策「包管理器迁移到 pnpm」），版本由 `packageManager: pnpm@11.15.1` 钉死。`pnpm-lock.yaml` + `pnpm-workspace.yaml` 是依赖与 workspace 的 SSOT |
+| **锁文件门禁** | pre-commit 阻止 `pnpm-lock.yaml` 提交，除非 `PI_ALLOW_LOCKFILE_CHANGE=1`。依赖与锁文件变更按已评审代码对待；直接依赖（含内部 workspace 依赖）钉精确版本 |
+| **--ignore-scripts** | 安装纪律：hydrate 用 `pnpm install --ignore-scripts`，干净安装加 `--frozen-lockfile`；不跑 lifecycle 脚本除非用户要求。已知副作用：husky 钩子可能未激活（见 explains/00-baseline） |
+| **check** | `pnpm run check`：只读、全量本地质量门禁（lint、格式、TSDoc、secrets 等），代码改动后必跑；**不跑测试**。修掉全部 errors/warnings/infos 再提交。不是 `check:fix`，不用它做类型检查以外的验证 |
+| **check:fix** | 自动修复入口：写文件，仅限格式与安全 lint 修复；用后必须核对 diff 在 write scope 内 |
+| **check:tsdoc** | 平台导出 TSDoc 门禁，已含在 `check` 中；规范正本 `docs/specs/tsdoc-comment-standards.md`，适用面 `apps/*/src` 与 `extensions/*/src` |
+| **check:secrets** | 密钥扫描，已含在 `check` 中，也可单独跑。不提交 `.env`、`~/.pi/agent/auth.json` 或任何 API key |
+| **test.sh** | 非 e2e 测试入口：只跑 `packages/*`。**不直接跑全量 vitest**（env 变量存在时会激活 e2e）；`pnpm test` 除非用户要求不跑 |
+| **faux provider** | 测试专用假 provider：不用真实 API、密钥或付费 token。`packages/coding-agent/test/suite/` 用 `test/suite/harness.ts` + faux provider；TUI 冒烟可用 DeepSeek 小 prompt，保持便宜确定 |
+| **DeepSeek 测试模型** | 测试 LLM 默认 DeepSeek；凭据在 `~/.pi/agent/auth.json`，默认模型在 `~/.pi/agent/settings.json`，均不提交。`.env.example` 只是模板：Pi 不加载 `.env`，`ODOOTHINK_*` 变量不被识别 |
+| **baseline** | `docs/explains/00-baseline.md`：已知环境性失败的台账。失败如实记录在此或 issue，**不用 skip、放宽断言或删除测试掩盖** |
+| **TSDoc** | 平台 TypeScript 注释规范（中文 summary + 块标签）；`apps/*/src` 与 `extensions/*/src` 的导出必写 |
+| **平台目录三分** | `apps/` = 可运行应用，`extensions/` = 平台扩展，`packages/` = Pi fork 与共享库。Pi 包留在 `packages/` 不移动 |
+| **apps/omfde** | 平台第一入口（当前是 Pi 的薄启动器）：默认以 `OMFDE_PLATFORM=1` 启动已构建的 Web UI，`--tui` 直接启动 Pi TUI。不是完整平台实现；其最终分工是 vision 未决问题 |
+| **extensions/omfde-core** | 第一个平台扩展骨架。「分工/落点不明时优先扩展与配置，改核心须先证明缺口」的落点示例 |
+| **apps/docs-site** | 统一文档站（`@omfde/docs-site`，private）：Blume（Astro + Vite）纯静态站，构建时只读汇聚 `docs/**` 与 `.qoder/repowiki/**`，发布到 `pages` 分支替换 docsify。人与 coding agent 双读；不开 server 端能力 |
+| **agent 表面（文档站）** | 文档站面向 coding agent 的输出：llms.txt、每页 `.md` 镜像、JSON docs API，随静态构建生成。不是 MCP server、不是 Ask AI |
+| **Repo Wiki** | `.qoder/repowiki/`：机器生成并纳入 Git 跟踪的仓库知识文档；自动更新已由用户关闭，重生成须走显式任务 |
+| **中文译本同步** | `README.zh-CN.md`、`AGENTS.zh-CN.md`、`CONTRIBUTING.zh-CN.md` 与英文源保持同步；英文源为正本 |
+| **提交消息格式** | `{feat,fix,docs}[(repo|ai|tui|agent|coding-agent)]: <summary>`；正文 `refs #N`，关闭用 `fixes #N` / `closes #N`（多 issue 逐个重复关键字）。无 emoji |
+| **models.generated.ts** | `packages/ai/src/models.generated.ts`：生成文件，只能改 `packages/ai/catalog/` 定义再重生成，不直接编辑。`src/providers/data/` 是 gitignore 产物：不 stage、不查 git 历史 |
+| **erasable TS** | 根 config 检查面（`packages/*/src`、`packages/*/test` 等）只允许可擦除 TypeScript 语法（Node strip-only）：无 parameter properties、`enum`、`namespace`、`import =` 等需 JS emit 的构造 |
+
+## 4. Web UI（fdecode）域
+
+| 词 | 含义 |
+|----|------|
+| **fdecode / FDE Code** | Web UI 线的独立应用：`apps/fdecode`，包名 `@omfde/fdecode`。原名 pi-web，2026-11-07 更名（vision 决策「Web UI 应用更名为 fdecode / FDE Code」）。不是 Pi 官方 Web 客户端、不是 omfde 子模块 |
+| **组合式接入** | omfde 消费 fdecode 的方式：`apps/omfde` 默认启动**已构建**的 Web UI 服务，经 `FDECODE_CONFIG`、`FDECODE_CWD` 与端口共享配置；`apps/fdecode` 保持独立目录与独立启动，**不合并代码**。是否代码级并入是 vision 未决问题 |
+| **FDECODE_\*** | fdecode 的统一环境变量前缀；配置与数据目录 `~/.fdecode`。旧 `PI_WEB_*` 不再读取，启动时提示；启动自动迁移 `~/.pi-web` 及其 sidecar |
+| **fdecode.db** | `~/.fdecode/fdecode.db`：Node 内置 `node:sqlite` 的元数据库（会话归属、链接、分享、审计，由 JSON 文件迁入）。配置仍在 `config.json`。未来平台数据用独立 `~/.omfde/omfde.db`，经 API 共享，**不共享表** |
+| **M1–M5** | Web UI 线里程碑：M1 可用界面 + DSH 对齐起步、M2 会话完整、M3 团队可用（LAN 绑定 + 令牌认证 + 工作区）、M4 协作与交接（归属、分享、管理员/成员两级角色、审计）、M5 企业集成（GitHub、CI、通知、保留策略）。M4/M5 向平台化线协作层/企业集成供料 |
+| **访问令牌** | fdecode M3 起的登录凭据；非回环监听必须启用认证。不做 SSO/LDAP/OAuth、不做 RBAC 细粒度权限 |
+| **两级角色** | fdecode M3/M4 的管理员/成员角色模型。不是多租户、不是组织架构 |
+| **工作区（fdecode）** | fdecode M3 的会话工作区选择。不是 OdooThink 的「工作台项目」、不是平台化线协作层的「项目」概念（后者待固化） |
+| **三栏 AppFrame** | Web UI 布局骨架：左侧栏（会话/工作区）、中间会话、右侧可停靠面板；窄屏抽屉。对齐 DSH 布局，不是自创视觉语言 |
+| **--dsw-\* token** | Web UI 的语义 token 前缀：静态色阶 → 语义别名 → 组件变量分层；映射为 Tailwind theme/工具类，功能组件只消费语义 token 对应工具类，不写字面色值、不写主题分支 |
+| **前端技术栈** | 应用型界面（FDE Code UI、平台控制台）= React + TanStack Start + Tailwind CSS + Vite；内容型站点（文档、官网）= React + Astro + Tailwind CSS + Vite。分界按交互形态不按项目大小；具体版本在 plan 中锁定。不是每应用自选框架 |
+| **本地优先** | fdecode 默认只监听回环地址；M3 起支持 3~5 人团队共用（可选 LAN 绑定）。不做云端 IDE、不替代完整文件树与编辑器 |
+
+## 5. Pi 运行时（底座术语）
+
+以下词条以 `docs/explains/`（尤其 17-system-overview）的已验证认识为准；在平台文档与对话中使用统一口径。
+
+| 词 | 含义 |
+|----|------|
+| **分层 harness** | Pi 的结构口径：稳定内核 = transcript + agent loop + 工具管线；产品层 = 模式；能力层 = 扩展、包、MCP、codemode；边缘层 = provider 适配器、终端、平台差异 |
+| **transcript** | 会话的**唯一事实源**：追加写的 JSONL 树，entry 带 `id`/`parentId`；分支 = 移动 leaf，历史不修改不删除。不是内存数组、不是可直接编辑的文件 |
+| **projection** | 从 transcript **重建**模型上下文的投影。请求上下文不直接复用内存数组；「任何状态都应能落到 entry 里」 |
+| **prompt 增量流** | system message 协议：首条 = 基础 prompt + 初始工具；之后 `content` 追加、`sections` 按名替换、`toolsAdded`/`toolsRemoved` 改工具；重放得到当前 prompt。改 prompt 是追加差异不是重建字符串（缓存友好前提） |
+| **compaction** | 上下文压缩**检查点**，不是删除；`systemMessage` 快照保证压缩后 prompt 不丢。`context_edit` 是追加式 amend，原始记录保留 |
+| **工具管线** | 所有工具调用（模型直接调用、codemode 嵌套、MCP、扩展注册）走同一条：prepare → validate → beforeToolCall → execute → afterToolCall → result。嵌套调用带 `parentToolCallId`，返回 `{ block: true }` 可阻止执行 |
+| **tool_call 接缝** | 权限、审计、门禁这类需求的**第一选择切口**（扩展的 `tool_call`/`tool_result` 钩子自动覆盖所有工具入口）；不是改内核。注意它是策略层不是沙箱，路径无限制 |
+| **事件流 UI 契约** | `AgentSession` 发事件，`interactive`/`rpc`/`json`/`print` 只是不同消费者；Agent 不知道 UI 存在。模式 = 产品层的运行形态（TUI / RPC / JSON / print） |
+| **六层钩子** | 扩展可介入的层面：启动/信任、请求、工具、回合/收尾、UI（`ctx.ui`、renderers、widgets、commands）等。最常用三缝：`tool_call`、`before_agent_start`、`agent_before_settle` |
+| **扩展（extension）** | 不改内核完成拦截、改写、工具编排的机制；平台能力（权限/审计/门禁）的首选落点。扩展事件面（30+）相对易变，避免深度耦合；优先依赖「数据格式 + 窄接口」 |
+| **codemode** | QuickJS 沙箱内的模型代码执行（`packages/codemode`）；其嵌套工具调用仍走统一工具管线 |
+| **MCP** | Model Context Protocol 客户端实现（`packages/mcp`）；MCP 工具同样走统一工具管线。默认懒加载，只等 direct 工具 |
+| **provider 边缘** | provider 差异只存在于 `api/*.ts` 适配层：缓存、伪装 headers、strict 降级、错误映射，经 `model.compat` 暴露能力标志；核心只认 `AssistantMessageEventStream` |
+| **steering / follow-up** | 流式进行中的追加输入队列（fdecode M2 已接入同名能力）；不是新会话、不是中止 |
+| **会话文件** | `~/.pi/agent/sessions/--<cwd>--/<id>.jsonl`。**唯一需要备份的东西**；其余（settings、auth、models 缓存）都是可重建的配置或缓存 |
+| **项目信任** | 启动路径上的 `project_trust` 决策点：决定当前 cwd 加载哪些项目级配置与扩展。不是权限沙箱 |
+
+## 演变记录
+
+| 日期 | 版本 | 变更原因 | 内容修订 |
+|------|------|----------|----------|
+| 2026-11-07 | 0.1.0 | 决策者指令：参考 OdooThink glossary 建立本仓术语表 | 首版：项目身份与目标线、治理与协作、工程与工具、Web UI（fdecode）域、Pi 运行时五节建档；词条取自 vision/workflow/AGENTS/explains/fdecode RAD 系列的已裁事实 |
+
+---
+
 # TypeScript 注释规范（TSDoc）
 Source: https://fde-group.github.io/oh-my-fde/docs/specs/tsdoc-comment-standards
 
@@ -8961,13 +9321,13 @@ Source: https://fde-group.github.io/oh-my-fde/docs/specs/vision
 >
 > 本文档是项目宪法：开发决策不能超越它；冲突时先商议是否修改，再实施。
 >
-> 最后更新：2026-11-06
+> 最后更新：2026-11-07
 
 ## 一句话
 
 oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forward Deployed Engineer，前置交付工程师）平台**。以 Pi 为底座，参考 DSH（DeepSeek Harness）的平台化路径，一步一步演化，而不是重写或整体替换。
 
-演化分三条线并行：**教程线**以文档为主线，**平台化线**以代码结构为主线，**Pi Web UI 线**以独立应用为主线。
+演化分三条线并行：**教程线**以文档为主线，**平台化线**以代码结构为主线，**FDE Code UI 线**以独立应用为主线。
 
 当前不做的事：**为了改而改**。核心代码已经由我们维护，但每次核心改动仍然要先证明现有扩展和配置不够。
 
@@ -9011,7 +9371,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 ```
 线 1：教程线    理解 → 会用 → 用好                      以文档为主线
 线 2：平台化线  骨架 → 核心能力 → 协作 → 企业集成 → 治理  以代码结构为主线
-线 3：Pi Web UI 可用 → 对齐 DSH → 会话完整 → 团队可用    以独立应用为主线
+线 3：FDE Code UI 可用 → 对齐 DSH → 会话完整 → 团队可用    以独立应用为主线
 ```
 
 - **教程线**回答“怎么理解、怎么用、怎么用好”，产物是文档、示例和验证记录。
@@ -9019,6 +9379,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 - **Web UI 线**回答“界面和交互怎么交付”，产物是一个独立可运行的 Web 应用。
 - 三条线互相供料：教程线提供真实用法，平台化线固化结构，Web UI 线提供交互入口和真实反馈。
 - 各线不必互相等待，但都不能先搭空架子；每条线的每一步都要有真实需求或可验证结果。
+- 当前重心在平台化线“核心能力”层；教程线“会用”已完成、“用好”转入后台持续推进，不再作为门禁线。
 
 ### 线 1：教程线（以文档为主线）
 
@@ -9030,7 +9391,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 
 判定标准：能用自己的话解释一次请求从输入到落盘的完整路径，并能指出扩展点在哪。
 
-#### 2. 会用（当前阶段）
+#### 2. 会用（已完成）
 
 - 用 Pi 完成真实的 FDE 工作，而不是跑测试样例。
 - 掌握日常操作：会话、分支、压缩、扩展、MCP、模型切换、权限边界。
@@ -9038,7 +9399,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 
 判定标准：连续用它处理真实任务，遇到问题知道该看哪一层，而不是靠猜。
 
-#### 3. 用好
+#### 3. 用好（转入后台，持续推进）
 
 - 让它在团队协作、代码审查、长任务、多项目场景下稳定产出。
 - 建立可复用的 prompt、skills、扩展和配置，把个人经验沉淀为团队工作方式。
@@ -9051,7 +9412,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 按“先骨架、后能力、再协作与治理”的顺序推进：
 
 1. **仓库骨架**（已完成第一版）：明确 apps / packages / extensions 的边界，建立最小可运行的平台入口。
-2. **核心能力**：把 FDE 高频工作固化为工具、skills、扩展和服务。
+2. **核心能力**（当前阶段，进行中）：把 FDE 高频工作固化为工具、skills、扩展和服务。
 3. **协作层**：项目、任务、知识、评审和交接。
 4. **企业集成**：代码托管、工单、知识库、CI/CD、部署、身份与权限。
 5. **治理与规模化**：多团队、审计、成本、模型路由和升级策略；在首批 3~5 人团队之外再展开。
@@ -9064,7 +9425,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 - 核心代码可以修改，但必须走 vision → RAD → plan → 验证，不把“能改”当成“应该改”。
 - 原“增强”不再是第四阶段，而是平台化线的总称。
 
-### 线 3：Pi Web UI（以独立应用为主线）
+### 线 3：FDE Code UI（以独立应用为主线）
 
 按“先可用、再对齐、后完整”推进：
 
@@ -9119,7 +9480,7 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 
 | 场景 | 栈 |
 |---|---|
-| 应用型界面（Pi Web UI、平台控制台等） | React + TanStack Start + Tailwind CSS + Vite |
+| 应用型界面（FDE Code UI、平台控制台等） | React + TanStack Start + Tailwind CSS + Vite |
 | 内容型站点（文档、博客、官网） | React + Astro + Tailwind CSS + Vite |
 
 - **分界按交互形态，不按项目大小**：需要长会话、实时状态和复杂交互的用 TanStack Start；以阅读和展示为主的用 Astro。
@@ -9143,7 +9504,7 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 | 在自有代码上逐步长出平台能力 | 把 Pi 整体替换成 DSH |
 | 教程线验证需求，平台化线固化结构 | 平台代码先于使用证据 |
 | 平台代码优先分层 | 无边界地把所有东西塞进核心 |
-| 独立交付 Pi Web UI | 把 Web UI 做成 omfde 的子模块 |
+| 独立交付 FDE Code UI | 把 Web UI 做成 omfde 的子模块 |
 | Web UI 的布局与设计系统对齐 DSH | 另起一套视觉语言或照搬 DSH 全部包 |
 | 样式统一用 Tailwind CSS | 混用 CSS Modules、CSS-in-JS 或额外组件库 |
 | 前端统一 React + TanStack Start / Astro + Tailwind + Vite | 每个应用自选框架或样式方案 |
@@ -9183,19 +9544,20 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 | `README.zh-CN.md`、`AGENTS.zh-CN.md`、`CONTRIBUTING.zh-CN.md` | 中文译本 |
 | `apps/omfde` | 平台入口（当前是 Pi 的薄启动器） |
 | `extensions/omfde-core` | 平台扩展骨架 |
-| `docs/rads/pi-web.md` | Pi Web UI 的确认需求（M1） |
-| `docs/rads/pi-web-m2.md` | Pi Web UI M2 需求草案 |
-| `docs/rads/pi-web-m3.md` | Pi Web UI M3 团队可用需求 |
-| `docs/rads/pi-web-m4.md` | Pi Web UI M4 协作与交接需求 |
-| `docs/rads/pi-web-m5.md` | Pi Web UI M5 企业集成需求 |
-| `docs/spikes/pi-web-m5.md` | Pi Web UI M5 spike 结果 |
-| `docs/spikes/pi-web-m4.md` | Pi Web UI M4 spike 结果 |
-| `docs/spikes/pi-web-m3.md` | Pi Web UI M3 spike 结果 |
-| `docs/plans/pi-web-m2.md` | Pi Web UI M2 实现计划（待批准） |
-| `docs/spikes/pi-web-m2.md` | Pi Web UI M2 spike 结果 |
-| `docs/plans/pi-web.md` | Pi Web UI M1 的实现计划 |
+| `docs/rads/fdecode.md` | FDE Code UI 的确认需求（M1） |
+| `docs/rads/fdecode-m2.md` | FDE Code UI M2 需求草案 |
+| `docs/rads/fdecode-m3.md` | FDE Code UI M3 团队可用需求 |
+| `docs/rads/fdecode-m4.md` | FDE Code UI M4 协作与交接需求 |
+| `docs/rads/fdecode-m5.md` | FDE Code UI M5 企业集成需求 |
+| `docs/spikes/fdecode-m5.md` | FDE Code UI M5 spike 结果 |
+| `docs/spikes/fdecode-m4.md` | FDE Code UI M4 spike 结果 |
+| `docs/spikes/fdecode-m3.md` | FDE Code UI M3 spike 结果 |
+| `docs/plans/fdecode-m2.md` | FDE Code UI M2 实现计划（待批准） |
+| `docs/spikes/fdecode-m2.md` | FDE Code UI M2 spike 结果 |
+| `docs/plans/fdecode.md` | FDE Code UI M1 的实现计划 |
 | `docs/rads/TEMPLATE.md` | 需求描述模板 |
 | `docs/specs/workflow.md` | 开发工作流：RAD、Spike、Plan 与验证闭环 |
+| `docs/specs/glossary.md` | 术语表：项目级术语 SSOT，统一人机交流口径 |
 | `docs/specs/tsdoc-comment-standards.md` | 平台 TypeScript 注释规范与检查门禁 |
 | `docs/specs/vision.md` | 本文档 |
 
@@ -9231,7 +9593,7 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 
 影响：教程线保持“理解 → 会用 → 用好”，以文档为主线；平台化线按“仓库骨架 → 核心能力 → 协作 → 企业集成 → 治理”推进，以代码结构为主线。两条线并行，但平台化每一步都必须由教程线暴露的真实需求触发。原“增强”不再是第四阶段，而是平台化线的总称。
 
-> 已由 2026-11-06“Pi Web UI 成为第三条目标线”扩展。
+> 已由 2026-11-06“FDE Code UI 成为第三条目标线”扩展。
 
 ### 2026-11-06：完成第一版 monorepo 骨架
 
@@ -9277,23 +9639,23 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 
 影响：删除 `upstream` remote 和 remote-tracking refs，保留 `pi-fork-base-20d86c365` 与 `omfde-cutover` 标签。Pi 代码由本项目维护，核心改动不再受 rebase 约束，但仍按 vision → RAD → plan 控制。不再要求持续同步上游。
 
-### 2026-11-06：pi-web 引入 SQLite 存储元数据
+### 2026-11-06：fdecode 引入 SQLite 存储元数据
 
 原因：会话归属、Issue 关联、分享和审计已经超出 JSON 文件能舒适承载的范围，后续任务与项目数据还需要事务、索引和查询。继续用多个 JSON 文件会增加一致性和清理成本。
 
-影响：`apps/pi-web` 使用 Node 内置 `node:sqlite`，数据库为 `~/.pi-web/pi-web.db`；配置继续使用 `config.json`。第一阶段把 `sessions.json`、`links.json`、`shares.json` 和 `audit.jsonl` 迁移到表，导入成功后删除旧 JSON；解析失败时保留文件并阻止启动。未来平台数据使用独立的 `~/.omfde/omfde.db`，与 pi-web 通过 API 共享，不共享表。引入前先验证 Node 22 的 WAL、并发、迁移和权限。
+影响：`apps/fdecode` 使用 Node 内置 `node:sqlite`，数据库为 `~/.fdecode/fdecode.db`；配置继续使用 `config.json`。第一阶段把 `sessions.json`、`links.json`、`shares.json` 和 `audit.jsonl` 迁移到表，导入成功后删除旧 JSON；解析失败时保留文件并阻止启动。未来平台数据使用独立的 `~/.omfde/omfde.db`，与 fdecode 通过 API 共享，不共享表。引入前先验证 Node 22 的 WAL、并发、迁移和权限。
 
 ### 2026-11-06：Web UI 作为 omfde 平台界面（组合式接入）
 
-原因：Web UI 已具备会话、团队访问、分享、交接和审计能力，继续作为独立应用会让用户在两套入口之间切换；但把 `apps/pi-web` 整体迁入 `apps/omfde` 会让界面与平台骨架重新耦合。
+原因：Web UI 已具备会话、团队访问、分享、交接和审计能力，继续作为独立应用会让用户在两套入口之间切换；但把 `apps/fdecode` 整体迁入 `apps/omfde` 会让界面与平台骨架重新耦合。
 
-影响：`apps/omfde` 默认启动已构建的 Web UI 服务，保留 `--tui` 回退；通过 `PI_WEB_CONFIG`、`PI_WEB_CWD` 和端口共享配置。`apps/pi-web` 保持独立目录和独立启动方式，不合并代码。后续任务与交接数据通过平台 API 共享，不在本次接入中实现。
+影响：`apps/omfde` 默认启动已构建的 Web UI 服务，保留 `--tui` 回退；通过 `FDECODE_CONFIG`、`FDECODE_CWD` 和端口共享配置。`apps/fdecode` 保持独立目录和独立启动方式，不合并代码。后续任务与交接数据通过平台 API 共享，不在本次接入中实现。
 
-### 2026-11-06：Pi Web UI 成为第三条目标线
+### 2026-11-06：FDE Code UI 成为第三条目标线
 
 原因：此前把 Web UI 当作平台化线的一步，会把“界面交付”和“平台结构建设”混在一起：Web UI 有独立的交付节奏、独立的技术栈和独立的视觉标准，也需要单独验收。DSH 的 Web 客户端已经验证了布局骨架、token 分层和共享控件复用方式，直接对齐它的布局、设计系统和样式系统，比自建一套视觉语言更快、更一致。
 
-影响：目标线从两条扩展为三条。新增“线 3：Pi Web UI”，以独立应用为主线，按“可用 → 对齐 DSH → 会话完整 → 团队可用”推进。Web UI 作为独立应用开发，不并入 `apps/omfde`，也不依赖平台代码；布局和设计系统以 DSH 为参考。是否并入 omfde 由平台化线以后单独决定。具体形态（目录位置、RPC 还是 SDK、事件传输方式、会话生命周期）留给 RAD 决定，不在本文档中锁定。
+影响：目标线从两条扩展为三条。新增“线 3：FDE Code UI”，以独立应用为主线，按“可用 → 对齐 DSH → 会话完整 → 团队可用”推进。Web UI 作为独立应用开发，不并入 `apps/omfde`，也不依赖平台代码；布局和设计系统以 DSH 为参考。是否并入 omfde 由平台化线以后单独决定。具体形态（目录位置、RPC 还是 SDK、事件传输方式、会话生命周期）留给 RAD 决定，不在本文档中锁定。
 
 > “是否并入 omfde 由平台化线以后单独决定”已由 2026-11-06“Web UI 作为 omfde 平台界面（组合式接入）”取代；线3 序列与四层状态已由 2026-11-06“Web UI 线 M1–M5 落地，正文同步到既成事实”同步。
 
@@ -9307,17 +9669,17 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 
 原因：前端应用和内容站点如果各自选框架，构建、路由、样式和部署方式会分裂，团队需要重复学习和维护。React 是统一的组件模型，Tailwind 是已确定的样式层；TanStack Start 和 Astro 都基于 Vite，分别覆盖应用型与内容型场景。
 
-影响：新增“前端技术栈”一节。应用型界面统一 React + TanStack Start + Tailwind CSS + Vite；内容型站点用 Astro 替换 TanStack Start，即 React + Astro + Tailwind CSS + Vite。Pi Web UI 属于应用型界面。具体版本在 plan 中锁定。
+影响：新增“前端技术栈”一节。应用型界面统一 React + TanStack Start + Tailwind CSS + Vite；内容型站点用 Astro 替换 TanStack Start，即 React + Astro + Tailwind CSS + Vite。FDE Code UI 属于应用型界面。具体版本在 plan 中锁定。
 
-### 2026-11-06：新增 `apps/pi-web` 独立应用包
+### 2026-11-06：新增 `apps/fdecode` 独立应用包
 
-原因：Pi Web UI 需要独立启动、独立交付的代码落点；放进 `apps/omfde` 会让界面与平台骨架耦合。按 AGENTS 规则，新增 workspace 包需要先在 vision 记录决定。
+原因：FDE Code UI 需要独立启动、独立交付的代码落点；放进 `apps/omfde` 会让界面与平台骨架耦合。按 AGENTS 规则，新增 workspace 包需要先在 vision 记录决定。
 
-影响：package graph 新增 `apps/pi-web`（包名 `@omfde/pi-web`），不依赖 `apps/omfde`，也不共享平台代码。需求与实现方案见 `docs/rads/pi-web.md` 和 `docs/plans/pi-web.md`。
+影响：package graph 新增 `apps/fdecode`（包名 `@omfde/fdecode`），不依赖 `apps/omfde`，也不共享平台代码。需求与实现方案见 `docs/rads/fdecode.md` 和 `docs/plans/fdecode.md`。
 
 ### 2026-11-06：Web UI 线 M1–M5 落地，正文同步到既成事实
 
-原因：M1–M5 需求（`docs/rads/pi-web*.md`）均已由决策者确认、实现并验证（各 plan 切片附 `pnpm run check`、app 测试与 Playwright 冒烟结果），feat 已提交推送，omfde 组合式接入已完成；但本文档正文的四层状态表、线3 序列与约束仍停留在 M1 之前的表述。
+原因：M1–M5 需求（`docs/rads/fdecode*.md`）均已由决策者确认、实现并验证（各 plan 切片附 `pnpm run check`、app 测试与 Playwright 冒烟结果），feat 已提交推送，omfde 组合式接入已完成；但本文档正文的四层状态表、线3 序列与约束仍停留在 M1 之前的表述。
 
 影响：四层状态表的“团队协作/企业集成”更新为“Web UI 线已供料、平台化线本体待固化”；线3 标注 M1–M5 实际推进；约束中“单用户/回环”“不做登录/权限”“是否并入 omfde”同步为 M3 团队共用与令牌登录、M3/M4 两级角色、组合式接入既成事实。本条为正文与已批准决策（各 RAD 确认 + 组合式接入决策）的一致性同步，未新增目标或边界；DSH 视觉/设计系统完整对齐的排期留入“未决问题”。
 
@@ -9325,13 +9687,24 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 
 原因：仓库文档分散在 `docs/`（项目文档）与 `.qoder/repowiki/`（Repo Wiki，机器生成）两处，现有 GitHub Pages 站（`pages` 分支，docsify）内容过时、导航与当前结构不符，且只服务人读。本条落实“前端开发统一技术栈”中“内容型站点用 Astro”的既定决策：用 Blume（Astro + Vite 静态站框架）把两处内容汇聚为一个中文站，人与 coding agent 双读。按 AGENTS 规则，新增 workspace 包先在 vision 记录决定；本条同时回答原未决问题“现有 GitHub Pages 文档站是否迁移到 Astro 栈？”（结论：迁移）。
 
-影响：package graph 新增 `apps/docs-site`（包名 `@omfde/docs-site`，private，engines >=22.19），不依赖 `apps/omfde`/`apps/pi-web`，只读消费 `docs/**` 与 `.qoder/repowiki/**`（构建时镜像进包内 `content/`，为 gitignore 产物）。纯静态发布到 `pages` 分支替换 docsify（`https://fde-group.github.io/oh-my-fde/`，base `/oh-my-fde`），文档内容全部公开（含本 vision）。面向 agent 的表面（llms.txt、每页 `.md` 镜像、JSON docs API）随静态构建生成；不开 server 端能力（MCP server / Ask AI），保留日后经 deployment adapter 升级的路径。
+影响：package graph 新增 `apps/docs-site`（包名 `@omfde/docs-site`，private，engines >=22.19），不依赖 `apps/omfde`/`apps/fdecode`，只读消费 `docs/**` 与 `.qoder/repowiki/**`（构建时镜像进包内 `content/`，为 gitignore 产物）。纯静态发布到 `pages` 分支替换 docsify（`https://fde-group.github.io/oh-my-fde/`，base `/oh-my-fde`），文档内容全部公开（含本 vision）。面向 agent 的表面（llms.txt、每页 `.md` 镜像、JSON docs API）随静态构建生成；不开 server 端能力（MCP server / Ask AI），保留日后经 deployment adapter 升级的路径。
+
+### 2026-11-07：Web UI 应用更名为 fdecode / FDE Code
+
+原因：`pi-web` 沿用上游 Pi 的命名，容易被理解为 Pi 官方 Web 客户端；产品需要独立的平台身份，目录名、包名、运行期标识与界面文案也需要统一。
+
+影响：`apps/pi-web` 改为 `apps/fdecode`，包名改为 `@omfde/fdecode`；环境变量统一为 `FDECODE_*`，配置与数据目录迁移到 `~/.fdecode`，数据库文件为 `fdecode.db`，界面与 systemd 服务使用 “FDE Code”。启动时自动迁移 `~/.pi-web`、`pi-web.db` 及其 sidecar；旧 `PI_WEB_*` 环境变量不再读取，启动时提示。历史 RAD、计划与 spike 文件同步改名。上游 `pi-web-ui` 等标识不在改名范围。
+
+### 2026-11-07：完成“会用”，重心转入平台化线核心能力（功能增强）
+
+原因：教程线“会用”已连续用 Pi 处理真实任务并达到判定标准（遇到问题知道该看哪一层）；真实使用中同时暴露出可固化的缺口（例如 agent 靠 grep/read 逐文件重建结构、缺少预建代码图谱），触发平台化线从“仓库骨架”进入“核心能力”层。按既定纪律，进入增强由真实缺口触发而非计划表触发，本次转阶段即以该缺口为依据。
+
+影响：教程线“会用”标为已完成、“用好”转入后台持续推进，教程线不再设当前阶段、不再是门禁线；项目重心交给平台化线，“核心能力”层标为当前阶段、进行中。“缺口触发、每层只做已被教程线验证过的能力、不预先设计”的纪律保留不变——转阶段不等于放行主动规划，每项具体能力仍须走 vision → RAD → plan → 验证并绑定真实缺口。四层状态表与“后两层等用好暴露需求”口径不变（本次只推进前两层内的核心能力层）。未决问题中“会用阶段用什么真实任务检验”随会用完成而结掉。AGENTS.md / AGENTS.zh-CN.md 的 Current State 阶段表述同步更新。
 
 ## 未决问题
 
 - 团队里最重复、最耗时的三类工作是什么？
 - 教程线面向团队的第一篇文档是什么？如何从“个人阅读笔记”转为“可教学的教程”？
-- “会用”阶段用什么真实任务来检验？需要一组有代表性的日常场景。
 - FDE 平台在企业内部运行时，权限、审计、数据边界的最低要求是什么？先记录需求，不急着实现。
 - 平台需要连接哪些企业系统（代码托管、工单、知识库、CI/CD、部署、权限）？哪些必须第一期，哪些可以手工？
 - 平台化线的下一刀是什么：项目、知识、权限，还是审计？
@@ -9340,7 +9713,7 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 - 是否以及何时把 `@earendil-works/pi-*` 包名迁移到自有 scope？
 - 配置和扩展放在仓库内还是用户目录，才能既个人可用又能团队共享。
 - Tailwind 用哪个大版本，`--dsw-*` token 如何映射到 theme（工具类前缀、暗色模式策略）？
-- Web UI 已组合式接入为 omfde 默认入口；是否进一步做代码级并入（合并 `apps/pi-web` 与平台骨架），在什么条件下进行？
+- Web UI 已组合式接入为 omfde 默认入口；是否进一步做代码级并入（合并 `apps/fdecode` 与平台骨架），在什么条件下进行？
 - 线3“对齐 DSH”的视觉与设计系统完整对齐，是否在 M1 之后单独排期，还是随功能里程碑收尾？
 
 ## 维护方式
@@ -9355,7 +9728,7 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 # 开发工作流
 Source: https://fde-group.github.io/oh-my-fde/docs/specs/workflow
 
-> 版本：0.3.2 | 日期：2026-11-06 | 状态：现行
+> 版本：0.3.3 | 日期：2026-11-07 | 状态：现行
 
 本文件把 vision、RAD、AGENTS 的规则串成可重复执行的闭环。它不新设产品边界；边界以 `docs/specs/vision.md` 为准。贡献者的操作细节和代码门禁见 `CONTRIBUTING.md`。
 
@@ -9365,10 +9738,11 @@ Source: https://fde-group.github.io/oh-my-fde/docs/specs/workflow
 2. **`docs/rads/`**：确认需求，是 spike 和 plan 的制定依据。
 3. **`docs/plans/`**：已批准方案，是实现和验收的唯一编码依据。
 4. **`docs/spikes/`**：预研证据，不构成编码依据。
-5. **代码与文档**：当前实现。
-6. **`AGENTS.md`**：执行纪律、命令和 Git 规则，始终适用。
+5. **`docs/specs/glossary.md`**：术语 SSOT，统一人机交流口径；**非裁决性**，不参与事实冲突裁决，词条与 1–4 冲突时以 1–4 为准并回改本表。
+6. **代码与文档**：当前实现。
+7. **`AGENTS.md`**：执行纪律、命令和 Git 规则，始终适用。
 
-产品事实冲突时按 1 到 5 裁决；执行纪律以 `AGENTS.md` 为准。代码不能反向定义 vision。决策者可以修改 vision，但必须先显式修改；在修改前，任何“先做再说”的指令都不构成越过 vision 的授权。
+产品事实冲突时按 1、2、3、4、6 裁决（glossary 不参与）；执行纪律以 `AGENTS.md` 为准。代码不能反向定义 vision。决策者可以修改 vision，但必须先显式修改；在修改前，任何“先做再说”的指令都不构成越过 vision 的授权。
 
 ## 2. 三条工作线
 
@@ -9376,7 +9750,7 @@ Source: https://fde-group.github.io/oh-my-fde/docs/specs/workflow
 |---|---|---|
 | 教程线 | 理解 → 会用 → 用好 | `docs/explains/`、使用文档、示例、验证记录 |
 | 平台化线 | 骨架 → 核心能力 → 协作 → 企业集成 → 治理 | `apps/omfde`、`packages/`、`extensions/` |
-| Web UI 线 | 可用 → 对齐 DSH → 会话完整 → 团队可用 | `apps/pi-web` |
+| Web UI 线 | 可用 → 对齐 DSH → 会话完整 → 团队可用 | `apps/fdecode` |
 
 三条线并行。每条线都由真实需求或可验证结果触发，不能先搭空架子。
 
@@ -9607,17 +9981,18 @@ GitHub Issues 是团队记录任务、bug 和阶段目标的统一视图，不�
 | 2026-11-06 | 0.3.0 | 切断上游，转为独立维护；删除 upstream remote 和自动 rebase 约定 |
 | 2026-11-06 | 0.3.1 | Spike 闸改为 RAD 到 plan 的必经环节：Agent 提清单或“无需 spike”结论，决策者裁定 |
 | 2026-11-06 | 0.3.2 | 工作线从两条扩展为三条，新增 Web UI 线 |
+| 2026-11-07 | 0.3.3 | 权威层级挂入 `docs/specs/glossary.md`（术语 SSOT，非裁决性），代码与文档、AGENTS.md 顺延为 6、7 |
 
 ---
 
-# Spike：Pi Web UI M2
-Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m2
+# Spike：FDE Code UI M2
+Source: https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m2
 
-> 对应 RAD：`docs/rads/pi-web-m2.md`；对应 issue：[#2](https://github.com/FDE-GROUP/oh-my-fde/issues/2)。
+> 对应 RAD：`docs/rads/fdecode-m2.md`；对应 issue：[#2](https://github.com/FDE-GROUP/oh-my-fde/issues/2)。
 >
 > 裁定：执行 M2-S1 到 M2-S4，M2-S5 跳过（2026-11-06）。
 >
-> 效力：证据与输入，不是编码依据。spike 代码在 `/tmp/opencode/pi-web-m2` 与仓库 `node_modules/.cache/pi-web-m2`，不进入 `main`。
+> 效力：证据与输入，不是编码依据。spike 代码在 `/tmp/opencode/fdecode-m2` 与仓库 `node_modules/.cache/fdecode-m2`，不进入 `main`。
 
 ## 1. 要回答的问题
 
@@ -9745,14 +10120,14 @@ Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m2
 
 ---
 
-# Spike：Pi Web UI M3
-Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m3
+# Spike：FDE Code UI M3
+Source: https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m3
 
-> 对应 RAD：`docs/rads/pi-web-m3.md`；对应 issue：[#3](https://github.com/FDE-GROUP/oh-my-fde/issues/3)。
+> 对应 RAD：`docs/rads/fdecode-m3.md`；对应 issue：[#3](https://github.com/FDE-GROUP/oh-my-fde/issues/3)。
 >
 > 裁定：执行 M3-S1 到 M3-S3，M3-S4 随实现验证（2026-11-06）。
 >
-> 效力：证据与输入，不是编码依据。spike 代码在 `node_modules/.cache/pi-web-m3`，不进入 `main`。
+> 效力：证据与输入，不是编码依据。spike 代码在 `node_modules/.cache/fdecode-m3`，不进入 `main`。
 
 ## 1. 要回答的问题
 
@@ -9775,7 +10150,7 @@ Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m3
 方法：
 
 - S1：最小 HTTP 服务，HMAC 签名 cookie、登录、SSE、同源校验、LAN 绑定；用 fetch 逐项验证，并验证启动规则函数。
-- S2：两个工作区各起一个真实 RPC 子进程；读取 session 文件位置；用 `SessionManager.list` 分别列出；切换 `PI_WEB_CWD` 验证文件搜索与越界拒绝。
+- S2：两个工作区各起一个真实 RPC 子进程；读取 session 文件位置；用 `SessionManager.list` 分别列出；切换 `FDECODE_CWD` 验证文件搜索与越界拒绝。
 - S3：实现旁路 owner 索引（临时文件 + rename 原子写）；并发写 100 条；重载验证；模拟每用户 2 个并发上限。
 
 ## 3. 结果
@@ -9807,7 +10182,7 @@ Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m3
 | `SessionManager.list(ws-b)` | 只返回 ws-b 的会话 |
 | `@file` 搜索 | 各自只返回本工作区文件 |
 | 跨工作区引用 `../ws-b/beta.txt` | 被拒绝 |
-| 当前文件工具 | 读取全局 `PI_WEB_CWD`，并发切换会串范围 |
+| 当前文件工具 | 读取全局 `FDECODE_CWD`，并发切换会串范围 |
 
 结论：Pi 的 session 目录天然按 cwd 隔离；会话列表按工作区调用即可。文件工具必须从全局 cwd 改为显式 `root` 参数，否则多用户并发时会读到错误工作区。
 
@@ -9840,7 +10215,7 @@ Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m3
 | Authorization 头传令牌 | EventSource 不支持自定义头 |
 | localStorage 存令牌 | 可被 XSS 读取 |
 | 在 session 文件加 owner | 改 Pi 格式，增加维护负担 |
-| 全局 `PI_WEB_CWD` 支持多工作区 | 并发请求会串范围 |
+| 全局 `FDECODE_CWD` 支持多工作区 | 并发请求会串范围 |
 | 无认证时监听非回环 | 直接拒绝启动 |
 
 ### 风险
@@ -9865,20 +10240,20 @@ Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m3
 
 ## 6. 未决问题
 
-- 用户配置用 JSON 文件还是环境变量：plan 中定，建议 `~/.pi-web/config.json` + 0600。
+- 用户配置用 JSON 文件还是环境变量：plan 中定，建议 `~/.fdecode/config.json` + 0600。
 - 令牌是明文配置还是哈希：建议哈希，提供生成脚本。
 - 管理员查看全部会话：M3 不做，保留扩展点。
 
 ---
 
-# Spike：Pi Web UI M4
-Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m4
+# Spike：FDE Code UI M4
+Source: https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m4
 
-> 对应 RAD：`docs/rads/pi-web-m4.md`；对应 issue：[#4](https://github.com/FDE-GROUP/oh-my-fde/issues/4)。
+> 对应 RAD：`docs/rads/fdecode-m4.md`；对应 issue：[#4](https://github.com/FDE-GROUP/oh-my-fde/issues/4)。
 >
 > 裁定：执行 M4-S1 到 M4-S3；分享必须登录、管理员默认只读、审计超过 10MB 轮转（2026-11-06）。
 >
-> 效力：证据与输入，不是编码依据。spike 代码在 `node_modules/.cache/pi-web-m4`，不进入 `main`。
+> 效力：证据与输入，不是编码依据。spike 代码在 `node_modules/.cache/fdecode-m4`，不进入 `main`。
 
 ## 1. 要回答的问题
 
@@ -9991,14 +10366,14 @@ Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m4
 
 ---
 
-# Spike：Pi Web UI M5
-Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m5
+# Spike：FDE Code UI M5
+Source: https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m5
 
-> 对应 RAD：`docs/rads/pi-web-m5.md`；对应 issue：[#6](https://github.com/FDE-GROUP/oh-my-fde/issues/6)。
+> 对应 RAD：`docs/rads/fdecode-m5.md`；对应 issue：[#6](https://github.com/FDE-GROUP/oh-my-fde/issues/6)。
 >
 > 裁定：执行 M5-S1、M5-S2；M5-S3 随实现验证。GitHub 用 PAT、Issue 上下文填草稿、不自动评论、保留策略默认关闭（2026-11-06）。
 >
-> 效力：证据与输入，不是编码依据。spike 代码在 `node_modules/.cache/pi-web-m5`，不进入 `main`。
+> 效力：证据与输入，不是编码依据。spike 代码在 `node_modules/.cache/fdecode-m5`，不进入 `main`。
 
 ## 1. 要回答的问题
 
@@ -10081,9 +10456,9 @@ Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m5
 
 ## 5. 对 plan 的具体建议
 
-1. 配置增加 `github.repos` 与可选 token；环境 `PI_WEB_GITHUB_TOKEN` 优先。
+1. 配置增加 `github.repos` 与可选 token；环境 `FDECODE_GITHUB_TOKEN` 优先。
 2. 新增服务端 GitHub 客户端：10 秒超时、ETag 缓存 60 秒、过滤 PR、最多 50 条。
-3. Issue 关联存 `~/.pi-web/links.json`；创建会话时写入并返回草稿文本。
+3. Issue 关联存 `~/.fdecode/links.json`；创建会话时写入并返回草稿文本。
 4. CI 展示放在会话头部或状态栏，按仓库与分支查询 Actions runs。
 5. 通知使用前端本地存储 + Notification API，默认关闭浏览器通知。
 6. 保留配置与清理放管理员接口，默认全部为 0（关闭）。
@@ -10097,14 +10472,14 @@ Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m5
 
 ---
 
-# Spike：pi-web SQLite 元数据存储
-Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-sqlite
+# Spike：fdecode SQLite 元数据存储
+Source: https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-sqlite
 
 > 对应 issue：[#7](https://github.com/FDE-GROUP/oh-my-fde/issues/7)。
 >
-> 方向记录：`docs/specs/vision.md`“pi-web 引入 SQLite 存储元数据”。
+> 方向记录：`docs/specs/vision.md`“fdecode 引入 SQLite 存储元数据”。
 >
-> 效力：证据与输入，不是编码依据。spike 代码在 `/tmp/opencode/pi-web-sqlite`，不进入 `main`。
+> 效力：证据与输入，不是编码依据。spike 代码在 `/tmp/opencode/fdecode-sqlite`，不进入 `main`。
 
 ## 1. 要回答的问题
 
@@ -10165,7 +10540,7 @@ Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-sqlite
 |---|---|
 | `better-sqlite3` | 原生 ABI、安装脚本，违背当前 `--ignore-scripts` |
 | 继续用 JSON | 一致性、查询和清理成本会继续上升 |
-| 共享 omfde 数据库 | 破坏 pi-web 独立边界 |
+| 共享 omfde 数据库 | 破坏 fdecode 独立边界 |
 | 依赖 `OR IGNORE` 做迁移幂等 | 审计表会重复 |
 
 ### 风险
@@ -10191,20 +10566,20 @@ Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-sqlite
 
 ## 6. 未决问题
 
-- 是否把 `pi-web.db` 放在可配置路径，还是固定 `~/.pi-web/`：plan 中定。
+- 是否把 `fdecode.db` 放在可配置路径，还是固定 `~/.fdecode/`：plan 中定。
 - 旧 JSON 的去留：已定迁移成功后删除；解析失败时保留文件。
 - 是否在 M6 之前把任务/项目表也放进同一数据库：建议不，等平台化线。
 
 ---
 
-# Spike：Pi Web UI 技术栈与 RPC 契约
-Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-stack
+# Spike：FDE Code UI 技术栈与 RPC 契约
+Source: https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-stack
 
-> 对应 RAD：`docs/rads/pi-web.md`；对应 issue：[#1](https://github.com/FDE-GROUP/oh-my-fde/issues/1)。
+> 对应 RAD：`docs/rads/fdecode.md`；对应 issue：[#1](https://github.com/FDE-GROUP/oh-my-fde/issues/1)。
 >
 > 裁定：执行 S-1 到 S-4，S-5 暂缓（2026-11-06）。
 >
-> 效力：证据与输入，不是编码依据。spike 代码留在 `/tmp/opencode/pi-web-spike`，不进入 `main`。
+> 效力：证据与输入，不是编码依据。spike 代码留在 `/tmp/opencode/fdecode-spike`，不进入 `main`。
 
 ## 1. 要回答的问题
 
@@ -10233,19 +10608,19 @@ Source: https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-stack
 
 方法：
 
-- S-1 与 S-4 共用一个临时 TanStack Start 应用（`/tmp/opencode/pi-web-spike`），含一个 SSE 路由、一个 `get_state` 命令路由和一个三栏示例页。
+- S-1 与 S-4 共用一个临时 TanStack Start 应用（`/tmp/opencode/fdecode-spike`），含一个 SSE 路由、一个 `get_state` 命令路由和一个三栏示例页。
 - S-2 用一个临时扩展注册 faux provider，通过真实 RPC 子进程驱动；不使用真实 provider 或密钥。
 - S-3 直接 import 公开导出的 `SessionManager`，用 1000 个会话文件测列表耗时。
 
 复现命令：
 
 ```bash
-cd /tmp/opencode/pi-web-spike
+cd /tmp/opencode/fdecode-spike
 pnpm dev                 # S-1 dev，SSE 在 3002
 pnpm build               # S-1 prod 构建
 node spike/serve-prod.mjs # S-1 prod 启动（自定义 Node 入口）
 node rpc/driver.mjs      # S-2 全部断言
-node node_modules/.cache/... # S-3（实际位于仓库 node_modules/.cache/pi-web-spike/s3.mjs）
+node node_modules/.cache/... # S-3（实际位于仓库 node_modules/.cache/fdecode-spike/s3.mjs）
 ```
 
 ## 3. 结果
@@ -10374,7 +10749,7 @@ DSH 客户端 CSS 中唯一 `--dsw-*` 变量约 431 个。M1 不需要全部导�
 ## 6. 未决问题
 
 - 生产入口是否在 M1 就支持 HTTPS 或只做回环 HTTP。M1 建议只做回环 HTTP。
-- token 生成脚本放在 `apps/pi-web/scripts/` 还是仓库级 `scripts/`。建议放在 app 内，避免污染根目录。
+- token 生成脚本放在 `apps/fdecode/scripts/` 还是仓库级 `scripts/`。建议放在 app 内，避免污染根目录。
 - 是否需要把 DSH token 源文件作为 vendored 参考提交。建议只提交生成后的子集和来源说明。
 
 ---

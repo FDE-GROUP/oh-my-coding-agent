@@ -45,38 +45,40 @@
 
 ### Plans
 
-- [Plan：Pi Web UI M1](https://fde-group.github.io/oh-my-fde/docs/plans/pi-web)
-- [Plan：Pi Web UI M2](https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m2)
-- [Plan：Pi Web UI M3](https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m3)
-- [Plan：Pi Web UI M4](https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m4)
-- [Plan：Pi Web UI M5](https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m5)
-- [Plan：pi-web SQLite 元数据存储](https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-sqlite)
+- [Plan：FDE Code UI M1](https://fde-group.github.io/oh-my-fde/docs/plans/fdecode)
+- [Plan：FDE Code UI M2](https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m2)
+- [Plan：FDE Code UI M3](https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m3)
+- [Plan：FDE Code UI M4](https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m4)
+- [Plan：FDE Code UI M5](https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m5)
+- [Plan：fdecode SQLite 元数据存储](https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-sqlite)
 - [Plan：Web UI 接入 omfde 平台](https://fde-group.github.io/oh-my-fde/docs/plans/omfde-web-integration)
 
 ### Rads
 
 - [RADS](https://fde-group.github.io/oh-my-fde/docs/rads)
 - [RAD：<需求名>](https://fde-group.github.io/oh-my-fde/docs/rads/TEMPLATE)
-- [RAD：Pi Web UI](https://fde-group.github.io/oh-my-fde/docs/rads/pi-web)
-- [RAD：Pi Web UI M2](https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m2)
-- [RAD：Pi Web UI M3](https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m3)
-- [RAD：Pi Web UI M4](https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m4)
-- [RAD：Pi Web UI M5](https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m5)
+- [RAD：FDE Code UI](https://fde-group.github.io/oh-my-fde/docs/rads/fdecode)
+- [RAD：FDE Code UI M2](https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m2)
+- [RAD：FDE Code UI M3](https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m3)
+- [RAD：FDE Code UI M4](https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m4)
+- [RAD：FDE Code UI M5](https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m5)
+- [RAD：代码图谱（code graph）内置能力](https://fde-group.github.io/oh-my-fde/docs/rads/code-graph)
 
 ### Specs
 
 - [TypeScript 注释规范（TSDoc）](https://fde-group.github.io/oh-my-fde/docs/specs/tsdoc-comment-standards)
 - [开发工作流](https://fde-group.github.io/oh-my-fde/docs/specs/workflow)
+- [术语表（Glossary）](https://fde-group.github.io/oh-my-fde/docs/specs/glossary)
 - [项目愿景](https://fde-group.github.io/oh-my-fde/docs/specs/vision)
 
 ### Spikes
 
-- [Spike：Pi Web UI M2](https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m2)
-- [Spike：Pi Web UI M3](https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m3)
-- [Spike：Pi Web UI M4](https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m4)
-- [Spike：Pi Web UI M5](https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m5)
-- [Spike：Pi Web UI 技术栈与 RPC 契约](https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-stack)
-- [Spike：pi-web SQLite 元数据存储](https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-sqlite)
+- [Spike：FDE Code UI M2](https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m2)
+- [Spike：FDE Code UI M3](https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m3)
+- [Spike：FDE Code UI M4](https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m4)
+- [Spike：FDE Code UI M5](https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m5)
+- [Spike：FDE Code UI 技术栈与 RPC 契约](https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-stack)
+- [Spike：fdecode SQLite 元数据存储](https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-sqlite)
 
 ## Knowledge
 

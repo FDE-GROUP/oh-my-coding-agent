@@ -1,5 +1,5 @@
 {
-  "count": 428,
+  "count": 430,
   "generator": "blume@2.2.6",
   "pages": [
     {
@@ -324,6 +324,66 @@
     },
     {
       "contentType": "doc",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/fdecode.json",
+      "lastModified": null,
+      "locale": "zh-CN",
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/plans/fdecode.md",
+      "route": "/docs/plans/fdecode",
+      "title": "Plan：FDE Code UI M1",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/plans/fdecode"
+    },
+    {
+      "contentType": "doc",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/fdecode-m2.json",
+      "lastModified": null,
+      "locale": "zh-CN",
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m2.md",
+      "route": "/docs/plans/fdecode-m2",
+      "title": "Plan：FDE Code UI M2",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m2"
+    },
+    {
+      "contentType": "doc",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/fdecode-m3.json",
+      "lastModified": null,
+      "locale": "zh-CN",
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m3.md",
+      "route": "/docs/plans/fdecode-m3",
+      "title": "Plan：FDE Code UI M3",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m3"
+    },
+    {
+      "contentType": "doc",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/fdecode-m4.json",
+      "lastModified": null,
+      "locale": "zh-CN",
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m4.md",
+      "route": "/docs/plans/fdecode-m4",
+      "title": "Plan：FDE Code UI M4",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m4"
+    },
+    {
+      "contentType": "doc",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/fdecode-m5.json",
+      "lastModified": null,
+      "locale": "zh-CN",
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m5.md",
+      "route": "/docs/plans/fdecode-m5",
+      "title": "Plan：FDE Code UI M5",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-m5"
+    },
+    {
+      "contentType": "doc",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/fdecode-sqlite.json",
+      "lastModified": null,
+      "locale": "zh-CN",
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-sqlite.md",
+      "route": "/docs/plans/fdecode-sqlite",
+      "title": "Plan：fdecode SQLite 元数据存储",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/plans/fdecode-sqlite"
+    },
+    {
+      "contentType": "doc",
       "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/omfde-web-integration.json",
       "lastModified": null,
       "locale": "zh-CN",
@@ -331,66 +391,6 @@
       "route": "/docs/plans/omfde-web-integration",
       "title": "Plan：Web UI 接入 omfde 平台",
       "url": "https://fde-group.github.io/oh-my-fde/docs/plans/omfde-web-integration"
-    },
-    {
-      "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/pi-web.json",
-      "lastModified": null,
-      "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/plans/pi-web.md",
-      "route": "/docs/plans/pi-web",
-      "title": "Plan：Pi Web UI M1",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/plans/pi-web"
-    },
-    {
-      "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/pi-web-m2.json",
-      "lastModified": null,
-      "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m2.md",
-      "route": "/docs/plans/pi-web-m2",
-      "title": "Plan：Pi Web UI M2",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m2"
-    },
-    {
-      "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/pi-web-m3.json",
-      "lastModified": null,
-      "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m3.md",
-      "route": "/docs/plans/pi-web-m3",
-      "title": "Plan：Pi Web UI M3",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m3"
-    },
-    {
-      "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/pi-web-m4.json",
-      "lastModified": null,
-      "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m4.md",
-      "route": "/docs/plans/pi-web-m4",
-      "title": "Plan：Pi Web UI M4",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m4"
-    },
-    {
-      "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/pi-web-m5.json",
-      "lastModified": null,
-      "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m5.md",
-      "route": "/docs/plans/pi-web-m5",
-      "title": "Plan：Pi Web UI M5",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-m5"
-    },
-    {
-      "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/plans/pi-web-sqlite.json",
-      "lastModified": null,
-      "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-sqlite.md",
-      "route": "/docs/plans/pi-web-sqlite",
-      "title": "Plan：pi-web SQLite 元数据存储",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/plans/pi-web-sqlite"
     },
     {
       "contentType": "doc",
@@ -404,53 +404,63 @@
     },
     {
       "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/rads/pi-web.json",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/rads/code-graph.json",
       "lastModified": null,
       "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/rads/pi-web.md",
-      "route": "/docs/rads/pi-web",
-      "title": "RAD：Pi Web UI",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/rads/pi-web"
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/rads/code-graph.md",
+      "route": "/docs/rads/code-graph",
+      "title": "RAD：代码图谱（code graph）内置能力",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/rads/code-graph"
     },
     {
       "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/rads/pi-web-m2.json",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/rads/fdecode.json",
       "lastModified": null,
       "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m2.md",
-      "route": "/docs/rads/pi-web-m2",
-      "title": "RAD：Pi Web UI M2",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m2"
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/rads/fdecode.md",
+      "route": "/docs/rads/fdecode",
+      "title": "RAD：FDE Code UI",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/rads/fdecode"
     },
     {
       "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/rads/pi-web-m3.json",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/rads/fdecode-m2.json",
       "lastModified": null,
       "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m3.md",
-      "route": "/docs/rads/pi-web-m3",
-      "title": "RAD：Pi Web UI M3",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m3"
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m2.md",
+      "route": "/docs/rads/fdecode-m2",
+      "title": "RAD：FDE Code UI M2",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m2"
     },
     {
       "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/rads/pi-web-m4.json",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/rads/fdecode-m3.json",
       "lastModified": null,
       "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m4.md",
-      "route": "/docs/rads/pi-web-m4",
-      "title": "RAD：Pi Web UI M4",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m4"
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m3.md",
+      "route": "/docs/rads/fdecode-m3",
+      "title": "RAD：FDE Code UI M3",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m3"
     },
     {
       "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/rads/pi-web-m5.json",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/rads/fdecode-m4.json",
       "lastModified": null,
       "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m5.md",
-      "route": "/docs/rads/pi-web-m5",
-      "title": "RAD：Pi Web UI M5",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/rads/pi-web-m5"
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m4.md",
+      "route": "/docs/rads/fdecode-m4",
+      "title": "RAD：FDE Code UI M4",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m4"
+    },
+    {
+      "contentType": "doc",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/rads/fdecode-m5.json",
+      "lastModified": null,
+      "locale": "zh-CN",
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m5.md",
+      "route": "/docs/rads/fdecode-m5",
+      "title": "RAD：FDE Code UI M5",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/rads/fdecode-m5"
     },
     {
       "contentType": "doc",
@@ -461,6 +471,16 @@
       "route": "/docs/rads/TEMPLATE",
       "title": "RAD：<需求名>",
       "url": "https://fde-group.github.io/oh-my-fde/docs/rads/TEMPLATE"
+    },
+    {
+      "contentType": "doc",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/specs/glossary.json",
+      "lastModified": null,
+      "locale": "zh-CN",
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/specs/glossary.md",
+      "route": "/docs/specs/glossary",
+      "title": "术语表（Glossary）",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/specs/glossary"
     },
     {
       "contentType": "doc",
@@ -494,63 +514,63 @@
     },
     {
       "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/spikes/pi-web-m2.json",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/spikes/fdecode-m2.json",
       "lastModified": null,
       "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m2.md",
-      "route": "/docs/spikes/pi-web-m2",
-      "title": "Spike：Pi Web UI M2",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m2"
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m2.md",
+      "route": "/docs/spikes/fdecode-m2",
+      "title": "Spike：FDE Code UI M2",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m2"
     },
     {
       "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/spikes/pi-web-m3.json",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/spikes/fdecode-m3.json",
       "lastModified": null,
       "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m3.md",
-      "route": "/docs/spikes/pi-web-m3",
-      "title": "Spike：Pi Web UI M3",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m3"
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m3.md",
+      "route": "/docs/spikes/fdecode-m3",
+      "title": "Spike：FDE Code UI M3",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m3"
     },
     {
       "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/spikes/pi-web-m4.json",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/spikes/fdecode-m4.json",
       "lastModified": null,
       "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m4.md",
-      "route": "/docs/spikes/pi-web-m4",
-      "title": "Spike：Pi Web UI M4",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m4"
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m4.md",
+      "route": "/docs/spikes/fdecode-m4",
+      "title": "Spike：FDE Code UI M4",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m4"
     },
     {
       "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/spikes/pi-web-m5.json",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/spikes/fdecode-m5.json",
       "lastModified": null,
       "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m5.md",
-      "route": "/docs/spikes/pi-web-m5",
-      "title": "Spike：Pi Web UI M5",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-m5"
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m5.md",
+      "route": "/docs/spikes/fdecode-m5",
+      "title": "Spike：FDE Code UI M5",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-m5"
     },
     {
       "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/spikes/pi-web-sqlite.json",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/spikes/fdecode-sqlite.json",
       "lastModified": null,
       "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-sqlite.md",
-      "route": "/docs/spikes/pi-web-sqlite",
-      "title": "Spike：pi-web SQLite 元数据存储",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-sqlite"
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-sqlite.md",
+      "route": "/docs/spikes/fdecode-sqlite",
+      "title": "Spike：fdecode SQLite 元数据存储",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-sqlite"
     },
     {
       "contentType": "doc",
-      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/spikes/pi-web-stack.json",
+      "json": "https://fde-group.github.io/oh-my-fde/api/docs/pages/docs/spikes/fdecode-stack.json",
       "lastModified": null,
       "locale": "zh-CN",
-      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-stack.md",
-      "route": "/docs/spikes/pi-web-stack",
-      "title": "Spike：Pi Web UI 技术栈与 RPC 契约",
-      "url": "https://fde-group.github.io/oh-my-fde/docs/spikes/pi-web-stack"
+      "markdownUrl": "https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-stack.md",
+      "route": "/docs/spikes/fdecode-stack",
+      "title": "Spike：FDE Code UI 技术栈与 RPC 契约",
+      "url": "https://fde-group.github.io/oh-my-fde/docs/spikes/fdecode-stack"
     },
     {
       "contentType": "doc",

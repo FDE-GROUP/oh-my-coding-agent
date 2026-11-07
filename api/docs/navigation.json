@@ -212,39 +212,39 @@
           "children": [
             {
               "kind": "page",
-              "label": "Plan：Pi Web UI M1",
-              "pageId": "filesystem:docs/plans/pi-web.md",
-              "route": "/docs/plans/pi-web"
+              "label": "Plan：FDE Code UI M1",
+              "pageId": "filesystem:docs/plans/fdecode.md",
+              "route": "/docs/plans/fdecode"
             },
             {
               "kind": "page",
-              "label": "Plan：Pi Web UI M2",
-              "pageId": "filesystem:docs/plans/pi-web-m2.md",
-              "route": "/docs/plans/pi-web-m2"
+              "label": "Plan：FDE Code UI M2",
+              "pageId": "filesystem:docs/plans/fdecode-m2.md",
+              "route": "/docs/plans/fdecode-m2"
             },
             {
               "kind": "page",
-              "label": "Plan：Pi Web UI M3",
-              "pageId": "filesystem:docs/plans/pi-web-m3.md",
-              "route": "/docs/plans/pi-web-m3"
+              "label": "Plan：FDE Code UI M3",
+              "pageId": "filesystem:docs/plans/fdecode-m3.md",
+              "route": "/docs/plans/fdecode-m3"
             },
             {
               "kind": "page",
-              "label": "Plan：Pi Web UI M4",
-              "pageId": "filesystem:docs/plans/pi-web-m4.md",
-              "route": "/docs/plans/pi-web-m4"
+              "label": "Plan：FDE Code UI M4",
+              "pageId": "filesystem:docs/plans/fdecode-m4.md",
+              "route": "/docs/plans/fdecode-m4"
             },
             {
               "kind": "page",
-              "label": "Plan：Pi Web UI M5",
-              "pageId": "filesystem:docs/plans/pi-web-m5.md",
-              "route": "/docs/plans/pi-web-m5"
+              "label": "Plan：FDE Code UI M5",
+              "pageId": "filesystem:docs/plans/fdecode-m5.md",
+              "route": "/docs/plans/fdecode-m5"
             },
             {
               "kind": "page",
-              "label": "Plan：pi-web SQLite 元数据存储",
-              "pageId": "filesystem:docs/plans/pi-web-sqlite.md",
-              "route": "/docs/plans/pi-web-sqlite"
+              "label": "Plan：fdecode SQLite 元数据存储",
+              "pageId": "filesystem:docs/plans/fdecode-sqlite.md",
+              "route": "/docs/plans/fdecode-sqlite"
             },
             {
               "kind": "page",
@@ -274,33 +274,39 @@
             },
             {
               "kind": "page",
-              "label": "RAD：Pi Web UI",
-              "pageId": "filesystem:docs/rads/pi-web.md",
-              "route": "/docs/rads/pi-web"
+              "label": "RAD：FDE Code UI",
+              "pageId": "filesystem:docs/rads/fdecode.md",
+              "route": "/docs/rads/fdecode"
             },
             {
               "kind": "page",
-              "label": "RAD：Pi Web UI M2",
-              "pageId": "filesystem:docs/rads/pi-web-m2.md",
-              "route": "/docs/rads/pi-web-m2"
+              "label": "RAD：FDE Code UI M2",
+              "pageId": "filesystem:docs/rads/fdecode-m2.md",
+              "route": "/docs/rads/fdecode-m2"
             },
             {
               "kind": "page",
-              "label": "RAD：Pi Web UI M3",
-              "pageId": "filesystem:docs/rads/pi-web-m3.md",
-              "route": "/docs/rads/pi-web-m3"
+              "label": "RAD：FDE Code UI M3",
+              "pageId": "filesystem:docs/rads/fdecode-m3.md",
+              "route": "/docs/rads/fdecode-m3"
             },
             {
               "kind": "page",
-              "label": "RAD：Pi Web UI M4",
-              "pageId": "filesystem:docs/rads/pi-web-m4.md",
-              "route": "/docs/rads/pi-web-m4"
+              "label": "RAD：FDE Code UI M4",
+              "pageId": "filesystem:docs/rads/fdecode-m4.md",
+              "route": "/docs/rads/fdecode-m4"
             },
             {
               "kind": "page",
-              "label": "RAD：Pi Web UI M5",
-              "pageId": "filesystem:docs/rads/pi-web-m5.md",
-              "route": "/docs/rads/pi-web-m5"
+              "label": "RAD：FDE Code UI M5",
+              "pageId": "filesystem:docs/rads/fdecode-m5.md",
+              "route": "/docs/rads/fdecode-m5"
+            },
+            {
+              "kind": "page",
+              "label": "RAD：代码图谱（code graph）内置能力",
+              "pageId": "filesystem:docs/rads/code-graph.md",
+              "route": "/docs/rads/code-graph"
             }
           ],
           "display": "flat",
@@ -325,6 +331,12 @@
             },
             {
               "kind": "page",
+              "label": "术语表（Glossary）",
+              "pageId": "filesystem:docs/specs/glossary.md",
+              "route": "/docs/specs/glossary"
+            },
+            {
+              "kind": "page",
               "label": "项目愿景",
               "pageId": "filesystem:docs/specs/vision.md",
               "route": "/docs/specs/vision"
@@ -339,39 +351,39 @@
           "children": [
             {
               "kind": "page",
-              "label": "Spike：Pi Web UI M2",
-              "pageId": "filesystem:docs/spikes/pi-web-m2.md",
-              "route": "/docs/spikes/pi-web-m2"
+              "label": "Spike：FDE Code UI M2",
+              "pageId": "filesystem:docs/spikes/fdecode-m2.md",
+              "route": "/docs/spikes/fdecode-m2"
             },
             {
               "kind": "page",
-              "label": "Spike：Pi Web UI M3",
-              "pageId": "filesystem:docs/spikes/pi-web-m3.md",
-              "route": "/docs/spikes/pi-web-m3"
+              "label": "Spike：FDE Code UI M3",
+              "pageId": "filesystem:docs/spikes/fdecode-m3.md",
+              "route": "/docs/spikes/fdecode-m3"
             },
             {
               "kind": "page",
-              "label": "Spike：Pi Web UI M4",
-              "pageId": "filesystem:docs/spikes/pi-web-m4.md",
-              "route": "/docs/spikes/pi-web-m4"
+              "label": "Spike：FDE Code UI M4",
+              "pageId": "filesystem:docs/spikes/fdecode-m4.md",
+              "route": "/docs/spikes/fdecode-m4"
             },
             {
               "kind": "page",
-              "label": "Spike：Pi Web UI M5",
-              "pageId": "filesystem:docs/spikes/pi-web-m5.md",
-              "route": "/docs/spikes/pi-web-m5"
+              "label": "Spike：FDE Code UI M5",
+              "pageId": "filesystem:docs/spikes/fdecode-m5.md",
+              "route": "/docs/spikes/fdecode-m5"
             },
             {
               "kind": "page",
-              "label": "Spike：Pi Web UI 技术栈与 RPC 契约",
-              "pageId": "filesystem:docs/spikes/pi-web-stack.md",
-              "route": "/docs/spikes/pi-web-stack"
+              "label": "Spike：FDE Code UI 技术栈与 RPC 契约",
+              "pageId": "filesystem:docs/spikes/fdecode-stack.md",
+              "route": "/docs/spikes/fdecode-stack"
             },
             {
               "kind": "page",
-              "label": "Spike：pi-web SQLite 元数据存储",
-              "pageId": "filesystem:docs/spikes/pi-web-sqlite.md",
-              "route": "/docs/spikes/pi-web-sqlite"
+              "label": "Spike：fdecode SQLite 元数据存储",
+              "pageId": "filesystem:docs/spikes/fdecode-sqlite.md",
+              "route": "/docs/spikes/fdecode-sqlite"
             }
           ],
           "display": "flat",

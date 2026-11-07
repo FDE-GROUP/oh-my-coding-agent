@@ -4,13 +4,13 @@
 >
 > 本文档是项目宪法：开发决策不能超越它；冲突时先商议是否修改，再实施。
 >
-> 最后更新：2026-11-06
+> 最后更新：2026-11-07
 
 ## 一句话
 
 oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forward Deployed Engineer，前置交付工程师）平台**。以 Pi 为底座，参考 DSH（DeepSeek Harness）的平台化路径，一步一步演化，而不是重写或整体替换。
 
-演化分三条线并行：**教程线**以文档为主线，**平台化线**以代码结构为主线，**Pi Web UI 线**以独立应用为主线。
+演化分三条线并行：**教程线**以文档为主线，**平台化线**以代码结构为主线，**FDE Code UI 线**以独立应用为主线。
 
 当前不做的事：**为了改而改**。核心代码已经由我们维护，但每次核心改动仍然要先证明现有扩展和配置不够。
 
@@ -54,7 +54,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 ```
 线 1：教程线    理解 → 会用 → 用好                      以文档为主线
 线 2：平台化线  骨架 → 核心能力 → 协作 → 企业集成 → 治理  以代码结构为主线
-线 3：Pi Web UI 可用 → 对齐 DSH → 会话完整 → 团队可用    以独立应用为主线
+线 3：FDE Code UI 可用 → 对齐 DSH → 会话完整 → 团队可用    以独立应用为主线
 ```
 
 - **教程线**回答“怎么理解、怎么用、怎么用好”，产物是文档、示例和验证记录。
@@ -62,6 +62,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 - **Web UI 线**回答“界面和交互怎么交付”，产物是一个独立可运行的 Web 应用。
 - 三条线互相供料：教程线提供真实用法，平台化线固化结构，Web UI 线提供交互入口和真实反馈。
 - 各线不必互相等待，但都不能先搭空架子；每条线的每一步都要有真实需求或可验证结果。
+- 当前重心在平台化线“核心能力”层；教程线“会用”已完成、“用好”转入后台持续推进，不再作为门禁线。
 
 ### 线 1：教程线（以文档为主线）
 
@@ -73,7 +74,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 
 判定标准：能用自己的话解释一次请求从输入到落盘的完整路径，并能指出扩展点在哪。
 
-#### 2. 会用（当前阶段）
+#### 2. 会用（已完成）
 
 - 用 Pi 完成真实的 FDE 工作，而不是跑测试样例。
 - 掌握日常操作：会话、分支、压缩、扩展、MCP、模型切换、权限边界。
@@ -81,7 +82,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 
 判定标准：连续用它处理真实任务，遇到问题知道该看哪一层，而不是靠猜。
 
-#### 3. 用好
+#### 3. 用好（转入后台，持续推进）
 
 - 让它在团队协作、代码审查、长任务、多项目场景下稳定产出。
 - 建立可复用的 prompt、skills、扩展和配置，把个人经验沉淀为团队工作方式。
@@ -94,7 +95,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 按“先骨架、后能力、再协作与治理”的顺序推进：
 
 1. **仓库骨架**（已完成第一版）：明确 apps / packages / extensions 的边界，建立最小可运行的平台入口。
-2. **核心能力**：把 FDE 高频工作固化为工具、skills、扩展和服务。
+2. **核心能力**（当前阶段，进行中）：把 FDE 高频工作固化为工具、skills、扩展和服务。
 3. **协作层**：项目、任务、知识、评审和交接。
 4. **企业集成**：代码托管、工单、知识库、CI/CD、部署、身份与权限。
 5. **治理与规模化**：多团队、审计、成本、模型路由和升级策略；在首批 3~5 人团队之外再展开。
@@ -107,7 +108,7 @@ oh-my-fde（omfde）最终的产品形态是一个**企业内部的 FDE（Forwar
 - 核心代码可以修改，但必须走 vision → RAD → plan → 验证，不把“能改”当成“应该改”。
 - 原“增强”不再是第四阶段，而是平台化线的总称。
 
-### 线 3：Pi Web UI（以独立应用为主线）
+### 线 3：FDE Code UI（以独立应用为主线）
 
 按“先可用、再对齐、后完整”推进：
 
@@ -162,7 +163,7 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 
 | 场景 | 栈 |
 |---|---|
-| 应用型界面（Pi Web UI、平台控制台等） | React + TanStack Start + Tailwind CSS + Vite |
+| 应用型界面（FDE Code UI、平台控制台等） | React + TanStack Start + Tailwind CSS + Vite |
 | 内容型站点（文档、博客、官网） | React + Astro + Tailwind CSS + Vite |
 
 - **分界按交互形态，不按项目大小**：需要长会话、实时状态和复杂交互的用 TanStack Start；以阅读和展示为主的用 Astro。
@@ -186,7 +187,7 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 | 在自有代码上逐步长出平台能力 | 把 Pi 整体替换成 DSH |
 | 教程线验证需求，平台化线固化结构 | 平台代码先于使用证据 |
 | 平台代码优先分层 | 无边界地把所有东西塞进核心 |
-| 独立交付 Pi Web UI | 把 Web UI 做成 omfde 的子模块 |
+| 独立交付 FDE Code UI | 把 Web UI 做成 omfde 的子模块 |
 | Web UI 的布局与设计系统对齐 DSH | 另起一套视觉语言或照搬 DSH 全部包 |
 | 样式统一用 Tailwind CSS | 混用 CSS Modules、CSS-in-JS 或额外组件库 |
 | 前端统一 React + TanStack Start / Astro + Tailwind + Vite | 每个应用自选框架或样式方案 |
@@ -226,19 +227,20 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 | `README.zh-CN.md`、`AGENTS.zh-CN.md`、`CONTRIBUTING.zh-CN.md` | 中文译本 |
 | `apps/omfde` | 平台入口（当前是 Pi 的薄启动器） |
 | `extensions/omfde-core` | 平台扩展骨架 |
-| `docs/rads/pi-web.md` | Pi Web UI 的确认需求（M1） |
-| `docs/rads/pi-web-m2.md` | Pi Web UI M2 需求草案 |
-| `docs/rads/pi-web-m3.md` | Pi Web UI M3 团队可用需求 |
-| `docs/rads/pi-web-m4.md` | Pi Web UI M4 协作与交接需求 |
-| `docs/rads/pi-web-m5.md` | Pi Web UI M5 企业集成需求 |
-| `docs/spikes/pi-web-m5.md` | Pi Web UI M5 spike 结果 |
-| `docs/spikes/pi-web-m4.md` | Pi Web UI M4 spike 结果 |
-| `docs/spikes/pi-web-m3.md` | Pi Web UI M3 spike 结果 |
-| `docs/plans/pi-web-m2.md` | Pi Web UI M2 实现计划（待批准） |
-| `docs/spikes/pi-web-m2.md` | Pi Web UI M2 spike 结果 |
-| `docs/plans/pi-web.md` | Pi Web UI M1 的实现计划 |
+| `docs/rads/fdecode.md` | FDE Code UI 的确认需求（M1） |
+| `docs/rads/fdecode-m2.md` | FDE Code UI M2 需求草案 |
+| `docs/rads/fdecode-m3.md` | FDE Code UI M3 团队可用需求 |
+| `docs/rads/fdecode-m4.md` | FDE Code UI M4 协作与交接需求 |
+| `docs/rads/fdecode-m5.md` | FDE Code UI M5 企业集成需求 |
+| `docs/spikes/fdecode-m5.md` | FDE Code UI M5 spike 结果 |
+| `docs/spikes/fdecode-m4.md` | FDE Code UI M4 spike 结果 |
+| `docs/spikes/fdecode-m3.md` | FDE Code UI M3 spike 结果 |
+| `docs/plans/fdecode-m2.md` | FDE Code UI M2 实现计划（待批准） |
+| `docs/spikes/fdecode-m2.md` | FDE Code UI M2 spike 结果 |
+| `docs/plans/fdecode.md` | FDE Code UI M1 的实现计划 |
 | `docs/rads/TEMPLATE.md` | 需求描述模板 |
 | `docs/specs/workflow.md` | 开发工作流：RAD、Spike、Plan 与验证闭环 |
+| `docs/specs/glossary.md` | 术语表：项目级术语 SSOT，统一人机交流口径 |
 | `docs/specs/tsdoc-comment-standards.md` | 平台 TypeScript 注释规范与检查门禁 |
 | `docs/specs/vision.md` | 本文档 |
 
@@ -274,7 +276,7 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 
 影响：教程线保持“理解 → 会用 → 用好”，以文档为主线；平台化线按“仓库骨架 → 核心能力 → 协作 → 企业集成 → 治理”推进，以代码结构为主线。两条线并行，但平台化每一步都必须由教程线暴露的真实需求触发。原“增强”不再是第四阶段，而是平台化线的总称。
 
-> 已由 2026-11-06“Pi Web UI 成为第三条目标线”扩展。
+> 已由 2026-11-06“FDE Code UI 成为第三条目标线”扩展。
 
 ### 2026-11-06：完成第一版 monorepo 骨架
 
@@ -320,23 +322,23 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 
 影响：删除 `upstream` remote 和 remote-tracking refs，保留 `pi-fork-base-20d86c365` 与 `omfde-cutover` 标签。Pi 代码由本项目维护，核心改动不再受 rebase 约束，但仍按 vision → RAD → plan 控制。不再要求持续同步上游。
 
-### 2026-11-06：pi-web 引入 SQLite 存储元数据
+### 2026-11-06：fdecode 引入 SQLite 存储元数据
 
 原因：会话归属、Issue 关联、分享和审计已经超出 JSON 文件能舒适承载的范围，后续任务与项目数据还需要事务、索引和查询。继续用多个 JSON 文件会增加一致性和清理成本。
 
-影响：`apps/pi-web` 使用 Node 内置 `node:sqlite`，数据库为 `~/.pi-web/pi-web.db`；配置继续使用 `config.json`。第一阶段把 `sessions.json`、`links.json`、`shares.json` 和 `audit.jsonl` 迁移到表，导入成功后删除旧 JSON；解析失败时保留文件并阻止启动。未来平台数据使用独立的 `~/.omfde/omfde.db`，与 pi-web 通过 API 共享，不共享表。引入前先验证 Node 22 的 WAL、并发、迁移和权限。
+影响：`apps/fdecode` 使用 Node 内置 `node:sqlite`，数据库为 `~/.fdecode/fdecode.db`；配置继续使用 `config.json`。第一阶段把 `sessions.json`、`links.json`、`shares.json` 和 `audit.jsonl` 迁移到表，导入成功后删除旧 JSON；解析失败时保留文件并阻止启动。未来平台数据使用独立的 `~/.omfde/omfde.db`，与 fdecode 通过 API 共享，不共享表。引入前先验证 Node 22 的 WAL、并发、迁移和权限。
 
 ### 2026-11-06：Web UI 作为 omfde 平台界面（组合式接入）
 
-原因：Web UI 已具备会话、团队访问、分享、交接和审计能力，继续作为独立应用会让用户在两套入口之间切换；但把 `apps/pi-web` 整体迁入 `apps/omfde` 会让界面与平台骨架重新耦合。
+原因：Web UI 已具备会话、团队访问、分享、交接和审计能力，继续作为独立应用会让用户在两套入口之间切换；但把 `apps/fdecode` 整体迁入 `apps/omfde` 会让界面与平台骨架重新耦合。
 
-影响：`apps/omfde` 默认启动已构建的 Web UI 服务，保留 `--tui` 回退；通过 `PI_WEB_CONFIG`、`PI_WEB_CWD` 和端口共享配置。`apps/pi-web` 保持独立目录和独立启动方式，不合并代码。后续任务与交接数据通过平台 API 共享，不在本次接入中实现。
+影响：`apps/omfde` 默认启动已构建的 Web UI 服务，保留 `--tui` 回退；通过 `FDECODE_CONFIG`、`FDECODE_CWD` 和端口共享配置。`apps/fdecode` 保持独立目录和独立启动方式，不合并代码。后续任务与交接数据通过平台 API 共享，不在本次接入中实现。
 
-### 2026-11-06：Pi Web UI 成为第三条目标线
+### 2026-11-06：FDE Code UI 成为第三条目标线
 
 原因：此前把 Web UI 当作平台化线的一步，会把“界面交付”和“平台结构建设”混在一起：Web UI 有独立的交付节奏、独立的技术栈和独立的视觉标准，也需要单独验收。DSH 的 Web 客户端已经验证了布局骨架、token 分层和共享控件复用方式，直接对齐它的布局、设计系统和样式系统，比自建一套视觉语言更快、更一致。
 
-影响：目标线从两条扩展为三条。新增“线 3：Pi Web UI”，以独立应用为主线，按“可用 → 对齐 DSH → 会话完整 → 团队可用”推进。Web UI 作为独立应用开发，不并入 `apps/omfde`，也不依赖平台代码；布局和设计系统以 DSH 为参考。是否并入 omfde 由平台化线以后单独决定。具体形态（目录位置、RPC 还是 SDK、事件传输方式、会话生命周期）留给 RAD 决定，不在本文档中锁定。
+影响：目标线从两条扩展为三条。新增“线 3：FDE Code UI”，以独立应用为主线，按“可用 → 对齐 DSH → 会话完整 → 团队可用”推进。Web UI 作为独立应用开发，不并入 `apps/omfde`，也不依赖平台代码；布局和设计系统以 DSH 为参考。是否并入 omfde 由平台化线以后单独决定。具体形态（目录位置、RPC 还是 SDK、事件传输方式、会话生命周期）留给 RAD 决定，不在本文档中锁定。
 
 > “是否并入 omfde 由平台化线以后单独决定”已由 2026-11-06“Web UI 作为 omfde 平台界面（组合式接入）”取代；线3 序列与四层状态已由 2026-11-06“Web UI 线 M1–M5 落地，正文同步到既成事实”同步。
 
@@ -350,17 +352,17 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 
 原因：前端应用和内容站点如果各自选框架，构建、路由、样式和部署方式会分裂，团队需要重复学习和维护。React 是统一的组件模型，Tailwind 是已确定的样式层；TanStack Start 和 Astro 都基于 Vite，分别覆盖应用型与内容型场景。
 
-影响：新增“前端技术栈”一节。应用型界面统一 React + TanStack Start + Tailwind CSS + Vite；内容型站点用 Astro 替换 TanStack Start，即 React + Astro + Tailwind CSS + Vite。Pi Web UI 属于应用型界面。具体版本在 plan 中锁定。
+影响：新增“前端技术栈”一节。应用型界面统一 React + TanStack Start + Tailwind CSS + Vite；内容型站点用 Astro 替换 TanStack Start，即 React + Astro + Tailwind CSS + Vite。FDE Code UI 属于应用型界面。具体版本在 plan 中锁定。
 
-### 2026-11-06：新增 `apps/pi-web` 独立应用包
+### 2026-11-06：新增 `apps/fdecode` 独立应用包
 
-原因：Pi Web UI 需要独立启动、独立交付的代码落点；放进 `apps/omfde` 会让界面与平台骨架耦合。按 AGENTS 规则，新增 workspace 包需要先在 vision 记录决定。
+原因：FDE Code UI 需要独立启动、独立交付的代码落点；放进 `apps/omfde` 会让界面与平台骨架耦合。按 AGENTS 规则，新增 workspace 包需要先在 vision 记录决定。
 
-影响：package graph 新增 `apps/pi-web`（包名 `@omfde/pi-web`），不依赖 `apps/omfde`，也不共享平台代码。需求与实现方案见 `docs/rads/pi-web.md` 和 `docs/plans/pi-web.md`。
+影响：package graph 新增 `apps/fdecode`（包名 `@omfde/fdecode`），不依赖 `apps/omfde`，也不共享平台代码。需求与实现方案见 `docs/rads/fdecode.md` 和 `docs/plans/fdecode.md`。
 
 ### 2026-11-06：Web UI 线 M1–M5 落地，正文同步到既成事实
 
-原因：M1–M5 需求（`docs/rads/pi-web*.md`）均已由决策者确认、实现并验证（各 plan 切片附 `pnpm run check`、app 测试与 Playwright 冒烟结果），feat 已提交推送，omfde 组合式接入已完成；但本文档正文的四层状态表、线3 序列与约束仍停留在 M1 之前的表述。
+原因：M1–M5 需求（`docs/rads/fdecode*.md`）均已由决策者确认、实现并验证（各 plan 切片附 `pnpm run check`、app 测试与 Playwright 冒烟结果），feat 已提交推送，omfde 组合式接入已完成；但本文档正文的四层状态表、线3 序列与约束仍停留在 M1 之前的表述。
 
 影响：四层状态表的“团队协作/企业集成”更新为“Web UI 线已供料、平台化线本体待固化”；线3 标注 M1–M5 实际推进；约束中“单用户/回环”“不做登录/权限”“是否并入 omfde”同步为 M3 团队共用与令牌登录、M3/M4 两级角色、组合式接入既成事实。本条为正文与已批准决策（各 RAD 确认 + 组合式接入决策）的一致性同步，未新增目标或边界；DSH 视觉/设计系统完整对齐的排期留入“未决问题”。
 
@@ -368,13 +370,24 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 
 原因：仓库文档分散在 `docs/`（项目文档）与 `.qoder/repowiki/`（Repo Wiki，机器生成）两处，现有 GitHub Pages 站（`pages` 分支，docsify）内容过时、导航与当前结构不符，且只服务人读。本条落实“前端开发统一技术栈”中“内容型站点用 Astro”的既定决策：用 Blume（Astro + Vite 静态站框架）把两处内容汇聚为一个中文站，人与 coding agent 双读。按 AGENTS 规则，新增 workspace 包先在 vision 记录决定；本条同时回答原未决问题“现有 GitHub Pages 文档站是否迁移到 Astro 栈？”（结论：迁移）。
 
-影响：package graph 新增 `apps/docs-site`（包名 `@omfde/docs-site`，private，engines >=22.19），不依赖 `apps/omfde`/`apps/pi-web`，只读消费 `docs/**` 与 `.qoder/repowiki/**`（构建时镜像进包内 `content/`，为 gitignore 产物）。纯静态发布到 `pages` 分支替换 docsify（`https://fde-group.github.io/oh-my-fde/`，base `/oh-my-fde`），文档内容全部公开（含本 vision）。面向 agent 的表面（llms.txt、每页 `.md` 镜像、JSON docs API）随静态构建生成；不开 server 端能力（MCP server / Ask AI），保留日后经 deployment adapter 升级的路径。
+影响：package graph 新增 `apps/docs-site`（包名 `@omfde/docs-site`，private，engines >=22.19），不依赖 `apps/omfde`/`apps/fdecode`，只读消费 `docs/**` 与 `.qoder/repowiki/**`（构建时镜像进包内 `content/`，为 gitignore 产物）。纯静态发布到 `pages` 分支替换 docsify（`https://fde-group.github.io/oh-my-fde/`，base `/oh-my-fde`），文档内容全部公开（含本 vision）。面向 agent 的表面（llms.txt、每页 `.md` 镜像、JSON docs API）随静态构建生成；不开 server 端能力（MCP server / Ask AI），保留日后经 deployment adapter 升级的路径。
+
+### 2026-11-07：Web UI 应用更名为 fdecode / FDE Code
+
+原因：`pi-web` 沿用上游 Pi 的命名，容易被理解为 Pi 官方 Web 客户端；产品需要独立的平台身份，目录名、包名、运行期标识与界面文案也需要统一。
+
+影响：`apps/pi-web` 改为 `apps/fdecode`，包名改为 `@omfde/fdecode`；环境变量统一为 `FDECODE_*`，配置与数据目录迁移到 `~/.fdecode`，数据库文件为 `fdecode.db`，界面与 systemd 服务使用 “FDE Code”。启动时自动迁移 `~/.pi-web`、`pi-web.db` 及其 sidecar；旧 `PI_WEB_*` 环境变量不再读取，启动时提示。历史 RAD、计划与 spike 文件同步改名。上游 `pi-web-ui` 等标识不在改名范围。
+
+### 2026-11-07：完成“会用”，重心转入平台化线核心能力（功能增强）
+
+原因：教程线“会用”已连续用 Pi 处理真实任务并达到判定标准（遇到问题知道该看哪一层）；真实使用中同时暴露出可固化的缺口（例如 agent 靠 grep/read 逐文件重建结构、缺少预建代码图谱），触发平台化线从“仓库骨架”进入“核心能力”层。按既定纪律，进入增强由真实缺口触发而非计划表触发，本次转阶段即以该缺口为依据。
+
+影响：教程线“会用”标为已完成、“用好”转入后台持续推进，教程线不再设当前阶段、不再是门禁线；项目重心交给平台化线，“核心能力”层标为当前阶段、进行中。“缺口触发、每层只做已被教程线验证过的能力、不预先设计”的纪律保留不变——转阶段不等于放行主动规划，每项具体能力仍须走 vision → RAD → plan → 验证并绑定真实缺口。四层状态表与“后两层等用好暴露需求”口径不变（本次只推进前两层内的核心能力层）。未决问题中“会用阶段用什么真实任务检验”随会用完成而结掉。AGENTS.md / AGENTS.zh-CN.md 的 Current State 阶段表述同步更新。
 
 ## 未决问题
 
 - 团队里最重复、最耗时的三类工作是什么？
 - 教程线面向团队的第一篇文档是什么？如何从“个人阅读笔记”转为“可教学的教程”？
-- “会用”阶段用什么真实任务来检验？需要一组有代表性的日常场景。
 - FDE 平台在企业内部运行时，权限、审计、数据边界的最低要求是什么？先记录需求，不急着实现。
 - 平台需要连接哪些企业系统（代码托管、工单、知识库、CI/CD、部署、权限）？哪些必须第一期，哪些可以手工？
 - 平台化线的下一刀是什么：项目、知识、权限，还是审计？
@@ -383,7 +396,7 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 - 是否以及何时把 `@earendil-works/pi-*` 包名迁移到自有 scope？
 - 配置和扩展放在仓库内还是用户目录，才能既个人可用又能团队共享。
 - Tailwind 用哪个大版本，`--dsw-*` token 如何映射到 theme（工具类前缀、暗色模式策略）？
-- Web UI 已组合式接入为 omfde 默认入口；是否进一步做代码级并入（合并 `apps/pi-web` 与平台骨架），在什么条件下进行？
+- Web UI 已组合式接入为 omfde 默认入口；是否进一步做代码级并入（合并 `apps/fdecode` 与平台骨架），在什么条件下进行？
 - 线3“对齐 DSH”的视觉与设计系统完整对齐，是否在 M1 之后单独排期，还是随功能里程碑收尾？
 
 ## 维护方式
