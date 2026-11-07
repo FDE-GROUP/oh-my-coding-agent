@@ -35,6 +35,13 @@ export type RpcSessionStats = Extract<RpcResponse, { command: "get_session_stats
 export type RpcContextAnatomy = Extract<RpcResponse, { command: "get_context_anatomy"; success: true }>["data"];
 
 /**
+ * 装配数据：已加载扩展及其注册项、MCP 服务器、settings 三层（get_assembly 响应）。
+ *
+ * @internal
+ */
+export type RpcAssembly = Extract<RpcResponse, { command: "get_assembly"; success: true }>["data"];
+
+/**
  * 一次会话快照。
  *
  * @internal

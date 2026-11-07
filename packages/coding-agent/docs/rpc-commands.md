@@ -226,6 +226,60 @@ Response:
 - `total.basis` is `"usage-anchored"` when the estimate is anchored on the last trusted provider usage (plus estimated trailing tokens), or `"estimated"` when only the chars/4 heuristic applies (no usage yet, or invalidated by a later `context_edit`/compaction). `contextWindow` and `percent` are present when a model with a known window is selected; `tokens` falls back to the full estimate when context usage is unknown (for example right after compaction).
 - Section and message costs use the same chars/4 heuristic as the compaction threshold; they are estimates, not provider-reported counts.
 
+### get_assembly
+
+Get what is assembled into the session and where each piece came from: loaded extensions with their registrations, MCP servers, and the three settings layers. Read-only: never mutates the session and never issues a provider request.
+
+```json
+{"type": "get_assembly"}
+```
+
+Response:
+```json
+{
+  "type": "response",
+  "command": "get_assembly",
+  "success": true,
+  "data": {
+    "extensions": [
+      {
+        "path": "/path/to/extension.ts",
+        "source": "project .pi/extension.ts",
+        "tools": ["echo"],
+        "commands": ["hello"],
+        "hooks": ["tool_call"]
+      }
+    ],
+    "extensionErrors": [],
+    "mcp": {
+      "servers": [
+        {
+          "name": "my-server",
+          "source": "/home/user/.pi/agent/mcp.json",
+          "scope": "global",
+          "exposure": "direct",
+          "state": null
+        }
+      ],
+      "errors": []
+    },
+    "settings": {
+      "effective": { "...": "..." },
+      "global": { "...": "..." },
+      "project": { "...": "..." },
+      "sources": {
+        "globalPath": "/home/user/.pi/agent/settings.json",
+        "projectPath": "/path/to/cwd/.pi/settings.json"
+      }
+    }
+  }
+}
+```
+
+- `extensions[].source` is the human-readable origin from the resource loader (settings entry, package, directory, …); `hooks` lists the extension event names the extension handles.
+- MCP `scope` is `global`/`project` (from `mcp.json` files) or `extension` (registered with `pi.registerMcpServer()`). `state` is always `null` in v1: connection state lives inside the MCP extension and is not exposed over RPC yet.
+- `settings.effective` is the merged view (global ← project ← CLI overrides); the merge is computed by the core, not replicated by clients.
+
 ### get_messages
 
 Get all messages in the conversation.

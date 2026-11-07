@@ -12,6 +12,7 @@ import type { BashResult } from "../../core/bash-executor.ts";
 import type { CompactionResult } from "../../core/compaction/index.ts";
 import type { SessionEntry, SessionTreeNode } from "../../core/session-manager.ts";
 import type { JsonAgentSessionEvent } from "../json-event.ts";
+import type { AssemblyInfo } from "./assembly.ts";
 import type { ContextAnatomy } from "./context-anatomy.ts";
 import { attachJsonlLineReader, serializeJsonLine } from "./jsonl.ts";
 import type { RpcCommand, RpcResponse, RpcSessionState, RpcSlashCommand } from "./rpc-types.ts";
@@ -376,6 +377,14 @@ export class RpcClient {
 	 */
 	async getContextAnatomy(): Promise<ContextAnatomy> {
 		const response = await this.send({ type: "get_context_anatomy" });
+		return this.getData(response);
+	}
+
+	/**
+	 * Get the assembly info: loaded extensions with registrations, MCP servers, and settings layers.
+	 */
+	async getAssembly(): Promise<AssemblyInfo> {
+		const response = await this.send({ type: "get_assembly" });
 		return this.getData(response);
 	}
 

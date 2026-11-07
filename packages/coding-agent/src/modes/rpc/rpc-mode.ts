@@ -28,6 +28,7 @@ import {
 import { killTrackedDetachedChildren } from "../../utils/shell.ts";
 import { type Theme, theme } from "../interactive/theme/theme.ts";
 import { toJsonEvent } from "../json-event.ts";
+import { buildAssembly } from "./assembly.ts";
 import { buildContextAnatomy } from "./context-anatomy.ts";
 import { attachJsonlLineReader, serializeJsonLine } from "./jsonl.ts";
 import type {
@@ -487,6 +488,10 @@ export async function runRpcMode(runtimeHost: AgentSessionRuntime): Promise<neve
 
 			case "get_context_anatomy": {
 				return success(id, "get_context_anatomy", buildContextAnatomy(session));
+			}
+
+			case "get_assembly": {
+				return success(id, "get_assembly", buildAssembly(session));
 			}
 
 			// =================================================================

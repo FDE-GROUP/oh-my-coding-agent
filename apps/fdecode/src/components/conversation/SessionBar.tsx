@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { CiStatus } from "../../lib/api.ts";
 import type { RpcSessionStats } from "../../server/runtime.ts";
+import { AssemblyPanel } from "./AssemblyPanel.tsx";
 import { ContextAnatomyPanel } from "./ContextAnatomyPanel.tsx";
 import { type MechanismEvent, MechanismTimelinePanel } from "./MechanismTimelinePanel.tsx";
 import { SharePanel } from "./SharePanel.tsx";
@@ -53,6 +54,7 @@ export function SessionBar({
 }: SessionBarProps) {
 	const [shareOpen, setShareOpen] = useState(false);
 	const [anatomyOpen, setAnatomyOpen] = useState(false);
+	const [assemblyOpen, setAssemblyOpen] = useState(false);
 	const [timelineOpen, setTimelineOpen] = useState(false);
 	const current = model ? `${model.provider}/${model.id}` : "";
 	const cost = stats?.cost ?? 0;
@@ -116,6 +118,15 @@ export function SessionBar({
 					{sessionId && (
 						<button
 							type="button"
+							onClick={() => setAssemblyOpen(true)}
+							className="rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary"
+						>
+							装配
+						</button>
+					)}
+					{sessionId && (
+						<button
+							type="button"
 							onClick={() => setTimelineOpen(true)}
 							className="rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary"
 						>
@@ -158,6 +169,7 @@ export function SessionBar({
 			{anatomyOpen && sessionId && (
 				<ContextAnatomyPanel sessionId={sessionId} onClose={() => setAnatomyOpen(false)} />
 			)}
+			{assemblyOpen && sessionId && <AssemblyPanel sessionId={sessionId} onClose={() => setAssemblyOpen(false)} />}
 			{timelineOpen && sessionId && (
 				<MechanismTimelinePanel events={timeline} onClose={() => setTimelineOpen(false)} />
 			)}
