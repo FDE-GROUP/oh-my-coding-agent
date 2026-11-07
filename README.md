@@ -1,83 +1,72 @@
 <p align="center">
-  <a href="https://pi.dev">
-    <img alt="pi logo" src="https://pi.dev/logo-auto.svg" width="128">
-  </a>
-</p>
-<p align="center">
-  <a href="https://discord.com/invite/3cU7Bz4UPx"><img alt="Discord" src="https://img.shields.io/badge/discord-community-5865F2?style=flat-square&logo=discord&logoColor=white" /></a>
-  <a href="https://www.npmjs.com/package/@earendil-works/pi-coding-agent"><img alt="npm" src="https://img.shields.io/npm/v/@earendil-works/pi-coding-agent?style=flat-square" /></a>
+  <img alt="omfde" src="omfde.jpg" width="160">
 </p>
 
-> New issues and PRs from new contributors are auto-closed by default. Maintainers review auto-closed issues daily. See [CONTRIBUTING.md](CONTRIBUTING.md).
+# omfde (oh-my-fde)
 
-# Pi
+[简体中文](README.zh-CN.md)
 
-Pi is a minimal, extensible agent harness that you can make your own.
+An enterprise-internal **FDE (Forward Deployed Engineer) platform**, built on an independently maintained fork of [Pi](https://github.com/earendil-works/pi). The coding agent is the platform's core capability, not the final product: the platform evolves step by step toward team collaboration, enterprise integration, and governance — it is not a rewrite of Pi.
 
-Adapt Pi to your workflows, not the other way around. Customize Pi with [extensions](packages/coding-agent/docs/extensions.md), [skills](packages/coding-agent/docs/skills.md), [prompt templates](packages/coding-agent/docs/prompt-templates.md), and [themes](packages/coding-agent/docs/themes.md). Bundle them as [Pi packages](packages/coding-agent/docs/packages.md) and share via npm or git.
+This repository does not track upstream. `main` is the product branch; history is anchored by the `pi-fork-base-20d86c365` and `omfde-cutover` tags. See [`docs/explains/26-fork-and-prune.md`](docs/explains/26-fork-and-prune.md).
 
-Pi ships with powerful defaults but skips features like sub-agents and plan mode. Ask Pi to build what you want, or install a package that does it your way.
+## Current state
 
-Use Pi [interactively](packages/coding-agent/docs/usage.md), automate it in [print or JSON mode](packages/coding-agent/docs/cli.md), control it over [RPC](packages/coding-agent/docs/rpc.md), or build apps with the [Pi TypeScript SDK](packages/coding-agent/docs/sdk.md). See [OpenClaw](https://github.com/OpenClaw/OpenClaw) for a real-world integration.
+Three goal lines run in parallel:
+
+| Line | Path | Status |
+|---|---|---|
+| Tutorial (docs) | 理解 → 会用 → 用好 | 会用 done; 用好 continues in the background |
+| Platformization (code structure) | 骨架 → 核心能力 → 协作 → 企业集成 → 治理 | **核心能力 in progress (current focus)** |
+| Web UI (`apps/fdecode`) | 可用 → 对齐 DSH → 会话完整 → 团队可用 | Milestones M1–M5 delivered |
+
+Platform capabilities are triggered by demonstrated gaps from real usage, not by a roadmap schedule. Each capability still goes through vision → RAD → plan → validation. The constitution is [`docs/specs/vision.md`](docs/specs/vision.md).
+
+## Repository layout
+
+| Directory | Content |
+|---|---|
+| `packages/` | The Pi fork and shared libraries (9 packages) |
+| `apps/` | Runnable apps: `apps/omfde` (platform entrypoint), `apps/fdecode` (FDE Code UI), `apps/docs-site` (docs site) |
+| `extensions/` | Platform extensions: `extensions/omfde-core` (first skeleton) |
+| `docs/` | Governance and architecture record: `specs/` (constitution, workflow, glossary), `rads/`, `plans/`, `spikes/`, `explains/` |
 
 ## Getting started
 
-Install the command-line interface:
+Requires Node.js >= 22.19 and pnpm 11.15.1 (pinned by `packageManager`).
 
 ```bash
-curl -fsSL https://pi.dev/install.sh | sh
+pnpm install --ignore-scripts          # hydrate dependencies (no lifecycle scripts)
+pnpm --filter @omfde/fdecode build     # build the Web UI once before first launch
+pnpm run omfde                         # platform entrypoint: starts FDE Code UI (OMFDE_PLATFORM=1)
+pnpm run omfde -- --tui                # launch the Pi TUI directly instead
 ```
-
-On Windows:
-
-```shell
-powershell -c "irm https://pi.dev/install.ps1 | iex"
-```
-
-The installer pins all dependencies and updates Pi with `pi update`. Alternatively, install directly with npm, which does not pin transitive dependencies:
-
-```bash
-npm install -g --ignore-scripts @earendil-works/pi-coding-agent
-```
-
-Pi requires Node.js 22.19 or newer. The macOS, Linux, and Windows installers can install it if needed. Pi does not require dependency lifecycle scripts for a normal npm installation.
-
-Start Pi in the directory where you want it to work:
-
-```bash
-cd /path/to/project
-pi
-```
-
-For a built-in AI provider, run `/login` inside Pi to connect a subscription or API key. Then give Pi a task.
-
-See the [documentation](https://pi.dev/docs/latest) for full setup and usage instructions, or [visit pi.dev](https://pi.dev) for demos.
 
 ## Packages
 
-This monorepo contains the Pi CLI and its supporting libraries.
-
 | Package | Description |
-|---------|-------------|
-| **[@earendil-works/chord](packages/chord)** | Object runtime for apps across processes: contracts, documents, a store, links, plugins with hot reload, HTTP, workers, web and terminal clients |
-| **[@earendil-works/pi-telemetry](packages/telemetry)** | Vendor-neutral telemetry contracts, reference adapter, conformance tests, and typed schemas |
-| **[@earendil-works/pi-ai](packages/ai)** | Unified multi-provider LLM API (OpenAI, Anthropic, Google, etc.) |
-| **[@earendil-works/pi-durable](packages/durable)** | Durable conversation, task, and document runtime |
+|---|---|
 | **[@earendil-works/pi-agent-core](packages/agent)** | Agent runtime with tool calling and state management |
-| **[@earendil-works/pi-coding-agent](packages/coding-agent)** | Interactive coding agent CLI |
+| **[@earendil-works/pi-ai](packages/ai)** | Unified multi-provider LLM API (OpenAI, Anthropic, Google, etc.) |
+| **[@earendil-works/pi-coding-agent](packages/coding-agent)** | Interactive coding agent CLI: session, extensions, tools, compaction |
+| **[@earendil-works/pi-codemode](packages/codemode)** | Sandboxed JavaScript execution whose only capability is calling injected tools |
+| **[@earendil-works/pi-evals](packages/evals)** | Evaluation harness |
+| **[@earendil-works/pi-mcp](packages/mcp)** | Standalone Model Context Protocol client |
+| **[@earendil-works/pi-schema](packages/schema)** | JSON Schema validation without eval: 2020-12 and 7, compiled to plain closures |
+| **[@earendil-works/pi-telemetry](packages/telemetry)** | Vendor-neutral telemetry contracts, reference adapter, conformance tests, typed schemas |
 | **[@earendil-works/pi-tui](packages/tui)** | Terminal UI library with differential rendering |
 
-For Slack/chat automation and workflows see [earendil-works/pi-chat](https://github.com/earendil-works/pi-chat).
+The upstream `chord` / `durable` / `env` / `p2` subsystems were pruned at the fork point (about half of the repository volume); they are recoverable from git history. Pi user documentation still lives in [`packages/coding-agent/docs/`](packages/coding-agent/docs/).
 
-## Permissions & Containerization
+## FDE Code UI (`apps/fdecode`)
 
-Pi does not include a built-in permission system for restricting filesystem, process, network, or credential access. By default, it runs with the permissions of the user and process that launched it.
+The Web UI line delivers `fdecode` (package `@omfde/fdecode`, UI name "FDE Code"): a local-first React + TanStack Start + Tailwind CSS + Vite app. Sessions, ownership, links, shares, and audit live in `~/.fdecode/fdecode.db` (`node:sqlite`); configuration stays in `config.json`; environment variables use the `FDECODE_*` prefix. M3+ supports 3–5-person team use (optional LAN binding + access-token auth, admin/member roles).
 
-If you need stronger boundaries, containerize or sandbox Pi. See [packages/coding-agent/docs/containerization.md](packages/coding-agent/docs/containerization.md) for three patterns:
+`apps/omfde` consumes it **compositionally**: it launches the already-built Web UI service and shares configuration through `FDECODE_CONFIG`, `FDECODE_CWD`, and the port. `apps/fdecode` keeps its own directory and standalone startup; the code is not merged into the platform skeleton.
 
-- **Gondolin extension**: keep `pi` and provider auth on the host while routing built-in tools and `!` commands into a local Linux micro-VM.
-- **Plain Docker**: run the whole `pi` process in a local container for simple isolation.
-- **OpenShell**: run the whole `pi` process in a policy-controlled sandbox.
+```bash
+pnpm run fdecode   # run the Web UI from source (dev)
+```
 
 ## Documentation site
 
@@ -92,105 +81,34 @@ pnpm --filter @omfde/docs-site deploy  # dry-run the pages publish (deploy:publi
 
 Build and publish mechanism: [`docs/explains/28-docs-site.md`](docs/explains/28-docs-site.md).
 
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines and [AGENTS.md](AGENTS.md) for project-specific rules (for both humans and agents).  Longer term plans for Pi can also be found in [RFCs](https://rfc.earendil.com/keyword/pi/).
-
 ## Development
 
 ```bash
-npm install --ignore-scripts  # Install all dependencies without running lifecycle scripts
-npm run build         # Refresh model data, then build all packages
-npm run build:offline # Rebuild using existing model data without network access
-npm run check         # Lint, format, and type check
-./test.sh            # Run tests (skips LLM-dependent tests without API keys)
-./pi-test.sh         # Run pi from sources (can be run from any directory)
+pnpm install --ignore-scripts  # install dependencies without lifecycle scripts
+pnpm run build                 # refresh model data, then build all packages
+pnpm run build:offline         # rebuild using existing model data, no network
+pnpm run check                 # full local quality gate: lint, format, types, TSDoc, secrets (read-only; no tests)
+./test.sh                      # run packages/* tests (never run the full vitest suite directly: e2e activates with env vars)
+pnpm run tui                   # run Pi from source in the TUI
 ```
 
-### Using local packages outside the monorepo
+- All quality gates run **locally only**; this fork does not rely on remote CI. Pre-commit checks staged files; pre-push runs the full `pnpm run check`.
+- All work happens on `main` with an explicit per-task write scope; multiple agents may share the same worktree. Never `git add -A`.
+- Dependencies and `pnpm-lock.yaml` are treated as reviewed code: direct deps pinned to exact versions, lockfile commits blocked unless `PI_ALLOW_LOCKFILE_CHANGE=1`.
+- Tests must not use real provider APIs, keys, or paid tokens; they use the faux provider.
 
-Build every public package into one coherent local artifact set:
+## Governance and contributing
 
-```bash
-npm run pack:packages -- --out .artifacts/pi-packages
-```
+- [`docs/specs/vision.md`](docs/specs/vision.md) — project constitution: goals, boundaries, phase, decision log. Conflicting decisions stop and amend the vision first.
+- [`docs/specs/workflow.md`](docs/specs/workflow.md) — the RAD → Spike → Plan → validation loop and gate definitions.
+- [`docs/specs/glossary.md`](docs/specs/glossary.md) — terminology SSOT for consistent human/AI communication.
+- [`AGENTS.md`](AGENTS.md) — execution discipline for both humans and agents (write scope, git rules, commands). [`CONTRIBUTING.md`](CONTRIBUTING.md) — contributor operations and code gates.
 
-This refreshes model data before building `pi-ai`. To avoid network access when
-model data is already hydrated, pass `--offline-model-data`.
+Internal work does not open PRs by default; `main` is the only development branch. GitHub Issues are the team-visible task board.
 
-Then configure an external project to consume one package and resolve all of
-its Pi dependencies from the same artifact set. npm is the default:
+## Relationship to upstream
 
-```bash
-node scripts/use-local-packages.mjs \
-  --manifest .artifacts/pi-packages/manifest.json \
-  --consumer ../my-project \
-  --package @earendil-works/pi-durable \
-  --package @earendil-works/pi-agent-core
-cd ../my-project
-npm install --ignore-scripts
-```
-
-For a pnpm project, point `--consumer` at the workspace root:
-
-```bash
-node scripts/use-local-packages.mjs \
-  --manifest .artifacts/pi-packages/manifest.json \
-  --consumer ../my-project \
-  --package @earendil-works/pi-agent-core \
-  --package-manager pnpm
-cd ../my-project
-pnpm install --ignore-scripts
-```
-
-Repeat `--package` for each direct dependency. The command updates the
-consumer's `package.json` with content-addressed local `file:` references. It
-writes transitive overrides to `package.json` for npm or `pnpm-workspace.yaml`
-for pnpm. Keep the artifact directory available while installing or updating
-the consumer. Re-run both commands after changing Pi source.
-
-## Building standalone binaries from release source
-
-GitHub releases include a versioned source archive covered by the release's `SHA256SUMS` file. Extract it and run the same build script used for the official standalone binaries:
-
-```bash
-VERSION="<release-version>"
-tar -xzf "pi-${VERSION}-source.tar.gz"
-cd "pi-${VERSION}"
-./scripts/build-binaries.sh --offline-model-data --platform linux-x64 --out "$PWD/out"
-```
-
-The archive includes release model data and native prebuilds. `--offline-model-data` uses that model data without refreshing provider catalogs. The script installs dependencies and builds the executable with its runtime assets; pass `--skip-install` if dependencies are already provided.
-
-## Supply-chain hardening
-
-We treat npm dependency changes as reviewed code changes.
-
-- Direct external dependencies are pinned to exact versions. Internal workspace packages remain version-ranged.
-- `.npmrc` sets `save-exact=true` and `min-release-age=2` to avoid same-day dependency releases during npm resolution.
-- `package-lock.json` is the dependency ground truth. Pre-commit blocks accidental lockfile commits unless `PI_ALLOW_LOCKFILE_CHANGE=1` is set.
-- `npm run check` verifies pinned direct deps, native TypeScript import compatibility, and the generated coding-agent install lock.
-- The pi.dev installer installs from `packages/coding-agent/install-lock/`, generated from the root lockfile, to pin transitive deps. The npm package does not pin transitive deps.
-- Local release smoke tests and npm publication use the same tarball packer; npm publishes the validated tarballs rather than repacking workspace directories.
-- Local release installs, documented npm installs, and `pi update --self` use `--ignore-scripts` where supported.
-- CI installs with `npm ci --ignore-scripts`, and a scheduled GitHub workflow runs `npm audit --omit=dev` plus `npm audit signatures --omit=dev`.
-- Install lock generation has an explicit allowlist for dependency lifecycle scripts; new lifecycle-script deps fail checks until reviewed.
-
-## Share your OSS coding agent sessions
-
-If you use Pi or other coding agents for open source work, please share your sessions.
-
-Public OSS session data helps improve coding agents with real-world tasks, tool use, failures, and fixes instead of toy benchmarks.
-
-For the full explanation, see [this post on X](https://x.com/badlogicgames/status/2037811643774652911).
-
-To publish sessions, use [`badlogic/pi-share-hf`](https://github.com/badlogic/pi-share-hf). Read its README.md for setup instructions. All you need is a Hugging Face account, the Hugging Face CLI, and `pi-share-hf`.
-
-You can also watch [this video](https://x.com/badlogicgames/status/2041151967695634619), where I show how I publish my `pi-mono` sessions.
-
-I regularly publish my own `pi-mono` work sessions here:
-
-- [badlogicgames/pi-mono on Hugging Face](https://huggingface.co/datasets/badlogicgames/pi-mono)
+This fork does not publish releases and does not contribute to upstream Pi. The npm-era `install-lock` and release scripts are legacy paths kept in the tree but unused. Upstream code, when it must be consulted, is fetched into a temporary clone — the `upstream` remote stays removed.
 
 ## License
 
