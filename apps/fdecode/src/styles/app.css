@@ -26,6 +26,12 @@
 	--color-dsw-state-done: var(--dsw-alias-state-done-primary);
 	--color-dsw-link: var(--dsw-alias-link);
 	--color-dsw-menu-icon: var(--dsw-alias-menu-icon);
+	--color-dsw-chart-1: var(--dsw-chart-1);
+	--color-dsw-chart-2: var(--dsw-chart-2);
+	--color-dsw-chart-3: var(--dsw-chart-3);
+	--color-dsw-chart-4: var(--dsw-chart-4);
+	--color-dsw-chart-5: var(--dsw-chart-5);
+	--color-dsw-chart-6: var(--dsw-chart-6);
 
 	--radius-dsw-xs: var(--dsw-radius-xs);
 	--radius-dsw-sm: var(--dsw-radius-sm);

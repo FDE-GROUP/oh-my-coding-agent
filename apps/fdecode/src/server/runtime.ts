@@ -28,6 +28,13 @@ export type RpcMessages = Extract<RpcResponse, { command: "get_messages"; succes
 export type RpcSessionStats = Extract<RpcResponse, { command: "get_session_stats"; success: true }>["data"];
 
 /**
+ * 上下文解剖数据：system prompt 逐分节、工具、消息与 token 估算（get_context_anatomy 响应）。
+ *
+ * @internal
+ */
+export type RpcContextAnatomy = Extract<RpcResponse, { command: "get_context_anatomy"; success: true }>["data"];
+
+/**
  * 一次会话快照。
  *
  * @internal

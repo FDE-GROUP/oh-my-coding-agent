@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { CiStatus } from "../../lib/api.ts";
 import type { RpcSessionStats } from "../../server/runtime.ts";
+import { ContextAnatomyPanel } from "./ContextAnatomyPanel.tsx";
 import { SharePanel } from "./SharePanel.tsx";
 
 export interface ModelSummary {
@@ -47,6 +48,7 @@ export function SessionBar({
 	canWrite,
 }: SessionBarProps) {
 	const [shareOpen, setShareOpen] = useState(false);
+	const [anatomyOpen, setAnatomyOpen] = useState(false);
 	const current = model ? `${model.provider}/${model.id}` : "";
 	const cost = stats?.cost ?? 0;
 	const tokens = stats?.tokens;
@@ -97,6 +99,15 @@ export function SessionBar({
 							交接
 						</button>
 					)}
+					{sessionId && (
+						<button
+							type="button"
+							onClick={() => setAnatomyOpen(true)}
+							className="rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary"
+						>
+							解剖
+						</button>
+					)}
 					{ci && (
 						<a
 							href={ci.url}
@@ -130,6 +141,9 @@ export function SessionBar({
 				<span className="font-mono">${cost.toFixed(4)}</span>
 			</div>
 			{shareOpen && sessionId && <SharePanel sessionId={sessionId} onClose={() => setShareOpen(false)} />}
+			{anatomyOpen && sessionId && (
+				<ContextAnatomyPanel sessionId={sessionId} onClose={() => setAnatomyOpen(false)} />
+			)}
 		</div>
 	);
 }

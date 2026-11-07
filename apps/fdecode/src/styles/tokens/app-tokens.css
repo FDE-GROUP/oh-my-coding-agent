@@ -40,3 +40,28 @@
 	--dsw-elevation-stroke-color: var(--dsw-alias-border-l3);
 	--dsw-focus-ring-color: #7aaaff;
 }
+
+/*
+ * 图表分类色板（fdecode 自有，非 DSH token）。取自 dataviz 参考色板并已用
+ * validate_palette.js 在本仓表面色上验证通过（light #ffffff / dark #151517，
+ * 六项检查全过；light 的 3:1 对比度 WARN 由图例数值补偿）。语义：分类标识
+ * （构成分解的各部分），固定顺序使用，不循环、不复用为状态色。「其他」
+ * 折叠段用中性 border 色，不占分类槽位。
+ */
+:root {
+	--dsw-chart-1: #2a78d6;
+	--dsw-chart-2: #eb6834;
+	--dsw-chart-3: #1baf7a;
+	--dsw-chart-4: #eda100;
+	--dsw-chart-5: #e87ba4;
+	--dsw-chart-6: #6250d6;
+}
+
+[data-theme="dark"] {
+	--dsw-chart-1: #3987e5;
+	--dsw-chart-2: #d95926;
+	--dsw-chart-3: #199e70;
+	--dsw-chart-4: #c98500;
+	--dsw-chart-5: #d55181;
+	--dsw-chart-6: #9085e9;
+}
