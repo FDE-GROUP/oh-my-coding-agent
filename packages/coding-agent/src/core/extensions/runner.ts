@@ -361,6 +361,13 @@ const noOpUIContext: ExtensionUIContext = {
 	setToolsExpanded: () => {},
 };
 
+/** Dispatch result of the tool hook events: the hook outcome plus the extension that produced it. */
+export interface ToolHookDispatch<TResult> {
+	result: TResult | undefined;
+	/** Path of the extension whose handler produced (tool_call) or last modified (tool_result) the result. */
+	extensionPath?: string;
+}
+
 export class ExtensionRunner {
 	private extensions: Extension[];
 	private runtime: ExtensionRuntime;
@@ -1194,10 +1201,12 @@ export class ExtensionRunner {
 		return modified ? currentMessage : undefined;
 	}
 
-	async emitToolResult(event: ToolResultEvent): Promise<ToolResultEventResult | undefined> {
+	/** Outcome of dispatching a `tool_result` event: the modification and the extension that made it. */
+	async emitToolResult(event: ToolResultEvent): Promise<ToolHookDispatch<ToolResultEventResult>> {
 		const ctx = this.createContext();
 		const currentEvent: ToolResultEvent = { ...event };
 		let modified = false;
+		let extensionPath: string | undefined;
 
 		for (const { ext, handlers } of snapshotEventHandlers(this.extensions, "tool_result")) {
 			for (const handler of handlers) {
@@ -1227,6 +1236,7 @@ export class ExtensionRunner {
 						currentEvent.usage = handlerResult.usage;
 						modified = true;
 					}
+					if (modified) extensionPath = ext.path;
 				} catch (err) {
 					const message = err instanceof Error ? err.message : String(err);
 					const stack = err instanceof Error ? err.stack : undefined;
@@ -1241,36 +1251,44 @@ export class ExtensionRunner {
 		}
 
 		if (!modified) {
-			return undefined;
+			return { result: undefined };
 		}
 
 		return {
-			content: currentEvent.content,
-			details: currentEvent.details,
-			structuredContent: currentEvent.structuredContent,
-			isError: currentEvent.isError,
-			usage: currentEvent.usage,
+			result: {
+				content: currentEvent.content,
+				details: currentEvent.details,
+				structuredContent: currentEvent.structuredContent,
+				isError: currentEvent.isError,
+				usage: currentEvent.usage,
+			},
+			extensionPath,
 		};
 	}
 
-	async emitToolCall(event: ToolCallEvent): Promise<ToolCallEventResult | undefined> {
+	async emitToolCall(event: ToolCallEvent): Promise<ToolHookDispatch<ToolCallEventResult>> {
 		const ctx = this.createContext();
 		let result: ToolCallEventResult | undefined;
+		// Tracks the last handler that ran, not only result-producing ones: handlers that
+		// mutate `event.input` in place return undefined, and args-mutated attribution is
+		// best-effort (the last handler on the event).
+		let extensionPath: string | undefined;
 
-		for (const { handlers } of snapshotEventHandlers(this.extensions, "tool_call")) {
+		for (const { ext, handlers } of snapshotEventHandlers(this.extensions, "tool_call")) {
 			for (const handler of handlers) {
 				const handlerResult = await handler(event, ctx);
+				extensionPath = ext.path;
 
 				if (handlerResult) {
 					result = handlerResult as ToolCallEventResult;
 					if (result.block) {
-						return result;
+						return { result, extensionPath };
 					}
 				}
 			}
 		}
 
-		return result;
+		return { result, extensionPath };
 	}
 
 	async emitUserBash(event: UserBashEvent): Promise<UserBashEventResult | undefined> {

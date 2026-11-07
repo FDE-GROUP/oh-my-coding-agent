@@ -3,6 +3,7 @@ import type { CiStatus } from "../../lib/api.ts";
 import type { RpcSessionStats } from "../../server/runtime.ts";
 import { AssemblyPanel } from "./AssemblyPanel.tsx";
 import { ContextAnatomyPanel } from "./ContextAnatomyPanel.tsx";
+import { type GovernanceEvent, GovernancePanel } from "./GovernancePanel.tsx";
 import { type MechanismEvent, MechanismTimelinePanel } from "./MechanismTimelinePanel.tsx";
 import { SharePanel } from "./SharePanel.tsx";
 
@@ -25,6 +26,8 @@ export interface SessionBarProps {
 	canWrite: boolean;
 	/** 机制时间线事件（压缩/自动重试/摘要重试），由会话页采集。 */
 	timeline?: MechanismEvent[];
+	/** 治理审计事件（拦截/参数改写/结果改写），由会话页采集。 */
+	governance?: GovernanceEvent[];
 }
 
 function compact(value: number | undefined | null): string {
@@ -51,11 +54,13 @@ export function SessionBar({
 	ci,
 	canWrite,
 	timeline = [],
+	governance = [],
 }: SessionBarProps) {
 	const [shareOpen, setShareOpen] = useState(false);
 	const [anatomyOpen, setAnatomyOpen] = useState(false);
 	const [assemblyOpen, setAssemblyOpen] = useState(false);
 	const [timelineOpen, setTimelineOpen] = useState(false);
+	const [governanceOpen, setGovernanceOpen] = useState(false);
 	const current = model ? `${model.provider}/${model.id}` : "";
 	const cost = stats?.cost ?? 0;
 	const tokens = stats?.tokens;
@@ -133,6 +138,15 @@ export function SessionBar({
 							时间线{timeline.length > 0 ? ` ${timeline.length}` : ""}
 						</button>
 					)}
+					{sessionId && (
+						<button
+							type="button"
+							onClick={() => setGovernanceOpen(true)}
+							className="rounded-dsw-xs border border-dsw-border-l1 px-1.5 py-0.5 text-[10px] text-dsw-label-tertiary hover:text-dsw-label-primary"
+						>
+							审计{governance.length > 0 ? ` ${governance.length}` : ""}
+						</button>
+					)}
 					{ci && (
 						<a
 							href={ci.url}
@@ -172,6 +186,9 @@ export function SessionBar({
 			{assemblyOpen && sessionId && <AssemblyPanel sessionId={sessionId} onClose={() => setAssemblyOpen(false)} />}
 			{timelineOpen && sessionId && (
 				<MechanismTimelinePanel events={timeline} onClose={() => setTimelineOpen(false)} />
+			)}
+			{governanceOpen && sessionId && (
+				<GovernancePanel events={governance} onClose={() => setGovernanceOpen(false)} />
 			)}
 		</div>
 	);

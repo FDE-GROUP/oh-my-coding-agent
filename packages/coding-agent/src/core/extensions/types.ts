@@ -1421,6 +1421,24 @@ export function isToolCallEventType(toolName: string, event: ToolCallEvent): boo
 	return event.toolName === toolName;
 }
 
+/**
+ * A governance action an extension hook took on a tool call: blocked it, mutated its
+ * arguments in place, or rewrote its result. Emitted into the session event stream and
+ * the extension event dispatch; carries no full original text, only a bounded summary.
+ */
+export interface ToolGovernanceEvent {
+	type: "tool_governance";
+	toolCallId: string;
+	/** Present when the governed call was made by another tool via `ctx.executeTool()`. */
+	parentToolCallId?: string;
+	toolName: string;
+	action: "block" | "args-mutated" | "result-rewritten";
+	/** Path of the extension whose hook acted. */
+	extensionPath: string;
+	/** Bounded summary (max 200 chars). */
+	summary: string;
+}
+
 /** Union of all event types */
 export type ExtensionEvent =
 	| ProjectTrustEvent
@@ -1454,7 +1472,8 @@ export type ExtensionEvent =
 	| UserBashEvent
 	| InputEvent
 	| ToolCallEvent
-	| ToolResultEvent;
+	| ToolResultEvent
+	| ToolGovernanceEvent;
 
 // ============================================================================
 // Event Results
@@ -1705,6 +1724,7 @@ export interface ExtensionAPI {
 	on(event: "thinking_level_select", handler: ExtensionHandler<ThinkingLevelSelectEvent>): () => void;
 	on(event: "tool_call", handler: ExtensionHandler<ToolCallEvent, ToolCallEventResult>): () => void;
 	on(event: "tool_result", handler: ExtensionHandler<ToolResultEvent, ToolResultEventResult>): () => void;
+	on(event: "tool_governance", handler: ExtensionHandler<ToolGovernanceEvent>): () => void;
 	on(event: "user_bash", handler: ExtensionHandler<UserBashEvent, UserBashEventResult>): () => void;
 	on(event: "input", handler: ExtensionHandler<InputEvent, InputEventResult>): () => void;
 

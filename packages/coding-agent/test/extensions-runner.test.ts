@@ -1116,15 +1116,17 @@ describe("ExtensionRunner", () => {
 			const result = await discoverAndLoadExtensions([], tempDir, tempDir);
 			const runner = new ExtensionRunner(result.extensions, result.runtime, tempDir, sessionManager, modelRegistry);
 
-			const chained = await runner.emitToolResult({
-				type: "tool_result",
-				toolName: "my_tool",
-				toolCallId: "call-1",
-				input: {},
-				content: [{ type: "text", text: "base" }],
-				details: { initial: true },
-				isError: false,
-			});
+			const chained = (
+				await runner.emitToolResult({
+					type: "tool_result",
+					toolName: "my_tool",
+					toolCallId: "call-1",
+					input: {},
+					content: [{ type: "text", text: "base" }],
+					details: { initial: true },
+					isError: false,
+				})
+			).result;
 
 			expect(chained).toBeDefined();
 			const chainedContent = chained?.content;
@@ -1164,15 +1166,17 @@ describe("ExtensionRunner", () => {
 			const result = await discoverAndLoadExtensions([], tempDir, tempDir);
 			const runner = new ExtensionRunner(result.extensions, result.runtime, tempDir, sessionManager, modelRegistry);
 
-			const chained = await runner.emitToolResult({
-				type: "tool_result",
-				toolName: "my_tool",
-				toolCallId: "call-2",
-				input: {},
-				content: [{ type: "text", text: "base" }],
-				details: { initial: true },
-				isError: false,
-			});
+			const chained = (
+				await runner.emitToolResult({
+					type: "tool_result",
+					toolName: "my_tool",
+					toolCallId: "call-2",
+					input: {},
+					content: [{ type: "text", text: "base" }],
+					details: { initial: true },
+					isError: false,
+				})
+			).result;
 
 			expect(chained).toEqual({
 				content: [{ type: "text", text: "first" }],

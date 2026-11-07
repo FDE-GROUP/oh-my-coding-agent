@@ -19,6 +19,7 @@ import type { Health } from "../../server/health.ts";
 import type { RpcSessionStats } from "../../server/runtime.ts";
 import { type CommandSummary, Composer, type QueueMode } from "./Composer.tsx";
 import { ConversationPlaceholder } from "./ConversationPlaceholder.tsx";
+import { type GovernanceEvent, governanceEventFromRecord } from "./GovernancePanel.tsx";
 import {
 	type MechanismEvent,
 	mechanismEventFromRecord,
@@ -63,6 +64,7 @@ export function Conversation({
 	const [issue, setIssue] = useState<{ number: number; title: string; url: string; repoId: string } | null>(null);
 	const [ci, setCi] = useState<CiStatus | null>(null);
 	const [timeline, setTimeline] = useState<MechanismEvent[]>([]);
+	const [governance, setGovernance] = useState<GovernanceEvent[]>([]);
 	const noticeId = useRef(0);
 	const activeIdRef = useRef<string | null>(null);
 
@@ -89,6 +91,7 @@ export function Conversation({
 		setCommands([]);
 		setForkMessages([]);
 		setTimeline([]);
+		setGovernance([]);
 		resumeSession(sessionId)
 			.then((created) => {
 				if (!cancelled) setActiveId(created.id);
@@ -232,6 +235,10 @@ export function Conversation({
 					const mechanism = mechanismEventFromRecord(event.record as Record<string, unknown>);
 					if (mechanism) {
 						setTimeline((current) => [...current.slice(-499), mechanism]);
+					}
+					const governanceEvent = governanceEventFromRecord(event.record as Record<string, unknown>);
+					if (governanceEvent) {
+						setGovernance((current) => [...current.slice(-499), governanceEvent]);
 					}
 					if (
 						event.record.type === "extension_ui_request" &&
@@ -472,6 +479,7 @@ export function Conversation({
 						ci={ci}
 						canWrite
 						timeline={timeline}
+						governance={governance}
 					/>
 				</>
 			)}

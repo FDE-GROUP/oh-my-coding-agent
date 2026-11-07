@@ -110,6 +110,7 @@ import {
 	type ToolExposure,
 	type ToolInfo,
 	type ToolLoadout,
+	type ToolResultEventResult,
 	type TreePreparation,
 	type TurnStartEvent,
 	wrapRegisteredTools,
@@ -248,6 +249,18 @@ export type AgentSessionEvent =
 			reason: "manual" | "threshold" | "overflow";
 	  }
 	| { type: "summarization_retry_finished" }
+	| {
+			type: "tool_governance";
+			toolCallId: string;
+			/** Present when the governed call was made by another tool via `ctx.executeTool()`. */
+			parentToolCallId?: string;
+			toolName: string;
+			action: "block" | "args-mutated" | "result-rewritten";
+			/** Path of the extension whose hook acted. */
+			extensionPath: string;
+			/** Bounded summary (max 200 chars); never the full original text. */
+			summary: string;
+	  }
 	| { type: "bash_execution_update"; id?: string; delta: string };
 
 /** Listener function for agent session events */
@@ -404,6 +417,38 @@ function getNextCycleIndex(
 	if (currentIndex === -1) return direction === "forward" ? 0 : length - 1;
 	if (length === 1) return undefined;
 	return direction === "forward" ? (currentIndex + 1) % length : (currentIndex - 1 + length) % length;
+}
+
+/** Max length of a governance summary; originals are never included in full. */
+const GOVERNANCE_SUMMARY_MAX = 200;
+
+/** Bound a governance summary to {@link GOVERNANCE_SUMMARY_MAX} characters. */
+function summarizeGovernance(text: string): string {
+	const trimmed = text.trim();
+	return trimmed.length > GOVERNANCE_SUMMARY_MAX ? `${trimmed.slice(0, GOVERNANCE_SUMMARY_MAX)}…` : trimmed;
+}
+
+/** Top-level argument keys whose serialized value changed between hook dispatch and return. */
+function changedArgKeys(beforeSnapshot: string, after: unknown): string {
+	try {
+		const before = JSON.parse(beforeSnapshot) as Record<string, unknown>;
+		const afterObj = after as Record<string, unknown>;
+		const changed: string[] = [];
+		for (const key of new Set([...Object.keys(before), ...Object.keys(afterObj)])) {
+			if (JSON.stringify(before[key]) !== JSON.stringify(afterObj[key])) changed.push(key);
+		}
+		return changed.join(", ") || "(none)";
+	} catch {
+		return "(unavailable)";
+	}
+}
+
+/** Concatenated text blocks of a tool result content array, for bounded summaries. */
+function textContentOf(content: Array<{ type: string; text?: string }>): string {
+	return content
+		.filter((block) => block.type === "text")
+		.map((block) => block.text ?? "")
+		.join("");
 }
 
 export class AgentSession {
@@ -700,14 +745,37 @@ export class AgentSession {
 			return undefined;
 		}
 
+		const argsSnapshot = JSON.stringify(args);
 		try {
-			return await runner.emitToolCall({
+			const { result, extensionPath } = await runner.emitToolCall({
 				type: "tool_call",
 				toolName: toolCall.name,
 				toolCallId: toolCall.id,
 				...(parentToolCallId ? { parentToolCallId } : {}),
 				input: args as Record<string, unknown>,
 			});
+			if (result?.block) {
+				await this._emitGovernance(
+					toolCall.id,
+					toolCall.name,
+					parentToolCallId,
+					"block",
+					extensionPath,
+					summarizeGovernance(result.reason || "Tool execution was blocked"),
+				);
+				return result;
+			}
+			if (extensionPath && JSON.stringify(args) !== argsSnapshot) {
+				await this._emitGovernance(
+					toolCall.id,
+					toolCall.name,
+					parentToolCallId,
+					"args-mutated",
+					extensionPath,
+					`mutated args: ${changedArgKeys(argsSnapshot, args)}`,
+				);
+			}
+			return result;
 		} catch (err) {
 			if (err instanceof Error) {
 				throw err;
@@ -722,20 +790,24 @@ export class AgentSession {
 		parentToolCallId?: string,
 	): Promise<AfterToolCallResult | undefined> {
 		const runner = this._extensionRunner;
-		const hookResult = runner.hasHandlers("tool_result")
-			? await runner.emitToolResult({
-					type: "tool_result",
-					toolName: toolCall.name,
-					toolCallId: toolCall.id,
-					...(parentToolCallId ? { parentToolCallId } : {}),
-					input: args as Record<string, unknown>,
-					content: result.content,
-					details: result.details,
-					...(result.structuredContent === undefined ? {} : { structuredContent: result.structuredContent }),
-					isError,
-					usage: result.usage,
-				})
-			: undefined;
+		let hookResult: ToolResultEventResult | undefined;
+		let governancePath: string | undefined;
+		if (runner.hasHandlers("tool_result")) {
+			const dispatch = await runner.emitToolResult({
+				type: "tool_result",
+				toolName: toolCall.name,
+				toolCallId: toolCall.id,
+				...(parentToolCallId ? { parentToolCallId } : {}),
+				input: args as Record<string, unknown>,
+				content: result.content,
+				details: result.details,
+				...(result.structuredContent === undefined ? {} : { structuredContent: result.structuredContent }),
+				isError,
+				usage: result.usage,
+			});
+			hookResult = dispatch.result;
+			governancePath = dispatch.extensionPath;
+		}
 
 		const content = hookResult?.content ?? result.content ?? [];
 		// Runs after the extension hook so images injected or replaced by extensions are normalized too.
@@ -749,14 +821,61 @@ export class AgentSession {
 			return undefined;
 		}
 
+		let details = hookResult?.details ?? result.details;
+		if (governancePath && hookResult?.content !== undefined && hookResult.content !== (result.content ?? [])) {
+			const originalText = textContentOf(result.content ?? []);
+			const newText = textContentOf(hookResult.content);
+			await this._emitGovernance(
+				toolCall.id,
+				toolCall.name,
+				parentToolCallId,
+				"result-rewritten",
+				governancePath,
+				`result rewritten: ${originalText.length} -> ${newText.length} chars`,
+			);
+			details = {
+				...(details as Record<string, unknown> | undefined),
+				governance: {
+					action: "result-rewritten",
+					extensionPath: governancePath,
+					original: summarizeGovernance(originalText),
+				},
+			};
+		}
+
 		// The hook result already dropped structured content that replaced content no longer matches.
 		return {
 			content: normalizedContent,
-			details: hookResult?.details,
+			details,
 			structuredContent: hookResult ? hookResult.structuredContent : result.structuredContent,
 			isError: hookResult?.isError ?? isError,
 			usage: hookResult?.usage,
 		};
+	}
+
+	/**
+	 * Emit a `tool_governance` event into both the session event stream and the extension
+	 * event dispatch. Bounded summaries only; never the full original text.
+	 */
+	private async _emitGovernance(
+		toolCallId: string,
+		toolName: string,
+		parentToolCallId: string | undefined,
+		action: "block" | "args-mutated" | "result-rewritten",
+		extensionPath: string | undefined,
+		summary: string,
+	): Promise<void> {
+		const event = {
+			type: "tool_governance" as const,
+			toolCallId,
+			...(parentToolCallId ? { parentToolCallId } : {}),
+			toolName,
+			action,
+			extensionPath: extensionPath ?? "unknown",
+			summary: summarizeGovernance(summary),
+		};
+		await this._extensionRunner.emit(event);
+		this._emit(event);
 	}
 
 	/**

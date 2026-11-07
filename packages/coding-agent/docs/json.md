@@ -179,6 +179,19 @@ Compaction and branch-summary retry emit:
 
 For a branch summary, `source` is `"branchSummary"` and `reason` is absent. The `reason` on a compaction retry is `"manual"`, `"threshold"`, or `"overflow"`.
 
+## Governance events
+
+When an extension's `tool_call`/`tool_result` hook acts on a tool call — blocks it, mutates its arguments in place, or rewrites its result — a `tool_governance` event records the action:
+
+```json
+{"type":"tool_governance","toolCallId":"call-1","toolName":"write","action":"block","extensionPath":"/path/to/ext.ts","summary":"blocked by policy"}
+```
+
+- `action` is `"block"`, `"args-mutated"`, or `"result-rewritten"`. `parentToolCallId` is present for calls another tool made via `ctx.executeTool()`.
+- `summary` is bounded to 200 characters and never contains the full original text; a rewritten result additionally keeps a bounded original summary in the tool result's `details.governance`.
+- Attribution is best-effort: `block` names the blocking extension; silent argument mutation is attributed to the last handler that ran on the event. Pass-through (no action) emits nothing.
+- The event is not persisted to the transcript; it is only observable live in the event stream.
+
 ## RPC-only events
 
 A direct RPC [`bash`](rpc-commands.md#bash) command emits one `bash_execution_update` for each output chunk. Its optional `id` matches the command ID. The final command response can contain truncated output, but these events stream all output:
