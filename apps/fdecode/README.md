@@ -235,8 +235,9 @@ sqlite3 ~/.fdecode/fdecode.db "VACUUM INTO '/path/to/fdecode-backup.db'"
 ```
 
 - 认证在 `server.mjs` 边缘层完成，校验后向应用注入 `x-fdecode-user`。
-- 会话事实以 Pi 为准；SSE 重连时整体替换为快照。
+- 会话事实以 Pi 为准；SSE 重连时整体替换为快照（含正在流式的当前回复片段）。
 - 只为当前会话保持 SSE；后台会话继续运行。
+- SSE 服务端不对慢消费端做背压；本地优先、3~5 人规模下风险可忽略，重连即整份快照可自愈。
 - `@file` 只允许工作区内普通文件；敏感文件名（`.env`、密钥等）默认跳过。
 - 归属、Issue 关联、分享与审计存放在 `~/.fdecode/fdecode.db`（WAL，0600）。
 

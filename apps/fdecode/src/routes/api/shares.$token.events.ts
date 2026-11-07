@@ -32,6 +32,8 @@ export const Route = createFileRoute("/api/shares/$token/events")({
 							if (!closed) controller.enqueue(encoder.encode(": keep-alive\n\n"));
 						}, 15_000);
 
+						// 已知限制：不对慢消费端做背压（不检查 controller.desiredSize）；
+						// 本地优先、3~5 人规模下风险可忽略，重连即整份快照可自愈。见 README「架构」。
 						const send = (event: string, payload: unknown) => {
 							if (closed) return;
 							controller.enqueue(

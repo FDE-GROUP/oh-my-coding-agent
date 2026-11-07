@@ -41,7 +41,12 @@ export interface EventEnvelope {
 export interface EventStreamHandlers {
 	onSnapshot: (snapshot: SessionSnapshot) => void;
 	onEvent: (event: RuntimeEvent) => void;
+	/** 传输层瞬时中断；EventSource 会自动重连。 */
 	onConnectionError?: () => void;
+	/** 事件流致命关闭（如运行时被回收致 404），不会自动重连，需上层恢复。 */
+	onFatal?: () => void;
+	/** 检测到 seq 断档（丢帧），上层应重建事件流以重新同步快照。 */
+	onGap?: () => void;
 }
 
 async function readError(response: Response): Promise<string> {
@@ -109,15 +114,26 @@ export async function sendCommand(sessionId: string, command: RpcCommand): Promi
  */
 export function openEventStream(sessionId: string, handlers: EventStreamHandlers): () => void {
 	const source = new EventSource(`/api/sessions/${encodeURIComponent(sessionId)}/events`);
+	let lastSeq = 0;
 	source.addEventListener("snapshot", (event) => {
 		const envelope = JSON.parse((event as MessageEvent).data) as EventEnvelope;
+		lastSeq = envelope.seq;
 		handlers.onSnapshot(envelope.payload as SessionSnapshot);
 	});
 	source.addEventListener("event", (event) => {
 		const envelope = JSON.parse((event as MessageEvent).data) as EventEnvelope;
+		if (lastSeq !== 0 && envelope.seq !== lastSeq + 1) {
+			source.close();
+			handlers.onGap?.();
+			return;
+		}
+		lastSeq = envelope.seq;
 		handlers.onEvent(envelope.payload as RuntimeEvent);
 	});
-	source.addEventListener("error", () => handlers.onConnectionError?.());
+	source.addEventListener("error", () => {
+		if (source.readyState === EventSource.CLOSED) handlers.onFatal?.();
+		else handlers.onConnectionError?.();
+	});
 	return () => source.close();
 }
 
@@ -478,15 +494,26 @@ export async function fetchSharedSession(token: string): Promise<SharedSession> 
  */
 export function openSharedEventStream(token: string, handlers: EventStreamHandlers): () => void {
 	const source = new EventSource(`/api/shares/${encodeURIComponent(token)}/events`);
+	let lastSeq = 0;
 	source.addEventListener("snapshot", (event) => {
 		const envelope = JSON.parse((event as MessageEvent).data) as EventEnvelope;
+		lastSeq = envelope.seq;
 		handlers.onSnapshot(envelope.payload as SessionSnapshot);
 	});
 	source.addEventListener("event", (event) => {
 		const envelope = JSON.parse((event as MessageEvent).data) as EventEnvelope;
+		if (lastSeq !== 0 && envelope.seq !== lastSeq + 1) {
+			source.close();
+			handlers.onGap?.();
+			return;
+		}
+		lastSeq = envelope.seq;
 		handlers.onEvent(envelope.payload as RuntimeEvent);
 	});
-	source.addEventListener("error", () => handlers.onConnectionError?.());
+	source.addEventListener("error", () => {
+		if (source.readyState === EventSource.CLOSED) handlers.onFatal?.();
+		else handlers.onConnectionError?.();
+	});
 	return () => source.close();
 }
 

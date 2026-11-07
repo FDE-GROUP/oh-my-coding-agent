@@ -33,6 +33,26 @@ describe("conversationReducer", () => {
 		expect(state.status).toBe("streaming");
 	});
 
+	it("seeds the in-flight streaming partial from a snapshot", () => {
+		const state = conversationReducer(initialConversationState, {
+			type: "snapshot",
+			messages: [userMessage("hi")],
+			isStreaming: true,
+			streaming: { text: "partial reply", thinking: "" },
+		});
+		expect(state.status).toBe("streaming");
+		expect(state.streaming?.text).toBe("partial reply");
+	});
+
+	it("leaves streaming null when the snapshot carries no partial", () => {
+		const state = conversationReducer(initialConversationState, {
+			type: "snapshot",
+			messages: [userMessage("hi")],
+			isStreaming: false,
+		});
+		expect(state.streaming).toBeNull();
+	});
+
 	it("accumulates text and thinking deltas", () => {
 		let state = conversationReducer(initialConversationState, {
 			type: "event",

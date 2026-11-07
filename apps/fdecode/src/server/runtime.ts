@@ -50,6 +50,8 @@ export interface SessionSnapshot {
 	state: RpcSessionState;
 	messages: RpcMessages;
 	stats: RpcSessionStats;
+	/** 重连时正在流式的 assistant 片段；空闲时为 null。让重连快照立即续上当前回复，避免只显示后半段。 */
+	streaming: { text: string; thinking: string } | null;
 }
 
 /**
@@ -65,7 +67,7 @@ export type RuntimeStatus = "starting" | "ready" | "exited";
  * @internal
  */
 export type RuntimeEvent =
-	| { kind: "status"; status: RuntimeStatus }
+	| { kind: "status"; status: RuntimeStatus; error?: string }
 	| { kind: "record"; record: Record<string, unknown> }
 	| { kind: "exit"; code: number | null; signal: string | null; error?: string };
 
@@ -123,6 +125,9 @@ export class SessionRuntime {
 	#lastActivityAt = Date.now();
 	#sequence = 0;
 	#exit: { code: number | null; signal: NodeJS.Signals | null } | undefined;
+	#streamText = "";
+	#streamThinking = "";
+	#streamingTurn = false;
 
 	constructor(options: SessionRuntimeOptions = {}) {
 		this.#commandTimeoutMs = options.commandTimeoutMs ?? DEFAULT_COMMAND_TIMEOUT_MS;
@@ -193,6 +198,13 @@ export class SessionRuntime {
 		return this.#state;
 	}
 
+	/** 当前正在流式的 assistant 片段；不在流式或尚无内容时为 `null`。 */
+	get streaming(): { text: string; thinking: string } | null {
+		if (!this.#streamingTurn) return null;
+		if (this.#streamText.length === 0 && this.#streamThinking.length === 0) return null;
+		return { text: this.#streamText, thinking: this.#streamThinking };
+	}
+
 	/**
 	 * 启动并读取初始状态。
 	 *
@@ -221,7 +233,7 @@ export class SessionRuntime {
 			this.command({ type: "get_session_stats" }),
 		]);
 		this.#state = state.data;
-		return { state: state.data, messages: messages.data.messages, stats: stats.data };
+		return { state: state.data, messages: messages.data.messages, stats: stats.data, streaming: this.streaming };
 	}
 
 	/**
@@ -329,7 +341,46 @@ export class SessionRuntime {
 		if (record.type === "session_info_changed" && this.#state && typeof record.name === "string") {
 			this.#state = { ...this.#state, sessionName: record.name };
 		}
+		this.#trackStreaming(record);
 		this.#emit({ kind: "record", record });
+	}
+
+	/**
+	 * 镜像 reducer 累积当前流式片段，让重连快照能续上正在生成的回复。
+	 *
+	 * @param record - 一条已解析的 RPC 事件记录。
+	 */
+	#trackStreaming(record: Record<string, unknown>): void {
+		if (record.type === "message_start") {
+			const message = record.message as { role?: string } | undefined;
+			if (message && message.role === "assistant") {
+				this.#streamText = "";
+				this.#streamThinking = "";
+				this.#streamingTurn = true;
+			}
+			return;
+		}
+		if (record.type === "message_update") {
+			const update = record.assistantMessageEvent as { type?: string; delta?: string } | undefined;
+			if (update?.type === "text_delta" && typeof update.delta === "string") {
+				this.#streamText += update.delta;
+			} else if (update?.type === "thinking_delta" && typeof update.delta === "string") {
+				this.#streamThinking += update.delta;
+			}
+			return;
+		}
+		if (record.type === "message_end") {
+			const message = record.message as { role?: string } | undefined;
+			if (message && message.role === "assistant") this.#resetStreaming();
+			return;
+		}
+		if (record.type === "agent_settled") this.#resetStreaming();
+	}
+
+	#resetStreaming(): void {
+		this.#streamingTurn = false;
+		this.#streamText = "";
+		this.#streamThinking = "";
 	}
 
 	#handleExtensionUi(request: RpcExtensionUIRequest): void {

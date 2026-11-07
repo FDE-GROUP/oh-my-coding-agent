@@ -29,6 +29,8 @@ export const Route = createFileRoute("/api/sessions/$sessionId/events")({
 						let unsubscribe: (() => void) | undefined;
 						const buffered: unknown[] = [];
 
+						// 已知限制：不对慢消费端做背压（不检查 controller.desiredSize）；
+						// 本地优先、3~5 人规模下风险可忽略，重连即整份快照可自愈。见 README「架构」。
 						const send = (event: string, payload: unknown) => {
 							if (closed) return;
 							const envelope = { seq: ++sequence, ts: Date.now(), kind: event, payload };

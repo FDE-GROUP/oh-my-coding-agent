@@ -16,6 +16,7 @@ function SharePage() {
 	const [conversation, dispatch] = useReducer(conversationReducer, initialConversationState);
 	const [shared, setShared] = useState<SharedSession | null>(null);
 	const [error, setError] = useState<string | null>(null);
+	const [streamNonce, setStreamNonce] = useState(0);
 
 	useEffect(() => {
 		let cancelled = false;
@@ -27,6 +28,7 @@ function SharePage() {
 					type: "snapshot",
 					messages: data.snapshot.messages as ConversationMessage[],
 					isStreaming: data.snapshot.state.isStreaming,
+					streaming: data.snapshot.streaming,
 				});
 			})
 			.catch((caught) => {
@@ -37,6 +39,7 @@ function SharePage() {
 		};
 	}, [token]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: streamNonce 用于断档后强制重建事件流。
 	useEffect(() => {
 		if (!shared) return;
 		return openSharedEventStream(token, {
@@ -45,15 +48,19 @@ function SharePage() {
 					type: "snapshot",
 					messages: snapshot.messages as ConversationMessage[],
 					isStreaming: snapshot.state.isStreaming,
+					streaming: snapshot.streaming,
 				});
 			},
 			onEvent: (event) => {
 				if (event.kind === "record") dispatch({ type: "event", event: event.record });
+				if (event.kind === "status" && event.status === "exited") setError("会话已退出");
 				if (event.kind === "exit") setError("会话已退出");
 			},
 			onConnectionError: () => setError("事件流连接中断，正在重试…"),
+			onFatal: () => setError("分享会话不可用"),
+			onGap: () => setStreamNonce((current) => current + 1),
 		});
-	}, [shared, token]);
+	}, [shared, token, streamNonce]);
 
 	return (
 		<div className="flex h-dvh flex-col bg-dsw-bg-base text-dsw-label-primary">

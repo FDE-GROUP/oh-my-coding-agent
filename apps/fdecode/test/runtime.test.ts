@@ -133,6 +133,29 @@ describe("SessionRuntime", () => {
 		expect(resumed.messageCount).toBeGreaterThan(0);
 	});
 
+	it("retains the in-flight streaming partial and clears it on settle", async () => {
+		const dir = sessionDir();
+		const rt = createRuntime(dir);
+		runtime = rt;
+		let sawPartial: { text: string; thinking: string } | null = null;
+		rt.subscribe((event) => {
+			if (event.kind === "record" && event.record.type === "message_update") {
+				const current = rt.streaming;
+				if (current && current.text.length > 0) sawPartial = current;
+			}
+		});
+		const { events } = collect(rt);
+
+		await rt.initialize();
+		await rt.command({ type: "prompt", message: "hello" });
+		await waitFor(events, (event) => event.kind === "record" && event.record.type === "agent_settled", 60_000);
+
+		expect(sawPartial).not.toBeNull();
+		expect(rt.streaming).toBeNull();
+		const snapshot = await rt.snapshot();
+		expect(snapshot.streaming).toBeNull();
+	});
+
 	it("sweeps idle runtimes", async () => {
 		const manager = new RuntimeManager({
 			idleMs: 0,

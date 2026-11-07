@@ -70,7 +70,12 @@ export interface ConversationState {
  * @internal
  */
 export type ConversationAction =
-	| { type: "snapshot"; messages: ConversationMessage[]; isStreaming: boolean }
+	| {
+			type: "snapshot";
+			messages: ConversationMessage[];
+			isStreaming: boolean;
+			streaming?: StreamingMessage | null;
+	  }
 	| { type: "event"; event: Record<string, unknown> }
 	| { type: "reset" };
 
@@ -147,7 +152,7 @@ export function conversationReducer(state: ConversationState, action: Conversati
 	if (action.type === "snapshot") {
 		return {
 			messages: action.messages,
-			streaming: null,
+			streaming: action.streaming ?? null,
 			tools: {},
 			queue: { steering: [], followUp: [] },
 			status: action.isStreaming ? "streaming" : "idle",

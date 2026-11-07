@@ -227,6 +227,7 @@ export function Conversation({
 					type: "snapshot",
 					messages: snapshot.messages as ConversationMessage[],
 					isStreaming: snapshot.state.isStreaming,
+					streaming: snapshot.streaming,
 				});
 			},
 			onEvent: (event) => {
@@ -269,6 +270,10 @@ export function Conversation({
 							.catch(() => undefined);
 					}
 				}
+				if (event.kind === "status" && event.status === "exited") {
+					setCrashed(true);
+					setError(event.error ? `Pi 已退出：${event.error}` : "Pi 已退出");
+				}
 				if (event.kind === "exit") {
 					setCrashed(true);
 					setError(event.error ? `Pi 已退出：${event.error}` : "Pi 已退出");
@@ -276,6 +281,11 @@ export function Conversation({
 				}
 			},
 			onConnectionError: () => setError("事件流连接中断，正在重试…"),
+			onFatal: () => {
+				setCrashed(true);
+				setError("会话运行时已回收或不可用，请重新启动");
+			},
+			onGap: () => setConnectionNonce((current) => current + 1),
 		});
 	}, [activeId, connectionNonce]);
 
