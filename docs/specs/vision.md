@@ -240,6 +240,7 @@ DSH 是参考对象，不是替换目标。三条线只借鉴它的组织方式�
 | `docs/plans/fdecode.md` | FDE Code UI M1 的实现计划 |
 | `docs/rads/TEMPLATE.md` | 需求描述模板 |
 | `docs/specs/workflow.md` | 开发工作流：RAD、Spike、Plan 与验证闭环 |
+| `docs/specs/glossary.md` | 术语表：项目级术语 SSOT，统一人机交流口径 |
 | `docs/specs/tsdoc-comment-standards.md` | 平台 TypeScript 注释规范与检查门禁 |
 | `docs/specs/vision.md` | 本文档 |
 
