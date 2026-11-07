@@ -12,6 +12,7 @@ import type { BashResult } from "../../core/bash-executor.ts";
 import type { CompactionResult } from "../../core/compaction/index.ts";
 import type { SessionEntry, SessionTreeNode } from "../../core/session-manager.ts";
 import type { SourceInfo } from "../../core/source-info.ts";
+import type { ContextAnatomy } from "./context-anatomy.ts";
 
 // ============================================================================
 // RPC Commands (stdin)
@@ -28,6 +29,9 @@ export type RpcCommand =
 
 	// State
 	| { id?: string; type: "get_state" }
+
+	// Visibility
+	| { id?: string; type: "get_context_anatomy" }
 
 	// Model
 	| { id?: string; type: "set_model"; provider: string; modelId: string }
@@ -136,6 +140,7 @@ export type RpcResponse =
 
 	// State
 	| { id?: string; type: "response"; command: "get_state"; success: true; data: RpcSessionState }
+	| { id?: string; type: "response"; command: "get_context_anatomy"; success: true; data: ContextAnatomy }
 
 	// Model
 	| {

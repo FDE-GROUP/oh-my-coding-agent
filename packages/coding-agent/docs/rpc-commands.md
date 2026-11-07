@@ -185,6 +185,47 @@ Response:
 
 The `model` field is a full [Model](#model-object) object, or omitted when no model is selected. The `sessionName` field is the display name set via `set_session_name`, or omitted if not set.
 
+### get_context_anatomy
+
+Get the anatomy of the next request's context: system prompt sections, declared tools, message history, and token estimates. Read-only: never mutates the session and never issues a provider request.
+
+```json
+{"type": "get_context_anatomy"}
+```
+
+Response:
+```json
+{
+  "type": "response",
+  "command": "get_context_anatomy",
+  "success": true,
+  "data": {
+    "sections": [
+      { "name": "preamble", "chars": 126, "estTokens": 32 },
+      { "name": "tools", "chars": 274, "estTokens": 69 },
+      { "name": "rules", "chars": 589, "estTokens": 148 },
+      { "name": "docs", "chars": 1167, "estTokens": 292 },
+      { "name": "cwd", "chars": 52, "estTokens": 13 }
+    ],
+    "baseContent": { "chars": 0, "estTokens": 0 },
+    "tools": [{ "name": "read" }, { "name": "bash" }, { "name": "edit" }, { "name": "write" }],
+    "messages": { "count": 6, "estTokens": 812 },
+    "compaction": { "active": false },
+    "total": {
+      "tokens": 1450,
+      "contextWindow": 200000,
+      "percent": 0.725,
+      "basis": "usage-anchored"
+    }
+  }
+}
+```
+
+- `sections` are the named sections of the current system message, in declaration order; `baseContent` is its base instruction text.
+- `tools` lists the tools declared available after replaying system message diffs.
+- `total.basis` is `"usage-anchored"` when the estimate is anchored on the last trusted provider usage (plus estimated trailing tokens), or `"estimated"` when only the chars/4 heuristic applies (no usage yet, or invalidated by a later `context_edit`/compaction). `contextWindow` and `percent` are present when a model with a known window is selected; `tokens` falls back to the full estimate when context usage is unknown (for example right after compaction).
+- Section and message costs use the same chars/4 heuristic as the compaction threshold; they are estimates, not provider-reported counts.
+
 ### get_messages
 
 Get all messages in the conversation.
